@@ -581,11 +581,28 @@ internal static class RolandGS
                                     }
 
                                     // Pitch offset fine in Hz is not supported so far
-
                                     case 0x19: 
                                         // Part level (cc#7)
                                         ch.ControllerChange(
                                             Midi.CC.MainVolume, data);
+                                        return;
+                                    
+                                    case 0x1a:
+                                        // Velocity Sense Depth
+                                        ch.Set((
+                                            ChannelMidiParameter.Type.VelocitySenseDepth,
+                                            data));
+                                        SpessaLog.GSInfo(
+                                            "Velocity Sense Depth", data);
+                                        return;
+
+                                    case 0x1b: 
+                                        // Velocity Sense Offset
+                                        ch.Set((
+                                            ChannelMidiParameter.Type.VelocitySenseOffset,
+                                            data));
+                                        SpessaLog.GSInfo(
+                                            "Velocity Sense Offset", data);
                                         return;
 
                                     // Pan position

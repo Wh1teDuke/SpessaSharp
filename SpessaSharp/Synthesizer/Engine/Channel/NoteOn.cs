@@ -28,8 +28,7 @@ internal static class NoteOn
             chan.NoteOff(midiNote);
             return;
         }
-
-        velocity = Math.Clamp(velocity, 0, 127);
+        
         var synth = chan.SynthCore;
         var black = synth.SystemParameters.BlackMIDIMode;
         
@@ -42,6 +41,13 @@ internal static class NoteOn
             // Or channel has no preset ...
             chan.Preset == null)
             return;
+        
+        // Apply Velocity Sense and clamp
+        velocity = (int)Math.Clamp(
+            (velocity - 64) * (chan.MidiParameters.VelocitySenseDepth / 64f) +
+            chan.MidiParameters.VelocitySenseOffset, 
+            0, 
+            127);
 
         // Note which we should grab presets from (strictly internal)
         var soundBankNote = midiNote + chan.CurrentKeyShift;
