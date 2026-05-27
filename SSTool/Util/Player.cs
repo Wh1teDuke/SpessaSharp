@@ -465,7 +465,7 @@ public sealed class Player: IDisposable
             // HOT >>>>>>
             var t1 = Stopwatch.GetTimestamp();
             Sequencer.ProcessTick();
-            _beat = Sequencer.Midi!.MidiTicksToBeats(Sequencer.Tick);
+            _beat = Sequencer.Midi?.MidiTicksToBeats(Sequencer.Tick) ?? 0;
             Sequencer.Synth.Process(samples);
             total = Stopwatch.GetTimestamp() - t1;
             // TOH <<<<<<
