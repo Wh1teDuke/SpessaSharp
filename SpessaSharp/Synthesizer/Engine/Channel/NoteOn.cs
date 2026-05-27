@@ -44,7 +44,7 @@ internal static class NoteOn
 
         var transformed =
             velocity * (chan.MidiParameters.VelocitySenseDepth / 64f) +
-            (chan.MidiParameters.VelocitySenseOffset - 64);
+            (chan.MidiParameters.VelocitySenseOffset - 64) * 2;
         
         // Apply Velocity Sense and clamp
         velocity = (int)Math.Clamp(transformed, 0, 127);
