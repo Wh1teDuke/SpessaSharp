@@ -314,6 +314,7 @@ public readonly record struct ChannelMidiParameter
         DrumMap,
         /// <summary>
         /// The relation between the input and the actual velocity.
+        /// 
         /// <para>
         /// If Velo Depth is increased, small differences in your playing dynamics will make a large difference in the loudness of the sound.
         /// If Velo Depth is decreased, even large differences in your playing dynamics will make only a small difference in the loudness of the sound.
@@ -321,28 +322,32 @@ public readonly record struct ChannelMidiParameter
         /// </summary>
         /// <remarks>
         /// Examples (with offset being set to normal):
+        /// 
         /// <list type="bullet">
         /// <item><description>64 is normal.</description></item>
         /// <item><description>32 is half velocity at max volume.</description></item>
         /// <item><description>127 is max velocity at half volume.</description></item>
         /// </list>
-        /// See SC-8850 Manual page 56.
+        /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see>, page 56.
         /// </remarks>
         VelocitySenseDepth,
         /// <summary>
-        /// Adjusts the velocity offset. 
-        /// If set higher than 64, softly played notes will sound loudly. 
-        /// If set lower than 64, strongly played notes will sound softly.
+        /// The offset to add to the input velocity.
+        /// 
+        /// If Velo Offset is set higher than 64, even softly played notes (i.e., notes with a low velocity)
+        /// will be sounded loudly. If Velo Offset is set lower than 64,
+        /// even strongly played notes (i.e., notes with a high velocity) will be sounded softly.
         /// </summary>
         /// <remarks>
         /// Examples (with depth set to normal):
+        /// 
         /// <list type="bullet">
-        /// <item><description>64: Normal response.</description></item>
-        /// <item><description>32: Silent until half velocity; max velocity produces half volume.</description></item>
-        /// <item><description>96: Starts at half volume and reaches max volume at half velocity.</description></item>
-        /// <item><description>127: Always forces velocity to maximum.</description></item>
+        /// <item><description>64 is normal.</description></item>
+        /// <item><description>32 is silent until half velocity, max velocity is half volume.</description></item>
+        /// <item><description>96 starts at half volume and reaches max volume at half velocity.</description></item>
+        /// <item><description>127 always forces velocity to max.</description></item>
         /// </list>
-        /// See SC-8850 Manual page 56.
+        /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see>, page 56.
         /// </remarks>
         VelocitySenseOffset,
     }
