@@ -69,6 +69,13 @@ public static class ChannelMidiParameters
             get =>
                 parameters.Get(ChannelMidiParameter.Type.KeyShift).AsInt;
         }
+                
+        public float FineTune
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get =>
+                parameters.Get(ChannelMidiParameter.Type.FineTune).AsFloat;
+        }
         
         public MidiChannel.Assign AssignMode
         {
@@ -112,11 +119,18 @@ public static class ChannelMidiParameters
                 parameters.Get(ChannelMidiParameter.Type.DrumMap).AsInt;
         }
         
-        public float FineTune
+        public int VelocitySenseDepth
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get =>
-                parameters.Get(ChannelMidiParameter.Type.FineTune).AsFloat;
+                parameters.Get(ChannelMidiParameter.Type.VelocitySenseDepth).AsInt;
+        }
+        
+        public int VelocitySenseOffset
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get =>
+                parameters.Get(ChannelMidiParameter.Type.VelocitySenseOffset).AsInt;
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -138,13 +152,15 @@ public static class ChannelMidiParameters
             (ChannelMidiParameter.Type.RxChannel, 0),
             (ChannelMidiParameter.Type.PolyMode, true),
             (ChannelMidiParameter.Type.KeyShift, 0),
+            (ChannelMidiParameter.Type.FineTune, 0f),
             (ChannelMidiParameter.Type.RandomPan, false),
             MidiChannel.Assign.FullMulti,
             (ChannelMidiParameter.Type.EfxAssign, false),
             new (ChannelMidiParameter.Type.CC1, (Midi.CC)0x10),
             new (ChannelMidiParameter.Type.CC2, (Midi.CC)0x11),
             (ChannelMidiParameter.Type.DrumMap, 0),
-            (ChannelMidiParameter.Type.FineTune, 0f),
+            (ChannelMidiParameter.Type.VelocitySenseDepth, 64),
+            (ChannelMidiParameter.Type.VelocitySenseOffset, 64),
         ];
         
         DefaultParams = new ChannelMidiParameter[list.Length];
@@ -296,6 +312,44 @@ public readonly record struct ChannelMidiParameter
         /// The only values that are allowed are 0 (melodic) 1 or 2.
         /// </summary>
         DrumMap,
+        /// <summary>
+        /// The relation between the input and the actual velocity.
+        /// 
+        /// <para>
+        /// If Velo Depth is increased, small differences in your playing dynamics will make a large difference in the loudness of the sound.
+        /// If Velo Depth is decreased, even large differences in your playing dynamics will make only a small difference in the loudness of the sound.
+        /// </para>
+        /// </summary>
+        /// <remarks>
+        /// Examples (with offset being set to normal):
+        /// 
+        /// <list type="bullet">
+        /// <item><description>64 is normal.</description></item>
+        /// <item><description>32 is half velocity at max volume.</description></item>
+        /// <item><description>127 is max velocity at half volume.</description></item>
+        /// </list>
+        /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see>, page 56.
+        /// </remarks>
+        VelocitySenseDepth,
+        /// <summary>
+        /// The offset to add to the input velocity.
+        /// 
+        /// If Velo Offset is set higher than 64, even softly played notes (i.e., notes with a low velocity)
+        /// will be sounded loudly. If Velo Offset is set lower than 64,
+        /// even strongly played notes (i.e., notes with a high velocity) will be sounded softly.
+        /// </summary>
+        /// <remarks>
+        /// Examples (with depth set to normal):
+        /// 
+        /// <list type="bullet">
+        /// <item><description>64 is normal.</description></item>
+        /// <item><description>32 is silent until half velocity, max velocity is half volume.</description></item>
+        /// <item><description>96 starts at half volume and reaches max volume at half velocity.</description></item>
+        /// <item><description>127 always forces velocity to max.</description></item>
+        /// </list>
+        /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see>, page 56.
+        /// </remarks>
+        VelocitySenseOffset,
     }
 
     public static Params.Type TypeOf(Type type) => type switch
@@ -314,6 +368,8 @@ public readonly record struct ChannelMidiParameter
         Type.CC2 => Params.Type.CC,
         Type.DrumMap => Params.Type.Int,
         Type.FineTune => Params.Type.Float,
+        Type.VelocitySenseDepth => Params.Type.Int,
+        Type.VelocitySenseOffset => Params.Type.Int,
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
     

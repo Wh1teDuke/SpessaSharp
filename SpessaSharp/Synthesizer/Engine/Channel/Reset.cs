@@ -72,7 +72,7 @@ internal static class Reset
         if (!chan.SynthCore.SystemParameters.InsertionEffectLock)
             chan.Set((ChannelMidiParameter.Type.EfxAssign, false));
         
-        // Reset Property Parameters
+        // Reset MIDI Parameters
         chan.Set((ChannelMidiParameter.Type.RxChannel, chan.Channel));
         chan.Set(MidiChannel.Assign.FullMulti);
         chan.Set((ChannelMidiParameter.Type.RandomPan, false));
@@ -83,6 +83,9 @@ internal static class Reset
         chan.Set((
             ChannelMidiParameter.Type.DrumMap, 
             chan.Channel % 16 == Synthesizer.DEFAULT_PERCUSSION ? 1 : 0));
+        chan.Set((ChannelMidiParameter.Type.VelocitySenseOffset, 64));
+        chan.Set((ChannelMidiParameter.Type.VelocitySenseDepth, 64));
+        // These have wrappers
         chan.PitchWheel(8_192);
         chan.PitchWheelRange(2, false);
         chan.KeyShift(0, false);
