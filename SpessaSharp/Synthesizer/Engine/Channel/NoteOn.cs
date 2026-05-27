@@ -47,7 +47,7 @@ internal static class NoteOn
             (chan.MidiParameters.VelocitySenseOffset - 64) * 2;
         
         // Apply Velocity Sense and clamp
-        velocity = (int)Math.Clamp(transformed, 0, 127);
+        var realVelocity = (int)Math.Clamp(transformed, 0, 127);
 
         // Note which we should grab presets from (strictly internal)
         var soundBankNote = midiNote + chan.CurrentKeyShift;
@@ -71,7 +71,7 @@ internal static class NoteOn
         // Key velocity override
         if (synth.KeyModifierManager.GetVelocity(
             chan.Channel, midiNote) is {} keyVel)
-            velocity = keyVel;
+            realVelocity = keyVel;
         
         // Gain
         var voiceGain = synth.KeyModifierManager.GetGain(
@@ -124,7 +124,7 @@ internal static class NoteOn
         
         // Get voices
         var voiceList = synth.GetVoices(
-            chan.Channel, soundBankNote, velocity);
+            chan.Channel, soundBankNote, realVelocity);
         var voices = ReadOnlySpan<CachedVoice>.Empty;
         
         if (voiceList.Single is {} single)
