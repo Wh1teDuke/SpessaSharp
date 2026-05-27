@@ -1,4 +1,4 @@
-<p align='center'><img src='spessasharp_logo_rounded.png' width='300' alt='SpessaSynth logo'></p>
+<p align='center'><img src='spessasharp_logo_rounded.png' width='300' alt='SpessaSharp logo'></p>
 
 **SpessaSharp** is a C# port of the [**SpessaSynth**](https://github.com/spessasus/spessasynth_core) library by [**Spessasus**](https://github.com/spessasus).
 
