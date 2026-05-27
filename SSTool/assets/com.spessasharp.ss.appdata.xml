@@ -18,8 +18,7 @@
     <content_rating type="oars-1.1" />
 
     <launchable type="desktop-id">com.spessasharp.ss.desktop</launchable>
-    <!-- TEMP -->
-    <url type="homepage">https://spessasus.github.io/spessasynth_core/</url>
+    <url type="homepage">https://github.com/Wh1teDuke/SpessaSharp</url>
     <provides>
         <binary>ss</binary>
     </provides>
