@@ -2,7 +2,7 @@
 
 **SpessaSharp** is a C# port of the [**SpessaSynth**](https://github.com/spessasus/spessasynth_core) library by [**Spessasus**](https://github.com/spessasus).
 
-Last commit: [Support for Overlapping Notes and better Mono Mode](https://github.com/spessasus/spessasynth_core/commit/fa46f93b159421f806a57f6548f098829bcd79ef)
+Last commit: [Velocity Sense Support](https://github.com/spessasus/spessasynth_core/commit/47846f9f0f500cf5dd1122b5813a0967b608185e)
 
 ```csharp
 using SpessaSharp.MIDI;
