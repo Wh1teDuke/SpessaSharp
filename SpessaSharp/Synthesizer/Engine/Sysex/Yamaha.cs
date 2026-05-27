@@ -3,6 +3,7 @@ using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
+using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Sysex;
 
@@ -16,9 +17,7 @@ internal static class Yamaha
     /// <param name="syx"></param>
     /// <param name="channelOffset"></param>
     public static void SystemExclusive(
-        Synthesizer synth,
-        ReadOnlySpan<byte> syx,
-        int channelOffset = 0)
+        Synthesizer synth, ReadOnlySpan<byte> syx, int channelOffset = 0)
     {
         // XG sysex
         if (syx[2] == 0x4c) 
@@ -182,6 +181,24 @@ internal static class Yamaha
                         ch.ControllerChange(
                             Midi.CC.MainVolume, data);
                         break;
+                    
+                    // Velocity Sense Depth
+                    case 0x0c:
+                        ch.Set((
+                            ChannelMidiParameter.Type.VelocitySenseDepth,
+                            data));
+                        SpessaLog.XGInfo(
+                            "Velocity Sense Depth", data);
+                        return;
+
+                    // Velocity Sense Offset
+                    case 0x0d:
+                        ch.Set((
+                            ChannelMidiParameter.Type.VelocitySenseOffset,
+                            data));
+                        SpessaLog.XGInfo(
+                            "Velocity Sense Offset", data);
+                        return;
 
                     // Pan position
                     case 0x0e: 

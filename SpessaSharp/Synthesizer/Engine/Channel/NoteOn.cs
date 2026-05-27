@@ -41,13 +41,13 @@ internal static class NoteOn
             // Or channel has no preset ...
             chan.Preset == null)
             return;
+
+        var transformed =
+            velocity * (chan.MidiParameters.VelocitySenseDepth / 64f) +
+            (chan.MidiParameters.VelocitySenseOffset - 64);
         
         // Apply Velocity Sense and clamp
-        velocity = (int)Math.Clamp(
-            (velocity - 64) * (chan.MidiParameters.VelocitySenseDepth / 64f) +
-            chan.MidiParameters.VelocitySenseOffset, 
-            0, 
-            127);
+        velocity = (int)Math.Clamp(transformed, 0, 127);
 
         // Note which we should grab presets from (strictly internal)
         var soundBankNote = midiNote + chan.CurrentKeyShift;
