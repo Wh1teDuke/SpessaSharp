@@ -2,7 +2,6 @@ name: Publish SpessaSharp NuGet
 
 on:
   push:
-    branches: [ "master" ]
     tags: [ "v*" ]
   workflow_dispatch:
 
