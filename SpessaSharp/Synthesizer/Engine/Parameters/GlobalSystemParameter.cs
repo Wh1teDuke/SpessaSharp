@@ -301,88 +301,87 @@ public readonly record struct GlobalSystemParameter
     {
         // Synth Exclusive
         /// <summary> If the synthesizer processes the audio effects. </summary>
-        EffectsEnabled,//bool
+        EffectsEnabled,
         /// <summary>If the event system is enabled.</summary>
-        EventsEnabled,//bool
+        EventsEnabled,
         /// <summary> The maximum number of voices that can be played at once.
         ///
         /// Increasing this value causes memory allocation for more voices.
         /// It is recommended to set it at the beginning, before rendering audio to avoid GC.
         /// Decreasing it does not cause memory usage change, so it's fine to use. </summary>
-        VoiceCap,//int
+        VoiceCap,
 
         /// <summary>
         /// Enabling this parameter will cause a new voice allocation when the voice cap is hit, rather than stealing existing voices.
         /// This is not recommended in real-time environments. </summary>
-        AutoAllocateVoices,//bool
+        AutoAllocateVoices,
         /// <summary> The reverb gain. From 0 to any number. 1 is 100% reverb. </summary>
-        ReverbGain,//float
+        ReverbGain,
         /// <summary>
         /// If the synthesizer should prevent editing of the reverb parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the reverb parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        ReverbLock,//bool
+        ReverbLock,
         /// <summary> The chorus gain. From 0 to any number. 1 is 100% chorus. </summary>
-        ChorusGain,//float
+        ChorusGain,
         /// <summary>
         /// If the synthesizer should prevent editing of the chorus parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the chorus parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        ChorusLock,//bool
+        ChorusLock,
         /// <summary>
         /// The delay gain. From 0 to any number. 1 is 100% delay.
         /// </summary>
-        DelayGain,//float
+        DelayGain,
         /// <summary>
         /// If the synthesizer should prevent editing of the delay parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the delay parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        DelayLock,//bool
+        DelayLock,
         /// <summary>
         /// If the synthesizer should prevent changing the insertion effect type and parameters (including enabling/disabling it on channels).
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the insertion effect type and parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        InsertionEffectLock,//bool
+        InsertionEffectLock,
         /// <summary>
         /// If the synthesizer should prevent editing of the drum parameters.
         /// These params are modified using MIDI system exclusive messages or NRPN, so
         /// the recommended use case would be setting
         /// the drum parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        DrumLock,//bool
+        DrumLock,
         /// <summary> Forces note killing instead of releasing. Improves performance in black MIDIs. </summary>
-        BlackMIDIMode,//bool
+        BlackMIDIMode,
         /// <summary> Synthesizer's device ID for system exclusive messages. Set to -1 to accept all. </summary>
-        DeviceID,//int
+        DeviceID,
         /// <summary>The master gain. From 0 to any number. 1 is 100% volume. </summary>
-        Gain,//float
+        Gain,
         /// <summary>The master pan. From -1 (left) to 1 (right). 0 is center. </summary>
-        Pan,//float
+        Pan,
         /// <summary>The global key shift in semitones. Drum channels ignore this value.</summary>
-        KeyShift,//int
+        KeyShift,
         /// <summary> The global tuning in cents. Drum channels ignore this value. </summary>
-        FineTune,//float
+        FineTune,
         /// <summary> The interpolation type used for sample playback. </summary>
-        InterpolationType,//InterpolationType
+        InterpolationType,
         /// <summary>
         /// If the synthesizer should prevent changing any parameters via NRPN.
-        /// This includes the custom vibrato parameters.
         /// </summary>
-        NprnParamLock,//bool
+        NprnParamLock,
         /// <summary>
         /// Indicates whether the synthesizer is in monophonic retrigger mode.
         /// This emulates the behavior of Microsoft GS Wavetable Synth,
         /// Where a new note will kill the previous one if it is still playing.
         /// </summary>
-        MonophonicRetrigger,//bool
+        MonophonicRetrigger,
     }
 
     public static Params.Type TypeOf(Type type) => type switch
@@ -435,8 +434,7 @@ public readonly record struct GlobalSystemParameter
         "The global key shift in semitones. Drum channels ignore this value.",
         "The global tuning in cents. Drum channels ignore this value.",
         "The interpolation type used for sample playback",
-        "If the synthesizer should prevent applying the custom vibrato. This effect is modified using NRPN, so the recommended use case would be setting the custom vibrato then locking it to prevent changes by MIDI files.",
-        "If the synthesizer should prevent changing any parameters via NRPN. This includes the custom vibrato parameters.",
+        "If the synthesizer should prevent changing any parameters via NRPN.",
         "Indicates whether the synthesizer is in monophonic retrigger mode. This emulates the behavior of Microsoft GS Wavetable Synth, where a new note will kill the previous one if it is still playing.",
     ];
     
