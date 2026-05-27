@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <!-- Nuget -->
+        <PackageId>SpessaSharp</PackageId>
+        <Version>4.3.6</Version>
+        <Authors>WhiteDuke</Authors>
+        <Description>SpessaSynth ported to C#</Description>
+        <PackageIcon>spessasharp_logo_rounded.png</PackageIcon>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageTags>midi;rmidi;synthesizer;dls;soundfont;audio;spessasynth</PackageTags>
+        <PackageCopyright>Copyright (c) 2026 WhiteDuke</PackageCopyright>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+
+        <TargetFramework>net10.0</TargetFramework>
+        <OutputType>Library</OutputType>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <WarningsAsErrors>Nullable</WarningsAsErrors>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <IsAotCompatible>true</IsAotCompatible>
+        <IsTrimmable>true</IsTrimmable>
+        <VerifyReferenceTrimCompatibility>true</VerifyReferenceTrimCompatibility>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Numerics.Tensors" Version="10.0.8" />
+        <PackageReference Include="System.IO.Hashing" Version="10.0.8" />
+
+        <None Include="..\spessasharp_logo_rounded.png" Pack="true" PackagePath="\"/>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+</Project>

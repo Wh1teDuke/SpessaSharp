@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=ss
+Exec=ss
+Icon=com.spessasharp.ss
+Type=Application
+Categories=Utility;
+Name[en_US]=com.spessasharp.ss.desktop

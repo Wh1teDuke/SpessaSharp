@@ -1,0 +1,41 @@
+name: Publish SpessaSharp NuGet
+
+on:
+  push:
+    branches: [ "master" ]
+    tags: [ "v*" ]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore SpessaSharp/SpessaSharp.csproj
+
+      - name: Build
+        run: dotnet build SpessaSharp/SpessaSharp.csproj --no-restore
+
+      - name: Pack
+        shell: bash
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          if [[ $GITHUB_REF != refs/tags/* ]]; then VERSION="0.0.1-preview-${GITHUB_SHA::7}"; fi
+
+          dotnet pack SpessaSharp/SpessaSharp.csproj \
+            --output ./nupkg \
+            /p:PackageVersion=$VERSION \
+            /p:RepositoryUrl="https://github.com/SpessaSharp/SpessaSharp"
+
+      - name: Push to NuGet
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate

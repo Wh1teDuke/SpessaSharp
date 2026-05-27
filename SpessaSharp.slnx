@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SpessaSharp/SpessaSharp.csproj" />
+  <Project Path="SpessaSynthDiff\SpessaSynthDiff.csproj" />
+  <Project Path="SSTool\SSTool.csproj" />
+</Solution>

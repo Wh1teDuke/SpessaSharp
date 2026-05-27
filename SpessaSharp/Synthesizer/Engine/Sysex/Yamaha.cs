@@ -1,0 +1,420 @@
+using System.Diagnostics;
+using SpessaSharp.MIDI;
+using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Parameters;
+
+namespace SpessaSharp.Synthesizer.Engine.Sysex;
+
+internal static class Yamaha
+{
+    /// <summary>
+    /// Handles a Yamha XG system exclusive<br/>
+    /// http://www.studio4all.de/htmle/main91.html
+    /// </summary>
+    /// <param name="synth"></param>
+    /// <param name="syx"></param>
+    /// <param name="channelOffset"></param>
+    public static void SystemExclusive(
+        Synthesizer synth,
+        ReadOnlySpan<byte> syx,
+        int channelOffset = 0)
+    {
+        // XG sysex
+        if (syx[2] == 0x4c) 
+        {
+            var a1 = syx[3]; // Address 1
+            var a2 = syx[4]; // Address 2
+            var a3 = syx[5]; // Address 3
+            var data = syx[6];
+            // XG system parameter
+            if (a1 == 0x00 && a2 == 0x00) 
+            {
+                switch (a3) 
+                {
+                    // Master tune
+                    case 0x00: 
+                    {
+                        {
+                            var tune =
+                                ((syx[6] & 15) << 12) |
+                                ((syx[7] & 15) << 8) |
+                                ((syx[8] & 15) << 4) |
+                                (syx[9] & 15);
+                            var cents = (tune - 1_024) / 10f;
+                            synth.Set((
+                                GlobalMidiParameter.Type.FineTune,
+                                cents));
+                            CoolInfo("Master Tune", cents);
+                        }
+                        break;
+                    }
+
+                    // Master volume
+                    case 0x04: 
+                        synth.Set((
+                            GlobalMidiParameter.Type.Gain,
+                            data / 127f));
+                        CoolInfo("Master Volume", data);
+                        break;
+
+                    // Master attenuation
+                    case 0x05: 
+                        var vol = 127 - data;
+                        synth.Set((
+                            GlobalMidiParameter.Type.Gain,
+                            data / 127f));
+                        CoolInfo("Master Attenuation", data);
+                        break;
+
+                    // Master transpose
+                    case 0x06: 
+                        var transpose = data - 64;
+                        synth.Set((
+                            GlobalMidiParameter.Type.KeyShift,
+                            transpose));
+                        CoolInfo("Master Transpose", transpose);
+                        break;
+
+                    // XG Reset
+                    // XG on
+                    case 0x7f:
+                    case 0x7e: 
+                        Debug.WriteLine("XG system on");
+                        synth.Reset(Midi.System.XG);
+                        break;
+                }
+                return;
+            }
+        
+            if (a1 == 0x02 && a2 == 0x01) 
+            {
+                var effect = a3;
+                var effectType = effect switch
+                {
+                    <= 0x15 => "Reverb",
+                    <= 0x35 => "Chorus",
+                    _ => "Variation",
+                };
+
+                Debug.WriteLine(
+                    $"[WARN] Unsupported XG {effectType} Parameter: {effect:X}");
+                return;
+            }
+
+            if (a1 == 0x08/* A2 is the channel number*/) 
+            {
+                // XG part parameter
+                if (!BankSelectHacks.IsSystemXG(
+                        synth.MidiParameters.MidiSystem))
+                    return;
+
+                var channel = a2 + channelOffset;
+                if (channel >= synth.MidiChannels.Count)
+                {
+                    // Invalid channel
+                    Debug.WriteLine(
+                        $"[WARN] Discarding XG SysEx with invalid part number: {channel}");
+                    return;
+                }
+
+                var ch = synth.MidiChannels[channel];
+                switch (a3) 
+                {
+                    default: 
+                        Debug.WriteLine(
+                            $"[WARN] Unsupported Yamaha XG Part Setup: {
+                                syx[5]:X} for channel {channel}");
+                        break;
+                    
+                    // Bank-select MSB
+                    case 0x01: 
+                        ch.ControllerChange(
+                            Midi.CC.BankSelect, data);
+                        break;
+
+                    // Bank-select LSB
+                    case 0x02: 
+                        ch.ControllerChange(
+                            Midi.CC.BankSelectLSB, data);
+                        break;
+
+                    // Program change
+                    case 0x03: 
+                        ch.ProgramChange(data);
+                        break;
+
+                    // Rev. channel
+                    case 0x04: 
+                        var rxChannel = data + channelOffset;
+                        ch.Set((
+                            ChannelMidiParameter.Type.RxChannel, rxChannel));
+                        
+                        synth.CustomChannelNumbers = 
+                            synth.CustomChannelNumbers ||
+                            (rxChannel != ch.Channel);
+                        CoolInfo(
+                            $"Rev. Channel on {channel}",
+                            rxChannel);
+                        break;
+
+                    // Poly/mono
+                    case 0x05:
+                        var poly = data == 1;
+                        ch.Set((ChannelMidiParameter.Type.PolyMode, poly));
+                        CoolInfo(
+                            $"Mono/poly on {channel}",
+                            poly ? "POLY" : "MONO");
+                        break;
+
+                    // Part mode
+                    case 0x07: 
+                        ch.SetDrums(data != 0);
+                        break;
+
+                    // Note shift
+                    case 0x08:
+                        ch.KeyShift(data - 64);
+                        break;
+
+                    // Volume
+                    case 0x0b: 
+                        ch.ControllerChange(
+                            Midi.CC.MainVolume, data);
+                        break;
+
+                    // Pan position
+                    case 0x0e: 
+                    {
+                        var pan = data;
+                        var randomPan = pan == 0;
+                        ch.Set(
+                            (ChannelMidiParameter.Type.RandomPan, randomPan));
+                        
+                        if (randomPan) 
+                        {
+                            // 0 means random
+                            CoolInfo($"Random Pan for {channel}", "ON");
+                        } 
+                        else
+                            ch.ControllerChange(
+                                Midi.CC.Pan, pan);
+
+                        break;
+                    }
+
+                    // Chorus
+                    case 0x12: 
+                        ch.ControllerChange(
+                            Midi.CC.ChorusDepth, data);
+                        break;
+
+                    // Reverb
+                    case 0x13: 
+                        ch.ControllerChange(
+                            Midi.CC.ReverbDepth, data);
+                        break;
+
+                    // Vibrato rate
+                    case 0x15: 
+                        ch.ControllerChange(
+                            Midi.CC.VibratoRate, data);
+                        break;
+
+                    // Vibrato depth
+                    case 0x16: 
+                        ch.ControllerChange(
+                            Midi.CC.VibratoDepth, data);
+                        break;
+
+                    // Vibrato delay
+                    case 0x17: 
+                        ch.ControllerChange(
+                            Midi.CC.VibratoDelay, data);
+                        break;
+
+                    // Filter cutoff
+                    case 0x18: 
+                        ch.ControllerChange(
+                            Midi.CC.Brightness, data);
+                        break;
+
+                    // Filter resonance
+                    case 0x19: 
+                        ch.ControllerChange(
+                            Midi.CC.FilterResonance, data);
+                        break;
+
+                    // Attack time
+                    case 0x1a: 
+                        ch.ControllerChange(
+                            Midi.CC.AttackTime, data);
+                        break;
+
+                    // Decay time
+                    case 0x1b: 
+                        ch.ControllerChange(
+                            Midi.CC.DecayTime, data);
+                        break;
+
+                    // Release time
+                    case 0x1c: 
+                        ch.ControllerChange(
+                            Midi.CC.ReleaseTime, data);
+                        break;
+
+                    case 0x23:
+                    {
+                        // Bend pitch control (pitch wheel range)
+                        var centeredValue = data - 64;
+                        ch.PitchWheelRange(centeredValue);
+                        break;
+                    }
+                }
+                return;
+            }
+
+            if (a1 >> 4 == 3) 
+            {
+                // Drum part setup
+                if (synth.SystemParameters.DrumLock) return;
+                var drumKey = a2;
+                switch (a3) 
+                {
+                    default: 
+                        Engine.SystemExclusive.NotRecognized(
+                            [a3], "Yamaha XG Drum Setup");
+                        return;
+
+                    case 0x00: 
+                    {
+                        // Drum pitch coarse
+                        var pitch = (data - 64) * 100;
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { Pitch = pitch };
+                        }
+                        CoolInfo($"Drum Pitch, key {drumKey}", pitch);
+                        break;
+                    }
+
+                    case 0x01: 
+                    {
+                        // Drum pitch fine
+                        var pitch = data - 64;
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            var newPitch = param.Pitch + pitch;
+                            param = param with { Pitch = newPitch };
+                            CoolInfo($"Drum Pitch Fine, key {drumKey}", newPitch);
+                        }
+                        break;
+                    }
+
+                    case 0x02: 
+                        // Drum Level
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { Gain = data / 120f };
+                        }
+                        CoolInfo($"Drum Level, key {drumKey}", data);
+                        break;
+
+                    case 0x03: 
+                        // Drum Alternate Group (exclusive class)
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { ExclusiveClass = data };
+                        }
+                        CoolInfo($"Drum Alternate Group, key {drumKey}", data);
+                        break;
+
+                    case 0x04: 
+                        // Drum Pan
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { Pan = data };
+                        }
+                        CoolInfo($"Drum Pan, key {drumKey}", data);
+                        break;
+
+                    case 0x05: 
+                        // Drum Reverb
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { ReverbGain = data / 127f };
+                        }
+                        CoolInfo($"Drum Reverb, key {drumKey}", data);
+                        break;
+
+                    case 0x06: 
+                        // Drum Chorus
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { ChorusGain = data / 127f };
+                        }
+                        CoolInfo($"Drum Chorus, key {drumKey}", data);
+                        break;
+
+                    case 0x09: 
+                        // Receive note off
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { RxNoteOff = data == 1 };
+                        }
+                        CoolInfo($"Drum Note Off, key {drumKey}", data == 1);
+                        break;
+
+                    case 0x0a: 
+                        // Receive note on
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { RxNoteOn = data == 1 };
+                        }
+                        CoolInfo($"Drum Note On, key {drumKey}", data == 1);
+                        break;
+                }
+                return;
+            }
+
+            if (a1 == 0x06 ||    // Display letters
+                a1 == 0x07)      // Display bitmap
+                // Displayed letters
+                synth.CallEvent(new Event.CbDisplayMessage(
+                    syx.ToArray()));
+            else
+                Engine.SystemExclusive.NotRecognized(syx, "Yamaha XG");
+        } else
+            Engine.SystemExclusive.NotRecognized(syx, "Yamaha");
+    }
+    
+    [Conditional("DEBUG")]
+    private static void CoolInfo(string what, string value) =>
+        Debug.WriteLine($"Yamaha XG {what} for is now set to {value}.");
+    
+    [Conditional("DEBUG")]
+    private static void CoolInfo(string what, bool value) =>
+        Debug.WriteLine($"Yamaha XG {what} for is now set to {value}.");
+    
+    [Conditional("DEBUG")]
+    private static void CoolInfo(string what, float value) =>
+        Debug.WriteLine($"Yamaha XG {what} for is now set to {value}.");
+}
