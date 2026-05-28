@@ -37,27 +37,27 @@ public readonly struct Generator
         ModEnvToFilterFc,            
         /// <summary> Sample control - move sample end point in, increments </summary>
         EndAddrsCoarseOffset,       
-        /// <summary>Modulation lfo - volume (tremolo), where  = dB </summary>
+        /// <summary>Modulation lfo - volume (tremolo), where 100 = 10dB</summary>
         ModLFOToVolume,             
         Unused1,                    
         /// <summary>Effect send - how much is sent to chorus -</summary>
         ChorusEffectsSend,           
         /// <summary> Effect send - how much is sent to reverb -</summary>
         ReverbEffectsSend,           
-        /// <summary> Panning - where - = left,  = center,  = right </summary>
+        /// <summary> Panning - where -500 = left, 0 = center, +500 = right </summary>
         Pan,                         
         Unused2,                     
         Unused3,                     
         Unused4,                     
         /// <summary> Mod lfo - delay for mod lfo to start from zero </summary>
         DelayModLFO,                 
-        /// <summary> Mod lfo - frequency of mod lfo,  = . Hz, units f => log(f/.) </summary>
+        /// <summary> Mod lfo - frequency of mod lfo, 0 = 8.176 Hz, units: f => 1200log2(f/8.176) </summary>
         FreqModLFO,                  
         /// <summary> Vib lfo - delay for vibrato lfo to start from zero </summary>
         DelayVibLFO,                 
-        /// <summary> Vib lfo - frequency of vibrato lfo,  = .Hz, unit f => log(f/.) </summary>
+        /// <summary> Vib lfo - frequency of vibrato lfo, 0 = 8.176Hz, unit: f => 1200log2(f/8.176) </summary>
         FreqVibLFO,                  
-        /// <summary> Mod env -  =  s decay till mod env starts </summary>
+        /// <summary> Mod env - 0 = 1 s decay till mod env starts </summary>
         DelayModEnv,                 
         /// <summary> Mod env - attack of mod env </summary>
         AttackModEnv,                
@@ -102,7 +102,7 @@ public readonly struct Generator
         KeyNum,                      
         /// <summary>Zone - instrument only always use this velocity (ignore what's pressed) </summary>
         Velocity,                    
-        /// <summary> Zone - allows turning down the volume,  = -dB </summary>
+        /// <summary> Zone - allows turning down the volume, 10 = -1dB </summary>
         InitialAttenuation,          
         Reserved2,                   
         /// <summary> Sample control - moves sample loop end point in, increments </summary>
@@ -113,10 +113,10 @@ public readonly struct Generator
         FineTune,                    
         /// <summary>Sample - instrument zone only which sample to use </summary>
         SampleID,                    
-        /// <summary>Sample -  = no loop,  = loop,  = start on release,  = loop and play till the end in release phase </summary>
+        /// <summary>Sample - 0 = no loop, 1 = loop, 2 = start on release, 3 = loop and play till the end in release phase</summary>
         SampleModes,                 
         Reserved3,                   
-        /// <summary>Sample - the degree to which MIDI key number influences pitch,  = default</summary>
+        /// <summary>Sample - the degree to which MIDI key number influences pitch, 100 = default</summary>
         ScaleTuning,                
         /// <summary>Sample - = cut = choke group </summary>
         ExclusiveClass,             
