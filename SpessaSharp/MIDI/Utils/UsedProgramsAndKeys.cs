@@ -153,7 +153,7 @@ internal static class UsedProgramsAndKeys
     {
         Debug.WriteLine(
             "Searching for all used programs and keys ...");
-        
+
         cache.Init();
         
         // Find every used preset and every key:velocity for each.
@@ -179,7 +179,7 @@ internal static class UsedProgramsAndKeys
                 IsDrum: isDrum,
                 KeyShift: 0);
         }
-        
+
         /*
          * Find all programs used and key-velocity combos in them
          * bank:program each has a set of midiNote-velocity

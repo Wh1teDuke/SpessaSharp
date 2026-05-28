@@ -406,8 +406,10 @@ public sealed class Midi
         Debug.WriteLine("Preloading samples ...");
 
         // Smart preloading: load only samples used in the midi!
+        // TODO: This is not preloading everything for Bad Apple feat. nomico (s__msgs).mid
         var used = GetUsedProgramsAndKeys(
             synth.SoundBankManager);
+
         foreach (var (preset, combos) in used)
         {
             Debug.WriteLine($"Preloading used samples on {preset.Name} ...");

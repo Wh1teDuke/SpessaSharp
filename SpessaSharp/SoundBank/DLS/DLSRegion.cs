@@ -178,8 +178,7 @@ internal struct DLSRegion
     }
 
     public BasicInstrument.Zone ToSFZone(
-        BasicInstrument instrument,
-        ReadOnlySpan<BasicSample> samples)
+        BasicInstrument instrument, ReadOnlySpan<BasicSample> samples)
     {
         if (WaveLink.TableIndex < 0 || WaveLink.TableIndex >= samples.Length)
             DLSVerifier.ParsingError(
