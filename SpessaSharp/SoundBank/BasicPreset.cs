@@ -193,9 +193,10 @@ public sealed class BasicPreset
         {
             for (var velocity = 0; velocity < 128; velocity++)
             {
-                foreach (var synthesisData in GetVoiceParameters(
-                             cache, key, velocity))
+                var list = GetVoiceParameters(cache, key, velocity);
+                foreach (var synthesisData in list)
                     synthesisData.Item2.Sample.GetAudioData();
+                Util.Return(list);
             }
         }
     }
@@ -289,16 +290,16 @@ public sealed class BasicPreset
     /// <param name="note">The MIDI note number.</param>
     /// <param name="velocity">The MIDI velocity.</param>
     /// <returns>The returned sound data.</returns>
-    internal List<((BasicZone, BasicZone), Voice.Parameters)> 
+    internal ArraySegment<((BasicZone, BasicZone), Voice.Parameters)> 
         GetVoiceParameters(
             CachedVoice.Base.Cache cCache, int note, int velocity)
     {
-        var len = Zones.Sum(z => z.Instrument.Zones.Count);
-        var voiceParameters = 
-            new List<((BasicZone, BasicZone), Voice.Parameters)>(len);
+        var voiceParameters =
+            Util.Rent<((BasicZone, BasicZone), Voice.Parameters)>(16);
+        var paramCount = 0;
         var presetGenerators = Util.Rent<short>(Generator.Amount);
-        var presetModulators = new List<Modulator>();
-        var modulators = new List<Modulator>();
+        List<Modulator>? presetModulators = null;
+        List<Modulator>? modulators = null;
         Zone? prevZone = null;
 
         // Filter zones out of range
@@ -307,10 +308,10 @@ public sealed class BasicPreset
             var key = (pZone.Basic, iZone.Basic);
             if (cCache.TryGetParams(key) is {} vParams)
             {
-                voiceParameters.Add((key, vParams));
+                AddParams(key, vParams);
                 continue;
             }
-            // TODO Lazy eval arrays here
+
             if (prevZone != pZone)
             {
                 prevZone = pZone;
@@ -318,27 +319,35 @@ public sealed class BasicPreset
                 // Preset generator list (offsets)
                 presetGenerators.AsSpan().Clear();
 
-                // Firstly set global generators
-                foreach (var generator in GlobalZone.Generators)
-                    if ((int)generator.GType < presetGenerators.Count)
-                        presetGenerators[(int)generator.GType] = generator.Value;
+                if (GlobalZone.Generators.Count + pZone.Basic.Generators.Count > 0)
+                {
+                    // Firstly set global generators
+                    foreach (var generator in GlobalZone.Generators)
+                        if ((int)generator.GType < presetGenerators.Count)
+                            presetGenerators[(int)generator.GType] = generator.Value;
 
-                // Then local, which will override them!
-                foreach (var generator in pZone.Basic.Generators)
-                    if ((int)generator.GType < presetGenerators.Count)
-                        presetGenerators[(int)generator.GType] = generator.Value;
-            
-                // Preset modulators (add global to local)
-                presetModulators.Clear();
-                presetModulators.AddRange(pZone.Basic.Modulators);
+                    // Then local, which will override them!
+                    foreach (var generator in pZone.Basic.Generators)
+                        if ((int)generator.GType < presetGenerators.Count)
+                            presetGenerators[(int)generator.GType] = generator.Value;                    
+                }
+
+                if (GlobalZone.Modulators.Count + pZone.Basic.Modulators.Count > 0)
+                {
+                    presetModulators ??= [];
+                    
+                    // Preset modulators (add global to local)
+                    presetModulators.Clear();
+                    presetModulators.AddRange(pZone.Basic.Modulators);
                 
-                AddUniqueModulators(presetModulators, GlobalZone.Modulators);
-                
-                // TODO: There may be no gen/mod overrides, lazy init here
+                    AddUniqueModulators(
+                        presetModulators, GlobalZone.Modulators);
+                }
             }
             
             var instrument = iZone.ParentInstrument;
             // Modulators
+            modulators ??= [];
             modulators.Clear();
             modulators.AddRange(iZone.Basic.Modulators);
             // Add unique from global zone
@@ -348,7 +357,8 @@ public sealed class BasicPreset
             AddUniqueModulators(modulators, Parent.DefaultModulators);
 
             // Sum preset and instrument modulators (sum their amounts) sf spec page 54, section 9.5
-            foreach (var presetMod in presetModulators)
+            if (presetModulators != null) foreach (
+                var presetMod in presetModulators)
             {
                 // Find a matching modulator to sum
                 var found = false;
@@ -405,14 +415,20 @@ public sealed class BasicPreset
                 Generators  = generators,
                 Modulators  = modulators.ToArray(),
             };
-            
-            voiceParameters.Add((key, newVParams));
+
+            AddParams(key, newVParams);
             cCache.Add((pZone.Basic, iZone.Basic), newVParams);
         }
         
         Util.Return(presetGenerators);
-
-        return voiceParameters;
+        return voiceParameters[..paramCount];
+        
+        void AddParams((BasicZone, BasicZone) key, Voice.Parameters newVParams)
+        {
+            if (paramCount >= voiceParameters.Count)
+                Util.Grow(ref voiceParameters, paramCount * 2);
+            voiceParameters[paramCount++] = (key, newVParams);
+        }
     }
 
     /// <summary>BankMSB:BankLSB:Program:IsGMGSDrum</summary>

@@ -839,6 +839,7 @@ public sealed class Synthesizer
 
         if (voiceParamCount == 0)
         {
+            Util.Return(voiceParamsList);
             _cachedVoices[(preset.Patch, midiNote, velocity)] = voiceList;
             return voiceList;
         }
@@ -885,6 +886,7 @@ public sealed class Synthesizer
             voiceList = voiceList with { Multi = multi[..v], };
 
         // Cache the voice
+        Util.Return(voiceParamsList);
         _cachedVoices[(preset.Patch, midiNote, velocity)] = voiceList;
         return voiceList;
     }
