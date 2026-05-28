@@ -307,8 +307,7 @@ public sealed class Synthesizer
         MaxBufferSize = options.MaxBufferSize;
         // These smoothing factors were tested on 44,100 Hz, adjust them to target sample rate here
         // Volume  smoothing factor
-        GainSmoothingFactor =
-            GAIN_SMOOTHING_FACTOR * (44_100f / sampleRate);
+        GainSmoothingFactor = GAIN_SMOOTHING_FACTOR * (44_100f / sampleRate);
         // Pan smoothing factor
         PanSmoothingFactor = PAN_SMOOTHING_FACTOR * (44_100f / sampleRate);
         

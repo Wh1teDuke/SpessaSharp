@@ -159,7 +159,7 @@ public sealed class MidiChannel: ISf2Channel
     /// Updated on master/MIDI parameter change.
     /// This is used to avoid a big addition for every voice rendering call.
     /// </summary>
-    internal float CurrentPan = 0;
+    internal int CurrentPan = 0;
     
     /// <summary>
     /// Current tuning in cents
@@ -650,7 +650,7 @@ public sealed class MidiChannel: ISf2Channel
         // Channel MIDI is the pan controller
 
         // For faster renderVoice calculation
-        CurrentPan = currentPanNormalized * 500;
+        CurrentPan = Util.Round(currentPanNormalized * 500);
 
         CurrentGain =
             // Global forced

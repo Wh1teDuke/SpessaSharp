@@ -374,8 +374,7 @@ internal static class RenderVoice
         var outputGain = chan.CurrentGain * voiceGain;
 
         var index =
-            (int)(Math.Clamp(pan + chan.CurrentPan, -500, +500) + 500);
-        
+            Math.Clamp(pan + chan.CurrentPan, -500, +500) + 500;
         // Get voice's gain levels for each channel
         var gainLeft = PanTableLeft[index] * outputGain;
         var gainRight = PanTableRight[index] * outputGain;
