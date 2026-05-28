@@ -130,8 +130,7 @@ public sealed class BasicPreset
     
     /// <summary>Checks if this preset is a drum preset</summary>
     public bool IsDrum =>
-        IsGMGSDrum || (Parent.IsXGBank &&
-                       BankSelectHacks.IsXGDrum(BankMSB));
+        IsGMGSDrum || (Parent.IsXGBank && BankSelectHacks.IsXGDrum(BankMSB));
 
     private static void AddUniqueModulators(
         List<Modulator> main, List<Modulator> adder) =>
@@ -192,11 +191,11 @@ public sealed class BasicPreset
         var cache = new CachedVoice.Base.Cache(null);
         for (var key = keyMin; key < keyMax + 1; key++) 
         {
-            for (var velocity = 0; velocity < 128; velocity++) 
+            for (var velocity = 0; velocity < 128; velocity++)
             {
                 foreach (var synthesisData in GetVoiceParameters(
                              cache, key, velocity))
-                    synthesisData.Sample.GetAudioData();
+                    synthesisData.Item2.Sample.GetAudioData();
             }
         }
     }
@@ -204,8 +203,7 @@ public sealed class BasicPreset
     /// <summary>Checks if the bank and program numbers are the same for the given preset as this one.</summary>
     /// <param name="preset">The preset to check.</param>
     /// <returns></returns>
-    public bool Matches(MidiPatch preset) =>
-        Patch.Data.Matches(preset);
+    public bool Matches(MidiPatch preset) => Patch.Data.Matches(preset);
 
     public readonly ref struct InstrumentZonesEnumerable(
         BasicPreset preset, int note, int velocity)
@@ -251,7 +249,7 @@ public sealed class BasicPreset
 
                     // Local range overrides over global
                     if (instrument.Zones.Count == 0 ||
-                        (!InRange(pKeyRange, key) || !InRange(pVelRange, vel)))
+                        !(InRange(pKeyRange, key) && InRange(pVelRange, vel)))
                     {
                         _zoneIndex++;
                         continue;
@@ -263,7 +261,10 @@ public sealed class BasicPreset
                 var iZone = instrument.Zones[_instZoneIndex++];
                 
                 if (_instZoneIndex >= instrument.Zones.Count)
+                {
+                    _instZoneIndex = int.MaxValue;
                     _zoneIndex++;
+                }
 
                 var iKeyRange = iZone.Basic.HasKeyRange
                     ? iZone.Basic.KeyRange
@@ -272,7 +273,7 @@ public sealed class BasicPreset
                     ? iZone.Basic.VelRange
                     : instrument.GlobalZone.VelRange;
 
-                if (!InRange(iKeyRange, key) || !InRange(iVelRange, vel))
+                if (!(InRange(iKeyRange, key) && InRange(iVelRange, vel)))
                     continue;
 
                 _current = new Entry(pZone, iZone);
@@ -288,11 +289,13 @@ public sealed class BasicPreset
     /// <param name="note">The MIDI note number.</param>
     /// <param name="velocity">The MIDI velocity.</param>
     /// <returns>The returned sound data.</returns>
-    internal List<Voice.Parameters> GetVoiceParameters(
-        CachedVoice.Base.Cache cCache, int note, int velocity)
+    internal List<((BasicZone, BasicZone), Voice.Parameters)> 
+        GetVoiceParameters(
+            CachedVoice.Base.Cache cCache, int note, int velocity)
     {
         var len = Zones.Sum(z => z.Instrument.Zones.Count);
-        var voiceParameters = new List<Voice.Parameters>(len);
+        var voiceParameters = 
+            new List<((BasicZone, BasicZone), Voice.Parameters)>(len);
         var presetGenerators = Util.Rent<short>(Generator.Amount);
         var presetModulators = new List<Modulator>();
         var modulators = new List<Modulator>();
@@ -301,13 +304,14 @@ public sealed class BasicPreset
         // Filter zones out of range
         foreach (var (pZone, iZone) in ZonesInRange(note, velocity))
         {
-            if (cCache.TryGetParams(iZone) is {} vParams)
+            var key = (pZone.Basic, iZone.Basic);
+            if (cCache.TryGetParams(key) is {} vParams)
             {
-                voiceParameters.Add(vParams);
+                voiceParameters.Add((key, vParams));
                 continue;
             }
-            
-            if (pZone != prevZone)
+            // TODO Lazy eval arrays here
+            if (prevZone != pZone)
             {
                 prevZone = pZone;
             
@@ -328,9 +332,9 @@ public sealed class BasicPreset
                 presetModulators.Clear();
                 presetModulators.AddRange(pZone.Basic.Modulators);
                 
-                AddUniqueModulators(
-                    presetModulators,
-                    GlobalZone.Modulators);
+                AddUniqueModulators(presetModulators, GlobalZone.Modulators);
+                
+                // TODO: There may be no gen/mod overrides, lazy init here
             }
             
             var instrument = iZone.ParentInstrument;
@@ -338,12 +342,10 @@ public sealed class BasicPreset
             modulators.Clear();
             modulators.AddRange(iZone.Basic.Modulators);
             // Add unique from global zone
-            AddUniqueModulators(
-                modulators, instrument.GlobalZone.Modulators);
+            AddUniqueModulators(modulators, instrument.GlobalZone.Modulators);
 
             // Add unique default modulators
-            AddUniqueModulators(
-                modulators, Parent.DefaultModulators);
+            AddUniqueModulators(modulators, Parent.DefaultModulators);
 
             // Sum preset and instrument modulators (sum their amounts) sf spec page 54, section 9.5
             foreach (var presetMod in presetModulators)
@@ -387,13 +389,13 @@ public sealed class BasicPreset
                 // Testcase: Sega Genesis soundfont (spessasynth/#169) adds 20,999 and the default 13,500 to initialFilterFc
                 // Which is more than 32k
                 generators[i] = (short)Math.Clamp(
-                    generators[i] + presetGenerators[i], 
+                    generators[i] + presetGenerators[i],
                     short.MinValue, short.MaxValue);
             }
 
             // EMU initial attenuation correction, multiply initial attenuation by 0.4!
             // All EMU sound cards have this quirk, and all sf2 editors and players emulate it too
-            generators[(int)Generator.Type.InitialAttenuation] = 
+            generators[(int)Generator.Type.InitialAttenuation] =
                 (short)Math.Floor(generators[
                     (int)Generator.Type.InitialAttenuation] * .4);
 
@@ -404,8 +406,8 @@ public sealed class BasicPreset
                 Modulators  = modulators.ToArray(),
             };
             
-            voiceParameters.Add(newVParams);
-            cCache.Add(iZone, newVParams);
+            voiceParameters.Add((key, newVParams));
+            cCache.Add((pZone.Basic, iZone.Basic), newVParams);
         }
         
         Util.Return(presetGenerators);

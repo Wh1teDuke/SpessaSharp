@@ -27,31 +27,26 @@ internal readonly record struct CachedVoice
         public sealed class Cache(int? sampleRate)
         {
             private readonly Dictionary<
-                BasicInstrument.Zone, Voice.Parameters> _cacheParams = new();
-            private readonly Dictionary<
-                BasicInstrument.Zone, Base> _cacheBase = new();
+                (BasicZone, BasicZone), 
+                (Voice.Parameters, Base?)> _cache = [];
 
-            public void Clear()
-            {
-                _cacheParams.Clear();
-                _cacheBase.Clear();
-            }
-            
+            public void Clear() => _cache.Clear();
+
             public void Add(
-                BasicInstrument.Zone zone, Voice.Parameters vParams)
+                (BasicZone, BasicZone) key, Voice.Parameters vParams)
             {
-                _cacheParams[zone] = vParams;
-                if (sampleRate is {} sRate)
-                    _cacheBase[zone] = Of(vParams, sRate);
+                _cache[key] = sampleRate is { } sRate
+                    ? (vParams, Of(vParams, sRate))
+                    : (vParams, null);
             }
 
-            public Base? TryGetBase(BasicInstrument.Zone zone) =>
-                _cacheBase.GetValueOrDefault(zone);
+            public Base? TryGetBase((BasicZone, BasicZone) key) =>
+                _cache.GetValueOrDefault(key).Item2;
             
-            public Voice.Parameters? TryGetParams(BasicInstrument.Zone zone) =>
-                _cacheParams.TryGetValue(zone, out var value) ? value : null;
+            public Voice.Parameters? TryGetParams((BasicZone, BasicZone) key) =>
+                _cache.TryGetValue(key, out var value) ? value.Item1 : null;
         }
-        
+
         public static Base Of(Voice.Parameters voiceParams, int sampleRate)
         {
             var sample = voiceParams.Sample;

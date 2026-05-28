@@ -826,31 +826,30 @@ public sealed class Synthesizer
     {
         // If cached, return it!
         if (_cachedVoices.TryGetValue(
-                (preset.Patch.Data, midiNote, velocity),
-                out var cached)) return cached;
+            (preset.Patch, midiNote, velocity),
+            out var cached)) return cached;
 
         // Not cached...
         // Create the voices
         var voiceParamsList = preset.GetVoiceParameters(
             _cvbCache, midiNote, velocity);
-        var voiceParamsCount = voiceParamsList.Count;
+        var voiceParamCount = voiceParamsList.Count;
         var voiceList = new CachedVoiceList(
-            Single: null, 
-            Multi: ArraySegment<CachedVoice>.Empty);
+            Single: null, Multi: ArraySegment<CachedVoice>.Empty);
 
-        if (voiceParamsCount == 0)
+        if (voiceParamCount == 0)
         {
-            _cachedVoices[(preset.Patch.Data, midiNote, velocity)] = voiceList;
+            _cachedVoices[(preset.Patch, midiNote, velocity)] = voiceList;
             return voiceList;
         }
 
         var v = 0;
             
-        foreach (var voiceParams in voiceParamsList)
+        foreach (var (key, voiceParams) in voiceParamsList)
         {
             var sample = voiceParams.Sample;
 
-            if (voiceParams.Sample.GetAudioData().AsSpan().IsEmpty) 
+            if (voiceParams.Sample.GetAudioData().AsSpan().IsEmpty)
             {
                 Debug.WriteLine(
                     $"[WARN] Discarding invalid sample: {sample.Name}");
@@ -858,19 +857,20 @@ public sealed class Synthesizer
             }
 
             var cachedVoice = new CachedVoice(
-                _cvbCache.TryGetBase(voiceParams.Zone)!,
+                _cvbCache.TryGetBase(key)!,
                 midiNote,
                 velocity);
 
             switch (v)
             {
                 case 0:
-                    voiceList = new CachedVoiceList(cachedVoice, null);
+                    voiceList = new CachedVoiceList(
+                        Single: cachedVoice, Multi: null);
                     break;
                 case 1:
                     var zero = voiceList.Single!.Value;
                     voiceList = new CachedVoiceList(
-                        null, new CachedVoice[voiceParamsCount]);
+                        Single: null, Multi: new CachedVoice[voiceParamCount]);
                     voiceList.Multi!.Value.AsSpan()[0] = zero;
                     goto default;
                 default:
@@ -880,9 +880,12 @@ public sealed class Synthesizer
 
             v++;
         }
+        
+        if (voiceList.Multi is {} multi)
+            voiceList = voiceList with { Multi = multi[..v], };
 
         // Cache the voice
-        _cachedVoices[(preset.Patch.Data, midiNote, velocity)] = voiceList;
+        _cachedVoices[(preset.Patch, midiNote, velocity)] = voiceList;
         return voiceList;
     }
     

@@ -82,13 +82,13 @@ internal static class RenderVoice
         var cents =
             voice.PitchOffset + // Voice pitch offset
             modulated[(int)Generator.Type.FineTune] + // Soundfont fine tune
-            chan.OctaveTuning[voice.TargetKey] + // MTS octave tuning
+            chan.OctaveTuning[targetKey] + // MTS octave tuning
             chan.CurrentTuning; // Channel tuning
 
         var semitones = (float)modulated[
             (int)Generator.Type.CoarseTune]; // Soundfont coarse tuning
         
-        // MIDI tuning standard
+        // MIDI Tuning Standard
         // Use `midiNote` here since it was used for selecting the preset if tuning was active
         var tuning = core.Tunings[chan.Preset!.Program * 128 + voice.MidiNote];
         if ((int)tuning != -1) 

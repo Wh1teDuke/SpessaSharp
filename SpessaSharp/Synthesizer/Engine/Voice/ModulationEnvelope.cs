@@ -125,7 +125,7 @@ public sealed class ModulationEnvelope
             (int)Generator.Type.AttackModEnv]);
 
         var decayKeyExcursionCents =
-            (60 - voice.MidiNote) *
+            (60 - voice.TargetKey) *
             voice.ModulatedGenerators[(int)Generator.Type.KeyNumToModEnvDecay];
         
         var decayTime = Tc2Sec(
@@ -138,7 +138,7 @@ public sealed class ModulationEnvelope
         _decayDuration = decayTime * (1 - _sustainLevel);
 
         var holdKeyExcursionCents =
-            (60 - voice.MidiNote) *
+            (60 - voice.TargetKey) *
             voice.ModulatedGenerators[(int)Generator.Type.KeyNumToModEnvHold];
 
         _holdDuration = Tc2Sec(
