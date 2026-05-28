@@ -1,6 +1,6 @@
 namespace SpessaSharp.Synthesizer.Engine.Channel;
 
-/// <summary></summary>
+/// <summary>Represents a single drum instrument's XG/GS parameters.</summary>
 /// <param name="Pitch">Pitch offset in cents.</param>
 /// <param name="Gain">Gain multiplier.</param>
 /// <param name="ExclusiveClass">Exclusive class override.</param>
@@ -19,17 +19,16 @@ public readonly record struct DrumParameters(
     float ChorusGain,
     float DelayGain,
     bool RxNoteOn,
-    bool RxNoteOff
-)
+    bool RxNoteOff)
 {
     public static readonly DrumParameters Default = new(
-        0,
-        1,
-        0,
-        64,
-        0,
-        1,
-        1,
-        true,
-        false);
+        Pitch:          0,
+        Gain:           1,
+        ExclusiveClass: 0,
+        Pan:            64,
+        ReverbGain:     0,
+        ChorusGain:     1,
+        DelayGain:      1,
+        RxNoteOn:       true,
+        RxNoteOff:      false);
 }
