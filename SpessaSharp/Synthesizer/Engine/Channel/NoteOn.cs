@@ -141,7 +141,7 @@ internal static class NoteOn
         var chorusSend = 1f;
         var delaySend = 1f;
 
-        if (chan.MidiParamArray.RandomPan)
+        if (chan.MidiParameters.RandomPan)
             // The range is -500 to 500
             panOverride = Util.Round(Rng.NextSingle() * 1_000 - 500);
 
@@ -152,14 +152,14 @@ internal static class NoteOn
             if (!p.RxNoteOn) return;
 
             var drumPan = p.Pan - 64;
-
             // If pan is different from default then it's overridden
             if (drumPan != 0)
             {
                 if (drumPan == -64)
                 {
-                    panOverride = (int)
-                        Math.Round(Rng.NextSingle() * 1_000 - 500);
+                    // Random pan
+                    panOverride =
+                        Util.Round(Rng.NextSingle() * 1_000 - 500);
                 }
                 else
                 {
@@ -168,8 +168,8 @@ internal static class NoteOn
                     var targetPan = Math.Clamp(
                         drumPan + channelPan, -63, 63);
 
-                    panOverride = Util.Round((targetPan / 63f) * 500);
                     // Ensure that override is applied, even for zero
+                    panOverride = Util.Round((targetPan / 63f) * 500);
                     if (panOverride == 0) panOverride = 1;
                 }
             }
@@ -180,7 +180,7 @@ internal static class NoteOn
             chorusSend = p.ChorusGain;
             delaySend = p.DelayGain;
             // 1 is no override
-            if ((int)voiceGain == 1) voiceGain = p.Gain;
+            if (voiceGain >= 1) voiceGain = p.Gain;
         }
         
         var noteID = emit 
