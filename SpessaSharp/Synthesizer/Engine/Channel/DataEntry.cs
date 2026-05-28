@@ -4,6 +4,7 @@ using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
+using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;
 
@@ -257,9 +258,8 @@ internal static class DataEntry
             {
                 ref var param = ref chan.DrumParams[paramFine];
                 param = param with { Gain = dataCoarse / 120f, };
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} level",
+                SpessaLog.CoolInfo(
+                    $"Drum {paramFine} level for {chan.Channel}",
                     dataCoarse,
                     "");
                 break;
@@ -269,11 +269,9 @@ internal static class DataEntry
                 ref var param = ref chan.DrumParams[paramFine];
                 param = param with { Pan = dataCoarse, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} pan",
-                    dataCoarse,
-                    "");
+                SpessaLog.CoolInfo(
+                    $"Drum {paramFine} pan for {chan.Channel}",
+                    dataCoarse, "");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumReverb:
