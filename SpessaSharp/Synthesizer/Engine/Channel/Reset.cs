@@ -196,6 +196,7 @@ internal static class Reset
 
         return;
         
-        static void SetResetValue(Midi.CC c, int v) => DefaultMidiControllers[(int)c] = (short)(v << 7);
+        static void SetResetValue(Midi.CC c, int v) =>
+            DefaultMidiControllers[(int)c] = (short)(v << 7);
     }
 }
