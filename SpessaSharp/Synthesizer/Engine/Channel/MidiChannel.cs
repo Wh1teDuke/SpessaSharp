@@ -243,7 +243,7 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary> Indicates whether the channel is muted. </summary>
     public bool IsMuted { get; private set; }
 
-    /// <summary> Constructs a new MIDI channel. </summary>
+    /// <summary>Constructs a new MIDI channel.</summary>
     /// <param name="synthCore"></param>
     /// <param name="preset"></param>
     /// <param name="channelNumber"></param>
@@ -622,7 +622,7 @@ public sealed class MidiChannel: ISf2Channel
                 globalSystem.KeyShift +
                 // Global MIDI
                 globalMIDI.KeyShift +
-                // Channel Master
+                // Channel System
                 channelSystem.KeyShift +
                 // Channel MIDI
                 channelMIDI.KeyShift;
@@ -634,18 +634,18 @@ public sealed class MidiChannel: ISf2Channel
                 globalSystem.FineTune +
                 // Global MIDI
                 globalMIDI.FineTune +
-                // Channel Master
+                // Channel System
                 channelSystem.FineTune +
                 // Channel MIDI
                 channelMIDI.FineTune;
 
         // [-1;1] normalized
         var currentPanNormalized =
-            // Global Master
+            // Global System
             globalSystem.Pan +
             // Global MIDI
             globalMIDI.Pan +
-            // Channel Master
+            // Channel System
             channelSystem.Pan;
         // Channel MIDI is the pan controller
 
@@ -655,11 +655,11 @@ public sealed class MidiChannel: ISf2Channel
         CurrentGain =
             // Global forced
             Synthesizer.SPESSASYNTH_GAIN_FACTOR *
-            // Global Master
+            // Global System
             globalSystem.Gain *
             // Global MIDI
             globalMIDI.Gain *
-            // Channel Master
+            // Channel System
             channelSystem.Gain;
         // Channel MIDI are the volume/expression controllers
     }
