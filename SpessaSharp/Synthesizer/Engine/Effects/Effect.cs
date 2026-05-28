@@ -279,7 +279,7 @@ public static class Effect
         public delegate InsertionProcessor Constructor(
             int sampleRate, int maxBufferSize);
 
-        public static readonly Constructor[] List = 
+        internal static readonly Constructor[] List = 
         [
             (_, _) => new ThruFX(),
             (sr, _) => new StereoEQFX(sr),
@@ -291,7 +291,7 @@ public static class Effect
         ];
         
         /// <summary>
-        /// The EFX type of this processor, stored as MSB << | LSB. For example 0x30, 0x10 is 0x3010
+        /// The EFX type of this processor, stored as MSB shl | LSB. For example 0x30, 0x10 is 0x3010
         /// </summary>
         public abstract int Type { get; }
 
