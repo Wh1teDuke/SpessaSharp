@@ -491,12 +491,10 @@ public static class MidiUtils
             {
                 0x01 =>
                     // Bank Select MSB
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.BankSelect, data, channel),
+                    OfControllerChange(Midi.CC.BankSelect),
                 0x02 =>
                     // Bank Select LSB
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.BankSelectLSB, data, channel),
+                    OfControllerChange(Midi.CC.BankSelectLSB),
                 0x03 =>
                     // Program change
                     AnalyzedMessage.OfProgramChange(channel, data),
@@ -512,54 +510,45 @@ public static class MidiUtils
                     AnalyzedMessage.OfKeyShift(data - 64, channel),
                 0x0b =>
                     // Volume
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.MainVolume, data, channel),
+                    OfControllerChange(Midi.CC.MainVolume),
                 0x0e =>
                     // Pan
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.Pan, data, channel),
+                    OfControllerChange(Midi.CC.Pan),
                 0x12 =>
                     // Chorus
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.ChorusDepth, data, channel),
+                    OfControllerChange(Midi.CC.ChorusDepth),
                 0x13 =>
                     // Reverb
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.ReverbDepth, data, channel),
+                    OfControllerChange(Midi.CC.ReverbDepth),
                 0x15 =>
                     // Vibrato rate
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.VibratoRate, data, channel),
+                    OfControllerChange(Midi.CC.VibratoRate),
                 0x16 =>
                     // Vibrato depth
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.VibratoDepth, data, channel),
+                    OfControllerChange(Midi.CC.VibratoDepth),
                 0x17 =>
                     // Vibrato delay
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.VibratoDelay, data, channel),
+                    OfControllerChange(Midi.CC.VibratoDelay),
                 0x18 =>
                     // Filter cutoff
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.Brightness, data, channel),
+                    OfControllerChange(Midi.CC.Brightness),
                 0x19 =>
                     // Filter resonance
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.FilterResonance, data, channel),
+                    OfControllerChange(Midi.CC.FilterResonance),
                 0x1a =>
                     // Attack time
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.AttackTime, data, channel),
+                    OfControllerChange(Midi.CC.AttackTime),
                 0x1b =>
                     // Decay time
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.DecayTime, data, channel),
+                    OfControllerChange(Midi.CC.DecayTime),
                 0x0c =>
                     // Release time
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.ReleaseTime, data, channel),
+                    OfControllerChange(Midi.CC.ReleaseTime),
                 _ => AnalyzedMessage.Type.Other
             };
+            
+            AnalyzedMessage OfControllerChange(Midi.CC cc) =>
+                AnalyzedMessage.OfControllerChange(cc, data, channel);
         }
 
         // Drum part setup
