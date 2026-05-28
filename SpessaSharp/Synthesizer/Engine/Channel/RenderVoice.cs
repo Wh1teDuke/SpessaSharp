@@ -364,9 +364,9 @@ internal static class RenderVoice
         else 
         {
             // Smooth out pan to prevent clicking
-            voice.CurrentPan = (int)(voice.CurrentPan +
-                 (modulated[(int)Generator.Type.Pan] - voice.CurrentPan) *
-                 core.PanSmoothingFactor);
+            voice.CurrentPan += 
+                (int)((modulated[(int)Generator.Type.Pan] - voice.CurrentPan) *
+                core.PanSmoothingFactor);
             pan = voice.CurrentPan;
         }
 
