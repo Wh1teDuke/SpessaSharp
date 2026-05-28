@@ -441,10 +441,8 @@ public sealed class MidiChannel: ISf2Channel
     /// </summary>
     internal void ResetRP15() => Engine.Channel.Reset.RP15(this);
 
-    /// <summary> Executes a data entry coarse (MSB) change for the current channel. </summary>
-    /// <param name="dataValue">The value to set for the data entry coarse controller (0-127).</param>
-    internal void DataEntry() =>
-        Engine.Channel.DataEntry.Execute(this);
+    /// <summary>Executes a data entry coarse (MSB) change for the current channel.</summary>
+    internal void DataEntry() => Engine.Channel.DataEntry.Execute(this);
 
     // Voice rendering methods
 

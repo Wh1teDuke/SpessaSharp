@@ -51,7 +51,7 @@ internal sealed class DownloadableSounds
     
     /// <summary></summary>
     /// <param name="LType"></param>
-    /// <param name="Start">Specifies the start point of the loop in samples as an absolute offset from the beginning of the data in the <data-ck> subchunk of the <wave-list> wave file chunk.</param>
+    /// <param name="Start">Specifies the start point of the loop in samples as an absolute offset from the beginning of the data in the <b>data-ck</b> subchunk of the <b>wave-list</b> wave file chunk.</param>
     /// <param name="Len">Specifies the length of the loop in samples.</param>
     public readonly record struct Loop(Loop.Type LType, int Start, int Len)
     {

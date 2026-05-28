@@ -12,6 +12,9 @@
         <PackageCopyright>Copyright (c) 2026 WhiteDuke</PackageCopyright>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <!-- warning CS1573: Parameter 'X' has no matching param tag in the XML comment for 'Y' (but other parameters do) -->
+        <!-- warning CS1591: Missing XML comment for publicly visible type or member -->
+        <NoWarn>1573;1591</NoWarn>
 
         <TargetFramework>net10.0</TargetFramework>
         <OutputType>Library</OutputType>
