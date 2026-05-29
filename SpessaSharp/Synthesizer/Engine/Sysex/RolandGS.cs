@@ -577,7 +577,7 @@ internal static class RolandGS
                                         // This is the pitch key shift sysex
                                         var keyShift = data - 64;
                                         ch.Set((ChannelMidiParameter.Type.KeyShift, keyShift));
-                                        SpessaLog.GSInfo("Key Shift", keyShift);
+                                        SpessaLog.GSInfo($"Key Shift for {channel}", keyShift);
                                         return;
                                     }
 
@@ -594,7 +594,7 @@ internal static class RolandGS
                                             ChannelMidiParameter.Type.VelocitySenseDepth,
                                             data));
                                         SpessaLog.GSInfo(
-                                            "Velocity Sense Depth", data);
+                                            $"Velocity Sense Depth for {channel}", data);
                                         return;
 
                                     case 0x1b: 
@@ -603,7 +603,7 @@ internal static class RolandGS
                                             ChannelMidiParameter.Type.VelocitySenseOffset,
                                             data));
                                         SpessaLog.GSInfo(
-                                            "Velocity Sense Offset", data);
+                                            $"Velocity Sense Offset for {channel}", data);
                                         return;
 
                                     // Pan position
@@ -634,7 +634,9 @@ internal static class RolandGS
                                         ch.Set(new ChannelMidiParameter(
                                             ChannelMidiParameter.Type.CC1, 
                                             (Midi.CC)data));
-                                        CoolInfo("CC1 Controller Number", data);
+                                        SpessaLog.GSInfo(
+                                            $"CC1 Controller Number for {channel}",
+                                            data);
                                         break;
 
                                     case 0x20: 
@@ -642,7 +644,9 @@ internal static class RolandGS
                                         ch.Set(new ChannelMidiParameter(
                                             ChannelMidiParameter.Type.CC2, 
                                             (Midi.CC)data));
-                                        CoolInfo("CC2 Controller Number", data);
+                                        SpessaLog.GSInfo(
+                                            $"CC2 Controller Number for {channel}", 
+                                            data);
                                         break;
 
                                     // Chorus send
@@ -739,7 +743,7 @@ internal static class RolandGS
                                             newTuning[i] = (byte)(syx[i + 7] - 64);
                                         ch.SetOctaveTuning(newTuning);
                                         SpessaLog.GSInfo(
-                                            $"Octave Scale Tuning on {channel}",
+                                            $"Octave Scale Tuning for {channel}",
                                             string.Join(", ", newTuning.ToArray()));
                                         break;
                                     }
