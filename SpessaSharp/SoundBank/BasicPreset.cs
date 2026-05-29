@@ -131,35 +131,6 @@ public sealed class BasicPreset
     /// <summary>Checks if this preset is a drum preset</summary>
     public bool IsDrum =>
         IsGMGSDrum || (Parent.IsXGBank && BankSelectHacks.IsXGDrum(BankMSB));
-
-    private static void AddUniqueModulators(
-        List<Modulator> main, List<Modulator> adder) =>
-        AddUniqueModulators(main, CollectionsMarshal.AsSpan(adder));
-
-    private static void AddUniqueModulators(
-        List<Modulator> main, ReadOnlySpan<Modulator> adder)
-    {
-        foreach (var addedMod in adder)
-        {
-            var found = false;
-            foreach (var newMod in main)
-            {
-                if (!Modulator.IsIdentical(addedMod, newMod)) continue;
-                found = true;
-                break;
-            }
-            
-            if (!found) main.Add(addedMod);
-        }
-    }
-    
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool InRange((int Min, int Max) range, int number) =>
-        number >= range.Min && number <= range.Max;
-
-    private static (int Min, int Max) Subtract(
-        (int Min, int Max) r1, (int Min, int Max) r2) => 
-            (Math.Max(r1.Min, r2.Min), Math.Min(r1.Max, r2.Max));
     
     /// <summary>Unlinks everything from this preset.</summary>
     public void Delete() => 
@@ -206,14 +177,14 @@ public sealed class BasicPreset
     /// <returns></returns>
     public bool Matches(MidiPatch preset) => Patch.Data.Matches(preset);
 
-    public readonly ref struct InstrumentZonesEnumerable(
+    public readonly ref struct InstrumentZoneEnumerable(
         BasicPreset preset, int note, int velocity)
     {
-        public InstrumentZonesEnumerator GetEnumerator() =>
+        public InstrumentZoneEnumerator GetEnumerator() =>
             new (preset, note, velocity);
     }
 
-    public ref struct InstrumentZonesEnumerator(
+    public ref struct InstrumentZoneEnumerator(
         BasicPreset preset, int key, int vel)
     {
         public readonly record struct Entry(
@@ -280,10 +251,14 @@ public sealed class BasicPreset
                 _current = new Entry(pZone, iZone);
                 return true;
             }
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            static bool InRange((int Min, int Max) range, int number) =>
+                number >= range.Min && number <= range.Max;
         }
     }
 
-    public InstrumentZonesEnumerable ZonesInRange(int key, int vel) =>
+    public InstrumentZoneEnumerable ZonesInRange(int key, int vel) =>
         new (this, key, vel);
 
     /// <summary>Returns the voice synthesis data for this preset.</summary>
@@ -428,6 +403,23 @@ public sealed class BasicPreset
             if (paramCount >= voiceParameters.Count)
                 Util.Grow(ref voiceParameters, paramCount * 2);
             voiceParameters[paramCount++] = (key, newVParams);
+        }
+
+        static void AddUniqueModulators(
+            List<Modulator> main, List<Modulator> adder)
+        {
+            foreach (var addedMod in adder)
+            {
+                var found = false;
+                foreach (var newMod in main)
+                {
+                    if (!Modulator.IsIdentical(addedMod, newMod)) continue;
+                    found = true;
+                    break;
+                }
+            
+                if (!found) main.Add(addedMod);
+            }
         }
     }
 
@@ -616,6 +608,10 @@ public sealed class BasicPreset
                 DontAdd:;
             }
         }
+
+        static (int Min, int Max) Subtract(
+            (int Min, int Max) r1, (int Min, int Max) r2) => 
+            (Math.Max(r1.Min, r2.Min), Math.Min(r1.Max, r2.Max));
     }
     
     /// <summary>Writes the SF2 header</summary>
