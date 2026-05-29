@@ -30,10 +30,10 @@ internal static class Universal
     /// <param name="syx"></param>
     /// <param name="channelOffset"></param>
     public static void SystemExclusive(
-        Synthesizer synth,
-        ReadOnlySpan<byte> syx,
-        int channelOffset = 0) 
+        Synthesizer synth, ReadOnlySpan<byte> syx, int channelOffset = 0)
     {
+        if (syx.Length <= 2) return;
+        
         switch (syx[2]) 
         {
             // Device control

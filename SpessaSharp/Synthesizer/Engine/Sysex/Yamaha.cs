@@ -20,7 +20,7 @@ internal static class Yamaha
         Synthesizer synth, ReadOnlySpan<byte> syx, int channelOffset = 0)
     {
         // XG sysex
-        if (syx[2] == 0x4c) 
+        if (syx.Length >= 3 && syx[2] == 0x4c) 
         {
             var a1 = syx[3]; // Address 1
             var a2 = syx[4]; // Address 2
@@ -419,8 +419,11 @@ internal static class Yamaha
                     syx.ToArray()));
             else
                 Engine.SystemExclusive.NotRecognized(syx, "Yamaha XG");
-        } else
+        } 
+        else
+        {
             Engine.SystemExclusive.NotRecognized(syx, "Yamaha");
+        }
     }
     
     [Conditional("DEBUG")]

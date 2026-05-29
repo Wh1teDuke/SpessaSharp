@@ -24,7 +24,7 @@ internal static class RolandGS
         Synthesizer synth, ReadOnlySpan<byte> syx, int channelOffset = 0)
     {
         // 0x12: DT1 (Device Transmit)
-        if (syx[3] == 0x12) 
+        if (syx.Length >= 4 && syx[3] == 0x12) 
         {
             // Model ID
             switch (syx[2]) 
