@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI.Utils;
@@ -507,22 +509,26 @@ internal static class MidiEditor
                                     break;
                                 }
 
-                                case MidiUtils.AnalyzedMessage.Type.FineTune:
-                                    if (chanStatus.FineTune != 0)
+                                case MidiUtils.AnalyzedMessage.Type.ChannelMidiParameter:
+                                    var cmp =
+                                        data.AsChannelMidiParameter!.Value;
+                                    
+                                    if (cmp.Param.PType == ChannelMidiParameter.Type.KeyShift &&
+                                        chanStatus.FineTune != 0)
                                     {
                                         if (chanStatus.IsFirstNoteOn)
                                         {
-                                            var ft = data.AsFineTune!.Value;
+                                            var ft = cmp.Param.AsInt;
                                             // No note-on yet. Then use it as relative!
                                             var newTune = 
-                                                chanStatus.FineTune + ft.Value;
+                                                chanStatus.FineTune + ft;
                                             chanStatus.KeyShift +=
                                                 (int)float.Truncate(
                                                     newTune / 100);
                                             chanStatus.FineTune =
                                                 newTune % 100;
 
-                                            Debug.WriteLine(
+                                            SpessaLog.Info(
                                                 $"Fine tuning already present on {
                                                     channel}, new relative tune: {newTune} cents");
                                         }
@@ -558,62 +564,6 @@ internal static class MidiEditor
                     switch (syx.MType)
                     {
                         default: break;
-                        
-                        case MidiUtils.AnalyzedMessage.Type.XgReset:
-                            SpessaLog.Info("XG system on detected");
-
-                            system = Midi.System.XG;
-                            addedGs = true; // Flag as true so gs won't get added
-                            resetTrack = trackNum;
-                            resetIndex = index;
-                            // Reset NRPN (accuracy + prevent deletion before reset)
-                            foreach (ref var ch in channelStatus.AsSpan()) 
-                            {
-                                ch.Param.Reset();
-                                ch.ClearedParams = (true, true, true);
-                            }
-                            goto Continue;
-                        
-                        case MidiUtils.AnalyzedMessage.Type.Gm2On:
-                            SpessaLog.Info("GM2 system on detected");
-
-                            system = Midi.System.GM2;
-                            addedGs = true; // Flag as true so gs won't get added
-                            resetTrack = trackNum;
-                            resetIndex = index;
-                            // Reset NRPN (accuracy + prevent deletion before reset)
-                            foreach (ref var ch in channelStatus.AsSpan())
-                            {
-                                ch.Param.Reset();
-                                ch.ClearedParams = (true, true, true);
-                            }
-                            goto Continue;
-
-                        case MidiUtils.AnalyzedMessage.Type.GsReset:
-                            // Check for GS on
-                            // That's a GS on, we're done here
-                            SpessaLog.Info("GM2 system on detected");
-                            
-                            addedGs = true;
-                            resetTrack = trackNum;
-                            resetIndex = index;
-                            // Reset NRPN (accuracy + prevent deletion before reset)
-                            foreach (ref var ch in channelStatus.AsSpan()) 
-                            {
-                                ch.Param.Reset();
-                                ch.ClearedParams = (true, true, true);
-                            }
-                            goto Continue;
-                        
-                        case MidiUtils.AnalyzedMessage.Type.GmOff:
-                        case MidiUtils.AnalyzedMessage.Type.GmOn:
-                            // Check for GM on
-                            // That's a GM1 system change, remove it!
-                            SpessaLog.Info("GM on detected, removing!");
-
-                            DeleteThisEvent();
-                            addedGs = false;
-                            goto Continue;
                         
                         case MidiUtils.AnalyzedMessage.Type.DrumSetup:
                             // Drum setup
@@ -652,30 +602,102 @@ internal static class MidiEditor
                                 DeleteThisEvent();
                             goto Continue;
                         }
-                        
-                        case MidiUtils.AnalyzedMessage.Type.FineTune:
-                        {
-                            var sft = syx.AsFineTune!.Value;
-                            ref var syxStatus = ref channelStatus[
-                                sft.Channel + portOffset];
-                            
-                            if (syxStatus.IsFirstNoteOn && 
-                                channelChanges.ContainsKey(sft.Channel + portOffset))
-                            {
-                                // No note-on yet. Then use it as relative!
-                                var newTune = syxStatus.FineTune + sft.Value;
-                                syxStatus.KeyShift += (int)float.Truncate(
-                                    newTune / 100);
-                                syxStatus.FineTune = newTune % 100;
 
-                                Debug.WriteLine(
-                                    $"Fine tuning already present on {
-                                        channel}, new relative tune: {newTune} cents");
-                                DeleteThisEvent();
+                        case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                        {
+                            var gmp = syx.AsGlobalMidiParameter!.Value;
+                            if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                            {
+                                switch (gmp.AsMidiSystem)
+                                {
+                                    case Midi.System.XG:
+                                        SpessaLog.Info("XG system on detected");
+
+                                        system = Midi.System.XG;
+                                        addedGs = true; // Flag as true so gs won't get added
+                                        resetTrack = trackNum;
+                                        resetIndex = index;
+                                        // Reset NRPN (accuracy + prevent deletion before reset)
+                                        foreach (ref var ch in channelStatus.AsSpan()) 
+                                        {
+                                            ch.Param.Reset();
+                                            ch.ClearedParams = (true, true, true);
+                                        }
+                                        goto Continue;
+                                    case Midi.System.GM2:
+                                        SpessaLog.Info("GM2 system on detected");
+
+                                        system = Midi.System.GM2;
+                                        addedGs = true; // Flag as true so gs won't get added
+                                        resetTrack = trackNum;
+                                        resetIndex = index;
+                                        // Reset NRPN (accuracy + prevent deletion before reset)
+                                        foreach (ref var ch in channelStatus.AsSpan())
+                                        {
+                                            ch.Param.Reset();
+                                            ch.ClearedParams = (true, true, true);
+                                        }
+                                        goto Continue;
+                                    case Midi.System.GS:
+                                        // Check for GS on
+                                        // That's a GS on, we're done here
+                                        SpessaLog.Info("GM2 system on detected");
+                            
+                                        addedGs = true;
+                                        resetTrack = trackNum;
+                                        resetIndex = index;
+                                        // Reset NRPN (accuracy + prevent deletion before reset)
+                                        foreach (ref var ch in channelStatus.AsSpan()) 
+                                        {
+                                            ch.Param.Reset();
+                                            ch.ClearedParams = (true, true, true);
+                                        }
+                                        goto Continue;
+                                    case Midi.System.GM:
+                                        // Check for GM on
+                                        // That's a GM1 system change, remove it!
+                                        SpessaLog.Info("GM on detected, removing!");
+
+                                        DeleteThisEvent();
+                                        addedGs = false;
+                                        goto Continue;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
                             }
+
                             break;
                         }
 
+                        case MidiUtils.AnalyzedMessage.Type.ChannelMidiParameter:
+                        {
+                            var cmp = syx.AsChannelMidiParameter!.Value;
+                            if (cmp.Param.PType == ChannelMidiParameter.Type.FineTune)
+                            {
+                                ref var syxStatus = ref channelStatus[
+                                    cmp.Channel + portOffset];
+                            
+                                if (syxStatus.IsFirstNoteOn && 
+                                    channelChanges.ContainsKey(cmp.Channel + portOffset))
+                                {
+                                    // No note-on yet. Then use it as relative!
+                                    var newTune = 
+                                        syxStatus.FineTune + cmp.Param.AsFloat;
+                                    syxStatus.KeyShift += (int)float.Truncate(
+                                        newTune / 100);
+                                    syxStatus.FineTune = newTune % 100;
+
+                                    Debug.WriteLine(
+                                        $"Fine tuning already present on {
+                                            channel}, new relative tune: {newTune} cents");
+                                    DeleteThisEvent();
+                                }
+
+                                break;
+                            }
+
+                            break;
+                        }
 
                         case MidiUtils.AnalyzedMessage.Type.ControllerChange:
                         {

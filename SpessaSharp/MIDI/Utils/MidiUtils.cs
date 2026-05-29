@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI.Utils;
@@ -11,12 +13,11 @@ public static class MidiUtils
     {
         public enum Type : byte
         {
-            Other, XgReset, GmOn, GmOff, Gm2On, GsReset,
+            Other,
             ReverbParam, ChorusParam, DelayParam, VariationParam,
             InsertionParam,
             DrumsOn, DrumSetup, ProgramChange, ControllerChange,
-            MasterKeyShift, KeyShift,
-            MasterFineTune, FineTune,
+            GlobalMidiParameter, ChannelMidiParameter,
         }
 
         [StructLayout(LayoutKind.Explicit)]
@@ -25,12 +26,9 @@ public static class MidiUtils
             [FieldOffset(0)] public (int Channel, bool IsDrum) _drumsOn;
             [FieldOffset(0)] public (int Channel, int Value) _programChange;
             [FieldOffset(0)] public (Midi.CC Controller, int Value, int Channel) _controllerChange;
-            [FieldOffset(0)] public int _masterKeyShift;//Value
-            [FieldOffset(0)] public (int Value, int Channel) _keyShift;
-            // Value in cents
-            [FieldOffset(0)] public float _masterFineTune;//Value
-            // Value in cents
-            [FieldOffset(0)] public (float Value, int Channel) _fineTune;
+            
+            [FieldOffset(0)] public GlobalMidiParameter _globalMidiParam;
+            [FieldOffset(0)] public (ChannelMidiParameter Param, int Channel) _channelMidiParam;
         }
 
         public Type MType { get; private init; }
@@ -42,21 +40,16 @@ public static class MidiUtils
             MType == Type.ProgramChange ? Data._programChange : null;
         public (Midi.CC Controller, int Value, int Channel)? AsControllerChange =>
             MType == Type.ControllerChange ? Data._controllerChange : null;
-        public int? AsMasterKeyShift =>
-            MType == Type.MasterKeyShift ? Data._masterKeyShift : null;
-        public (int Value, int Channel)? AsKeyShift =>
-            MType == Type.KeyShift ? Data._keyShift : null;
-        public float? AsMasterFineTune =>
-            MType == Type.MasterFineTune ? Data._masterFineTune : null;
-        public (float Value, int Channel)? AsFineTune =>
-            MType == Type.FineTune ? Data._fineTune : null;
+        public GlobalMidiParameter? AsGlobalMidiParameter =>
+            MType == Type.GlobalMidiParameter ? Data._globalMidiParam : null;
+        public (ChannelMidiParameter Param, int Channel)? AsChannelMidiParameter =>
+            MType == Type.ChannelMidiParameter ? Data._channelMidiParam : null;
 
         public static AnalyzedMessage Of(Type type)
         {
             ReadOnlySpan<Type> notAllowed = [
                 Type.DrumsOn, Type.ProgramChange, Type.ControllerChange,
-                Type.MasterKeyShift, Type.KeyShift, Type.MasterFineTune,
-                Type.FineTune];
+                Type.GlobalMidiParameter, Type.ChannelMidiParameter];
             return notAllowed.Contains(type) 
                 ? throw new ArgumentException("Invalid argument: " + type) 
                 : new AnalyzedMessage { MType = type };
@@ -86,33 +79,21 @@ public static class MidiUtils
                 Data = new InternalData
                     { _controllerChange = (controller, value, channel) },
             };
-
-        public static AnalyzedMessage OfMasterKeyShift(int value) =>
+        
+        public static AnalyzedMessage Of(GlobalMidiParameter parameter) =>
             new()
             {
-                MType = Type.MasterKeyShift,
-                Data = new InternalData { _masterKeyShift = value, },
+                MType = Type.GlobalMidiParameter, 
+                Data = new InternalData { _globalMidiParam = parameter },
             };
         
-        public static AnalyzedMessage OfKeyShift(int value, int channel) =>
+        public static AnalyzedMessage Of(
+            ChannelMidiParameter parameter, int channel) =>
             new()
             {
-                MType = Type.KeyShift,
-                Data = new InternalData { _keyShift = (value, channel), },
-            };
-        
-        public static AnalyzedMessage OfMasterFineTune(float value) =>
-            new()
-            {
-                MType = Type.FineTune,
-                Data = new InternalData { _masterFineTune = value, },
-            };
-        
-        public static AnalyzedMessage OfFineTune(float value, int channel) =>
-            new()
-            {
-                MType = Type.FineTune,
-                Data = new InternalData { _fineTune = (value, channel), },
+                MType = Type.ChannelMidiParameter, 
+                Data = new InternalData
+                    { _channelMidiParam = (parameter, channel) },
             };
 
         public static implicit operator AnalyzedMessage(
@@ -162,11 +143,15 @@ public static class MidiUtils
         int channel, int rpn, int value) =>
         rpn switch
         {
-            _ when rpn == ExtendedParameters.RPN.FineTuning => 
-                AnalyzedMessage.OfFineTune((value - 8_192) / 81.92f, value),
-            _ when rpn == ExtendedParameters.RPN.CoarseTuning =>
-                AnalyzedMessage.OfKeyShift((value >> 7) - 64, channel),
-            _ => AnalyzedMessage.Type.Other
+            ExtendedParameters.RPN.FineTuning =>
+                AnalyzedMessage.Of(
+                    (ChannelMidiParameter.Type.FineTune,
+                        (value - 8_192) / 81.92f), channel),
+            ExtendedParameters.RPN.CoarseTuning =>
+                AnalyzedMessage.Of(
+                    (ChannelMidiParameter.Type.KeyShift,
+                        (value >> 7) - 64), channel),
+            _ => AnalyzedMessage.Type.Other,
         };
     
     /// <summary>
@@ -272,7 +257,7 @@ public static class MidiUtils
     /// <param name="data">Data, can be multiple bytes.</param>
     /// <param name="result">The final output, whose len must be <b>GsDataMinLen</b> + <b>data.Length</b></param>
     /// <returns>The same result provided for convenience</returns>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="ArgumentException"></exception>
     public static ReadOnlySpan<byte> GsData(
         int a1, int a2, int a3, ReadOnlySpan<byte> data, Span<byte> result)
     {
@@ -363,12 +348,14 @@ public static class MidiUtils
                     // Master Fine-Tuning
                     var tuningValue = ((syx[5] << 7) | syx[6]) - 8_192;
                     var cents = tuningValue / 81.92f; // [-100;+99] cents range
-                    return AnalyzedMessage.OfMasterFineTune(cents);
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.FineTune, cents));
                 }
                 
                 case 0x04:
                     // Master Coarse Tuning
-                    return AnalyzedMessage.OfMasterKeyShift(syx[5] - 64);
+                    return AnalyzedMessage.Of((
+                        GlobalMidiParameter.Type.KeyShift, syx[5] - 64));
 
                 case 0x05:
                 {
@@ -418,9 +405,9 @@ public static class MidiUtils
 
         return syx[3] switch
         {
-            0x01 => AnalyzedMessage.Type.GmOn,
-            0x02 => AnalyzedMessage.Type.GmOff,
-            0x03 => AnalyzedMessage.Type.Gm2On,
+            0x01 or
+            0x02 => AnalyzedMessage.Of(Midi.System.GM),
+            0x03 => AnalyzedMessage.Of(Midi.System.GM2),
             _ => AnalyzedMessage.Type.Other
         };
     }
@@ -443,26 +430,28 @@ public static class MidiUtils
             {
                 0x00 =>
                     // MASTER TUNE
-                    GetMasterTune(syx),
+                    OfFineTune(syx),
                 0x06 =>
                     // TRANSPOSE
-                    AnalyzedMessage.OfMasterKeyShift(data - 64),
+                    AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.KeyShift, data - 64)),
                 // XG SYSTEM ON
                 0x7e or
                 // ALL PARAMETER RESET
-                0x7f => AnalyzedMessage.Type.XgReset,
+                0x7f => AnalyzedMessage.Of(Midi.System.XG),
                 _ => AnalyzedMessage.Type.Other,
             };
             
-            AnalyzedMessage GetMasterTune(ReadOnlySpan<byte> syx)
+            AnalyzedMessage OfFineTune(ReadOnlySpan<byte> syx)
             {
                 var tune =
-                ((syx[6] & 15) << 12) |
+                    ((syx[6] & 15) << 12) |
                     ((syx[7] & 15) << 8) |
                     ((syx[8] & 15) << 4) |
                     (syx[9] & 15);
                 var cents = (tune - 1_024) / 10f;
-                return AnalyzedMessage.OfMasterFineTune(cents);
+                return AnalyzedMessage.Of(
+                    (GlobalMidiParameter.Type.FineTune, cents));
             }
         }
 
@@ -507,7 +496,9 @@ public static class MidiUtils
                     AnalyzedMessage.OfDrumsOn(channel, data > 0),
                 0x08 =>
                     // Note shift
-                    AnalyzedMessage.OfKeyShift(data - 64, channel),
+                    AnalyzedMessage.Of(
+                        (ChannelMidiParameter.Type.KeyShift, data - 64),
+                        channel),
                 0x0b =>
                     // Volume
                     OfControllerChange(Midi.CC.MainVolume),
@@ -586,10 +577,10 @@ public static class MidiUtils
                 {
                     if (data == 0x00)
                         // GS Reset/Mode-1
-                        return AnalyzedMessage.Type.GsReset;
+                        return AnalyzedMessage.Of(Midi.System.GS);
                     if (data == 0x7f)
                         // GS Off, default to gm
-                        return AnalyzedMessage.Type.GmOn;
+                        return AnalyzedMessage.Of(Midi.System.GM);
                     return AnalyzedMessage.Type.Other;
                 }
                 
@@ -599,7 +590,8 @@ public static class MidiUtils
                     var tune =
                     (data << 12) | (syx[8] << 8) | (syx[9] << 4) | syx[10];
                     var cents = (tune - 1_024) / 10f;
-                    return AnalyzedMessage.OfMasterFineTune(cents);
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.FineTune, cents));
                 }
             }
         }
@@ -608,7 +600,8 @@ public static class MidiUtils
         if (a1 != 0x40) return AnalyzedMessage.Type.Other;
         
         if (a2 == 0x00 && a3 == 0x05)
-            return AnalyzedMessage.OfMasterKeyShift(data - 64);
+            return AnalyzedMessage.Of(
+                (GlobalMidiParameter.Type.KeyShift, data - 64));
 
         // Effects
         if (a2 == 0x01)
@@ -636,7 +629,8 @@ public static class MidiUtils
                     AnalyzedMessage.OfControllerChange(
                         data == 1 ? Midi.CC.PolyModeOn : Midi.CC.MonoModeOn, 0, channel),
                 0x15 => AnalyzedMessage.OfDrumsOn(channel, data > 0),
-                0x16 => AnalyzedMessage.OfKeyShift(data - 64, channel),
+                0x16 => AnalyzedMessage.Of(
+                    (ChannelMidiParameter.Type.KeyShift, data - 64), channel),
                 0x19 =>
                     // Part level (cc#7)
                     OfControllerChange(Midi.CC.MainVolume),
@@ -651,9 +645,11 @@ public static class MidiUtils
                     OfControllerChange(Midi.CC.ReverbDepth),
                 0x2a =>
                     // Fine tune
-                    AnalyzedMessage.OfFineTune(
+                    AnalyzedMessage.Of(
                         // 0-16384
-                        (((data << 7) | syx[8]) - 8_192) / 81.92f, channel),
+                        (ChannelMidiParameter.Type.FineTune,
+                        (((data << 7) | syx[8]) - 8_192) / 81.92f),
+                        channel),
                     
                 0x2c =>
                     // Delay send

@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI.Write;
@@ -220,26 +221,22 @@ public static class WriterRMidi
                         chan = chan with { IsDrum = dO.IsDrum };
                         goto Continue;
                     }
-                    
-                    // Check for XG
-                    case MidiUtils.AnalyzedMessage.Type.XgReset:
-                        system = Midi.System.XG;
-                        goto Continue;
-                        
-                    case MidiUtils.AnalyzedMessage.Type.GsReset:
-                        system = Midi.System.GS;
-                        goto Continue;
-                    
-                    case MidiUtils.AnalyzedMessage.Type.GmOff:
-                    case MidiUtils.AnalyzedMessage.Type.GmOn:
-                        // We do not want gm1
-                        system = Midi.System.GM;
-                        unwantedSystems.Add((tNum: trackNum, e: e));
-                        goto Continue;
-                        
-                    case MidiUtils.AnalyzedMessage.Type.Gm2On:
-                        system = Midi.System.GM2;
-                        goto Continue;
+
+                    case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                    {
+                        var gmp = syx.AsGlobalMidiParameter!.Value;
+                        if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                        {
+                            system = gmp.AsMidiSystem;
+                            if (system == Midi.System.GM)
+                            {
+                                // We do not want gm1
+                                unwantedSystems.Add((tNum: trackNum, e: e));
+                            }
+                        }
+
+                        break;
+                    }
 
                     case MidiUtils.AnalyzedMessage.Type.ControllerChange:
                     {

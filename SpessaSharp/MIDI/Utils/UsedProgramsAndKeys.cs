@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI.Utils;
@@ -264,10 +266,11 @@ internal static class UsedProgramsAndKeys
                     {
                         var analyzed = ch.Param.ControllerChange(cc, value, trackNum, ev);
                         // RPN#02 Coarse Tune is key-shift according to GM2 section 3.4.3
-                        if (analyzed?.AsKeyShift is {} ks)
+                        if (analyzed?.AsChannelMidiParameter?.Param is
+                            { PType: ChannelMidiParameter.Type.KeyShift, AsInt: var val })
                             // Drum channels ignore key shift
                             // Testcase: th07_19_user_gm.mid
-                            ch.KeyShift = ch.IsDrum ? 0 : ks.Value;
+                            ch.KeyShift = ch.IsDrum ? 0 : val;
                         break;
                     }
                     
@@ -316,35 +319,33 @@ internal static class UsedProgramsAndKeys
                 switch (syx.MType)
                 {
                     default: break;
-                    
-                    // Check for XG
-                    case MidiUtils.AnalyzedMessage.Type.XgReset:
-                        Reset(Midi.System.XG);
-                        Debug.WriteLine("XG on detected!");
+
+                    case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                    {
+                        var gmp = syx.AsGlobalMidiParameter!.Value;
+                        if (gmp.PType == GlobalMidiParameter.Type.KeyShift)
+                            masterKeyShift = gmp.AsInt;
+                        else if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                        {
+                            Reset(gmp.AsMidiSystem);
+                            SpessaLog.Info($"{gmp.AsMidiSystem} on detected!");
+                        }
                         break;
-                    case MidiUtils.AnalyzedMessage.Type.Gm2On:
-                        Reset(Midi.System.GM2);
-                        Debug.WriteLine("GM2 on detected!");
+                    }
+
+                    case MidiUtils.AnalyzedMessage.Type.ChannelMidiParameter:
+                    {
+                        var cmp = syx.AsChannelMidiParameter!.Value;
+                        if (cmp.Param.PType == ChannelMidiParameter.Type.KeyShift)
+                        {
+                            ref var chan = ref channels.AsSpan()[cmp.Channel];
+                            // Drum channels ignore key shift
+                            // Testcase: th07_19_user_gm.mid
+                            chan.KeyShift = chan.IsDrum ? 0 : cmp.Param.AsInt;                            
+                        }
                         break;
-                    case MidiUtils.AnalyzedMessage.Type.GmOn:
-                        Reset(Midi.System.GM);
-                        Debug.WriteLine("GM on detected!");
-                        break;
-                    case MidiUtils.AnalyzedMessage.Type.GmOff:
-                    case MidiUtils.AnalyzedMessage.Type.GsReset:
-                        Reset(Midi.System.GS);
-                        Debug.WriteLine("GS on detected!");
-                        break;
-                    case MidiUtils.AnalyzedMessage.Type.MasterKeyShift:
-                        masterKeyShift = syx.AsMasterKeyShift!.Value;
-                        break;
-                    case MidiUtils.AnalyzedMessage.Type.KeyShift:
-                        var (val, chan) = syx.AsKeyShift!.Value;
-                        ref var ichan = ref channels.AsSpan()[chan];
-                        // Drum channels ignore key shift
-                        // Testcase: th07_19_user_gm.mid
-                        ichan.KeyShift = ichan.IsDrum ? 0 : val;
-                        break;
+                    }
+
                     case MidiUtils.AnalyzedMessage.Type.DrumsOn:
                     {
                         var dO = syx.AsDrumsOn!.Value;
