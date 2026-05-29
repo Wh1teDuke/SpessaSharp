@@ -477,58 +477,6 @@ public sealed class MidiChannel: ISf2Channel
             OctaveTuning[i] = tuning[i % 12];
     }
 
-    /// <summary> Sets the modulation depth for the channel. </summary>
-    /// <remarks>
-    /// This method sets the modulation depth for the channel by converting the given cents value into a
-    /// multiplier. The MIDI specification assumes the default modulation depth is 50 cents,
-    /// but it may vary for different sound banks.
-    /// For example, if you want a modulation depth of 100 cents,
-    /// the multiplier will be 2,
-    /// which, for a preset with a depth of 50,
-    /// will create a total modulation depth of 100 cents.
-    /// </remarks>
-    /// <param name="cents">The modulation depth in cents to set.</param>
-    /// <param name="log">If true, logs the change to the console.</param>
-    internal void ModulationDepth(float cents, bool log = true)
-    {
-        Set((
-            ChannelMidiParameter.Type.ModulationDepth,
-            cents / 50));
-        
-        if (log)
-            Debug.WriteLine($"Channel {Channel} modulation depth. Cents: {
-                float.Round(cents)}");
-    }
-
-    /// <summary>Sets the channel's key shift (MIDI).</summary>
-    /// <param name="shift">The key shift.</param>
-    /// <param name="log">If true, logs the change to the console.</param>
-    internal void KeyShift(int shift, bool log = true)
-    {
-        // Drum channels ignore key shift
-        // Testcase: th07_19_user_gm.mid
-        // Reset to 0 just to be sure
-        if (DrumChannel) shift = 0;
-        if (MidiParamArray.KeyShift == shift) return;
-        
-        Set((ChannelMidiParameter.Type.KeyShift, shift));
-        
-        if (log)
-            SpessaLog.Info($"Key shift for {Channel} is now set to {shift}");
-    }
-
-    /// <summary> Sets the channel's tuning. </summary>
-    /// <param name="cents">The tuning in cents to set.</param>
-    /// <param name="log">If true, logs the change to the console.</param>
-    public void FineTune(float cents, bool log = true)
-    {
-        Set((ChannelMidiParameter.Type.FineTune, cents));
-        
-        if (log)
-            Debug.WriteLine($"Fine tuning for {Channel} is now set to {
-                float.Round(cents)} cents.");
-    }
-
     /// <summary> Sets the pitch of the given channel. </summary>
     /// <param name="pitch">The pitch (0 - 16383)</param>
     /// <param name="midiNote">The MIDI note number, pass -1 for the regular pitch wheel</param>
@@ -588,19 +536,6 @@ public sealed class MidiChannel: ISf2Channel
         SynthCore.CallEvent(
             new Event.CbPolyPressure(Channel, midiNote, pressure));
     }
-
-
-    /// <summary> Sets the pitch wheel range for this channel. </summary>
-    /// <param name="range">Range in semitones.</param>
-    /// <param name="log">If true, logs the change to the console.</param>
-    internal void PitchWheelRange(float range, bool log = true) 
-    {
-        Set((ChannelMidiParameter.Type.PitchWheelRange, range));
-        
-        if (log)
-            Debug.WriteLine(
-                $"Channel {Channel} pitch wheel range. Semitones: {range}");
-    }
     
     internal void UpdateInternalParams()
     {
@@ -613,7 +548,9 @@ public sealed class MidiChannel: ISf2Channel
         // - System -> System Parameter
         // - MIDI -> MIDI Parameter
         
-        // Only Channel System is processed for drum channels
+        // Only Channel System is processed for drum channels.
+        // Drum channels ignore key shift
+        // Testcase: th07_19_user_gm.mid
         CurrentKeyShift = DrumChannel
             ? channelSystem.KeyShift
             :   // Global System
@@ -856,8 +793,7 @@ public sealed class MidiChannel: ISf2Channel
             SystemParameters.PresetLock) return;
 
         DrumChannel = isDrum;
-        // Update transpose (clear on drums)
-        KeyShift(MidiParameters.KeyShift, false);
+        UpdateInternalParams();
     }
 
     internal short ComputeModulator(

@@ -73,7 +73,12 @@ internal static class Reset
             chan.Set((ChannelMidiParameter.Type.EfxAssign, false));
         
         // Reset MIDI Parameters
+        chan.Set((ChannelMidiParameter.Type.Pressure, 0));
+        chan.Set((ChannelMidiParameter.Type.PitchWheelRange, 2f));
+        chan.Set((ChannelMidiParameter.Type.ModulationDepth, 50f));
         chan.Set((ChannelMidiParameter.Type.RxChannel, chan.Channel));
+        chan.Set((ChannelMidiParameter.Type.KeyShift, 0));
+        chan.Set((ChannelMidiParameter.Type.FineTune, 0f));
         chan.Set(MidiChannel.Assign.FullMulti);
         chan.Set((ChannelMidiParameter.Type.RandomPan, false));
         chan.Set(new ChannelMidiParameter(
@@ -85,13 +90,9 @@ internal static class Reset
             chan.Channel % 16 == Synthesizer.DEFAULT_PERCUSSION ? 1 : 0));
         chan.Set((ChannelMidiParameter.Type.VelocitySenseOffset, 64));
         chan.Set((ChannelMidiParameter.Type.VelocitySenseDepth, 64));
-        // These have wrappers
+        // This one has a wrapper, for per-note pitch wheel
         chan.PitchWheel(8_192);
-        chan.PitchWheelRange(2, false);
-        chan.KeyShift(0, false);
-        chan.FineTune(0, false);
-        chan.Set((ChannelMidiParameter.Type.Pressure, 0));
-        chan.ModulationDepth(50, false);
+
         // Do not reset user transpose!
         
         // Reset to poly

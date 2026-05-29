@@ -148,7 +148,7 @@ public static class ChannelMidiParameters
             (ChannelMidiParameter.Type.PitchWheel, 8_192),
             (ChannelMidiParameter.Type.PitchWheelRange, 2f),
             (ChannelMidiParameter.Type.Pressure, 0),
-            (ChannelMidiParameter.Type.ModulationDepth, 1f),
+            (ChannelMidiParameter.Type.ModulationDepth, 50f),
             (ChannelMidiParameter.Type.RxChannel, 0),
             (ChannelMidiParameter.Type.PolyMode, true),
             (ChannelMidiParameter.Type.KeyShift, 0),
@@ -265,7 +265,8 @@ public readonly record struct ChannelMidiParameter
         /// <summary>The current pressure (aftertouch) of this channel.</summary>
         Pressure,
         /// <summary>
-        /// The multiplier of the modulation wheel modulator.
+        /// The modulation depth in cents.
+        /// This is internally converted to a multiplier by dividing by 50.
         /// 
         /// The MIDI specification assumes the default modulation depth is 50 cents,
         /// but it may vary for different sound banks.

@@ -576,7 +576,8 @@ internal static class RolandGS
                                     {
                                         // This is the pitch key shift sysex
                                         var keyShift = data - 64;
-                                        ch.KeyShift(keyShift);
+                                        ch.Set((ChannelMidiParameter.Type.KeyShift, keyShift));
+                                        SpessaLog.GSInfo("Key Shift", keyShift);
                                         return;
                                     }
 
@@ -661,8 +662,14 @@ internal static class RolandGS
                                         // Fine tune
                                         // 0-16384
                                         var tune = (data << 7) | syx[8];
-                                        var tuneCents = (tune - 8_192) / 81.92f;
-                                        ch.FineTune(tuneCents);
+                                        var cents = (tune - 8_192) / 81.92f;
+                                        ch.Set((
+                                            ChannelMidiParameter.Type.FineTune,
+                                            cents));
+                                        SpessaLog.GSInfo(
+                                            $"Fine tuning for {channel}",
+                                            Util.Round(cents),
+                                            "cents");
                                         break;
                                     }
 
@@ -731,11 +738,9 @@ internal static class RolandGS
                                         for (var i = 0; i < tuningBytes; i++) 
                                             newTuning[i] = (byte)(syx[i + 7] - 64);
                                         ch.SetOctaveTuning(newTuning);
-                                        var cents = data - 64;
-                                        CoolInfo(
+                                        SpessaLog.GSInfo(
                                             $"Octave Scale Tuning on {channel}",
                                             string.Join(", ", newTuning.ToArray()));
-                                        ch.FineTune(cents);
                                         break;
                                     }
                                 }
@@ -771,7 +776,13 @@ internal static class RolandGS
                                             // If the source is a mod wheel, it's a strange way of setting the modulation depth
                                             // Testcase: J-Cycle.mid (it affects gm.dls which uses LFO1 for modulation)
                                             var cents = (data / 127f) * 600;
-                                            ch.ModulationDepth(cents);
+                                            ch.Set(
+                                                (ChannelMidiParameter.Type.ModulationDepth,
+                                                cents));
+                                            SpessaLog.GSInfo(
+                                                $"Modulation depth for {channel}",
+                                                Util.Round(cents),
+                                            "cents");
                                             break;
                                         }
                                         ch.DynamicModulators.SetupReceiver(
@@ -792,7 +803,13 @@ internal static class RolandGS
                                             // If the source is a pitch wheel, it's a strange way of setting the pitch wheel range
                                             // Testcase: th07_03.mid
                                             var centeredValue = data - 64;
-                                            ch.PitchWheelRange(centeredValue);
+                                            ch.Set(
+                                                (ChannelMidiParameter.Type.PitchWheelRange,
+                                                (float)centeredValue));
+                                            SpessaLog.GSInfo(
+                                                $"Pitch Wheel Range for {channel}",
+                                                centeredValue,
+                                            "semitones");
                                             break;
                                         }
                                         ch.DynamicModulators.SetupReceiver(

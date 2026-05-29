@@ -55,45 +55,68 @@ internal static class DataEntry
                 (chan.MidiControllers[(int)Midi.CC.RegisteredParameterLSB] >> 7);
 
             // Pitch wheel range
-            if (RpnIs(ExtendedParameters.RPN.PitchWheelRange))
+            switch (rpnValue)
             {
-                // Pitch wheel range may be a floating point number!
-                // Therefore, something like "64" won't work,
-                // So we divide it by 128 which is essentially the same here
-                // But it allows for fractional pitch wheel range!
-                chan.PitchWheelRange(dataValue / 128f);
+                case ExtendedParameters.RPN.PitchWheelRange:
+                {
+                    // Pitch wheel range may be a floating point number!
+                    // Therefore, something like "64" won't work,
+                    // So we divide it by 128 which is essentially the same here
+                    // But it allows for fractional pitch wheel range!
+                    var range = dataValue / 128f;
+                    chan.Set((ChannelMidiParameter.Type.PitchWheelRange, range));
+                    SpessaLog.CoolInfo(
+                        $"Pitch Wheel Range for {chan.Channel}",
+                        range,
+                        "semitones");
+                    break;
+                }
+                // Coarse tuning
+                case ExtendedParameters.RPN.CoarseTuning:
+                {
+                    // Semitones, discard LSB
+                    var semitones = (dataValue >> 7) - 64;
+                    chan.Set((ChannelMidiParameter.Type.KeyShift, semitones));
+                    SpessaLog.CoolInfo($"Key shift for {chan.Channel}", semitones);
+                    break;
+                }
+                // Fine-tuning
+                case ExtendedParameters.RPN.FineTuning:
+                {
+                    var finalTuning = dataValue - 8_192;
+                    // Resolution is 100/8192 cents
+                    var cents = finalTuning / 81.92f;
+                    chan.Set((ChannelMidiParameter.Type.FineTune, cents));
+                    SpessaLog.CoolInfo(
+                        $"Fine tuning for {chan.Channel}",
+                        Util.Round(cents),
+                        "cents");
+                    break;
+                }
+                // Modulation depth
+                case ExtendedParameters.RPN.ModulationDepth:
+                {
+                    // Cents, so data / 128 * 100 is data / 1.28
+                    var cents = dataValue / 1.28f;
+                    chan.Set((ChannelMidiParameter.Type.ModulationDepth, cents));
+                    SpessaLog.CoolInfo(
+                        $"Modulation depth for {chan.Channel}",
+                        Util.Round(cents),
+                        "cents");
+                    break;
+                }
+                case ExtendedParameters.RPN.ResetParameters:
+                {
+                    // Ignore
+                    break;
+                }
+                default:
+                {
+                    Debug.WriteLine($"[WARN] Unrecognized RPN for {chan.Channel}: (0x{rpnValue:X}) data value: {dataValue}");
+                    break;
+                }
             }
-            // Coarse tuning
-            else if (RpnIs(ExtendedParameters.RPN.CoarseTuning))
-            {
-                // Semitones, discard LSB
-                var semitones = (dataValue >> 7) - 64;
-                chan.KeyShift(semitones);
-            }
-            // Fine-tuning
-            else if (RpnIs(ExtendedParameters.RPN.FineTuning))
-            {
-                var finalTuning = dataValue - 8_192;
-                // Resolution is 100/8192 cents
-                chan.FineTune(finalTuning / 81.92f);
-            }
-            // Modulation depth
-            else if (RpnIs(ExtendedParameters.RPN.ModulationDepth))
-            {
-                // Cents, so data / 128 * 100 is data / 1.28
-                chan.ModulationDepth(dataValue / 1.28f);
-            }
-            else if (RpnIs(ExtendedParameters.RPN.ResetParameters))
-            {
-                // Ignore
-            }
-            else
-            {
-                Debug.WriteLine($"[WARN] Unrecognized RPN for {chan.Channel}: (0x{rpnValue:X}) data value: {dataValue}");
-            }
-
             return;
-            bool RpnIs(int val) => rpnValue == val; 
         }
         
         // NRPN Handling

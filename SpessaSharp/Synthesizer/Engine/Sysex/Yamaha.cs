@@ -173,7 +173,9 @@ internal static class Yamaha
 
                     // Note shift
                     case 0x08:
-                        ch.KeyShift(data - 64);
+                        var keyShift = data - 64;
+                        ch.Set((ChannelMidiParameter.Type.KeyShift, keyShift));
+                        SpessaLog.XGInfo("Key Shift", keyShift);
                         break;
 
                     // Volume
@@ -284,7 +286,11 @@ internal static class Yamaha
                     {
                         // Bend pitch control (pitch wheel range)
                         var centeredValue = data - 64;
-                        ch.PitchWheelRange(centeredValue);
+                        ch.Set((ChannelMidiParameter.Type.PitchWheelRange, centeredValue));
+                        SpessaLog.XGInfo(
+                            $"Pitch Wheel Range for {channel}",
+                            centeredValue,
+                        "semitones");
                         break;
                     }
                 }
