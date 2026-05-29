@@ -28,12 +28,9 @@ internal readonly record struct CachedVoice
             public void Clear() => _cache.Clear();
 
             public void Add(
-                (BasicZone, BasicZone) key, Voice.Parameters vParams)
-            {
-                _cache[key] = sampleRate is { } sRate
-                    ? (vParams, Of(vParams, sRate))
-                    : (vParams, null);
-            }
+                (BasicZone, BasicZone) key, Voice.Parameters vParams) =>
+                _cache[key] = (vParams, sampleRate is { } sRate
+                    ? Of(vParams, sRate) : null);
 
             public Base? TryGetBase((BasicZone, BasicZone) key) =>
                 _cache.GetValueOrDefault(key).Item2;
