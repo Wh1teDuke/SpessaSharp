@@ -834,12 +834,7 @@ public sealed class Synthesizer
         var voiceList = new CachedVoiceList(
             Single: null, Multi: ArraySegment<CachedVoice>.Empty);
 
-        if (voiceParamCount == 0)
-        {
-            Util.Return(voiceParamsList);
-            _cachedVoices[(preset.Patch, midiNote, velocity)] = voiceList;
-            return voiceList;
-        }
+        if (voiceParamCount == 0) return SetupVoiceList();
 
         var v = 0;
             
@@ -883,9 +878,14 @@ public sealed class Synthesizer
             voiceList = voiceList with { Multi = multi[..v], };
 
         // Cache the voice
-        Util.Return(voiceParamsList);
-        _cachedVoices[(preset.Patch, midiNote, velocity)] = voiceList;
-        return voiceList;
+        return SetupVoiceList();
+
+        CachedVoiceList SetupVoiceList()
+        {
+            Util.Return(voiceParamsList);
+            _cachedVoices[(preset.Patch, midiNote, velocity)] = voiceList;
+            return voiceList;
+        }
     }
     
     public void ClearCache()
