@@ -318,6 +318,7 @@ public sealed class BasicPreset
             
                 // Preset generator list (offsets)
                 presetGenerators.AsSpan().Clear();
+                presetModulators?.Clear();
 
                 if (GlobalZone.Generators.Count + pZone.Basic.Generators.Count > 0)
                 {
@@ -337,7 +338,6 @@ public sealed class BasicPreset
                     presetModulators ??= [];
                     
                     // Preset modulators (add global to local)
-                    presetModulators.Clear();
                     presetModulators.AddRange(pZone.Basic.Modulators);
                 
                     AddUniqueModulators(
@@ -417,7 +417,7 @@ public sealed class BasicPreset
             };
 
             AddParams(key, newVParams);
-            cCache.Add((pZone.Basic, iZone.Basic), newVParams);
+            cCache.Add(key, newVParams);
         }
         
         Util.Return(presetGenerators);
