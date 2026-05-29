@@ -637,7 +637,7 @@ public sealed class Synthesizer
             sampleCount);
     
     /// <summary>
-    /// The main rendering pipeline, renders all voices the processes the effects
+    /// The main rendering pipeline, renders all voices and processes the effects
     /// </summary>
     /// <remarks>
     /// <code>

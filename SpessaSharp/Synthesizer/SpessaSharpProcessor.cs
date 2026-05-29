@@ -11,16 +11,16 @@ using SpessaSharp.Synthesizer.Engine.Sysex;
 
 namespace SpessaSharp.Synthesizer;
 
-/// <summary> The core synthesis engine of spessasynth. </summary>
+/// <summary>The core synthesis engine of spessasynth.</summary>
 public sealed class SpessaSharpProcessor
 {
-    /// <summary> Core synthesis engine. </summary>
+    /// <summary>Core synthesis engine.</summary>
     private readonly Synthesizer _synthCore;
     
-    /// <summary> For applying the snapshot after an override sound bank too. </summary>
+    /// <summary>For applying the snapshot after an override sound bank too.</summary>
     private SynthesizerSnapshot? _savedSnapshot;
     
-    /// <summary> Sample rate in Hertz. </summary>
+    /// <summary>Sample rate in Hertz.</summary>
     public readonly int SampleRate;
 
     public Action<Event>? OnEvent;

@@ -34,7 +34,7 @@ public readonly record struct Modulator(
     /// <param name="IsBipolar">
     /// If this field is set to false, the controller should be mapped with a minimum value of 0 and a maximum value of 1. This is also
     /// called Unipolar. Thus, it behaves similar to the Modulation Wheel controller of the MIDI specification.
-    /// If this field is set to true, the controller sound be mapped with a minimum value of -1 and a maximum value of 1. This is also
+    /// If this field is set to true, the controller should be mapped with a minimum value of -1 and a maximum value of 1. This is also
     /// called Bipolar. Thus, it behaves similar to the Pitch Wheel controller of the MIDI specification.</param>
     /// <param name="IsNegative">
     /// If this field is set true, the direction of the controller should be from the maximum value to the minimum value. So, for
