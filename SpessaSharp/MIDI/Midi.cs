@@ -27,11 +27,11 @@ public sealed class Midi
         ModulationWheelLSB, BreathControllerLSB, UndefinedCC3LSB, FootControllerLSB,
         PortamentoTimeLSB, DataEntryLSB, MainVolumeLSB, BalanceLSB, UndefinedCC9LSB,
         PanLSB, ExpressionLSB, EffectControl1LSB, EffectControl2LSB, 
-        UndefinedCC14lsb, UndefinedCC15lsb, UndefinedCC16lsb, UndefinedCC17lsb, 
-        UndefinedCC18lsb, UndefinedCC19lsb, UndefinedCC20lsb, UndefinedCC21lsb, 
-        UndefinedCC22lsb, UndefinedCC23lsb, UndefinedCC24lsb, UndefinedCC25lsb, 
-        UndefinedCC26lsb, UndefinedCC27lsb, UndefinedCC28lsb, UndefinedCC29lsb, 
-        UndefinedCC30lsb, UndefinedCC31lsb, SustainPedal, PortamentoOnOff, 
+        UndefinedCC14LSB, UndefinedCC15LSB, UndefinedCC16LSB, UndefinedCC17LSB, 
+        UndefinedCC18LSB, UndefinedCC19LSB, UndefinedCC20LSB, UndefinedCC21LSB, 
+        UndefinedCC22LSB, UndefinedCC23LSB, UndefinedCC24LSB, UndefinedCC25LSB, 
+        UndefinedCC26LSB, UndefinedCC27LSB, UndefinedCC28LSB, UndefinedCC29LSB, 
+        UndefinedCC30LSB, UndefinedCC31LSB, SustainPedal, PortamentoOnOff, 
         SostenutoPedal, SoftPedal, LegatoFootSwitch, Hold2Pedal, SoundVariation, 
         FilterResonance, ReleaseTime, AttackTime, Brightness, DecayTime, 
         VibratoRate, VibratoDepth, VibratoDelay, SoundController10, 
@@ -41,12 +41,12 @@ public sealed class Midi
         UndefinedCC88, UndefinedCC89, UndefinedCC90, ReverbDepth, TremoloDepth, 
         ChorusDepth, VariationDepth, PhaserDepth, DataIncrement, DataDecrement, 
         NonRegisteredParameterLSB, NonRegisteredParameterMSB, 
-        RegisteredParameterLSB, RegisteredParameterMSB, UndefinedCC102lsb, 
-        UndefinedCC103lsb, UndefinedCC104lsb, UndefinedCC105lsb, UndefinedCC106lsb,
-        UndefinedCC107lsb, UndefinedCC108lsb, UndefinedCC109lsb, UndefinedCC110lsb,
-        UndefinedCC111lsb, UndefinedCC112lsb, UndefinedCC113lsb, UndefinedCC114lsb,
-        UndefinedCC115lsb, UndefinedCC116lsb, UndefinedCC117lsb, UndefinedCC118lsb,
-        UndefinedCC119lsb, AllSoundOff, ResetAllControllers, LocalControlOnOff,
+        RegisteredParameterLSB, RegisteredParameterMSB, UndefinedCC102LSB, 
+        UndefinedCC103LSB, UndefinedCC104LSB, UndefinedCC105LSB, UndefinedCC106LSB,
+        UndefinedCC107LSB, UndefinedCC108LSB, UndefinedCC109LSB, UndefinedCC110LSB,
+        UndefinedCC111LSB, UndefinedCC112LSB, UndefinedCC113LSB, UndefinedCC114LSB,
+        UndefinedCC115LSB, UndefinedCC116LSB, UndefinedCC117LSB, UndefinedCC118LSB,
+        UndefinedCC119LSB, AllSoundOff, ResetAllControllers, LocalControlOnOff,
         AllNotesOff, OmniModeOff, OmniModeOn, MonoModeOn, PolyModeOn, 
     }
     
@@ -922,20 +922,20 @@ public sealed class Midi
                         switch (e.Data[0])
                         {
                             // Touhou
-                            case 2:
+                            case (int)CC.BreathController:
                             // RPG Maker
-                            case 111:
+                            case (int)CC.UndefinedCC111LSB:
                                 // For Touhou and RPG Maker, the data value must be 0.
                                 if (e.Data[1] == 0) loopStart = e.Ticks;
                                 break;
                             // EMIDI/XMI
-                            case 116:
+                            case (int)CC.UndefinedCC116LSB:
                                 loopStart = e.Ticks;
                                 break;
                             // Touhou
-                            case 4:
+                            case (int)CC.FootController:
                             // EMIDI/XMI
-                            case 117:
+                            case (int)CC.UndefinedCC117LSB:
                                 // For Touhou loops, the data value must be 0.
                                 if (loopEnd == null &&
                                     (e.Data[0] != 4 ||
@@ -955,7 +955,7 @@ public sealed class Midi
                                 }
                                 break;
 
-                            case 0:
+                            case (int)CC.BankSelect:
                                 // Check RMID
                                 if (IsDLSRMIDI && e.Data[1] != 0 && e.Data[1] != 127)
                                 {
