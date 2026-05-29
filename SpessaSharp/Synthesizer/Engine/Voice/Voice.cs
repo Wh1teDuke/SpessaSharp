@@ -88,10 +88,7 @@ public sealed class Voice
     internal readonly record struct Parameters(
         ArraySegment<short> Generators,
         ArraySegment<SoundBank.Modulator> Modulators,
-        BasicInstrument.Zone Zone)
-    {
-        public BasicSample Sample => Zone.Sample;
-    }
+        BasicSample Sample);
 
     public readonly WaveTableOscillator[] Oscillators = [
         new WaveTableOscillator.Linear(),

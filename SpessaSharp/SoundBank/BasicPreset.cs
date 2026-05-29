@@ -386,7 +386,7 @@ public sealed class BasicPreset
 
             var newVParams = new Voice.Parameters
             {
-                Zone        = iZone,
+                Sample      = iZone.Sample,
                 Generators  = generators,
                 Modulators  = modulators.ToArray(),
             };

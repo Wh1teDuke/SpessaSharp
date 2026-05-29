@@ -5,10 +5,8 @@ namespace SpessaSharp.Synthesizer.Engine.Voice;
 /// <summary> Represents a cached voice </summary>
 internal readonly record struct CachedVoice
 {
-    /// <summary>Common CachedVoice properties by ranges</summary>
+    /// <summary>Common CachedVoice properties by zone</summary>
     public sealed record Base(
-        BasicInstrument.Zone Zone,
-        
         ArraySegment<float> SampleData,
         ArraySegment<short> Generators,
         Engine.Voice.Voice.Modulator[] Modulators,
@@ -21,13 +19,10 @@ internal readonly record struct CachedVoice
         float PlaybackStep,
         Synthesizer.SampleLoopingMode LoopingMode)
     {
-        public (int Min, int Max) KeyRange => Zone.Basic.KeyRange;
-        public (int Min, int Max) VelRange => Zone.Basic.VelRange;
-        
         public sealed class Cache(int? sampleRate)
         {
             private readonly Dictionary<
-                (BasicZone, BasicZone), 
+                (BasicZone, BasicZone),
                 (Voice.Parameters, Base?)> _cache = [];
 
             public void Clear() => _cache.Clear();
@@ -87,8 +82,6 @@ internal readonly record struct CachedVoice
                 (int)Generator.Type.SampleModes];
             
             return new Base(
-                voiceParams.Zone,
-                
                 sampleData,
                 generators,
                 modulators,
