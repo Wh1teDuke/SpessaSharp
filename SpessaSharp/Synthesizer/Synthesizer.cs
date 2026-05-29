@@ -225,13 +225,6 @@ public sealed class Synthesizer
     internal void Set(GlobalMidiParameter param) =>
         GlobalMidiParameters.Set(this, param);
     
-    /// <summary>
-    /// Resets all global MIDI parameters to their default values.
-    /// </summary>
-    /// <param name="system">the MIDI system to set when resetting.</param>
-    internal void ResetMidiParameters(Midi.System system) =>
-        GlobalMidiParameters.Reset(this, system);
-    
     /// <summary> The fallback processor when the requested insertion is not available. </summary>
     internal readonly ThruFX InsertionFallback = new();
     
@@ -572,13 +565,17 @@ public sealed class Synthesizer
     }
     
     /// <summary>Executes a full system reset of the synthesizer. This will reset all controllers to their default values, except for the locked controllers.</summary>
-    /// <param name="system"></param>
+    /// <param name="system">The MIDI system to reset the synthesizer to. Defaults to <b>gs</b>.</param>
     public void Reset(Midi.System system = DefaultMode) 
     {
         // Call here because there are returns in this function.
         CallEvent(new Event.CbReset(system));
-        ResetMidiParameters(system);
-
+        // Reset MIDI parameters
+        Set(system);
+        Set((GlobalMidiParameter.Type.Gain, 1f));
+        Set((GlobalMidiParameter.Type.Pan, 0f));
+        Set((GlobalMidiParameter.Type.KeyShift, 0));
+        Set((GlobalMidiParameter.Type.FineTune, 0f));
         // Reset private props
         Tunings.AsSpan().Fill(-1); // Set all to no change
         PortSelectChannelOffset = 0;

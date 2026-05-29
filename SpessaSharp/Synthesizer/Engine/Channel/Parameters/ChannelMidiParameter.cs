@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
+using SpessaSharp.SoundBank;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel.Parameters;
@@ -166,6 +167,36 @@ public static class ChannelMidiParameters
         DefaultParams = new ChannelMidiParameter[list.Length];
         foreach (var param in list)
             DefaultParams[(int)param.PType] = param;
+    }
+    
+    /// <summary>Sets a MIDI channel parameter of the synthesizer.</summary>
+    /// <param name="parameter">The type and value of the MIDI channel parameter to set.</param>
+    internal static void Set(MidiChannel chan, ChannelMidiParameter parameter)
+    {
+        chan.MidiParamArray.Set(parameter);
+
+        // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+        switch (parameter.PType)
+        {
+            case ChannelMidiParameter.Type.PitchWheel:
+                chan.ComputeModulatorsAll(
+                    0,
+                    Modulator.Source.ID(
+                        Modulator.Source.ControllerSource.PitchWheel));
+                break;
+            case ChannelMidiParameter.Type.Pressure:
+                chan.ComputeModulatorsAll(
+                    0,
+                    Modulator.Source.ID(
+                        Modulator.Source.ControllerSource.ChannelPressure));
+                break;
+            default: break;
+        }
+
+        chan.UpdateInternalParams();
+        
+        chan.SynthCore.CallEvent(new Event.CbChannelMidiParameterChange(
+            Channel: chan.Channel, parameter));
     }
 }
 

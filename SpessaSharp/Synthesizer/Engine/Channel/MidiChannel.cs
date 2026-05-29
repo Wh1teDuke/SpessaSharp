@@ -113,37 +113,10 @@ public sealed class MidiChannel: ISf2Channel
     public void Set(ChannelSystemParameter parameter) =>
         ChannelSystemParameters.Set(this, parameter);
 
-    /// <summary>
-    /// Sets a MIDI channel parameter of the synthesizer.
-    /// </summary>
+    /// <summary>Sets a MIDI channel parameter of the synthesizer.</summary>
     /// <param name="parameter">The type and value of the MIDI channel parameter to set.</param>
-    public void Set(ChannelMidiParameter parameter)
-    {
-        MidiParamArray.Set(parameter);
-
-        // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
-        switch (parameter.PType)
-        {
-            case ChannelMidiParameter.Type.PitchWheel:
-                ComputeModulatorsAll(
-                    0,
-                    Modulator.Source.ID(
-                        Modulator.Source.ControllerSource.PitchWheel));
-                break;
-            case ChannelMidiParameter.Type.Pressure:
-                ComputeModulatorsAll(
-                    0,
-                    Modulator.Source.ID(
-                        Modulator.Source.ControllerSource.ChannelPressure));
-                break;
-            default: break;
-        }
-
-        UpdateInternalParams();
-        
-        SynthCore.CallEvent(new Event.CbChannelMidiParameterChange(
-            Channel: Channel, parameter));
-    }
+    public void Set(ChannelMidiParameter parameter) =>
+        ChannelMidiParameters.Set(this, parameter);
     
     /*
     =================

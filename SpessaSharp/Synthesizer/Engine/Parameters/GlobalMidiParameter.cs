@@ -52,15 +52,6 @@ public static class GlobalMidiParameters
         synth.CallEvent(new Event.CbGlobalMidiParameterChange(param));
     }
 
-    public static void Reset(Synthesizer synth, Midi.System system)
-    {
-        synth.Set((GlobalMidiParameter.Type.Gain, 1f));
-        synth.Set((GlobalMidiParameter.Type.Pan, 0f));
-        synth.Set((GlobalMidiParameter.Type.KeyShift, 0));
-        synth.Set((GlobalMidiParameter.Type.FineTune, 0f));
-        synth.Set(system);
-    }
-
     private static readonly GlobalMidiParameter[] DefaultParameters;
     public static ReadOnlySpan<GlobalMidiParameter> Default => DefaultParameters;
 
