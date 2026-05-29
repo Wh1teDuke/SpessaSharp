@@ -343,9 +343,9 @@ public static class MidiUtils
         result[4] = (byte)a2;
         result[5] = (byte)a3;
         data.CopyTo(result[6..]);
-        result[7 + data.Length] = 0xf7; // End of exclusive
+        result[6 + data.Length] = 0xf7; // End of exclusive
 
-        return result[.. (7 + data.Length)];
+        return result[.. (6 + data.Length)];
     }
 
     /// <summary>Gets a XG System Exclusive MIDI message</summary>
