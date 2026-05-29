@@ -815,7 +815,7 @@ internal static class MidiEditor
             if (midi.Tracks[0].Events[0].StatusByte.Is(
                     MidiMessage.Type.TrackName))
                 index++;
-            midi.Tracks[0].Add(MidiUtils.GsReset(0), index);
+            midi.Tracks[0].Add(MidiUtils.Reset(0, Midi.System.GS), index);
             resetTrack = 0;
             resetIndex = index;
             SpessaLog.Info("GS on not detected. Adding it.");
@@ -882,17 +882,6 @@ internal static class MidiEditor
             ClearableParameter<Effect.InsertionProcessorSnapshot>.Replace
                 { Value: var ins }) 
         {
-            for (var channel = 0; channel < ins.Channels.Count; channel++)
-            {
-                if (!ins.Channels[channel]) continue;
-                targetTrack.Add(
-                    MidiUtils.GsMessage(
-                        targetTicks, 
-                        0x40, 
-                        0x40 | MidiUtils.FromChannel(channel), 0x22, [1]),
-                    targetTicks);
-            }
-            
             // Params and sends
             for (var param = 0; param < ins.Params.Count; param++)
             {

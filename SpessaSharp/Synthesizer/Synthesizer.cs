@@ -916,8 +916,6 @@ public sealed class Synthesizer
         {
             Type = InsertionProcessor.Type,
             Params = InsertionParams,
-            Channels = MidiChannels.Select(
-                c => c.MidiParamArray.EfxAssign).ToArray(),
         };
 
     /// <summary>Copied callback so MIDI channels can call it.</summary>

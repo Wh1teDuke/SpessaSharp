@@ -436,7 +436,7 @@ public static class WriterRMidi
                     MidiMessage.Type.TrackName))
                 index++;
 
-            midi.Tracks[0].Add(MidiUtils.GsReset(0), index);
+            midi.Tracks[0].Add(MidiUtils.Reset(0, Midi.System.GS), index);
         }
         
         midi.Flush();

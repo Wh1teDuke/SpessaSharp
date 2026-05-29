@@ -51,9 +51,8 @@ internal static class Universal
                         // Master volume
                         var vol = (syx[5] << 7) | syx[4];
                         synth.Set((
-                            GlobalMidiParameter.Type.Gain, vol / 16_384f));
-                        Debug.WriteLine(
-                            $"Master Volume. Volume: {vol}");
+                            GlobalMidiParameter.Type.Gain, vol / 16_383f));
+                        SpessaLog.GMInfo("Master Volume", vol);
                         break;
                     }
 

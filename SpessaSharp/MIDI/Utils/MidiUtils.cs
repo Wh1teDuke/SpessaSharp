@@ -246,17 +246,17 @@ public static class MidiUtils
 
     public const int GsDataMinLen = 9;
 
-    public static byte[] GsData(int a1, int a2, int a3, byte data)
+    public static byte[] Gs(int a1, int a2, int a3, byte data)
     {
         var dataArray = new byte[GsDataMinLen + 1];
-        GsData(a1, a2, a3, [data], dataArray);
+        Gs(a1, a2, a3, [data], dataArray);
         return dataArray;
     }
     
-    public static byte[] GsData(int a1, int a2, int a3, byte data1, byte data2)
+    public static byte[] Gs(int a1, int a2, int a3, byte data1, byte data2)
     {
         var dataArray = new byte[GsDataMinLen + 2];
-        GsData(a1, a2, a3, [data1, data2], dataArray);
+        Gs(a1, a2, a3, [data1, data2], dataArray);
         return dataArray;
     }
 
@@ -268,7 +268,7 @@ public static class MidiUtils
     /// <param name="result">The final output, whose len must be <b>GsDataMinLen</b> + <b>data.Length</b></param>
     /// <returns>The same result provided for convenience</returns>
     /// <exception cref="ArgumentException"></exception>
-    public static ReadOnlySpan<byte> GsData(
+    public static ReadOnlySpan<byte> Gs(
         int a1, int a2, int a3, ReadOnlySpan<byte> data, Span<byte> result)
     {
         if (result.Length < GsDataMinLen + data.Length)
@@ -294,6 +294,15 @@ public static class MidiUtils
 
         return result[.. (8 + data.Length)];
     }
+
+    /// <summary>
+    /// Turns raw SysEx bytes (without the 0xF0 status byte) into a <b>MIDIMessage</b>.
+    /// </summary>
+    /// <param name="ticks">The tick time of the message.</param>
+    /// <param name="data">The data for the message, without the 0xF0 status byte.</param>
+    /// <returns></returns>
+    public static MidiMessage Syx(int ticks, ReadOnlySpan<byte> data) =>
+        new(ticks, MidiMessage.Type.SystemExclusive, data.ToArray());
     
     /// <summary>Sends a GS System Exclusive address</summary>
     /// <param name="ticks"></param>
@@ -305,11 +314,52 @@ public static class MidiUtils
     public static MidiMessage GsMessage(
         int ticks, int a1, int a2, int a3, ReadOnlySpan<byte> data) 
     {
-        var dataArray = new byte[GsDataMinLen + data.Length];
-        GsData(a1, a2, a3, data, dataArray);
+        var dataArray = (Span<byte>)stackalloc byte[GsDataMinLen + data.Length];
+        return Syx(ticks, Gs(a1, a2, a3, data, dataArray));
+    }
+    
+    public const int XgDataMinLen = 7;
+    
+    /// <summary>
+    /// Gets raw XG System Exclusive message bytes, without the 0xF0 status byte.
+    /// </summary>
+    /// <param name="a1">Address 1</param>
+    /// <param name="a2">Address 2</param>
+    /// <param name="a3">Address 3</param>
+    /// <param name="data">Data, can be multiple bytes.</param>
+    /// <returns></returns>
+    public static Span<byte> Xg(
+        int a1, int a2, int a3, ReadOnlySpan<byte> data, Span<byte> result)
+    {
+        if (result.Length < XgDataMinLen + data.Length)
+            throw new ArgumentException(
+                $"Expected result of at least {XgDataMinLen + data.Length
+                } length, got {result.Length}");
         
-        return new MidiMessage(
-            ticks, MidiMessage.Type.SystemExclusive, dataArray);
+        result[0] = 0x43; // Yamaha
+        result[1] = 0x10; // Device ID (defaults to 16 on roland)
+        result[2] = 0x4c; // XG
+        result[3] = (byte)a1;
+        result[4] = (byte)a2;
+        result[5] = (byte)a3;
+        data.CopyTo(result[6..]);
+        result[7 + data.Length] = 0xf7; // End of exclusive
+
+        return result[.. (7 + data.Length)];
+    }
+
+    /// <summary>Gets a XG System Exclusive MIDI message</summary>
+    /// <param name="ticks">The tick time of the message.</param>
+    /// <param name="a1">Address 1</param>
+    /// <param name="a2">Address 2</param>
+    /// <param name="a3">Address 3</param>
+    /// <param name="data">Data, can be multiple bytes</param>
+    /// <returns></returns>
+    public static MidiMessage XgMessage(
+        int ticks, int a1, int a2, int a3, ReadOnlySpan<byte> data)
+    {
+        var dataArray = (Span<byte>)stackalloc byte[XgDataMinLen + data.Length];
+        return Syx(ticks, Xg(a1, a2, a3, data, dataArray));
     }
 
     /// <summary>
@@ -326,20 +376,50 @@ public static class MidiUtils
         var chanAddress = 0x10 | FromChannel(channel);
         return GsMessage(ticks, 40, chanAddress, 0x15, [(byte)drumMap]);
     }
-    
+
     /// <summary>
-    /// Gets a GS reset message System Exclusive
+    /// Gets a selected reset System Exclusive MIDI message.
     /// </summary>
     /// <param name="ticks"></param>
+    /// <param name="system">The system to reset into.</param>
     /// <returns></returns>
-    public static MidiMessage GsReset(int ticks) =>
-        GsMessage(
-            ticks,
-            0x40,       // System parameter - Address
-            0x00,       // Global mode parameter -  Address
-            0x7f,       // MODE SET - Address
-            [0x00]  // 00 = GS Reset - Data
-        );
+    public static MidiMessage Reset(int ticks, Midi.System system) =>
+        system switch
+        {
+            Midi.System.GS => 
+                GsMessage(
+                    ticks,
+                    0x40,       // System parameter - Address
+                    0x00,       // Global mode parameter -  Address
+                    0x7f,       // MODE SET - Address
+                    [0x00]      // 00 = GS Reset - Data
+                ),
+            Midi.System.XG =>
+                XgMessage(
+                    ticks,
+                    0x00,       // System parameter - Address
+                    0x00,       // Global mode parameter -  Address
+                    0x7e,       // XG On
+                    [0x00]      // 00 = GS Reset - Data
+                ),
+            Midi.System.GM =>
+                Syx(ticks, [
+                    0x7e, // Universal Non-Realtime
+                    0x7f, // Broadcast
+                    0x09, // General MIDI
+                    0x01, // General MIDI 1 On
+                    0x7f, // End of exclusive
+                ]),
+            Midi.System.GM2 =>
+                Syx(ticks, [
+                    0x7e, // Universal Non-Realtime
+                    0x7f, // Broadcast
+                    0x09, // General MIDI
+                    0x03, // General MIDI 2 On
+                    0x7f, // End of exclusive
+                ]),
+            _ => throw new ArgumentOutOfRangeException(nameof(system), system, null)
+        };
 
     private static AnalyzedMessage AnalyzeGM(ReadOnlySpan<byte> syx)
     {

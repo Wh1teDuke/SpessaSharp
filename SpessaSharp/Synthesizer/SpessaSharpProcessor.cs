@@ -88,7 +88,7 @@ public sealed class SpessaSharpProcessor
     {
         var result = (Span<byte>)stackalloc byte[
             data.Length + MidiUtils.GsDataMinLen];
-        SystemExclusive(MidiUtils.GsData(a1, a2, a3, data, result), offset);
+        SystemExclusive(MidiUtils.Gs(a1, a2, a3, data, result), offset);
     }
 
     /// <summary>Executes a system exclusive message for the synthesizer. </summary>

@@ -57,15 +57,12 @@ internal static class Reset
             }
         }
         
-        // Reset Insertion
-        if (!chan.SynthCore.SystemParameters.InsertionEffectLock)
-            chan.Set((ChannelMidiParameter.Type.EfxAssign, false));
-        
         // Reset MIDI parameters (locked will remain in place)
         chan.Set((ChannelMidiParameter.Type.Pressure, 0));
         chan.Set((ChannelMidiParameter.Type.PitchWheelRange, 2f));
         chan.Set((ChannelMidiParameter.Type.ModulationDepth, 50f));
         chan.Set((ChannelMidiParameter.Type.RxChannel, chan.Channel));
+        chan.Set((ChannelMidiParameter.Type.EfxAssign, false));
         chan.Set((ChannelMidiParameter.Type.PolyMode, true));
         chan.Set((ChannelMidiParameter.Type.KeyShift, 0));
         chan.Set((ChannelMidiParameter.Type.FineTune, 0f));

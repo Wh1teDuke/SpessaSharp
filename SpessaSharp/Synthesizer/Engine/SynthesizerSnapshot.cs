@@ -105,21 +105,13 @@ public sealed class SynthesizerSnapshot(
         // Restore insertion
         var ins = InsertionProcessor;
         synth.SystemExclusive(
-            MidiUtils.GsData(0x40, 0x03, 0x00,
+            MidiUtils.Gs(0x40, 0x03, 0x00,
             (byte)(ins.Type >> 8), (byte)(ins.Type & 0x7f)));
 
         for (var i = 0; i < ins.Params.Count; i++)
             if (ins.Params[i] != 255)
                 synth.SystemExclusive(
-                    MidiUtils.GsData(0x40, 0x03, 3 + i, ins.Params[i]));
-
-        for (var channel = 0; channel < ins.Channels.Count; channel++)
-            synth.SystemExclusive(
-                MidiUtils.GsData(
-                    0x40, 
-                    0x40 | MidiUtils.FromChannel(channel), 
-                    0x22, 
-                    (byte)(ins.Channels[channel] ? 1 : 0)));
+                    MidiUtils.Gs(0x40, 0x03, 3 + i, ins.Params[i]));
         
         // Restore MIDI parameters
         foreach (var param in MidiParameters)
