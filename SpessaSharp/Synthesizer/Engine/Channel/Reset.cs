@@ -61,7 +61,7 @@ internal static class Reset
         if (!chan.SynthCore.SystemParameters.InsertionEffectLock)
             chan.Set((ChannelMidiParameter.Type.EfxAssign, false));
         
-        // Reset MIDI Parameters
+        // Reset MIDI parameters (locked will remain in place)
         chan.Set((ChannelMidiParameter.Type.Pressure, 0));
         chan.Set((ChannelMidiParameter.Type.PitchWheelRange, 2f));
         chan.Set((ChannelMidiParameter.Type.ModulationDepth, 50f));

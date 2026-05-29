@@ -75,13 +75,16 @@ internal static class RolandGS
 
                                     case 0x04: 
                                         // Roland GS master volume
-                                        CoolInfo("Master Volume", data);
+                                        SpessaLog.GSInfo("Master Volume", data);
+                                        synth.Set(
+                                            (GlobalMidiParameter.Type.Gain,
+                                                data / 127f));
                                         break;
 
                                     case 0x05: 
                                         // Roland master key shift
                                         var transpose = data - 64;
-                                        CoolInfo("Master Key-Shift", transpose);
+                                        SpessaLog.GSInfo("Master Key-Shift", transpose);
                                         synth.Set((
                                             GlobalMidiParameter.Type.KeyShift,
                                             transpose));
@@ -89,10 +92,11 @@ internal static class RolandGS
 
                                     case 0x06: 
                                         // Roland master pan
-                                        CoolInfo("Master Pan", data);
+                                        SpessaLog.GSInfo("Master Pan", data);
                                         synth.Set((
-                                            GlobalMidiParameter.Type.Pan, 
-                                            (data - 64) / 64f));
+                                            GlobalMidiParameter.Type.Pan,
+                                            // 63, it ranges from 1 to 127, NOT 0 to 127!
+                                            (data - 64) / 63f));
                                         break;
 
                                     case 0x7f: 
@@ -147,13 +151,14 @@ internal static class RolandGS
 
                                     case 0x00: 
                                     {
-                                        // Patch name. cool!
-                                        // Not sure what to do with it, but let's log it!
+                                        // Patch name
                                         var patchName = Util.ReadBinaryString(
                                             syx.Slice(7, 16));
-                                        CoolInfo(
-                                            $"Patch Name for {a3 & 0x0f}",
+                                        SpessaLog.GSInfo(
+                                            "Patch Name", 
                                             Util.ToString(patchName));
+                                        synth.CallEvent(new Event.CbDisplayMessage(
+                                            syx.ToArray()));
                                         break;
                                     }
                                     // Reverb

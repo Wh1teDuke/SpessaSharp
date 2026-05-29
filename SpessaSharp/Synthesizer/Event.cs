@@ -59,7 +59,7 @@ public readonly struct Event
     /// <param name="System">The new System</param>
     public readonly record struct CbReset(Midi.System System);
     
-    /// <summary> This event fires when the synthesizer receives a display message. </summary>
+    /// <summary>This event fires when the synthesizer receives a display message.</summary>
     /// <param name="Data"></param>
     public readonly record struct CbDisplayMessage(
         ArraySegment<byte> Data);

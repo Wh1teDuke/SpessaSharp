@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
@@ -143,6 +144,10 @@ public static class MidiUtils
         int channel, int rpn, int value) =>
         rpn switch
         {
+            ExtendedParameters.RPN.PitchWheelRange =>
+                AnalyzedMessage.Of(
+                    (ChannelMidiParameter.Type.PitchWheelRange,
+                        value / 128f), channel),
             ExtendedParameters.RPN.FineTuning =>
                 AnalyzedMessage.Of(
                     (ChannelMidiParameter.Type.FineTune,
@@ -151,6 +156,11 @@ public static class MidiUtils
                 AnalyzedMessage.Of(
                     (ChannelMidiParameter.Type.KeyShift,
                         (value >> 7) - 64), channel),
+            ExtendedParameters.RPN.ModulationDepth =>
+                AnalyzedMessage.Of(
+                    (ChannelMidiParameter.Type.ModulationDepth,
+                        // Cents, so data / 128 * 100 is data / 1.28
+                        value / 1.28f), channel),
             _ => AnalyzedMessage.Type.Other,
         };
     
@@ -343,13 +353,32 @@ public static class MidiUtils
                 default:
                     return AnalyzedMessage.Type.Other;
 
+                case 0x01:
+                {
+                    // Master Volume
+                    var value = ((syx[5] << 7) | syx[4]) / 16_383f;
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.Gain, value));
+                }
+                
+                case 0x02:
+                {
+                    // Master Balance
+                    // Complete MIDI 1.0 Detailed Specification page 57
+                    // This is not specified in GM2 spec for some reason
+                    var balance = (syx[5] << 7) | syx[4];
+                    var value = (balance - 8_192) / 8_192f;
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.Pan, value));
+                }
+
                 case 0x03:
                 {
                     // Master Fine-Tuning
                     var tuningValue = ((syx[5] << 7) | syx[6]) - 8_192;
-                    var cents = tuningValue / 81.92f; // [-100;+99] cents range
+                    var value = tuningValue / 81.92f; // [-100;+99] cents range
                     return AnalyzedMessage.Of(
-                        (GlobalMidiParameter.Type.FineTune, cents));
+                        (GlobalMidiParameter.Type.FineTune, value));
                 }
                 
                 case 0x04:
@@ -572,6 +601,33 @@ public static class MidiUtils
         {
             switch (a3)
             {
+                // Master Tune
+                case 0x00:
+                {
+                    var tune =
+                        (data << 12) | (syx[8] << 8) | (syx[9] << 4) | syx[10];
+                    var cents = (tune - 1_024) / 10f;
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.FineTune, cents));
+                }
+                
+                // Master Volume
+                case 0x04:
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.Gain, data / 127f));
+
+                // Master Key-Shift
+                case 0x05:
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.KeyShift, data - 64));
+                
+                // Master Pan
+                case 0x06:
+                    return AnalyzedMessage.Of(
+                        (GlobalMidiParameter.Type.Pan,
+                            // 63, it ranges from 1 to 127, NOT 0 to 127!
+                            (data - 64) / 63f));
+                
                 // MODE SET
                 case 0x7f:
                 {
@@ -583,16 +639,7 @@ public static class MidiUtils
                         return AnalyzedMessage.Of(Midi.System.GM);
                     return AnalyzedMessage.Type.Other;
                 }
-                
-                // Master Tune
-                case 0x00:
-                {
-                    var tune =
-                    (data << 12) | (syx[8] << 8) | (syx[9] << 4) | syx[10];
-                    var cents = (tune - 1_024) / 10f;
-                    return AnalyzedMessage.Of(
-                        (GlobalMidiParameter.Type.FineTune, cents));
-                }
+
             }
         }
 
@@ -626,8 +673,11 @@ public static class MidiUtils
                     AnalyzedMessage.OfProgramChange(channel, data),
                 0x13 =>
                     // Mono/poly
-                    AnalyzedMessage.OfControllerChange(
-                        data == 1 ? Midi.CC.PolyModeOn : Midi.CC.MonoModeOn, 0, channel),
+                    AnalyzedMessage.Of(
+                        (ChannelMidiParameter.Type.PolyMode, data == 1), channel),
+                0x14 =>
+                    // Assign mode
+                    AnalyzedMessage.Of((MidiChannel.Assign)data, channel),
                 0x15 => AnalyzedMessage.OfDrumsOn(channel, data > 0),
                 0x16 => AnalyzedMessage.Of(
                     (ChannelMidiParameter.Type.KeyShift, data - 64), channel),
@@ -637,6 +687,16 @@ public static class MidiUtils
                 0x1c =>
                     // Pan position
                     OfControllerChange(Midi.CC.Pan),
+                0x1f =>
+                    // CC1 Controller number
+                    AnalyzedMessage.Of(new ChannelMidiParameter(
+                        ChannelMidiParameter.Type.CC1, (Midi.CC)data), 
+                        channel),
+                0x20 =>
+                    // CC2 Controller number
+                    AnalyzedMessage.Of(new ChannelMidiParameter(
+                        ChannelMidiParameter.Type.CC2, (Midi.CC)data), 
+                        channel),
                 0x21 =>
                     // Chorus send
                     OfControllerChange(Midi.CC.ChorusDepth),
@@ -691,11 +751,15 @@ public static class MidiUtils
             var channel = ToChannel(a2 & 0x0f);
             return a3 switch
             {
-                0x00 or 0x01 =>
+                0x00 or
+                0x01 =>
                     // Tone map number (cc#32)
                     AnalyzedMessage.OfControllerChange(
                         Midi.CC.BankSelectLSB, data, channel),
-                0x22 => AnalyzedMessage.Type.InsertionParam,
+                0x22 => 
+                    AnalyzedMessage.Of(
+                        (ChannelMidiParameter.Type.EfxAssign, data == 1),
+                        channel),
                 _ => AnalyzedMessage.Type.Other
             };
         }
