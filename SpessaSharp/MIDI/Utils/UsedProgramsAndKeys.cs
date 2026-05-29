@@ -188,10 +188,10 @@ internal static class UsedProgramsAndKeys
         var ports = (Span<int>)stackalloc int[mid.Tracks.Count];
         for (var i = 0; i < mid.Tracks.Count; i++) ports[i] = mid.Tracks[i].Port;
         var ids = (ReadOnlySpan<int>)[
-            MidiMessage.ID(MidiMessage.Type.NoteOn),
-            MidiMessage.ID(MidiMessage.Type.ControllerChange),
-            MidiMessage.ID(MidiMessage.Type.ProgramChange),
-            MidiMessage.ID(MidiMessage.Type.SystemExclusive),
+            MidiMessage.Type.NoteOn.ID(),
+            MidiMessage.Type.ControllerChange.ID(),
+            MidiMessage.Type.ProgramChange.ID(),
+            MidiMessage.Type.SystemExclusive.ID(),
         ];
 
         var offsets = mid.PortChannelOffsetMap;
