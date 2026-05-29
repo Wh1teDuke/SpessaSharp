@@ -15,6 +15,7 @@ public sealed class ChannelSnapshot(
     Awe32NRPN.ChannelGenerators generators,
     
     ChannelMidiParameter[] midiParameters,
+    BitArray lockedParameters,
     ChannelSystemParameter[] systemParameters,
     byte[] octaveTuning,
     
@@ -22,7 +23,7 @@ public sealed class ChannelSnapshot(
     
     DrumParameters[] drumParams,
     bool drumChannel,
-    int channelNumber)
+    int channel)
 {
     /// <summary>The MIDI patch that the channel is using.</summary>
     public readonly MidiPatch.Full? Patch = patch;
@@ -41,6 +42,8 @@ public sealed class ChannelSnapshot(
     public readonly Awe32NRPN.ChannelGenerators Generators = generators;
     
     public readonly ChannelMidiParameter[] MidiParameters = midiParameters;
+    public readonly BitArray LockedParameters = lockedParameters;
+    
     public readonly ChannelSystemParameter[] SystemParameters = systemParameters;
 
     /// <summary>The channel's octave tuning in cents.</summary>
@@ -55,7 +58,7 @@ public sealed class ChannelSnapshot(
     public readonly bool DrumChannel = drumChannel;
 
     /// <summary>The channel number this snapshot represents.</summary>
-    public readonly int ChannelNumber = channelNumber;
+    public readonly int Channel = channel;
     
     // Creates a new channel snapshot.
 
@@ -80,12 +83,13 @@ public sealed class ChannelSnapshot(
             pitchWheels: chan.PitchWheels.ToArray(),
             generators: gens,
             midiParameters: chan.MidiParameters.ToArray(),
+            lockedParameters: new BitArray(chan.LockedParameters),
             systemParameters: chan.SystemParameters.ToArray(),
             octaveTuning: chan.OctaveTuning.ToArray(),
             perNotePitch: chan.PerNotePitch,
             drumParams: chan.DrumParams.ToArray(),
             drumChannel: chan.DrumChannel,
-            channelNumber: chan.Channel);
+            channel: chan.Channel);
     }
 
     /// <summary>Applies the snapshot to the specified channel.</summary>
@@ -95,6 +99,7 @@ public sealed class ChannelSnapshot(
 
         // Restore controllers
         MidiControllers.CopyTo(chan.MidiControllers);
+        chan.LockedControllers.SetAll(false);
         chan.LockedControllers.Or(LockedControllers);
         PitchWheels.CopyTo(chan.PitchWheels);
         OctaveTuning.CopyTo(chan.OctaveTuning);
@@ -114,6 +119,9 @@ public sealed class ChannelSnapshot(
         // Restore MIDI parameters
         foreach (var param in MidiParameters)
             chan.Set(param);
+        
+        chan.LockedParameters.SetAll(false);
+        chan.LockedParameters.Or(LockedParameters);
         
         // Restore master parameters last
         foreach (var param in SystemParameters)
