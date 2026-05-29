@@ -8,6 +8,7 @@ using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Synthesizer.Engine.Sysex;
+using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer;
 
@@ -238,11 +239,21 @@ public sealed class SpessaSharpProcessor
     /// <returns>If a BasicPreset instance is returned, it will be used by the channel.</returns>
     public BasicPreset? OnMissingPreset(MidiPatch patch, Midi.System system)
     {
-        Debug.WriteLine(
+        SpessaLog.Warn(
             $"[WARN] No preset found for ${patch.ToMidiString()
             }! Did you forget to add a sound bank?");
         return null;
     }
+    
+    /// <summary>
+    /// Locks or unlocks a given Global MIDI Parameter.
+    /// This prevents any changes to it until it's unlocked.
+    /// </summary>
+    /// <param name="parameter">The Global MIDI Parameter to lock.</param>
+    /// <param name="isLocked">If the parameter should be locked.</param>
+    public void LockParameter(
+        GlobalMidiParameter.Type parameter, bool isLocked) =>
+            _synthCore.LockParameter(parameter, isLocked);
     
     /// <summary>Sets a system parameter of the synthesizer.</summary>
     /// <param name="param">The type and value of the system parameter to set.</param>

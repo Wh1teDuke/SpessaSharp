@@ -44,6 +44,8 @@ public static class GlobalMidiParameters
     
     public static void Set(Synthesizer synth, GlobalMidiParameter param)
     {
+        if (synth.LockedParameters[(int)param.PType]) return;
+        
         synth.MidiParameters[(int)param.PType] = param;
             
         foreach (var ch in synth.MidiChannels)
@@ -146,6 +148,8 @@ public readonly record struct GlobalMidiParameter
     private static void Assert(Type type, Params.Type value) =>
         Params.Assert(TypeOf(type), value);
 
+    public static readonly int Len = Enum.GetValues<Type>().Length;
+    
     public enum Type
     { 
         /// <summary>The currently enabled MIDI system used by the synthesizer for bank selects and system exclusives. (GM, GM2, GS, XG)</summary>

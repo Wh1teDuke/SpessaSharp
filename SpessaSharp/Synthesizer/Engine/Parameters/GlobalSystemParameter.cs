@@ -140,9 +140,7 @@ public static class GlobalSystemParameters
             parameters[(int)type];
     }
     
-    public static void Set(
-        Synthesizer synth, 
-        GlobalSystemParameter param)
+    public static void Set(Synthesizer synth, GlobalSystemParameter param)
     {
         var prev = synth.SystemParameters.Get(param.PType);
         if (prev == param) return;

@@ -16,17 +16,6 @@ internal static class Reset
 
     public static readonly byte[] DefaultDrumReverb = new byte[128];
 
-    public static void Portamento(MidiChannel chan)
-    {
-        if (chan.LockedControllers[(int)Midi.CC.PortamentoControl])
-            return;
-
-        // Portamento has a quirk:
-        // For XG, control is set to 60
-        // For others, it's set to nothing (no portamento on first note-on)
-        chan.LastPortamentoNote = chan.ChannelSystem == Midi.System.XG ? 60 : -1;
-    }
-
     /// <summary>
     /// Reset all controllers for channel. This will reset all controllers to their default values, except for the locked controllers.
     /// </summary>
@@ -77,6 +66,7 @@ internal static class Reset
         chan.Set((ChannelMidiParameter.Type.PitchWheelRange, 2f));
         chan.Set((ChannelMidiParameter.Type.ModulationDepth, 50f));
         chan.Set((ChannelMidiParameter.Type.RxChannel, chan.Channel));
+        chan.Set((ChannelMidiParameter.Type.PolyMode, true));
         chan.Set((ChannelMidiParameter.Type.KeyShift, 0));
         chan.Set((ChannelMidiParameter.Type.FineTune, 0f));
         chan.Set(MidiChannel.Assign.FullMulti);
@@ -92,17 +82,15 @@ internal static class Reset
         chan.Set((ChannelMidiParameter.Type.VelocitySenseDepth, 64));
         // This one has a wrapper, for per-note pitch wheel
         chan.PitchWheel(8_192);
-
-        // Do not reset user transpose!
-        
-        // Reset to poly
-        if (!chan.LockedControllers[(int)Midi.CC.MonoModeOn] &&
-            !chan.LockedControllers[(int)Midi.CC.PolyModeOn]) 
-            chan.Set((ChannelMidiParameter.Type.PolyMode, true));
         
         // Reset various other things
         chan.OctaveTuning.AsSpan().Clear();
-        Portamento(chan);
+        
+        // Portamento has a quirk:
+        // For XG, control is set to 60
+        // For others, it's set to nothing (no portamento on first note-on)
+        chan.LastPortamentoNote = chan.ChannelSystem == Midi.System.XG ? 60 : -1;
+        
         chan.ResetDrumParams();
         chan.ResetGeneratorOverrides();
         chan.ResetGeneratorOffsets();
