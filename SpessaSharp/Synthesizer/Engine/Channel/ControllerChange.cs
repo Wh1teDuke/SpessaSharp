@@ -19,22 +19,18 @@ internal static class ControllerChange
     /// <param name="controller">The MIDI controller number (0-127).</param>
     /// <param name="value">The value of the controller (0-127).</param>
     /// <param name="sendEvent">If an event should be emitted.</param>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="InvalidOperationException">Invalid controller</exception>
     public static void Send(
-        MidiChannel chan,
-        Midi.CC controller,
-        int value,
-        bool sendEvent = true)
+        MidiChannel chan, Midi.CC controller, int value, bool sendEvent = true)
     {
         if ((int)controller is > 127 or < 0)
-            throw SpessaException.Invalid(
-                $"Invalid MIDI Controller: {controller}");
+            throw SpessaException.Invalid($"Invalid MIDI Controller on channel {chan.Channel}: {(int)controller:X2}");
         
         // Lsb controller values: append them as the lower nibble of the 14-bit value
         // Excluding bank select as it's handled separately
         if (controller is 
-                >= Midi.CC.ModulationWheelLSB and 
-                <= Midi.CC.EffectControl2LSB) 
+            >= Midi.CC.ModulationWheelLSB and
+            <= Midi.CC.EffectControl2LSB)
         {
             var actualCCNum = controller - 32;
             if (chan.LockedControllers[(int)actualCCNum])

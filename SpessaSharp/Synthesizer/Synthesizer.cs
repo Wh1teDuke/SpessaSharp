@@ -950,8 +950,7 @@ public sealed class Synthesizer
     }
     
     private void ProcessMessageInternal(
-        ReadOnlySpan<byte> message,
-        int channelOffset) 
+        ReadOnlySpan<byte> message, int channelOffset) 
     {
         MidiMessage.Type status;
         var channel = 0;

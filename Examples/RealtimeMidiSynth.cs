@@ -1,7 +1,8 @@
 #!/usr/bin/env -S dotnet run --configuration Release
+
 #:project ../SpessaSharp/SpessaSharp.csproj
-#:package OwnAudioSharp.Basic@3.0.7
 #:package OwnAudioSharp.Midi@3.0.5
+#:package OwnAudioSharp.Basic@3.0.7
 
 using System.Diagnostics;
 using Ownaudio.Core;
@@ -39,13 +40,13 @@ var device = args.Length > 1
 
 Console.WriteLine($"Listening on '{device}'");
 using var port = MidiPortFactory.OpenInput(device);
+var synthLock = new Lock();
 port.MessageReceived += m =>
 {
-    if (m.Type == MidiMessageType.SysEx) return;
-    
     var (t, s, d1, d2) = (m.Type, m.Status, m.Data1, m.Data2);
     Console.WriteLine($"{t,-20}(0x{s:X2} 0x{d1:X2} 0x{d2:X2})");
-    synth.ProcessMessage([s, d1, d2]);
+    lock(synthLock)
+        synth.ProcessMessage([s, d1, d2]);
 };
 
 port.Start();
@@ -74,7 +75,10 @@ var start = watch.Elapsed;
 while (true)
 {
     var t = (watch.Elapsed - start).TotalSeconds;
-    if (synth.CurrentTime - t > 0.5)
+    var currentTime = 0d;
+    lock (synthLock) currentTime = synth.CurrentTime;
+
+    if (currentTime - t > 0.5)
     {
         Thread.Sleep(1);
         continue;
@@ -83,10 +87,13 @@ while (true)
     left.AsSpan().Clear();
     right.AsSpan().Clear();
     var write = 0;
-    for (var i = 0; i < blockSize; i++)
+    lock(synthLock)
     {
-        synth.Process(left, right, write, quantum);
-        write += quantum;
+        for (var i = 0; i < blockSize; i++)
+        {
+            synth.Process(left, right, write, quantum);
+            write += quantum;
+        }
     }
 
     for (var i = 0; i < left.Length; i++)
