@@ -519,7 +519,7 @@ internal static class RolandGS
                                 // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                                 // SC-8850 manual, page 237
                                 var channel =
-                                    MidiUtils.ToChannel(a2 & 0x0f) + channelOffset;
+                                    MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
                                 // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                                 var ch = synth.MidiChannels[channel];
                                 switch (a3) 
@@ -765,7 +765,7 @@ internal static class RolandGS
                                 // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                                 // SC-8850 manual, page 237
                                 var channel =
-                                    MidiUtils.ToChannel(a2 & 0x0f) + channelOffset;
+                                    MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
                                 // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                                 var ch = synth.MidiChannels[channel];
                                 switch (a3 & 0xf0) 
@@ -881,7 +881,7 @@ internal static class RolandGS
                                 // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                                 // SC-8850 manual, page 237
                                 var channel =
-                                    MidiUtils.ToChannel(a2 & 0x0f) + channelOffset;
+                                    MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
                                 // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                                 var ch = synth.MidiChannels[channel];
 

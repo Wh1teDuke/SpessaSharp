@@ -180,4 +180,11 @@ public readonly record struct GlobalMidiParameter
         (Type Type, int Value) param) => Of(param.Type, param.Value);
     public static implicit operator GlobalMidiParameter(
         Midi.System param) => Of(param);
+
+    internal void Deconstruct<T>(out Type pType, out Params.Data data)
+    {
+        pType = PType;
+        data = _data;
+    }
+
 }

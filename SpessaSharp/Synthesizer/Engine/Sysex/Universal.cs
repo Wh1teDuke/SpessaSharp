@@ -50,8 +50,10 @@ internal static class Universal
                     {
                         // Master volume
                         var vol = (syx[5] << 7) | syx[4];
+                        // It corresponds to CC volume, so volume is squared.
+                        var gain = float.Pow(vol / 16_383f, 2);
                         synth.Set((
-                            GlobalMidiParameter.Type.Gain, vol / 16_383f));
+                            GlobalMidiParameter.Type.Gain, gain));
                         SpessaLog.GMInfo("Master Volume", vol);
                         break;
                     }
@@ -65,19 +67,18 @@ internal static class Universal
                         var pan = (balance - 8_192) / 8_192f;
                         synth.Set((
                             GlobalMidiParameter.Type.Pan, pan));
-                        Debug.WriteLine($"Master Balance. Pan: {pan}");
+                        SpessaLog.GMInfo("Master Balance", pan);
                         break;
                     }
 
                     case 0x03: 
                     {
                         // Fine-tuning
-                        var tuningValue = ((syx[5] << 7) | syx[6]) - 8_192;
+                        var tuningValue = ((syx[5] << 7) | syx[4]) - 8_192;
                         var cents = tuningValue / 81.92f; // [-100;+99] cents range
                         synth.Set((
                             GlobalMidiParameter.Type.FineTune, cents));
-                        Debug.WriteLine(
-                            $"Master Fine Tuning. Cents: {cents}");
+                        SpessaLog.GMInfo("Master Fine Tuning", cents);
                         break;
                     }
 

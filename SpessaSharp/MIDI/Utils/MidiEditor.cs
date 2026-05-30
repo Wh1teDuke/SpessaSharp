@@ -131,14 +131,6 @@ internal static class MidiEditor
         SendLevelToReverb = 0x5a,
     };
     
-    private static MidiMessage GetControllerChange(
-            int channel, Midi.CC cc, int value, int ticks) => new(
-        ticks,
-        (byte)(MidiMessage.ID(
-            MidiMessage.Type.ControllerChange) | (channel % 16)),
-        new []{(byte)cc, (byte)value});
-    
-    
     /// <summary> Internal tracking interface </summary>
     /// <param name="IsFirstNoteOn">Tracks if the channel already had its first note on</param>
     /// <param name="Param">RPN/NRPN tracking</param>
@@ -293,8 +285,8 @@ internal static class MidiEditor
                                 if (v is not ClearableParameter<int>.Replace repl)
                                     continue;
 
-                                var ccChange = GetControllerChange(
-                                    midiChannel, cc, repl.Value, e.Ticks);
+                                var ccChange = MidiMessage.ControllerChange(
+                                    e.Ticks, midiChannel, cc, repl.Value);
                                 AddEventBefore(ccChange);
                             }
                         }
@@ -306,22 +298,26 @@ internal static class MidiEditor
                             // 64 is the center, 96 = 50 cents up
                             var data = (int)float.Floor(
                                 chanStatus.FineTune * 81.92f) + 8_192;
-                            var rpnCoarse = GetControllerChange(
+                            var rpnCoarse = MidiMessage.ControllerChange(
+                                e.Ticks,
                                 midiChannel,
                                 Midi.CC.RegisteredParameterMSB,
-                                0, e.Ticks);
-                            var rpnFine = GetControllerChange(
+                                0);
+                            var rpnFine = MidiMessage.ControllerChange(
+                                e.Ticks,
                                 midiChannel,
                                 Midi.CC.RegisteredParameterLSB,
-                                1, e.Ticks);
-                            var dataEntryCoarse = GetControllerChange(
+                                1);
+                            var dataEntryCoarse = MidiMessage.ControllerChange(
+                                e.Ticks,
                                 channel,
                                 Midi.CC.DataEntryMSB,
-                                (data >> 7) & 0x7f, e.Ticks);
-                            var dataEntryFine = GetControllerChange(
+                                (data >> 7) & 0x7f);
+                            var dataEntryFine = MidiMessage.ControllerChange(
+                                e.Ticks,
                                 midiChannel,
                                 Midi.CC.DataEntryLSB,
-                                data & 0x7f, e.Ticks);
+                                data & 0x7f);
 
                             AddEventBefore(dataEntryFine);
                             AddEventBefore(dataEntryCoarse);
@@ -346,12 +342,8 @@ internal static class MidiEditor
                             var desiredProgram = patch.Program;
 
                             // Add program change
-                            var programChange = new MidiMessage(
-                                e.Ticks,
-                                (byte)(MidiMessage.ID(
-                                           MidiMessage.Type.ProgramChange)
-                                       | midiChannel),
-                                new[] { (byte)desiredProgram });
+                            var programChange = MidiMessage.ProgramChange(
+                                e.Ticks, midiChannel, desiredProgram);
 
                             AddEventBefore(programChange);
 
@@ -377,20 +369,23 @@ internal static class MidiEditor
                                 midiChannel != Synthesizer.Synthesizer.DEFAULT_PERCUSSION)
                             {
                                 // Add gs drum change
-                                Debug.WriteLine(
+                                SpessaLog.Info(
                                     $"Adding GS Drum change on track {trackNum}");
-                                AddEventBefore(MidiUtils.GsDrumChange(
-                                    e.Ticks, midiChannel, 1));
+                                var chanAddress =
+                                    0x10 | MidiUtils.ChannelToSyx(midiChannel);
+                                AddEventBefore(MidiUtils.GsMessage(
+                                    e.Ticks, 40, chanAddress, 0x15, [1]));
                             }
 
                             void AddBank(bool isLSB, int v)
                             {
-                                var bankChange = GetControllerChange(
+                                var bankChange = MidiMessage.ControllerChange(
+                                    eTicks,
                                     midiChannel,
                                     isLSB
                                         ? Midi.CC.BankSelectLSB
                                         : Midi.CC.BankSelect,
-                                    v, eTicks);
+                                    v);
                                 AddEventBefore(bankChange);
                             }
                         }

@@ -227,12 +227,265 @@ public static class MidiUtils
         }
     }
 
+    /// <summary>
+    /// Returns a list of MIDI events needed to set the given parameter.
+    /// </summary>
+    /// <param name="ticks">The ticks for all events.</param>
+    /// <param name="system">If the message has multiple ways of setting it, this selects the preferred way. Otherwise, it prefers GS.</param>
+    /// <param name="parameter">The parameter and value to set.</param>
+    /// <returns>The list of <b>MIDIMessage</b>s that set the parameter.</returns>
+    public static MidiMessage[] Set(
+        int ticks, Midi.System system, GlobalMidiParameter parameter)
+    {
+        switch (parameter.PType)
+        {
+            case GlobalMidiParameter.Type.MidiSystem:
+                // Well, we set the system so we don't care about the current one
+                return [Reset(ticks, parameter.AsMidiSystem)];
+
+            case GlobalMidiParameter.Type.KeyShift:
+            {
+                return system switch
+                {
+                    // Three ways of setting it: GM. XG and GS.
+                    Midi.System.GM2 or Midi.System.GM =>
+                        // GM2 and GM are the same here
+                        // Master Coarse Tuning
+                        [DeviceControlMessage(ticks, 0x04, [
+                            0x00, // LSB is not used for key shift
+                            (byte)(parameter.AsInt + 64)])],
+                    Midi.System.XG =>
+                        // Transpose
+                        [XgMessage(ticks, 0x00, 0x00, 0x06,
+                        [(byte)(parameter.AsInt + 64)])],
+                    _ => [GsMessage(ticks, 0x40, 0x00, 0x05,
+                        [(byte)(parameter.AsInt + 64)])],
+                };
+            }
+
+            case GlobalMidiParameter.Type.FineTune:
+            {
+                // Again, all three systems have their own way of setting it, and they are all different
+                switch (system)
+                {
+                    case Midi.System.GM2 or Midi.System.GM:
+                    {
+                        // GM tunes in 14-bit numbers, how nice!
+                        var tuneValue = (int)float.Floor(
+                            parameter.AsFloat * 81.92f + 8_192);
+                        return [DeviceControlMessage(ticks, 0x03, [
+                                (byte)(tuneValue & 0x7f), // LSB
+                                (byte)((tuneValue >> 7) & 0x7f) // MSB
+                        ])];
+                    }
+
+                    case Midi.System.XG:
+                    {
+                        // -102.4 to 102.3, in 0.1 cent steps
+                        // Real range is 0 to 2047 with 1024 as center
+                        var tuneValue = (int)float.Floor(
+                            parameter.AsFloat * 10 + 1_024);
+                        return [XgMessage(ticks, 0x00, 0x00, 0x00, [
+                                (byte)((tuneValue >> 12) & 0x0f),
+                                (byte)((tuneValue >> 8) & 0x0f),
+                                (byte)((tuneValue >> 4) & 0x0f),
+                                (byte)(tuneValue & 0x0f),
+                        ])];
+                    }
+
+                    default:
+                    {
+                        // Gs is -100 cents to 100 cents, 0.1 cent steps
+                        // Real range is 24 to 2024, so narrower than XG
+                        var tuneValue = (int)float.Floor(
+                            parameter.AsFloat * 10 + 1_024);
+                        return [GsMessage(ticks, 0x40, 0x00, 0x00, [
+                                (byte)((tuneValue >> 12) & 0x0f),
+                                (byte)((tuneValue >> 8) & 0x0f),
+                                (byte)((tuneValue >> 4) & 0x0f),
+                                (byte)(tuneValue & 0x0f),
+                        ])];
+                    }
+                }
+            }
+                
+            case GlobalMidiParameter.Type.Gain:
+            {
+                // All three once more!
+                switch (system)
+                {
+                    case Midi.System.GM2 or Midi.System.GM:
+                    {
+                        // MIDI Master Volume corresponds to CC volume, so the effective volume is squared.
+                        // Reverse that here
+                        var gainValue = (int)float.Floor(
+                            float.Sqrt(parameter.AsFloat) * 16_383);
+                        return [DeviceControlMessage(ticks, 0x01, [
+                                (byte)(gainValue & 0x7f), // LSB
+                                (byte)((gainValue >> 7) & 0x7f), // MSB
+                        ])];
+                    }
+                    
+                    case Midi.System.XG:
+                    {
+                        var gainValue = (int)float.Floor(parameter.AsFloat * 127);
+                        return [XgMessage(ticks, 0x00, 0x00, 0x04, [
+                                (byte)gainValue
+                        ])];
+                    }
+
+                    default:
+                    {
+                        // GS
+                        var gainValue = (int)float.Floor(parameter.AsFloat * 127);
+                        return [GsMessage(ticks, 0x40, 0x00, 0x04, [
+                                (byte)gainValue,
+                        ])];
+                    }
+                }
+            }
+                
+            case GlobalMidiParameter.Type.Pan:
+            {
+                // Only GM and GS, XG doesn't have a pan message?
+                switch (system)
+                {
+                    case Midi.System.GM2 or Midi.System.GM:
+                    {
+                        // Master Balance message
+                        var balance = (int)float.Floor(parameter.AsFloat * 8_192);
+
+                        return [DeviceControlMessage(ticks, 0x02, [
+                                (byte)(balance & 0x7f), // LSB
+                                (byte)((balance >> 7) & 0x7f) // MSB
+                        ])];
+                    }
+
+                    default:
+                    {
+                        // 63, it ranges from 1 to 127, NOT 0 to 127!
+                        var balance = (int)float.Floor(parameter.AsFloat * 63) + 64;
+                        return [GsMessage(ticks, 0x40, 0x00, 0x06, [
+                                (byte)balance
+                        ])];
+                    }
+                }
+            }
+            default: break;
+        }
+        
+        throw new NotSupportedException(parameter.PType.ToString());
+    }
+
+    /// <summary>
+    /// Returns a list of MIDI events needed to set the given parameter.
+    /// </summary>
+    /// <param name="ticks">The ticks for all events.</param>
+    /// <param name="channel">The channel number.</param>
+    /// <param name="system">If the message has multiple ways of setting it, this selects the preferred way. Otherwise, it prefers GS.</param>
+    /// <param name="parameter">The parameter and value to set.</param>
+    /// <returns>The list of <b>MIDIMessage</b>s that set the parameter.</returns>
+    public static MidiMessage[] Set(
+        int ticks, 
+        int channel, 
+        Midi.System system, 
+        ChannelMidiParameter parameter)
+    {
+        channel %= 16;
+
+        return parameter.PType switch
+        {
+            ChannelMidiParameter.Type.Pressure => 
+                [MidiMessage.ChannelPressure(ticks, channel, parameter.AsInt)],
+            ChannelMidiParameter.Type.PitchWheel => 
+                [MidiMessage.PitchWheel(ticks, channel, parameter.AsInt)],
+            ChannelMidiParameter.Type.PitchWheelRange => 
+                MidiMessage.RegisteredParameter(
+                    ticks, channel,
+                    ExtendedParameters.RPN.PitchWheelRange, 
+                    (int)float.Floor(parameter.AsFloat * 128)),
+            ChannelMidiParameter.Type.ModulationDepth => 
+                MidiMessage.RegisteredParameter(ticks, channel,
+                    ExtendedParameters.RPN.ModulationDepth,
+                    // Cents, so data / 128 * 100 is data / 1.28
+                    (int)float.Floor(parameter.AsFloat * 1.28f)),
+            ChannelMidiParameter.Type.RxChannel => 
+                system == Midi.System.XG
+                    ? [XgMessage(ticks, 0x08, channel, 0x04, 
+                        [(byte)parameter.AsFloat])]
+                    : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x02,
+                        [(byte)parameter.AsFloat])],
+            ChannelMidiParameter.Type.PolyMode => parameter.AsBool
+                ? [MidiMessage.ControllerChange(ticks, channel, Midi.CC.PolyModeOn, 0)]
+                : [MidiMessage.ControllerChange(ticks, channel, Midi.CC.MonoModeOn, 0)],
+            ChannelMidiParameter.Type.KeyShift =>
+                // Prefer RPN as it's universal
+                MidiMessage.RegisteredParameter(
+                    ticks, channel, ExtendedParameters.RPN.CoarseTuning,
+                    (parameter.AsInt + 64) << 7),
+            ChannelMidiParameter.Type.FineTune =>
+                // Prefer RPN as it's universal
+                MidiMessage.RegisteredParameter(
+                    ticks, channel, ExtendedParameters.RPN.FineTuning,
+                    // Resolution is 100/8192 cents
+                    (int)float.Floor(parameter.AsFloat * 81.92f + 8_192)),
+            ChannelMidiParameter.Type.RandomPan =>
+                // Only set via SysEx in both GS and XG (value 0 means random pan)
+                system == Midi.System.XG
+                    ? [XgMessage(ticks, 0x08, channel, 0x0e, [0])]
+                    : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1c, [0])],
+            ChannelMidiParameter.Type.AssignMode =>
+                // GS only
+                [
+                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x14, 
+                        [(byte)parameter.AsAssignMode])
+                ],
+            ChannelMidiParameter.Type.EfxAssign =>
+                // GS only (again)
+                [
+                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x22, 
+                        [(byte)(parameter.AsBool ? 1 : 0)])
+                ],
+            ChannelMidiParameter.Type.CC1 =>
+                // GS only!!! (again!)
+                [
+                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1f, 
+                        [(byte)parameter.AsCC])
+                ],
+            ChannelMidiParameter.Type.CC2 =>
+                // The same as cc1, just different address
+                [
+                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x20, 
+                        [(byte)parameter.AsCC])
+                ],
+            ChannelMidiParameter.Type.DrumMap =>
+                // GS only, it's called "USE FOR RHYTHM PART" there
+                [
+                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x15, 
+                        [(byte)parameter.AsInt])
+                ],
+            ChannelMidiParameter.Type.VelocitySenseDepth => 
+                system == Midi.System.XG
+                ? [XgMessage(ticks, 0x08, channel, 0x0c, 
+                    [(byte)parameter.AsInt])]
+                : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1a, 
+                    [(byte)parameter.AsInt])],
+            ChannelMidiParameter.Type.VelocitySenseOffset =>
+                // Similar to above
+                system == Midi.System.XG
+                    ? [XgMessage(ticks, 0x08, channel, 0x0d, 
+                        [(byte)parameter.AsInt])]
+                    : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1b, 
+                        [(byte)parameter.AsInt])],
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
 
     /// <summary>
     /// GS/XG "part number" to channel number.
     /// </summary>
     /// <param name="part"></param>
-    public static int ToChannel(int part) =>
+    public static int SyxToChannel(int part) =>
         ((ReadOnlySpan<int>)[
             9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15])[part % 16];
 
@@ -240,7 +493,7 @@ public static class MidiUtils
     /// Channel number to GS/XG "part number"
     /// </summary>
     /// <param name="chan"></param>
-    public static int FromChannel(int chan) =>
+    public static int ChannelToSyx(int chan) =>
         ((ReadOnlySpan<int>)[
             1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15])[chan % 16];
 
@@ -315,7 +568,8 @@ public static class MidiUtils
         int ticks, int a1, int a2, int a3, ReadOnlySpan<byte> data) 
     {
         var dataArray = (Span<byte>)stackalloc byte[GsDataMinLen + data.Length];
-        return Syx(ticks, Gs(a1, a2, a3, data, dataArray));
+        return MidiMessage.SystemExclusive(
+            ticks, Gs(a1, a2, a3, data, dataArray));
     }
     
     public const int XgDataMinLen = 7;
@@ -359,23 +613,41 @@ public static class MidiUtils
         int ticks, int a1, int a2, int a3, ReadOnlySpan<byte> data)
     {
         var dataArray = (Span<byte>)stackalloc byte[XgDataMinLen + data.Length];
-        return Syx(ticks, Xg(a1, a2, a3, data, dataArray));
+        return MidiMessage.SystemExclusive(
+            ticks, Xg(a1, a2, a3, data, dataArray));
     }
 
     /// <summary>
-    /// Gets a GS reset message System Exclusive MIDI message.
+    /// Gets a raw Device Control System Exclusive message bytes, without the 0xF0 status byte.
+    /// </summary>
+    /// <param name="subID">The sub ID.</param>
+    /// <param name="data">Data, can be multiple bytes.</param>
+    /// <returns></returns>
+    public static byte[] DeviceControl(int subID, ReadOnlySpan<byte> data)
+    {
+        var result = new byte[5 + data.Length];
+
+        result[0] = 0x7f; // Universal realtime
+        result[1] = 0x7f; // Device ID (broadcast)
+        result[2] = 0x04; // Device Control
+        result[3] = (byte)subID;
+        data.CopyTo(result.AsSpan()[4..]);
+        result[4 + data.Length] = 0xf7; // End of exclusive
+
+        return result;
+    }
+
+    /// <summary>
+    /// Gets a Device Control System Exclusive MIDI message.
     /// </summary>
     /// <param name="ticks">The tick time of the message.</param>
-    /// <param name="channel">The MIDI channel number.</param>
-    /// <param name="drumMap">The drum map to use. 0 turns the channel into a melodic channel,
-    /// while other values turn it into a drum channel.</param>
+    /// <param name="subID">The sub ID.</param>
+    /// <param name="data">Data, can be multiple bytes.</param>
     /// <returns></returns>
-    public static MidiMessage GsDrumChange(int ticks, int channel, int drumMap)
-    {
-        Debug.Assert(drumMap is >= 0 and <= 2);
-        var chanAddress = 0x10 | FromChannel(channel);
-        return GsMessage(ticks, 40, chanAddress, 0x15, [(byte)drumMap]);
-    }
+    public static MidiMessage DeviceControlMessage(
+            int ticks, int subID, ReadOnlySpan<byte> data) =>
+        MidiMessage.SystemExclusive(
+            ticks, DeviceControl(subID, data));
 
     /// <summary>
     /// Gets a selected reset System Exclusive MIDI message.
@@ -403,7 +675,7 @@ public static class MidiUtils
                     [0x00]      // 00 = GS Reset - Data
                 ),
             Midi.System.GM =>
-                Syx(ticks, [
+                MidiMessage.SystemExclusive(ticks, [
                     0x7e, // Universal Non-Realtime
                     0x7f, // Broadcast
                     0x09, // General MIDI
@@ -411,7 +683,7 @@ public static class MidiUtils
                     0x7f, // End of exclusive
                 ]),
             Midi.System.GM2 =>
-                Syx(ticks, [
+                MidiMessage.SystemExclusive(ticks, [
                     0x7e, // Universal Non-Realtime
                     0x7f, // Broadcast
                     0x09, // General MIDI
@@ -437,8 +709,10 @@ public static class MidiUtils
                 {
                     // Master Volume
                     var value = ((syx[5] << 7) | syx[4]) / 16_383f;
+                    // It corresponds to CC volume, so volume is squared.
+                    var gain = float.Pow(value, 2);
                     return AnalyzedMessage.Of(
-                        (GlobalMidiParameter.Type.Gain, value));
+                        (GlobalMidiParameter.Type.Gain, gain));
                 }
                 
                 case 0x02:
@@ -455,7 +729,7 @@ public static class MidiUtils
                 case 0x03:
                 {
                     // Master Fine-Tuning
-                    var tuningValue = ((syx[5] << 7) | syx[6]) - 8_192;
+                    var tuningValue = ((syx[5] << 7) | syx[4]) - 8_192;
                     var value = tuningValue / 81.92f; // [-100;+99] cents range
                     return AnalyzedMessage.Of(
                         (GlobalMidiParameter.Type.FineTune, value));
@@ -745,7 +1019,7 @@ public static class MidiUtils
         // Patch parameter
         if (a2 >> 4 == 1)
         {
-            var channel = ToChannel(a2 & 0x0f);
+            var channel = SyxToChannel(a2 & 0x0f);
             return a3 switch
             {
                 0x00 =>
@@ -828,7 +1102,7 @@ public static class MidiUtils
         // Patch Parameter Tone Map
         if (a2 >> 4 == 4)
         {
-            var channel = ToChannel(a2 & 0x0f);
+            var channel = SyxToChannel(a2 & 0x0f);
             return a3 switch
             {
                 0x00 or
