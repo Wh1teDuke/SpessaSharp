@@ -545,7 +545,7 @@ public static class MidiUtils
         result[7 + data.Length] = (byte)checksum;
         result[8 + data.Length] = 0xf7; // End of exclusive
 
-        return result[.. (8 + data.Length)];
+        return result[.. (GsDataMinLen + data.Length)];
     }
 
     /// <summary>
@@ -599,7 +599,7 @@ public static class MidiUtils
         data.CopyTo(result[6..]);
         result[6 + data.Length] = 0xf7; // End of exclusive
 
-        return result[.. (6 + data.Length)];
+        return result[.. (XgDataMinLen + data.Length)];
     }
 
     /// <summary>Gets a XG System Exclusive MIDI message</summary>
