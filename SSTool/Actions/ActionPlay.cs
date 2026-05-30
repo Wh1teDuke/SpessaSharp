@@ -1,5 +1,7 @@
 using System.Runtime;
 using System.Text;
+using OwnVST3Host;
+using OwnVST3Host.NativeWindow;
 using SpessaSharp.MIDI;
 using SpessaSharp.Sequencer;
 using SpessaSharp.Synthesizer;
@@ -16,6 +18,7 @@ public static class ActionPlay
         Action<SpessaSharpSequencer> setup,
         FileInfo fileMidi,
         FileInfo? fileSoundBank,
+        FileSystemInfo? fileVst,
         GuiMode gui)
     {
         if (!fileMidi.Exists)
@@ -41,6 +44,9 @@ public static class ActionPlay
         var player = new Player(
             sequencer,
             bufferLen: TimeSpan.FromSeconds(.6));
+
+        if (fileVst is { } fVst)
+            LoadPlugin(fVst);
 
         if (gui == GuiMode.None)
         {
@@ -348,6 +354,35 @@ public static class ActionPlay
                 GCLargeObjectHeapCompactionMode.CompactOnce;
             GC.Collect();
             GC.WaitForPendingFinalizers();
+        }
+
+        void LoadPlugin(FileSystemInfo pathPlugin)
+        {
+            var plugin = new ThreadedVst3Wrapper();
+            Console.WriteLine($"Loading '{pathPlugin.FullName}' ...");
+            
+            var loaded = plugin.LoadPluginAsync(fVst.FullName).Result;
+            var ready = loaded &&
+                        plugin.InitializeAsync(
+                            sampleRate: processor.SampleRate,
+                            maxBlockSize: Synthesizer.SPESSA_BUFSIZE).Result;
+
+            if (!ready) Etc.Error($"VST Plugin Error");
+
+            player.Plugin = plugin.ProcessAudio;
+
+            Task.Run(async () =>
+            {
+                var name = await plugin.GetNameAsync();
+                var vendor = await plugin.GetVendorAsync();
+                Console.WriteLine($"Plugin loaded: '{name}' by '{vendor}'");
+
+                if (gui == GuiMode.Full)
+                {
+                    var editor = new VstEditorController(plugin);
+                    await editor.OpenEditorAsync(name);
+                }
+            });
         }
     }
 }

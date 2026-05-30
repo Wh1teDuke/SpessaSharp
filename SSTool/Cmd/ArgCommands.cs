@@ -65,15 +65,23 @@ public static class ArgCommands
             Description = "GUI Mode",
             DefaultValueFactory = _ => ActionPlay.GuiMode.Full,
         };
+
+        var oVST = new Option<FileInfo?>("--vst")
+        {
+            Description = "VST3 plugin path",
+            Required = false,
+        };
         
         cmd.Options.Add(oLoop);
         cmd.Options.Add(oGui);
-        
+        cmd.Options.Add(oVST);
+
         cmd.SetAction(pr =>
         {
             var (midi, sb) = getFiles(pr);
+            var vst = pr.GetValue(oVST);
             var gui = pr.GetValue(oGui);
-            ActionPlay.This(Setup, midi, sb, gui);
+            ActionPlay.This(Setup, midi, sb, vst, gui);
 
             return;
             void Setup(SpessaSharpSequencer seq)

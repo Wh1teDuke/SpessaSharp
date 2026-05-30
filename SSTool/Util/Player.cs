@@ -17,11 +17,15 @@ using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Synthesizer.Engine.Sysex;
+using SpessaSharp.Utils;
 
 namespace SSTool.Util;
 
 public sealed class Player: IDisposable
 {
+    public delegate bool AudioPlugin(
+        float[][] inputs, float[][] outputs, int channels, int count);
+    
     private const int BLOCK_SIZE = Synthesizer.SPESSA_BUFSIZE;
     
     public enum PlayerStatus: byte { Stop, Pause, Play }
@@ -117,6 +121,7 @@ public sealed class Player: IDisposable
 
     private long _avg;
     private long _progress;
+    private volatile AudioPlugin? _plugin;
     private volatile PlayerStatus _status;
     private volatile bool _disposed;
     private volatile int _beat;
@@ -280,6 +285,12 @@ public sealed class Player: IDisposable
         set => Add(Cmd.CKind.SetDelayMacro, (long)value);
     }
 
+    public AudioPlugin? Plugin
+    {
+        get => _plugin;
+        set => _plugin = value;
+    }
+
     public SoundBank SoundBank { set => Set(value); }
 
     private void Add(Cmd.CKind kind, long value = 0) =>
@@ -328,6 +339,16 @@ public sealed class Player: IDisposable
         var cancel = _cts.Token;
         var cmdIdx = -1;
         var avg = 0L;
+
+        var channels = SpessaStream.Channels.Length;
+        var inputs = new float[channels][];
+        var outputs = new float[channels][];
+        for (var ch = 0; ch < channels; ch++)
+        {
+            inputs[ch] = new float[Synthesizer.SPESSA_BUFSIZE];
+            outputs[ch] = new float[Synthesizer.SPESSA_BUFSIZE];
+        }
+        
         LoopStart:;
         if (_disposed) return; 
         
@@ -459,16 +480,26 @@ public sealed class Player: IDisposable
                 throw new Exception("Impossible");
 
             Span<short> samples;
-            var samplesLen = BLOCK_SIZE * SpessaStream.Channels.Length;
+            var samplesLen = BLOCK_SIZE * channels;
             unsafe { samples = new Span<short>((void*)ptr, samplesLen); }
+            
+            foreach (var input in inputs) input.AsSpan().Clear();
 
             // HOT >>>>>>
             var t1 = Stopwatch.GetTimestamp();
             Sequencer.ProcessTick();
             _beat = Sequencer.Midi?.MidiTicksToBeats(Sequencer.Tick) ?? 0;
-            Sequencer.Synth.Process(samples);
+            Sequencer.Synth.Process(inputs[0], inputs[1]);
             total = Stopwatch.GetTimestamp() - t1;
             // TOH <<<<<<
+
+            if (_plugin is {} plugin)
+            {
+                plugin(inputs, outputs, channels, Synthesizer.SPESSA_BUFSIZE);
+                AudioUtil.Interleave(outputs[0], outputs[1], samples);
+            }
+            else
+                AudioUtil.Interleave(inputs[0], inputs[1], samples);
             
             if (!_stream.Full.Samples.TryEnqueue(ptr))
                 throw new Exception("Impossible");
