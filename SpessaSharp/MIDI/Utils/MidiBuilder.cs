@@ -22,6 +22,11 @@ public readonly record struct MidiBuilder
         
         public void NoteOff(int ticks, int channel, int midiNote, int velocity = 64) =>
             Base.NoteOff(Track, ticks, channel, midiNote, velocity);
+        
+        public void Text(int ticks, string text) => AddEvent(
+            ticks,
+            MidiMessage.Type.Text,
+            SpessaUtil.MidiEncoding.GetBytes(text));
     }
 
     public readonly record struct ChannelBuilder(
@@ -32,6 +37,12 @@ public readonly record struct MidiBuilder
 
         public void NoteOff(int ticks, int midiNote, int velocity = 64) =>
             Base.NoteOff(ticks, Channel, midiNote, velocity);
+        
+        public void Note(int ticks, int duration, int midiNote, int velocity)
+        {
+            NoteOn(ticks, midiNote, velocity);
+            NoteOff(ticks + duration, midiNote);
+        }
 
         public void AddEvent(
             int ticks, StatusByte sb, ArraySegment<byte> eventData) =>
@@ -40,8 +51,27 @@ public readonly record struct MidiBuilder
         public void ProgramChange(int ticks, int program) =>
             Base.Base.ProgramChange(Base.Track, ticks, Channel, program);
 
-        public void ControllerChange(int ticks, int controller, int value) =>
-            Base.Base.ControllerChange(Base.Track, ticks, Channel, controller, value);
+        public void CC(int ticks, Midi.CC controller, int value) =>
+            Base.Base.ControllerChange(
+                Base.Track, ticks, Channel, (int)controller, value);
+
+        public void SweepCC(
+            int ticks, Midi.CC controller, Range range, int tickStep = 480, int dataStep = 1)
+        {
+            if (range.Start.IsFromEnd || range.End.IsFromEnd)
+                throw new ArgumentException("Range must be absolute");
+            
+            var data = range.Start.Value;
+            while (data < range.End.Value)
+            {
+                var v = Math.Min(data, range.End.Value - 1);
+                CC(ticks, controller, v);
+                ticks += tickStep;
+                data += dataStep;
+            }
+            
+            CC(ticks, controller, Math.Min(data, range.End.Value - 1));
+        }
 
         public void PitchWheel(int ticks, int pitch) =>
             Base.Base.PitchWheel(Base.Track, ticks, Channel, pitch);
