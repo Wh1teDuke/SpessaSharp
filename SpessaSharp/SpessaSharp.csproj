@@ -2,7 +2,7 @@
     <PropertyGroup>
         <!-- Nuget -->
         <PackageId>SpessaSharp</PackageId>
-        <Version>4.3.6</Version>
+        <Version>4.3.7</Version>
         <Authors>WhiteDuke</Authors>
         <Description>SpessaSynth ported to C#</Description>
         <RepositoryUrl>https://github.com/Wh1teDuke/SpessaSharp</RepositoryUrl>
