@@ -92,11 +92,12 @@ internal static class RolandGS
 
                                     case 0x06: 
                                         // Roland master pan
-                                        SpessaLog.GSInfo("Master Pan", data);
+                                        // 63, it ranges from 1 to 127, NOT 0 to 127!
+                                        var pan = (data - 64) / 63f;
+
+                                        SpessaLog.GSInfo("Master Pan", pan);
                                         synth.Set((
-                                            GlobalMidiParameter.Type.Pan,
-                                            // 63, it ranges from 1 to 127, NOT 0 to 127!
-                                            (data - 64) / 63f));
+                                            GlobalMidiParameter.Type.Pan, pan));
                                         break;
 
                                     case 0x7f: 

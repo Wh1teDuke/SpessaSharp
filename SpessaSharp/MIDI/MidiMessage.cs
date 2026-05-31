@@ -142,16 +142,25 @@ public readonly record struct MidiMessage(
     /// <param name="value">The 14-bit new value.</param>
     /// <returns></returns>
     public static MidiMessage[] RegisteredParameter(
-        int ticks, int channel, int parameter, int value) => [
+        int ticks, int channel, int parameter, int value)
+    {
+        if (parameter is > 16_383 or < 0) 
+            throw new ArgumentOutOfRangeException(nameof(parameter), "Parameter must be between 0 and 16383.");
+        if (value is > 16_383 or < 0) 
+            throw new ArgumentOutOfRangeException(nameof(value), "Value must be between 0 and 16383.");
+        
+        return
+        [
             ControllerChange(
-            ticks, channel, Midi.CC.RegisteredParameterMSB, parameter >> 7),
+                ticks, channel, Midi.CC.RegisteredParameterMSB, parameter >> 7),
             ControllerChange(
-            ticks, channel, Midi.CC.RegisteredParameterLSB, parameter & 0x7f),
+                ticks, channel, Midi.CC.RegisteredParameterLSB, parameter & 0x7f),
             ControllerChange(
-            ticks, channel, Midi.CC.DataEntryMSB, value >> 7),
+                ticks, channel, Midi.CC.DataEntryMSB, value >> 7),
             ControllerChange(
-            ticks, channel, Midi.CC.DataEntryLSB, value & 0x7f),
+                ticks, channel, Midi.CC.DataEntryLSB, value & 0x7f),
         ];
+    }
 
     private static ArraySegment<byte> DataOf(params ReadOnlySpan<int> args)
     {

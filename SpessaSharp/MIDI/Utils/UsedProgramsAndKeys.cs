@@ -333,9 +333,10 @@ internal static class UsedProgramsAndKeys
                         break;
                     }
 
-                    case MidiUtils.AnalyzedMessage.Type.ChannelMidiParameter:
+                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter when
+                        syx.AsAnalyzedParameter is 
+                            { AsChannelMidiParameter: {} cmp }:
                     {
-                        var cmp = syx.AsChannelMidiParameter!.Value;
                         if (cmp.Param.PType == ChannelMidiParameter.Type.KeyShift)
                         {
                             ref var chan = ref channels.AsSpan()[cmp.Channel];
@@ -366,9 +367,9 @@ internal static class UsedProgramsAndKeys
                             IsGMGSDrum: ch.IsDrum), system);
                         break;
                     }
-                    case MidiUtils.AnalyzedMessage.Type.ControllerChange:
+                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter when
+                        syx.AsAnalyzedParameter is {AsControllerChange: {} cc}:
                     {
-                        var cc = syx.AsControllerChange!.Value;
                         var sysexChannel = cc.Channel + channelOffset;
                         ref var ch = ref channels.AsSpan()[sysexChannel];
                         

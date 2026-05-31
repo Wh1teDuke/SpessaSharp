@@ -148,11 +148,11 @@ internal static class SetTime
                         Some MIDIs edit drums via sysEx and skipping program changes causes them to be sent after, resetting the params.
                         Testcase: (GS88Pro)Th19_1S(KR.Palto47)
                          */
-                        case MidiUtils.AnalyzedMessage.Type.ControllerChange:
+                        case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                            when analyzed.AsAnalyzedParameter is
+                                { AsControllerChange: var
+                                    (controller, value, chan) }:
                         {
-                            var (controller, value, chan) = 
-                                analyzed.AsControllerChange!.Value;
-
                             // Empty tracks cannot controller change
                             if (seq.Midi.IsMultiPort &&
                                 track.Channels.Count == 0)
@@ -225,11 +225,10 @@ internal static class SetTime
                                 default:
                                     break;
 
-                                case MidiUtils.AnalyzedMessage.Type.ControllerChange:
+                                case MidiUtils.AnalyzedParameter.Type.ControllerChange:
                                 {
                                     var cc =
                                         analyzed.AsControllerChange!.Value;
-                                    
                                     if (NonSkippableCCs.Contains(cc.Controller))
                                         seq.SendCC(
                                             channel, cc.Controller, cc.Value);

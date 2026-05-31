@@ -10,26 +10,78 @@ namespace SpessaSharp.MIDI.Utils;
 /// <summary> A general purpose class for handling MIDI messages. </summary>
 public static class MidiUtils
 {
-    public readonly struct AnalyzedMessage
+    public readonly struct AnalyzedParameter
     {
         public enum Type : byte
         {
-            Other,
-            ReverbParam, ChorusParam, DelayParam, VariationParam,
-            InsertionParam,
-            DrumsOn, DrumSetup, ProgramChange, ControllerChange,
-            GlobalMidiParameter, ChannelMidiParameter,
+            Other, ControllerChange, ChannelMidiParameter, DrumSetup,
         }
 
         [StructLayout(LayoutKind.Explicit)]
         private struct InternalData
         {
+            [FieldOffset(0)] public (Midi.CC Controller, int Value, int Channel) _controllerChange;
+            [FieldOffset(0)] public (ChannelMidiParameter Param, int Channel) _channelMidiParam;
+        }
+        
+        public Type MType { get; private init; }
+        private InternalData Data { get; init; }
+
+        public (Midi.CC Controller, int Value, int Channel)? AsControllerChange =>
+            MType == Type.ControllerChange ? Data._controllerChange : null;
+        public (ChannelMidiParameter Param, int Channel)? AsChannelMidiParameter =>
+            MType == Type.ChannelMidiParameter ? Data._channelMidiParam : null;
+        
+        public static AnalyzedParameter Of(Type type)
+        {
+            ReadOnlySpan<Type> notAllowed = [
+                Type.ControllerChange, Type.ChannelMidiParameter];
+            return notAllowed.Contains(type) 
+                ? throw new ArgumentException("Invalid argument: " + type) 
+                : new AnalyzedParameter { MType = type };
+        }
+ 
+        public static AnalyzedParameter OfControllerChange(
+            Midi.CC controller, int value, int channel) =>
+            new()
+            {
+                MType = Type.ControllerChange, 
+                Data = new InternalData
+                    { _controllerChange = (controller, value, channel) },
+            };
+
+        public static AnalyzedParameter Of(
+            ChannelMidiParameter parameter, int channel) =>
+            new()
+            {
+                MType = Type.ChannelMidiParameter, 
+                Data = new InternalData
+                    { _channelMidiParam = (parameter, channel) },
+            };
+        
+        public static implicit operator AnalyzedParameter(Type type) =>
+            Of(type);
+    }
+    
+    public readonly struct AnalyzedMessage
+    {
+        public enum Type : byte
+        {
+            AnalyzedParameter,
+            ReverbParam, ChorusParam, DelayParam, VariationParam,
+            InsertionParam,
+            DrumsOn, ProgramChange,
+            DisplayData,
+            GlobalMidiParameter,
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        private struct InternalData
+        {
+            [FieldOffset(0)] public AnalyzedParameter _analyzedParameter;
             [FieldOffset(0)] public (int Channel, bool IsDrum) _drumsOn;
             [FieldOffset(0)] public (int Channel, int Value) _programChange;
-            [FieldOffset(0)] public (Midi.CC Controller, int Value, int Channel) _controllerChange;
-            
             [FieldOffset(0)] public GlobalMidiParameter _globalMidiParam;
-            [FieldOffset(0)] public (ChannelMidiParameter Param, int Channel) _channelMidiParam;
         }
 
         public Type MType { get; private init; }
@@ -37,20 +89,18 @@ public static class MidiUtils
 
         public (int Channel, bool IsDrum)? AsDrumsOn =>
             MType == Type.DrumsOn ? Data._drumsOn : null;
+        public AnalyzedParameter? AsAnalyzedParameter =>
+            MType == Type.AnalyzedParameter ? Data._analyzedParameter : null;
         public (int Channel, int Value)? AsProgramChange =>
             MType == Type.ProgramChange ? Data._programChange : null;
-        public (Midi.CC Controller, int Value, int Channel)? AsControllerChange =>
-            MType == Type.ControllerChange ? Data._controllerChange : null;
         public GlobalMidiParameter? AsGlobalMidiParameter =>
             MType == Type.GlobalMidiParameter ? Data._globalMidiParam : null;
-        public (ChannelMidiParameter Param, int Channel)? AsChannelMidiParameter =>
-            MType == Type.ChannelMidiParameter ? Data._channelMidiParam : null;
 
         public static AnalyzedMessage Of(Type type)
         {
             ReadOnlySpan<Type> notAllowed = [
-                Type.DrumsOn, Type.ProgramChange, Type.ControllerChange,
-                Type.GlobalMidiParameter, Type.ChannelMidiParameter];
+                Type.DrumsOn, Type.ProgramChange, Type.AnalyzedParameter,
+                Type.GlobalMidiParameter,];
             return notAllowed.Contains(type) 
                 ? throw new ArgumentException("Invalid argument: " + type) 
                 : new AnalyzedMessage { MType = type };
@@ -64,6 +114,14 @@ public static class MidiUtils
                 Data = new InternalData { _drumsOn = (channel, isDrum) },
             };
         
+        public static AnalyzedMessage Of(
+            AnalyzedParameter analyzedParameter) =>
+            new()
+            {
+                MType = Type.AnalyzedParameter, 
+                Data = new InternalData { _analyzedParameter = analyzedParameter },
+            };
+        
         public static AnalyzedMessage OfProgramChange(
             int channel, int value) =>
             new()
@@ -72,33 +130,18 @@ public static class MidiUtils
                 Data = new InternalData { _programChange = (channel, value) },
             };
         
-        public static AnalyzedMessage OfControllerChange(
-            Midi.CC controller, int value, int channel) =>
-            new()
-            {
-                MType = Type.ControllerChange, 
-                Data = new InternalData
-                    { _controllerChange = (controller, value, channel) },
-            };
-        
         public static AnalyzedMessage Of(GlobalMidiParameter parameter) =>
             new()
             {
                 MType = Type.GlobalMidiParameter, 
                 Data = new InternalData { _globalMidiParam = parameter },
             };
-        
-        public static AnalyzedMessage Of(
-            ChannelMidiParameter parameter, int channel) =>
-            new()
-            {
-                MType = Type.ChannelMidiParameter, 
-                Data = new InternalData
-                    { _channelMidiParam = (parameter, channel) },
-            };
 
         public static implicit operator AnalyzedMessage(
             Type type) => Of(type);
+        
+        public static implicit operator AnalyzedMessage(
+            AnalyzedParameter.Type type) => Of(AnalyzedParameter.Of(type));
     }
 
     /// <summary>
@@ -118,7 +161,7 @@ public static class MidiUtils
     {
         // At least Manufacturer ID, Device ID and XG/GS model ID
         if (syx.Length < 3) return 
-            AnalyzedMessage.Type.Other;
+            AnalyzedParameter.Type.Other;
 
         return syx[0] switch
         {
@@ -129,7 +172,7 @@ public static class MidiUtils
             0x41 => AnalyzeGS(syx),
             // Yamaha
             0x43 => AnalyzeXG(syx),
-            _ => AnalyzedMessage.Type.Other
+            _ => AnalyzedParameter.Type.Other
         };
     }
     
@@ -140,28 +183,28 @@ public static class MidiUtils
     /// <param name="rpn">The 14-bit RPN number.</param>
     /// <param name="value">The 14-bit value for that number.</param>
     /// <returns></returns>
-    public static AnalyzedMessage AnalyzeRPN(
+    public static AnalyzedParameter AnalyzeRPN(
         int channel, int rpn, int value) =>
         rpn switch
         {
             ExtendedParameters.RPN.PitchWheelRange =>
-                AnalyzedMessage.Of(
+                AnalyzedParameter.Of(
                     (ChannelMidiParameter.Type.PitchWheelRange,
                         value / 128f), channel),
             ExtendedParameters.RPN.FineTuning =>
-                AnalyzedMessage.Of(
+                AnalyzedParameter.Of(
                     (ChannelMidiParameter.Type.FineTune,
                         (value - 8_192) / 81.92f), channel),
             ExtendedParameters.RPN.CoarseTuning =>
-                AnalyzedMessage.Of(
+                AnalyzedParameter.Of(
                     (ChannelMidiParameter.Type.KeyShift,
                         (value >> 7) - 64), channel),
             ExtendedParameters.RPN.ModulationDepth =>
-                AnalyzedMessage.Of(
+                AnalyzedParameter.Of(
                     (ChannelMidiParameter.Type.ModulationDepth,
                         // Cents, so data / 128 * 100 is data / 1.28
                         value / 1.28f), channel),
-            _ => AnalyzedMessage.Type.Other,
+            _ => AnalyzedParameter.Type.Other,
         };
     
     /// <summary>
@@ -171,21 +214,21 @@ public static class MidiUtils
     /// <param name="nrpn">The 14-bit NRPN number.</param>
     /// <param name="value">The 14-bit value for that number.</param>
     /// <returns></returns>
-    public static AnalyzedMessage AnalyzeNRPN(int channel, int nrpn, int value)
+    public static AnalyzedParameter AnalyzeNRPN(int channel, int nrpn, int value)
     {
         var msb = nrpn >> 7;
         var lsb = nrpn & 0x7f;
         switch (msb) 
         {
             default: 
-                return AnalyzedMessage.Type.Other;
+                return AnalyzedParameter.Type.Other;
 
             case ExtendedParameters.NRPN.MSB.PartParameter: 
             {
                 switch (lsb) 
                 {
                     default: 
-                        return AnalyzedMessage.Type.Other;
+                        return AnalyzedParameter.Type.Other;
                         
                     case ExtendedParameters.NRPN.LSB.VibratoRate:
                         return OfCC(Midi.CC.VibratoRate);
@@ -211,8 +254,8 @@ public static class MidiUtils
                     case ExtendedParameters.NRPN.LSB.EnvelopeReleaseTime: 
                         return OfCC(Midi.CC.ReleaseTime);
                     
-                    AnalyzedMessage OfCC(Midi.CC cc) => 
-                        AnalyzedMessage.OfControllerChange(cc, value >> 7, channel);
+                    AnalyzedParameter OfCC(Midi.CC cc) => 
+                        AnalyzedParameter.OfControllerChange(cc, value >> 7, channel);
                 }
             }
 
@@ -223,7 +266,7 @@ public static class MidiUtils
             case ExtendedParameters.NRPN.MSB.DrumReverb:
             case ExtendedParameters.NRPN.MSB.DrumChorus:
             case ExtendedParameters.NRPN.MSB.DrumDelay:
-                return AnalyzedMessage.Type.DrumSetup;
+                return AnalyzedParameter.Type.DrumSetup;
         }
     }
 
@@ -231,7 +274,7 @@ public static class MidiUtils
     /// Returns a list of MIDI events needed to set the given parameter.
     /// </summary>
     /// <param name="ticks">The ticks for all events.</param>
-    /// <param name="system">If the message has multiple ways of setting it, this selects the preferred way. Otherwise, it prefers GS.</param>
+    /// <param name="system">If the message has multiple ways of setting it, this selects the preferred way. Otherwise, it prefers Universal (GM).</param>
     /// <param name="parameter">The parameter and value to set.</param>
     /// <returns>The list of <b>MIDIMessage</b>s that set the parameter.</returns>
     public static MidiMessage[] Set(
@@ -245,30 +288,33 @@ public static class MidiUtils
 
             case GlobalMidiParameter.Type.KeyShift:
             {
+                // Three ways of setting it: GM. XG and GS.
                 return system switch
                 {
-                    // Three ways of setting it: GM. XG and GS.
-                    Midi.System.GM2 or Midi.System.GM =>
+                    Midi.System.XG =>
+                        // Transpose
+                        [XgMessage(ticks, 0x00, 0x00, 0x06,
+                        [(byte)(parameter.AsInt + 64)])],
+                    Midi.System.GS =>
+                        // Master Key-Shift
+                        [GsMessage(ticks, 0x40, 0x00, 0x05,
+                        [(byte)(parameter.AsInt + 64)])],
+                    _ =>
                         // GM2 and GM are the same here
                         // Master Coarse Tuning
                         [DeviceControlMessage(ticks, 0x04, [
                             0x00, // LSB is not used for key shift
                             (byte)(parameter.AsInt + 64)])],
-                    Midi.System.XG =>
-                        // Transpose
-                        [XgMessage(ticks, 0x00, 0x00, 0x06,
-                        [(byte)(parameter.AsInt + 64)])],
-                    _ => [GsMessage(ticks, 0x40, 0x00, 0x05,
-                        [(byte)(parameter.AsInt + 64)])],
                 };
             }
 
             case GlobalMidiParameter.Type.FineTune:
             {
                 // Again, all three systems have their own way of setting it, and they are all different
+                // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
                 switch (system)
                 {
-                    case Midi.System.GM2 or Midi.System.GM:
+                    default:
                     {
                         // GM tunes in 14-bit numbers, how nice!
                         var tuneValue = (int)float.Floor(
@@ -293,7 +339,7 @@ public static class MidiUtils
                         ])];
                     }
 
-                    default:
+                    case Midi.System.GS:
                     {
                         // Gs is -100 cents to 100 cents, 0.1 cent steps
                         // Real range is 24 to 2024, so narrower than XG
@@ -312,9 +358,10 @@ public static class MidiUtils
             case GlobalMidiParameter.Type.Gain:
             {
                 // All three once more!
+                // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
                 switch (system)
                 {
-                    case Midi.System.GM2 or Midi.System.GM:
+                    default:
                     {
                         // MIDI Master Volume corresponds to CC volume, so the effective volume is squared.
                         // Reverse that here
@@ -334,7 +381,7 @@ public static class MidiUtils
                         ])];
                     }
 
-                    default:
+                    case Midi.System.GS:
                     {
                         // GS
                         var gainValue = (int)float.Floor(parameter.AsFloat * 127);
@@ -348,12 +395,14 @@ public static class MidiUtils
             case GlobalMidiParameter.Type.Pan:
             {
                 // Only GM and GS, XG doesn't have a pan message?
+                // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
                 switch (system)
                 {
-                    case Midi.System.GM2 or Midi.System.GM:
+                    default:
                     {
                         // Master Balance message
-                        var balance = (int)float.Floor(parameter.AsFloat * 8_192);
+                        var balance = (int)float.Floor(
+                            parameter.AsFloat * 8_192) + 8_192;
 
                         return [DeviceControlMessage(ticks, 0x02, [
                                 (byte)(balance & 0x7f), // LSB
@@ -361,7 +410,7 @@ public static class MidiUtils
                         ])];
                     }
 
-                    default:
+                    case Midi.System.GS:
                     {
                         // 63, it ranges from 1 to 127, NOT 0 to 127!
                         var balance = (int)float.Floor(parameter.AsFloat * 63) + 64;
@@ -382,7 +431,7 @@ public static class MidiUtils
     /// </summary>
     /// <param name="ticks">The ticks for all events.</param>
     /// <param name="channel">The channel number.</param>
-    /// <param name="system">If the message has multiple ways of setting it, this selects the preferred way. Otherwise, it prefers GS.</param>
+    /// <param name="system">If the message has multiple ways of setting it, this selects the preferred way. Otherwise, it prefers Universal (GM).</param>
     /// <param name="parameter">The parameter and value to set.</param>
     /// <returns>The list of <b>MIDIMessage</b>s that set the parameter.</returns>
     public static MidiMessage[] Set(
@@ -392,6 +441,7 @@ public static class MidiUtils
         ChannelMidiParameter parameter)
     {
         channel %= 16;
+        var gsChannel = SyxToChannel(channel);
 
         return parameter.PType switch
         {
@@ -413,7 +463,7 @@ public static class MidiUtils
                 system == Midi.System.XG
                     ? [XgMessage(ticks, 0x08, channel, 0x04, 
                         [(byte)parameter.AsFloat])]
-                    : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x02,
+                    : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x02,
                         [(byte)parameter.AsFloat])],
             ChannelMidiParameter.Type.PolyMode => parameter.AsBool
                 ? [MidiMessage.ControllerChange(ticks, channel, Midi.CC.PolyModeOn, 0)]
@@ -433,49 +483,49 @@ public static class MidiUtils
                 // Only set via SysEx in both GS and XG (value 0 means random pan)
                 system == Midi.System.XG
                     ? [XgMessage(ticks, 0x08, channel, 0x0e, [0])]
-                    : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1c, [0])],
+                    : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1c, [0])],
             ChannelMidiParameter.Type.AssignMode =>
                 // GS only
                 [
-                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x14, 
+                    GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x14, 
                         [(byte)parameter.AsAssignMode])
                 ],
             ChannelMidiParameter.Type.EfxAssign =>
                 // GS only (again)
                 [
-                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x22, 
+                    GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x22, 
                         [(byte)(parameter.AsBool ? 1 : 0)])
                 ],
             ChannelMidiParameter.Type.CC1 =>
                 // GS only!!! (again!)
                 [
-                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1f, 
+                    GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1f, 
                         [(byte)parameter.AsCC])
                 ],
             ChannelMidiParameter.Type.CC2 =>
                 // The same as cc1, just different address
                 [
-                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x20, 
+                    GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x20, 
                         [(byte)parameter.AsCC])
                 ],
             ChannelMidiParameter.Type.DrumMap =>
                 // GS only, it's called "USE FOR RHYTHM PART" there
                 [
-                    GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x15, 
+                    GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x15, 
                         [(byte)parameter.AsInt])
                 ],
             ChannelMidiParameter.Type.VelocitySenseDepth => 
                 system == Midi.System.XG
                 ? [XgMessage(ticks, 0x08, channel, 0x0c, 
                     [(byte)parameter.AsInt])]
-                : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1a, 
+                : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1a, 
                     [(byte)parameter.AsInt])],
             ChannelMidiParameter.Type.VelocitySenseOffset =>
                 // Similar to above
                 system == Midi.System.XG
                     ? [XgMessage(ticks, 0x08, channel, 0x0d, 
                         [(byte)parameter.AsInt])]
-                    : [GsMessage(ticks, 0x40, 0x10 | SyxToChannel(channel), 0x1b, 
+                    : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1b, 
                         [(byte)parameter.AsInt])],
             _ => throw new ArgumentOutOfRangeException()
         };
@@ -696,14 +746,14 @@ public static class MidiUtils
     private static AnalyzedMessage AnalyzeGM(ReadOnlySpan<byte> syx)
     {
         if (syx.Length < 4) 
-            return AnalyzedMessage.Type.Other;
+            return AnalyzedParameter.Type.Other;
 
         if (syx[2] == 0x04) // Device control
         {
             switch (syx[3])
             {
                 default:
-                    return AnalyzedMessage.Type.Other;
+                    return AnalyzedParameter.Type.Other;
 
                 case 0x01:
                 {
@@ -748,12 +798,12 @@ public static class MidiUtils
                         syx[5] != 0x01 || // Parameter ID Width
                         syx[6] != 0x01 || // Value Width
                         syx[7] != 0x01 // Slot Path MSB
-                    ) return AnalyzedMessage.Type.Other;
+                    ) return AnalyzedParameter.Type.Other;
 
                     // Slot Path LSB
                     switch (syx[8]) 
                     {
-                        default: return AnalyzedMessage.Type.Other;
+                        default: return AnalyzedParameter.Type.Other;
 
                         case 0x01:
                         {
@@ -763,7 +813,7 @@ public static class MidiUtils
                             {
                                 0x01 or 0x02 =>
                                     AnalyzedMessage.Type.ReverbParam,
-                                _ => AnalyzedMessage.Type.Other
+                                _ => AnalyzedParameter.Type.Other
                             };
                         }
 
@@ -775,7 +825,7 @@ public static class MidiUtils
                             {
                                 0x01 or 0x02 or 0x03 or 0x04 => 
                                     AnalyzedMessage.Type.ChorusParam,
-                                _ => AnalyzedMessage.Type.Other
+                                _ => AnalyzedParameter.Type.Other
                             };
                         }
                     }
@@ -784,14 +834,14 @@ public static class MidiUtils
         }
         
         if (syx[2] != 0x09)
-            return AnalyzedMessage.Type.Other;
+            return AnalyzedParameter.Type.Other;
 
         return syx[3] switch
         {
             0x01 or
             0x02 => AnalyzedMessage.Of(Midi.System.GM),
             0x03 => AnalyzedMessage.Of(Midi.System.GM2),
-            _ => AnalyzedMessage.Type.Other
+            _ => AnalyzedParameter.Type.Other
         };
     }
     
@@ -799,12 +849,16 @@ public static class MidiUtils
     {
         // Ensure XG
         if (syx[2] != 0x4c || syx.Length < 7)
-            return AnalyzedMessage.Type.Other;
+            return AnalyzedParameter.Type.Other;
 
         var a1 = syx[3]; // Address 1
         var a2 = syx[4]; // Address 2
         var a3 = syx[5]; // Address 3
         var data = syx[6];
+        
+        if (a1 == 0x06 ||   // Display letters
+            a1 == 0x07)     // Display bitmap
+            return AnalyzedMessage.Of(AnalyzedMessage.Type.DisplayData);
 
         if (a1 == 0x00 && a2 == 0x00)
         {
@@ -822,7 +876,7 @@ public static class MidiUtils
                 0x7e or
                 // ALL PARAMETER RESET
                 0x7f => AnalyzedMessage.Of(Midi.System.XG),
-                _ => AnalyzedMessage.Type.Other,
+                _ => AnalyzedParameter.Type.Other,
             };
             
             AnalyzedMessage OfFineTune(ReadOnlySpan<byte> syx)
@@ -857,7 +911,7 @@ public static class MidiUtils
             var channel = a2;
             // Avoid invalid channels
             if (channel >= 16)
-                return AnalyzedMessage.Type.Other;
+                return AnalyzedParameter.Type.Other;
 
             return a3 switch
             {
@@ -872,16 +926,16 @@ public static class MidiUtils
                     AnalyzedMessage.OfProgramChange(channel, data),
                 0x05 =>
                     // Poly/mono
-                    AnalyzedMessage.OfControllerChange(
-                        data == 1 ? Midi.CC.PolyModeOn : Midi.CC.MonoModeOn, 0, channel),
+                    AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
+                        data == 1 ? Midi.CC.PolyModeOn : Midi.CC.MonoModeOn, 0, channel)),
                 0x07 =>
                     // Part mode
                     AnalyzedMessage.OfDrumsOn(channel, data > 0),
                 0x08 =>
                     // Note shift
-                    AnalyzedMessage.Of(
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
                         (ChannelMidiParameter.Type.KeyShift, data - 64),
-                        channel),
+                        channel)),
                 0x0b =>
                     // Volume
                     OfControllerChange(Midi.CC.MainVolume),
@@ -918,28 +972,36 @@ public static class MidiUtils
                 0x0c =>
                     // Release time
                     OfControllerChange(Midi.CC.ReleaseTime),
-                _ => AnalyzedMessage.Type.Other
+                _ => AnalyzedParameter.Type.Other
             };
-            
+
             AnalyzedMessage OfControllerChange(Midi.CC cc) =>
-                AnalyzedMessage.OfControllerChange(cc, data, channel);
+                AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
+                    cc, data, channel));
         }
 
         // Drum part setup
         if (a1 >> 4 == 3)
-            return AnalyzedMessage.Type.DrumSetup;
+            return AnalyzedParameter.Type.DrumSetup;
 
-        return AnalyzedMessage.Type.Other;
+        return AnalyzedParameter.Type.Other;
     }
     
     private static AnalyzedMessage AnalyzeGS(ReadOnlySpan<byte> syx)
     {
         if (syx.Length < 10 ||
-            // Model ID (GS)
-            syx[2] != 0x42 ||
             // 0x12: DT1 (Device Transmit)
             syx[3] != 0x12)
-            return AnalyzedMessage.Type.Other; // Something else
+            return AnalyzedParameter.Type.Other; // Corrupted?
+        
+        if (
+            // Model ID (Display Data)
+            syx[2] == 0x45) return AnalyzedMessage.Type.DisplayData;
+
+        if (
+            // Model ID (GS)
+            syx[2] != 0x42)
+            return AnalyzedParameter.Type.Other;
 
         // Address
         var a1 = syx[4];
@@ -991,14 +1053,14 @@ public static class MidiUtils
                     if (data == 0x7f)
                         // GS Off, default to gm
                         return AnalyzedMessage.Of(Midi.System.GM);
-                    return AnalyzedMessage.Type.Other;
+                    return AnalyzedParameter.Type.Other;
                 }
 
             }
         }
 
-        if (a1 == 0x41) return AnalyzedMessage.Type.DrumSetup;
-        if (a1 != 0x40) return AnalyzedMessage.Type.Other;
+        if (a1 == 0x41) return AnalyzedParameter.Type.DrumSetup;
+        if (a1 != 0x40) return AnalyzedParameter.Type.Other;
         
         if (a2 == 0x00 && a3 == 0x05)
             return AnalyzedMessage.Of(
@@ -1027,14 +1089,15 @@ public static class MidiUtils
                     AnalyzedMessage.OfProgramChange(channel, data),
                 0x13 =>
                     // Mono/poly
-                    AnalyzedMessage.Of(
-                        (ChannelMidiParameter.Type.PolyMode, data == 1), channel),
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.PolyMode, data == 1), channel)),
                 0x14 =>
                     // Assign mode
-                    AnalyzedMessage.Of((MidiChannel.Assign)data, channel),
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                        (MidiChannel.Assign)data, channel)),
                 0x15 => AnalyzedMessage.OfDrumsOn(channel, data > 0),
-                0x16 => AnalyzedMessage.Of(
-                    (ChannelMidiParameter.Type.KeyShift, data - 64), channel),
+                0x16 => AnalyzedMessage.Of(AnalyzedParameter.Of(
+                    (ChannelMidiParameter.Type.KeyShift, data - 64), channel)),
                 0x19 =>
                     // Part level (cc#7)
                     OfControllerChange(Midi.CC.MainVolume),
@@ -1043,14 +1106,16 @@ public static class MidiUtils
                     OfControllerChange(Midi.CC.Pan),
                 0x1f =>
                     // CC1 Controller number
-                    AnalyzedMessage.Of(new ChannelMidiParameter(
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                        new ChannelMidiParameter(
                         ChannelMidiParameter.Type.CC1, (Midi.CC)data), 
-                        channel),
+                        channel)),
                 0x20 =>
                     // CC2 Controller number
-                    AnalyzedMessage.Of(new ChannelMidiParameter(
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                        new ChannelMidiParameter(
                         ChannelMidiParameter.Type.CC2, (Midi.CC)data), 
-                        channel),
+                        channel)),
                 0x21 =>
                     // Chorus send
                     OfControllerChange(Midi.CC.ChorusDepth),
@@ -1060,10 +1125,11 @@ public static class MidiUtils
                 0x2a =>
                     // Fine tune
                     AnalyzedMessage.Of(
+                        AnalyzedParameter.Of(
                         // 0-16384
                         (ChannelMidiParameter.Type.FineTune,
                         (((data << 7) | syx[8]) - 8_192) / 81.92f),
-                        channel),
+                        channel)),
                     
                 0x2c =>
                     // Delay send
@@ -1092,11 +1158,12 @@ public static class MidiUtils
                 0x37 =>
                     // Vibrato delay
                     OfControllerChange(Midi.CC.VibratoDelay),
-                _ => AnalyzedMessage.Type.Other
+                _ => AnalyzedParameter.Type.Other
             };
 
             AnalyzedMessage OfControllerChange(Midi.CC cc) =>
-                AnalyzedMessage.OfControllerChange(cc, data, channel);
+                AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
+                    cc, data, channel));
         }
 
         // Patch Parameter Tone Map
@@ -1108,16 +1175,16 @@ public static class MidiUtils
                 0x00 or
                 0x01 =>
                     // Tone map number (cc#32)
-                    AnalyzedMessage.OfControllerChange(
-                        Midi.CC.BankSelectLSB, data, channel),
+                    AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
+                        Midi.CC.BankSelectLSB, data, channel)),
                 0x22 => 
-                    AnalyzedMessage.Of(
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
                         (ChannelMidiParameter.Type.EfxAssign, data == 1),
-                        channel),
-                _ => AnalyzedMessage.Type.Other
+                        channel)),
+                _ => AnalyzedParameter.Type.Other
             };
         }
 
-        return AnalyzedMessage.Type.Other;
+        return AnalyzedParameter.Type.Other;
     }
 }

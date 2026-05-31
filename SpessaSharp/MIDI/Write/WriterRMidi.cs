@@ -238,10 +238,11 @@ public static class WriterRMidi
                         break;
                     }
 
-                    case MidiUtils.AnalyzedMessage.Type.ControllerChange:
+                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                        when syx.AsAnalyzedParameter is
+                            { AsControllerChange: {} cc }:
                     {
                         // Replace the system exclusive with a regular controller change
-                        var cc = syx.AsControllerChange!.Value;
                         e = MidiMessage.ControllerChange(
                             e.Ticks, cc.Channel, cc.Controller, cc.Value);
                         SpessaLog.Info("Replaced a system exclusive with controller change!");
