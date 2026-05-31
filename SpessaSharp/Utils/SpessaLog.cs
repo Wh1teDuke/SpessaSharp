@@ -3,12 +3,19 @@ using System.Diagnostics;
 namespace SpessaSharp.Utils;
 
 /// <summary>Manage the log level of SpessaSharp</summary>
-internal static class SpessaLog
+public static class SpessaLog
 {
     /// <summary>The most verbose log level, prints out a lot of small details.</summary>
     public static bool InfoEnabled = false;
     /// <summary>The default log level, prints out warnings for unexpected and erroneous behavior.</summary>
     public static bool WarnEnabled = true;
+
+    [Conditional("DEBUG")]
+    public static void SetLogLevel(bool enableInfo, bool enableWarn)
+    {
+        InfoEnabled = enableInfo;
+        WarnEnabled = enableWarn;
+    }
     
     [Conditional("DEBUG")]
     public static void Info(string str)
