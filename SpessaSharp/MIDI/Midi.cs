@@ -590,7 +590,8 @@ public sealed class Midi
 
     /// <summary>
     /// Modifies the sequence *in-place* according to the locked presets and controllers in the given snapshot.
-    /// Note that this ignores the MIDI parameters and only applies system parameter tuning.
+    /// Note that System Parameters <b>fineTune</b> and <b>keyShift</b> are passed to the relative tuning parameters of the channels.
+    /// Only locked MIDI parameters and controllers are applied.
     /// </summary>
     /// <param name="snapshot">The snapshot to apply.</param>
     public void Apply(SynthesizerSnapshot snapshot) =>

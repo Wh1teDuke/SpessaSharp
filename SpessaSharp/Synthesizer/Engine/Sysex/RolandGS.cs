@@ -75,13 +75,16 @@ internal static class RolandGS
 
                                     case 0x04: 
                                         // Roland GS master volume
-                                        CoolInfo("Master Volume", data);
+                                        SpessaLog.GSInfo("Master Volume", data);
+                                        synth.Set(
+                                            (GlobalMidiParameter.Type.Gain,
+                                                data / 127f));
                                         break;
 
                                     case 0x05: 
                                         // Roland master key shift
                                         var transpose = data - 64;
-                                        CoolInfo("Master Key-Shift", transpose);
+                                        SpessaLog.GSInfo("Master Key-Shift", transpose);
                                         synth.Set((
                                             GlobalMidiParameter.Type.KeyShift,
                                             transpose));
@@ -89,10 +92,12 @@ internal static class RolandGS
 
                                     case 0x06: 
                                         // Roland master pan
-                                        CoolInfo("Master Pan", data);
+                                        // 63, it ranges from 1 to 127, NOT 0 to 127!
+                                        var pan = (data - 64) / 63f;
+
+                                        SpessaLog.GSInfo("Master Pan", pan);
                                         synth.Set((
-                                            GlobalMidiParameter.Type.Pan, 
-                                            (data - 64) / 64f));
+                                            GlobalMidiParameter.Type.Pan, pan));
                                         break;
 
                                     case 0x7f: 
@@ -147,13 +152,14 @@ internal static class RolandGS
 
                                     case 0x00: 
                                     {
-                                        // Patch name. cool!
-                                        // Not sure what to do with it, but let's log it!
+                                        // Patch name
                                         var patchName = Util.ReadBinaryString(
                                             syx.Slice(7, 16));
-                                        CoolInfo(
-                                            $"Patch Name for {a3 & 0x0f}",
+                                        SpessaLog.GSInfo(
+                                            "Patch Name", 
                                             Util.ToString(patchName));
+                                        synth.CallEvent(new Event.CbDisplayMessage(
+                                            syx.ToArray()));
                                         break;
                                     }
                                     // Reverb
@@ -514,7 +520,7 @@ internal static class RolandGS
                                 // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                                 // SC-8850 manual, page 237
                                 var channel =
-                                    MidiUtils.ToChannel(a2 & 0x0f) + channelOffset;
+                                    MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
                                 // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                                 var ch = synth.MidiChannels[channel];
                                 switch (a3) 
@@ -577,7 +583,7 @@ internal static class RolandGS
                                         // This is the pitch key shift sysex
                                         var keyShift = data - 64;
                                         ch.Set((ChannelMidiParameter.Type.KeyShift, keyShift));
-                                        SpessaLog.GSInfo("Key Shift", keyShift);
+                                        SpessaLog.GSInfo($"Key Shift for {channel}", keyShift);
                                         return;
                                     }
 
@@ -594,7 +600,7 @@ internal static class RolandGS
                                             ChannelMidiParameter.Type.VelocitySenseDepth,
                                             data));
                                         SpessaLog.GSInfo(
-                                            "Velocity Sense Depth", data);
+                                            $"Velocity Sense Depth for {channel}", data);
                                         return;
 
                                     case 0x1b: 
@@ -603,7 +609,7 @@ internal static class RolandGS
                                             ChannelMidiParameter.Type.VelocitySenseOffset,
                                             data));
                                         SpessaLog.GSInfo(
-                                            "Velocity Sense Offset", data);
+                                            $"Velocity Sense Offset for {channel}", data);
                                         return;
 
                                     // Pan position
@@ -634,7 +640,9 @@ internal static class RolandGS
                                         ch.Set(new ChannelMidiParameter(
                                             ChannelMidiParameter.Type.CC1, 
                                             (Midi.CC)data));
-                                        CoolInfo("CC1 Controller Number", data);
+                                        SpessaLog.GSInfo(
+                                            $"CC1 Controller Number for {channel}",
+                                            data);
                                         break;
 
                                     case 0x20: 
@@ -642,7 +650,9 @@ internal static class RolandGS
                                         ch.Set(new ChannelMidiParameter(
                                             ChannelMidiParameter.Type.CC2, 
                                             (Midi.CC)data));
-                                        CoolInfo("CC2 Controller Number", data);
+                                        SpessaLog.GSInfo(
+                                            $"CC2 Controller Number for {channel}", 
+                                            data);
                                         break;
 
                                     // Chorus send
@@ -739,7 +749,7 @@ internal static class RolandGS
                                             newTuning[i] = (byte)(syx[i + 7] - 64);
                                         ch.SetOctaveTuning(newTuning);
                                         SpessaLog.GSInfo(
-                                            $"Octave Scale Tuning on {channel}",
+                                            $"Octave Scale Tuning for {channel}",
                                             string.Join(", ", newTuning.ToArray()));
                                         break;
                                     }
@@ -756,7 +766,7 @@ internal static class RolandGS
                                 // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                                 // SC-8850 manual, page 237
                                 var channel =
-                                    MidiUtils.ToChannel(a2 & 0x0f) + channelOffset;
+                                    MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
                                 // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                                 var ch = synth.MidiChannels[channel];
                                 switch (a3 & 0xf0) 
@@ -872,7 +882,7 @@ internal static class RolandGS
                                 // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                                 // SC-8850 manual, page 237
                                 var channel =
-                                    MidiUtils.ToChannel(a2 & 0x0f) + channelOffset;
+                                    MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
                                 // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                                 var ch = synth.MidiChannels[channel];
 

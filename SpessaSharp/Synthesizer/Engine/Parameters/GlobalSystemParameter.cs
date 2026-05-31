@@ -140,9 +140,7 @@ public static class GlobalSystemParameters
             parameters[(int)type];
     }
     
-    public static void Set(
-        Synthesizer synth, 
-        GlobalSystemParameter param)
+    public static void Set(Synthesizer synth, GlobalSystemParameter param)
     {
         var prev = synth.SystemParameters.Get(param.PType);
         if (prev == param) return;
@@ -345,10 +343,12 @@ public readonly record struct GlobalSystemParameter
         /// </summary>
         DelayLock,
         /// <summary>
-        /// If the synthesizer should prevent changing the insertion effect type and parameters (including enabling/disabling it on channels).
+        /// If the synthesizer should prevent changing the insertion effect type and parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the insertion effect type and parameters then locking it to prevent changes by MIDI files.
+        ///
+        /// To lock the channel insertion assign, lock the <b>EfxAssign</b> parameter instead.
         /// </summary>
         InsertionEffectLock,
         /// <summary>
@@ -425,7 +425,7 @@ public readonly record struct GlobalSystemParameter
         "If the synthesizer should prevent editing of the chorus parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the chorus parameters then locking it to prevent changes by MIDI files.",
         "The delay gain. From 0 to any number. 1 is 100% delay",
         "If the synthesizer should prevent editing of the delay parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the delay parameters then locking it to prevent changes by MIDI files.",
-        "If the synthesizer should prevent changing the insertion effect type and parameters (including enabling/disabling it on channels). This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the insertion effect type and parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent changing the insertion effect type and parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the insertion effect type and parameters then locking it to prevent changes by MIDI files.",
         "If the synthesizer should prevent editing of the drum parameters. These params are modified using MIDI system exclusive messages or NRPN, so the recommended use case would be setting the drum parameters then locking it to prevent changes by MIDI files.",
         "Forces note killing instead of releasing. Improves performance in black MIDIs",
         "Synthesizer's device ID for system exclusive messages. Set to -1 to accept all",

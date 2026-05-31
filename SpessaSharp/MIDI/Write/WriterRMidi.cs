@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI.Write;
@@ -220,37 +221,31 @@ public static class WriterRMidi
                         chan = chan with { IsDrum = dO.IsDrum };
                         goto Continue;
                     }
-                    
-                    // Check for XG
-                    case MidiUtils.AnalyzedMessage.Type.XgReset:
-                        system = Midi.System.XG;
-                        goto Continue;
-                        
-                    case MidiUtils.AnalyzedMessage.Type.GsReset:
-                        system = Midi.System.GS;
-                        goto Continue;
-                    
-                    case MidiUtils.AnalyzedMessage.Type.GmOff:
-                    case MidiUtils.AnalyzedMessage.Type.GmOn:
-                        // We do not want gm1
-                        system = Midi.System.GM;
-                        unwantedSystems.Add((tNum: trackNum, e: e));
-                        goto Continue;
-                        
-                    case MidiUtils.AnalyzedMessage.Type.Gm2On:
-                        system = Midi.System.GM2;
-                        goto Continue;
 
-                    case MidiUtils.AnalyzedMessage.Type.ControllerChange:
+                    case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                    {
+                        var gmp = syx.AsGlobalMidiParameter!.Value;
+                        if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                        {
+                            system = gmp.AsMidiSystem;
+                            if (system == Midi.System.GM)
+                            {
+                                // We do not want gm1
+                                unwantedSystems.Add((tNum: trackNum, e: e));
+                            }
+                        }
+
+                        break;
+                    }
+
+                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                        when syx.AsAnalyzedParameter is
+                            { AsControllerChange: {} cc }:
                     {
                         // Replace the system exclusive with a regular controller change
-                        var cc = syx.AsControllerChange!.Value;
-                        e = new MidiMessage(
-                            e.Ticks,
-                            new StatusByte((byte)(
-                                    ID(MidiMessage.Type.ControllerChange) | cc.Channel)),
-                            new[] { (byte)cc.Controller, (byte)cc.Value });
-                        Debug.WriteLine("Replaced a system exclusive with controller change!");
+                        e = MidiMessage.ControllerChange(
+                            e.Ticks, cc.Channel, cc.Controller, cc.Value);
+                        SpessaLog.Info("Replaced a system exclusive with controller change!");
 
                         break; // Do not return, keep parsing
                     }
@@ -259,12 +254,9 @@ public static class WriterRMidi
                     {
                         // Replace the system exclusive with a regular program
                         var pc = syx.AsProgramChange!.Value;
-                        e = new MidiMessage(
-                            e.Ticks,
-                            new StatusByte((byte)(
-                                ID(MidiMessage.Type.ProgramChange) | pc.Channel)),
-                            new[] { (byte)pc.Value });
-                        Debug.WriteLine("Replaced a system exclusive with program change!");
+                        e = MidiMessage.ProgramChange(
+                            e.Ticks, pc.Channel, pc.Value );
+                        SpessaLog.Info("Replaced a system exclusive with program change!");
 
                         break; // Do not return, keep parsing
                     }
@@ -386,19 +378,14 @@ public static class WriterRMidi
                     new MidiPatch(), system).Program;
 
                 track.Add(
-                    new MidiMessage(
-                        programTicks,
-                        new StatusByte(
-                          (byte)(MidiMessage.ID(
-                              MidiMessage.Type.ProgramChange) | midiChannel)
-                        ),
-                        new[]{targetProgram}),
+                    MidiMessage.ProgramChange(
+                        programTicks, midiChannel, targetProgram),
                     programIndex);
 
                 indexToAdd = programIndex;
             }
 
-            Debug.WriteLine($"Adding bank select for {chNum}");
+            SpessaLog.Info($"Adding bank select for {chNum}");
             
             var ticks = track.Events[indexToAdd].Ticks;
             var targetPreset = soundBank.GetPreset(
@@ -415,12 +402,9 @@ public static class WriterRMidi
                 system == Midi.System.XG);
             
             track.Add(
-                new MidiMessage(
-                    ticks,
-                    new StatusByte(
-                        (byte)(ID(MidiMessage.Type.ControllerChange) | midiChannel)),
-                    new[]{(byte)Midi.CC.BankSelect, targetBank}
-                ), indexToAdd);
+                MidiMessage.ControllerChange(
+                    ticks, midiChannel, Midi.CC.BankSelect, targetBank),
+                indexToAdd);
         }
         
         // Make sure to put gs if gm
@@ -439,7 +423,7 @@ public static class WriterRMidi
                     MidiMessage.Type.TrackName))
                 index++;
 
-            midi.Tracks[0].Add(MidiUtils.GsReset(0), index);
+            midi.Tracks[0].Add(MidiUtils.Reset(0, Midi.System.GS), index);
         }
         
         midi.Flush();

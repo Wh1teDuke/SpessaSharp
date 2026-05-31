@@ -1,3 +1,4 @@
+using System.Collections;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Effects;
@@ -9,8 +10,9 @@ namespace SpessaSharp.Synthesizer.Engine;
 public sealed class SynthesizerSnapshot(
     ChannelSnapshot[] midiChannels,
     KeyModifier?[]?[] keyMappings,
-    GlobalSystemParameter[] systemParameters,
     GlobalMidiParameter[] midiParameters,
+    BitArray lockedParameters,
+    GlobalSystemParameter[] systemParameters,
     Effect.ReverbProcessorSnapshot reverbProcessor,
     Effect.ChorusProcessorSnapshot chorusProcessor,
     Effect.DelayProcessorSnapshot delayProcessor,
@@ -21,9 +23,10 @@ public sealed class SynthesizerSnapshot(
     
     /// <summary>Key modifiers.</summary>
     public readonly KeyModifier?[]?[] KeyMappings = keyMappings;
-
-    public readonly GlobalSystemParameter[] SystemParameters = systemParameters;
+    
     public readonly GlobalMidiParameter[] MidiParameters = midiParameters;
+    public readonly BitArray LockedParameters = lockedParameters;
+    public readonly GlobalSystemParameter[] SystemParameters = systemParameters;
     
     public readonly Effect.ReverbProcessorSnapshot ReverbProcessor = reverbProcessor;
     public readonly Effect.ChorusProcessorSnapshot ChorusProcessor = chorusProcessor;
@@ -39,8 +42,9 @@ public sealed class SynthesizerSnapshot(
         new(
             synth.MidiChannels.Select(c => c.GetSnapshot()).ToArray(),
             synth.KeyModifierManager.GetMappings(),
-            synth.SystemParameters.ToArray(),
             synth.MidiParameters.ToArray(),
+            new BitArray(synth.LockedParameters),
+            synth.SystemParameters.ToArray(),
             synth.ReverbProcessor.GetSnapshot(),
             synth.ChorusProcessor.GetSnapshot(),
             synth.DelayProcessor.GetSnapshot(),
@@ -101,25 +105,20 @@ public sealed class SynthesizerSnapshot(
         // Restore insertion
         var ins = InsertionProcessor;
         synth.SystemExclusive(
-            MidiUtils.GsData(0x40, 0x03, 0x00,
+            MidiUtils.Gs(0x40, 0x03, 0x00,
             (byte)(ins.Type >> 8), (byte)(ins.Type & 0x7f)));
 
         for (var i = 0; i < ins.Params.Count; i++)
             if (ins.Params[i] != 255)
                 synth.SystemExclusive(
-                    MidiUtils.GsData(0x40, 0x03, 3 + i, ins.Params[i]));
-
-        for (var channel = 0; channel < ins.Channels.Count; channel++)
-            synth.SystemExclusive(
-                MidiUtils.GsData(
-                    0x40, 
-                    0x40 | MidiUtils.FromChannel(channel), 
-                    0x22, 
-                    (byte)(ins.Channels[channel] ? 1 : 0)));
+                    MidiUtils.Gs(0x40, 0x03, 3 + i, ins.Params[i]));
         
         // Restore MIDI parameters
         foreach (var param in MidiParameters)
             synth.Set(param);
+        
+        synth.LockedParameters.SetAll(false);
+        synth.LockedParameters.Or(LockedParameters);
 
         // Restore system parameters last
         foreach (var param in SystemParameters)

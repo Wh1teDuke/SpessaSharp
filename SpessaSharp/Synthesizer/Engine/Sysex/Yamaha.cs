@@ -44,7 +44,7 @@ internal static class Yamaha
                             synth.Set((
                                 GlobalMidiParameter.Type.FineTune,
                                 cents));
-                            CoolInfo("Master Tune", cents);
+                            SpessaLog.XGInfo("Master Tune", cents);
                         }
                         break;
                     }
@@ -54,7 +54,7 @@ internal static class Yamaha
                         synth.Set((
                             GlobalMidiParameter.Type.Gain,
                             data / 127f));
-                        CoolInfo("Master Volume", data);
+                        SpessaLog.XGInfo("Master Volume", data);
                         break;
 
                     // Master attenuation
@@ -63,7 +63,7 @@ internal static class Yamaha
                         synth.Set((
                             GlobalMidiParameter.Type.Gain,
                             data / 127f));
-                        CoolInfo("Master Attenuation", data);
+                        SpessaLog.XGInfo("Master Attenuation", data);
                         break;
 
                     // Master transpose
@@ -72,7 +72,7 @@ internal static class Yamaha
                         synth.Set((
                             GlobalMidiParameter.Type.KeyShift,
                             transpose));
-                        CoolInfo("Master Transpose", transpose);
+                        SpessaLog.CoolInfo("Master Transpose", transpose);
                         break;
 
                     // XG Reset
@@ -152,7 +152,7 @@ internal static class Yamaha
                         synth.CustomChannelNumbers = 
                             synth.CustomChannelNumbers ||
                             (rxChannel != ch.Channel);
-                        CoolInfo(
+                        SpessaLog.XGInfo(
                             $"Rev. Channel on {channel}",
                             rxChannel);
                         break;
@@ -161,21 +161,25 @@ internal static class Yamaha
                     case 0x05:
                         var poly = data == 1;
                         ch.Set((ChannelMidiParameter.Type.PolyMode, poly));
-                        CoolInfo(
+                        SpessaLog.XGInfo(
                             $"Mono/poly on {channel}",
                             poly ? "POLY" : "MONO");
                         break;
 
                     // Part mode
-                    case 0x07: 
-                        ch.SetDrums(data != 0);
+                    case 0x07:
+                        var drums = data != 0;
+                        ch.SetDrums(drums);
+                        SpessaLog.XGInfo(
+                            $"Part Mode on {channel}",
+                            drums ? "DRUM" : "MELODIC");
                         break;
 
                     // Note shift
                     case 0x08:
                         var keyShift = data - 64;
                         ch.Set((ChannelMidiParameter.Type.KeyShift, keyShift));
-                        SpessaLog.XGInfo("Key Shift", keyShift);
+                        SpessaLog.XGInfo($"Key Shift onf {channel}", keyShift);
                         break;
 
                     // Volume
@@ -190,7 +194,7 @@ internal static class Yamaha
                             ChannelMidiParameter.Type.VelocitySenseDepth,
                             data));
                         SpessaLog.XGInfo(
-                            "Velocity Sense Depth", data);
+                            $"Velocity Sense Depth on {channel}", data);
                         return;
 
                     // Velocity Sense Offset
@@ -199,7 +203,7 @@ internal static class Yamaha
                             ChannelMidiParameter.Type.VelocitySenseOffset,
                             data));
                         SpessaLog.XGInfo(
-                            "Velocity Sense Offset", data);
+                            $"Velocity Sense Offset on {channel}", data);
                         return;
 
                     // Pan position
@@ -213,7 +217,7 @@ internal static class Yamaha
                         if (randomPan) 
                         {
                             // 0 means random
-                            CoolInfo($"Random Pan for {channel}", "ON");
+                            SpessaLog.XGInfo($"Random Pan for {channel}", "ON");
                         } 
                         else
                             ch.ControllerChange(
@@ -319,7 +323,10 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { Pitch = pitch };
                         }
-                        CoolInfo($"Drum Pitch, key {drumKey}", pitch);
+                        SpessaLog.XGInfo(
+                            $"Drum Pitch for key {drumKey}",
+                            pitch,
+                        "semitones");
                         break;
                     }
 
@@ -333,7 +340,10 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             var newPitch = param.Pitch + pitch;
                             param = param with { Pitch = newPitch };
-                            CoolInfo($"Drum Pitch Fine, key {drumKey}", newPitch);
+                            SpessaLog.XGInfo(
+                                $"Drum Pitch for key {drumKey}",
+                                ch.DrumParams[drumKey].Pitch,
+                            "semitones");
                         }
                         break;
                     }
@@ -346,7 +356,7 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { Gain = data / 120f };
                         }
-                        CoolInfo($"Drum Level, key {drumKey}", data);
+                        SpessaLog.XGInfo($"Drum Level for key {drumKey}", data);
                         break;
 
                     case 0x03: 
@@ -357,7 +367,7 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { ExclusiveClass = data };
                         }
-                        CoolInfo($"Drum Alternate Group, key {drumKey}", data);
+                        SpessaLog.XGInfo($"Drum Alternate Group for key {drumKey}", data);
                         break;
 
                     case 0x04: 
@@ -368,7 +378,7 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { Pan = data };
                         }
-                        CoolInfo($"Drum Pan, key {drumKey}", data);
+                        SpessaLog.XGInfo($"Drum Pan for key {drumKey}", data);
                         break;
 
                     case 0x05: 
@@ -379,7 +389,7 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { ReverbGain = data / 127f };
                         }
-                        CoolInfo($"Drum Reverb, key {drumKey}", data);
+                        SpessaLog.XGInfo($"Drum Reverb for key {drumKey}", data);
                         break;
 
                     case 0x06: 
@@ -390,7 +400,7 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { ChorusGain = data / 127f };
                         }
-                        CoolInfo($"Drum Chorus, key {drumKey}", data);
+                        SpessaLog.XGInfo($"Drum Chorus for key {drumKey}", data);
                         break;
 
                     case 0x09: 
@@ -401,7 +411,7 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { RxNoteOff = data == 1 };
                         }
-                        CoolInfo($"Drum Note Off, key {drumKey}", data == 1);
+                        SpessaLog.XGInfo($"Drum Note Off, key {drumKey}", data == 1);
                         break;
 
                     case 0x0a: 
@@ -412,35 +422,23 @@ internal static class Yamaha
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { RxNoteOn = data == 1 };
                         }
-                        CoolInfo($"Drum Note On, key {drumKey}", data == 1);
+                        SpessaLog.XGInfo($"Drum Note On, key {drumKey}", data == 1);
                         break;
                 }
                 return;
             }
 
-            if (a1 == 0x06 ||    // Display letters
-                a1 == 0x07)      // Display bitmap
+            if (a1 == 0x06 || // Display letters
+                a1 == 0x07) // Display bitmap
                 // Displayed letters
                 synth.CallEvent(new Event.CbDisplayMessage(
                     syx.ToArray()));
             else
-                Engine.SystemExclusive.NotRecognized(syx, "Yamaha XG");
+                SpessaLog.XGFail("System Exclusive", syx, "Unknown address");
         } 
         else
         {
-            Engine.SystemExclusive.NotRecognized(syx, "Yamaha");
+            SpessaLog.XGFail("System Exclusive", syx);
         }
     }
-    
-    [Conditional("DEBUG")]
-    private static void CoolInfo(string what, string value) =>
-        Debug.WriteLine($"Yamaha XG {what} for is now set to {value}.");
-    
-    [Conditional("DEBUG")]
-    private static void CoolInfo(string what, bool value) =>
-        Debug.WriteLine($"Yamaha XG {what} for is now set to {value}.");
-    
-    [Conditional("DEBUG")]
-    private static void CoolInfo(string what, float value) =>
-        Debug.WriteLine($"Yamaha XG {what} for is now set to {value}.");
 }

@@ -48,8 +48,16 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary>
     /// An array indicating if a controller, at the equivalent index in the midiControllers array, is locked (i.e., not allowed changing). A locked controller cannot be modified.
     /// </summary>
-    public readonly BitArray LockedControllers = 
+    internal readonly BitArray LockedControllers = 
         new (Engine.Channel.Reset.CONTROLLER_TABLE_SIZE);
+
+    /// <summary>
+    /// An object indicating if a Channel MIDI parameter, at the equivalent key, is locked
+    /// (i.e., not allowed changing).
+    /// A locked parameter cannot be modified.
+    /// </summary>
+    internal readonly BitArray LockedParameters = new(
+        ChannelMidiParameter.Len);
     
     /// <summary> An array for the MIDI 2.0 Per-note pitch wheels. </summary>
     public readonly short[] PitchWheels = new short[128];
@@ -117,6 +125,16 @@ public sealed class MidiChannel: ISf2Channel
     /// <param name="parameter">The type and value of the MIDI channel parameter to set.</param>
     public void Set(ChannelMidiParameter parameter) =>
         ChannelMidiParameters.Set(this, parameter);
+
+    /// <summary>
+    /// Locks or unlocks a given Channel MIDI Parameter.
+    /// This prevents any changes to it until it's unlocked.
+    /// </summary>
+    /// <param name="parameter">The Channel MIDI Parameter to lock.</param>
+    /// <param name="isLocked">If the parameter should be locked.</param>
+    public void LockParameter(
+            ChannelMidiParameter.Type parameter, bool isLocked) =>
+        LockedParameters[(int)parameter] = isLocked;
     
     /*
     =================

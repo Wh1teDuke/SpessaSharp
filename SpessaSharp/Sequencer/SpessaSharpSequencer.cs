@@ -448,7 +448,7 @@ public sealed class SpessaSharpSequencer
         }
 
         var result = (Span<byte>)stackalloc byte[1 + MidiUtils.GsDataMinLen];
-        SendMidiSysEx(MidiUtils.GsData(
+        SendMidiSysEx(MidiUtils.Gs(
             0x40, // System parameter - Address
             0x00, // Global mode parameter -  Address
             0x7f, // MODE SET - Address

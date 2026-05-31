@@ -173,6 +173,8 @@ public static class ChannelMidiParameters
     /// <param name="parameter">The type and value of the MIDI channel parameter to set.</param>
     internal static void Set(MidiChannel chan, ChannelMidiParameter parameter)
     {
+        if (chan.LockedParameters[(int)parameter.PType]) return;
+        
         chan.MidiParamArray.Set(parameter);
 
         // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
@@ -286,6 +288,8 @@ public readonly record struct ChannelMidiParameter
             return _data.AsEnum<MidiChannel.Assign>();
         }
     }
+
+    public static readonly int Len = Enum.GetValues<Type>().Length;
     
     public enum Type
     {

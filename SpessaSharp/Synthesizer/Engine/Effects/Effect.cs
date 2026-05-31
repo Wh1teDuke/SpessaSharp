@@ -355,7 +355,7 @@ public static class Effect
     /// <summary> </summary>
     /// <param name="Type"></param>
     /// <param name="Params">20 parameters for the effect, 255 means "no change" + 3 effect sends (index 20, 21, 22)</param>
-    /// <param name="Channels">A boolean list for channels that have the insertion effect enabled.</param>
     public readonly record struct InsertionProcessorSnapshot(
-        int Type, ArraySegment<byte> Params, ArraySegment<bool> Channels);
+        int Type, 
+        ArraySegment<byte> Params);
 }

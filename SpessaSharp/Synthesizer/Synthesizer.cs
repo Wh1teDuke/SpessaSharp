@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Frozen;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -148,6 +149,13 @@ public sealed class Synthesizer
     /// -1 means no change.
     /// </summary>
     public readonly float[] Tunings = new float[128 * 128];
+
+    /// <summary>
+    /// An object indicating if a Global MIDI parameter, at the equivalent key, is locked
+    /// (i.e., not allowed changing).
+    /// A locked parameter cannot be modified.
+    /// </summary>
+    internal readonly BitArray LockedParameters = new(GlobalMidiParameter.Len);
     
     /// <summary>The global MIDI parameters of the synthesizer.</summary>
     public readonly GlobalMidiParameter[] MidiParameters = 
@@ -190,7 +198,17 @@ public sealed class Synthesizer
     private readonly Dictionary<(MidiPatch Patch, int Key, int Vel),
         CachedVoiceList> _cachedVoices = new (200);
     
-    private readonly CachedVoice.Base.Cache _cvbCache; 
+    private readonly CachedVoice.Base.Cache _cvbCache;
+
+    /// <summary>
+    /// Locks or unlocks a given Global MIDI Parameter.
+    /// This prevents any changes to it until it's unlocked.
+    /// </summary>
+    /// <param name="parameter">The Global MIDI Parameter to lock.</param>
+    /// <param name="isLocked">If the parameter should be locked.</param>
+    public void LockParameter(
+        GlobalMidiParameter.Type parameter, bool isLocked) =>
+            LockedParameters[(int)parameter] = isLocked;
 
     /// <summary>Sets a system parameter of the synthesizer. </summary>
     /// <param name="param">The type and value of the system parameter to set.</param>
@@ -198,8 +216,7 @@ public sealed class Synthesizer
         GlobalSystemParameters.Set(this, param);
 
     public void SystemExclusive(
-        ReadOnlySpan<byte> syx,
-        int channelOffset = 0) =>
+        ReadOnlySpan<byte> syx, int channelOffset = 0) =>
             Engine.SystemExclusive.Execute(this, syx, channelOffset);
     
     /// <summary> Current total amount of voices that are currently playing. </summary>
@@ -899,8 +916,6 @@ public sealed class Synthesizer
         {
             Type = InsertionProcessor.Type,
             Params = InsertionParams,
-            Channels = MidiChannels.Select(
-                c => c.MidiParamArray.EfxAssign).ToArray(),
         };
 
     /// <summary>Copied callback so MIDI channels can call it.</summary>
