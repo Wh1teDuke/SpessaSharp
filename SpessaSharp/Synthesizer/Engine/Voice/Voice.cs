@@ -263,15 +263,12 @@ public sealed class Voice
     {
         // Remember to add new values here!!!
         // Clear state
-        StartTime = currentTime;
         IsActive = true;
         IsInRelease = false;
         HasRendered = false;
         IsHeld = false;
         ReleaseStartTime = float.PositiveInfinity;
         Pressure = 0;
-        Channel = channel;
-        MidiNote = midiNote;
         OverrideReleaseVolEnv = 0;
         PortamentoDuration = 0;
         PortamentoFromKey = -1;
