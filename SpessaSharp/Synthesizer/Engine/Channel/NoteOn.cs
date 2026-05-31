@@ -195,9 +195,9 @@ internal static class NoteOn
             voice.Setup(now, chan.Channel, midiNote, noteID);
 
             // Select the correct oscillator
-            voice.WaveTable = voice.Oscillators[(int)
-                (chan.SystemParameters.InterpolationType ??
-                synth.SystemParameters.InterpolationType)];
+            voice.WaveTable.Type =
+                chan.SystemParameters.InterpolationType ??
+                synth.SystemParameters.InterpolationType;
 
             // Set cached data
             voice.TargetKey = cached.TargetKey;

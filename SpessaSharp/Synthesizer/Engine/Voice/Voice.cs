@@ -90,12 +90,6 @@ public sealed class Voice
         ArraySegment<SoundBank.Modulator> Modulators,
         BasicSample Sample);
 
-    public readonly WaveTableOscillator[] Oscillators = [
-        new WaveTableOscillator.Linear(),
-        new WaveTableOscillator.Nearest(),
-        new WaveTableOscillator.Hermite(),
-    ];
-    
     /// <summary> The oscillator currently used by this voice. </summary>
     public WaveTableOscillator WaveTable;
     
@@ -233,8 +227,10 @@ public sealed class Voice
 
     public Voice(int sampleRate, int bufferSize)
     {
-        WaveTable = Oscillators[
-            (int)GlobalSystemParameters.Default.InterpolationType];
+        WaveTable = new WaveTableOscillator
+        {
+            Type = GlobalSystemParameters.Default.InterpolationType,
+        };
         
         VolEnv = new VolumeEnvelope(sampleRate, bufferSize);
         Filter = new LowpassFilter(sampleRate);
