@@ -264,7 +264,7 @@ internal static class RenderVoice
         
         // Low pass filter (inlined for performance, confirmed with node.js)
         {
-            var f = voice.Filter;
+            ref var f = ref voice.Filter;
             var initialFc = modulated[(int)Generator.Type.InitialFilterFc];
 
             if (f.Initialized) 

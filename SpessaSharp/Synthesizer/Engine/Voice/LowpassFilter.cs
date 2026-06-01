@@ -8,22 +8,10 @@ namespace SpessaSharp.Synthesizer.Engine.Voice;
 /// Give their repo a star over at:
 /// https://github.com/FluidSynth/fluidsynth
 /// </summary>
-public sealed class LowpassFilter
+public struct LowpassFilter
 {
     /// <summary>Latest test: 06-12-2025 for the 9600 cent cc74 change (XG accurate). Lowered from 0.1 to 0.03</summary>
     public const float FILTER_SMOOTHING_FACTOR = 0.03f;
-
-    private readonly record struct CachedCoefficient(
-        // Filter coefficient 1.
-        float a0,
-        // Filter coefficient 2.
-        float a1,
-        // Filter coefficient 3.
-        float a2,
-        // Filter coefficient 4.
-        float a3,
-        // Filter coefficient 5.
-        float a4);
     
     /// <summary>Resonance in centibels.</summary>
     public int ResonanceCb;
@@ -111,8 +99,7 @@ public sealed class LowpassFilter
         // Note that we calculate it again,
         // Without the 3.01-peak offset as it only applies to the coefficients, not the gain.
         var qGain = 1f / float.Sqrt(UnitConverter.CbAttenuationToGain(-qCb));
-        
-        // Note: no sin or cos tables are used here as the coefficients are cached
+
         var w = (2 * MathF.PI * cutoffHz) / _sampleRate;
         var cosw = float.Cos(w);
         var alpha = float.Sin(w) / (2 * resonanceGain);
@@ -123,18 +110,11 @@ public sealed class LowpassFilter
         var a0 = 1 + alpha;
         var a1 = -2 * cosw;
         var a2 = 1 - alpha;
-        
-        var toCache = new CachedCoefficient(
-            a0: b0 / a0,
-            a1: b1 / a0,
-            a2: b2 / a0,
-            a3: a1 / a0,
-            a4: a2 / a0);
 
-        this.a0 = toCache.a0;
-        this.a1 = toCache.a1;
-        this.a2 = toCache.a2;
-        this.a3 = toCache.a3;
-        this.a4 = toCache.a4;
+        this.a0 = b0 / a0;
+        this.a1 = b1 / a0;
+        this.a2 = b2 / a0;
+        this.a3 = a1 / a0;
+        this.a4 = a2 / a0;
     }
 }

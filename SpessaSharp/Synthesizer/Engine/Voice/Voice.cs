@@ -90,11 +90,11 @@ public sealed class Voice
         ArraySegment<SoundBank.Modulator> Modulators,
         BasicSample Sample);
 
-    /// <summary> The oscillator currently used by this voice. </summary>
+    /// <summary>The oscillator currently used by this voice.</summary>
     public WaveTableOscillator WaveTable;
     
-    /// <summary> Lowpass filter applied to the voice. </summary>
-    public readonly LowpassFilter Filter;
+    /// <summary>Lowpass filter applied to the voice.</summary>
+    public LowpassFilter Filter;
     
     /// <summary> The unmodulated (copied to) generators of the voice. </summary>
     public readonly short[] Generators = new short[Generator.Amount];
