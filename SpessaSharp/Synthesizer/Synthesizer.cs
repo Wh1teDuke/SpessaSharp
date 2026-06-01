@@ -829,7 +829,8 @@ public sealed class Synthesizer
     internal void FreeVoice(int index)
     {
         FreeVoices.Add(Voices[index]);
-        Voices.RemoveAt(index);
+        (Voices[^1], Voices[index]) = (Voices[index], Voices[^1]);
+        Voices.RemoveAt(Voices.Count - 1);
     }
     
     /// <summary>Gets voices for a preset.</summary>
