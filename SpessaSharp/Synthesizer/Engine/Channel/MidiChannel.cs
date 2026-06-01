@@ -75,6 +75,8 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary>A system for dynamic modulator assignment for advanced system exclusives.</summary>
     public readonly DynamicModulatorManager DynamicModulators;
 
+    public readonly List<Voice.Voice> Voices = new(32);
+
     /// <summary>Indicates whether this channel is a drum channel.</summary>
     public bool DrumChannel { get; internal set; }
 
@@ -368,6 +370,7 @@ public sealed class MidiChannel: ISf2Channel
             }
         }
 
+        Voices.Clear();
         SynthCore.CallEvent(new Event.CbStopAll(Channel, force));
     }
     
@@ -629,6 +632,22 @@ public sealed class MidiChannel: ISf2Channel
             v.ReleaseVoice(cTime);
             if (++vc >= VoiceCount) break; // We already checked all the voices
         }
+    }
+
+    internal void Free(Voice.Voice voice)
+    {
+        Debug.Assert(voice.LocalIndex != -1);
+        Debug.Assert(voice.Channel == this);
+        
+        var i = voice.LocalIndex;
+        (Voices[^1], Voices[i]) = (Voices[i], Voices[^1]);
+        Voices.RemoveAt(Voices.Count - 1);
+        
+        voice.LocalIndex = -1;
+        voice.Channel = null;
+        
+        if (Voices.Count > 0 && i != Voices.Count)
+            Voices[i].LocalIndex = i;
     }
 
     /// <summary>Applies the <b>ChannelSnapshot</b> to this <b>MIDIChannel</b> instance.</summary>

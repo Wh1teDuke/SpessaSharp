@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
@@ -223,7 +224,10 @@ public sealed class Voice
     public float ModLFOPhase;
     public float ModLFOStartTime;
 
-    internal int Index = -1;
+    /// <summary>Index of this voice in the Synthesizer.Voices list</summary>
+    internal int GlobalIndex = -1;
+    /// <summary>Index of this voice in the MidiChannel.Voices list</summary>
+    internal int LocalIndex = -1;
 
     public Voice(int sampleRate, int bufferSize)
     {
@@ -260,6 +264,11 @@ public sealed class Voice
     public void Setup(
         MidiChannel channel, float currentTime, int midiNote, int noteID) 
     {
+        Channel?.Free(this);
+        
+        Debug.Assert(Channel == null);
+        Debug.Assert(LocalIndex == -1);
+
         // Remember to add new values here!!!
         // Clear state
         IsInRelease = false;
@@ -279,6 +288,9 @@ public sealed class Voice
         Channel = channel;
         MidiNote = midiNote;
         NoteID = noteID;
+        
+        Channel.Voices.Add(this);
+        LocalIndex = Channel.Voices.Count - 1;
     }
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

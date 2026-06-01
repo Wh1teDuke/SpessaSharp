@@ -466,13 +466,13 @@ public sealed class Synthesizer
         if (FreeVoices.Count > 0)
         {
             var v = FreeVoices[^1];
-            Debug.Assert(v.Index == -1);
+            Debug.Assert(v.GlobalIndex == -1);
             
             FreeVoices.RemoveAt(FreeVoices.Count - 1);
             Voices.Add(v);
             // Prevent this voice from being stolen
             v.Priority = int.MaxValue;
-            v.Index = Voices.Count - 1;
+            v.GlobalIndex = Voices.Count - 1;
             return v;
         }
         
@@ -757,7 +757,7 @@ public sealed class Synthesizer
         for (var i = Voices.Count - 1; i >= 0; i--) 
         {
             var v = Voices[i];
-            Debug.Assert(v.Index != -1);
+            Debug.Assert(v.GlobalIndex != -1);
             
             var ch = v.Channel!;
 
@@ -834,17 +834,19 @@ public sealed class Synthesizer
     /// <param name="voice">The unused voice</param>
     internal void Free(Voice voice)
     {
-        Debug.Assert(voice.Index != -1);
+        Debug.Assert(voice.GlobalIndex != -1);
+        Debug.Assert(voice.Channel != null);
 
-        var i = voice.Index;
+        var i = voice.GlobalIndex;
         FreeVoices.Add(voice);
         (Voices[^1], Voices[i]) = (Voices[i], Voices[^1]);
         Voices.RemoveAt(Voices.Count - 1);
-        voice.Index = -1;
-        voice.Channel = null;
+
+        voice.Channel!.Free(voice);
+        voice.GlobalIndex = -1;
 
         if (Voices.Count > 0 && i != Voices.Count)
-            Voices[i].Index = i;
+            Voices[i].GlobalIndex = i;
     }
     
     /// <summary>Gets voices for a preset.</summary>
