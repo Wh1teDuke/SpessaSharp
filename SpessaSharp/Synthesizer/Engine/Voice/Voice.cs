@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
+using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine.Voice;
@@ -130,7 +131,7 @@ public sealed class Voice
     public bool IsHeld;
     
     /// <summary> MIDI channel number of the voice. </summary>
-    public int Channel;
+    public MidiChannel? Channel;
 
     /// <summary>
     /// Grouping voices for specific Note On messages. Used for overlapping Note Ons.
@@ -256,7 +257,8 @@ public sealed class Voice
             ReleaseStartTime = StartTime + minNoteLength;
     }
     
-    public void Setup(float currentTime, int channel, int midiNote, int noteID) 
+    public void Setup(
+        MidiChannel channel, float currentTime, int midiNote, int noteID) 
     {
         // Remember to add new values here!!!
         // Clear state

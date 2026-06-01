@@ -192,7 +192,7 @@ internal static class NoteOn
         {
             var voice = synth.AssignVoice();
             var now = (float)synth.CurrentTime;
-            voice.Setup(now, chan.Channel, midiNote, noteID);
+            voice.Setup(chan, now, midiNote, noteID);
 
             // Select the correct oscillator
             voice.WaveTable.Type =
@@ -281,7 +281,7 @@ internal static class NoteOn
                     var cTime = (float)synth.CurrentTime;
                     foreach (var v in synth.Voices) 
                     {
-                        if (v.Channel == chan.Channel &&
+                        if (v.Channel == chan &&
                             v.ExclusiveClass == voice.ExclusiveClass &&
                             // Only voices created in a different quantum
                             v.HasRendered) 

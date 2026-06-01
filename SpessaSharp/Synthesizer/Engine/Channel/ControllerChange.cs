@@ -181,8 +181,8 @@ internal static class ControllerChange
                         var cTime = (float)chan.SynthCore.CurrentTime;
                         foreach (var v in chan.SynthCore.Voices)
                         {
-                            if (v.Channel != chan.Channel ||
-                                v is not { IsHeld: true }) continue;
+                            if (v.Channel != chan || v is not { IsHeld: true })
+                                continue;
                             
                             v.IsHeld = false;
                             v.ReleaseVoice(cTime);

@@ -42,7 +42,7 @@ internal static class NoteOff
             var cTime = (float)synth.CurrentTime;
             foreach (var v in synth.Voices)
             {
-                if (v.Channel == chan.Channel &&
+                if (v.Channel == chan &&
                     v.MidiNote == midiNote &&
                     v.NoteID == noteID &&
                     !v.IsInRelease) 

@@ -342,7 +342,7 @@ public sealed class MidiChannel: ISf2Channel
                 for (var i = SynthCore.Voices.Count - 1; i >= 0; i--)
                 {
                     var v = SynthCore.Voices[i];
-                    if (v.Channel != Channel) continue;
+                    if (v.Channel != this) continue;
 
                     SynthCore.Free(v);
                     if (++vc >= VoiceCount) break; // We already checked all the voices
@@ -360,7 +360,7 @@ public sealed class MidiChannel: ISf2Channel
                 var cTime = (float)SynthCore.CurrentTime;
                 foreach (var v in SynthCore.Voices)
                 {
-                    if (v.Channel != Channel) continue;
+                    if (v.Channel != this) continue;
 
                     v.ReleaseVoice(cTime);
                     if (++vc >= VoiceCount) break; // We already checked all the voices
@@ -508,7 +508,7 @@ public sealed class MidiChannel: ISf2Channel
         {
             foreach (var v in SynthCore.Voices)
             {
-                if (v.Channel != Channel || v.MidiNote != midiNote) continue;
+                if (v.Channel != this || v.MidiNote != midiNote) continue;
 
                 v.Pressure = pressure;
                 ComputeModulators(
@@ -622,7 +622,7 @@ public sealed class MidiChannel: ISf2Channel
         var cTime = (float)SynthCore.CurrentTime;
         foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel != Channel || v.MidiNote != midiNote) continue;
+            if (v.Channel != this || v.MidiNote != midiNote) continue;
 
             v.OverrideReleaseVolEnv = releaseTime; // Set release to be very short
             v.IsInRelease = false; // Force release again
@@ -672,7 +672,7 @@ public sealed class MidiChannel: ISf2Channel
 
         foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel != Channel) continue;
+            if (v.Channel != this) continue;
 
             v.Generators[(int)gen] = value;
             ComputeModulators(v);
@@ -696,7 +696,7 @@ public sealed class MidiChannel: ISf2Channel
         if (VoiceCount <= 0) return;
         foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel != Channel) continue;
+            if (v.Channel != this) continue;
             ComputeModulators(v);
             if (++vc >= VoiceCount) break; // We already checked all the voices
         }
@@ -747,7 +747,7 @@ public sealed class MidiChannel: ISf2Channel
 
         foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel != Channel) continue;
+            if (v.Channel != this) continue;
 
             ComputeModulators(v, sourceUsesCC, sourceIndex);
             if (++vc >= VoiceCount) break; // We already checked all the voices

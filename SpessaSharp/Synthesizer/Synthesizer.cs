@@ -759,10 +759,10 @@ public sealed class Synthesizer
             var v = Voices[i];
             Debug.Assert(v.Index != -1);
             
-            var ch = MidiChannels[v.Channel];
+            var ch = v.Channel!;
 
             // Send the voice to appropriate output
-            var outputIndex = v.Channel % outputCount;
+            var outputIndex = ch.Channel % outputCount;
             ch.RenderVoice(
                 v,
                 cTime,
@@ -830,6 +830,8 @@ public sealed class Synthesizer
         CurrentTime += sampleCount * _sampleTime;
     }
 
+    /// <summary>Return voice to the unused voice pool</summary>
+    /// <param name="voice">The unused voice</param>
     internal void Free(Voice voice)
     {
         Debug.Assert(voice.Index != -1);
@@ -839,7 +841,8 @@ public sealed class Synthesizer
         (Voices[^1], Voices[i]) = (Voices[i], Voices[^1]);
         Voices.RemoveAt(Voices.Count - 1);
         voice.Index = -1;
-        
+        voice.Channel = null;
+
         if (Voices.Count > 0 && i != Voices.Count)
             Voices[i].Index = i;
     }
@@ -1064,7 +1067,7 @@ public sealed class Synthesizer
         foreach (var voice in Voices) 
         {
             voice.Priority = 0;
-            if (MidiChannels[voice.Channel].DrumChannel)
+            if (voice.Channel!.DrumChannel)
                 // Important
                 voice.Priority += 5;
 
