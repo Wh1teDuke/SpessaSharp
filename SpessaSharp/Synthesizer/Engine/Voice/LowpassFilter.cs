@@ -98,7 +98,8 @@ public struct LowpassFilter
         // The sf spec asks for a reduction in gain based on the Q value.
         // Note that we calculate it again,
         // Without the 3.01-peak offset as it only applies to the coefficients, not the gain.
-        var qGain = 1f / float.Sqrt(UnitConverter.CbAttenuationToGain(-qCb));
+        var qGain = float.ReciprocalSqrtEstimate(
+            UnitConverter.CbAttenuationToGain(-qCb));
 
         var w = (2 * MathF.PI * cutoffHz) / _sampleRate;
         var cosw = float.Cos(w);
