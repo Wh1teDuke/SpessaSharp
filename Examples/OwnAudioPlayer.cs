@@ -1,6 +1,6 @@
 #!/usr/bin/env -S dotnet run --configuration Release
 #:project ../SpessaSharp/SpessaSharp.csproj
-#:package OwnAudioSharp.Basic@3.0.7
+#:package OwnAudioSharp.Basic@3.0.11
 
 using System.Diagnostics;
 using System.Runtime;
