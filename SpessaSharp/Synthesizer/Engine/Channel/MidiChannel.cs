@@ -95,9 +95,9 @@ public sealed class MidiChannel: ISf2Channel
 
     /// <summary> Indicates the MIDI system when the preset was locked. </summary>
     internal Midi.System LockedSystem = Midi.System.GS;
-    
+
     /// <summary> Channel's current voice count. </summary>
-    public int VoiceCount;
+    public int VoiceCount => Voices.Count;
     
     /// <summary> The channel's number (0-based index) </summary>
     public readonly int Channel;
@@ -338,39 +338,17 @@ public sealed class MidiChannel: ISf2Channel
         if (force) 
         {
             // Force stop all
-            var vc = 0;
-            if (VoiceCount > 0)
-            {
-                for (var i = SynthCore.Voices.Count - 1; i >= 0; i--)
-                {
-                    var v = SynthCore.Voices[i];
-                    if (v.Channel != this) continue;
-
-                    SynthCore.Free(v);
-                    if (++vc >= VoiceCount) break; // We already checked all the voices
-                }
-            }
-
-            ClearVoiceCount();
+            for (var i = Voices.Count - 1; i >= 0; i--)
+                SynthCore.Free(Voices[i]);
         } 
         else 
         {
             // Gracefully stop
-            var vc = 0;
-            if (VoiceCount > 0)
-            {
-                var cTime = (float)SynthCore.CurrentTime;
-                foreach (var v in SynthCore.Voices)
-                {
-                    if (v.Channel != this) continue;
-
-                    v.ReleaseVoice(cTime);
-                    if (++vc >= VoiceCount) break; // We already checked all the voices
-                }
-            }
+            var cTime = (float)SynthCore.CurrentTime;
+            foreach (var v in Voices)
+                v.ReleaseVoice(cTime);
         }
 
-        Voices.Clear();
         SynthCore.CallEvent(new Event.CbStopAll(Channel, force));
     }
     
@@ -455,8 +433,6 @@ public sealed class MidiChannel: ISf2Channel
         int sampleCount) => Engine.Channel.RenderVoice.Execute(
         this, voice, timeNow, outputL, outputR, startIndex, sampleCount);
 
-    internal void ClearVoiceCount() => VoiceCount = 0;
-
     /// <summary>Sets the octave tuning for a given channel.</summary>
     /// <remarks>Cent tunings are relative.</remarks>
     /// <param name="tuning">The tuning array of 12 values, each representing the tuning for a note in the octave.</param>
@@ -506,21 +482,16 @@ public sealed class MidiChannel: ISf2Channel
     internal void PolyPressure(int midiNote, int pressure)
     {
         // Note to self: don't use computeModulatorsAll here as we're setting the pressure!
-        var vc = 0;
-        if (VoiceCount > 0)
+        foreach (var v in Voices)
         {
-            foreach (var v in SynthCore.Voices)
-            {
-                if (v.Channel != this || v.MidiNote != midiNote) continue;
+            if (v.MidiNote != midiNote) continue;
 
-                v.Pressure = pressure;
-                ComputeModulators(
-                    v, 
-                    0, 
-                    Modulator.Source.ID(
-                        Modulator.Source.ControllerSource.PolyPressure));
-                if (++vc >= VoiceCount) break; // We already checked all the voices
-            }
+            v.Pressure = pressure;
+            ComputeModulators(
+                v, 
+                0, 
+                Modulator.Source.ID(
+                    Modulator.Source.ControllerSource.PolyPressure));
         }
 
         SynthCore.CallEvent(
@@ -616,21 +587,17 @@ public sealed class MidiChannel: ISf2Channel
     /// <param name="releaseTime">In timecents, defaults to -12_000 (very short release).</param>
     internal void KillNote(int midiNote, int releaseTime = -12_000) 
     {
-        var vc = 0;
         NoteOffID[midiNote] = 0;
         NoteOnID[midiNote] = 0;
-        
-        if (VoiceCount <= 0) return;
 
         var cTime = (float)SynthCore.CurrentTime;
-        foreach (var v in SynthCore.Voices)
+        foreach (var v in Voices)
         {
-            if (v.Channel != this || v.MidiNote != midiNote) continue;
+            if (v.MidiNote != midiNote) continue;
 
             v.OverrideReleaseVolEnv = releaseTime; // Set release to be very short
             v.IsInRelease = false; // Force release again
             v.ReleaseVoice(cTime);
-            if (++vc >= VoiceCount) break; // We already checked all the voices
         }
     }
 
@@ -685,17 +652,11 @@ public sealed class MidiChannel: ISf2Channel
         Generators.OverridesEnabled = true;
 
         if (!realtime) return;
-        
-        var vc = 0;
-        if (VoiceCount <= 0) return;
 
-        foreach (var v in SynthCore.Voices)
+        foreach (var v in Voices)
         {
-            if (v.Channel != this) continue;
-
             v.Generators[(int)gen] = value;
             ComputeModulators(v);
-            if (++vc >= VoiceCount) break; // We already checked all the voices
         }
     }
 
@@ -711,14 +672,7 @@ public sealed class MidiChannel: ISf2Channel
             (short)(value * Generator.Limits[gen].NRPN);
 
         Generators.OffsetsEnabled = true;
-        var vc = 0;
-        if (VoiceCount <= 0) return;
-        foreach (var v in SynthCore.Voices)
-        {
-            if (v.Channel != this) continue;
-            ComputeModulators(v);
-            if (++vc >= VoiceCount) break; // We already checked all the voices
-        }
+        foreach (var v in Voices) ComputeModulators(v);
     }
     
     /// <summary> Mutes or unmutes a channel. </summary>
@@ -760,17 +714,9 @@ public sealed class MidiChannel: ISf2Channel
     internal void ComputeModulatorsAll(int sourceUsesCC, int sourceIndex)
     {
         Debug.Assert(sourceUsesCC is >= -1 and <= 1);
-        if (VoiceCount <= 0) return;
-        
-        var vc = 0;
 
-        foreach (var v in SynthCore.Voices)
-        {
-            if (v.Channel != this) continue;
-
+        foreach (var v in Voices)
             ComputeModulators(v, sourceUsesCC, sourceIndex);
-            if (++vc >= VoiceCount) break; // We already checked all the voices
-        }
     }
     
     internal void SetBankMSB(int bankMSB)

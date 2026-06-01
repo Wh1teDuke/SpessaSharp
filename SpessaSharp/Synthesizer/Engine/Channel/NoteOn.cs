@@ -275,21 +275,12 @@ internal static class NoteOn
             if (voice.ExclusiveClass != 0 && chan.MidiParamArray.PolyMode) 
             {
                 // Kill all voices with the same exclusive class
-                var vc = 0;
-                if (chan.VoiceCount > 0)
+                var cTime = (float)synth.CurrentTime;
+                foreach (var v in chan.Voices) 
                 {
-                    var cTime = (float)synth.CurrentTime;
-                    foreach (var v in synth.Voices) 
-                    {
-                        if (v.Channel == chan &&
-                            v.ExclusiveClass == voice.ExclusiveClass &&
-                            // Only voices created in a different quantum
-                            v.HasRendered) 
-                        {
-                            v.ExclusiveRelease(cTime);
-                            if (++vc >= chan.VoiceCount) break; // We already checked all the voices
-                        }
-                    }
+                    if (v.ExclusiveClass == voice.ExclusiveClass &&
+                        // Only voices created in a different quantum
+                        v.HasRendered) v.ExclusiveRelease(cTime);
                 }
             }
             
@@ -393,8 +384,6 @@ internal static class NoteOn
             
             voice.CurrentPan = Math.Clamp(pOverride, -500, 500); // -500 to 500
         }
-        
-        chan.VoiceCount += voices.Length;
         
         if (emit) synth.CallEvent(
             new Event.CbNoteOn(midiNote, chan.Channel, velocity));

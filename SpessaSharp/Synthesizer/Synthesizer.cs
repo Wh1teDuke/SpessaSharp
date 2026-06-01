@@ -467,6 +467,8 @@ public sealed class Synthesizer
         {
             var v = FreeVoices[^1];
             Debug.Assert(v.GlobalIndex == -1);
+            Debug.Assert(v.LocalIndex == -1);
+            Debug.Assert(v.Channel == null);
             
             FreeVoices.RemoveAt(FreeVoices.Count - 1);
             Voices.Add(v);
@@ -745,10 +747,6 @@ public sealed class Synthesizer
             InsertionInputL.AsSpan().Clear();
             InsertionInputR.AsSpan().Clear();
         }
-
-        // Clear voice count
-        foreach (var c in MidiChannels)
-            c.ClearVoiceCount();
         
         // Process voices
         var outputCount = outputs.Length;
@@ -758,6 +756,8 @@ public sealed class Synthesizer
         {
             var v = Voices[i];
             Debug.Assert(v.GlobalIndex != -1);
+            Debug.Assert(v.LocalIndex != -1);
+            Debug.Assert(v.Channel != null);
             
             var ch = v.Channel!;
 
@@ -770,9 +770,6 @@ public sealed class Synthesizer
                 outputs[outputIndex].Right,
                 startIndex,
                 sampleCount);
-
-            // Update voice count
-            ch.VoiceCount++;
         }
         
         // Process effects
@@ -835,6 +832,7 @@ public sealed class Synthesizer
     internal void Free(Voice voice)
     {
         Debug.Assert(voice.GlobalIndex != -1);
+        Debug.Assert(voice.LocalIndex != -1);
         Debug.Assert(voice.Channel != null);
 
         var i = voice.GlobalIndex;

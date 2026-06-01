@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
@@ -179,10 +180,11 @@ internal static class ControllerChange
                     if (chan.VoiceCount > 0)
                     {
                         var cTime = (float)chan.SynthCore.CurrentTime;
-                        foreach (var v in chan.SynthCore.Voices)
+                        foreach (var v in chan.Voices)
                         {
-                            if (v.Channel != chan || v is not { IsHeld: true })
-                                continue;
+                            Debug.Assert(v.Channel == chan);
+                            
+                            if (v is not { IsHeld: true }) continue;
                             
                             v.IsHeld = false;
                             v.ReleaseVoice(cTime);

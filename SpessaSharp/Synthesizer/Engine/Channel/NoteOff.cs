@@ -30,29 +30,22 @@ internal static class NoteOff
         // Mono mode overrides sustain
         var sustain = !mono && chan.MidiControllers[
             (int)Midi.CC.SustainPedal] >= 8_192;
-        var vc = 0;
+
         var noteID = chan.NoteOffID[midiNote];
         // Only update if note on is above this
         // Testcase: overlapping_notes_test (multiple note off)
         if (noteID < chan.NoteOnID[midiNote])
             chan.NoteOffID[midiNote]++;
 
-        if (chan.VoiceCount > 0)
+        var cTime = (float)synth.CurrentTime;
+        foreach (var v in chan.Voices)
         {
-            var cTime = (float)synth.CurrentTime;
-            foreach (var v in synth.Voices)
-            {
-                if (v.Channel == chan &&
-                    v.MidiNote == midiNote &&
-                    v.NoteID == noteID &&
-                    !v.IsInRelease) 
-                {
-                    if (sustain) v.IsHeld = true;
-                    else v.ReleaseVoice(cTime);
+            if (v.MidiNote != midiNote ||
+                v.NoteID != noteID ||
+                v.IsInRelease) continue;
 
-                    if (++vc >= chan.VoiceCount) break; // We already checked all the voices
-                }
-            }
+            if (sustain) v.IsHeld = true;
+            else v.ReleaseVoice(cTime);
         }
         
         synth.CallEvent(new Event.CbNoteOff(midiNote, chan.Channel));
