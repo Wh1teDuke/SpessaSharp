@@ -162,7 +162,7 @@ public static class GlobalSystemParameters
                 
                 // Disable all voices after cap
                 for (var i = synth.Voices.Count - 1; i >= cap; i--)
-                    synth.FreeVoice(i);
+                    synth.Free(synth.Voices[i]);
 
                 var total = synth.Voices.Count + synth.FreeVoices.Count;
                 if (cap > total) 

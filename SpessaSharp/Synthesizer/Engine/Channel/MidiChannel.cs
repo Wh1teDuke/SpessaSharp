@@ -341,9 +341,10 @@ public sealed class MidiChannel: ISf2Channel
             {
                 for (var i = SynthCore.Voices.Count - 1; i >= 0; i--)
                 {
-                    if (SynthCore.Voices[i].Channel != Channel) continue;
+                    var v = SynthCore.Voices[i];
+                    if (v.Channel != Channel) continue;
 
-                    SynthCore.FreeVoice(i);
+                    SynthCore.Free(v);
                     if (++vc >= VoiceCount) break; // We already checked all the voices
                 }
             }
@@ -443,14 +444,13 @@ public sealed class MidiChannel: ISf2Channel
     /// <param name="startIndex"></param>
     /// <param name="sampleCount"></param>
     internal void RenderVoice(
-        int voiceIndex,
         Voice.Voice voice,
         float timeNow,
         Span<float> outputL,
         Span<float> outputR,
         int startIndex,
         int sampleCount) => Engine.Channel.RenderVoice.Execute(
-        this, voiceIndex, voice, timeNow, outputL, outputR, startIndex, sampleCount);
+        this, voice, timeNow, outputL, outputR, startIndex, sampleCount);
 
     internal void ClearVoiceCount() => VoiceCount = 0;
 

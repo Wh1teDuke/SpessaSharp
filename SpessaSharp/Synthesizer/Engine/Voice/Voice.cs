@@ -222,6 +222,8 @@ public sealed class Voice
     public float ModLFOPhase;
     public float ModLFOStartTime;
 
+    internal int Index = -1;
+
     public Voice(int sampleRate, int bufferSize)
     {
         WaveTable = new WaveTableOscillator

@@ -44,7 +44,6 @@ internal static class RenderVoice
     /// <param name="sampleCount"></param>
     public static void Execute(
         MidiChannel chan,
-        int voiceIndex,
         Voice.Voice voice,
         float timeNow,
         Span<float> outputL,
@@ -74,7 +73,7 @@ internal static class RenderVoice
         // Testcase: mono mode with chords
         if (released)
         {
-            chan.SynthCore.FreeVoice(voiceIndex);
+            chan.SynthCore.Free(voice);
             return;
         }
 
@@ -249,7 +248,7 @@ internal static class RenderVoice
             })
         {
             if (!voice.VolEnv.Process(sampleCount, gainTarget))
-                chan.SynthCore.FreeVoice(voiceIndex);
+                chan.SynthCore.Free(voice);
             return;
         }
         
@@ -364,7 +363,7 @@ internal static class RenderVoice
         // Note, we do not use &&= as it short-circuits!
         // And we don't do = either as wavetable might've marked it as inactive (end of sample)
         isActive &= envActive;
-        if (!isActive) chan.SynthCore.FreeVoice(voiceIndex);
+        if (!isActive) chan.SynthCore.Free(voice);
 
         // Pan and mix down the data
         var pan = 0;

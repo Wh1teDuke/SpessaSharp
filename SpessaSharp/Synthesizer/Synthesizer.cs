@@ -466,10 +466,13 @@ public sealed class Synthesizer
         if (FreeVoices.Count > 0)
         {
             var v = FreeVoices[^1];
+            Debug.Assert(v.Index == -1);
+            
             FreeVoices.RemoveAt(FreeVoices.Count - 1);
             Voices.Add(v);
             // Prevent this voice from being stolen
             v.Priority = int.MaxValue;
+            v.Index = Voices.Count - 1;
             return v;
         }
         
@@ -754,12 +757,13 @@ public sealed class Synthesizer
         for (var i = Voices.Count - 1; i >= 0; i--) 
         {
             var v = Voices[i];
+            Debug.Assert(v.Index != -1);
+            
             var ch = MidiChannels[v.Channel];
 
             // Send the voice to appropriate output
             var outputIndex = v.Channel % outputCount;
             ch.RenderVoice(
-                i,
                 v,
                 cTime,
                 outputs[outputIndex].Left,
@@ -826,11 +830,18 @@ public sealed class Synthesizer
         CurrentTime += sampleCount * _sampleTime;
     }
 
-    internal void FreeVoice(int index)
+    internal void Free(Voice voice)
     {
-        FreeVoices.Add(Voices[index]);
-        (Voices[^1], Voices[index]) = (Voices[index], Voices[^1]);
+        Debug.Assert(voice.Index != -1);
+
+        var i = voice.Index;
+        FreeVoices.Add(voice);
+        (Voices[^1], Voices[i]) = (Voices[i], Voices[^1]);
         Voices.RemoveAt(Voices.Count - 1);
+        voice.Index = -1;
+        
+        if (Voices.Count > 0 && i != Voices.Count)
+            Voices[i].Index = i;
     }
     
     /// <summary>Gets voices for a preset.</summary>
