@@ -11,6 +11,10 @@ nupkg/
 # Rider
 .idea
 
+# dotnet-trace
+*.nettrace
+*.json
+
 # User-specific files
 *.suo
 *.user
