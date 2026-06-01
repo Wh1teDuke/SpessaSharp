@@ -501,7 +501,7 @@ public sealed class Synthesizer
     /// <param name="force">If true, all notes are stopped immediately, otherwise they are stopped gracefully.</param>
     public void StopAllChannels(bool force) 
     {
-        Debug.WriteLine("Stop all received!");
+        SpessaLog.Info("Stop all received!");
         foreach (var channel in MidiChannels)
             channel.StopAllNotes(force);
     }
@@ -861,8 +861,7 @@ public sealed class Synthesizer
 
             if (voiceParams.Sample.GetAudioData().AsSpan().IsEmpty)
             {
-                Debug.WriteLine(
-                    $"[WARN] Discarding invalid sample: {sample.Name}");
+                SpessaLog.Warn($"Discarding invalid sample: {sample.Name}");
                 continue;
             }
 
@@ -1044,7 +1043,7 @@ public sealed class Synthesizer
         if (Math.Abs(_lastPriorityAssignmentTime - CurrentTime) < .0001f) 
             return;
 
-        Debug.WriteLine("[WARN] Polyphony exceeded, stealing voices");
+        SpessaLog.Info("[WARN] Polyphony exceeded, stealing voices");
         
         _lastPriorityAssignmentTime = CurrentTime;
         var cap = SystemParameters.VoiceCap;
