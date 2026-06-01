@@ -4,7 +4,7 @@ using SpessaSharp.SoundBank;
 namespace SpessaSharp.Synthesizer.Engine.Voice;
 
 /// <summary>Applies a volume envelope for a given voice. For performance reasons, cbAttenuationToGain is inlined here.</summary>
-public sealed class VolumeEnvelope
+public struct VolumeEnvelope
 {
     // Per SF2 definition
     private const int CB_SILENCE = 960;
@@ -345,6 +345,6 @@ public sealed class VolumeEnvelope
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private int TimecentsToSamples(int tc) =>
-        Math.Max(0, (int)Math.Floor(
+        Math.Max(0, (int)float.Floor(
             UnitConverter.TimecentsToSeconds(tc) * _sampleRate));
 }

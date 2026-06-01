@@ -112,7 +112,7 @@ public sealed class Voice
     public ModulationEnvelope ModEnv = new();
     
     /// <summary>Volume envelope.</summary>
-    public readonly VolumeEnvelope VolEnv;
+    public VolumeEnvelope VolEnv;
     
     /// <summary>Resonance offset, it is affected by the default resonant modulator</summary>
     public float ResonanceOffset;
@@ -228,9 +228,7 @@ public sealed class Voice
     public Voice(int sampleRate, int bufferSize)
     {
         WaveTable = new WaveTableOscillator
-        {
-            Type = GlobalSystemParameters.Default.InterpolationType,
-        };
+        { Type = GlobalSystemParameters.Default.InterpolationType, };
         
         VolEnv = new VolumeEnvelope(sampleRate, bufferSize);
         Filter = new LowpassFilter(sampleRate);
