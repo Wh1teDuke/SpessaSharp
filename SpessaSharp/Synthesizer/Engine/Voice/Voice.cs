@@ -109,7 +109,7 @@ public sealed class Voice
     public short[] ModulatorValues = new short[64];
     
     /// <summary>Modulation envelope.</summary>
-    public readonly ModulationEnvelope ModEnv = new();
+    public ModulationEnvelope ModEnv = new();
     
     /// <summary>Volume envelope.</summary>
     public readonly VolumeEnvelope VolEnv;

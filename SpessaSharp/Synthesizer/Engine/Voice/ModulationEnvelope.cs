@@ -6,7 +6,7 @@ namespace SpessaSharp.Synthesizer.Engine.Voice;
 /// <summary>
 /// Calculates the modulation envelope for the given voice
 /// </summary>
-public sealed class ModulationEnvelope
+public struct ModulationEnvelope()
 {
     private const float MODENV_PEAK = 1;
     // 1000 should be precise enough
