@@ -77,8 +77,9 @@ public struct VolumeEnvelope
 
     /// <summary> Starts the release phase in the envelope. </summary>
     /// <param name="voice">The voice this envelope belongs to.</param>
+    /// <returns>If the voice is off.</returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void StartRelease(Voice voice)
+    public bool StartRelease(Voice voice)
     {
         // Set the release start time to now
         _releaseStartTimeSamples = _sampleTime;
@@ -168,8 +169,7 @@ public struct VolumeEnvelope
         _releaseDuration = (int)(_releaseDuration * releaseFraction);
         // Voice may be off instantly
         // Testcase: mono mode
-        if (_releaseStartCb >= PERCEIVED_CB_SILENCE)
-            voice.IsActive = false;
+        return _releaseStartCb >= PERCEIVED_CB_SILENCE;
     }
 
     /// <summary> Initialize the volume envelope </summary>

@@ -99,46 +99,49 @@ public sealed class Synthesizer
     ///<summary>The available interpolation types of the synthesizer.</summary>
     public enum InterpolationType { Linear, NearestNeighbor, Hermite, }
     
-    /// <summary> Gain smoothing for rapid volume changes. Must be run EVERY SAMPLE</summary>
+    /// <summary>Gain smoothing for rapid volume changes. Must be run EVERY SAMPLE</summary>
     private const float GAIN_SMOOTHING_FACTOR = 0.01f;
 
-    /// <summary> Pan smoothing for rapid pan changes</summary>
+    /// <summary>Pan smoothing for rapid pan changes</summary>
     private const float PAN_SMOOTHING_FACTOR = 0.05f;
+
+    /// <summary>Unused voices of this synthesizer</summary>
+    public readonly List<Voice> FreeVoices;
     
-    /// <summary> Voices of this synthesizer, as a fixed voice pool.</summary>
+    /// <summary>Active Voices of this synthesizer</summary>
     public readonly List<Voice> Voices;
     
-    /// <summary> All MIDI channels of the synthesizer.</summary>
+    /// <summary>All MIDI channels of the synthesizer.</summary>
     public readonly List<MidiChannel> MidiChannels = new(64);
     
-    /// <summary> The maximum allowed buffer size to render.</summary>
+    /// <summary>The maximum allowed buffer size to render.</summary>
     public readonly int MaxBufferSize;
     
-    /// <summary> The buffer to use when rendering a voice.</summary>
+    /// <summary>The buffer to use when rendering a voice.</summary>
     public readonly float[] VoiceBuffer;
     
-    /// <summary> The insertion processor's left input buffer.</summary>
+    /// <summary>The insertion processor's left input buffer.</summary>
     public readonly float[] InsertionInputL;
 
-    /// <summary> The insertion processor's right input buffer.</summary>
+    /// <summary>The insertion processor's right input buffer.</summary>
     public readonly float[] InsertionInputR;
     
-    /// <summary> The reverb processor's input buffer.</summary>
+    /// <summary>The reverb processor's input buffer.</summary>
     public readonly float[] ReverbInput;
     
-    /// <summary> The chorus processor's input buffer.</summary>
+    /// <summary>The chorus processor's input buffer.</summary>
     public readonly float[] ChorusInput;
     
-    /// <summary> The reverb processor's input buffer.</summary>
+    /// <summary>The reverb processor's input buffer.</summary>
     public readonly float[] DelayInput;
     
-    /// <summary> Delay is not used outside SC-88+ MIDIs, this is an optimization.</summary>
+    /// <summary>Delay is not used outside SC-88+ MIDIs, this is an optimization.</summary>
     public bool DelayActive;
     
-    /// <summary> The sound bank manager, which manages all sound banks and presets.</summary>
+    /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public readonly SoundBankManager SoundBankManager;
     
-    /// <summary> Handles the custom key overrides: velocity and preset </summary>
+    /// <summary>Handles the custom key overrides: velocity and preset </summary>
     public readonly KeyModifier.Manager KeyModifierManager = new();
 
     public readonly int SampleRate;
@@ -218,9 +221,9 @@ public sealed class Synthesizer
     public void SystemExclusive(
         ReadOnlySpan<byte> syx, int channelOffset = 0) =>
             Engine.SystemExclusive.Execute(this, syx, channelOffset);
-    
+
     /// <summary> Current total amount of voices that are currently playing. </summary>
-    public int VoiceCount { get; private set; }
+    public int VoiceCount => Voices.Count;
     
     /// <summary> The synthesizer's reverb processor. </summary>
     public readonly Effect.ReverbProcessor ReverbProcessor;
@@ -351,6 +354,7 @@ public sealed class Synthesizer
         
         // Initialize voices
         var voiceCap = SystemParameters.VoiceCap;
+        FreeVoices = new List<Voice>(voiceCap);
         Voices = new List<Voice>(voiceCap);
         AllocateNewVoices(voiceCap);
     }
@@ -459,32 +463,27 @@ public sealed class Synthesizer
     /// <returns></returns>
     public Voice AssignVoice() 
     {
-        var voiceCap = SystemParameters.VoiceCap;
-        for (var i = 0; i < voiceCap; i++) 
+        if (FreeVoices.Count > 0)
         {
-            var v = Voices[i];
-            if (!v.IsActive) 
-            {
-                // Prevent this voice from being stolen
-                v.Priority = int.MaxValue;
-                return v;
-            }
+            var v = FreeVoices[^1];
+            FreeVoices.RemoveAt(FreeVoices.Count - 1);
+            Voices.Add(v);
+            // Prevent this voice from being stolen
+            v.Priority = int.MaxValue;
+            return v;
         }
         
         // No match, assign priorities
         if (SystemParameters.AutoAllocateVoices)
         {
-            SpessaLog.Info($"Allocating a new voice, total count {
-                SystemParameters.VoiceCap + 1}.");
+            var newVoiceCap = SystemParameters.VoiceCap + 1;
+            SpessaLog.Info(
+                $"Allocating a new voice, total count {newVoiceCap}.");
             
             // Allocate a new voice and return it
             AllocateNewVoices(1);
-            var v = Voices[^1];
-
-            Set((GlobalSystemParameter.Type.VoiceCap, ++voiceCap));
-            // Prevent this voice from being stolen
-            v.Priority = int.MaxValue;
-            return v;
+            Set((GlobalSystemParameter.Type.VoiceCap, newVoiceCap));
+            return AssignVoice();
         }
 
         AssignVoicePriorities();
@@ -532,6 +531,7 @@ public sealed class Synthesizer
     public void Destroy() 
     {
         Voices.Clear();
+        FreeVoices.Clear();
 
         foreach (var c in MidiChannels) c.Destroy();
 
@@ -747,22 +747,19 @@ public sealed class Synthesizer
         foreach (var c in MidiChannels)
             c.ClearVoiceCount();
         
-        VoiceCount = 0;
-        
         // Process voices
-        var cap = SystemParameters.VoiceCap;
         var outputCount = outputs.Length;
         var cTime = (float)CurrentTime;
         
-        for (var i = 0; i < cap; i++) 
+        for (var i = Voices.Count - 1; i >= 0; i--) 
         {
             var v = Voices[i];
             var ch = MidiChannels[v.Channel];
-            if (!v.IsActive) continue;
 
             // Send the voice to appropriate output
             var outputIndex = v.Channel % outputCount;
             ch.RenderVoice(
+                i,
                 v,
                 cTime,
                 outputs[outputIndex].Left,
@@ -772,7 +769,6 @@ public sealed class Synthesizer
 
             // Update voice count
             ch.VoiceCount++;
-            VoiceCount++;
         }
         
         // Process effects
@@ -828,6 +824,12 @@ public sealed class Synthesizer
 
         // Advance the time appropriately
         CurrentTime += sampleCount * _sampleTime;
+    }
+
+    internal void FreeVoice(int index)
+    {
+        FreeVoices.Add(Voices[index]);
+        Voices.RemoveAt(index);
     }
     
     /// <summary>Gets voices for a preset.</summary>
@@ -956,11 +958,11 @@ public sealed class Synthesizer
     internal void SetDelayMacro(int macro) =>
         Macro.SetDelay(this, macro);
 
-    /// <summary> Allocates new voices. </summary>
+    /// <summary>Allocates new voices.</summary>
     internal void AllocateNewVoices(int count)
     {
-        for (var i = 0; i < count; i++)
-            Voices.Add(new Voice(SampleRate, MaxBufferSize));
+        for (var _ = 0; _ < count; _++)
+            FreeVoices.Add(new Voice(SampleRate, MaxBufferSize));
     }
     
     private void ProcessMessageInternal(
@@ -1046,11 +1048,9 @@ public sealed class Synthesizer
         SpessaLog.Info("[WARN] Polyphony exceeded, stealing voices");
         
         _lastPriorityAssignmentTime = CurrentTime;
-        var cap = SystemParameters.VoiceCap;
 
-        for (var i = 0; i < cap; i++) 
+        foreach (var voice in Voices) 
         {
-            var voice = Voices[i];
             voice.Priority = 0;
             if (MidiChannels[voice.Channel].DrumChannel)
                 // Important

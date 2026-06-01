@@ -44,6 +44,7 @@ internal static class RenderVoice
     /// <param name="sampleCount"></param>
     public static void Execute(
         MidiChannel chan,
+        int voiceIndex,
         Voice.Voice voice,
         float timeNow,
         Span<float> outputL,
@@ -51,13 +52,15 @@ internal static class RenderVoice
         int startIndex,
         int sampleCount)
     {
+        var released = false;
+        
         // Check if release
         if (!voice.IsInRelease && // If not in release, check if the release time is
             timeNow >= voice.ReleaseStartTime) 
         {
             // Release the voice here
             voice.IsInRelease = true;
-            voice.VolEnv.StartRelease(voice);
+            released = voice.VolEnv.StartRelease(voice);
             voice.ModEnv.StartRelease(voice);
 
             // Looping mode 3
@@ -69,7 +72,11 @@ internal static class RenderVoice
         
         // Important sanity check, as we may disable the voice now
         // Testcase: mono mode with chords
-        if (!voice.IsActive) return;
+        if (released)
+        {
+            chan.SynthCore.FreeVoice(voiceIndex);
+            return;
+        }
 
         var core = chan.SynthCore;
         var sampleRate = core.SampleRate;
@@ -241,7 +248,8 @@ internal static class RenderVoice
                 IsInRelease: false,
             })
         {
-            voice.IsActive = voice.VolEnv.Process(sampleCount, gainTarget);
+            if (!voice.VolEnv.Process(sampleCount, gainTarget))
+                chan.SynthCore.FreeVoice(voiceIndex);
             return;
         }
         
@@ -249,7 +257,7 @@ internal static class RenderVoice
         var buffer = core.VoiceBuffer.AsSpan();
         
         // Wave table oscillator
-        voice.IsActive = voice.WaveTable.Process(
+        var isActive = voice.WaveTable.Process(
             sampleCount, voice.TuningRatio, buffer);
         
         ref var bufferRef = ref MemoryMarshal.GetReference(buffer);
@@ -355,8 +363,9 @@ internal static class RenderVoice
         
         // Note, we do not use &&= as it short-circuits!
         // And we don't do = either as wavetable might've marked it as inactive (end of sample)
-        voice.IsActive = voice.IsActive && envActive;
-        
+        isActive &= envActive;
+        if (!isActive) chan.SynthCore.FreeVoice(voiceIndex);
+
         // Pan and mix down the data
         var pan = 0;
         if (voice.OverridePan != 0)

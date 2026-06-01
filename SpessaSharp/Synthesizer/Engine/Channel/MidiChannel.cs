@@ -339,13 +339,12 @@ public sealed class MidiChannel: ISf2Channel
             var vc = 0;
             if (VoiceCount > 0)
             {
-                foreach (var v in SynthCore.Voices) 
+                for (var i = SynthCore.Voices.Count - 1; i >= 0; i--)
                 {
-                    if (v.Channel == Channel && v.IsActive) 
-                    {
-                        v.IsActive = false;
-                        if (++vc >= VoiceCount) break; // We already checked all the voices
-                    }
+                    if (SynthCore.Voices[i].Channel != Channel) continue;
+
+                    SynthCore.FreeVoice(i);
+                    if (++vc >= VoiceCount) break; // We already checked all the voices
                 }
             }
 
@@ -358,13 +357,12 @@ public sealed class MidiChannel: ISf2Channel
             if (VoiceCount > 0)
             {
                 var cTime = (float)SynthCore.CurrentTime;
-                foreach (var v in SynthCore.Voices) 
+                foreach (var v in SynthCore.Voices)
                 {
-                    if (v.Channel == Channel && v.IsActive) 
-                    {
-                        v.ReleaseVoice(cTime);
-                        if (++vc >= VoiceCount) break; // We already checked all the voices
-                    }
+                    if (v.Channel != Channel) continue;
+
+                    v.ReleaseVoice(cTime);
+                    if (++vc >= VoiceCount) break; // We already checked all the voices
                 }
             }
         }
@@ -445,13 +443,14 @@ public sealed class MidiChannel: ISf2Channel
     /// <param name="startIndex"></param>
     /// <param name="sampleCount"></param>
     internal void RenderVoice(
-        Voice.Voice voice, 
+        int voiceIndex,
+        Voice.Voice voice,
         float timeNow,
         Span<float> outputL,
         Span<float> outputR,
         int startIndex,
         int sampleCount) => Engine.Channel.RenderVoice.Execute(
-            this, voice, timeNow, outputL, outputR, startIndex, sampleCount);
+        this, voiceIndex, voice, timeNow, outputL, outputR, startIndex, sampleCount);
 
     internal void ClearVoiceCount() => VoiceCount = 0;
 
@@ -507,20 +506,17 @@ public sealed class MidiChannel: ISf2Channel
         var vc = 0;
         if (VoiceCount > 0)
         {
-            foreach (var v in SynthCore.Voices) 
+            foreach (var v in SynthCore.Voices)
             {
-                if (v.IsActive && 
-                    v.Channel == Channel && 
-                    v.MidiNote == midiNote)
-                {
-                    v.Pressure = pressure;
-                    ComputeModulators(
-                        v, 
-                        0, 
-                        Modulator.Source.ID(
-                            Modulator.Source.ControllerSource.PolyPressure));
-                    if (++vc >= VoiceCount) break; // We already checked all the voices
-                }
+                if (v.Channel != Channel || v.MidiNote != midiNote) continue;
+
+                v.Pressure = pressure;
+                ComputeModulators(
+                    v, 
+                    0, 
+                    Modulator.Source.ID(
+                        Modulator.Source.ControllerSource.PolyPressure));
+                if (++vc >= VoiceCount) break; // We already checked all the voices
             }
         }
 
@@ -624,17 +620,14 @@ public sealed class MidiChannel: ISf2Channel
         if (VoiceCount <= 0) return;
 
         var cTime = (float)SynthCore.CurrentTime;
-        foreach (var v in SynthCore.Voices) 
+        foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel == Channel &&
-                v.IsActive &&
-                v.MidiNote == midiNote) 
-            {
-                v.OverrideReleaseVolEnv = releaseTime; // Set release to be very short
-                v.IsInRelease = false; // Force release again
-                v.ReleaseVoice(cTime);
-                if (++vc >= VoiceCount) break; // We already checked all the voices
-            }
+            if (v.Channel != Channel || v.MidiNote != midiNote) continue;
+
+            v.OverrideReleaseVolEnv = releaseTime; // Set release to be very short
+            v.IsInRelease = false; // Force release again
+            v.ReleaseVoice(cTime);
+            if (++vc >= VoiceCount) break; // We already checked all the voices
         }
     }
 
@@ -679,7 +672,7 @@ public sealed class MidiChannel: ISf2Channel
 
         foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel != Channel || !v.IsActive) continue;
+            if (v.Channel != Channel) continue;
 
             v.Generators[(int)gen] = value;
             ComputeModulators(v);
@@ -703,7 +696,7 @@ public sealed class MidiChannel: ISf2Channel
         if (VoiceCount <= 0) return;
         foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel != Channel || !v.IsActive) continue;
+            if (v.Channel != Channel) continue;
             ComputeModulators(v);
             if (++vc >= VoiceCount) break; // We already checked all the voices
         }
@@ -752,13 +745,12 @@ public sealed class MidiChannel: ISf2Channel
         
         var vc = 0;
 
-        foreach (var v in SynthCore.Voices) 
+        foreach (var v in SynthCore.Voices)
         {
-            if (v.Channel == Channel && v.IsActive) 
-            {
-                ComputeModulators(v, sourceUsesCC, sourceIndex);
-                if (++vc >= VoiceCount) break; // We already checked all the voices
-            }
+            if (v.Channel != Channel) continue;
+
+            ComputeModulators(v, sourceUsesCC, sourceIndex);
+            if (++vc >= VoiceCount) break; // We already checked all the voices
         }
     }
     

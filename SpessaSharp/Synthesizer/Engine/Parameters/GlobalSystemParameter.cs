@@ -158,17 +158,17 @@ public static class GlobalSystemParameters
                 // Infinity is not allowed
                 var cap = Math.Min(param.AsInt, 1_000_000);
                 synth.SystemParameters[(int)param.PType] =
-                    GlobalSystemParameter.Of(
-                        GlobalSystemParameter.Type.VoiceCap, cap);
+                    (GlobalSystemParameter.Type.VoiceCap, cap);
                 
                 // Disable all voices after cap
-                for (var i = cap; i < synth.Voices.Count; i++)
-                    synth.Voices[i].IsActive = false;
+                for (var i = synth.Voices.Count - 1; i >= cap; i--)
+                    synth.FreeVoice(i);
 
-                if (cap > synth.Voices.Count) 
+                var total = synth.Voices.Count + synth.FreeVoices.Count;
+                if (cap > total) 
                 {
-                    Debug.WriteLine($"[WARN] Allocating {cap - synth.Voices.Count} new voices!");
-                    synth.AllocateNewVoices(cap - synth.Voices.Count);
+                    SpessaLog.Warn($"Allocating {cap - total} new voices!");
+                    synth.AllocateNewVoices(cap - total);
                 }
                 break;
             

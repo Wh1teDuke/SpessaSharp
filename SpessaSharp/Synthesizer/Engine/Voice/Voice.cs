@@ -120,9 +120,6 @@ public sealed class Voice
     /// <summary>Priority of the voice. Used for stealing.</summary>
     public int Priority;
     
-    /// <summary>If the voice is currently active. If not, it can be used.</summary>
-    public bool IsActive;
-    
     /// <summary> Indicates if the voice has rendered at least one buffer. Used for exclusive class to prevent killing voices set on the same note. </summary>
     public bool HasRendered;
     
@@ -261,7 +258,6 @@ public sealed class Voice
     {
         // Remember to add new values here!!!
         // Clear state
-        IsActive = true;
         IsInRelease = false;
         HasRendered = false;
         IsHeld = false;

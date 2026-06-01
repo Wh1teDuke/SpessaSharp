@@ -43,7 +43,6 @@ internal static class NoteOff
             foreach (var v in synth.Voices)
             {
                 if (v.Channel == chan.Channel &&
-                    v.IsActive &&
                     v.MidiNote == midiNote &&
                     v.NoteID == noteID &&
                     !v.IsInRelease) 

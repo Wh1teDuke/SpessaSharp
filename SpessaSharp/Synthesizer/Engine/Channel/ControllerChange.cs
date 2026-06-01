@@ -179,15 +179,14 @@ internal static class ControllerChange
                     if (chan.VoiceCount > 0)
                     {
                         var cTime = (float)chan.SynthCore.CurrentTime;
-                        foreach (var v in chan.SynthCore.Voices) 
+                        foreach (var v in chan.SynthCore.Voices)
                         {
-                            if (v.Channel == chan.Channel &&
-                                v is { IsActive: true, IsHeld: true }) 
-                            {
-                                v.IsHeld = false;
-                                v.ReleaseVoice(cTime);
-                                if (++vc >= chan.VoiceCount) break; // We already checked all the voices
-                            }
+                            if (v.Channel != chan.Channel ||
+                                v is not { IsHeld: true }) continue;
+                            
+                            v.IsHeld = false;
+                            v.ReleaseVoice(cTime);
+                            if (++vc >= chan.VoiceCount) break; // We already checked all the voices
                         }
                     }
                 }

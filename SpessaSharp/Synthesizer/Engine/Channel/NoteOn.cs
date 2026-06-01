@@ -249,8 +249,8 @@ internal static class NoteOn
 
             if (voice.Modulators.Count > voice.ModulatorValues.Length) 
             {
-                Debug.WriteLine(
-                    $"[WARN] {voice.Modulators.Count
+                SpessaLog.Warn(
+                    $"{voice.Modulators.Count
                     } modulators! Increasing modulatorValues table.");
                 Array.Resize(ref voice.ModulatorValues, voice.Modulators.Count);
                 voice.ModulatorValues.AsSpan().Clear();
@@ -281,8 +281,7 @@ internal static class NoteOn
                     var cTime = (float)synth.CurrentTime;
                     foreach (var v in synth.Voices) 
                     {
-                        if (v.IsActive &&
-                            v.Channel == chan.Channel &&
+                        if (v.Channel == chan.Channel &&
                             v.ExclusiveClass == voice.ExclusiveClass &&
                             // Only voices created in a different quantum
                             v.HasRendered) 
