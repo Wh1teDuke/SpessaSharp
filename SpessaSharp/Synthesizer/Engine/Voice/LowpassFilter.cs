@@ -102,8 +102,8 @@ public struct LowpassFilter
             UnitConverter.CbAttenuationToGain(-qCb));
 
         var w = (2 * MathF.PI * cutoffHz) / _sampleRate;
-        var cosw = float.Cos(w);
-        var alpha = float.Sin(w) / (2 * resonanceGain);
+        var (sinw, cosw) = float.SinCos(w);
+        var alpha = sinw / (2 * resonanceGain);
 
         var b1 = (1 - cosw) * qGain;
         var b0 = b1 / 2;
