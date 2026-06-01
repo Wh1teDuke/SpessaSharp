@@ -25,8 +25,15 @@ public readonly record struct StatusByte(byte Byte)
     public override string ToString() => $"StatusByte({Byte:X})";
 
     public static StatusByte Of(MidiMessage.Type type) => new (type.ID());
+    
+    public static bool operator ==(StatusByte sb, MidiMessage.Type type) =>
+        sb.Is(type);
+    public static bool operator !=(StatusByte sb, MidiMessage.Type type) =>
+        !(sb == type);
+
     public static implicit operator StatusByte(byte b) => new (b);
-    public static implicit operator StatusByte(MidiMessage.Type type) => Of(type);
+    public static implicit operator StatusByte(MidiMessage.Type type) =>
+        Of(type);
 }
 
 /// <summary>

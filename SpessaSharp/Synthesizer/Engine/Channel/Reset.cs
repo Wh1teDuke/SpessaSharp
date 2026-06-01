@@ -2,7 +2,6 @@ using System.Collections.Frozen;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
-using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;
 

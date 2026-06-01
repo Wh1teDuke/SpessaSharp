@@ -585,7 +585,7 @@ public sealed class Midi
     /// <remarks>This modifies the MIDI sequence <b>in-place</b>.</remarks>
     /// </summary>
     /// <param name="opts">Options to modify the midi</param>
-    public void Modify(MidiModifyOptions opts) =>
+    public void Modify(MidiEditor.Options opts) =>
         MidiEditor.Modify(this, opts);
 
     /// <summary>
@@ -804,11 +804,11 @@ public sealed class Midi
                 }
 
                 var idx = _eventIndexes[trackNum];
+                _prevTrackNum = trackNum;
                 Current = new Entry(
                     ref CollectionsMarshal.AsSpan(track)[idx], 
                     trackNum, 
                     _eventIndexes);
-                _prevTrackNum = trackNum;
                 return true;
             }
 

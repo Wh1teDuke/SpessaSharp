@@ -4,8 +4,10 @@
 
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
+
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
+
 using SpessaSharp.Utils;
 
 if (args.Length != 2)
@@ -19,10 +21,13 @@ var midi = Midi.From(mid);
 
 SpessaLog.SetLogLevel(true, true);
 
-var channels = new Dictionary<int, ClearableParameter<ChannelModification>>
+var channels = new Dictionary<
+    int, 
+    MidiEditor.Parameter<MidiEditor.ChannelModification>>
 {
-    [0] = ClearableParameter<ChannelModification>.OfReplace(
-        new ChannelModification
+    [0] = MidiEditor
+        .Parameter<MidiEditor.ChannelModification>.OfReplace(
+        new MidiEditor.ChannelModification
         {
             // Test these as they are relative
             KeyShift = -1,
@@ -43,15 +48,16 @@ for (var i = 1; i < 16; i++)
     // -100 to 99 cents
     var tune = float.Floor(random.NextSingle() * 200) - 100;
     Console.WriteLine($"Testing relative tuning ONLY on {i}. Cents: {tune}");
-    channels[i] = ClearableParameter<ChannelModification>.OfReplace(
-        new ChannelModification
+    channels[i] = MidiEditor
+        .Parameter<MidiEditor.ChannelModification>.OfReplace(
+        new MidiEditor.ChannelModification
         {
             KeyShift = 0,
             FineTune = tune,
         });
 }
 
-midi.Modify(new MidiModifyOptions
+midi.Modify(new MidiEditor.Options
 {
     MidiParams = InitGlobalMods(
         (GlobalMidiParameter.Type.KeyShift, -2),
@@ -67,42 +73,32 @@ return;
 
 Dictionary<
     ChannelMidiParameter.Type,
-    ClearableParameter<ChannelMidiParameter>> InitChanMods(
+    MidiEditor.Parameter<ChannelMidiParameter>> InitChanMods(
     params ReadOnlySpan<ChannelMidiParameter> args)
 {
     var result = new Dictionary<
-        ChannelMidiParameter.Type,
-        ClearableParameter<ChannelMidiParameter>>();
+        ChannelMidiParameter.Type, 
+        MidiEditor.Parameter<ChannelMidiParameter>>();
 
     foreach (var arg in args)
-        Add(arg);
+        result[arg.PType] = MidiEditor.Parameter<
+            ChannelMidiParameter>.OfReplace(arg);
     
     return result;
-
-    void Add(ChannelMidiParameter parameter)
-    {
-        result[parameter.PType] = ClearableParameter<
-            ChannelMidiParameter>.OfReplace(parameter);
-    }
 }
 
 Dictionary<
     GlobalMidiParameter.Type,
-    ClearableParameter<GlobalMidiParameter>> InitGlobalMods(
+    MidiEditor.Parameter<GlobalMidiParameter>> InitGlobalMods(
     params ReadOnlySpan<GlobalMidiParameter> args)
 {
     var result = new Dictionary<
-        GlobalMidiParameter.Type,
-        ClearableParameter<GlobalMidiParameter>>();
+        GlobalMidiParameter.Type, 
+        MidiEditor.Parameter<GlobalMidiParameter>>();
 
     foreach (var arg in args)
-        Add(arg);
+        result[arg.PType] = MidiEditor.Parameter<
+            GlobalMidiParameter>.OfReplace(arg);
     
     return result;
-
-    void Add(GlobalMidiParameter parameter)
-    {
-        result[parameter.PType] = ClearableParameter<
-            GlobalMidiParameter>.OfReplace(parameter);
-    }
 }

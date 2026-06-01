@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.ComponentModel.DataAnnotations.Schema;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Parameters;
@@ -6,142 +6,148 @@ using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI.Utils;
 
-
-/// <summary>
-/// Allows easy editing of the file by removing channels, changing programs,
-/// changing controllers and transposing channels. Note that this modifies the MIDI in-place.
-/// </summary>
-/// <param name="Channels">
-/// The channel changes.<br/>
-/// - Key: the MIDI channel number.<br/>
-/// - value:<br/>
-///   - <b>Clear</b> - all MIDI messages for this channel, such as Note On are removed.<br/>
-///   - <b>ChannelModification</b> - modifies the channel.
-/// </param>
-/// <param name="DrumSetupParams">
-/// The drum parameter changes.<br/>
-/// - <b>Clear</b> - all existing drum change MIDI messages are removed.<br/>
-/// - <b>Null</b> - not yet implemented.
-/// </param>
-/// <param name="MidiParams">
-/// The global MIDI parameter changes.
-/// <list type="bullet">
-/// <item><description>Key: the MIDI parameter name.</description></item>
-/// <item><description>value:
-/// <list type="bullet">
-/// <item><description>Clear - all changes for this parameter are removed.</description></item>
-/// <item><description>Specific value - clear + sets the new parameter at the start of the song, effectively locking them to the set value.</description></item>
-/// </list></description></item>
-/// </list>
-/// 
-/// Please note that <b>clear</b> is not supported for the <b>system</b> parameter,
-/// as it may cause issues with the MIDI system detection and reset insertion.
-/// </param>
-/// <param name="ReverbParams">
-/// The desired GS reverb parameters.<br/>
-/// - <b>Clear</b> - all existing parameter change MIDI messages are removed.<br/>
-/// - <b>ReverbProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
-/// </param>
-/// <param name="ChorusParams">
-/// The GS chorus parameters.<br/>
-/// - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br/>
-/// - <b>ChorusProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
-/// </param>
-/// <param name="DelayParams">
-/// The GS delay parameters.<br/>
-/// - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br/>
-/// - <b>DelayProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
-/// </param>
-/// <param name="InsertionParams">
-/// The GS Insertion Effect parameters.<br/>
-/// - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br/>
-/// - <b>InsertionProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
-/// </param>
-public readonly record struct MidiModifyOptions(
-    Dictionary<int, ClearableParameter<ChannelModification>>? Channels,
-    ClearableParameter<object>? DrumSetupParams,
-    Dictionary<
-        GlobalMidiParameter.Type,
-        ClearableParameter<GlobalMidiParameter>>? MidiParams,
-    ClearableParameter<Effect.ReverbProcessorSnapshot>? ReverbParams,
-    ClearableParameter<Effect.ChorusProcessorSnapshot>? ChorusParams,
-    ClearableParameter<Effect.DelayProcessorSnapshot>? DelayParams,
-    ClearableParameter<Effect.InsertionProcessorSnapshot>? InsertionParams);
-
-/// <summary>
-/// Represents a value that means "clear this parameter" instead of "replace this parameter with".
-/// Essentially:<br/>
-/// - Null - no change.<br/>
-/// - Clear - clear all changes of this parameter from the MIDI file.<br/>
-/// - Replace - clear all changes of this parameter from the MIDI file and add T.
-/// </summary>
-/// <typeparam name="T"></typeparam>
-public abstract record ClearableParameter<T>
+public static class MidiEditor
 {
-    internal sealed record Null : ClearableParameter<T>;
-    internal sealed record Replace(T Value) : ClearableParameter<T>;
-    internal sealed record Clear: ClearableParameter<T>;
 
-    public static ClearableParameter<T> OfNull() => new Null();
-    public static ClearableParameter<T> OfClear() => new Clear();
-    public static ClearableParameter<T> OfReplace(T value) => 
-        new Replace(value);
-}
-
-/// <summary>
-/// </summary>
-public sealed class ChannelModification
-{
     /// <summary>
-    /// All controllers that should be modified for this channel.<br/>
-    /// - Key: the MIDI controller number.<br/>
+    /// Allows easy editing of the file by removing channels, changing programs,
+    /// changing controllers and transposing channels. Note that this modifies the MIDI in-place.
+    /// </summary>
+    /// <param name="Channels">
+    /// The channel changes.<br/>
+    /// - Key: the MIDI channel number.<br/>
     /// - value:<br/>
-    ///   - Clear - all controller changes for this controller are removed.<br/>
-    ///   - Int - clear + sets the new controller at the start of the song, effectively locking them to the set value.
-    /// </summary>
-    public Dictionary<Midi.CC, ClearableParameter<int>>? Controllers;
-    
-    /// <summary>
-    /// The new program of this channel.<br/>
-    /// - Clear - all program changes for this channel are removed.<br/>
-    /// - MidiPatch - clear + sets the new patch according to the MIDI system at the start of the sequence.
-    /// </summary>
-    public ClearableParameter<MidiPatch>? Patch;
-
-    /// <summary>
-    /// The new MIDI parameters of this channel.
+    ///   - <b>Clear</b> - all MIDI messages for this channel, such as Note On are removed.<br/>
+    ///   - <b>ChannelModification</b> - modifies the channel.
+    /// </param>
+    /// <param name="DrumSetupParams">
+    /// The drum parameter changes.<br/>
+    /// - <b>Clear</b> - all existing drum change MIDI messages are removed.<br/>
+    /// - <b>Null</b> - not yet implemented.
+    /// </param>
+    /// <param name="MidiParams">
+    /// The global MIDI parameter changes.
     /// <list type="bullet">
     /// <item><description>Key: the MIDI parameter name.</description></item>
     /// <item><description>value:
     /// <list type="bullet">
     /// <item><description>Clear - all changes for this parameter are removed.</description></item>
-    /// <item><description>Specific Value - clear + sets the new parameter at the start of the song, effectively locking them to the set value.</description></item>
+    /// <item><description>Specific value - clear + sets the new parameter at the start of the song, effectively locking them to the set value.</description></item>
+    /// </list></description></item>
     /// </list>
-    /// </description></item>
-    /// </list>
-    /// </summary>
-    public Dictionary<
-        ChannelMidiParameter.Type,
-        ClearableParameter<ChannelMidiParameter>>? MidiParameters;
+    /// 
+    /// Please note that <b>clear</b> is not supported for the <b>system</b> parameter,
+    /// as it may cause issues with the MIDI system detection and reset insertion.
+    /// </param>
+    /// <param name="ReverbParams">
+    /// The desired GS reverb parameters.<br/>
+    /// - <b>Clear</b> - all existing parameter change MIDI messages are removed.<br/>
+    /// - <b>ReverbProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    /// </param>
+    /// <param name="ChorusParams">
+    /// The GS chorus parameters.<br/>
+    /// - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br/>
+    /// - <b>ChorusProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    /// </param>
+    /// <param name="DelayParams">
+    /// The GS delay parameters.<br/>
+    /// - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br/>
+    /// - <b>DelayProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    /// </param>
+    /// <param name="InsertionParams">
+    /// The GS Insertion Effect parameters.<br/>
+    /// - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br/>
+    /// - <b>InsertionProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    /// </param>
+    public readonly record struct Options(
+        Dictionary<int, Parameter<ChannelModification>>? Channels,
+        Parameter<object>? DrumSetupParams,
+        Dictionary<
+            GlobalMidiParameter.Type,
+            Parameter<GlobalMidiParameter>>? MidiParams,
+        Parameter<Effect.ReverbProcessorSnapshot>? ReverbParams,
+        Parameter<Effect.ChorusProcessorSnapshot>? ChorusParams,
+        Parameter<Effect.DelayProcessorSnapshot>? DelayParams,
+        Parameter<Effect.InsertionProcessorSnapshot>? InsertionParams);
 
     /// <summary>
-    /// The channel key shift in semitones. Note on/off numbers are shifted.
-    /// This differs from the `keyShift` MIDI Parameter in that it shifts the actual note numbers,
-    /// and doesn't delete or overwrite existing shifts.
+    /// Represents a value that means "clear this parameter" instead of "replace this parameter with".
+    /// Essentially:
+    /// <list type="bullet">
+    /// <item><description><b>Clear</b> - clear all changes of this parameter from the MIDI file.</description></item>
+    /// <item><description><b>Replace</b> - clear all changes of this parameter from the MIDI file and add T.</description></item>
+    /// </list>
     /// </summary>
-    public int? KeyShift;
+    public abstract record Parameter<T>
+    {
+        internal sealed record Clear: Parameter<T>;
+        internal sealed record Replace(T Value) : Parameter<T>;
+
+        public static Parameter<T> OfClear() => new Clear();
+        public static Parameter<T> OfReplace(T value) => new Replace(value);
+        
+        public static implicit operator Parameter<T>(T t) =>
+            OfReplace(t);
+    }
+
+    /// <summary>
+    /// </summary>
+    public sealed class ChannelModification
+    {
+        /// <summary>
+        /// All controllers that should be modified for this channel.
+        /// <list type="bullet">
+        /// <item><description><b>Key</b>: the MIDI controller number.</description></item>
+        /// <item><description><b>Value</b>:
+        /// <list type="bullet">
+        /// <item><description><b>Clear</b> - all controller changes for this controller are removed.</description></item>
+        /// <item><description><b>Int</b> - clear + sets the new controller at the start of the song, effectively locking them to the set value.</description></item>
+        /// </list></description></item>
+        /// </list>
+        /// </summary>
+        public Dictionary<Midi.CC, Parameter<int>>? Controllers;
+        
+        /// <summary>
+        /// The new program of this channel.
+        /// <list type="bullet">
+        /// <item><description><b>Clear</b> - all program changes for this channel are removed.</description></item>
+        /// <item><description><b>MidiPatch</b> - clear + sets the new patch according to the MIDI system at the start of the sequence.</description></item>
+        /// </list>
+        /// </summary>
+        public Parameter<MidiPatch>? Patch;
+
+        /// <summary>
+        /// The new MIDI parameters of this channel.
+        /// <list type="bullet">
+        /// <item><description><b>Key</b>: the MIDI parameter name.</description></item>
+        /// <item><description><b>Value</b>:
+        /// <list type="bullet">
+        /// <item><description><b>Clear</b> - all changes for this parameter are removed.</description></item>
+        /// <item><description><b>Specific Value</b> - clear + sets the new parameter at the start of the song, effectively locking them to the set value.</description></item>
+        /// </list>
+        /// </description></item>
+        /// </list>
+        /// </summary>
+        public Dictionary<
+            ChannelMidiParameter.Type,
+            Parameter<ChannelMidiParameter>>? MidiParameters;
+
+        /// <summary>
+        /// The channel key shift in semitones. Note on/off numbers are shifted.
+        /// This differs from the `keyShift` MIDI Parameter in that it shifts the actual note numbers,
+        /// and doesn't delete or overwrite existing shifts.
+        /// </summary>
+        public int? KeyShift;
+        
+        /// <summary>
+        /// The channel tuning in cents. Tuned using RPN Fine Tune. Range is <b>[-100; 99.986]</b> cents.
+        /// This differs from the `fineTune` MIDI Parameter
+        /// in that it is relative to the tuning applied in the MIDI file,
+        /// and it does not overwrite it.
+        /// </summary>
+        public float? FineTune;
+    }    
     
-    /// <summary>
-    /// The channel tuning in cents. Tuned using RPN Fine Tune. Range is <b>[-100; 99.986]</b> cents.
-    /// This differs from the `fineTune` MIDI Parameter
-    /// in that it is relative to the tuning applied in the MIDI file,
-    /// and it does not overwrite it.
-    /// </summary>
-    public float? FineTune;
-}
-
-internal static class MidiEditor
-{
     private static readonly Effect.ReverbProcessorSnapshot ReverbAddressMap = new()
     {
         Character = 0x31,
@@ -179,7 +185,7 @@ internal static class MidiEditor
     };
 
     /// <summary> Internal tracking interface </summary>
-    public sealed class ChannelStatus
+    private sealed class ChannelStatus
     {
         /// <summary>Tracks if the channel already had its first note on</summary>
         public bool IsFirstNoteOn;
@@ -187,12 +193,8 @@ internal static class MidiEditor
         public ParamTracker Param;
         /// <summary>
         /// Some MIDIs send param MSB once and then set via LSB only, like:<br/>
-        /// MSB,<br/>
-        /// LSB,<br/>
-        /// Data,<br/>
-        /// LSB,<br/>
-        /// Data,<br/>
-        /// And even though it violates MIDI 1.0, it works...
+        /// MSB, LSB, Data, LSB, Data,<br/>
+        /// And even though it violates MIDI 1.0, it works ...
         /// </summary>
         public (bool LSB, bool MSB, bool Data) ClearedParams;
         public int KeyShift;
@@ -214,49 +216,52 @@ internal static class MidiEditor
     /// </summary>
     /// <param name="midi"></param>
     /// <param name="opts"></param>
-    public static void Modify(Midi midi, MidiModifyOptions opts)
+    internal static void Modify(Midi midi, Options opts)
     {
-        Debug.WriteLine("Applying changes to the MIDI file...");
+        SpessaLog.Info("Applying changes to the MIDI file...");
         
-        Debug.WriteLine($"Desired channel changes: {opts.Channels}");
-        Debug.WriteLine($"Desired reverb parameters: {opts.ReverbParams}");
-        Debug.WriteLine($"Desired chorus parameters: {opts.ChorusParams}");
-        Debug.WriteLine($"Desired delay parameters: {opts.DelayParams}");
-        Debug.WriteLine($"Desired insertion parameters: {opts.InsertionParams}");
+        SpessaLog.Info($"Desired channel changes: {opts.Channels}");
+        SpessaLog.Info($"Desired reverb parameters: {opts.ReverbParams}");
+        SpessaLog.Info($"Desired chorus parameters: {opts.ChorusParams}");
+        SpessaLog.Info($"Desired delay parameters: {opts.DelayParams}");
+        SpessaLog.Info($"Desired insertion parameters: {opts.InsertionParams}");
         
         // Optimizations
-        var clearDrumParams = opts.DrumSetupParams is ClearableParameter<object>.Clear;
+        var clearDrumParams = opts.DrumSetupParams is Parameter<object>.Clear;
         // Track only channels to clear
         var clearedChannels = new HashSet<int>();
         // Track only channels to change here
         var channelChanges = new Dictionary<int, ChannelModification>();
 
-        if (opts.Channels is { } channels)
+        foreach (var (channel, ch) in opts.Channels ?? [])
         {
-            foreach (var (channel, ch) in channels)
+            switch (ch)
             {
-                if (ch is ClearableParameter<ChannelModification>.Clear)
+                case Parameter<ChannelModification>.Clear:
                     clearedChannels.Add(channel);
-                else
-                    channelChanges[channel] = 
-                        ((ClearableParameter<
-                            ChannelModification>.Replace)ch).Value;
+                    break;
+                case Parameter<ChannelModification>.Replace(var value):
+                    channelChanges[channel] = value;
+                    break;
             }
         }
         
         // Go through all events one by one
         Midi.System? system = Midi.System.GS;
-        if (opts.MidiParams?.TryGetValue(
-            GlobalMidiParameter.Type.MidiSystem, out var parameter) ?? false)
         {
-            system = parameter switch
+            if (opts.MidiParams?.TryGetValue(
+                GlobalMidiParameter.Type.MidiSystem,
+                out var parameter) ?? false)
             {
-                ClearableParameter<GlobalMidiParameter>.Clear =>
-                    null,
-                ClearableParameter<GlobalMidiParameter>.Replace replace =>
-                    replace.Value.AsMidiSystem,
-                _ => system
-            };
+                system = parameter switch
+                {
+                    Parameter<GlobalMidiParameter>.Clear =>
+                        null,
+                    Parameter<GlobalMidiParameter>.Replace(var value) =>
+                        value.AsMidiSystem,
+                    _ => system
+                };
+            }
         }
 
         var addedReset = false;
@@ -295,6 +300,10 @@ internal static class MidiEditor
             };
         }
 
+        // To avoid messing with MidiMessage pointer, apply insertions at the end.
+        // For events deletion, it is the last thing done and should be safe.
+        var toInsert = new List<(Track, MidiMessage, int)>();
+
         foreach (var entry in midi.Iterate())
         {
             ref var e = ref entry.Message;
@@ -306,7 +315,7 @@ internal static class MidiEditor
 
             var portOffset = midiPortChannelOffsets.GetValueOrDefault(
                 midiPorts[trackNum], 0);
-            if (e.StatusByte.Is(MidiMessage.Type.MidiPort))
+            if (e.StatusByte == MidiMessage.Type.MidiPort)
             {
                 AssignMidiPort(trackNum, e.Data[0]);
                 continue;
@@ -322,7 +331,7 @@ internal static class MidiEditor
             var midiChannel = e.StatusByte.Channel;
             var channel = midiChannel + portOffset;
             // Clear channel?
-            if (!e.StatusByte.Is(MidiMessage.Type.SystemExclusive) &&
+            if (e.StatusByte != MidiMessage.Type.SystemExclusive &&
                 clearedChannels.Contains(channel))
             {
                 DeleteThisEvent();
@@ -330,9 +339,11 @@ internal static class MidiEditor
             }
             
             var chanStatus = channelStatus[channel];
-            ChannelModification? optChanChange = null;
-            if (channelChanges.TryGetValue(channel, out var val))
-                optChanChange = val;
+            ChannelModification? channelChange = null;
+            {
+                if (channelChanges.TryGetValue(channel, out var val))
+                    channelChange = val;
+            }
 
             // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
             switch (MidiMessage.TypeOf(status))
@@ -340,7 +351,7 @@ internal static class MidiEditor
                 case MidiMessage.Type.NoteOn:
                 {
                     // Make sure that we want to modify this channel at all
-                    if (optChanChange is not { } chanChange) break;
+                    if (channelChange is null) break;
 
                     // Is it first?
                     if (chanStatus.IsFirstNoteOn)
@@ -354,60 +365,53 @@ internal static class MidiEditor
                         // And since we use splice,
                         // Controllers get added first, then programs before them.
                         // Now add controllers
-                        if (chanChange.Controllers is { } controllers)
+                        if (channelChange.Controllers is { } controllers)
                         {
                             foreach (var (cc, v) in controllers)
                             {
-                                if (v is not ClearableParameter<int>.Replace repl)
+                                if (v is not Parameter<int>.Replace(var value))
                                     continue;
 
                                 var ccChange = MidiMessage.ControllerChange(
-                                    e.Ticks, midiChannel, cc, repl.Value);
+                                    e.Ticks, midiChannel, cc, value);
                                 AddEventBefore(ccChange);
                             }
                         }
+
+                        float newTune;
                         
                         // Apply relative tuning (`fineTune`)
-                        if (chanChange.MidiParameters is {} midiParameters &&
-                            midiParameters.TryGetValue(
-                            ChannelMidiParameter.Type.FineTune, 
-                            out var clearableParameter) &&
-                            clearableParameter is
-                            ClearableParameter<ChannelMidiParameter>.Replace replace)
+                        if (channelChange.MidiParameters?.GetValueOrDefault(
+                            ChannelMidiParameter.Type.FineTune) is
+                            Parameter<ChannelMidiParameter>.Replace(
+                            { AsFloat: var ft }))
                         {
                             // Add the relative tuning to the absolute MIDI param
-                            var newTune =
-                                chanStatus.FineTune +
-                                replace.Value.AsFloat;
-                            chanStatus.CurrentKeyShift = (int)Math.Truncate(
-                                newTune / 100);
-                            midiParameters[ChannelMidiParameter.Type.FineTune] = 
-                                ClearableParameter<ChannelMidiParameter>.OfReplace(
-                                    (ChannelMidiParameter.Type.FineTune, newTune % 100));
+                            newTune = chanStatus.FineTune + ft;
                         } 
                         else 
                         {
                             // Make the relative tuning be set in MIDI parameters
-                            var newTune =
+                            newTune =
                                 chanStatus.FineTune +
                                 chanStatus.CurrentFineTune;
-                            chanStatus.CurrentKeyShift = (int)Math.Truncate(
-                                newTune / 100);
-
-                            var midiParams =
-                                chanChange.MidiParameters ?? [];
-                            midiParams[ChannelMidiParameter.Type.FineTune] = 
-                                ClearableParameter<ChannelMidiParameter>.OfReplace(
-                                    (ChannelMidiParameter.Type.FineTune, newTune % 100));
-                            chanChange.MidiParameters = midiParams;
+                            channelChange.MidiParameters ??= [];
                         }
+                        
+                        chanStatus.CurrentKeyShift = (int)Math.Truncate(
+                            newTune / 100);
+
+                        channelChange.MidiParameters[
+                                ChannelMidiParameter.Type.FineTune] = 
+                            ChannelMidiParameter.Of(
+                                ChannelMidiParameter.Type.FineTune, 
+                                newTune % 100);
 
                         // Program change
-                        if (chanChange.Patch is
-                            ClearableParameter<MidiPatch>.Replace
-                            { Value: var patch })
+                        if (channelChange.Patch is
+                            Parameter<MidiPatch>.Replace { Value: var patch })
                         {
-                            Debug.WriteLine(
+                            SpessaLog.Info(
                                 $"Setting {channel} to {patch.ToMidiString()}. Track num: {trackNum}");
 
                             // Note: this is in reverse.
@@ -422,14 +426,15 @@ internal static class MidiEditor
 
                             AddEventBefore(programChange);
 
-                            if (system is {} sys && BankSelectHacks.IsSystemXG(sys) &&
+                            if (system is not null &&
+                                BankSelectHacks.IsSystemXG(system.Value) &&
                                 patch.IsGMGSDrum)
                             {
                                 // Best I can do is XG drums
                                 SpessaLog.Info(
                                     $"Adding XG Drum change on track {trackNum}");
                                 desiredBankMSB =
-                                    BankSelectHacks.GetDrumBank(sys);
+                                    BankSelectHacks.GetDrumBank(system.Value);
                                 desiredBankLSB = 0;
                             }
 
@@ -440,7 +445,8 @@ internal static class MidiEditor
 
                             if (
                                 patch.IsGMGSDrum &&
-                                (system is not {} sys1 || !BankSelectHacks.IsSystemXG(sys1)) &&
+                                (system is null || 
+                                 !BankSelectHacks.IsSystemXG(system.Value)) &&
                                 midiChannel != Synthesizer.Synthesizer.DEFAULT_PERCUSSION)
                             {
                                 // Add gs drum change
@@ -449,22 +455,7 @@ internal static class MidiEditor
                                 var chanAddress =
                                     0x10 | MidiUtils.ChannelToSyx(midiChannel);
                                 AddEventBefore(MidiUtils.GsMessage(
-                                    e.Ticks, 40, chanAddress, 0x15, [1]));
-                            }
-
-                            if (chanChange.MidiParameters is {} midiParams)
-                            {
-                                foreach (var mpEntry in midiParams)
-                                {
-                                    if (mpEntry.Value is not ClearableParameter<
-                                        ChannelMidiParameter>.Replace repl)
-                                        continue;
-                                    AddEventsBefore(MidiUtils.Set(
-                                        e.Ticks,
-                                        midiChannel,
-                                        system ?? Midi.System.GM,
-                                        repl.Value));
-                                }
+                                    eTicks, 40, chanAddress, 0x15, [1]));
                             }
 
                             void AddBank(bool isLSB, int v)
@@ -479,22 +470,35 @@ internal static class MidiEditor
                                 AddEventBefore(bankChange);
                             }
                         }
+                        
+                        // Add MIDI parameters
+                        if (channelChange.MidiParameters is {} midiParams)
+                        {
+                            foreach (var mpEntry in midiParams)
+                            {
+                                if (mpEntry.Value is not Parameter<
+                                        ChannelMidiParameter>.Replace(
+                                    var value))
+                                    continue;
+                                AddEventsBefore(MidiUtils.Set(
+                                    e.Ticks,
+                                    midiChannel,
+                                    system ?? Midi.System.GM,
+                                    value));
+                            }
+                        }
                     }
 
                     // Transpose key (for zero it won't change anyway)
-                    {
-                        var eData = e.Data;
-                        eData[0] += (byte)(
-                            chanStatus.KeyShift + chanStatus.CurrentKeyShift);
-                    }
+                    e.Data.AsSpan()[0] += (byte)(
+                        chanStatus.KeyShift + chanStatus.CurrentKeyShift);
                     break;
                 }
 
                 case MidiMessage.Type.NoteOff:
                 {
-                    var eData = e.Data;
-                    if (optChanChange is null) break;
-                    eData[0] += (byte)(
+                    if (channelChange is null) break;
+                    e.Data.AsSpan()[0] += (byte)(
                         chanStatus.KeyShift + chanStatus.CurrentKeyShift);
                     break;
                 }
@@ -502,7 +506,7 @@ internal static class MidiEditor
                 case MidiMessage.Type.ProgramChange:
                 {
                     // Do we delete it?
-                    if (optChanChange?.Patch is not null)
+                    if (channelChange?.Patch is not null)
                     {
                         // This channel has program change. BEGONE!
                         DeleteThisEvent();
@@ -514,8 +518,8 @@ internal static class MidiEditor
                 case MidiMessage.Type.PitchWheel:
                 {
                     // Do we delete it?
-                    if (optChanChange?.MidiParameters?.ContainsKey(
-                        ChannelMidiParameter.Type.PitchWheel) ?? false)
+                    if (channelChange?.MidiParameters?.ContainsKey(
+                        ChannelMidiParameter.Type.PitchWheel) is true)
                     {
                         // Locked, remove
                         DeleteThisEvent();
@@ -526,8 +530,8 @@ internal static class MidiEditor
                 case MidiMessage.Type.ChannelPressure:
                 {
                     // Do we delete it?
-                    if (optChanChange?.MidiParameters?.ContainsKey(
-                        ChannelMidiParameter.Type.Pressure) ?? false)
+                    if (channelChange?.MidiParameters?.ContainsKey(
+                        ChannelMidiParameter.Type.Pressure) is true)
                     {
                         // Locked, remove
                         DeleteThisEvent();
@@ -536,9 +540,10 @@ internal static class MidiEditor
                 }
 
                 case MidiMessage.Type.ControllerChange:
+                {
                     var ccNum = (Midi.CC)e.Data[0];
                     var value = e.Data[1];
-                    if (optChanChange?.Controllers?.ContainsKey(ccNum) is true)
+                    if (channelChange?.Controllers?.ContainsKey(ccNum) is true)
                     {
                         // This controller is locked, BEGONE CHANGE!
                         DeleteThisEvent();
@@ -550,7 +555,7 @@ internal static class MidiEditor
                     {
                         case Midi.CC.BankSelect:
                         case Midi.CC.BankSelectLSB:
-                            if (optChanChange?.Patch is not null)
+                            if (channelChange?.Patch is not null)
                             {
                                 // BEGONE!
                                 DeleteThisEvent();
@@ -564,24 +569,23 @@ internal static class MidiEditor
                         case Midi.CC.NonRegisteredParameterLSB:
                             // Flag the parameter as not cleaned
                             chanStatus.ClearedParams =
-                                ccNum is Midi.CC.NonRegisteredParameterLSB
-                                or Midi.CC.RegisteredParameterLSB
-                                ? chanStatus.ClearedParams with { LSB = false }
-                                : chanStatus.ClearedParams with { MSB = false };
+                                ccNum is 
+                                    Midi.CC.NonRegisteredParameterLSB or
+                                    Midi.CC.RegisteredParameterLSB
+                                    ? chanStatus.ClearedParams with { LSB = false }
+                                    : chanStatus.ClearedParams with { MSB = false };
 
                             chanStatus.Param.ControllerChange(
                                 ccNum, value, trackNum, index);
                             goto Continue;
 
-                        // NRPN we care about only uses MSB
                         case Midi.CC.DataEntryMSB:
                         case Midi.CC.DataEntryLSB:
-                            chanStatus.ClearedParams = 
-                                chanStatus.ClearedParams with { Data = false };
-                            var optData = chanStatus.Param.ControllerChange(
-                                ccNum, value, trackNum, index);
+                        {
+                            chanStatus.ClearedParams.Data = false;
                             
-                            if (optData is not {} data)
+                            if (chanStatus.Param.ControllerChange(
+                                    ccNum, value, trackNum, index) is not {} data)
                                 goto Continue;
 
                             // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
@@ -601,16 +605,18 @@ internal static class MidiEditor
                                     var (cc, _, chan) = 
                                         data.AsControllerChange!.Value;
 
-                                    if (optChanChange?.Controllers?.ContainsKey(ccNum) is true)
+                                    if (channelChange?.Controllers?
+                                            .ContainsKey(ccNum) is true)
                                     {
                                         // This controller is locked, BEGONE CHANGE!
                                         DeleteParameter(chan);
                                         goto Continue;
                                     }
                                     
-                                    if (cc is Midi.CC.BankSelect
-                                        or Midi.CC.BankSelectLSB &&
-                                       optChanChange?.Patch is not null) 
+                                    if (cc is
+                                            Midi.CC.BankSelect or
+                                            Midi.CC.BankSelectLSB &&
+                                        channelChange?.Patch is not null) 
                                     {
                                         // BEGONE!
                                         DeleteParameter(chan);
@@ -619,25 +625,25 @@ internal static class MidiEditor
                                     break;
                                 }
 
-                                case MidiUtils.AnalyzedParameter.Type.ChannelMidiParameter:
-                                    var cmp =
-                                        data.AsChannelMidiParameter!.Value;
-                                    
-                                    if (cmp.Param.PType == ChannelMidiParameter.Type.FineTune &&
+                                case MidiUtils.AnalyzedParameter.Type.ChannelMidiParameter
+                                    when data.AsChannelMidiParameter is var (param, _):
+
+                                    if (param.PType == ChannelMidiParameter.Type.FineTune &&
                                         chanStatus.FineTune != 0)
                                     {
                                         chanStatus.CurrentFineTune = 
-                                            cmp.Param.AsFloat;
+                                            param.AsFloat;
                                         // Add the relative fine tune to the existing one
                                         var newTune =
-                                            chanStatus.FineTune + cmp.Param.AsFloat;
+                                            chanStatus.FineTune +
+                                            param.AsFloat;
 
                                         chanStatus.CurrentKeyShift =
                                             (int)Math.Truncate(newTune / 100);
                                         var targetTune = newTune % 100;
 
                                         SpessaLog.Info(
-                                            $"Fine tuning already present on {channel} ({cmp.Param.AsFloat}), " +
+                                            $"Fine tuning already present on {channel} ({param.AsFloat}), " +
                                             $"new relative tune: {newTune} cents. Key shift: {chanStatus.CurrentKeyShift} semitones. " +
                                             $"Actual RPN value to set: {targetTune} cents.");
                                         
@@ -647,49 +653,46 @@ internal static class MidiEditor
                                             (int)float.Floor(targetTune * 81.92f) +
                                             8_192;
 
-                                        var eData = e.Data;
-                                        eData[1] = (byte)(
+                                        e.Data.AsSpan()[1] = (byte)(
                                             ccNum == Midi.CC.DataEntryMSB
                                                 ? updatedData >> 7
                                                 : updatedData & 0x7f);
                                     } 
                                     else if (
-                                        optChanChange?.MidiParameters
-                                        ?.ContainsKey(cmp.Param.PType) ?? false)
+                                        channelChange?.MidiParameters
+                                            ?.ContainsKey(param.PType) is true)
                                     {
                                         // Locked, remove
                                         // We don't remove fineTune because we can adjust it relatively
                                         DeleteParameter(channel);
                                     }
 
-                                    goto Continue;
+                                    break;
                             }
 
                             // If the parameters (MSB, LSB and the first data) were cleared.
                             // Some MIDIs send param MSB once and then set via LSB only, like:
-                            // MSB,
-                            // LSB,
-                            // Data,
-                            // LSB,
-                            // Data,
+                            // MSB, LSB, Data, LSB, Data,
                             // And even though it violates MIDI 1.0, it works...
                             // So since we've used those, mark them as "cleaned" so future LSB-only entries won't delete them.
-                            chanStatus.ClearedParams = chanStatus
-                                .ClearedParams with { LSB = true, MSB = true };
+                            chanStatus.ClearedParams.LSB = true;
+                            chanStatus.ClearedParams.MSB = true;
                             goto Continue;
-                        
+                        }
+
                         default: goto Continue;
                     }
 
                     break;
-                
+                }
+
                 case MidiMessage.Type.SystemExclusive:
                     var syx = MidiUtils.AnalyzeSysEx(e);
 
                     // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
                     switch (syx.MType)
                     {
-                        default: break;
+                        default: goto Continue;
                         
                         case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
                             when syx.AsAnalyzedParameter?.MType ==
@@ -723,9 +726,8 @@ internal static class MidiEditor
                             // SysEx can change programs
                             // Do we delete it?
                             var pc = syx.AsProgramChange!.Value;
-                            if (channelChanges.TryGetValue(
-                                    pc.Channel + portOffset, out var cMod) &&
-                                cMod.Patch is not null)
+                            if (channelChanges.GetValueOrDefault(
+                                pc.Channel + portOffset)?.Patch is not null)
                                 // This channel has program change. BEGONE!
                                 DeleteThisEvent();
                             goto Continue;
@@ -735,69 +737,44 @@ internal static class MidiEditor
                         {
                             var gmp = syx.AsGlobalMidiParameter!.Value;
 
-                            if (opts.MidiParams?.ContainsKey(gmp.PType) ?? false)
+                            if (opts.MidiParams?.ContainsKey(gmp.PType) is true)
                             {
+                                // Locked, remove
                                 DeleteThisEvent();
                                 goto Continue;
                             }
                             
                             if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
                             {
-                                switch (gmp.AsMidiSystem)
+                                if (gmp.AsMidiSystem is Midi.System.GM)
                                 {
-                                    case Midi.System.XG:
-                                        SpessaLog.Info("XG system on detected");
+                                    // Check for GM on
+                                    // That's a GM1 system change, remove it!
+                                    SpessaLog.Info("GM on detected, removing!");
+                                    DeleteThisEvent();
+                                    addedReset = false;
+                                    goto Continue;
+                                }
 
-                                        system = Midi.System.XG;
-                                        addedReset = true; // Flag as true so reset won't get added
-                                        resetTrack = trackNum;
-                                        resetIndex = index;
-                                        // Reset NRPN (accuracy + prevent deletion before reset)
-                                        foreach (ref var ch in channelStatus.AsSpan()) 
-                                        {
-                                            ch.Param.Reset();
-                                            ch.ClearedParams = (true, true, true);
-                                        }
-                                        goto Continue;
-                                    case Midi.System.GM2:
-                                        SpessaLog.Info("GM2 system on detected");
+                                if (gmp.AsMidiSystem is not Midi.System.GS)
+                                    system = gmp.AsMidiSystem;
+                                else
+                                {
+                                    // Check for GS on
+                                    // That's a GS on, we're done here
+                                }
 
-                                        system = Midi.System.GM2;
-                                        addedReset = true; // Flag as true so reset won't get added
-                                        resetTrack = trackNum;
-                                        resetIndex = index;
-                                        // Reset NRPN (accuracy + prevent deletion before reset)
-                                        foreach (ref var ch in channelStatus.AsSpan())
-                                        {
-                                            ch.Param.Reset();
-                                            ch.ClearedParams = (true, true, true);
-                                        }
-                                        goto Continue;
-                                    case Midi.System.GS:
-                                        // Check for GS on
-                                        // That's a GS on, we're done here
-                                        SpessaLog.Info("GM2 system on detected");
-                            
-                                        addedReset = true;
-                                        resetTrack = trackNum;
-                                        resetIndex = index;
-                                        // Reset NRPN (accuracy + prevent deletion before reset)
-                                        foreach (ref var ch in channelStatus.AsSpan()) 
-                                        {
-                                            ch.Param.Reset();
-                                            ch.ClearedParams = (true, true, true);
-                                        }
-                                        goto Continue;
-                                    case Midi.System.GM:
-                                        // Check for GM on
-                                        // That's a GM1 system change, remove it!
-                                        SpessaLog.Info("GM on detected, removing!");
-
-                                        DeleteThisEvent();
-                                        addedReset = false;
-                                        goto Continue;
-                                    default:
-                                        throw new ArgumentOutOfRangeException();
+                                SpessaLog.Info($"{gmp.AsMidiSystem} system on detected");
+                                
+                                addedReset = true; // Flag as true so reset won't get added
+                                resetTrack = trackNum;
+                                resetIndex = index;
+                                        
+                                // Reset NRPN (accuracy + prevent deletion before reset)
+                                foreach (var ch in channelStatus) 
+                                {
+                                    ch.Param.Reset();
+                                    ch.ClearedParams = (true, true, true);
                                 }
                             }
 
@@ -816,7 +793,7 @@ internal static class MidiEditor
                                 .GetValueOrDefault(cmp.Channel + portOffset);
                             
                             if (syxChannel?.MidiParameters?
-                                .ContainsKey(cmp.Param.PType) ?? false)
+                                .ContainsKey(cmp.Param.PType) is true)
                             {
                                 // Locked, remove
                                 DeleteThisEvent();
@@ -840,7 +817,7 @@ internal static class MidiEditor
 
                                     SpessaLog.Info(
                                         $"Fine tuning already present on {
-                                            channel}, new relative tune: {newTune} cents");
+                                        channel}, new relative tune: {newTune} cents");
                                     DeleteThisEvent();
                                 }
 
@@ -858,8 +835,8 @@ internal static class MidiEditor
                             var cc = syx
                                 .AsAnalyzedParameter!.Value
                                 .AsControllerChange!.Value;
-                            if (channelChanges.TryGetValue(
-                                    cc.Channel + portOffset, out var syxChannel))
+                            if (channelChanges.GetValueOrDefault(
+                                cc.Channel + portOffset) is {} syxChannel)
                             {
                                 if (syxChannel.Controllers?.ContainsKey(cc.Controller) is true)
                                 {
@@ -867,7 +844,9 @@ internal static class MidiEditor
                                     DeleteThisEvent();
                                     goto Continue;    
                                 }
-                                if (cc.Controller is Midi.CC.BankSelect or Midi.CC.BankSelectLSB &&
+                                if (cc.Controller is 
+                                    Midi.CC.BankSelect or
+                                    Midi.CC.BankSelectLSB &&
                                     syxChannel.Patch is not null)
                                 {
                                     // BEGONE!
@@ -893,11 +872,8 @@ internal static class MidiEditor
                 eventIndexes[trackNum]--;
             }
 
-            void AddEventBefore(MidiMessage e)
-            {
-                track.Add(e, index);
-                eventIndexes[trackNum]++;
-            }
+            void AddEventBefore(MidiMessage e) =>
+                toInsert.Add((track, e, index));
 
             /*
              * This function adds the events IN ORDER they are in the array,
@@ -911,7 +887,7 @@ internal static class MidiEditor
 
             void DeleteParameter(int channel)
             {
-                ref var ch = ref channelStatus[channel];
+                var ch = channelStatus[channel];
                 // Delete the parameter selection pair + the data entry that we're currently processing.
                 // We don't wait for lsb as it's not required to arrive :-(
                 // Why, MIDI, why are you like this?
@@ -964,30 +940,36 @@ internal static class MidiEditor
 
                 p.ParamMSB = msb;
                 p.ParamLSB = lsb;
+                ch.Param = p;
                 // Flag params as deleted
                 ch.ClearedParams = (true, true, true);
-                ch.Param = p;
             }
         }
+        
+        // Apply midi event insertion
+        foreach (var (track, e, index) in toInsert)
+            track.Add(e, index);
+        toInsert.Clear();
+        // --------------------------
 
         // Check for reset and insert it to ensure that a reset always exists.
         if (!addedReset &&
-            channelChanges.Values.Any(c => 
-            c.Patch is not null and not ClearableParameter<MidiPatch>.Clear))
+            channelChanges.Values.Any(c =>
+            c.Patch is not null and not Parameter<MidiPatch>.Clear))
         {
             // There's no reset, add it on the first track at index 0 (or 1 if track name is first)
             var index = 0;
-            if (midi.Tracks[0].Events[0].StatusByte.Is(
-                    MidiMessage.Type.TrackName))
+            if (midi.Tracks[0].Events[0].StatusByte ==
+                MidiMessage.Type.TrackName)
                 index++;
             // Add the requested system or GS. Clear breaks everything so we don't care.
             var targetSystem = Midi.System.GS;
             if (opts.MidiParams?.TryGetValue(
                 GlobalMidiParameter.Type.MidiSystem, 
-                out var value) ?? false)
+                out var value) is true)
             {
-                if (value is ClearableParameter<GlobalMidiParameter>.Replace replace)
-                    targetSystem = replace.Value.AsMidiSystem;
+                if (value is Parameter<GlobalMidiParameter>.Replace(var param))
+                    targetSystem = param.AsMidiSystem;
             }
             midi.Tracks[0].Add(MidiUtils.Reset(0, targetSystem), index);
             resetTrack = 0;
@@ -1007,18 +989,19 @@ internal static class MidiEditor
             if (ompEntry.Key == GlobalMidiParameter.Type.MidiSystem) 
                 continue;
             if (ompEntry.Value is not 
-                ClearableParameter<GlobalMidiParameter>.Replace repl)
+                Parameter<GlobalMidiParameter>.Replace(var value))
                 continue;
             
             targetTrack.EventList.InsertRange(
                 targetIndex,
                 MidiUtils.Set(
-                    targetTicks, system ?? Midi.System.GM, repl.Value));
+                    targetTicks, system ?? Midi.System.GM, value));
         }
         
-        if (opts.ReverbParams is 
-            ClearableParameter<Effect.ReverbProcessorSnapshot>.Replace
-                { Value: {} r }) 
+        // Add effects
+        if (opts.ReverbParams is
+            Parameter<Effect.ReverbProcessorSnapshot>.Replace
+                { Value: {} r })
         {
             var m = ReverbAddressMap;
             targetTrack.Add([
@@ -1032,7 +1015,7 @@ internal static class MidiEditor
         }
         
         if (opts.ChorusParams is 
-            ClearableParameter<Effect.ChorusProcessorSnapshot>.Replace
+            Parameter<Effect.ChorusProcessorSnapshot>.Replace
                 { Value: {} c }) 
         {
             var m = ChorusAddressMap;
@@ -1049,7 +1032,7 @@ internal static class MidiEditor
         }
         
         if (opts.DelayParams is 
-            ClearableParameter<Effect.DelayProcessorSnapshot>.Replace
+            Parameter<Effect.DelayProcessorSnapshot>.Replace
                 { Value: {} d }) 
         {
             var m = DelayAddressMap;
@@ -1068,7 +1051,7 @@ internal static class MidiEditor
         }
 
         if (opts.InsertionParams is 
-            ClearableParameter<Effect.InsertionProcessorSnapshot>.Replace
+            Parameter<Effect.InsertionProcessorSnapshot>.Replace
                 { Value: var ins }) 
         {
             // Params and sends
@@ -1097,6 +1080,8 @@ internal static class MidiEditor
 
         void AssignMidiPort(int trackNum, int port)
         {
+            // Do not assign ports to empty tracks
+            
             // Midi port: channel offset
             if (midi.Tracks[trackNum].Channels.Count == 0)
                 return;

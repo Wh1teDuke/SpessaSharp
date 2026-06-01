@@ -15,12 +15,11 @@ internal static class ApplySnapshot
     /// Only locked MIDI parameters and controllers are applied.
     /// </para>
     /// </summary>
-    /// <param name="midi"></param>
-    /// <param name="snapshot"></param>
-    public static void To(Midi midi, SynthesizerSnapshot snapshot)
+    public static void To(Midi midi, SynthesizerSnapshot snapshot)// TODO: Snapshot.ToEditorPatch
     {
         var channels = new Dictionary<
-            int, ClearableParameter<ChannelModification>>();
+            int, 
+            MidiEditor.Parameter<MidiEditor.ChannelModification>>();
         var globalKeyShift = snapshot.SystemParameters.KeyShift;
         var globalFineTune = snapshot.SystemParameters.FineTune;
 
@@ -33,8 +32,8 @@ internal static class ApplySnapshot
             
             if (channelSnapshot.SystemParameters.IsMuted)
             {
-                channels[channelNumber] = ClearableParameter
-                    <ChannelModification>.OfClear();
+                channels[channelNumber] = MidiEditor.Parameter
+                    <MidiEditor.ChannelModification>.OfClear();
                 continue;
             }
 
@@ -44,15 +43,15 @@ internal static class ApplySnapshot
             var fineTune =
                 channelSnapshot.SystemParameters.FineTune +
                 (channelSnapshot.DrumChannel ? 0 : globalFineTune);
-            
-            var patch = 
-                ClearableParameter<MidiPatch>.OfNull();
+
+            MidiEditor.Parameter<MidiPatch>? patch = null; 
             if (channelSnapshot.SystemParameters.PresetLock &&
                 channelSnapshot.Patch != null)
-                patch = ClearableParameter<MidiPatch>.OfReplace(
+                patch = MidiEditor.Parameter<MidiPatch>.OfReplace(
                     channelSnapshot.Patch.Value);
 
-            var controllers = new Dictionary<Midi.CC, ClearableParameter<int>>();
+            var controllers = 
+                new Dictionary<Midi.CC, MidiEditor.Parameter<int>>();
 
             for (
                 var ccNumber = 0;
@@ -64,24 +63,25 @@ internal static class ApplySnapshot
                     continue;
 
                 var targetValue = channelSnapshot.MidiControllers[ccNumber] >> 7; // Channel controllers are stored as 14 bit values
-                controllers[(Midi.CC)ccNumber] = ClearableParameter<int>.
+                controllers[(Midi.CC)ccNumber] = MidiEditor.Parameter<int>.
                     OfReplace(targetValue);
             }
 
             var midiParameters = new Dictionary<
-                ChannelMidiParameter.Type,
-                ClearableParameter<ChannelMidiParameter>>();
+                ChannelMidiParameter.Type, MidiEditor.Parameter<
+                    ChannelMidiParameter>>();
 
             foreach (var parameter in channelSnapshot.MidiParameters)
             {
                 if (!channelSnapshot.LockedParameters[(int)parameter.PType])
                     continue;
-                midiParameters[parameter.PType] = 
-                    ClearableParameter<ChannelMidiParameter>.OfReplace(parameter);
+                midiParameters[parameter.PType] = MidiEditor.Parameter<
+                    ChannelMidiParameter>.OfReplace(parameter);
             }
 
-            channels[channelNumber] = ClearableParameter<
-                ChannelModification>.OfReplace(new ChannelModification
+            channels[channelNumber] = MidiEditor.Parameter<
+                MidiEditor.ChannelModification>.OfReplace(
+                new MidiEditor.ChannelModification
                 {
                     Controllers = controllers,
                     Patch = patch,
@@ -92,34 +92,41 @@ internal static class ApplySnapshot
         }
         
         var gMidiParameters = new Dictionary<
-            GlobalMidiParameter.Type,
-            ClearableParameter<GlobalMidiParameter>>();
+            GlobalMidiParameter.Type, 
+            MidiEditor.Parameter<GlobalMidiParameter>>();
 
         foreach (var parameter in snapshot.MidiParameters)
         {
             if (!snapshot.LockedParameters[(int)parameter.PType])
                 continue;
             gMidiParameters[parameter.PType] = 
-                ClearableParameter<GlobalMidiParameter>.OfReplace(parameter);
+                MidiEditor.Parameter<
+                    GlobalMidiParameter>.OfReplace(parameter);
         }
 
-        midi.Modify(new MidiModifyOptions
+        midi.Modify(new MidiEditor.Options
         {
             Channels = channels,
-            DrumSetupParams = snapshot.SystemParameters.DrumLock ?
-                ClearableParameter<object>.OfClear() : null,
+            DrumSetupParams =
+                snapshot.SystemParameters.DrumLock 
+                    ? MidiEditor.Parameter<object>.OfClear() 
+                    : null,
             MidiParams = gMidiParameters,
             ReverbParams = snapshot.SystemParameters.ReverbLock
-                ? ClearableParameter<Effect.ReverbProcessorSnapshot>.OfReplace(snapshot.ReverbProcessor)
+                ? MidiEditor.Parameter<Effect.ReverbProcessorSnapshot>
+                    .OfReplace(snapshot.ReverbProcessor)
                 : null,
             ChorusParams = snapshot.SystemParameters.ChorusLock
-                ? ClearableParameter<Effect.ChorusProcessorSnapshot>.OfReplace(snapshot.ChorusProcessor)
+                ? MidiEditor.Parameter<Effect.ChorusProcessorSnapshot>
+                    .OfReplace(snapshot.ChorusProcessor)
                 : null,
             DelayParams = snapshot.SystemParameters.DelayLock
-                ? ClearableParameter<Effect.DelayProcessorSnapshot>.OfReplace(snapshot.DelayProcessor)
+                ? MidiEditor.Parameter<Effect.DelayProcessorSnapshot>
+                    .OfReplace(snapshot.DelayProcessor)
                 : null,
             InsertionParams = snapshot.SystemParameters.InsertionEffectLock
-                ? ClearableParameter<Effect.InsertionProcessorSnapshot>.OfReplace(snapshot.InsertionProcessor)
+                ? MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>
+                    .OfReplace(snapshot.InsertionProcessor)
                 : null,
         });
     }
