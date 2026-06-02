@@ -115,7 +115,7 @@ public sealed class BasicInstrument
         return zone;
     }
     
-    /// <summary>Links the instrument ta a given preset</summary>
+    /// <summary>Links the instrument to a given preset</summary>
     /// <param name="preset">The preset to link to</param>
     public void LinkTo(BasicPreset preset) 
     {
