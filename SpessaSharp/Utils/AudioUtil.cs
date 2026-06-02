@@ -397,4 +397,16 @@ public static class AudioUtil
             }
         }
     }
+
+    // https://github.com/spessasus/SpessaFont/blob/9254993dcb27598d031b25a70468286228493fc5/src/sample_editor/sample_tools.tsx#L256
+    public static void Normalize(Span<float> sampleData)
+    {
+        var maxSample = 0f;
+        foreach (var cur in sampleData)
+            maxSample = Math.Max(maxSample, Math.Abs(cur));
+
+        var gain = 1 / maxSample;
+        foreach (ref var cur in sampleData)
+            cur *= gain;
+    }
 }
