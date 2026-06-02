@@ -69,7 +69,8 @@ internal static class Write
     {
         if (options.Compress)
         {
-            if (SoundBank.Vorbis.Encoder == null)
+            if (SoundBank.Vorbis.Encoder == null &&
+                bank.Samples.Any(s => !s.IsCompressed))
                 throw new ArgumentException(
                     "No compression function supplied but compression enabled.");
             if (options.Decompress)
