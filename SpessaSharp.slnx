@@ -1,4 +1,33 @@
 <Solution>
   <Project Path="SpessaSharp/SpessaSharp.csproj" />
   <Project Path="SSTool/SSTool.csproj" />
+
+  <Folder Name="/Root/Examples/">
+    <File Path="Examples\AnalyzeMidiFile.cs" />
+    <File Path="Examples\assets\Fleetwood Mac - Little Lies.mid" />
+    <File Path="Examples\assets\SuperSmallFont.md" />
+    <File Path="Examples\assets\SuperSmallFont.sf2" />
+    <File Path="Examples\DlsToSf2.cs" />
+    <File Path="Examples\ExtractFirstSampleAsWav.cs" />
+    <File Path="Examples\GenerateDrumPattern.cs" />
+    <File Path="Examples\MidiToWavNode.cs" />
+    <File Path="Examples\OwnAudioPlayer.cs" />
+    <File Path="Examples\PrintBankInfo.cs" />
+    <File Path="Examples\RealtimeMidiSynth.cs" />
+    <File Path="Examples\RMidiConverter.cs" />
+    <File Path="Examples\RMidWriter.cs" />
+    <File Path="Examples\Sf2ToDls.cs" />
+    <File Path="Examples\SfmlPlayer.cs" />
+  </Folder>
+  <Folder Name="/Root/">
+    <File Path="clean.sh" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Root/.github/">
+    <File Path=".github\workflows\nuget-nigthly.yaml" />
+    <File Path=".github\workflows\nuget.yaml" />
+    <File Path=".github\workflows\sstool.yml" />
+
+  </Folder>
 </Solution>

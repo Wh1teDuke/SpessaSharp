@@ -3,6 +3,7 @@
         <!-- Nuget -->
         <PackageId>SpessaSharp</PackageId>
         <Version>4.3.7</Version>
+        <Version Condition="'$(Nightly)' != ''">$(Version)-nightly-$(Nightly)</Version>
         <Authors>WhiteDuke</Authors>
         <Description>SpessaSynth ported to C#</Description>
         <RepositoryUrl>https://github.com/Wh1teDuke/SpessaSharp</RepositoryUrl>

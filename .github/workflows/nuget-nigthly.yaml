@@ -1,8 +1,8 @@
-name: Publish SpessaSharp NuGet
+name: Publish SpessaSharp NuGet Nightly
 
 on:
   push:
-    tags: [ "v*" ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -12,7 +12,6 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
 
     steps:
       - name: Checkout code
@@ -23,8 +22,12 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      - name: Get Nightly Version
+        id: nightly
+        run: echo "version=$(printf "%05d" "${{ github.run_number }}")" >> "$GITHUB_OUTPUT"
+
       - name: Pack
-        run: dotnet pack SpessaSharp/SpessaSharp.csproj --configuration Release --output ./nupkg
+        run: dotnet pack SpessaSharp/SpessaSharp.csproj --configuration Release -p:Nightly=${{ steps.nightly.outputs.version }} --output ./nupkg
 
       - name: NuGet login
         uses: NuGet/login@v1
