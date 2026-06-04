@@ -3,6 +3,9 @@ name: Publish SpessaSharp NuGet to Github
 on:
   push:
     branches: ["master"]
+    paths:
+      - 'SpessaSharp/**'
+
   workflow_dispatch:
 
 jobs:
