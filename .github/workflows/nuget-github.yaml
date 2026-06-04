@@ -1,0 +1,38 @@
+name: Publish SpessaSharp NuGet to Github
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    if: github.ref != 'refs/heads/master' && !startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Get Nightly Version
+        id: nightly
+        run: echo "version=$(printf "%05d" "${{ github.run_number }}")" >> "$GITHUB_OUTPUT"
+
+      - name: Pack
+        run: dotnet pack SpessaSharp/SpessaSharp.csproj --configuration Release -p:Nightly=${{ steps.nightly.outputs.version }} --output ./nupkg
+
+      - name: Push to GitHub Packages
+        run: |
+          dotnet nuget push ./nupkg/*.nupkg \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --api-key ${{ secrets.GITHUB_TOKEN }} \
+            --skip-duplicate
