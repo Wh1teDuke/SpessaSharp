@@ -25,7 +25,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Root/.github/">
-    <File Path=".github\workflows\nuget-nigthly.yaml" />
+    <File Path=".github\workflows\nuget-nightly.yaml" />
     <File Path=".github\workflows\nuget.yaml" />
     <File Path=".github\workflows\sstool.yml" />
 
