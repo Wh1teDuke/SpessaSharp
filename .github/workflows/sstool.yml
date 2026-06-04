@@ -3,6 +3,10 @@ name: Build SSTool
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - 'SpessaSharp/**'
+      - 'SSTool/**'
+
   workflow_dispatch:
 
 jobs:
