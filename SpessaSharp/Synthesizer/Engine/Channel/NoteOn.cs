@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
