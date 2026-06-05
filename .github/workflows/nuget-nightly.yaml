@@ -5,11 +5,6 @@ on:
     # Runs at 00:00 UTC every day
     - cron: '0 0 * * *'
 
-  push:
-    branches: ["master"]
-    paths:
-      - 'SpessaSharp/**'
-
   workflow_dispatch:
 
 jobs:  
@@ -23,6 +18,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Check for changes
+        id: changes
+        uses: tj-actions/changed-files@v45
+        with:
+          files: SpessaSharp/**
+
+      - name: Exit if no changes
+        if: steps.changes.outputs.any_changed != 'true'
+        run: |
+          echo "No changes. Skipping nightly publish."
+          exit 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
