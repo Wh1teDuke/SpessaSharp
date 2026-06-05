@@ -33,13 +33,11 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: List files for debugging
-        run: ls -R
-
       - name: Install/Update DocFX
         run: dotnet tool update -g docfx
 
       - name: Build DocFX Site
+        working-directory: pages
         run: docfx pages/docfx.json
 
       - name: Upload artifact
