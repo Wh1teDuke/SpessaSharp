@@ -51,8 +51,15 @@
       "pdf": false,
       "_customCss": "public/main.css",
       "_appBaseURL": "/SpessaSharp/",
-      "_appLogo": "public/spessasharp_logo_rounded.png",
+      "_appLogoPath": "public/spessasharp_logo_rounded.png",
       "_repositoryUrl": "https://github.com/Wh1teDuke/SpessaSharp",
+      "iconLinks": [
+        {
+          "icon": "github",
+          "href": "https://github.com/Wh1teDuke/SpessaSharp",
+          "title": "GitHub"
+        }
+      ],
       "_gitContribute": {
         "repo": "https://github.com/Wh1teDuke/SpessaSharp",
         "branch": "master"
