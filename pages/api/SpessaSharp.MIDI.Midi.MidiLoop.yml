@@ -1,0 +1,569 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Midi.MidiLoop
+  commentId: T:SpessaSharp.MIDI.Midi.MidiLoop
+  id: Midi.MidiLoop
+  parent: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.Midi.MidiLoop.#ctor(System.Int32,System.Int32,SpessaSharp.MIDI.Midi.LoopType)
+  - SpessaSharp.MIDI.Midi.MidiLoop.End
+  - SpessaSharp.MIDI.Midi.MidiLoop.Start
+  - SpessaSharp.MIDI.Midi.MidiLoop.Type
+  langs:
+  - csharp
+  - vb
+  name: Midi.MidiLoop
+  nameWithType: Midi.MidiLoop
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiLoop
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 67
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  example: []
+  syntax:
+    content: 'public readonly record struct Midi.MidiLoop : IEquatable<Midi.MidiLoop>'
+    content.vb: Public Structure Midi.MidiLoop Implements IEquatable(Of Midi.MidiLoop)
+  implements:
+  - System.IEquatable{SpessaSharp.MIDI.Midi.MidiLoop}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.#ctor(System.Int32,System.Int32,SpessaSharp.MIDI.Midi.LoopType)
+  commentId: M:SpessaSharp.MIDI.Midi.MidiLoop.#ctor(System.Int32,System.Int32,SpessaSharp.MIDI.Midi.LoopType)
+  id: '#ctor(System.Int32,System.Int32,SpessaSharp.MIDI.Midi.LoopType)'
+  parent: SpessaSharp.MIDI.Midi.MidiLoop
+  langs:
+  - csharp
+  - vb
+  name: MidiLoop(int, int, LoopType)
+  nameWithType: Midi.MidiLoop.MidiLoop(int, int, Midi.LoopType)
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.MidiLoop(int, int, SpessaSharp.MIDI.Midi.LoopType)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 67
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  example: []
+  syntax:
+    content: public MidiLoop(int Start, int End, Midi.LoopType Type)
+    parameters:
+    - id: Start
+      type: System.Int32
+      description: Start of the loop, in MIDI ticks.
+    - id: End
+      type: System.Int32
+      description: End of the loop, in MIDI ticks.
+    - id: Type
+      type: SpessaSharp.MIDI.Midi.LoopType
+      description: >-
+        The type of the loop detected:<br />
+
+        - Soft - The playback will immediately jump to the loop start pointer without any further processing.<br />
+
+        - Hard - The playback will quickly process all messages from
+
+        the start of the file to ensure that synthesizer is in the correct state.
+
+        This is the default behavior.<br /><br />
+
+
+        Soft loop types are enabled for Touhou and GameMaker loop points.
+    content.vb: Public Sub New(Start As Integer, [End] As Integer, Type As Midi.LoopType)
+  overload: SpessaSharp.MIDI.Midi.MidiLoop.#ctor*
+  nameWithType.vb: Midi.MidiLoop.New(Integer, Integer, Midi.LoopType)
+  fullName.vb: SpessaSharp.MIDI.Midi.MidiLoop.New(Integer, Integer, SpessaSharp.MIDI.Midi.LoopType)
+  name.vb: New(Integer, Integer, LoopType)
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.Start
+  commentId: P:SpessaSharp.MIDI.Midi.MidiLoop.Start
+  id: Start
+  parent: SpessaSharp.MIDI.Midi.MidiLoop
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: Midi.MidiLoop.Start
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.Start
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Start
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 67
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: Start of the loop, in MIDI ticks.
+  example: []
+  syntax:
+    content: public int Start { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Start As Integer
+  overload: SpessaSharp.MIDI.Midi.MidiLoop.Start*
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.End
+  commentId: P:SpessaSharp.MIDI.Midi.MidiLoop.End
+  id: End
+  parent: SpessaSharp.MIDI.Midi.MidiLoop
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: Midi.MidiLoop.End
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.End
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: End
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 67
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: End of the loop, in MIDI ticks.
+  example: []
+  syntax:
+    content: public int End { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property [End] As Integer
+  overload: SpessaSharp.MIDI.Midi.MidiLoop.End*
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.Type
+  commentId: P:SpessaSharp.MIDI.Midi.MidiLoop.Type
+  id: Type
+  parent: SpessaSharp.MIDI.Midi.MidiLoop
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: Midi.MidiLoop.Type
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.Type
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 67
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: >-
+    The type of the loop detected:<br />
+
+    - Soft - The playback will immediately jump to the loop start pointer without any further processing.<br />
+
+    - Hard - The playback will quickly process all messages from
+
+    the start of the file to ensure that synthesizer is in the correct state.
+
+    This is the default behavior.<br /><br />
+
+
+    Soft loop types are enabled for Touhou and GameMaker loop points.
+  example: []
+  syntax:
+    content: public Midi.LoopType Type { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Midi.LoopType
+    content.vb: Public Property Type As Midi.LoopType
+  overload: SpessaSharp.MIDI.Midi.MidiLoop.Type*
+references:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: System.IEquatable{SpessaSharp.MIDI.Midi.MidiLoop}
+  commentId: T:System.IEquatable{SpessaSharp.MIDI.Midi.MidiLoop}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Midi.MidiLoop>
+  nameWithType: IEquatable<Midi.MidiLoop>
+  fullName: System.IEquatable<SpessaSharp.MIDI.Midi.MidiLoop>
+  nameWithType.vb: IEquatable(Of Midi.MidiLoop)
+  fullName.vb: System.IEquatable(Of SpessaSharp.MIDI.Midi.MidiLoop)
+  name.vb: IEquatable(Of Midi.MidiLoop)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.MidiLoop
+    name: MidiLoop
+    href: SpessaSharp.MIDI.Midi.MidiLoop.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.MidiLoop
+    name: MidiLoop
+    href: SpessaSharp.MIDI.Midi.MidiLoop.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.#ctor*
+  commentId: Overload:SpessaSharp.MIDI.Midi.MidiLoop.#ctor
+  href: SpessaSharp.MIDI.Midi.MidiLoop.html#SpessaSharp_MIDI_Midi_MidiLoop__ctor_System_Int32_System_Int32_SpessaSharp_MIDI_Midi_LoopType_
+  name: MidiLoop
+  nameWithType: Midi.MidiLoop.MidiLoop
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.MidiLoop
+  nameWithType.vb: Midi.MidiLoop.New
+  fullName.vb: SpessaSharp.MIDI.Midi.MidiLoop.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.MIDI.Midi.LoopType
+  commentId: T:SpessaSharp.MIDI.Midi.LoopType
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.LoopType
+  nameWithType: Midi.LoopType
+  fullName: SpessaSharp.MIDI.Midi.LoopType
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.LoopType
+    name: LoopType
+    href: SpessaSharp.MIDI.Midi.LoopType.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.LoopType
+    name: LoopType
+    href: SpessaSharp.MIDI.Midi.LoopType.html
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.Start*
+  commentId: Overload:SpessaSharp.MIDI.Midi.MidiLoop.Start
+  href: SpessaSharp.MIDI.Midi.MidiLoop.html#SpessaSharp_MIDI_Midi_MidiLoop_Start
+  name: Start
+  nameWithType: Midi.MidiLoop.Start
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.Start
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.End*
+  commentId: Overload:SpessaSharp.MIDI.Midi.MidiLoop.End
+  href: SpessaSharp.MIDI.Midi.MidiLoop.html#SpessaSharp_MIDI_Midi_MidiLoop_End
+  name: End
+  nameWithType: Midi.MidiLoop.End
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.End
+- uid: SpessaSharp.MIDI.Midi.MidiLoop.Type*
+  commentId: Overload:SpessaSharp.MIDI.Midi.MidiLoop.Type
+  href: SpessaSharp.MIDI.Midi.MidiLoop.html#SpessaSharp_MIDI_Midi_MidiLoop_Type
+  name: Type
+  nameWithType: Midi.MidiLoop.Type
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop.Type

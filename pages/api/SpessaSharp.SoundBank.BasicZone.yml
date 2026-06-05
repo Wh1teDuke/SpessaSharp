@@ -1,0 +1,1239 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.BasicZone
+  commentId: T:SpessaSharp.SoundBank.BasicZone
+  id: BasicZone
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.BasicZone.Add(System.ReadOnlySpan{SpessaSharp.SoundBank.Generator})
+  - SpessaSharp.SoundBank.BasicZone.AddToGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int32,System.Boolean)
+  - SpessaSharp.SoundBank.BasicZone.BagByteSize
+  - SpessaSharp.SoundBank.BasicZone.CopyFrom(SpessaSharp.SoundBank.BasicZone)
+  - SpessaSharp.SoundBank.BasicZone.FineTuning
+  - SpessaSharp.SoundBank.BasicZone.Generators
+  - SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type)
+  - SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int16)
+  - SpessaSharp.SoundBank.BasicZone.GetWriteGenerators
+  - SpessaSharp.SoundBank.BasicZone.HasKeyRange
+  - SpessaSharp.SoundBank.BasicZone.HasVelRange
+  - SpessaSharp.SoundBank.BasicZone.KeyRange
+  - SpessaSharp.SoundBank.BasicZone.Modulators
+  - SpessaSharp.SoundBank.BasicZone.SetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Nullable{System.Int32},System.Boolean)
+  - SpessaSharp.SoundBank.BasicZone.VelRange
+  langs:
+  - csharp
+  - vb
+  name: BasicZone
+  nameWithType: BasicZone
+  fullName: SpessaSharp.SoundBank.BasicZone
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BasicZone
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 4
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public sealed class BasicZone
+    content.vb: Public NotInheritable Class BasicZone
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.SoundBank.BasicZone.BagByteSize
+  commentId: F:SpessaSharp.SoundBank.BasicZone.BagByteSize
+  id: BagByteSize
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: BagByteSize
+  nameWithType: BasicZone.BagByteSize
+  fullName: SpessaSharp.SoundBank.BasicZone.BagByteSize
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BagByteSize
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 6
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public const int BagByteSize = 4
+    return:
+      type: System.Int32
+    content.vb: Public Const BagByteSize As Integer = 4
+- uid: SpessaSharp.SoundBank.BasicZone.VelRange
+  commentId: F:SpessaSharp.SoundBank.BasicZone.VelRange
+  id: VelRange
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: VelRange
+  nameWithType: BasicZone.VelRange
+  fullName: SpessaSharp.SoundBank.BasicZone.VelRange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VelRange
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 9
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The zone's velocity range. <b>Min -1</b> means that it is a default value
+  example: []
+  syntax:
+    content: public (int Min, int Max) VelRange
+    return:
+      type: System.ValueTuple{System.Int32,System.Int32}
+    content.vb: Public VelRange As (Min As Integer, Max As Integer)
+- uid: SpessaSharp.SoundBank.BasicZone.KeyRange
+  commentId: F:SpessaSharp.SoundBank.BasicZone.KeyRange
+  id: KeyRange
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: KeyRange
+  nameWithType: BasicZone.KeyRange
+  fullName: SpessaSharp.SoundBank.BasicZone.KeyRange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: KeyRange
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The zone's key range. <b>Min -1</b> means that it is a default value
+  example: []
+  syntax:
+    content: public (int Min, int Max) KeyRange
+    return:
+      type: System.ValueTuple{System.Int32,System.Int32}
+    content.vb: Public KeyRange As (Min As Integer, Max As Integer)
+- uid: SpessaSharp.SoundBank.BasicZone.Generators
+  commentId: F:SpessaSharp.SoundBank.BasicZone.Generators
+  id: Generators
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: Generators
+  nameWithType: BasicZone.Generators
+  fullName: SpessaSharp.SoundBank.BasicZone.Generators
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Generators
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 15
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The zone's generators.
+  example: []
+  syntax:
+    content: public readonly List<Generator> Generators
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.Generator}
+    content.vb: Public ReadOnly Generators As List(Of Generator)
+- uid: SpessaSharp.SoundBank.BasicZone.Modulators
+  commentId: F:SpessaSharp.SoundBank.BasicZone.Modulators
+  id: Modulators
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: Modulators
+  nameWithType: BasicZone.Modulators
+  fullName: SpessaSharp.SoundBank.BasicZone.Modulators
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Modulators
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The zone's modulators.
+  example: []
+  syntax:
+    content: public readonly List<Modulator> Modulators
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.Modulator}
+    content.vb: Public ReadOnly Modulators As List(Of Modulator)
+- uid: SpessaSharp.SoundBank.BasicZone.HasKeyRange
+  commentId: P:SpessaSharp.SoundBank.BasicZone.HasKeyRange
+  id: HasKeyRange
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: HasKeyRange
+  nameWithType: BasicZone.HasKeyRange
+  fullName: SpessaSharp.SoundBank.BasicZone.HasKeyRange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: HasKeyRange
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public bool HasKeyRange { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasKeyRange As Boolean
+  overload: SpessaSharp.SoundBank.BasicZone.HasKeyRange*
+- uid: SpessaSharp.SoundBank.BasicZone.HasVelRange
+  commentId: P:SpessaSharp.SoundBank.BasicZone.HasVelRange
+  id: HasVelRange
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: HasVelRange
+  nameWithType: BasicZone.HasVelRange
+  fullName: SpessaSharp.SoundBank.BasicZone.HasVelRange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: HasVelRange
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public bool HasVelRange { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasVelRange As Boolean
+  overload: SpessaSharp.SoundBank.BasicZone.HasVelRange*
+- uid: SpessaSharp.SoundBank.BasicZone.FineTuning
+  commentId: P:SpessaSharp.SoundBank.BasicZone.FineTuning
+  id: FineTuning
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: FineTuning
+  nameWithType: BasicZone.FineTuning
+  fullName: SpessaSharp.SoundBank.BasicZone.FineTuning
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FineTuning
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The current tuning in cents, taking in both coarse and fine generators.
+  example: []
+  syntax:
+    content: public int FineTuning { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property FineTuning As Integer
+  overload: SpessaSharp.SoundBank.BasicZone.FineTuning*
+- uid: SpessaSharp.SoundBank.BasicZone.SetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Nullable{System.Int32},System.Boolean)
+  commentId: M:SpessaSharp.SoundBank.BasicZone.SetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Nullable{System.Int32},System.Boolean)
+  id: SetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Nullable{System.Int32},System.Boolean)
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: SetGenerator(Type, int?, bool)
+  nameWithType: BasicZone.SetGenerator(Generator.Type, int?, bool)
+  fullName: SpessaSharp.SoundBank.BasicZone.SetGenerator(SpessaSharp.SoundBank.Generator.Type, int?, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetGenerator
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 44
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Sets a generator to a given value if preset, otherwise adds a new one.
+  example: []
+  syntax:
+    content: public void SetGenerator(Generator.Type type, int? value = null, bool validate = true)
+    parameters:
+    - id: type
+      type: SpessaSharp.SoundBank.Generator.Type
+      description: The generator type.
+    - id: value
+      type: System.Nullable{System.Int32}
+      description: The value to set. Set to null to remove this generator (set as "unset").
+    - id: validate
+      type: System.Boolean
+      description: If the value should be clamped to allowed limits.
+    content.vb: Public Sub SetGenerator(type As Generator.Type, value As Integer? = Nothing, validate As Boolean = True)
+  overload: SpessaSharp.SoundBank.BasicZone.SetGenerator*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Type must be set using a different method
+  nameWithType.vb: BasicZone.SetGenerator(Generator.Type, Integer?, Boolean)
+  fullName.vb: SpessaSharp.SoundBank.BasicZone.SetGenerator(SpessaSharp.SoundBank.Generator.Type, Integer?, Boolean)
+  name.vb: SetGenerator(Type, Integer?, Boolean)
+- uid: SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int16)
+  commentId: M:SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int16)
+  id: GetGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int16)
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: GetGenerator(Type, short)
+  nameWithType: BasicZone.GetGenerator(Generator.Type, short)
+  fullName: SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type, short)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetGenerator
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 85
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Gets a generator value.
+  example: []
+  syntax:
+    content: public short GetGenerator(Generator.Type type, short def)
+    parameters:
+    - id: type
+      type: SpessaSharp.SoundBank.Generator.Type
+      description: The generator type.
+    - id: def
+      type: System.Int16
+      description: If the generator is not found, this value is returned. A default value can be passed here, or null for example, to check if the generator is set.
+    return:
+      type: System.Int16
+      description: ''
+    content.vb: Public Function GetGenerator(type As Generator.Type, def As Short) As Short
+  overload: SpessaSharp.SoundBank.BasicZone.GetGenerator*
+  nameWithType.vb: BasicZone.GetGenerator(Generator.Type, Short)
+  fullName.vb: SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type, Short)
+  name.vb: GetGenerator(Type, Short)
+- uid: SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type)
+  commentId: M:SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type)
+  id: GetGenerator(SpessaSharp.SoundBank.Generator.Type)
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: GetGenerator(Type)
+  nameWithType: BasicZone.GetGenerator(Generator.Type)
+  fullName: SpessaSharp.SoundBank.BasicZone.GetGenerator(SpessaSharp.SoundBank.Generator.Type)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetGenerator
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 88
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public short? GetGenerator(Generator.Type type)
+    parameters:
+    - id: type
+      type: SpessaSharp.SoundBank.Generator.Type
+    return:
+      type: System.Nullable{System.Int16}
+    content.vb: Public Function GetGenerator(type As Generator.Type) As Short?
+  overload: SpessaSharp.SoundBank.BasicZone.GetGenerator*
+- uid: SpessaSharp.SoundBank.BasicZone.Add(System.ReadOnlySpan{SpessaSharp.SoundBank.Generator})
+  commentId: M:SpessaSharp.SoundBank.BasicZone.Add(System.ReadOnlySpan{SpessaSharp.SoundBank.Generator})
+  id: Add(System.ReadOnlySpan{SpessaSharp.SoundBank.Generator})
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: Add(params ReadOnlySpan<Generator>)
+  nameWithType: BasicZone.Add(params ReadOnlySpan<Generator>)
+  fullName: SpessaSharp.SoundBank.BasicZone.Add(params System.ReadOnlySpan<SpessaSharp.SoundBank.Generator>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Add
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 98
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Adds generators to the zone.
+  example: []
+  syntax:
+    content: public void Add(params ReadOnlySpan<Generator> generators)
+    parameters:
+    - id: generators
+      type: System.ReadOnlySpan{SpessaSharp.SoundBank.Generator}
+      description: Generators
+    content.vb: Public Sub Add(generators As ReadOnlySpan(Of Generator))
+  overload: SpessaSharp.SoundBank.BasicZone.Add*
+  nameWithType.vb: BasicZone.Add(ReadOnlySpan(Of Generator))
+  fullName.vb: SpessaSharp.SoundBank.BasicZone.Add(System.ReadOnlySpan(Of SpessaSharp.SoundBank.Generator))
+  name.vb: Add(ReadOnlySpan(Of Generator))
+- uid: SpessaSharp.SoundBank.BasicZone.CopyFrom(SpessaSharp.SoundBank.BasicZone)
+  commentId: M:SpessaSharp.SoundBank.BasicZone.CopyFrom(SpessaSharp.SoundBank.BasicZone)
+  id: CopyFrom(SpessaSharp.SoundBank.BasicZone)
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(BasicZone)
+  nameWithType: BasicZone.CopyFrom(BasicZone)
+  fullName: SpessaSharp.SoundBank.BasicZone.CopyFrom(SpessaSharp.SoundBank.BasicZone)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CopyFrom
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 127
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public void CopyFrom(BasicZone zone)
+    parameters:
+    - id: zone
+      type: SpessaSharp.SoundBank.BasicZone
+    content.vb: Public Sub CopyFrom(zone As BasicZone)
+  overload: SpessaSharp.SoundBank.BasicZone.CopyFrom*
+- uid: SpessaSharp.SoundBank.BasicZone.GetWriteGenerators
+  commentId: M:SpessaSharp.SoundBank.BasicZone.GetWriteGenerators
+  id: GetWriteGenerators
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: GetWriteGenerators()
+  nameWithType: BasicZone.GetWriteGenerators()
+  fullName: SpessaSharp.SoundBank.BasicZone.GetWriteGenerators()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetWriteGenerators
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 141
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Filters the generators and prepends the range generators.
+  example: []
+  syntax:
+    content: public List<Generator> GetWriteGenerators()
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.Generator}
+      description: ''
+    content.vb: Public Function GetWriteGenerators() As List(Of Generator)
+  overload: SpessaSharp.SoundBank.BasicZone.GetWriteGenerators*
+- uid: SpessaSharp.SoundBank.BasicZone.AddToGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int32,System.Boolean)
+  commentId: M:SpessaSharp.SoundBank.BasicZone.AddToGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int32,System.Boolean)
+  id: AddToGenerator(SpessaSharp.SoundBank.Generator.Type,System.Int32,System.Boolean)
+  parent: SpessaSharp.SoundBank.BasicZone
+  langs:
+  - csharp
+  - vb
+  name: AddToGenerator(Type, int, bool)
+  nameWithType: BasicZone.AddToGenerator(Generator.Type, int, bool)
+  fullName: SpessaSharp.SoundBank.BasicZone.AddToGenerator(SpessaSharp.SoundBank.Generator.Type, int, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicZone.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AddToGenerator
+    path: ../SpessaSharp/SoundBank/BasicZone.cs
+    startLine: 175
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Adds to a given generator, or its default value.
+  example: []
+  syntax:
+    content: public void AddToGenerator(Generator.Type type, int value, bool validate = true)
+    parameters:
+    - id: type
+      type: SpessaSharp.SoundBank.Generator.Type
+      description: The generator type.
+    - id: value
+      type: System.Int32
+      description: The value to add.
+    - id: validate
+      type: System.Boolean
+      description: If the value should be clamped to allowed limits.
+    content.vb: Public Sub AddToGenerator(type As Generator.Type, value As Integer, validate As Boolean = True)
+  overload: SpessaSharp.SoundBank.BasicZone.AddToGenerator*
+  nameWithType.vb: BasicZone.AddToGenerator(Generator.Type, Integer, Boolean)
+  fullName.vb: SpessaSharp.SoundBank.BasicZone.AddToGenerator(SpessaSharp.SoundBank.Generator.Type, Integer, Boolean)
+  name.vb: AddToGenerator(Type, Integer, Boolean)
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.ValueTuple{System.Int32,System.Int32}
+  commentId: T:System.ValueTuple{System.Int32,System.Int32}
+  parent: System
+  definition: System.ValueTuple`2
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: (int Min, int Max)
+  nameWithType: (int Min, int Max)
+  fullName: (int Min, int Max)
+  nameWithType.vb: (Min As Integer, Max As Integer)
+  fullName.vb: (Min As Integer, Max As Integer)
+  name.vb: (Min As Integer, Max As Integer)
+  spec.csharp:
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Min
+    name: Min
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.min
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Max
+    name: Max
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.max
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Min
+    name: Min
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.min
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Max
+    name: Max
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.max
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: System.Collections.Generic.List{SpessaSharp.SoundBank.Generator}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.SoundBank.Generator}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Generator>
+  nameWithType: List<Generator>
+  fullName: System.Collections.Generic.List<SpessaSharp.SoundBank.Generator>
+  nameWithType.vb: List(Of Generator)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.SoundBank.Generator)
+  name.vb: List(Of Generator)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.Generator
+    name: Generator
+    href: SpessaSharp.SoundBank.Generator.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.Generator
+    name: Generator
+    href: SpessaSharp.SoundBank.Generator.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.List{SpessaSharp.SoundBank.Modulator}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.SoundBank.Modulator}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Modulator>
+  nameWithType: List<Modulator>
+  fullName: System.Collections.Generic.List<SpessaSharp.SoundBank.Modulator>
+  nameWithType.vb: List(Of Modulator)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.SoundBank.Modulator)
+  name.vb: List(Of Modulator)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: )
+- uid: SpessaSharp.SoundBank.BasicZone.HasKeyRange*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.HasKeyRange
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_HasKeyRange
+  name: HasKeyRange
+  nameWithType: BasicZone.HasKeyRange
+  fullName: SpessaSharp.SoundBank.BasicZone.HasKeyRange
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.SoundBank.BasicZone.HasVelRange*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.HasVelRange
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_HasVelRange
+  name: HasVelRange
+  nameWithType: BasicZone.HasVelRange
+  fullName: SpessaSharp.SoundBank.BasicZone.HasVelRange
+- uid: SpessaSharp.SoundBank.BasicZone.FineTuning*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.FineTuning
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_FineTuning
+  name: FineTuning
+  nameWithType: BasicZone.FineTuning
+  fullName: SpessaSharp.SoundBank.BasicZone.FineTuning
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: SpessaSharp.SoundBank.BasicZone.SetGenerator*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.SetGenerator
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_SetGenerator_SpessaSharp_SoundBank_Generator_Type_System_Nullable_System_Int32__System_Boolean_
+  name: SetGenerator
+  nameWithType: BasicZone.SetGenerator
+  fullName: SpessaSharp.SoundBank.BasicZone.SetGenerator
+- uid: SpessaSharp.SoundBank.Generator.Type
+  commentId: T:SpessaSharp.SoundBank.Generator.Type
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.Generator.html
+  name: Generator.Type
+  nameWithType: Generator.Type
+  fullName: SpessaSharp.SoundBank.Generator.Type
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.Generator
+    name: Generator
+    href: SpessaSharp.SoundBank.Generator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Generator.Type
+    name: Type
+    href: SpessaSharp.SoundBank.Generator.Type.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.Generator
+    name: Generator
+    href: SpessaSharp.SoundBank.Generator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Generator.Type
+    name: Type
+    href: SpessaSharp.SoundBank.Generator.Type.html
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.SoundBank.BasicZone.GetGenerator*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.GetGenerator
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_GetGenerator_SpessaSharp_SoundBank_Generator_Type_System_Int16_
+  name: GetGenerator
+  nameWithType: BasicZone.GetGenerator
+  fullName: SpessaSharp.SoundBank.BasicZone.GetGenerator
+- uid: System.Int16
+  commentId: T:System.Int16
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short
+  nameWithType: short
+  fullName: short
+  nameWithType.vb: Short
+  fullName.vb: Short
+  name.vb: Short
+- uid: System.Nullable{System.Int16}
+  commentId: T:System.Nullable{System.Int16}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short?
+  nameWithType: short?
+  fullName: short?
+  nameWithType.vb: Short?
+  fullName.vb: Short?
+  name.vb: Short?
+  spec.csharp:
+  - uid: System.Int16
+    name: short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: '?'
+  spec.vb:
+  - uid: System.Int16
+    name: Short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: '?'
+- uid: SpessaSharp.SoundBank.BasicZone.Add*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.Add
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_Add_System_ReadOnlySpan_SpessaSharp_SoundBank_Generator__
+  name: Add
+  nameWithType: BasicZone.Add
+  fullName: SpessaSharp.SoundBank.BasicZone.Add
+- uid: System.ReadOnlySpan{SpessaSharp.SoundBank.Generator}
+  commentId: T:System.ReadOnlySpan{SpessaSharp.SoundBank.Generator}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<Generator>
+  nameWithType: ReadOnlySpan<Generator>
+  fullName: System.ReadOnlySpan<SpessaSharp.SoundBank.Generator>
+  nameWithType.vb: ReadOnlySpan(Of Generator)
+  fullName.vb: System.ReadOnlySpan(Of SpessaSharp.SoundBank.Generator)
+  name.vb: ReadOnlySpan(Of Generator)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.Generator
+    name: Generator
+    href: SpessaSharp.SoundBank.Generator.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.Generator
+    name: Generator
+    href: SpessaSharp.SoundBank.Generator.html
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.SoundBank.BasicZone.CopyFrom*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.CopyFrom
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_CopyFrom_SpessaSharp_SoundBank_BasicZone_
+  name: CopyFrom
+  nameWithType: BasicZone.CopyFrom
+  fullName: SpessaSharp.SoundBank.BasicZone.CopyFrom
+- uid: SpessaSharp.SoundBank.BasicZone
+  commentId: T:SpessaSharp.SoundBank.BasicZone
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.BasicZone.html
+  name: BasicZone
+  nameWithType: BasicZone
+  fullName: SpessaSharp.SoundBank.BasicZone
+- uid: SpessaSharp.SoundBank.BasicZone.GetWriteGenerators*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.GetWriteGenerators
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_GetWriteGenerators
+  name: GetWriteGenerators
+  nameWithType: BasicZone.GetWriteGenerators
+  fullName: SpessaSharp.SoundBank.BasicZone.GetWriteGenerators
+- uid: SpessaSharp.SoundBank.BasicZone.AddToGenerator*
+  commentId: Overload:SpessaSharp.SoundBank.BasicZone.AddToGenerator
+  href: SpessaSharp.SoundBank.BasicZone.html#SpessaSharp_SoundBank_BasicZone_AddToGenerator_SpessaSharp_SoundBank_Generator_Type_System_Int32_System_Boolean_
+  name: AddToGenerator
+  nameWithType: BasicZone.AddToGenerator
+  fullName: SpessaSharp.SoundBank.BasicZone.AddToGenerator

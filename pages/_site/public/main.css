@@ -1,0 +1,11 @@
+/* Force the top navigation dropdowns to scroll if they exceed the screen height */
+.navbar .dropdown-menu {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Ensure the left sidebar/nav menu also scrolls cleanly if you have tons of items */
+.sidebar .nav {
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
+}

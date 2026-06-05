@@ -1,0 +1,536 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  id: Event.CbChannelMidiParameterChange
+  parent: SpessaSharp.Synthesizer
+  children:
+  - SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.#ctor(System.Int32,SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  - SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel
+  - SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Event.CbChannelMidiParameterChange
+  nameWithType: Event.CbChannelMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CbChannelMidiParameterChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 181
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: This event fires when a channel MIDI parameter changes.
+  example: []
+  syntax:
+    content: 'public readonly record struct Event.CbChannelMidiParameterChange : IEquatable<Event.CbChannelMidiParameterChange>'
+    content.vb: Public Structure [Event].CbChannelMidiParameterChange Implements IEquatable(Of Event.CbChannelMidiParameterChange)
+  implements:
+  - System.IEquatable{SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.#ctor(System.Int32,SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  commentId: M:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.#ctor(System.Int32,SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  id: '#ctor(System.Int32,SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)'
+  parent: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  langs:
+  - csharp
+  - vb
+  name: CbChannelMidiParameterChange(int, ChannelMidiParameter)
+  nameWithType: Event.CbChannelMidiParameterChange.CbChannelMidiParameterChange(int, ChannelMidiParameter)
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.CbChannelMidiParameterChange(int, SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 181
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: This event fires when a channel MIDI parameter changes.
+  example: []
+  syntax:
+    content: public CbChannelMidiParameterChange(int Channel, ChannelMidiParameter Parameter)
+    parameters:
+    - id: Channel
+      type: System.Int32
+      description: The channel that was affected.
+    - id: Parameter
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+      description: The type parameter and value that was changed.
+    content.vb: Public Sub New(Channel As Integer, Parameter As ChannelMidiParameter)
+  overload: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.#ctor*
+  nameWithType.vb: Event.CbChannelMidiParameterChange.New(Integer, ChannelMidiParameter)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.New(Integer, SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  name.vb: New(Integer, ChannelMidiParameter)
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel
+  commentId: P:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel
+  id: Channel
+  parent: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  langs:
+  - csharp
+  - vb
+  name: Channel
+  nameWithType: Event.CbChannelMidiParameterChange.Channel
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Channel
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 182
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: The channel that was affected.
+  example: []
+  syntax:
+    content: public int Channel { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Channel As Integer
+  overload: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel*
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter
+  commentId: P:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter
+  id: Parameter
+  parent: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  langs:
+  - csharp
+  - vb
+  name: Parameter
+  nameWithType: Event.CbChannelMidiParameterChange.Parameter
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Parameter
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 182
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: The type parameter and value that was changed.
+  example: []
+  syntax:
+    content: public ChannelMidiParameter Parameter { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Property Parameter As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter*
+references:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: System.IEquatable{SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange}
+  commentId: T:System.IEquatable{SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Event.CbChannelMidiParameterChange>
+  nameWithType: IEquatable<Event.CbChannelMidiParameterChange>
+  fullName: System.IEquatable<SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange>
+  nameWithType.vb: IEquatable(Of Event.CbChannelMidiParameterChange)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  name.vb: IEquatable(Of Event.CbChannelMidiParameterChange)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.#ctor*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.#ctor
+  href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html#SpessaSharp_Synthesizer_Event_CbChannelMidiParameterChange__ctor_System_Int32_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_
+  name: CbChannelMidiParameterChange
+  nameWithType: Event.CbChannelMidiParameterChange.CbChannelMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.CbChannelMidiParameterChange
+  nameWithType.vb: Event.CbChannelMidiParameterChange.New
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: ChannelMidiParameter
+  nameWithType: ChannelMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel
+  href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html#SpessaSharp_Synthesizer_Event_CbChannelMidiParameterChange_Channel
+  name: Channel
+  nameWithType: Event.CbChannelMidiParameterChange.Channel
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Channel
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter
+  href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html#SpessaSharp_Synthesizer_Event_CbChannelMidiParameterChange_Parameter
+  name: Parameter
+  nameWithType: Event.CbChannelMidiParameterChange.Parameter
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.Parameter

@@ -1,0 +1,1403 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  id: ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  children:
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.#ctor(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,SpessaSharp.MIDI.Midi.CC)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Len
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.PType
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: ChannelMidiParameter
+  nameWithType: ChannelMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelMidiParameter
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 204
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: 'public readonly record struct ChannelMidiParameter : IEquatable<ChannelMidiParameter>'
+    content.vb: Public Structure ChannelMidiParameter Implements IEquatable(Of ChannelMidiParameter)
+  implements:
+  - System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.PType
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.PType
+  id: PType
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: PType
+  nameWithType: ChannelMidiParameter.PType
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.PType
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PType
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 207
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public readonly ChannelMidiParameter.Type PType
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    content.vb: Public ReadOnly PType As ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single)
+  id: Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, float)
+  nameWithType: ChannelMidiParameter.Of(ChannelMidiParameter.Type, float)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, float)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 209
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelMidiParameter Of(ChannelMidiParameter.Type type, float value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    - id: value
+      type: System.Single
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Function [Of](type As ChannelMidiParameter.Type, value As Single) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of*
+  nameWithType.vb: ChannelMidiParameter.Of(ChannelMidiParameter.Type, Single)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Single)
+  name.vb: Of(Type, Single)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32)
+  id: Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, int)
+  nameWithType: ChannelMidiParameter.Of(ChannelMidiParameter.Type, int)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 215
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelMidiParameter Of(ChannelMidiParameter.Type type, int value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    - id: value
+      type: System.Int32
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Function [Of](type As ChannelMidiParameter.Type, value As Integer) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of*
+  nameWithType.vb: ChannelMidiParameter.Of(ChannelMidiParameter.Type, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Integer)
+  name.vb: Of(Type, Integer)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  id: Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, bool)
+  nameWithType: ChannelMidiParameter.Of(ChannelMidiParameter.Type, bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 221
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelMidiParameter Of(ChannelMidiParameter.Type type, bool value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    - id: value
+      type: System.Boolean
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Function [Of](type As ChannelMidiParameter.Type, value As Boolean) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of*
+  nameWithType.vb: ChannelMidiParameter.Of(ChannelMidiParameter.Type, Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Boolean)
+  name.vb: Of(Type, Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.#ctor(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,SpessaSharp.MIDI.Midi.CC)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.#ctor(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,SpessaSharp.MIDI.Midi.CC)
+  id: '#ctor(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,SpessaSharp.MIDI.Midi.CC)'
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: ChannelMidiParameter(Type, CC)
+  nameWithType: ChannelMidiParameter.ChannelMidiParameter(ChannelMidiParameter.Type, Midi.CC)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.ChannelMidiParameter(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, SpessaSharp.MIDI.Midi.CC)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 227
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public ChannelMidiParameter(ChannelMidiParameter.Type type, Midi.CC value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    - id: value
+      type: SpessaSharp.MIDI.Midi.CC
+    content.vb: Public Sub New(type As ChannelMidiParameter.Type, value As Midi.CC)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.#ctor*
+  nameWithType.vb: ChannelMidiParameter.New(ChannelMidiParameter.Type, Midi.CC)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.New(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, SpessaSharp.MIDI.Midi.CC)
+  name.vb: New(Type, CC)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)
+  id: Of(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Assign)
+  nameWithType: ChannelMidiParameter.Of(MidiChannel.Assign)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 234
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelMidiParameter Of(MidiChannel.Assign value)
+    parameters:
+    - id: value
+      type: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Function [Of](value As MidiChannel.Assign) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool
+  id: AsBool
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsBool
+  nameWithType: ChannelMidiParameter.AsBool
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsBool
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 246
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public bool AsBool { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property AsBool As Boolean
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat
+  id: AsFloat
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsFloat
+  nameWithType: ChannelMidiParameter.AsFloat
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsFloat
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 255
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public float AsFloat { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property AsFloat As Single
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt
+  id: AsInt
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsInt
+  nameWithType: ChannelMidiParameter.AsInt
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsInt
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 264
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public int AsInt { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property AsInt As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC
+  id: AsCC
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsCC
+  nameWithType: ChannelMidiParameter.AsCC
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsCC
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 273
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public Midi.CC AsCC { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Midi.CC
+    content.vb: Public ReadOnly Property AsCC As Midi.CC
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode
+  id: AsAssignMode
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsAssignMode
+  nameWithType: ChannelMidiParameter.AsAssignMode
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsAssignMode
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 282
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public MidiChannel.Assign AsAssignMode { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    content.vb: Public ReadOnly Property AsAssignMode As MidiChannel.Assign
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Len
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Len
+  id: Len
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Len
+  nameWithType: ChannelMidiParameter.Len
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Len
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Len
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 291
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static readonly int Len
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Len As Integer
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type)
+  id: TypeOf(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: TypeOf(Type)
+  nameWithType: ChannelMidiParameter.TypeOf(ChannelMidiParameter.Type)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TypeOf
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 390
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static Params.Type TypeOf(ChannelMidiParameter.Type type)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    return:
+      type: SpessaSharp.Utils.Params.Type
+    content.vb: Public Shared Function [TypeOf](type As ChannelMidiParameter.Type) As Params.Type
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  id: op_Implicit(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelMidiParameter(Assign)
+  nameWithType: ChannelMidiParameter.implicit operator ChannelMidiParameter(MidiChannel.Assign)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 414
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelMidiParameter(MidiChannel.Assign param)
+    parameters:
+    - id: param
+      type: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Widening Operator CType(param As MidiChannel.Assign) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit*
+  nameWithType.vb: ChannelMidiParameter.CType(MidiChannel.Assign)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.CType(SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign)
+  name.vb: CType(Assign)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelMidiParameter((Type Type, bool Value))
+  nameWithType: ChannelMidiParameter.implicit operator ChannelMidiParameter((ChannelMidiParameter.Type Type, bool Value))
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter((SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type Type, bool Value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 416
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelMidiParameter((ChannelMidiParameter.Type Type, bool Value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Widening Operator CType(param As (Type As ChannelMidiParameter.Type, Value As Boolean)) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit*
+  nameWithType.vb: ChannelMidiParameter.CType((Type As ChannelMidiParameter.Type, Value As Boolean))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.CType((Type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Value As Boolean))
+  name.vb: CType((Type As Type, Value As Boolean))
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelMidiParameter((Type Type, int Value))
+  nameWithType: ChannelMidiParameter.implicit operator ChannelMidiParameter((ChannelMidiParameter.Type Type, int Value))
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter((SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type Type, int Value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 418
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelMidiParameter((ChannelMidiParameter.Type Type, int Value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Widening Operator CType(param As (Type As ChannelMidiParameter.Type, Value As Integer)) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit*
+  nameWithType.vb: ChannelMidiParameter.CType((Type As ChannelMidiParameter.Type, Value As Integer))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.CType((Type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Value As Integer))
+  name.vb: CType((Type As Type, Value As Integer))
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelMidiParameter((Type Type, float Value))
+  nameWithType: ChannelMidiParameter.implicit operator ChannelMidiParameter((ChannelMidiParameter.Type Type, float Value))
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter((SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type Type, float Value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 420
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelMidiParameter((ChannelMidiParameter.Type Type, float Value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    content.vb: Public Shared Widening Operator CType(param As (Type As ChannelMidiParameter.Type, Value As Single)) As ChannelMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit*
+  nameWithType.vb: ChannelMidiParameter.CType((Type As ChannelMidiParameter.Type, Value As Single))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.CType((Type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Value As Single))
+  name.vb: CType((Type As Type, Value As Single))
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+- uid: System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}
+  commentId: T:System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ChannelMidiParameter>
+  nameWithType: IEquatable<ChannelMidiParameter>
+  fullName: System.IEquatable<SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter>
+  nameWithType.vb: IEquatable(Of ChannelMidiParameter)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  name.vb: IEquatable(Of ChannelMidiParameter)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: ChannelMidiParameter.Type
+  nameWithType: ChannelMidiParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_Of_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_Type_System_Single_
+  name: Of
+  nameWithType: ChannelMidiParameter.Of
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Of
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: ChannelMidiParameter
+  nameWithType: ChannelMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.#ctor*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.#ctor
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter__ctor_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_Type_SpessaSharp_MIDI_Midi_CC_
+  name: ChannelMidiParameter
+  nameWithType: ChannelMidiParameter.ChannelMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.ChannelMidiParameter
+  nameWithType.vb: ChannelMidiParameter.New
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.New
+  name.vb: New
+- uid: SpessaSharp.MIDI.Midi.CC
+  commentId: T:SpessaSharp.MIDI.Midi.CC
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.CC
+  nameWithType: Midi.CC
+  fullName: SpessaSharp.MIDI.Midi.CC
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  name: MidiChannel.Assign
+  nameWithType: MidiChannel.Assign
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+    name: MidiChannel
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    name: Assign
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+    name: MidiChannel
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    name: Assign
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_AsBool
+  name: AsBool
+  nameWithType: ChannelMidiParameter.AsBool
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsBool
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_AsFloat
+  name: AsFloat
+  nameWithType: ChannelMidiParameter.AsFloat
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsFloat
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_AsInt
+  name: AsInt
+  nameWithType: ChannelMidiParameter.AsInt
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsInt
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_AsCC
+  name: AsCC
+  nameWithType: ChannelMidiParameter.AsCC
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsCC
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_AsAssignMode
+  name: AsAssignMode
+  nameWithType: ChannelMidiParameter.AsAssignMode
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.AsAssignMode
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_TypeOf_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_Type_
+  name: TypeOf
+  nameWithType: ChannelMidiParameter.TypeOf
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.TypeOf
+- uid: SpessaSharp.Utils.Params.Type
+  commentId: T:SpessaSharp.Utils.Params.Type
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.Params.html
+  name: Params.Type
+  nameWithType: Params.Type
+  fullName: SpessaSharp.Utils.Params.Type
+  spec.csharp:
+  - uid: SpessaSharp.Utils.Params
+    name: Params
+    href: SpessaSharp.Utils.Params.html
+  - name: .
+  - uid: SpessaSharp.Utils.Params.Type
+    name: Type
+    href: SpessaSharp.Utils.Params.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.Params
+    name: Params
+    href: SpessaSharp.Utils.Params.html
+  - name: .
+  - uid: SpessaSharp.Utils.Params.Type
+    name: Type
+    href: SpessaSharp.Utils.Params.Type.html
+- uid: SpessaSharp.Utils
+  commentId: N:SpessaSharp.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.Utils
+  nameWithType: SpessaSharp.Utils
+  fullName: SpessaSharp.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.op_Implicit
+  name: implicit operator
+  nameWithType: ChannelMidiParameter.implicit operator
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.implicit operator
+  nameWithType.vb: ChannelMidiParameter.CType
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: (ChannelMidiParameter.Type Type, bool Value)
+  nameWithType: (ChannelMidiParameter.Type Type, bool Value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type Type, bool Value)
+  nameWithType.vb: (Type As ChannelMidiParameter.Type, Value As Boolean)
+  fullName.vb: (Type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Value As Boolean)
+  name.vb: (Type As ChannelMidiParameter.Type, Value As Boolean)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.boolean-.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.boolean-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.boolean-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.boolean-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: (ChannelMidiParameter.Type Type, int Value)
+  nameWithType: (ChannelMidiParameter.Type Type, int Value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type Type, int Value)
+  nameWithType.vb: (Type As ChannelMidiParameter.Type, Value As Integer)
+  fullName.vb: (Type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Value As Integer)
+  name.vb: (Type As ChannelMidiParameter.Type, Value As Integer)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.int32-.type
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.int32-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.int32-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Int32}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.int32-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: (ChannelMidiParameter.Type Type, float Value)
+  nameWithType: (ChannelMidiParameter.Type Type, float Value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type Type, float Value)
+  nameWithType.vb: (Type As ChannelMidiParameter.Type, Value As Single)
+  fullName.vb: (Type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Value As Single)
+  name.vb: (Type As ChannelMidiParameter.Type, Value As Single)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.single-.type
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.single-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.single-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Single}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelmidiparameter.type,system.single-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )

@@ -1,0 +1,835 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  id: DrumParameters
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  children:
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.#ctor(System.Int32,System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Boolean,System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Default
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn
+  langs:
+  - csharp
+  - vb
+  name: DrumParameters
+  nameWithType: DrumParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DrumParameters
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Represents a single drum instrument's XG/GS parameters.
+  example: []
+  syntax:
+    content: 'public readonly record struct DrumParameters : IEquatable<DrumParameters>'
+    content.vb: Public Structure DrumParameters Implements IEquatable(Of DrumParameters)
+  implements:
+  - System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.DrumParameters}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.#ctor(System.Int32,System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Boolean,System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.#ctor(System.Int32,System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Boolean,System.Boolean)
+  id: '#ctor(System.Int32,System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Boolean,System.Boolean)'
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: DrumParameters(int, float, int, int, float, float, float, bool, bool)
+  nameWithType: DrumParameters.DrumParameters(int, float, int, int, float, float, float, bool, bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DrumParameters(int, float, int, int, float, float, float, bool, bool)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Represents a single drum instrument's XG/GS parameters.
+  example: []
+  syntax:
+    content: public DrumParameters(int Pitch, float Gain, int ExclusiveClass, int Pan, float ReverbGain, float ChorusGain, float DelayGain, bool RxNoteOn, bool RxNoteOff)
+    parameters:
+    - id: Pitch
+      type: System.Int32
+      description: Pitch offset in cents.
+    - id: Gain
+      type: System.Single
+      description: Gain multiplier.
+    - id: ExclusiveClass
+      type: System.Int32
+      description: Exclusive class override.
+    - id: Pan
+      type: System.Int32
+      description: Pan, 1-64-127, 0 is random. This adds to the channel pan!
+    - id: ReverbGain
+      type: System.Single
+      description: Reverb multiplier.
+    - id: ChorusGain
+      type: System.Single
+      description: Chorus multiplier.
+    - id: DelayGain
+      type: System.Single
+      description: Delay multiplier.
+    - id: RxNoteOn
+      type: System.Boolean
+      description: If note on should be received.
+    - id: RxNoteOff
+      type: System.Boolean
+      description: 'If note off should be received. Note: Due to the way sound banks implement drums (as 100s release time), this means killing the voice on note off, not releasing it.'
+    content.vb: Public Sub New(Pitch As Integer, Gain As Single, ExclusiveClass As Integer, Pan As Integer, ReverbGain As Single, ChorusGain As Single, DelayGain As Single, RxNoteOn As Boolean, RxNoteOff As Boolean)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.#ctor*
+  nameWithType.vb: DrumParameters.New(Integer, Single, Integer, Integer, Single, Single, Single, Boolean, Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.New(Integer, Single, Integer, Integer, Single, Single, Single, Boolean, Boolean)
+  name.vb: New(Integer, Single, Integer, Integer, Single, Single, Single, Boolean, Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch
+  id: Pitch
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: Pitch
+  nameWithType: DrumParameters.Pitch
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Pitch
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 13
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Pitch offset in cents.
+  example: []
+  syntax:
+    content: public int Pitch { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Pitch As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain
+  id: Gain
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: Gain
+  nameWithType: DrumParameters.Gain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Gain
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 14
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Gain multiplier.
+  example: []
+  syntax:
+    content: public float Gain { get; init; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Gain As Single
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass
+  id: ExclusiveClass
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: ExclusiveClass
+  nameWithType: DrumParameters.ExclusiveClass
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ExclusiveClass
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 15
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Exclusive class override.
+  example: []
+  syntax:
+    content: public int ExclusiveClass { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ExclusiveClass As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan
+  id: Pan
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: Pan
+  nameWithType: DrumParameters.Pan
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Pan
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Pan, 1-64-127, 0 is random. This adds to the channel pan!
+  example: []
+  syntax:
+    content: public int Pan { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Pan As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain
+  id: ReverbGain
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: ReverbGain
+  nameWithType: DrumParameters.ReverbGain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ReverbGain
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Reverb multiplier.
+  example: []
+  syntax:
+    content: public float ReverbGain { get; init; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property ReverbGain As Single
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain
+  id: ChorusGain
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: ChorusGain
+  nameWithType: DrumParameters.ChorusGain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChorusGain
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 18
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Chorus multiplier.
+  example: []
+  syntax:
+    content: public float ChorusGain { get; init; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property ChorusGain As Single
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain
+  id: DelayGain
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: DelayGain
+  nameWithType: DrumParameters.DelayGain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayGain
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Delay multiplier.
+  example: []
+  syntax:
+    content: public float DelayGain { get; init; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property DelayGain As Single
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn
+  id: RxNoteOn
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: RxNoteOn
+  nameWithType: DrumParameters.RxNoteOn
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RxNoteOn
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: If note on should be received.
+  example: []
+  syntax:
+    content: public bool RxNoteOn { get; init; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property RxNoteOn As Boolean
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff
+  id: RxNoteOff
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: RxNoteOff
+  nameWithType: DrumParameters.RxNoteOff
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RxNoteOff
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 21
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: 'If note off should be received. Note: Due to the way sound banks implement drums (as 100s release time), this means killing the voice on note off, not releasing it.'
+  example: []
+  syntax:
+    content: public bool RxNoteOff { get; init; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property RxNoteOff As Boolean
+  overload: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Default
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Default
+  id: Default
+  parent: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: DrumParameters.Default
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Default
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Default
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/DrumParam.cs
+    startLine: 23
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  syntax:
+    content: public static readonly DrumParameters Default
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+    content.vb: Public Shared ReadOnly [Default] As DrumParameters
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Channel
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+- uid: System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.DrumParameters}
+  commentId: T:System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.DrumParameters}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<DrumParameters>
+  nameWithType: IEquatable<DrumParameters>
+  fullName: System.IEquatable<SpessaSharp.Synthesizer.Engine.Channel.DrumParameters>
+  nameWithType.vb: IEquatable(Of DrumParameters)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Synthesizer.Engine.Channel.DrumParameters)
+  name.vb: IEquatable(Of DrumParameters)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+    name: DrumParameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+    name: DrumParameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.#ctor*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.#ctor
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters__ctor_System_Int32_System_Single_System_Int32_System_Int32_System_Single_System_Single_System_Single_System_Boolean_System_Boolean_
+  name: DrumParameters
+  nameWithType: DrumParameters.DrumParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DrumParameters
+  nameWithType.vb: DrumParameters.New
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_Pitch
+  name: Pitch
+  nameWithType: DrumParameters.Pitch
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pitch
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_Gain
+  name: Gain
+  nameWithType: DrumParameters.Gain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Gain
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_ExclusiveClass
+  name: ExclusiveClass
+  nameWithType: DrumParameters.ExclusiveClass
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ExclusiveClass
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_Pan
+  name: Pan
+  nameWithType: DrumParameters.Pan
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.Pan
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_ReverbGain
+  name: ReverbGain
+  nameWithType: DrumParameters.ReverbGain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ReverbGain
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_ChorusGain
+  name: ChorusGain
+  nameWithType: DrumParameters.ChorusGain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.ChorusGain
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_DelayGain
+  name: DelayGain
+  nameWithType: DrumParameters.DelayGain
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.DelayGain
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_RxNoteOn
+  name: RxNoteOn
+  nameWithType: DrumParameters.RxNoteOn
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOn
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html#SpessaSharp_Synthesizer_Engine_Channel_DrumParameters_RxNoteOff
+  name: RxNoteOff
+  nameWithType: DrumParameters.RxNoteOff
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.RxNoteOff
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html
+  name: DrumParameters
+  nameWithType: DrumParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters

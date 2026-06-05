@@ -1,0 +1,109 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.DLS
+  commentId: N:SpessaSharp.SoundBank.DLS
+  id: SpessaSharp.SoundBank.DLS
+  children:
+  - SpessaSharp.SoundBank.DLS.ConnectionSource
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  - SpessaSharp.SoundBank.DLS.DLSWriteOptions
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.SoundBank.DLS
+  nameWithType: SpessaSharp.SoundBank.DLS
+  fullName: SpessaSharp.SoundBank.DLS
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+  commentId: T:SpessaSharp.SoundBank.DLS.ConnectionSource
+  parent: SpessaSharp.SoundBank.DLS
+  href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  name: ConnectionSource
+  nameWithType: ConnectionSource
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  commentId: T:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  parent: SpessaSharp.SoundBank.DLS
+  href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  name: ConnectionSource.DLSSource
+  nameWithType: ConnectionSource.DLSSource
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    name: DLSSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    name: DLSSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination
+  commentId: T:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination
+  parent: SpessaSharp.SoundBank.DLS
+  href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  name: ConnectionSource.DLSDestination
+  nameWithType: ConnectionSource.DLSDestination
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination
+    name: DLSDestination
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination
+    name: DLSDestination
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination.html
+- uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+  commentId: T:SpessaSharp.SoundBank.DLS.DLSWriteOptions
+  href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  name: DLSWriteOptions
+  nameWithType: DLSWriteOptions
+  fullName: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+- uid: SpessaSharp.SoundBank.DLS
+  commentId: N:SpessaSharp.SoundBank.DLS
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank.DLS
+  nameWithType: SpessaSharp.SoundBank.DLS
+  fullName: SpessaSharp.SoundBank.DLS
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS
+    name: DLS
+    href: SpessaSharp.SoundBank.DLS.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS
+    name: DLS
+    href: SpessaSharp.SoundBank.DLS.html

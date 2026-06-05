@@ -1,0 +1,709 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  commentId: T:SpessaSharp.MIDI.Write.WriterRMidi.Options
+  id: WriterRMidi.Options
+  parent: SpessaSharp.MIDI.Write
+  children:
+  - SpessaSharp.MIDI.Write.WriterRMidi.Options.#ctor(System.Int32,SpessaSharp.MIDI.RMidi.Info,System.Boolean,SpessaSharp.SoundBank.SoundBank)
+  - SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset
+  - SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset
+  - SpessaSharp.MIDI.Write.WriterRMidi.Options.Default
+  - SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata
+  - SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: WriterRMidi.Options
+  nameWithType: WriterRMidi.Options
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Write/WriterRMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Options
+    path: ../SpessaSharp/MIDI/Write/WriterRMidi.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Write
+  summary: ''
+  example: []
+  syntax:
+    content: 'public readonly record struct WriterRMidi.Options : IEquatable<WriterRMidi.Options>'
+    content.vb: Public Structure WriterRMidi.Options Implements IEquatable(Of WriterRMidi.Options)
+  implements:
+  - System.IEquatable{SpessaSharp.MIDI.Write.WriterRMidi.Options}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.#ctor(System.Int32,SpessaSharp.MIDI.RMidi.Info,System.Boolean,SpessaSharp.SoundBank.SoundBank)
+  commentId: M:SpessaSharp.MIDI.Write.WriterRMidi.Options.#ctor(System.Int32,SpessaSharp.MIDI.RMidi.Info,System.Boolean,SpessaSharp.SoundBank.SoundBank)
+  id: '#ctor(System.Int32,SpessaSharp.MIDI.RMidi.Info,System.Boolean,SpessaSharp.SoundBank.SoundBank)'
+  parent: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  langs:
+  - csharp
+  - vb
+  name: Options(int, Info?, bool, SoundBank?)
+  nameWithType: WriterRMidi.Options.Options(int, RMidi.Info?, bool, SoundBank?)
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.Options(int, SpessaSharp.MIDI.RMidi.Info?, bool, SpessaSharp.SoundBank.SoundBank?)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Write/WriterRMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/MIDI/Write/WriterRMidi.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Write
+  summary: ''
+  example: []
+  syntax:
+    content: public Options(int BankOffset, RMidi.Info? Metadata, bool CorrectBankOffset, SoundBank? SoundBank)
+    parameters:
+    - id: BankOffset
+      type: System.Int32
+      description: The bank offset for RMIDI.
+    - id: Metadata
+      type: SpessaSharp.MIDI.RMidi.Info
+      description: The metadata of the file. Optional.
+    - id: CorrectBankOffset
+      type: System.Boolean
+      description: If the MIDI file should internally be corrected to work with the set bank offset.
+    - id: SoundBank
+      type: SpessaSharp.SoundBank.SoundBank
+      description: The optional sound bank instance used to correct bank offset.
+    content.vb: Public Sub New(BankOffset As Integer, Metadata As RMidi.Info, CorrectBankOffset As Boolean, SoundBank As SoundBank)
+  overload: SpessaSharp.MIDI.Write.WriterRMidi.Options.#ctor*
+  nameWithType.vb: WriterRMidi.Options.New(Integer, RMidi.Info, Boolean, SoundBank)
+  fullName.vb: SpessaSharp.MIDI.Write.WriterRMidi.Options.New(Integer, SpessaSharp.MIDI.RMidi.Info, Boolean, SpessaSharp.SoundBank.SoundBank)
+  name.vb: New(Integer, Info, Boolean, SoundBank)
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset
+  commentId: P:SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset
+  id: BankOffset
+  parent: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  langs:
+  - csharp
+  - vb
+  name: BankOffset
+  nameWithType: WriterRMidi.Options.BankOffset
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Write/WriterRMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BankOffset
+    path: ../SpessaSharp/MIDI/Write/WriterRMidi.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Write
+  summary: The bank offset for RMIDI.
+  example: []
+  syntax:
+    content: public int BankOffset { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property BankOffset As Integer
+  overload: SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset*
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata
+  commentId: P:SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata
+  id: Metadata
+  parent: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  langs:
+  - csharp
+  - vb
+  name: Metadata
+  nameWithType: WriterRMidi.Options.Metadata
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Write/WriterRMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Metadata
+    path: ../SpessaSharp/MIDI/Write/WriterRMidi.cs
+    startLine: 18
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Write
+  summary: The metadata of the file. Optional.
+  example: []
+  syntax:
+    content: public RMidi.Info? Metadata { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.RMidi.Info
+    content.vb: Public Property Metadata As RMidi.Info
+  overload: SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata*
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset
+  commentId: P:SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset
+  id: CorrectBankOffset
+  parent: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  langs:
+  - csharp
+  - vb
+  name: CorrectBankOffset
+  nameWithType: WriterRMidi.Options.CorrectBankOffset
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Write/WriterRMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CorrectBankOffset
+    path: ../SpessaSharp/MIDI/Write/WriterRMidi.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Write
+  summary: If the MIDI file should internally be corrected to work with the set bank offset.
+  example: []
+  syntax:
+    content: public bool CorrectBankOffset { get; init; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property CorrectBankOffset As Boolean
+  overload: SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset*
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank
+  commentId: P:SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank
+  id: SoundBank
+  parent: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  langs:
+  - csharp
+  - vb
+  name: SoundBank
+  nameWithType: WriterRMidi.Options.SoundBank
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Write/WriterRMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SoundBank
+    path: ../SpessaSharp/MIDI/Write/WriterRMidi.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Write
+  summary: The optional sound bank instance used to correct bank offset.
+  example: []
+  syntax:
+    content: public SoundBank? SoundBank { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.SoundBank.SoundBank
+    content.vb: Public Property SoundBank As SoundBank
+  overload: SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank*
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.Default
+  commentId: F:SpessaSharp.MIDI.Write.WriterRMidi.Options.Default
+  id: Default
+  parent: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: WriterRMidi.Options.Default
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.Default
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Write/WriterRMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Default
+    path: ../SpessaSharp/MIDI/Write/WriterRMidi.cs
+    startLine: 22
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Write
+  syntax:
+    content: public static readonly WriterRMidi.Options Default
+    return:
+      type: SpessaSharp.MIDI.Write.WriterRMidi.Options
+    content.vb: Public Shared ReadOnly [Default] As WriterRMidi.Options
+references:
+- uid: SpessaSharp.MIDI.Write
+  commentId: N:SpessaSharp.MIDI.Write
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Write
+  nameWithType: SpessaSharp.MIDI.Write
+  fullName: SpessaSharp.MIDI.Write
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Write
+    name: Write
+    href: SpessaSharp.MIDI.Write.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Write
+    name: Write
+    href: SpessaSharp.MIDI.Write.html
+- uid: System.IEquatable{SpessaSharp.MIDI.Write.WriterRMidi.Options}
+  commentId: T:System.IEquatable{SpessaSharp.MIDI.Write.WriterRMidi.Options}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<WriterRMidi.Options>
+  nameWithType: IEquatable<WriterRMidi.Options>
+  fullName: System.IEquatable<SpessaSharp.MIDI.Write.WriterRMidi.Options>
+  nameWithType.vb: IEquatable(Of WriterRMidi.Options)
+  fullName.vb: System.IEquatable(Of SpessaSharp.MIDI.Write.WriterRMidi.Options)
+  name.vb: IEquatable(Of WriterRMidi.Options)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi
+    name: WriterRMidi
+    href: SpessaSharp.MIDI.Write.WriterRMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi.Options
+    name: Options
+    href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi
+    name: WriterRMidi
+    href: SpessaSharp.MIDI.Write.WriterRMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi.Options
+    name: Options
+    href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.#ctor*
+  commentId: Overload:SpessaSharp.MIDI.Write.WriterRMidi.Options.#ctor
+  href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html#SpessaSharp_MIDI_Write_WriterRMidi_Options__ctor_System_Int32_SpessaSharp_MIDI_RMidi_Info_System_Boolean_SpessaSharp_SoundBank_SoundBank_
+  name: Options
+  nameWithType: WriterRMidi.Options.Options
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.Options
+  nameWithType.vb: WriterRMidi.Options.New
+  fullName.vb: SpessaSharp.MIDI.Write.WriterRMidi.Options.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.MIDI.RMidi.Info
+  commentId: T:SpessaSharp.MIDI.RMidi.Info
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.RMidi.html
+  name: RMidi.Info
+  nameWithType: RMidi.Info
+  fullName: SpessaSharp.MIDI.RMidi.Info
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.SoundBank.SoundBank
+  commentId: T:SpessaSharp.SoundBank.SoundBank
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.SoundBank.html
+  name: SoundBank
+  nameWithType: SoundBank
+  fullName: SpessaSharp.SoundBank.SoundBank
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset*
+  commentId: Overload:SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset
+  href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html#SpessaSharp_MIDI_Write_WriterRMidi_Options_BankOffset
+  name: BankOffset
+  nameWithType: WriterRMidi.Options.BankOffset
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.BankOffset
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata*
+  commentId: Overload:SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata
+  href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html#SpessaSharp_MIDI_Write_WriterRMidi_Options_Metadata
+  name: Metadata
+  nameWithType: WriterRMidi.Options.Metadata
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.Metadata
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset*
+  commentId: Overload:SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset
+  href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html#SpessaSharp_MIDI_Write_WriterRMidi_Options_CorrectBankOffset
+  name: CorrectBankOffset
+  nameWithType: WriterRMidi.Options.CorrectBankOffset
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.CorrectBankOffset
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank*
+  commentId: Overload:SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank
+  href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html#SpessaSharp_MIDI_Write_WriterRMidi_Options_SoundBank
+  name: SoundBank
+  nameWithType: WriterRMidi.Options.SoundBank
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options.SoundBank
+- uid: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  commentId: T:SpessaSharp.MIDI.Write.WriterRMidi.Options
+  parent: SpessaSharp.MIDI.Write
+  href: SpessaSharp.MIDI.Write.WriterRMidi.html
+  name: WriterRMidi.Options
+  nameWithType: WriterRMidi.Options
+  fullName: SpessaSharp.MIDI.Write.WriterRMidi.Options
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi
+    name: WriterRMidi
+    href: SpessaSharp.MIDI.Write.WriterRMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi.Options
+    name: Options
+    href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi
+    name: WriterRMidi
+    href: SpessaSharp.MIDI.Write.WriterRMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi.Options
+    name: Options
+    href: SpessaSharp.MIDI.Write.WriterRMidi.Options.html

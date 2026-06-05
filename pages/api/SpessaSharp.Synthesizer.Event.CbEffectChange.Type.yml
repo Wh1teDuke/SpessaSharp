@@ -1,0 +1,190 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  id: Event.CbEffectChange.Type
+  parent: SpessaSharp.Synthesizer
+  children:
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Chorus
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Delay
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Insertion
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Reverb
+  langs:
+  - csharp
+  - vb
+  name: Event.CbEffectChange.Type
+  nameWithType: Event.CbEffectChange.Type
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 95
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public enum Event.CbEffectChange.Type
+    content.vb: Public Enum [Event].CbEffectChange.Type
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Reverb
+  commentId: F:SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Reverb
+  id: Reverb
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  langs:
+  - csharp
+  - vb
+  name: Reverb
+  nameWithType: Event.CbEffectChange.Type.Reverb
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Reverb
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Reverb
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 95
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Reverb = 0
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Chorus
+  commentId: F:SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Chorus
+  id: Chorus
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  langs:
+  - csharp
+  - vb
+  name: Chorus
+  nameWithType: Event.CbEffectChange.Type.Chorus
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Chorus
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Chorus
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 95
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Chorus = 1
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Delay
+  commentId: F:SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Delay
+  id: Delay
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  langs:
+  - csharp
+  - vb
+  name: Delay
+  nameWithType: Event.CbEffectChange.Type.Delay
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Delay
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Delay
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 95
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Delay = 2
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Insertion
+  commentId: F:SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Insertion
+  id: Insertion
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  langs:
+  - csharp
+  - vb
+  name: Insertion
+  nameWithType: Event.CbEffectChange.Type.Insertion
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.Insertion
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Insertion
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 95
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Insertion = 3
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+references:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Type
+  nameWithType: Event.CbEffectChange.Type
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.html

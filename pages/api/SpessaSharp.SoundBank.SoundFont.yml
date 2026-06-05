@@ -1,0 +1,70 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.SoundFont
+  commentId: N:SpessaSharp.SoundBank.SoundFont
+  id: SpessaSharp.SoundBank.SoundFont
+  children:
+  - SpessaSharp.SoundBank.SoundFont.ExtendedSF2Chunks
+  - SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+  - SpessaSharp.SoundBank.SoundFont.SoundFontWriteIndexes
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.SoundBank.SoundFont
+  nameWithType: SpessaSharp.SoundBank.SoundFont
+  fullName: SpessaSharp.SoundBank.SoundFont
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.SoundBank.SoundFont.ExtendedSF2Chunks
+  commentId: T:SpessaSharp.SoundBank.SoundFont.ExtendedSF2Chunks
+  parent: SpessaSharp.SoundBank.SoundFont
+  href: SpessaSharp.SoundBank.SoundFont.ExtendedSF2Chunks.html
+  name: ExtendedSF2Chunks
+  nameWithType: ExtendedSF2Chunks
+  fullName: SpessaSharp.SoundBank.SoundFont.ExtendedSF2Chunks
+- uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+  commentId: T:SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+  parent: SpessaSharp.SoundBank.SoundFont
+  href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  name: SF2WriteOptions
+  nameWithType: SF2WriteOptions
+  fullName: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+- uid: SpessaSharp.SoundBank.SoundFont.SoundFontWriteIndexes
+  commentId: T:SpessaSharp.SoundBank.SoundFont.SoundFontWriteIndexes
+  parent: SpessaSharp.SoundBank.SoundFont
+  href: SpessaSharp.SoundBank.SoundFont.SoundFontWriteIndexes.html
+  name: SoundFontWriteIndexes
+  nameWithType: SoundFontWriteIndexes
+  fullName: SpessaSharp.SoundBank.SoundFont.SoundFontWriteIndexes
+- uid: SpessaSharp.SoundBank.SoundFont
+  commentId: N:SpessaSharp.SoundBank.SoundFont
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank.SoundFont
+  nameWithType: SpessaSharp.SoundBank.SoundFont
+  fullName: SpessaSharp.SoundBank.SoundFont
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.SoundFont
+    name: SoundFont
+    href: SpessaSharp.SoundBank.SoundFont.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.SoundFont
+    name: SoundFont
+    href: SpessaSharp.SoundBank.SoundFont.html

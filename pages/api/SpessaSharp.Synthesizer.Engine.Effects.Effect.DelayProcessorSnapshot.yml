@@ -1,0 +1,729 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  id: Effect.DelayProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight
+  langs:
+  - csharp
+  - vb
+  name: Effect.DelayProcessorSnapshot
+  nameWithType: Effect.DelayProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayProcessorSnapshot
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 186
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: 'public class Effect.DelayProcessorSnapshot : Effect.BaseEffect'
+    content.vb: Public Class Effect.DelayProcessorSnapshot Inherits Effect.BaseEffect
+  inheritance:
+  - System.Object
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  derivedClasses:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+  inheritedMembers:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter
+  id: TimeCenter
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: TimeCenter
+  nameWithType: Effect.DelayProcessorSnapshot.TimeCenter
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TimeCenter
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 196
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-115<br />
+
+    0.1ms-340ms-1000ms<br />
+
+    The delay effect has three delay times; center, left and
+
+    right (when listening in stereo). Delay Time Center sets the delay time of the delay
+
+    located at the center.
+
+    Refer to SC-8850 Owner's Manual p. 236 for the exact mapping of the values.
+  example: []
+  syntax:
+    content: public virtual int TimeCenter { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property TimeCenter As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft
+  id: TimeRatioLeft
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: TimeRatioLeft
+  nameWithType: Effect.DelayProcessorSnapshot.TimeRatioLeft
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TimeRatioLeft
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 205
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-120<br />
+
+    4% - 500%<br />
+
+    This parameter sets the delay time of the delay located at the
+
+    left as a percentage of the Delay Time Center (up to a max. of 1.0 s).
+
+    The resolution is 100/24(%).
+  example: []
+  syntax:
+    content: public virtual int TimeRatioLeft { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property TimeRatioLeft As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight
+  id: TimeRatioRight
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: TimeRatioRight
+  nameWithType: Effect.DelayProcessorSnapshot.TimeRatioRight
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TimeRatioRight
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 214
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    1-120<br />
+
+    4%-500%<br />
+
+    This parameter sets the delay time of the delay located at the right as a percentage of
+
+    the Delay Time Center (up to a max. of 1.0 s).
+
+    The resolution is 100/24(%).
+  example: []
+  syntax:
+    content: public virtual int TimeRatioRight { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property TimeRatioRight As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter
+  id: LevelCenter
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: LevelCenter
+  nameWithType: Effect.DelayProcessorSnapshot.LevelCenter
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LevelCenter
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 221
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the volume of the central delay. Higher values result in a louder
+
+    center delay.
+  example: []
+  syntax:
+    content: public virtual int LevelCenter { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property LevelCenter As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft
+  id: LevelLeft
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: LevelLeft
+  nameWithType: Effect.DelayProcessorSnapshot.LevelLeft
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LevelLeft
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 227
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the volume of the left delay. Higher values result in a louder left delay.
+  example: []
+  syntax:
+    content: public virtual int LevelLeft { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property LevelLeft As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight
+  id: LevelRight
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: LevelRight
+  nameWithType: Effect.DelayProcessorSnapshot.LevelRight
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LevelRight
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 234
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the volume of the right delay. Higher values result in a louder
+
+    right delay.
+  example: []
+  syntax:
+    content: public virtual int LevelRight { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property LevelRight As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback
+  id: Feedback
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Feedback
+  nameWithType: Effect.DelayProcessorSnapshot.Feedback
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Feedback
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 244
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    (-64)-63<br />
+
+    This parameter affects the number of times the delay will repeat. With a value of 0,
+
+    the delay will not repeat. With higher values there will be more repeats.
+
+    With negative (-) values, the center delay will be fed back with inverted phase.
+
+    Negative values are effective with short delay times.
+  example: []
+  syntax:
+    content: public virtual int Feedback { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property Feedback As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb
+  id: SendLevelToReverb
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: SendLevelToReverb
+  nameWithType: Effect.DelayProcessorSnapshot.SendLevelToReverb
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SendLevelToReverb
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 251
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the amount of delay sound that is sent to the reverb.
+
+    Higher values result in more sound being sent.
+  example: []
+  syntax:
+    content: public virtual int SendLevelToReverb { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property SendLevelToReverb As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb*
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.BaseEffect
+  nameWithType: Effect.BaseEffect
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+    name: BaseEffect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+    name: BaseEffect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_BaseEffect_Level
+  name: Level
+  nameWithType: Effect.BaseEffect.Level
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_BaseEffect_PreLowPass
+  name: PreLowPass
+  nameWithType: Effect.BaseEffect.PreLowPass
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_TimeCenter
+  name: TimeCenter
+  nameWithType: Effect.DelayProcessorSnapshot.TimeCenter
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeCenter
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_TimeRatioLeft
+  name: TimeRatioLeft
+  nameWithType: Effect.DelayProcessorSnapshot.TimeRatioLeft
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioLeft
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_TimeRatioRight
+  name: TimeRatioRight
+  nameWithType: Effect.DelayProcessorSnapshot.TimeRatioRight
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.TimeRatioRight
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_LevelCenter
+  name: LevelCenter
+  nameWithType: Effect.DelayProcessorSnapshot.LevelCenter
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelCenter
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_LevelLeft
+  name: LevelLeft
+  nameWithType: Effect.DelayProcessorSnapshot.LevelLeft
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelLeft
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_LevelRight
+  name: LevelRight
+  nameWithType: Effect.DelayProcessorSnapshot.LevelRight
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.LevelRight
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_Feedback
+  name: Feedback
+  nameWithType: Effect.DelayProcessorSnapshot.Feedback
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.Feedback
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_SendLevelToReverb
+  name: SendLevelToReverb
+  nameWithType: Effect.DelayProcessorSnapshot.SendLevelToReverb
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.SendLevelToReverb

@@ -1,0 +1,1547 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder
+  commentId: T:SpessaSharp.MIDI.Utils.MidiBuilder
+  id: MidiBuilder
+  parent: SpessaSharp.MIDI.Utils
+  children:
+  - SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent(SpessaSharp.MIDI.Track,System.Int32,SpessaSharp.MIDI.StatusByte,System.ArraySegment{System.Byte})
+  - SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack(System.String,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.Midi
+  - SpessaSharp.MIDI.Utils.MidiBuilder.New(System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options})
+  - SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(SpessaSharp.MIDI.Track)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(SpessaSharp.MIDI.Track,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(SpessaSharp.MIDI.Track,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo(System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: MidiBuilder
+  nameWithType: MidiBuilder
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiBuilder
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 5
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: A class that helps to build a MIDI file from scratch.
+  example: []
+  syntax:
+    content: 'public readonly record struct MidiBuilder : IEquatable<MidiBuilder>'
+    content.vb: Public Structure MidiBuilder Implements IEquatable(Of MidiBuilder)
+  implements:
+  - System.IEquatable{SpessaSharp.MIDI.Utils.MidiBuilder}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.Midi
+  commentId: P:SpessaSharp.MIDI.Utils.MidiBuilder.Midi
+  id: Midi
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: Midi
+  nameWithType: MidiBuilder.Midi
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.Midi
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Midi
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 119
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public Midi Midi { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Midi
+    content.vb: Public Property Midi As Midi
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.Midi*
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.New(System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options})
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.New(System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options})
+  id: New(System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options})
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: New(Options?)
+  nameWithType: MidiBuilder.New(MidiBuilder.Options?)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.New(SpessaSharp.MIDI.Utils.MidiBuilder.Options?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: New
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 121
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public static MidiBuilder New(MidiBuilder.Options? options = null)
+    parameters:
+    - id: options
+      type: System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options}
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiBuilder
+    content.vb: Public Shared Function [New](options As MidiBuilder.Options? = Nothing) As MidiBuilder
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.New*
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(SpessaSharp.MIDI.Track)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(SpessaSharp.MIDI.Track)
+  id: OfTrack(SpessaSharp.MIDI.Track)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: OfTrack(Track)
+  nameWithType: MidiBuilder.OfTrack(Track)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(SpessaSharp.MIDI.Track)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfTrack
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 144
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public MidiBuilder.TrackBuilder OfTrack(Track track)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+    content.vb: Public Function OfTrack(track As Track) As MidiBuilder.TrackBuilder
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack*
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(System.Int32)
+  id: OfTrack(System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: OfTrack(int)
+  nameWithType: MidiBuilder.OfTrack(int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfTrack
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 145
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public MidiBuilder.TrackBuilder OfTrack(int track)
+    parameters:
+    - id: track
+      type: System.Int32
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+    content.vb: Public Function OfTrack(track As Integer) As MidiBuilder.TrackBuilder
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack*
+  nameWithType.vb: MidiBuilder.OfTrack(Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(Integer)
+  name.vb: OfTrack(Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo(System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo(System.Int32,System.Int32)
+  id: SetTempo(System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetTempo(int, int)
+  nameWithType: MidiBuilder.SetTempo(int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo(int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetTempo
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 150
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new Set Tempo event.
+  example: []
+  syntax:
+    content: public void SetTempo(int ticks, int tempo)
+    parameters:
+    - id: ticks
+      type: System.Int32
+      description: The tick number of the event.
+    - id: tempo
+      type: System.Int32
+      description: The tempo in beats per minute (BPM).
+    content.vb: Public Sub SetTempo(ticks As Integer, tempo As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo*
+  nameWithType.vb: MidiBuilder.SetTempo(Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo(Integer, Integer)
+  name.vb: SetTempo(Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack(System.String,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack(System.String,System.Int32)
+  id: AddTrack(System.String,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: AddTrack(string, int)
+  nameWithType: MidiBuilder.AddTrack(string, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack(string, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AddTrack
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 168
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new MIDI track.
+  example: []
+  syntax:
+    content: public void AddTrack(string name, int port = 0)
+    parameters:
+    - id: name
+      type: System.String
+      description: The new track's name.
+    - id: port
+      type: System.Int32
+      description: The new track's port.
+    content.vb: Public Sub AddTrack(name As String, port As Integer = 0)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: MIDI with format 0
+  nameWithType.vb: MidiBuilder.AddTrack(String, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack(String, Integer)
+  name.vb: AddTrack(String, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent(SpessaSharp.MIDI.Track,System.Int32,SpessaSharp.MIDI.StatusByte,System.ArraySegment{System.Byte})
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent(SpessaSharp.MIDI.Track,System.Int32,SpessaSharp.MIDI.StatusByte,System.ArraySegment{System.Byte})
+  id: AddEvent(SpessaSharp.MIDI.Track,System.Int32,SpessaSharp.MIDI.StatusByte,System.ArraySegment{System.Byte})
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: AddEvent(Track, int, StatusByte, ArraySegment<byte>)
+  nameWithType: MidiBuilder.AddEvent(Track, int, StatusByte, ArraySegment<byte>)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent(SpessaSharp.MIDI.Track, int, SpessaSharp.MIDI.StatusByte, System.ArraySegment<byte>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AddEvent
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 188
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new MIDI Event.
+  example: []
+  syntax:
+    content: public void AddEvent(Track track, int ticks, StatusByte sb, ArraySegment<byte> eventData)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+      description: The track to use.
+    - id: ticks
+      type: System.Int32
+      description: The tick time of the event (absolute).
+    - id: sb
+      type: SpessaSharp.MIDI.StatusByte
+      description: MIDI Status byte.
+    - id: eventData
+      type: System.ArraySegment{System.Byte}
+      description: The raw event data.
+    content.vb: Public Sub AddEvent(track As Track, ticks As Integer, sb As StatusByte, eventData As ArraySegment(Of Byte))
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent*
+  nameWithType.vb: MidiBuilder.AddEvent(Track, Integer, StatusByte, ArraySegment(Of Byte))
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent(SpessaSharp.MIDI.Track, Integer, SpessaSharp.MIDI.StatusByte, System.ArraySegment(Of Byte))
+  name.vb: AddEvent(Track, Integer, StatusByte, ArraySegment(Of Byte))
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: NoteOn(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: NoteOn(int, int, int, int, int)
+  nameWithType: MidiBuilder.NoteOn(int, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(int, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOn
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 208
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new Note On event.
+  example: []
+  syntax:
+    content: public void NoteOn(int ticks, int track, int channel, int midiNote, int velocity)
+    parameters:
+    - id: ticks
+      type: System.Int32
+      description: The tick time of the event.
+    - id: track
+      type: System.Int32
+      description: The track number to use.
+    - id: channel
+      type: System.Int32
+      description: The channel to use.
+    - id: midiNote
+      type: System.Int32
+      description: The midi note of the keypress.
+    - id: velocity
+      type: System.Int32
+      description: The velocity of the keypress.
+    content.vb: Public Sub NoteOn(ticks As Integer, track As Integer, channel As Integer, midiNote As Integer, velocity As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn*
+  nameWithType.vb: MidiBuilder.NoteOn(Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(Integer, Integer, Integer, Integer, Integer)
+  name.vb: NoteOn(Integer, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: NoteOn(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: NoteOn(Track, int, int, int, int)
+  nameWithType: MidiBuilder.NoteOn(Track, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(SpessaSharp.MIDI.Track, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOn
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 212
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void NoteOn(Track track, int ticks, int channel, int midiNote, int velocity)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+    - id: ticks
+      type: System.Int32
+    - id: channel
+      type: System.Int32
+    - id: midiNote
+      type: System.Int32
+    - id: velocity
+      type: System.Int32
+    content.vb: Public Sub NoteOn(track As Track, ticks As Integer, channel As Integer, midiNote As Integer, velocity As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn*
+  nameWithType.vb: MidiBuilder.NoteOn(Track, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(SpessaSharp.MIDI.Track, Integer, Integer, Integer, Integer)
+  name.vb: NoteOn(Track, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: NoteOff(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: NoteOff(int, int, int, int, int)
+  nameWithType: MidiBuilder.NoteOff(int, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(int, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOff
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 230
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new Note Off event.
+  example: []
+  syntax:
+    content: public void NoteOff(int ticks, int track, int channel, int midiNote, int velocity = 64)
+    parameters:
+    - id: ticks
+      type: System.Int32
+      description: The tick time of the event.
+    - id: track
+      type: System.Int32
+      description: The track number to use.
+    - id: channel
+      type: System.Int32
+      description: The channel to use.
+    - id: midiNote
+      type: System.Int32
+      description: The midi note of the key release.
+    - id: velocity
+      type: System.Int32
+      description: Optional and unsupported by SpessaSynth.
+    content.vb: Public Sub NoteOff(ticks As Integer, track As Integer, channel As Integer, midiNote As Integer, velocity As Integer = 64)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff*
+  nameWithType.vb: MidiBuilder.NoteOff(Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(Integer, Integer, Integer, Integer, Integer)
+  name.vb: NoteOff(Integer, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: NoteOff(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: NoteOff(Track, int, int, int, int)
+  nameWithType: MidiBuilder.NoteOff(Track, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(SpessaSharp.MIDI.Track, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOff
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 234
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void NoteOff(Track track, int ticks, int channel, int midiNote, int velocity = 64)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+    - id: ticks
+      type: System.Int32
+    - id: channel
+      type: System.Int32
+    - id: midiNote
+      type: System.Int32
+    - id: velocity
+      type: System.Int32
+    content.vb: Public Sub NoteOff(track As Track, ticks As Integer, channel As Integer, midiNote As Integer, velocity As Integer = 64)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff*
+  nameWithType.vb: MidiBuilder.NoteOff(Track, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(SpessaSharp.MIDI.Track, Integer, Integer, Integer, Integer)
+  name.vb: NoteOff(Track, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  id: ProgramChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: ProgramChange(Track, int, int, int)
+  nameWithType: MidiBuilder.ProgramChange(Track, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange(SpessaSharp.MIDI.Track, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ProgramChange
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 254
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new Program Change event.
+  example: []
+  syntax:
+    content: public void ProgramChange(Track track, int ticks, int channel, int program)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+      description: The track to use.
+    - id: ticks
+      type: System.Int32
+      description: The tick time of the event.
+    - id: channel
+      type: System.Int32
+      description: The channel to use.
+    - id: program
+      type: System.Int32
+      description: The MIDI program to use.
+    content.vb: Public Sub ProgramChange(track As Track, ticks As Integer, channel As Integer, program As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange*
+  nameWithType.vb: MidiBuilder.ProgramChange(Track, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange(SpessaSharp.MIDI.Track, Integer, Integer, Integer)
+  name.vb: ProgramChange(Track, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(System.Int32,System.Int32)
+  id: SetLoopStart(System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetLoopStart(int, int)
+  nameWithType: MidiBuilder.SetLoopStart(int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetLoopStart
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 264
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void SetLoopStart(int track, int ticks)
+    parameters:
+    - id: track
+      type: System.Int32
+    - id: ticks
+      type: System.Int32
+    content.vb: Public Sub SetLoopStart(track As Integer, ticks As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart*
+  nameWithType.vb: MidiBuilder.SetLoopStart(Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(Integer, Integer)
+  name.vb: SetLoopStart(Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(SpessaSharp.MIDI.Track,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(SpessaSharp.MIDI.Track,System.Int32)
+  id: SetLoopStart(SpessaSharp.MIDI.Track,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetLoopStart(Track, int)
+  nameWithType: MidiBuilder.SetLoopStart(Track, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(SpessaSharp.MIDI.Track, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetLoopStart
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 267
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void SetLoopStart(Track track, int ticks)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+    - id: ticks
+      type: System.Int32
+    content.vb: Public Sub SetLoopStart(track As Track, ticks As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart*
+  nameWithType.vb: MidiBuilder.SetLoopStart(Track, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(SpessaSharp.MIDI.Track, Integer)
+  name.vb: SetLoopStart(Track, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(System.Int32,System.Int32)
+  id: SetLoopEnd(System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetLoopEnd(int, int)
+  nameWithType: MidiBuilder.SetLoopEnd(int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetLoopEnd
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 270
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void SetLoopEnd(int track, int ticks)
+    parameters:
+    - id: track
+      type: System.Int32
+    - id: ticks
+      type: System.Int32
+    content.vb: Public Sub SetLoopEnd(track As Integer, ticks As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd*
+  nameWithType.vb: MidiBuilder.SetLoopEnd(Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(Integer, Integer)
+  name.vb: SetLoopEnd(Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(SpessaSharp.MIDI.Track,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(SpessaSharp.MIDI.Track,System.Int32)
+  id: SetLoopEnd(SpessaSharp.MIDI.Track,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: SetLoopEnd(Track, int)
+  nameWithType: MidiBuilder.SetLoopEnd(Track, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(SpessaSharp.MIDI.Track, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetLoopEnd
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 273
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void SetLoopEnd(Track track, int ticks)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+    - id: ticks
+      type: System.Int32
+    content.vb: Public Sub SetLoopEnd(track As Track, ticks As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd*
+  nameWithType.vb: MidiBuilder.SetLoopEnd(Track, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(SpessaSharp.MIDI.Track, Integer)
+  name.vb: SetLoopEnd(Track, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: ControllerChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: ControllerChange(Track, int, int, int, int)
+  nameWithType: MidiBuilder.ControllerChange(Track, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange(SpessaSharp.MIDI.Track, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ControllerChange
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 282
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new Controller Change event.
+  example: []
+  syntax:
+    content: public void ControllerChange(Track track, int ticks, int channel, int controller, int value)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+      description: The track to use.
+    - id: ticks
+      type: System.Int32
+      description: The tick time of the event.
+    - id: channel
+      type: System.Int32
+      description: The channel to use.
+    - id: controller
+      type: System.Int32
+      description: The MIDI CC to use.
+    - id: value
+      type: System.Int32
+      description: The new CC value.
+    content.vb: Public Sub ControllerChange(track As Track, ticks As Integer, channel As Integer, controller As Integer, value As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange*
+  nameWithType.vb: MidiBuilder.ControllerChange(Track, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange(SpessaSharp.MIDI.Track, Integer, Integer, Integer, Integer)
+  name.vb: ControllerChange(Track, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  id: PitchWheel(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: PitchWheel(Track, int, int, int)
+  nameWithType: MidiBuilder.PitchWheel(Track, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel(SpessaSharp.MIDI.Track, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheel
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 300
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Adds a new Pitch Wheel event.
+  example: []
+  syntax:
+    content: public void PitchWheel(Track track, int ticks, int channel, int pitch)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+      description: The track to use.
+    - id: ticks
+      type: System.Int32
+      description: The tick time of the event.
+    - id: channel
+      type: System.Int32
+      description: The channel to use.
+    - id: pitch
+      type: System.Int32
+      description: The pitch (0 - 16383).
+    content.vb: Public Sub PitchWheel(track As Track, ticks As Integer, channel As Integer, pitch As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel*
+  nameWithType.vb: MidiBuilder.PitchWheel(Track, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel(SpessaSharp.MIDI.Track, Integer, Integer, Integer)
+  name.vb: PitchWheel(Track, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: RegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: RegisteredParameter(int, int, int, int, int)
+  nameWithType: MidiBuilder.RegisteredParameter(int, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(int, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RegisteredParameter
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 317
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Selects a new Registered Parameter Number.
+  example: []
+  syntax:
+    content: public void RegisteredParameter(int ticks, int track, int channel, int parameter, int value)
+    parameters:
+    - id: ticks
+      type: System.Int32
+      description: Ticks the tick time of the events.
+    - id: track
+      type: System.Int32
+      description: The track to use.
+    - id: channel
+      type: System.Int32
+      description: The channel to use.
+    - id: parameter
+      type: System.Int32
+      description: The 14-bit registered parameter number. For example 0 is pitch wheel range.
+    - id: value
+      type: System.Int32
+      description: The 14-bit value for this parameter.
+    content.vb: Public Sub RegisteredParameter(ticks As Integer, track As Integer, channel As Integer, parameter As Integer, value As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter*
+  nameWithType.vb: MidiBuilder.RegisteredParameter(Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(Integer, Integer, Integer, Integer, Integer)
+  name.vb: RegisteredParameter(Integer, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: RegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: RegisteredParameter(Track, int, int, int, int)
+  nameWithType: MidiBuilder.RegisteredParameter(Track, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(SpessaSharp.MIDI.Track, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RegisteredParameter
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 328
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: Selects a new Registered Parameter Number.
+  example: []
+  syntax:
+    content: public void RegisteredParameter(Track track, int ticks, int channel, int parameter, int value)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+      description: The track to use.
+    - id: ticks
+      type: System.Int32
+      description: Ticks the tick time of the events.
+    - id: channel
+      type: System.Int32
+      description: The channel to use.
+    - id: parameter
+      type: System.Int32
+      description: The 14-bit registered parameter number. For example 0 is pitch wheel range.
+    - id: value
+      type: System.Int32
+      description: The 14-bit value for this parameter.
+    content.vb: Public Sub RegisteredParameter(track As Track, ticks As Integer, channel As Integer, parameter As Integer, value As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter*
+  nameWithType.vb: MidiBuilder.RegisteredParameter(Track, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(SpessaSharp.MIDI.Track, Integer, Integer, Integer, Integer)
+  name.vb: RegisteredParameter(Track, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: NonRegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: NonRegisteredParameter(int, int, int, int, int)
+  nameWithType: MidiBuilder.NonRegisteredParameter(int, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(int, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NonRegisteredParameter
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 342
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void NonRegisteredParameter(int ticks, int track, int channel, int parameter, int value)
+    parameters:
+    - id: ticks
+      type: System.Int32
+    - id: track
+      type: System.Int32
+    - id: channel
+      type: System.Int32
+    - id: parameter
+      type: System.Int32
+    - id: value
+      type: System.Int32
+    content.vb: Public Sub NonRegisteredParameter(ticks As Integer, track As Integer, channel As Integer, parameter As Integer, value As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter*
+  nameWithType.vb: MidiBuilder.NonRegisteredParameter(Integer, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(Integer, Integer, Integer, Integer, Integer)
+  name.vb: NonRegisteredParameter(Integer, Integer, Integer, Integer, Integer)
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: NonRegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.MidiBuilder
+  langs:
+  - csharp
+  - vb
+  name: NonRegisteredParameter(Track, int, int, int, int)
+  nameWithType: MidiBuilder.NonRegisteredParameter(Track, int, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(SpessaSharp.MIDI.Track, int, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiBuilder.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NonRegisteredParameter
+    path: ../SpessaSharp/MIDI/Utils/MidiBuilder.cs
+    startLine: 346
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void NonRegisteredParameter(Track track, int ticks, int channel, int parameter, int value)
+    parameters:
+    - id: track
+      type: SpessaSharp.MIDI.Track
+    - id: ticks
+      type: System.Int32
+    - id: channel
+      type: System.Int32
+    - id: parameter
+      type: System.Int32
+    - id: value
+      type: System.Int32
+    content.vb: Public Sub NonRegisteredParameter(track As Track, ticks As Integer, channel As Integer, parameter As Integer, value As Integer)
+  overload: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter*
+  nameWithType.vb: MidiBuilder.NonRegisteredParameter(Track, Integer, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(SpessaSharp.MIDI.Track, Integer, Integer, Integer, Integer)
+  name.vb: NonRegisteredParameter(Track, Integer, Integer, Integer, Integer)
+references:
+- uid: SpessaSharp.MIDI.Utils
+  commentId: N:SpessaSharp.MIDI.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Utils
+  nameWithType: SpessaSharp.MIDI.Utils
+  fullName: SpessaSharp.MIDI.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+- uid: System.IEquatable{SpessaSharp.MIDI.Utils.MidiBuilder}
+  commentId: T:System.IEquatable{SpessaSharp.MIDI.Utils.MidiBuilder}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<MidiBuilder>
+  nameWithType: IEquatable<MidiBuilder>
+  fullName: System.IEquatable<SpessaSharp.MIDI.Utils.MidiBuilder>
+  nameWithType.vb: IEquatable(Of MidiBuilder)
+  fullName.vb: System.IEquatable(Of SpessaSharp.MIDI.Utils.MidiBuilder)
+  name.vb: IEquatable(Of MidiBuilder)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder
+    name: MidiBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder
+    name: MidiBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.Midi*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.Midi
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_Midi
+  name: Midi
+  nameWithType: MidiBuilder.Midi
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.Midi
+- uid: SpessaSharp.MIDI.Midi
+  commentId: T:SpessaSharp.MIDI.Midi
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi
+  nameWithType: Midi
+  fullName: SpessaSharp.MIDI.Midi
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.New*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.New
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_New_System_Nullable_SpessaSharp_MIDI_Utils_MidiBuilder_Options__
+  name: New
+  nameWithType: MidiBuilder.New
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.New
+- uid: System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options}
+  commentId: T:System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  name: MidiBuilder.Options?
+  nameWithType: MidiBuilder.Options?
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.Options?
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder
+    name: MidiBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.Options
+    name: Options
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.Options.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder
+    name: MidiBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.Options
+    name: Options
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.Options.html
+  - name: '?'
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder
+  commentId: T:SpessaSharp.MIDI.Utils.MidiBuilder
+  parent: SpessaSharp.MIDI.Utils
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  name: MidiBuilder
+  nameWithType: MidiBuilder
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_OfTrack_SpessaSharp_MIDI_Track_
+  name: OfTrack
+  nameWithType: MidiBuilder.OfTrack
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack
+- uid: SpessaSharp.MIDI.Track
+  commentId: T:SpessaSharp.MIDI.Track
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Track.html
+  name: Track
+  nameWithType: Track
+  fullName: SpessaSharp.MIDI.Track
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+  commentId: T:SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+  parent: SpessaSharp.MIDI.Utils
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  name: MidiBuilder.TrackBuilder
+  nameWithType: MidiBuilder.TrackBuilder
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder
+    name: MidiBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+    name: TrackBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder
+    name: MidiBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+    name: TrackBuilder
+    href: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder.html
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_SetTempo_System_Int32_System_Int32_
+  name: SetTempo
+  nameWithType: MidiBuilder.SetTempo
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_AddTrack_System_String_System_Int32_
+  name: AddTrack
+  nameWithType: MidiBuilder.AddTrack
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_AddEvent_SpessaSharp_MIDI_Track_System_Int32_SpessaSharp_MIDI_StatusByte_System_ArraySegment_System_Byte__
+  name: AddEvent
+  nameWithType: MidiBuilder.AddEvent
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent
+- uid: SpessaSharp.MIDI.StatusByte
+  commentId: T:SpessaSharp.MIDI.StatusByte
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.StatusByte.html
+  name: StatusByte
+  nameWithType: StatusByte
+  fullName: SpessaSharp.MIDI.StatusByte
+- uid: System.ArraySegment{System.Byte}
+  commentId: T:System.ArraySegment{System.Byte}
+  parent: System
+  definition: System.ArraySegment`1
+  href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  name: ArraySegment<byte>
+  nameWithType: ArraySegment<byte>
+  fullName: System.ArraySegment<byte>
+  nameWithType.vb: ArraySegment(Of Byte)
+  fullName.vb: System.ArraySegment(Of Byte)
+  name.vb: ArraySegment(Of Byte)
+  spec.csharp:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.ArraySegment`1
+  commentId: T:System.ArraySegment`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  name: ArraySegment<T>
+  nameWithType: ArraySegment<T>
+  fullName: System.ArraySegment<T>
+  nameWithType.vb: ArraySegment(Of T)
+  fullName.vb: System.ArraySegment(Of T)
+  name.vb: ArraySegment(Of T)
+  spec.csharp:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_NoteOn_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: NoteOn
+  nameWithType: MidiBuilder.NoteOn
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_NoteOff_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: NoteOff
+  nameWithType: MidiBuilder.NoteOff
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_ProgramChange_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_
+  name: ProgramChange
+  nameWithType: MidiBuilder.ProgramChange
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopStart_System_Int32_System_Int32_
+  name: SetLoopStart
+  nameWithType: MidiBuilder.SetLoopStart
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopEnd_System_Int32_System_Int32_
+  name: SetLoopEnd
+  nameWithType: MidiBuilder.SetLoopEnd
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_ControllerChange_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: ControllerChange
+  nameWithType: MidiBuilder.ControllerChange
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_PitchWheel_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_
+  name: PitchWheel
+  nameWithType: MidiBuilder.PitchWheel
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_RegisteredParameter_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: RegisteredParameter
+  nameWithType: MidiBuilder.RegisteredParameter
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter
+- uid: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter
+  href: SpessaSharp.MIDI.Utils.MidiBuilder.html#SpessaSharp_MIDI_Utils_MidiBuilder_NonRegisteredParameter_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_
+  name: NonRegisteredParameter
+  nameWithType: MidiBuilder.NonRegisteredParameter
+  fullName: SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter

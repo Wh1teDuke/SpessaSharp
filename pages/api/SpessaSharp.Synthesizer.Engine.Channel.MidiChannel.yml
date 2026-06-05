@@ -1,0 +1,1886 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  id: MidiChannel
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  children:
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Channel
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumParams
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DynamicModulators
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController(SpessaSharp.MIDI.Midi.CC,System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiControllers
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel(System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.OctaveTuning
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Patch
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.PitchWheels
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter)
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums(System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning(System.ReadOnlySpan{System.Byte})
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Sf2NRPNGeneratorLSB
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes(System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Voices
+  langs:
+  - csharp
+  - vb
+  name: MidiChannel
+  nameWithType: MidiChannel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiChannel
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 15
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: This class represents a single MIDI Channel within the synthesizer.
+  example: []
+  syntax:
+    content: 'public sealed class MidiChannel : ISf2Channel'
+    content.vb: Public NotInheritable Class MidiChannel Implements ISf2Channel
+  inheritance:
+  - System.Object
+  implements:
+  - SpessaSharp.SoundBank.ISf2Channel
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiControllers
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiControllers
+  id: MidiControllers
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: MidiControllers
+  nameWithType: MidiChannel.MidiControllers
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiControllers
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiControllers
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 44
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: >-
+    An array of MIDI controllers for the channel.
+
+    This array is used to store the state of various MIDI controllers such as volume, pan, modulation, etc.
+  remarks: >-
+    A bit of an explanation:<br />
+
+    The controller table is stored as an int16 array, it stores 14-bit values, allowing for full 14-bit LSB resolution.
+
+    The only exception from this are the Registered and Non-Registered Parameter Numbers. Data entries do store it!
+  example: []
+  syntax:
+    content: public readonly short[] MidiControllers
+    return:
+      type: System.Int16[]
+    content.vb: Public ReadOnly MidiControllers As Short()
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.PitchWheels
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.PitchWheels
+  id: PitchWheels
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: PitchWheels
+  nameWithType: MidiChannel.PitchWheels
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.PitchWheels
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheels
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 62
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: An array for the MIDI 2.0 Per-note pitch wheels.
+  example: []
+  syntax:
+    content: public readonly short[] PitchWheels
+    return:
+      type: System.Int16[]
+    content.vb: Public ReadOnly PitchWheels As Short()
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.OctaveTuning
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.OctaveTuning
+  id: OctaveTuning
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: OctaveTuning
+  nameWithType: MidiChannel.OctaveTuning
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.OctaveTuning
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OctaveTuning
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 69
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: >-
+    An array of octave tuning values for each note on the channel.
+
+    Each index corresponds to a note (0 = C, 1 = C#, ..., 11 = B).
+
+    Note: Repeated every 12 notes.
+  example: []
+  syntax:
+    content: public readonly byte[] OctaveTuning
+    return:
+      type: System.Byte[]
+    content.vb: Public ReadOnly OctaveTuning As Byte()
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumParams
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumParams
+  id: DrumParams
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: DrumParams
+  nameWithType: MidiChannel.DrumParams
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumParams
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DrumParams
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 72
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Parameters for each drum instrument.
+  example: []
+  syntax:
+    content: public readonly DrumParameters[] DrumParams
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters[]
+    content.vb: Public ReadOnly DrumParams As DrumParameters()
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DynamicModulators
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DynamicModulators
+  id: DynamicModulators
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: DynamicModulators
+  nameWithType: MidiChannel.DynamicModulators
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DynamicModulators
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DynamicModulators
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 75
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: A system for dynamic modulator assignment for advanced system exclusives.
+  example: []
+  syntax:
+    content: public readonly DynamicModulatorManager DynamicModulators
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+    content.vb: Public ReadOnly DynamicModulators As DynamicModulatorManager
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Voices
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Voices
+  id: Voices
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: Voices
+  nameWithType: MidiChannel.Voices
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Voices
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Voices
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 77
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  syntax:
+    content: public readonly List<Voice> Voices
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.Synthesizer.Engine.Voice.Voice}
+    content.vb: Public ReadOnly Voices As List(Of Voice)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel
+  id: DrumChannel
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: DrumChannel
+  nameWithType: MidiChannel.DrumChannel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DrumChannel
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 80
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Indicates whether this channel is a drum channel.
+  example: []
+  syntax:
+    content: public bool DrumChannel { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property DrumChannel As Boolean
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Sf2NRPNGeneratorLSB
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Sf2NRPNGeneratorLSB
+  id: Sf2NRPNGeneratorLSB
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: Sf2NRPNGeneratorLSB
+  nameWithType: MidiChannel.Sf2NRPNGeneratorLSB
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Sf2NRPNGeneratorLSB
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Sf2NRPNGeneratorLSB
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 83
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: SF2 NRPN LSB for selecting a generator value.
+  example: []
+  syntax:
+    content: public int Sf2NRPNGeneratorLSB
+    return:
+      type: System.Int32
+    content.vb: Public Sf2NRPNGeneratorLSB As Integer
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Patch
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Patch
+  id: Patch
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: Patch
+  nameWithType: MidiChannel.Patch
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Patch
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Patch
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 88
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: The currently selected MIDI patch of the channel. Note that the exact matching preset may not be available, but this represents exactly what MIDI asks for.
+  example: []
+  syntax:
+    content: public MidiPatch Patch
+    return:
+      type: SpessaSharp.MIDI.MidiPatch
+    content.vb: Public Patch As MidiPatch
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset
+  id: Preset
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: Preset
+  nameWithType: MidiChannel.Preset
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Preset
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 93
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: The preset currently assigned to the channel. Note that this may be undefined in some cases.<br /> https://github.com/spessasus/spessasynth_core/issues/48
+  example: []
+  syntax:
+    content: public BasicPreset? Preset { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.SoundBank.BasicPreset
+    content.vb: Public Property Preset As BasicPreset
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount
+  id: VoiceCount
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: VoiceCount
+  nameWithType: MidiChannel.VoiceCount
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VoiceCount
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 99
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Channel's current voice count.
+  example: []
+  syntax:
+    content: public int VoiceCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property VoiceCount As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Channel
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Channel
+  id: Channel
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: Channel
+  nameWithType: MidiChannel.Channel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Channel
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Channel
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 102
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: The channel's number (0-based index)
+  example: []
+  syntax:
+    content: public readonly int Channel
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Channel As Integer
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController(SpessaSharp.MIDI.Midi.CC,System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController(SpessaSharp.MIDI.Midi.CC,System.Boolean)
+  id: LockController(SpessaSharp.MIDI.Midi.CC,System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: LockController(CC, bool)
+  nameWithType: MidiChannel.LockController(Midi.CC, bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController(SpessaSharp.MIDI.Midi.CC, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LockController
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 117
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Locks or unlocks a given controller. This prevents any changes to it until it's unlocked.
+  example: []
+  syntax:
+    content: public void LockController(Midi.CC controller, bool isLocked)
+    parameters:
+    - id: controller
+      type: SpessaSharp.MIDI.Midi.CC
+      description: The MIDI controller number (0-127).
+    - id: isLocked
+      type: System.Boolean
+      description: If the controller should be locked.
+    content.vb: Public Sub LockController(controller As Midi.CC, isLocked As Boolean)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController*
+  nameWithType.vb: MidiChannel.LockController(Midi.CC, Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController(SpessaSharp.MIDI.Midi.CC, Boolean)
+  name.vb: LockController(CC, Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter)
+  id: Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: Set(ChannelSystemParameter)
+  nameWithType: MidiChannel.Set(ChannelSystemParameter)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Set
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 122
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Sets a system parameter of the channel.
+  example: []
+  syntax:
+    content: public void Set(ChannelSystemParameter parameter)
+    parameters:
+    - id: parameter
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+      description: The type and value of the system parameter to set.
+    content.vb: Public Sub [Set](parameter As ChannelSystemParameter)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  id: Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: Set(ChannelMidiParameter)
+  nameWithType: MidiChannel.Set(ChannelMidiParameter)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Set
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 127
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Sets a MIDI channel parameter of the synthesizer.
+  example: []
+  syntax:
+    content: public void Set(ChannelMidiParameter parameter)
+    parameters:
+    - id: parameter
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+      description: The type and value of the MIDI channel parameter to set.
+    content.vb: Public Sub [Set](parameter As ChannelMidiParameter)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  id: LockParameter(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: LockParameter(Type, bool)
+  nameWithType: MidiChannel.LockParameter(ChannelMidiParameter.Type, bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LockParameter
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 136
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: >-
+    Locks or unlocks a given Channel MIDI Parameter.
+
+    This prevents any changes to it until it's unlocked.
+  example: []
+  syntax:
+    content: public void LockParameter(ChannelMidiParameter.Type parameter, bool isLocked)
+    parameters:
+    - id: parameter
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+      description: The Channel MIDI Parameter to lock.
+    - id: isLocked
+      type: System.Boolean
+      description: If the parameter should be locked.
+    content.vb: Public Sub LockParameter(parameter As ChannelMidiParameter.Type, isLocked As Boolean)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter*
+  nameWithType.vb: MidiChannel.LockParameter(ChannelMidiParameter.Type, Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, Boolean)
+  name.vb: LockParameter(Type, Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted
+  id: IsMuted
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: IsMuted
+  nameWithType: MidiChannel.IsMuted
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: IsMuted
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 236
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Indicates whether the channel is muted.
+  example: []
+  syntax:
+    content: public bool IsMuted { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsMuted As Boolean
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters
+  id: SystemParameters
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: SystemParameters
+  nameWithType: MidiChannel.SystemParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SystemParameters
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 273
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: >-
+    The channel master parameters of this channel.
+
+    These are only editable via the API.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<ChannelSystemParameter> SystemParameters { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter}
+    content.vb: Public ReadOnly Property SystemParameters As ReadOnlySpan(Of ChannelSystemParameter)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters
+  id: MidiParameters
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: MidiParameters
+  nameWithType: MidiChannel.MidiParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiParameters
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 280
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: >-
+    The channel MIDI parameters of this channel.
+
+    These are only editable via MIDI messages.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<ChannelMidiParameter> MidiParameters { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}
+    content.vb: Public ReadOnly Property MidiParameters As ReadOnlySpan(Of ChannelMidiParameter)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums(System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums(System.Boolean)
+  id: SetDrums(System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: SetDrums(bool)
+  nameWithType: MidiChannel.SetDrums(bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums(bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetDrums
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 304
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Changes the preset to, or from drums. Note that this executes a program change.
+  example: []
+  syntax:
+    content: public void SetDrums(bool isDrum)
+    parameters:
+    - id: isDrum
+      type: System.Boolean
+      description: If the channel should be a drum preset or not.
+    content.vb: Public Sub SetDrums(isDrum As Boolean)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums*
+  exceptions:
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: ''
+  nameWithType.vb: MidiChannel.SetDrums(Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums(Boolean)
+  name.vb: SetDrums(Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes(System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes(System.Boolean)
+  id: StopAllNotes(System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: StopAllNotes(bool)
+  nameWithType: MidiChannel.StopAllNotes(bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes(bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: StopAllNotes
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 330
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Stops all notes on the channel.
+  example: []
+  syntax:
+    content: public void StopAllNotes(bool force = false)
+    parameters:
+    - id: force
+      type: System.Boolean
+      description: If true, stops all notes immediately, otherwise applies release time.
+    content.vb: Public Sub StopAllNotes(force As Boolean = False)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes*
+  nameWithType.vb: MidiChannel.StopAllNotes(Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes(Boolean)
+  name.vb: StopAllNotes(Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning(System.ReadOnlySpan{System.Byte})
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning(System.ReadOnlySpan{System.Byte})
+  id: SetOctaveTuning(System.ReadOnlySpan{System.Byte})
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: SetOctaveTuning(ReadOnlySpan<byte>)
+  nameWithType: MidiChannel.SetOctaveTuning(ReadOnlySpan<byte>)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning(System.ReadOnlySpan<byte>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SetOctaveTuning
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 439
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Sets the octave tuning for a given channel.
+  remarks: Cent tunings are relative.
+  example: []
+  syntax:
+    content: public void SetOctaveTuning(ReadOnlySpan<byte> tuning)
+    parameters:
+    - id: tuning
+      type: System.ReadOnlySpan{System.Byte}
+      description: The tuning array of 12 values, each representing the tuning for a note in the octave.
+    content.vb: Public Sub SetOctaveTuning(tuning As ReadOnlySpan(Of Byte))
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning*
+  exceptions:
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: ''
+  nameWithType.vb: MidiChannel.SetOctaveTuning(ReadOnlySpan(Of Byte))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning(System.ReadOnlySpan(Of Byte))
+  name.vb: SetOctaveTuning(ReadOnlySpan(Of Byte))
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel(System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel(System.Boolean)
+  id: MuteChannel(System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: MuteChannel(bool)
+  nameWithType: MidiChannel.MuteChannel(bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel(bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MuteChannel
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 679
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Mutes or unmutes a channel.
+  example: []
+  syntax:
+    content: public void MuteChannel(bool isMuted)
+    parameters:
+    - id: isMuted
+      type: System.Boolean
+      description: If the channel should be muted.
+    content.vb: Public Sub MuteChannel(isMuted As Boolean)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel*
+  nameWithType.vb: MidiChannel.MuteChannel(Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel(Boolean)
+  name.vb: MuteChannel(Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers
+  id: GetMidiControllers
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: GetMidiControllers
+  nameWithType: MidiChannel.GetMidiControllers
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetMidiControllers
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 760
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: All MIDI controller values for modulation.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<short> GetMidiControllers { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{System.Int16}
+    content.vb: Public ReadOnly Property GetMidiControllers As ReadOnlySpan(Of Short)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers*
+  implements:
+  - SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters
+  id: GetMidiParameters
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  langs:
+  - csharp
+  - vb
+  name: GetMidiParameters
+  nameWithType: MidiChannel.GetMidiParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetMidiParameters
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 762
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Other MIDI parameters.
+  example: []
+  syntax:
+    content: public (int Pressure, int PitchWheel, float PitchWheelRange) GetMidiParameters { get; }
+    parameters: []
+    return:
+      type: System.ValueTuple{System.Int32,System.Int32,System.Single}
+    content.vb: Public ReadOnly Property GetMidiParameters As (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  overload: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters*
+  implements:
+  - SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Channel
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.SoundBank.ISf2Channel
+  commentId: T:SpessaSharp.SoundBank.ISf2Channel
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.ISf2Channel.html
+  name: ISf2Channel
+  nameWithType: ISf2Channel
+  fullName: SpessaSharp.SoundBank.ISf2Channel
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: System.Int16[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int16
+  name: short[]
+  nameWithType: short[]
+  fullName: short[]
+  nameWithType.vb: Short()
+  fullName.vb: Short()
+  name.vb: Short()
+  spec.csharp:
+  - uid: System.Int16
+    name: short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Int16
+    name: Short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: (
+  - name: )
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters[]
+  isExternal: true
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html
+  name: DrumParameters[]
+  nameWithType: DrumParameters[]
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters[]
+  nameWithType.vb: DrumParameters()
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters()
+  name.vb: DrumParameters()
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+    name: DrumParameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+    name: DrumParameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html
+  - name: (
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager.html
+  name: DynamicModulatorManager
+  nameWithType: DynamicModulatorManager
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+- uid: System.Collections.Generic.List{SpessaSharp.Synthesizer.Engine.Voice.Voice}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.Synthesizer.Engine.Voice.Voice}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Voice>
+  nameWithType: List<Voice>
+  fullName: System.Collections.Generic.List<SpessaSharp.Synthesizer.Engine.Voice.Voice>
+  nameWithType.vb: List(Of Voice)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.Synthesizer.Engine.Voice.Voice)
+  name.vb: List(Of Voice)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.Voice
+    name: Voice
+    href: SpessaSharp.Synthesizer.Engine.Voice.Voice.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.Voice
+    name: Voice
+    href: SpessaSharp.Synthesizer.Engine.Voice.Voice.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_DrumChannel
+  name: DrumChannel
+  nameWithType: MidiChannel.DrumChannel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.DrumChannel
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.MIDI.MidiPatch
+  commentId: T:SpessaSharp.MIDI.MidiPatch
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiPatch.html
+  name: MidiPatch
+  nameWithType: MidiPatch
+  fullName: SpessaSharp.MIDI.MidiPatch
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_Preset
+  name: Preset
+  nameWithType: MidiChannel.Preset
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Preset
+- uid: SpessaSharp.SoundBank.BasicPreset
+  commentId: T:SpessaSharp.SoundBank.BasicPreset
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.BasicPreset.html
+  name: BasicPreset
+  nameWithType: BasicPreset
+  fullName: SpessaSharp.SoundBank.BasicPreset
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_VoiceCount
+  name: VoiceCount
+  nameWithType: MidiChannel.VoiceCount
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.VoiceCount
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_LockController_SpessaSharp_MIDI_Midi_CC_System_Boolean_
+  name: LockController
+  nameWithType: MidiChannel.LockController
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockController
+- uid: SpessaSharp.MIDI.Midi.CC
+  commentId: T:SpessaSharp.MIDI.Midi.CC
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.CC
+  nameWithType: Midi.CC
+  fullName: SpessaSharp.MIDI.Midi.CC
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_Set_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_
+  name: Set
+  nameWithType: MidiChannel.Set
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Set
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  name: ChannelSystemParameter
+  nameWithType: ChannelSystemParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: ChannelMidiParameter
+  nameWithType: ChannelMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_LockParameter_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelMidiParameter_Type_System_Boolean_
+  name: LockParameter
+  nameWithType: MidiChannel.LockParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.LockParameter
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: ChannelMidiParameter.Type
+  nameWithType: ChannelMidiParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_IsMuted
+  name: IsMuted
+  nameWithType: MidiChannel.IsMuted
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.IsMuted
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_SystemParameters
+  name: SystemParameters
+  nameWithType: MidiChannel.SystemParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SystemParameters
+- uid: System.ReadOnlySpan{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter}
+  commentId: T:System.ReadOnlySpan{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<ChannelSystemParameter>
+  nameWithType: ReadOnlySpan<ChannelSystemParameter>
+  fullName: System.ReadOnlySpan<SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter>
+  nameWithType.vb: ReadOnlySpan(Of ChannelSystemParameter)
+  fullName.vb: System.ReadOnlySpan(Of SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter)
+  name.vb: ReadOnlySpan(Of ChannelSystemParameter)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_MidiParameters
+  name: MidiParameters
+  nameWithType: MidiChannel.MidiParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MidiParameters
+- uid: System.ReadOnlySpan{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}
+  commentId: T:System.ReadOnlySpan{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<ChannelMidiParameter>
+  nameWithType: ReadOnlySpan<ChannelMidiParameter>
+  fullName: System.ReadOnlySpan<SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter>
+  nameWithType.vb: ReadOnlySpan(Of ChannelMidiParameter)
+  fullName.vb: System.ReadOnlySpan(Of SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter)
+  name.vb: ReadOnlySpan(Of ChannelMidiParameter)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: )
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_SetDrums_System_Boolean_
+  name: SetDrums
+  nameWithType: MidiChannel.SetDrums
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetDrums
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_StopAllNotes_System_Boolean_
+  name: StopAllNotes
+  nameWithType: MidiChannel.StopAllNotes
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.StopAllNotes
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_SetOctaveTuning_System_ReadOnlySpan_System_Byte__
+  name: SetOctaveTuning
+  nameWithType: MidiChannel.SetOctaveTuning
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.SetOctaveTuning
+- uid: System.ReadOnlySpan{System.Byte}
+  commentId: T:System.ReadOnlySpan{System.Byte}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<byte>
+  nameWithType: ReadOnlySpan<byte>
+  fullName: System.ReadOnlySpan<byte>
+  nameWithType.vb: ReadOnlySpan(Of Byte)
+  fullName.vb: System.ReadOnlySpan(Of Byte)
+  name.vb: ReadOnlySpan(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_MuteChannel_System_Boolean_
+  name: MuteChannel
+  nameWithType: MidiChannel.MuteChannel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.MuteChannel
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_GetMidiControllers
+  name: GetMidiControllers
+  nameWithType: MidiChannel.GetMidiControllers
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiControllers
+- uid: SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+  commentId: P:SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+  parent: SpessaSharp.SoundBank.ISf2Channel
+  href: SpessaSharp.SoundBank.ISf2Channel.html#SpessaSharp_SoundBank_ISf2Channel_GetMidiControllers
+  name: GetMidiControllers
+  nameWithType: ISf2Channel.GetMidiControllers
+  fullName: SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+- uid: System.ReadOnlySpan{System.Int16}
+  commentId: T:System.ReadOnlySpan{System.Int16}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<short>
+  nameWithType: ReadOnlySpan<short>
+  fullName: System.ReadOnlySpan<short>
+  nameWithType.vb: ReadOnlySpan(Of Short)
+  fullName.vb: System.ReadOnlySpan(Of Short)
+  name.vb: ReadOnlySpan(Of Short)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Int16
+    name: short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int16
+    name: Short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html#SpessaSharp_Synthesizer_Engine_Channel_MidiChannel_GetMidiParameters
+  name: GetMidiParameters
+  nameWithType: MidiChannel.GetMidiParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.GetMidiParameters
+- uid: SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+  commentId: P:SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+  parent: SpessaSharp.SoundBank.ISf2Channel
+  href: SpessaSharp.SoundBank.ISf2Channel.html#SpessaSharp_SoundBank_ISf2Channel_GetMidiParameters
+  name: GetMidiParameters
+  nameWithType: ISf2Channel.GetMidiParameters
+  fullName: SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+- uid: System.ValueTuple{System.Int32,System.Int32,System.Single}
+  commentId: T:System.ValueTuple{System.Int32,System.Int32,System.Single}
+  parent: System
+  definition: System.ValueTuple`3
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: (int Pressure, int PitchWheel, float PitchWheelRange)
+  nameWithType: (int Pressure, int PitchWheel, float PitchWheelRange)
+  fullName: (int Pressure, int PitchWheel, float PitchWheelRange)
+  nameWithType.vb: (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  fullName.vb: (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  name.vb: (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  spec.csharp:
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.Pressure
+    name: Pressure
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pressure
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheel
+    name: PitchWheel
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheel
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheelRange
+    name: PitchWheelRange
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheelrange
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.Pressure
+    name: Pressure
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pressure
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheel
+    name: PitchWheel
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheel
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheelRange
+    name: PitchWheelRange
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheelrange
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: System.ValueTuple`3
+  commentId: T:System.ValueTuple`3
+  name: (T1, T2, T3)
+  nameWithType: (T1, T2, T3)
+  fullName: (T1, T2, T3)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )

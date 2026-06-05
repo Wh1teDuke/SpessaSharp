@@ -1,0 +1,139 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+  id: Synthesizer.MissingPresetHandler
+  parent: SpessaSharp.Synthesizer
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: Synthesizer.MissingPresetHandler
+  nameWithType: Synthesizer.MissingPresetHandler
+  fullName: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+  type: Delegate
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Synthesizer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MissingPresetHandler
+    path: ../SpessaSharp/Synthesizer/Synthesizer.cs
+    startLine: 188
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public delegate BasicPreset? Synthesizer.MissingPresetHandler(MidiPatch path, Midi.System system)
+    parameters:
+    - id: path
+      type: SpessaSharp.MIDI.MidiPatch
+    - id: system
+      type: SpessaSharp.MIDI.Midi.System
+    return:
+      type: SpessaSharp.SoundBank.BasicPreset
+    content.vb: Public Delegate Function Synthesizer.MissingPresetHandler(path As MidiPatch, system As Midi.System) As BasicPreset
+references:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: SpessaSharp.MIDI.MidiPatch
+  commentId: T:SpessaSharp.MIDI.MidiPatch
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiPatch.html
+  name: MidiPatch
+  nameWithType: MidiPatch
+  fullName: SpessaSharp.MIDI.MidiPatch
+- uid: SpessaSharp.MIDI.Midi.System
+  commentId: T:SpessaSharp.MIDI.Midi.System
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.System
+  nameWithType: Midi.System
+  fullName: SpessaSharp.MIDI.Midi.System
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+- uid: SpessaSharp.SoundBank.BasicPreset
+  commentId: T:SpessaSharp.SoundBank.BasicPreset
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.BasicPreset.html
+  name: BasicPreset
+  nameWithType: BasicPreset
+  fullName: SpessaSharp.SoundBank.BasicPreset
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html

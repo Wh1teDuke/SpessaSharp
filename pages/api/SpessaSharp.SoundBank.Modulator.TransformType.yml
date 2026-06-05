@@ -1,0 +1,128 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.Modulator.TransformType
+  commentId: T:SpessaSharp.SoundBank.Modulator.TransformType
+  id: Modulator.TransformType
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.Modulator.TransformType.Absolute
+  - SpessaSharp.SoundBank.Modulator.TransformType.Linear
+  langs:
+  - csharp
+  - vb
+  name: Modulator.TransformType
+  nameWithType: Modulator.TransformType
+  fullName: SpessaSharp.SoundBank.Modulator.TransformType
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TransformType
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public enum Modulator.TransformType
+    content.vb: Public Enum Modulator.TransformType
+- uid: SpessaSharp.SoundBank.Modulator.TransformType.Linear
+  commentId: F:SpessaSharp.SoundBank.Modulator.TransformType.Linear
+  id: Linear
+  parent: SpessaSharp.SoundBank.Modulator.TransformType
+  langs:
+  - csharp
+  - vb
+  name: Linear
+  nameWithType: Modulator.TransformType.Linear
+  fullName: SpessaSharp.SoundBank.Modulator.TransformType.Linear
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Linear
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Linear = 0
+    return:
+      type: SpessaSharp.SoundBank.Modulator.TransformType
+- uid: SpessaSharp.SoundBank.Modulator.TransformType.Absolute
+  commentId: F:SpessaSharp.SoundBank.Modulator.TransformType.Absolute
+  id: Absolute
+  parent: SpessaSharp.SoundBank.Modulator.TransformType
+  langs:
+  - csharp
+  - vb
+  name: Absolute
+  nameWithType: Modulator.TransformType.Absolute
+  fullName: SpessaSharp.SoundBank.Modulator.TransformType.Absolute
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Absolute
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Absolute = 1
+    return:
+      type: SpessaSharp.SoundBank.Modulator.TransformType
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: SpessaSharp.SoundBank.Modulator.TransformType
+  commentId: T:SpessaSharp.SoundBank.Modulator.TransformType
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.Modulator.html
+  name: Modulator.TransformType
+  nameWithType: Modulator.TransformType
+  fullName: SpessaSharp.SoundBank.Modulator.TransformType
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.TransformType
+    name: TransformType
+    href: SpessaSharp.SoundBank.Modulator.TransformType.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.TransformType
+    name: TransformType
+    href: SpessaSharp.SoundBank.Modulator.TransformType.html

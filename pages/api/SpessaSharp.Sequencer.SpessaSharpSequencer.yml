@@ -1,0 +1,1777 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer
+  commentId: T:SpessaSharp.Sequencer.SpessaSharpSequencer
+  id: SpessaSharpSequencer
+  parent: SpessaSharp.Sequencer
+  children:
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.#ctor(SpessaSharp.Synthesizer.SpessaSharpProcessor)
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Add(SpessaSharp.MIDI.Midi)
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.BPM
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Duration
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.ExternalPlayback
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList(System.Collections.Generic.IEnumerable{SpessaSharp.MIDI.Midi})
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.LoopCount
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Midi
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.OnEventCall
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Pause
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Paused
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Play
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Preload
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(SpessaSharp.MIDI.Midi)
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(System.Int32)
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.RetriggerPausedNotes
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffledSongIndexes
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.SkipToFirstNoteOn
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Songs
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Stop
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Synth
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.Tick
+  - SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharpSequencer
+  nameWithType: SpessaSharpSequencer
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SpessaSharpSequencer
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 10
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  syntax:
+    content: public sealed class SpessaSharpSequencer
+    content.vb: Public NotInheritable Class SpessaSharpSequencer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffledSongIndexes
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffledSongIndexes
+  id: ShuffledSongIndexes
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: ShuffledSongIndexes
+  nameWithType: SpessaSharpSequencer.ShuffledSongIndexes
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffledSongIndexes
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ShuffledSongIndexes
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The shuffled song indexes. This is used when shuffle mode is enabled.
+  example: []
+  syntax:
+    content: public readonly List<int> ShuffledSongIndexes
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public ReadOnly ShuffledSongIndexes As List(Of Integer)
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Synth
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.Synth
+  id: Synth
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Synth
+  nameWithType: SpessaSharpSequencer.Synth
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Synth
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Synth
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The synthesizer connected to the sequencer.
+  example: []
+  syntax:
+    content: public readonly SpessaSharpProcessor Synth
+    return:
+      type: SpessaSharp.Synthesizer.SpessaSharpProcessor
+    content.vb: Public ReadOnly Synth As SpessaSharpProcessor
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.ExternalPlayback
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.ExternalPlayback
+  id: ExternalPlayback
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: ExternalPlayback
+  nameWithType: SpessaSharpSequencer.ExternalPlayback
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.ExternalPlayback
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ExternalPlayback
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: >-
+    If the MIDI messages should be sent to an event instead of the synth.
+
+    This is used by spessasynth_lib to pass them over to Web MIDI API.
+  example: []
+  syntax:
+    content: public bool ExternalPlayback
+    return:
+      type: System.Boolean
+    content.vb: Public ExternalPlayback As Boolean
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.RetriggerPausedNotes
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.RetriggerPausedNotes
+  id: RetriggerPausedNotes
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: RetriggerPausedNotes
+  nameWithType: SpessaSharpSequencer.RetriggerPausedNotes
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.RetriggerPausedNotes
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RetriggerPausedNotes
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 30
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: If the notes that were playing when the sequencer was paused should be re-triggered. Defaults to true.
+  example: []
+  syntax:
+    content: public bool RetriggerPausedNotes
+    return:
+      type: System.Boolean
+    content.vb: Public RetriggerPausedNotes As Boolean
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.LoopCount
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.LoopCount
+  id: LoopCount
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: LoopCount
+  nameWithType: SpessaSharpSequencer.LoopCount
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.LoopCount
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LoopCount
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 37
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: >-
+    The loop count of the sequencer.
+
+    If set to Infinity, it will loop forever.
+
+    If set to zero, the loop is disabled.
+  example: []
+  syntax:
+    content: public int LoopCount
+    return:
+      type: System.Int32
+    content.vb: Public LoopCount As Integer
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.SkipToFirstNoteOn
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.SkipToFirstNoteOn
+  id: SkipToFirstNoteOn
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: SkipToFirstNoteOn
+  nameWithType: SpessaSharpSequencer.SkipToFirstNoteOn
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.SkipToFirstNoteOn
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SkipToFirstNoteOn
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 40
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Indicates if the sequencer should skip to the first note on event. Defaults to true.
+  example: []
+  syntax:
+    content: public bool SkipToFirstNoteOn
+    return:
+      type: System.Boolean
+    content.vb: Public SkipToFirstNoteOn As Boolean
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished
+  id: IsFinished
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: IsFinished
+  nameWithType: SpessaSharpSequencer.IsFinished
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: IsFinished
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 43
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Indicates if the sequencer has finished playing.
+  example: []
+  syntax:
+    content: public bool IsFinished { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsFinished As Boolean
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Preload
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.Preload
+  id: Preload
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Preload
+  nameWithType: SpessaSharpSequencer.Preload
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Preload
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Preload
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 46
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Indicates if the synthesizer should preload the voices for the newly loaded sequence. Recommended.
+  example: []
+  syntax:
+    content: public bool Preload
+    return:
+      type: System.Boolean
+    content.vb: Public Preload As Boolean
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.OnEventCall
+  commentId: F:SpessaSharp.Sequencer.SpessaSharpSequencer.OnEventCall
+  id: OnEventCall
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: OnEventCall
+  nameWithType: SpessaSharpSequencer.OnEventCall
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.OnEventCall
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OnEventCall
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 49
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Called when the sequencer calls an event.
+  example: []
+  syntax:
+    content: public Action<Event>? OnEventCall
+    return:
+      type: System.Action{SpessaSharp.Sequencer.Event}
+    content.vb: Public OnEventCall As Action(Of [Event])
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.BPM
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.BPM
+  id: BPM
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: BPM
+  nameWithType: SpessaSharpSequencer.BPM
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.BPM
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BPM
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 152
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  syntax:
+    content: public int BPM { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property BPM As Integer
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.BPM*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature
+  id: TimeSignature
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: TimeSignature
+  nameWithType: SpessaSharpSequencer.TimeSignature
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TimeSignature
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 155
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  syntax:
+    content: public (int Top, int Bottom) TimeSignature { get; }
+    parameters: []
+    return:
+      type: System.ValueTuple{System.Int32,System.Int32}
+    content.vb: Public Property TimeSignature As (Top As Integer, Bottom As Integer)
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Tick
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.Tick
+  id: Tick
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Tick
+  nameWithType: SpessaSharpSequencer.Tick
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Tick
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Tick
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 157
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  syntax:
+    content: public int Tick { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Tick As Integer
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Tick*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.#ctor(SpessaSharp.Synthesizer.SpessaSharpProcessor)
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.#ctor(SpessaSharp.Synthesizer.SpessaSharpProcessor)
+  id: '#ctor(SpessaSharp.Synthesizer.SpessaSharpProcessor)'
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharpSequencer(SpessaSharpProcessor)
+  nameWithType: SpessaSharpSequencer.SpessaSharpSequencer(SpessaSharpProcessor)
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.SpessaSharpSequencer(SpessaSharp.Synthesizer.SpessaSharpProcessor)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 172
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Initializes a new Sequencer without any songs loaded.
+  example: []
+  syntax:
+    content: public SpessaSharpSequencer(SpessaSharpProcessor proc)
+    parameters:
+    - id: proc
+      type: SpessaSharp.Synthesizer.SpessaSharpProcessor
+      description: The synthesizer processor to use with this sequencer.
+    content.vb: Public Sub New(proc As SpessaSharpProcessor)
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.#ctor*
+  nameWithType.vb: SpessaSharpSequencer.New(SpessaSharpProcessor)
+  fullName.vb: SpessaSharp.Sequencer.SpessaSharpSequencer.New(SpessaSharp.Synthesizer.SpessaSharpProcessor)
+  name.vb: New(SpessaSharpProcessor)
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Midi
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.Midi
+  id: Midi
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Midi
+  nameWithType: SpessaSharpSequencer.Midi
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Midi
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Midi
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 181
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The currently loaded MIDI data.
+  example: []
+  syntax:
+    content: public Midi? Midi { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Midi
+    content.vb: Public Property Midi As Midi
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Midi*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Duration
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.Duration
+  id: Duration
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: SpessaSharpSequencer.Duration
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Duration
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Duration
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 184
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The length of the current sequence in seconds.
+  example: []
+  syntax:
+    content: public TimeSpan Duration { get; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public ReadOnly Property Duration As TimeSpan
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Duration*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Songs
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.Songs
+  id: Songs
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Songs
+  nameWithType: SpessaSharpSequencer.Songs
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Songs
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Songs
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 186
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  syntax:
+    content: public ReadOnlySpan<Midi> Songs { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{SpessaSharp.MIDI.Midi}
+    content.vb: Public ReadOnly Property Songs As ReadOnlySpan(Of Midi)
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Songs*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex
+  id: SongIndex
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: SongIndex
+  nameWithType: SpessaSharpSequencer.SongIndex
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SongIndex
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 189
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The current song index in the song list. If shuffle mode is enabled, this is the index of the shuffled song list.
+  example: []
+  syntax:
+    content: public int SongIndex { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SongIndex As Integer
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode
+  id: ShuffleMode
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: ShuffleMode
+  nameWithType: SpessaSharpSequencer.ShuffleMode
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ShuffleMode
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 205
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Controls if the sequencer should shuffle the songs in the song list. If true, the sequencer will play the songs in a random order. Songs are shuffled on a <b>LoadNewSongList</b> call.
+  example: []
+  syntax:
+    content: public bool ShuffleMode { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ShuffleMode As Boolean
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate
+  id: PlaybackRate
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: PlaybackRate
+  nameWithType: SpessaSharpSequencer.PlaybackRate
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PlaybackRate
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 208
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The sequencer's playback rate. This is the rate at which the sequencer plays back the MIDI data.
+  example: []
+  syntax:
+    content: public float PlaybackRate { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property PlaybackRate As Single
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime
+  id: CurrentTime
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: CurrentTime
+  nameWithType: SpessaSharpSequencer.CurrentTime
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CurrentTime
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 220
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The current time of the sequencer. This is the time in seconds since the sequencer started playing.
+  example: []
+  syntax:
+    content: public TimeSpan CurrentTime { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Property CurrentTime As TimeSpan
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Paused
+  commentId: P:SpessaSharp.Sequencer.SpessaSharpSequencer.Paused
+  id: Paused
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Paused
+  nameWithType: SpessaSharpSequencer.Paused
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Paused
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Paused
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 262
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: True if paused, false if playing or stopped
+  example: []
+  syntax:
+    content: public bool Paused { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property Paused As Boolean
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Paused*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick
+  id: ProcessTick
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: ProcessTick()
+  nameWithType: SpessaSharpSequencer.ProcessTick()
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ProcessTick
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 265
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Processes a single MIDI tick. You should call this every rendering quantum to process the sequencer events in real-time.
+  example: []
+  syntax:
+    content: public void ProcessTick()
+    content.vb: Public Sub ProcessTick()
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Play
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.Play
+  id: Play
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Play()
+  nameWithType: SpessaSharpSequencer.Play()
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Play()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Play
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 269
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Starts or resumes the playback of the sequencer. If the sequencer is paused, it will resume from the paused time.
+  example: []
+  syntax:
+    content: public void Play()
+    content.vb: Public Sub Play()
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Play*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Pause
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.Pause
+  id: Pause
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Pause()
+  nameWithType: SpessaSharpSequencer.Pause()
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Pause()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Pause
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 300
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Pauses the playback.
+  example: []
+  syntax:
+    content: public void Pause()
+    content.vb: Public Sub Pause()
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Pause*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList(System.Collections.Generic.IEnumerable{SpessaSharp.MIDI.Midi})
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList(System.Collections.Generic.IEnumerable{SpessaSharp.MIDI.Midi})
+  id: LoadNewSongList(System.Collections.Generic.IEnumerable{SpessaSharp.MIDI.Midi})
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: LoadNewSongList(IEnumerable<Midi>)
+  nameWithType: SpessaSharpSequencer.LoadNewSongList(IEnumerable<Midi>)
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList(System.Collections.Generic.IEnumerable<SpessaSharp.MIDI.Midi>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LoadNewSongList
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 304
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Loads a new song list into the sequencer.
+  example: []
+  syntax:
+    content: public void LoadNewSongList(IEnumerable<Midi> midiBuffers)
+    parameters:
+    - id: midiBuffers
+      type: System.Collections.Generic.IEnumerable{SpessaSharp.MIDI.Midi}
+      description: The list of songs to load.
+    content.vb: Public Sub LoadNewSongList(midiBuffers As IEnumerable(Of Midi))
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList*
+  nameWithType.vb: SpessaSharpSequencer.LoadNewSongList(IEnumerable(Of Midi))
+  fullName.vb: SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList(System.Collections.Generic.IEnumerable(Of SpessaSharp.MIDI.Midi))
+  name.vb: LoadNewSongList(IEnumerable(Of Midi))
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Add(SpessaSharp.MIDI.Midi)
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.Add(SpessaSharp.MIDI.Midi)
+  id: Add(SpessaSharp.MIDI.Midi)
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Add(Midi)
+  nameWithType: SpessaSharpSequencer.Add(Midi)
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Add(SpessaSharp.MIDI.Midi)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Add
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 330
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Adds a new song to the playlist if wasn't added yet
+  example: []
+  syntax:
+    content: public int Add(Midi song)
+    parameters:
+    - id: song
+      type: SpessaSharp.MIDI.Midi
+      description: The song to add
+    return:
+      type: System.Int32
+      description: The index of the added song
+    content.vb: Public Function Add(song As Midi) As Integer
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Add*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(System.Int32)
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(System.Int32)
+  id: Remove(System.Int32)
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Remove(int)
+  nameWithType: SpessaSharpSequencer.Remove(int)
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Remove
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 346
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Removes the song from the playlist if existed before
+  example: []
+  syntax:
+    content: public bool Remove(int songIndex)
+    parameters:
+    - id: songIndex
+      type: System.Int32
+      description: The song index to be removed
+    return:
+      type: System.Boolean
+      description: Whether the playlist contained the song
+    content.vb: Public Function Remove(songIndex As Integer) As Boolean
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove*
+  nameWithType.vb: SpessaSharpSequencer.Remove(Integer)
+  fullName.vb: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(Integer)
+  name.vb: Remove(Integer)
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(SpessaSharp.MIDI.Midi)
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(SpessaSharp.MIDI.Midi)
+  id: Remove(SpessaSharp.MIDI.Midi)
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Remove(Midi)
+  nameWithType: SpessaSharpSequencer.Remove(Midi)
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove(SpessaSharp.MIDI.Midi)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Remove
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 352
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Removes the song from the playlist if existed before
+  example: []
+  syntax:
+    content: public bool Remove(Midi song)
+    parameters:
+    - id: song
+      type: SpessaSharp.MIDI.Midi
+      description: The song to be removed
+    return:
+      type: System.Boolean
+      description: Whether the playlist contained the song
+    content.vb: Public Function Remove(song As Midi) As Boolean
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove*
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Stop
+  commentId: M:SpessaSharp.Sequencer.SpessaSharpSequencer.Stop
+  id: Stop
+  parent: SpessaSharp.Sequencer.SpessaSharpSequencer
+  langs:
+  - csharp
+  - vb
+  name: Stop()
+  nameWithType: SpessaSharpSequencer.Stop()
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Stop()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Stop
+    path: ../SpessaSharp/Sequencer/SpessaSharpSequencer.cs
+    startLine: 391
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Stops the playback
+  example: []
+  syntax:
+    content: public void Stop()
+    content.vb: Public Sub [Stop]()
+  overload: SpessaSharp.Sequencer.SpessaSharpSequencer.Stop*
+references:
+- uid: SpessaSharp.Sequencer
+  commentId: N:SpessaSharp.Sequencer
+  href: SpessaSharp.html
+  name: SpessaSharp.Sequencer
+  nameWithType: SpessaSharp.Sequencer
+  fullName: SpessaSharp.Sequencer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Sequencer
+    name: Sequencer
+    href: SpessaSharp.Sequencer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Sequencer
+    name: Sequencer
+    href: SpessaSharp.Sequencer.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.List{System.Int32}
+  commentId: T:System.Collections.Generic.List{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<int>
+  nameWithType: List<int>
+  fullName: System.Collections.Generic.List<int>
+  nameWithType.vb: List(Of Integer)
+  fullName.vb: System.Collections.Generic.List(Of Integer)
+  name.vb: List(Of Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: SpessaSharp.Synthesizer.SpessaSharpProcessor
+  commentId: T:SpessaSharp.Synthesizer.SpessaSharpProcessor
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.SpessaSharpProcessor.html
+  name: SpessaSharpProcessor
+  nameWithType: SpessaSharpProcessor
+  fullName: SpessaSharp.Synthesizer.SpessaSharpProcessor
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_IsFinished
+  name: IsFinished
+  nameWithType: SpessaSharpSequencer.IsFinished
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.IsFinished
+- uid: System.Action{SpessaSharp.Sequencer.Event}
+  commentId: T:System.Action{SpessaSharp.Sequencer.Event}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<Event>
+  nameWithType: Action<Event>
+  fullName: System.Action<SpessaSharp.Sequencer.Event>
+  nameWithType.vb: Action(Of Event)
+  fullName.vb: System.Action(Of SpessaSharp.Sequencer.Event)
+  name.vb: Action(Of Event)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: SpessaSharp.Sequencer.Event
+    name: Event
+    href: SpessaSharp.Sequencer.Event.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Sequencer.Event
+    name: Event
+    href: SpessaSharp.Sequencer.Event.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.BPM*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.BPM
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_BPM
+  name: BPM
+  nameWithType: SpessaSharpSequencer.BPM
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.BPM
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_TimeSignature
+  name: TimeSignature
+  nameWithType: SpessaSharpSequencer.TimeSignature
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.TimeSignature
+- uid: System.ValueTuple{System.Int32,System.Int32}
+  commentId: T:System.ValueTuple{System.Int32,System.Int32}
+  parent: System
+  definition: System.ValueTuple`2
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: (int Min, int Max)
+  nameWithType: (int Min, int Max)
+  fullName: (int Min, int Max)
+  nameWithType.vb: (Min As Integer, Max As Integer)
+  fullName.vb: (Min As Integer, Max As Integer)
+  name.vb: (Min As Integer, Max As Integer)
+  spec.csharp:
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Min
+    name: Min
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.min
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Max
+    name: Max
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.max
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Min
+    name: Min
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.min
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Max
+    name: Max
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.max
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Tick*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Tick
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Tick
+  name: Tick
+  nameWithType: SpessaSharpSequencer.Tick
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Tick
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.#ctor*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.#ctor
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer__ctor_SpessaSharp_Synthesizer_SpessaSharpProcessor_
+  name: SpessaSharpSequencer
+  nameWithType: SpessaSharpSequencer.SpessaSharpSequencer
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.SpessaSharpSequencer
+  nameWithType.vb: SpessaSharpSequencer.New
+  fullName.vb: SpessaSharp.Sequencer.SpessaSharpSequencer.New
+  name.vb: New
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Midi*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Midi
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Midi
+  name: Midi
+  nameWithType: SpessaSharpSequencer.Midi
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Midi
+- uid: SpessaSharp.MIDI.Midi
+  commentId: T:SpessaSharp.MIDI.Midi
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi
+  nameWithType: Midi
+  fullName: SpessaSharp.MIDI.Midi
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Duration*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Duration
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Duration
+  name: Duration
+  nameWithType: SpessaSharpSequencer.Duration
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Duration
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Songs*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Songs
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Songs
+  name: Songs
+  nameWithType: SpessaSharpSequencer.Songs
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Songs
+- uid: System.ReadOnlySpan{SpessaSharp.MIDI.Midi}
+  commentId: T:System.ReadOnlySpan{SpessaSharp.MIDI.Midi}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<Midi>
+  nameWithType: ReadOnlySpan<Midi>
+  fullName: System.ReadOnlySpan<SpessaSharp.MIDI.Midi>
+  nameWithType.vb: ReadOnlySpan(Of Midi)
+  fullName.vb: System.ReadOnlySpan(Of SpessaSharp.MIDI.Midi)
+  name.vb: ReadOnlySpan(Of Midi)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_SongIndex
+  name: SongIndex
+  nameWithType: SpessaSharpSequencer.SongIndex
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.SongIndex
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_ShuffleMode
+  name: ShuffleMode
+  nameWithType: SpessaSharpSequencer.ShuffleMode
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.ShuffleMode
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_PlaybackRate
+  name: PlaybackRate
+  nameWithType: SpessaSharpSequencer.PlaybackRate
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.PlaybackRate
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_CurrentTime
+  name: CurrentTime
+  nameWithType: SpessaSharpSequencer.CurrentTime
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.CurrentTime
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Paused*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Paused
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Paused
+  name: Paused
+  nameWithType: SpessaSharpSequencer.Paused
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Paused
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_ProcessTick
+  name: ProcessTick
+  nameWithType: SpessaSharpSequencer.ProcessTick
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.ProcessTick
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Play*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Play
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Play
+  name: Play
+  nameWithType: SpessaSharpSequencer.Play
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Play
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Pause*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Pause
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Pause
+  name: Pause
+  nameWithType: SpessaSharpSequencer.Pause
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Pause
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_LoadNewSongList_System_Collections_Generic_IEnumerable_SpessaSharp_MIDI_Midi__
+  name: LoadNewSongList
+  nameWithType: SpessaSharpSequencer.LoadNewSongList
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.LoadNewSongList
+- uid: System.Collections.Generic.IEnumerable{SpessaSharp.MIDI.Midi}
+  commentId: T:System.Collections.Generic.IEnumerable{SpessaSharp.MIDI.Midi}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Midi>
+  nameWithType: IEnumerable<Midi>
+  fullName: System.Collections.Generic.IEnumerable<SpessaSharp.MIDI.Midi>
+  nameWithType.vb: IEnumerable(Of Midi)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of SpessaSharp.MIDI.Midi)
+  name.vb: IEnumerable(Of Midi)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Add*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Add
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Add_SpessaSharp_MIDI_Midi_
+  name: Add
+  nameWithType: SpessaSharpSequencer.Add
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Add
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Remove
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Remove_System_Int32_
+  name: Remove
+  nameWithType: SpessaSharpSequencer.Remove
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Remove
+- uid: SpessaSharp.Sequencer.SpessaSharpSequencer.Stop*
+  commentId: Overload:SpessaSharp.Sequencer.SpessaSharpSequencer.Stop
+  href: SpessaSharp.Sequencer.SpessaSharpSequencer.html#SpessaSharp_Sequencer_SpessaSharpSequencer_Stop
+  name: Stop
+  nameWithType: SpessaSharpSequencer.Stop
+  fullName: SpessaSharp.Sequencer.SpessaSharpSequencer.Stop

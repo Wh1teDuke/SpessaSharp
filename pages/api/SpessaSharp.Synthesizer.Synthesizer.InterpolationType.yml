@@ -1,0 +1,157 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  id: Synthesizer.InterpolationType
+  parent: SpessaSharp.Synthesizer
+  children:
+  - SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Hermite
+  - SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Linear
+  - SpessaSharp.Synthesizer.Synthesizer.InterpolationType.NearestNeighbor
+  langs:
+  - csharp
+  - vb
+  name: Synthesizer.InterpolationType
+  nameWithType: Synthesizer.InterpolationType
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Synthesizer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InterpolationType
+    path: ../SpessaSharp/Synthesizer/Synthesizer.cs
+    startLine: 99
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: The available interpolation types of the synthesizer.
+  example: []
+  syntax:
+    content: public enum Synthesizer.InterpolationType
+    content.vb: Public Enum Synthesizer.InterpolationType
+- uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Linear
+  commentId: F:SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Linear
+  id: Linear
+  parent: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  langs:
+  - csharp
+  - vb
+  name: Linear
+  nameWithType: Synthesizer.InterpolationType.Linear
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Linear
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Synthesizer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Linear
+    path: ../SpessaSharp/Synthesizer/Synthesizer.cs
+    startLine: 99
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Linear = 0
+    return:
+      type: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+- uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.NearestNeighbor
+  commentId: F:SpessaSharp.Synthesizer.Synthesizer.InterpolationType.NearestNeighbor
+  id: NearestNeighbor
+  parent: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  langs:
+  - csharp
+  - vb
+  name: NearestNeighbor
+  nameWithType: Synthesizer.InterpolationType.NearestNeighbor
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.NearestNeighbor
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Synthesizer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NearestNeighbor
+    path: ../SpessaSharp/Synthesizer/Synthesizer.cs
+    startLine: 99
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: NearestNeighbor = 1
+    return:
+      type: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+- uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Hermite
+  commentId: F:SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Hermite
+  id: Hermite
+  parent: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  langs:
+  - csharp
+  - vb
+  name: Hermite
+  nameWithType: Synthesizer.InterpolationType.Hermite
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.Hermite
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Synthesizer.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Hermite
+    path: ../SpessaSharp/Synthesizer/Synthesizer.cs
+    startLine: 99
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Hermite = 2
+    return:
+      type: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+references:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer.InterpolationType
+  nameWithType: Synthesizer.InterpolationType
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html

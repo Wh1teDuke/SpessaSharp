@@ -1,0 +1,303 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.ISf2Channel
+  commentId: T:SpessaSharp.SoundBank.ISf2Channel
+  id: ISf2Channel
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+  - SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+  langs:
+  - csharp
+  - vb
+  name: ISf2Channel
+  nameWithType: ISf2Channel
+  fullName: SpessaSharp.SoundBank.ISf2Channel
+  type: Interface
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SF2Channel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ISf2Channel
+    path: ../SpessaSharp/SoundBank/SF2Channel.cs
+    startLine: 2
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public interface ISf2Channel
+    content.vb: Public Interface ISf2Channel
+  derivedClasses:
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+- uid: SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+  commentId: P:SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+  id: GetMidiControllers
+  parent: SpessaSharp.SoundBank.ISf2Channel
+  langs:
+  - csharp
+  - vb
+  name: GetMidiControllers
+  nameWithType: ISf2Channel.GetMidiControllers
+  fullName: SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SF2Channel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetMidiControllers
+    path: ../SpessaSharp/SoundBank/SF2Channel.cs
+    startLine: 5
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: All MIDI controller values for modulation.
+  example: []
+  syntax:
+    content: ReadOnlySpan<short> GetMidiControllers { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{System.Int16}
+    content.vb: ReadOnly Property GetMidiControllers As ReadOnlySpan(Of Short)
+  overload: SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers*
+- uid: SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+  commentId: P:SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+  id: GetMidiParameters
+  parent: SpessaSharp.SoundBank.ISf2Channel
+  langs:
+  - csharp
+  - vb
+  name: GetMidiParameters
+  nameWithType: ISf2Channel.GetMidiParameters
+  fullName: SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SF2Channel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetMidiParameters
+    path: ../SpessaSharp/SoundBank/SF2Channel.cs
+    startLine: 8
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Other MIDI parameters.
+  example: []
+  syntax:
+    content: (int Pressure, int PitchWheel, float PitchWheelRange) GetMidiParameters { get; }
+    parameters: []
+    return:
+      type: System.ValueTuple{System.Int32,System.Int32,System.Single}
+    content.vb: ReadOnly Property GetMidiParameters As (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  overload: SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters*
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers*
+  commentId: Overload:SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+  href: SpessaSharp.SoundBank.ISf2Channel.html#SpessaSharp_SoundBank_ISf2Channel_GetMidiControllers
+  name: GetMidiControllers
+  nameWithType: ISf2Channel.GetMidiControllers
+  fullName: SpessaSharp.SoundBank.ISf2Channel.GetMidiControllers
+- uid: System.ReadOnlySpan{System.Int16}
+  commentId: T:System.ReadOnlySpan{System.Int16}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<short>
+  nameWithType: ReadOnlySpan<short>
+  fullName: System.ReadOnlySpan<short>
+  nameWithType.vb: ReadOnlySpan(Of Short)
+  fullName.vb: System.ReadOnlySpan(Of Short)
+  name.vb: ReadOnlySpan(Of Short)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Int16
+    name: short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int16
+    name: Short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters*
+  commentId: Overload:SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+  href: SpessaSharp.SoundBank.ISf2Channel.html#SpessaSharp_SoundBank_ISf2Channel_GetMidiParameters
+  name: GetMidiParameters
+  nameWithType: ISf2Channel.GetMidiParameters
+  fullName: SpessaSharp.SoundBank.ISf2Channel.GetMidiParameters
+- uid: System.ValueTuple{System.Int32,System.Int32,System.Single}
+  commentId: T:System.ValueTuple{System.Int32,System.Int32,System.Single}
+  parent: System
+  definition: System.ValueTuple`3
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: (int Pressure, int PitchWheel, float PitchWheelRange)
+  nameWithType: (int Pressure, int PitchWheel, float PitchWheelRange)
+  fullName: (int Pressure, int PitchWheel, float PitchWheelRange)
+  nameWithType.vb: (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  fullName.vb: (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  name.vb: (Pressure As Integer, PitchWheel As Integer, PitchWheelRange As Single)
+  spec.csharp:
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.Pressure
+    name: Pressure
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pressure
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheel
+    name: PitchWheel
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheel
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheelRange
+    name: PitchWheelRange
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheelrange
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.Pressure
+    name: Pressure
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pressure
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheel
+    name: PitchWheel
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheel
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32,System.Single}.PitchWheelRange
+    name: PitchWheelRange
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32,system.single-.pitchwheelrange
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: System.ValueTuple`3
+  commentId: T:System.ValueTuple`3
+  name: (T1, T2, T3)
+  nameWithType: (T1, T2, T3)
+  fullName: (T1, T2, T3)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: ','
+  - name: " "
+  - name: T3
+  - name: )

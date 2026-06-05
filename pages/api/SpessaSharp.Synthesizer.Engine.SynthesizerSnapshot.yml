@@ -1,0 +1,971 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  id: SynthesizerSnapshot
+  parent: SpessaSharp.Synthesizer.Engine
+  children:
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.#ctor(SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[],System.Nullable{SpessaSharp.Synthesizer.Engine.KeyModifier}[][],SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[],System.Collections.BitArray,SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[],SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply(SpessaSharp.Synthesizer.Synthesizer)
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ChorusProcessor
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.DelayProcessor
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get(SpessaSharp.Synthesizer.Synthesizer)
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.InsertionProcessor
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.KeyMappings
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.LockedParameters
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiChannels
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiParameters
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ReverbProcessor
+  - SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.SystemParameters
+  langs:
+  - csharp
+  - vb
+  name: SynthesizerSnapshot
+  nameWithType: SynthesizerSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SynthesizerSnapshot
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 9
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  summary: Represents a snapshot of the synthesizer's state.
+  example: []
+  syntax:
+    content: public sealed class SynthesizerSnapshot
+    content.vb: Public NotInheritable Class SynthesizerSnapshot
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.#ctor(SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[],System.Nullable{SpessaSharp.Synthesizer.Engine.KeyModifier}[][],SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[],System.Collections.BitArray,SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[],SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)
+  commentId: M:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.#ctor(SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[],System.Nullable{SpessaSharp.Synthesizer.Engine.KeyModifier}[][],SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[],System.Collections.BitArray,SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[],SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)
+  id: '#ctor(SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[],System.Nullable{SpessaSharp.Synthesizer.Engine.KeyModifier}[][],SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[],System.Collections.BitArray,SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[],SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot,SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)'
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: SynthesizerSnapshot(ChannelSnapshot[], KeyModifier?[]?[], GlobalMidiParameter[], BitArray, GlobalSystemParameter[], ReverbProcessorSnapshot, ChorusProcessorSnapshot, DelayProcessorSnapshot, InsertionProcessorSnapshot)
+  nameWithType: SynthesizerSnapshot.SynthesizerSnapshot(ChannelSnapshot[], KeyModifier?[]?[], GlobalMidiParameter[], BitArray, GlobalSystemParameter[], Effect.ReverbProcessorSnapshot, Effect.ChorusProcessorSnapshot, Effect.DelayProcessorSnapshot, Effect.InsertionProcessorSnapshot)
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.SynthesizerSnapshot(SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[], SpessaSharp.Synthesizer.Engine.KeyModifier?[]?[], SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[], System.Collections.BitArray, SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[], SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot, SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot, SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot, SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 9
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  summary: Represents a snapshot of the synthesizer's state.
+  example: []
+  syntax:
+    content: public SynthesizerSnapshot(ChannelSnapshot[] midiChannels, KeyModifier?[]?[] keyMappings, GlobalMidiParameter[] midiParameters, BitArray lockedParameters, GlobalSystemParameter[] systemParameters, Effect.ReverbProcessorSnapshot reverbProcessor, Effect.ChorusProcessorSnapshot chorusProcessor, Effect.DelayProcessorSnapshot delayProcessor, Effect.InsertionProcessorSnapshot insertionProcessorProcessor)
+    parameters:
+    - id: midiChannels
+      type: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[]
+    - id: keyMappings
+      type: System.Nullable{SpessaSharp.Synthesizer.Engine.KeyModifier}[][]
+    - id: midiParameters
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[]
+    - id: lockedParameters
+      type: System.Collections.BitArray
+    - id: systemParameters
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[]
+    - id: reverbProcessor
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    - id: chorusProcessor
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    - id: delayProcessor
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    - id: insertionProcessorProcessor
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    content.vb: Public Sub New(midiChannels As ChannelSnapshot(), keyMappings As KeyModifier?()(), midiParameters As GlobalMidiParameter(), lockedParameters As BitArray, systemParameters As GlobalSystemParameter(), reverbProcessor As Effect.ReverbProcessorSnapshot, chorusProcessor As Effect.ChorusProcessorSnapshot, delayProcessor As Effect.DelayProcessorSnapshot, insertionProcessorProcessor As Effect.InsertionProcessorSnapshot)
+  overload: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.#ctor*
+  nameWithType.vb: SynthesizerSnapshot.New(ChannelSnapshot(), KeyModifier?()(), GlobalMidiParameter(), BitArray, GlobalSystemParameter(), Effect.ReverbProcessorSnapshot, Effect.ChorusProcessorSnapshot, Effect.DelayProcessorSnapshot, Effect.InsertionProcessorSnapshot)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.New(SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot(), SpessaSharp.Synthesizer.Engine.KeyModifier?()(), SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter(), System.Collections.BitArray, SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter(), SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot, SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot, SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot, SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)
+  name.vb: New(ChannelSnapshot(), KeyModifier?()(), GlobalMidiParameter(), BitArray, GlobalSystemParameter(), ReverbProcessorSnapshot, ChorusProcessorSnapshot, DelayProcessorSnapshot, InsertionProcessorSnapshot)
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiChannels
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiChannels
+  id: MidiChannels
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: MidiChannels
+  nameWithType: SynthesizerSnapshot.MidiChannels
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiChannels
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiChannels
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 21
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  summary: The individual channel snapshots.
+  example: []
+  syntax:
+    content: public readonly ChannelSnapshot[] MidiChannels
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[]
+    content.vb: Public ReadOnly MidiChannels As ChannelSnapshot()
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.KeyMappings
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.KeyMappings
+  id: KeyMappings
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: KeyMappings
+  nameWithType: SynthesizerSnapshot.KeyMappings
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.KeyMappings
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: KeyMappings
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  summary: Key modifiers.
+  example: []
+  syntax:
+    content: public readonly KeyModifier?[]?[] KeyMappings
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Engine.KeyModifier}[][]
+    content.vb: Public ReadOnly KeyMappings As KeyModifier?()()
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiParameters
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiParameters
+  id: MidiParameters
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: MidiParameters
+  nameWithType: SynthesizerSnapshot.MidiParameters
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.MidiParameters
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiParameters
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 26
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  syntax:
+    content: public readonly GlobalMidiParameter[] MidiParameters
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[]
+    content.vb: Public ReadOnly MidiParameters As GlobalMidiParameter()
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.LockedParameters
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.LockedParameters
+  id: LockedParameters
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: LockedParameters
+  nameWithType: SynthesizerSnapshot.LockedParameters
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.LockedParameters
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LockedParameters
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 27
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  syntax:
+    content: public readonly BitArray LockedParameters
+    return:
+      type: System.Collections.BitArray
+    content.vb: Public ReadOnly LockedParameters As BitArray
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.SystemParameters
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.SystemParameters
+  id: SystemParameters
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: SystemParameters
+  nameWithType: SynthesizerSnapshot.SystemParameters
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.SystemParameters
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SystemParameters
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 28
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  syntax:
+    content: public readonly GlobalSystemParameter[] SystemParameters
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[]
+    content.vb: Public ReadOnly SystemParameters As GlobalSystemParameter()
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ReverbProcessor
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ReverbProcessor
+  id: ReverbProcessor
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: ReverbProcessor
+  nameWithType: SynthesizerSnapshot.ReverbProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ReverbProcessor
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ReverbProcessor
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 30
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  syntax:
+    content: public readonly Effect.ReverbProcessorSnapshot ReverbProcessor
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    content.vb: Public ReadOnly ReverbProcessor As Effect.ReverbProcessorSnapshot
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ChorusProcessor
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ChorusProcessor
+  id: ChorusProcessor
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: ChorusProcessor
+  nameWithType: SynthesizerSnapshot.ChorusProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.ChorusProcessor
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChorusProcessor
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 31
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  syntax:
+    content: public readonly Effect.ChorusProcessorSnapshot ChorusProcessor
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    content.vb: Public ReadOnly ChorusProcessor As Effect.ChorusProcessorSnapshot
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.DelayProcessor
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.DelayProcessor
+  id: DelayProcessor
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: DelayProcessor
+  nameWithType: SynthesizerSnapshot.DelayProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.DelayProcessor
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayProcessor
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 32
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  syntax:
+    content: public readonly Effect.DelayProcessorSnapshot DelayProcessor
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    content.vb: Public ReadOnly DelayProcessor As Effect.DelayProcessorSnapshot
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.InsertionProcessor
+  commentId: F:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.InsertionProcessor
+  id: InsertionProcessor
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: InsertionProcessor
+  nameWithType: SynthesizerSnapshot.InsertionProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.InsertionProcessor
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InsertionProcessor
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 33
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  syntax:
+    content: public Effect.InsertionProcessorSnapshot InsertionProcessor
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    content.vb: Public InsertionProcessor As Effect.InsertionProcessorSnapshot
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get(SpessaSharp.Synthesizer.Synthesizer)
+  commentId: M:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get(SpessaSharp.Synthesizer.Synthesizer)
+  id: Get(SpessaSharp.Synthesizer.Synthesizer)
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Get(Synthesizer)
+  nameWithType: SynthesizerSnapshot.Get(Synthesizer)
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get(SpessaSharp.Synthesizer.Synthesizer)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Get
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 40
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  summary: Creates a new synthesizer snapshot from the given SpessaSynthProcessor.
+  example: []
+  syntax:
+    content: public static SynthesizerSnapshot Get(Synthesizer synth)
+    parameters:
+    - id: synth
+      type: SpessaSharp.Synthesizer.Synthesizer
+      description: The processor to take a snapshot of.
+    return:
+      type: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+      description: The snapshot.
+    content.vb: Public Shared Function [Get](synth As Synthesizer) As SynthesizerSnapshot
+  overload: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get*
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply(SpessaSharp.Synthesizer.Synthesizer)
+  commentId: M:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply(SpessaSharp.Synthesizer.Synthesizer)
+  id: Apply(SpessaSharp.Synthesizer.Synthesizer)
+  parent: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Apply(Synthesizer)
+  nameWithType: SynthesizerSnapshot.Apply(Synthesizer)
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply(SpessaSharp.Synthesizer.Synthesizer)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Apply
+    path: ../SpessaSharp/Synthesizer/Engine/SynthesizerSnapshot.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine
+  summary: Applies the snapshot to the synthesizer.
+  example: []
+  syntax:
+    content: public void Apply(Synthesizer synth)
+    parameters:
+    - id: synth
+      type: SpessaSharp.Synthesizer.Synthesizer
+      description: The processor to apply the snapshot to.
+    content.vb: Public Sub Apply(synth As Synthesizer)
+  overload: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply*
+references:
+- uid: SpessaSharp.Synthesizer.Engine
+  commentId: N:SpessaSharp.Synthesizer.Engine
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine
+  nameWithType: SpessaSharp.Synthesizer.Engine
+  fullName: SpessaSharp.Synthesizer.Engine
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.#ctor*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.#ctor
+  href: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.html#SpessaSharp_Synthesizer_Engine_SynthesizerSnapshot__ctor_SpessaSharp_Synthesizer_Engine_Channel_ChannelSnapshot___System_Nullable_SpessaSharp_Synthesizer_Engine_KeyModifier______SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter___System_Collections_BitArray_SpessaSharp_Synthesizer_Engine_Parameters_GlobalSystemParameter___SpessaSharp_Synthesizer_Engine_Effects_Effect_ReverbProcessorSnapshot_SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot_SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot_SpessaSharp_Synthesizer_Engine_Effects_Effect_InsertionProcessorSnapshot_
+  name: SynthesizerSnapshot
+  nameWithType: SynthesizerSnapshot.SynthesizerSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.SynthesizerSnapshot
+  nameWithType.vb: SynthesizerSnapshot.New
+  fullName.vb: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.New
+  name.vb: New
+- uid: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[]
+  isExternal: true
+  href: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot.html
+  name: ChannelSnapshot[]
+  nameWithType: ChannelSnapshot[]
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot[]
+  nameWithType.vb: ChannelSnapshot()
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot()
+  name.vb: ChannelSnapshot()
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot
+    name: ChannelSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot
+    name: ChannelSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot.html
+  - name: (
+  - name: )
+- uid: System.Nullable{SpessaSharp.Synthesizer.Engine.KeyModifier}[][]
+  isExternal: true
+  href: SpessaSharp.Synthesizer.Engine.KeyModifier.html
+  name: KeyModifier?[][]
+  nameWithType: KeyModifier?[][]
+  fullName: SpessaSharp.Synthesizer.Engine.KeyModifier?[][]
+  nameWithType.vb: KeyModifier?()()
+  fullName.vb: SpessaSharp.Synthesizer.Engine.KeyModifier?()()
+  name.vb: KeyModifier?()()
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.KeyModifier
+    name: KeyModifier
+    href: SpessaSharp.Synthesizer.Engine.KeyModifier.html
+  - name: '?'
+  - name: '['
+  - name: ']'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.KeyModifier
+    name: KeyModifier
+    href: SpessaSharp.Synthesizer.Engine.KeyModifier.html
+  - name: '?'
+  - name: (
+  - name: )
+  - name: (
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[]
+  isExternal: true
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  name: GlobalMidiParameter[]
+  nameWithType: GlobalMidiParameter[]
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter[]
+  nameWithType.vb: GlobalMidiParameter()
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter()
+  name.vb: GlobalMidiParameter()
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: (
+  - name: )
+- uid: System.Collections.BitArray
+  commentId: T:System.Collections.BitArray
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.bitarray
+  name: BitArray
+  nameWithType: BitArray
+  fullName: System.Collections.BitArray
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[]
+  isExternal: true
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  name: GlobalSystemParameter[]
+  nameWithType: GlobalSystemParameter[]
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter[]
+  nameWithType.vb: GlobalSystemParameter()
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter()
+  name.vb: GlobalSystemParameter()
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+    name: GlobalSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+    name: GlobalSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  - name: (
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.ReverbProcessorSnapshot
+  nameWithType: Effect.ReverbProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    name: ReverbProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    name: ReverbProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.ChorusProcessorSnapshot
+  nameWithType: Effect.ChorusProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    name: ChorusProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    name: ChorusProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.DelayProcessorSnapshot
+  nameWithType: Effect.DelayProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    name: DelayProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    name: DelayProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.InsertionProcessorSnapshot
+  nameWithType: Effect.InsertionProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get
+  href: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.html#SpessaSharp_Synthesizer_Engine_SynthesizerSnapshot_Get_SpessaSharp_Synthesizer_Synthesizer_
+  name: Get
+  nameWithType: SynthesizerSnapshot.Get
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Get
+- uid: SpessaSharp.Synthesizer.Synthesizer
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer
+  nameWithType: Synthesizer
+  fullName: SpessaSharp.Synthesizer.Synthesizer
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+  parent: SpessaSharp.Synthesizer.Engine
+  href: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.html
+  name: SynthesizerSnapshot
+  nameWithType: SynthesizerSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply
+  href: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.html#SpessaSharp_Synthesizer_Engine_SynthesizerSnapshot_Apply_SpessaSharp_Synthesizer_Synthesizer_
+  name: Apply
+  nameWithType: SynthesizerSnapshot.Apply
+  fullName: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.Apply

@@ -1,0 +1,778 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Utils.ParamTracker
+  commentId: T:SpessaSharp.MIDI.Utils.ParamTracker
+  id: ParamTracker
+  parent: SpessaSharp.MIDI.Utils
+  children:
+  - SpessaSharp.MIDI.Utils.ParamTracker.#ctor(System.Int32)
+  - SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange(SpessaSharp.MIDI.Midi.CC,System.Int32,System.Int32,System.Int32)
+  - SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB
+  - SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB
+  - SpessaSharp.MIDI.Utils.ParamTracker.Reset
+  - SpessaSharp.MIDI.Utils.ParamTracker.dataLSB
+  - SpessaSharp.MIDI.Utils.ParamTracker.dataMSB
+  - SpessaSharp.MIDI.Utils.ParamTracker.nrpnLSB
+  - SpessaSharp.MIDI.Utils.ParamTracker.nrpnMSB
+  - SpessaSharp.MIDI.Utils.ParamTracker.rpnLSB
+  - SpessaSharp.MIDI.Utils.ParamTracker.rpnMSB
+  langs:
+  - csharp
+  - vb
+  name: ParamTracker
+  nameWithType: ParamTracker
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ParamTracker
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 4
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public struct ParamTracker
+    content.vb: Public Structure ParamTracker
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.#ctor(System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.ParamTracker.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: ParamTracker(int)
+  nameWithType: ParamTracker.ParamTracker(int)
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ParamTracker(int)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 4
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker(int channel)
+    parameters:
+    - id: channel
+      type: System.Int32
+    content.vb: Public Sub New(channel As Integer)
+  overload: SpessaSharp.MIDI.Utils.ParamTracker.#ctor*
+  nameWithType.vb: ParamTracker.New(Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.ParamTracker.New(Integer)
+  name.vb: New(Integer)
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.rpnMSB
+  commentId: F:SpessaSharp.MIDI.Utils.ParamTracker.rpnMSB
+  id: rpnMSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: rpnMSB
+  nameWithType: ParamTracker.rpnMSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.rpnMSB
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: rpnMSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 10
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController rpnMSB
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public rpnMSB As ParamTracker.ParamController
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.rpnLSB
+  commentId: F:SpessaSharp.MIDI.Utils.ParamTracker.rpnLSB
+  id: rpnLSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: rpnLSB
+  nameWithType: ParamTracker.rpnLSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.rpnLSB
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: rpnLSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 11
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController rpnLSB
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public rpnLSB As ParamTracker.ParamController
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.nrpnMSB
+  commentId: F:SpessaSharp.MIDI.Utils.ParamTracker.nrpnMSB
+  id: nrpnMSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: nrpnMSB
+  nameWithType: ParamTracker.nrpnMSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.nrpnMSB
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: nrpnMSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController nrpnMSB
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public nrpnMSB As ParamTracker.ParamController
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.nrpnLSB
+  commentId: F:SpessaSharp.MIDI.Utils.ParamTracker.nrpnLSB
+  id: nrpnLSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: nrpnLSB
+  nameWithType: ParamTracker.nrpnLSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.nrpnLSB
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: nrpnLSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 13
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController nrpnLSB
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public nrpnLSB As ParamTracker.ParamController
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.dataMSB
+  commentId: F:SpessaSharp.MIDI.Utils.ParamTracker.dataMSB
+  id: dataMSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: dataMSB
+  nameWithType: ParamTracker.dataMSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.dataMSB
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: dataMSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 14
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController dataMSB
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public dataMSB As ParamTracker.ParamController
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.dataLSB
+  commentId: F:SpessaSharp.MIDI.Utils.ParamTracker.dataLSB
+  id: dataLSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: dataLSB
+  nameWithType: ParamTracker.dataLSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.dataLSB
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: dataLSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 15
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController dataLSB
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public dataLSB As ParamTracker.ParamController
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB
+  commentId: P:SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB
+  id: ParamMSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: ParamMSB
+  nameWithType: ParamTracker.ParamMSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ParamMSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController ParamMSB { get; set; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public Property ParamMSB As ParamTracker.ParamController
+  overload: SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB*
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB
+  commentId: P:SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB
+  id: ParamLSB
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: ParamLSB
+  nameWithType: ParamTracker.ParamLSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ParamLSB
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 27
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public ParamTracker.ParamController ParamLSB { get; set; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    content.vb: Public Property ParamLSB As ParamTracker.ParamController
+  overload: SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB*
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.Reset
+  commentId: M:SpessaSharp.MIDI.Utils.ParamTracker.Reset
+  id: Reset
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: Reset()
+  nameWithType: ParamTracker.Reset()
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.Reset()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Reset
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 37
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public void Reset()
+    content.vb: Public Sub Reset()
+  overload: SpessaSharp.MIDI.Utils.ParamTracker.Reset*
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange(SpessaSharp.MIDI.Midi.CC,System.Int32,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange(SpessaSharp.MIDI.Midi.CC,System.Int32,System.Int32,System.Int32)
+  id: ControllerChange(SpessaSharp.MIDI.Midi.CC,System.Int32,System.Int32,System.Int32)
+  parent: SpessaSharp.MIDI.Utils.ParamTracker
+  langs:
+  - csharp
+  - vb
+  name: ControllerChange(CC, int, int, int)
+  nameWithType: ParamTracker.ControllerChange(Midi.CC, int, int, int)
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange(SpessaSharp.MIDI.Midi.CC, int, int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ParamTracker.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ControllerChange
+    path: ../SpessaSharp/MIDI/Utils/ParamTracker.cs
+    startLine: 48
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public MidiUtils.AnalyzedParameter? ControllerChange(Midi.CC cc, int v, int track, int ev)
+    parameters:
+    - id: cc
+      type: SpessaSharp.MIDI.Midi.CC
+    - id: v
+      type: System.Int32
+    - id: track
+      type: System.Int32
+    - id: ev
+      type: System.Int32
+    return:
+      type: System.Nullable{SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter}
+    content.vb: Public Function ControllerChange(cc As Midi.CC, v As Integer, track As Integer, ev As Integer) As MidiUtils.AnalyzedParameter?
+  overload: SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange*
+  nameWithType.vb: ParamTracker.ControllerChange(Midi.CC, Integer, Integer, Integer)
+  fullName.vb: SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange(SpessaSharp.MIDI.Midi.CC, Integer, Integer, Integer)
+  name.vb: ControllerChange(CC, Integer, Integer, Integer)
+references:
+- uid: SpessaSharp.MIDI.Utils
+  commentId: N:SpessaSharp.MIDI.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Utils
+  nameWithType: SpessaSharp.MIDI.Utils
+  fullName: SpessaSharp.MIDI.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.#ctor*
+  commentId: Overload:SpessaSharp.MIDI.Utils.ParamTracker.#ctor
+  href: SpessaSharp.MIDI.Utils.ParamTracker.html#SpessaSharp_MIDI_Utils_ParamTracker__ctor_System_Int32_
+  name: ParamTracker
+  nameWithType: ParamTracker.ParamTracker
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ParamTracker
+  nameWithType.vb: ParamTracker.New
+  fullName.vb: SpessaSharp.MIDI.Utils.ParamTracker.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+  commentId: T:SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+  parent: SpessaSharp.MIDI.Utils
+  href: SpessaSharp.MIDI.Utils.ParamTracker.html
+  name: ParamTracker.ParamController
+  nameWithType: ParamTracker.ParamController
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.ParamTracker
+    name: ParamTracker
+    href: SpessaSharp.MIDI.Utils.ParamTracker.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    name: ParamController
+    href: SpessaSharp.MIDI.Utils.ParamTracker.ParamController.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.ParamTracker
+    name: ParamTracker
+    href: SpessaSharp.MIDI.Utils.ParamTracker.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    name: ParamController
+    href: SpessaSharp.MIDI.Utils.ParamTracker.ParamController.html
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB*
+  commentId: Overload:SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB
+  href: SpessaSharp.MIDI.Utils.ParamTracker.html#SpessaSharp_MIDI_Utils_ParamTracker_ParamMSB
+  name: ParamMSB
+  nameWithType: ParamTracker.ParamMSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ParamMSB
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB*
+  commentId: Overload:SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB
+  href: SpessaSharp.MIDI.Utils.ParamTracker.html#SpessaSharp_MIDI_Utils_ParamTracker_ParamLSB
+  name: ParamLSB
+  nameWithType: ParamTracker.ParamLSB
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ParamLSB
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.Reset*
+  commentId: Overload:SpessaSharp.MIDI.Utils.ParamTracker.Reset
+  href: SpessaSharp.MIDI.Utils.ParamTracker.html#SpessaSharp_MIDI_Utils_ParamTracker_Reset
+  name: Reset
+  nameWithType: ParamTracker.Reset
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.Reset
+- uid: SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange*
+  commentId: Overload:SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange
+  href: SpessaSharp.MIDI.Utils.ParamTracker.html#SpessaSharp_MIDI_Utils_ParamTracker_ControllerChange_SpessaSharp_MIDI_Midi_CC_System_Int32_System_Int32_System_Int32_
+  name: ControllerChange
+  nameWithType: ParamTracker.ControllerChange
+  fullName: SpessaSharp.MIDI.Utils.ParamTracker.ControllerChange
+- uid: SpessaSharp.MIDI.Midi.CC
+  commentId: T:SpessaSharp.MIDI.Midi.CC
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.CC
+  nameWithType: Midi.CC
+  fullName: SpessaSharp.MIDI.Midi.CC
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+- uid: System.Nullable{SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter}
+  commentId: T:System.Nullable{SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.MIDI.Utils.MidiUtils.html
+  name: MidiUtils.AnalyzedParameter?
+  nameWithType: MidiUtils.AnalyzedParameter?
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter?
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils
+    name: MidiUtils
+    href: SpessaSharp.MIDI.Utils.MidiUtils.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter
+    name: AnalyzedParameter
+    href: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils
+    name: MidiUtils
+    href: SpessaSharp.MIDI.Utils.MidiUtils.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter
+    name: AnalyzedParameter
+    href: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter.html
+  - name: '?'
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

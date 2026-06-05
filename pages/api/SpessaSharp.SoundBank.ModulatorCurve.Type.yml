@@ -1,0 +1,182 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.ModulatorCurve.Type
+  commentId: T:SpessaSharp.SoundBank.ModulatorCurve.Type
+  id: ModulatorCurve.Type
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.ModulatorCurve.Type.Concave
+  - SpessaSharp.SoundBank.ModulatorCurve.Type.Convex
+  - SpessaSharp.SoundBank.ModulatorCurve.Type.Linear
+  - SpessaSharp.SoundBank.ModulatorCurve.Type.Switch
+  langs:
+  - csharp
+  - vb
+  name: ModulatorCurve.Type
+  nameWithType: ModulatorCurve.Type
+  fullName: SpessaSharp.SoundBank.ModulatorCurve.Type
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/ModulatorCurve.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/SoundBank/ModulatorCurve.cs
+    startLine: 7
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public enum ModulatorCurve.Type
+    content.vb: Public Enum ModulatorCurve.Type
+- uid: SpessaSharp.SoundBank.ModulatorCurve.Type.Linear
+  commentId: F:SpessaSharp.SoundBank.ModulatorCurve.Type.Linear
+  id: Linear
+  parent: SpessaSharp.SoundBank.ModulatorCurve.Type
+  langs:
+  - csharp
+  - vb
+  name: Linear
+  nameWithType: ModulatorCurve.Type.Linear
+  fullName: SpessaSharp.SoundBank.ModulatorCurve.Type.Linear
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/ModulatorCurve.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Linear
+    path: ../SpessaSharp/SoundBank/ModulatorCurve.cs
+    startLine: 7
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Linear = 0
+    return:
+      type: SpessaSharp.SoundBank.ModulatorCurve.Type
+- uid: SpessaSharp.SoundBank.ModulatorCurve.Type.Concave
+  commentId: F:SpessaSharp.SoundBank.ModulatorCurve.Type.Concave
+  id: Concave
+  parent: SpessaSharp.SoundBank.ModulatorCurve.Type
+  langs:
+  - csharp
+  - vb
+  name: Concave
+  nameWithType: ModulatorCurve.Type.Concave
+  fullName: SpessaSharp.SoundBank.ModulatorCurve.Type.Concave
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/ModulatorCurve.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Concave
+    path: ../SpessaSharp/SoundBank/ModulatorCurve.cs
+    startLine: 7
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Concave = 1
+    return:
+      type: SpessaSharp.SoundBank.ModulatorCurve.Type
+- uid: SpessaSharp.SoundBank.ModulatorCurve.Type.Convex
+  commentId: F:SpessaSharp.SoundBank.ModulatorCurve.Type.Convex
+  id: Convex
+  parent: SpessaSharp.SoundBank.ModulatorCurve.Type
+  langs:
+  - csharp
+  - vb
+  name: Convex
+  nameWithType: ModulatorCurve.Type.Convex
+  fullName: SpessaSharp.SoundBank.ModulatorCurve.Type.Convex
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/ModulatorCurve.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Convex
+    path: ../SpessaSharp/SoundBank/ModulatorCurve.cs
+    startLine: 7
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Convex = 2
+    return:
+      type: SpessaSharp.SoundBank.ModulatorCurve.Type
+- uid: SpessaSharp.SoundBank.ModulatorCurve.Type.Switch
+  commentId: F:SpessaSharp.SoundBank.ModulatorCurve.Type.Switch
+  id: Switch
+  parent: SpessaSharp.SoundBank.ModulatorCurve.Type
+  langs:
+  - csharp
+  - vb
+  name: Switch
+  nameWithType: ModulatorCurve.Type.Switch
+  fullName: SpessaSharp.SoundBank.ModulatorCurve.Type.Switch
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/ModulatorCurve.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Switch
+    path: ../SpessaSharp/SoundBank/ModulatorCurve.cs
+    startLine: 7
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Switch = 3
+    return:
+      type: SpessaSharp.SoundBank.ModulatorCurve.Type
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: SpessaSharp.SoundBank.ModulatorCurve.Type
+  commentId: T:SpessaSharp.SoundBank.ModulatorCurve.Type
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.ModulatorCurve.html
+  name: ModulatorCurve.Type
+  nameWithType: ModulatorCurve.Type
+  fullName: SpessaSharp.SoundBank.ModulatorCurve.Type
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.ModulatorCurve
+    name: ModulatorCurve
+    href: SpessaSharp.SoundBank.ModulatorCurve.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.ModulatorCurve.Type
+    name: Type
+    href: SpessaSharp.SoundBank.ModulatorCurve.Type.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.ModulatorCurve
+    name: ModulatorCurve
+    href: SpessaSharp.SoundBank.ModulatorCurve.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.ModulatorCurve.Type
+    name: Type
+    href: SpessaSharp.SoundBank.ModulatorCurve.Type.html

@@ -1,0 +1,1156 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  id: GlobalMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  children:
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Len
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.MIDI.Midi.System)
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32)
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single)
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.PType
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type)
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(SpessaSharp.MIDI.Midi.System)~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: GlobalMidiParameter
+  nameWithType: GlobalMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GlobalMidiParameter
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 76
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: 'public readonly record struct GlobalMidiParameter : IEquatable<GlobalMidiParameter>'
+    content.vb: Public Structure GlobalMidiParameter Implements IEquatable(Of GlobalMidiParameter)
+  implements:
+  - System.IEquatable{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.PType
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.PType
+  id: PType
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: PType
+  nameWithType: GlobalMidiParameter.PType
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.PType
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PType
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 78
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public readonly GlobalMidiParameter.Type PType
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    content.vb: Public ReadOnly PType As GlobalMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem
+  commentId: P:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem
+  id: AsMidiSystem
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsMidiSystem
+  nameWithType: GlobalMidiParameter.AsMidiSystem
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsMidiSystem
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 81
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public Midi.System AsMidiSystem { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Midi.System
+    content.vb: Public ReadOnly Property AsMidiSystem As Midi.System
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem*
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool
+  commentId: P:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool
+  id: AsBool
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsBool
+  nameWithType: GlobalMidiParameter.AsBool
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsBool
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 90
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public bool AsBool { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property AsBool As Boolean
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool*
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt
+  commentId: P:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt
+  id: AsInt
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsInt
+  nameWithType: GlobalMidiParameter.AsInt
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsInt
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 99
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public int AsInt { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property AsInt As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt*
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat
+  commentId: P:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat
+  id: AsFloat
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: AsFloat
+  nameWithType: GlobalMidiParameter.AsFloat
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsFloat
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 108
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public float AsFloat { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property AsFloat As Single
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat*
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32)
+  id: Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32)
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, int)
+  nameWithType: GlobalMidiParameter.Of(GlobalMidiParameter.Type, int)
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 117
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static GlobalMidiParameter Of(GlobalMidiParameter.Type type, int intVal)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    - id: intVal
+      type: System.Int32
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    content.vb: Public Shared Function [Of](type As GlobalMidiParameter.Type, intVal As Integer) As GlobalMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of*
+  nameWithType.vb: GlobalMidiParameter.Of(GlobalMidiParameter.Type, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, Integer)
+  name.vb: Of(Type, Integer)
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single)
+  id: Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single)
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, float)
+  nameWithType: GlobalMidiParameter.Of(GlobalMidiParameter.Type, float)
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, float)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 123
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static GlobalMidiParameter Of(GlobalMidiParameter.Type type, float floatVal)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    - id: floatVal
+      type: System.Single
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    content.vb: Public Shared Function [Of](type As GlobalMidiParameter.Type, floatVal As Single) As GlobalMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of*
+  nameWithType.vb: GlobalMidiParameter.Of(GlobalMidiParameter.Type, Single)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, Single)
+  name.vb: Of(Type, Single)
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Boolean)
+  id: Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, bool)
+  nameWithType: GlobalMidiParameter.Of(GlobalMidiParameter.Type, bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 129
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static GlobalMidiParameter Of(GlobalMidiParameter.Type type, bool boolVal)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    - id: boolVal
+      type: System.Boolean
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    content.vb: Public Shared Function [Of](type As GlobalMidiParameter.Type, boolVal As Boolean) As GlobalMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of*
+  nameWithType.vb: GlobalMidiParameter.Of(GlobalMidiParameter.Type, Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, Boolean)
+  name.vb: Of(Type, Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.MIDI.Midi.System)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.MIDI.Midi.System)
+  id: Of(SpessaSharp.MIDI.Midi.System)
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(System)
+  nameWithType: GlobalMidiParameter.Of(Midi.System)
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of(SpessaSharp.MIDI.Midi.System)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 135
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static GlobalMidiParameter Of(Midi.System system)
+    parameters:
+    - id: system
+      type: SpessaSharp.MIDI.Midi.System
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    content.vb: Public Shared Function [Of](system As Midi.System) As GlobalMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of*
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Len
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Len
+  id: Len
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: Len
+  nameWithType: GlobalMidiParameter.Len
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Len
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Len
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 150
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static readonly int Len
+    return:
+      type: System.Int32
+    content.vb: Public Shared ReadOnly Len As Integer
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type)
+  id: TypeOf(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type)
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: TypeOf(Type)
+  nameWithType: GlobalMidiParameter.TypeOf(GlobalMidiParameter.Type)
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TypeOf
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 166
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static Params.Type TypeOf(GlobalMidiParameter.Type type)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    return:
+      type: SpessaSharp.Utils.Params.Type
+    content.vb: Public Shared Function [TypeOf](type As GlobalMidiParameter.Type) As Params.Type
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf*
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator GlobalMidiParameter((Type Type, float Value))
+  nameWithType: GlobalMidiParameter.implicit operator GlobalMidiParameter((GlobalMidiParameter.Type Type, float Value))
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.implicit operator SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter((SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type Type, float Value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 176
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static implicit operator GlobalMidiParameter((GlobalMidiParameter.Type Type, float Value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    content.vb: Public Shared Widening Operator CType(param As (Type As GlobalMidiParameter.Type, Value As Single)) As GlobalMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit*
+  nameWithType.vb: GlobalMidiParameter.CType((Type As GlobalMidiParameter.Type, Value As Single))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.CType((Type As SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, Value As Single))
+  name.vb: CType((Type As Type, Value As Single))
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator GlobalMidiParameter((Type Type, int Value))
+  nameWithType: GlobalMidiParameter.implicit operator GlobalMidiParameter((GlobalMidiParameter.Type Type, int Value))
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.implicit operator SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter((SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type Type, int Value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 178
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static implicit operator GlobalMidiParameter((GlobalMidiParameter.Type Type, int Value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    content.vb: Public Shared Widening Operator CType(param As (Type As GlobalMidiParameter.Type, Value As Integer)) As GlobalMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit*
+  nameWithType.vb: GlobalMidiParameter.CType((Type As GlobalMidiParameter.Type, Value As Integer))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.CType((Type As SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, Value As Integer))
+  name.vb: CType((Type As Type, Value As Integer))
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(SpessaSharp.MIDI.Midi.System)~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit(SpessaSharp.MIDI.Midi.System)~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  id: op_Implicit(SpessaSharp.MIDI.Midi.System)~SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator GlobalMidiParameter(System)
+  nameWithType: GlobalMidiParameter.implicit operator GlobalMidiParameter(Midi.System)
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.implicit operator SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter(SpessaSharp.MIDI.Midi.System)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalMidiParameter.cs
+    startLine: 180
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public static implicit operator GlobalMidiParameter(Midi.System param)
+    parameters:
+    - id: param
+      type: SpessaSharp.MIDI.Midi.System
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    content.vb: Public Shared Widening Operator CType(param As Midi.System) As GlobalMidiParameter
+  overload: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit*
+  nameWithType.vb: GlobalMidiParameter.CType(Midi.System)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.CType(SpessaSharp.MIDI.Midi.System)
+  name.vb: CType(System)
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Parameters.html
+- uid: System.IEquatable{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}
+  commentId: T:System.IEquatable{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<GlobalMidiParameter>
+  nameWithType: IEquatable<GlobalMidiParameter>
+  fullName: System.IEquatable<SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter>
+  nameWithType.vb: IEquatable(Of GlobalMidiParameter)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter)
+  name.vb: IEquatable(Of GlobalMidiParameter)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  name: GlobalMidiParameter.Type
+  nameWithType: GlobalMidiParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html#SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_AsMidiSystem
+  name: AsMidiSystem
+  nameWithType: GlobalMidiParameter.AsMidiSystem
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsMidiSystem
+- uid: SpessaSharp.MIDI.Midi.System
+  commentId: T:SpessaSharp.MIDI.Midi.System
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.System
+  nameWithType: Midi.System
+  fullName: SpessaSharp.MIDI.Midi.System
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html#SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_AsBool
+  name: AsBool
+  nameWithType: GlobalMidiParameter.AsBool
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsBool
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html#SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_AsInt
+  name: AsInt
+  nameWithType: GlobalMidiParameter.AsInt
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsInt
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html#SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_AsFloat
+  name: AsFloat
+  nameWithType: GlobalMidiParameter.AsFloat
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.AsFloat
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html#SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_Of_SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_Type_System_Int32_
+  name: Of
+  nameWithType: GlobalMidiParameter.Of
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Of
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  name: GlobalMidiParameter
+  nameWithType: GlobalMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html#SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_TypeOf_SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_Type_
+  name: TypeOf
+  nameWithType: GlobalMidiParameter.TypeOf
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.TypeOf
+- uid: SpessaSharp.Utils.Params.Type
+  commentId: T:SpessaSharp.Utils.Params.Type
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.Params.html
+  name: Params.Type
+  nameWithType: Params.Type
+  fullName: SpessaSharp.Utils.Params.Type
+  spec.csharp:
+  - uid: SpessaSharp.Utils.Params
+    name: Params
+    href: SpessaSharp.Utils.Params.html
+  - name: .
+  - uid: SpessaSharp.Utils.Params.Type
+    name: Type
+    href: SpessaSharp.Utils.Params.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.Params
+    name: Params
+    href: SpessaSharp.Utils.Params.html
+  - name: .
+  - uid: SpessaSharp.Utils.Params.Type
+    name: Type
+    href: SpessaSharp.Utils.Params.Type.html
+- uid: SpessaSharp.Utils
+  commentId: N:SpessaSharp.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.Utils
+  nameWithType: SpessaSharp.Utils
+  fullName: SpessaSharp.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.op_Implicit
+  name: implicit operator
+  nameWithType: GlobalMidiParameter.implicit operator
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.implicit operator
+  nameWithType.vb: GlobalMidiParameter.CType
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  name: (GlobalMidiParameter.Type Type, float Value)
+  nameWithType: (GlobalMidiParameter.Type Type, float Value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type Type, float Value)
+  nameWithType.vb: (Type As GlobalMidiParameter.Type, Value As Single)
+  fullName.vb: (Type As SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, Value As Single)
+  name.vb: (Type As GlobalMidiParameter.Type, Value As Single)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.single-.type
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.single-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.single-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Single}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.single-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  name: (GlobalMidiParameter.Type Type, int Value)
+  nameWithType: (GlobalMidiParameter.Type Type, int Value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type Type, int Value)
+  nameWithType.vb: (Type As GlobalMidiParameter.Type, Value As Integer)
+  fullName.vb: (Type As SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, Value As Integer)
+  name.vb: (Type As GlobalMidiParameter.Type, Value As Integer)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.int32-.type
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.int32-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32}.Type
+    name: Type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.int32-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Int32}.Value
+    name: Value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.parameters.globalmidiparameter.type,system.int32-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )

@@ -1,0 +1,1085 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index
+  commentId: T:SpessaSharp.SoundBank.Modulator.Source.Index
+  id: Modulator.Source.Index
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(SpessaSharp.MIDI.Midi.CC)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(SpessaSharp.SoundBank.Modulator.Source.ControllerSource)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(System.Byte)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource
+  - SpessaSharp.SoundBank.Modulator.Source.Index.AsInt
+  - SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController
+  - SpessaSharp.SoundBank.Modulator.Source.Index.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.Equals(System.Object)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode
+  - SpessaSharp.SoundBank.Modulator.Source.Index.Name(System.Boolean)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.Of(System.Boolean,System.Int32)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.op_Equality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  - SpessaSharp.SoundBank.Modulator.Source.Index.op_Inequality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  langs:
+  - csharp
+  - vb
+  name: Modulator.Source.Index
+  nameWithType: Modulator.Source.Index
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Index
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 80
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: 'public readonly struct Modulator.Source.Index : IEquatable<Modulator.Source.Index>'
+    content.vb: Public Structure Modulator.Source.Index Implements IEquatable(Of Modulator.Source.Index)
+  implements:
+  - System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}
+  inheritedMembers:
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(System.Byte)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(System.Byte)
+  id: '#ctor(System.Byte)'
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: Index(byte)
+  nameWithType: Modulator.Source.Index.Index(byte)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Index(byte)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 80
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public Index(byte v)
+    parameters:
+    - id: v
+      type: System.Byte
+    content.vb: Public Sub New(v As Byte)
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.#ctor*
+  nameWithType.vb: Modulator.Source.Index.New(Byte)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.New(Byte)
+  name.vb: New(Byte)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.Of(System.Boolean,System.Int32)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.Of(System.Boolean,System.Int32)
+  id: Of(System.Boolean,System.Int32)
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: Of(bool, int)
+  nameWithType: Modulator.Source.Index.Of(bool, int)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Of(bool, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 84
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public static Modulator.Source.Index Of(bool isCC, int id)
+    parameters:
+    - id: isCC
+      type: System.Boolean
+    - id: id
+      type: System.Int32
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.Index
+    content.vb: Public Shared Function [Of](isCC As Boolean, id As Integer) As Modulator.Source.Index
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.Of*
+  nameWithType.vb: Modulator.Source.Index.Of(Boolean, Integer)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.Of(Boolean, Integer)
+  name.vb: Of(Boolean, Integer)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.AsInt
+  commentId: P:SpessaSharp.SoundBank.Modulator.Source.Index.AsInt
+  id: AsInt
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: AsInt
+  nameWithType: Modulator.Source.Index.AsInt
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.AsInt
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsInt
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 93
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public int AsInt { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property AsInt As Integer
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.AsInt*
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource
+  commentId: P:SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource
+  id: AsControllerSource
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: AsControllerSource
+  nameWithType: Modulator.Source.Index.AsControllerSource
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsControllerSource
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 94
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public Modulator.Source.ControllerSource AsControllerSource { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+    content.vb: Public ReadOnly Property AsControllerSource As Modulator.Source.ControllerSource
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource*
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController
+  commentId: P:SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController
+  id: AsMidiController
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: AsMidiController
+  nameWithType: Modulator.Source.Index.AsMidiController
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsMidiController
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 95
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public Midi.CC AsMidiController { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Midi.CC
+    content.vb: Public ReadOnly Property AsMidiController As Midi.CC
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController*
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(SpessaSharp.SoundBank.Modulator.Source.ControllerSource)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(SpessaSharp.SoundBank.Modulator.Source.ControllerSource)
+  id: '#ctor(SpessaSharp.SoundBank.Modulator.Source.ControllerSource)'
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: Index(ControllerSource)
+  nameWithType: Modulator.Source.Index.Index(Modulator.Source.ControllerSource)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Index(SpessaSharp.SoundBank.Modulator.Source.ControllerSource)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 97
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public Index(Modulator.Source.ControllerSource e)
+    parameters:
+    - id: e
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+    content.vb: Public Sub New(e As Modulator.Source.ControllerSource)
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.#ctor*
+  nameWithType.vb: Modulator.Source.Index.New(Modulator.Source.ControllerSource)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.New(SpessaSharp.SoundBank.Modulator.Source.ControllerSource)
+  name.vb: New(ControllerSource)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(SpessaSharp.MIDI.Midi.CC)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.#ctor(SpessaSharp.MIDI.Midi.CC)
+  id: '#ctor(SpessaSharp.MIDI.Midi.CC)'
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: Index(CC)
+  nameWithType: Modulator.Source.Index.Index(Midi.CC)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Index(SpessaSharp.MIDI.Midi.CC)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 99
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public Index(Midi.CC c)
+    parameters:
+    - id: c
+      type: SpessaSharp.MIDI.Midi.CC
+    content.vb: Public Sub New(c As Midi.CC)
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.#ctor*
+  nameWithType.vb: Modulator.Source.Index.New(Midi.CC)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.New(SpessaSharp.MIDI.Midi.CC)
+  name.vb: New(CC)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.Name(System.Boolean)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.Name(System.Boolean)
+  id: Name(System.Boolean)
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: Name(bool)
+  nameWithType: Modulator.Source.Index.Name(bool)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Name(bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Name
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 101
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public string Name(bool isCC)
+    parameters:
+    - id: isCC
+      type: System.Boolean
+    return:
+      type: System.String
+    content.vb: Public Function Name(isCC As Boolean) As String
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.Name*
+  nameWithType.vb: Modulator.Source.Index.Name(Boolean)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.Name(Boolean)
+  name.vb: Name(Boolean)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  id: Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: Equals(Index)
+  nameWithType: Modulator.Source.Index.Equals(Modulator.Source.Index)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Equals
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 104
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(Modulator.Source.Index other)
+    parameters:
+    - id: other
+      type: SpessaSharp.SoundBank.Modulator.Source.Index
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As Modulator.Source.Index) As Boolean
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.Equals*
+  implements:
+  - System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.Equals(System.Object)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Modulator.Source.Index.Equals(object?)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Equals
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 105
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.Equals*
+  nameWithType.vb: Modulator.Source.Index.Equals(Object)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.Equals(Object)
+  name.vb: Equals(Object)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode
+  id: GetHashCode
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Modulator.Source.Index.GetHashCode()
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetHashCode
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 107
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode*
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.op_Equality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.op_Equality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  id: op_Equality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: operator ==(Index, Index)
+  nameWithType: Modulator.Source.Index.operator ==(Modulator.Source.Index, Modulator.Source.Index)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.operator ==(SpessaSharp.SoundBank.Modulator.Source.Index, SpessaSharp.SoundBank.Modulator.Source.Index)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Equality
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 108
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public static bool operator ==(Modulator.Source.Index left, Modulator.Source.Index right)
+    parameters:
+    - id: left
+      type: SpessaSharp.SoundBank.Modulator.Source.Index
+    - id: right
+      type: SpessaSharp.SoundBank.Modulator.Source.Index
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As Modulator.Source.Index, right As Modulator.Source.Index) As Boolean
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.op_Equality*
+  nameWithType.vb: Modulator.Source.Index.=(Modulator.Source.Index, Modulator.Source.Index)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.=(SpessaSharp.SoundBank.Modulator.Source.Index, SpessaSharp.SoundBank.Modulator.Source.Index)
+  name.vb: =(Index, Index)
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.op_Inequality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  commentId: M:SpessaSharp.SoundBank.Modulator.Source.Index.op_Inequality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  id: op_Inequality(SpessaSharp.SoundBank.Modulator.Source.Index,SpessaSharp.SoundBank.Modulator.Source.Index)
+  parent: SpessaSharp.SoundBank.Modulator.Source.Index
+  langs:
+  - csharp
+  - vb
+  name: operator !=(Index, Index)
+  nameWithType: Modulator.Source.Index.operator !=(Modulator.Source.Index, Modulator.Source.Index)
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.operator !=(SpessaSharp.SoundBank.Modulator.Source.Index, SpessaSharp.SoundBank.Modulator.Source.Index)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Inequality
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 110
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public static bool operator !=(Modulator.Source.Index left, Modulator.Source.Index right)
+    parameters:
+    - id: left
+      type: SpessaSharp.SoundBank.Modulator.Source.Index
+    - id: right
+      type: SpessaSharp.SoundBank.Modulator.Source.Index
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As Modulator.Source.Index, right As Modulator.Source.Index) As Boolean
+  overload: SpessaSharp.SoundBank.Modulator.Source.Index.op_Inequality*
+  nameWithType.vb: Modulator.Source.Index.<>(Modulator.Source.Index, Modulator.Source.Index)
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.<>(SpessaSharp.SoundBank.Modulator.Source.Index, SpessaSharp.SoundBank.Modulator.Source.Index)
+  name.vb: <>(Index, Index)
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}
+  commentId: T:System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Modulator.Source.Index>
+  nameWithType: IEquatable<Modulator.Source.Index>
+  fullName: System.IEquatable<SpessaSharp.SoundBank.Modulator.Source.Index>
+  nameWithType.vb: IEquatable(Of Modulator.Source.Index)
+  fullName.vb: System.IEquatable(Of SpessaSharp.SoundBank.Modulator.Source.Index)
+  name.vb: IEquatable(Of Modulator.Source.Index)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index
+    name: Index
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index
+    name: Index
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.#ctor*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.#ctor
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index__ctor_System_Byte_
+  name: Index
+  nameWithType: Modulator.Source.Index.Index
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Index
+  nameWithType.vb: Modulator.Source.Index.New
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.New
+  name.vb: New
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.Of*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.Of
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_Of_System_Boolean_System_Int32_
+  name: Of
+  nameWithType: Modulator.Source.Index.Of
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Of
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index
+  commentId: T:SpessaSharp.SoundBank.Modulator.Source.Index
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.Modulator.html
+  name: Modulator.Source.Index
+  nameWithType: Modulator.Source.Index
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index
+    name: Index
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index
+    name: Index
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.AsInt*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.AsInt
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_AsInt
+  name: AsInt
+  nameWithType: Modulator.Source.Index.AsInt
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.AsInt
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_AsControllerSource
+  name: AsControllerSource
+  nameWithType: Modulator.Source.Index.AsControllerSource
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.AsControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  commentId: T:SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.Modulator.html
+  name: Modulator.Source.ControllerSource
+  nameWithType: Modulator.Source.ControllerSource
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+    name: ControllerSource
+    href: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+    name: ControllerSource
+    href: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.html
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_AsMidiController
+  name: AsMidiController
+  nameWithType: Modulator.Source.Index.AsMidiController
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.AsMidiController
+- uid: SpessaSharp.MIDI.Midi.CC
+  commentId: T:SpessaSharp.MIDI.Midi.CC
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.CC
+  nameWithType: Midi.CC
+  fullName: SpessaSharp.MIDI.Midi.CC
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.Name*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.Name
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_Name_System_Boolean_
+  name: Name
+  nameWithType: Modulator.Source.Index.Name
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.Equals*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.Equals
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_Equals_SpessaSharp_SoundBank_Modulator_Source_Index_
+  name: Equals
+  nameWithType: Modulator.Source.Index.Equals
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.Equals
+- uid: System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  commentId: M:System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  parent: System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Index)
+  nameWithType: IEquatable<Modulator.Source.Index>.Equals(Modulator.Source.Index)
+  fullName: System.IEquatable<SpessaSharp.SoundBank.Modulator.Source.Index>.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  nameWithType.vb: IEquatable(Of Modulator.Source.Index).Equals(Modulator.Source.Index)
+  fullName.vb: System.IEquatable(Of SpessaSharp.SoundBank.Modulator.Source.Index).Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+  spec.csharp:
+  - uid: System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index
+    name: Index
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{SpessaSharp.SoundBank.Modulator.Source.Index}.Equals(SpessaSharp.SoundBank.Modulator.Source.Index)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index
+    name: Index
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_GetHashCode
+  name: GetHashCode
+  nameWithType: Modulator.Source.Index.GetHashCode
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.GetHashCode
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.op_Equality*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.op_Equality
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_op_Equality_SpessaSharp_SoundBank_Modulator_Source_Index_SpessaSharp_SoundBank_Modulator_Source_Index_
+  name: operator ==
+  nameWithType: Modulator.Source.Index.operator ==
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.operator ==
+  nameWithType.vb: Modulator.Source.Index.=
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index.op_Equality*
+    name: ==
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_op_Equality_SpessaSharp_SoundBank_Modulator_Source_Index_SpessaSharp_SoundBank_Modulator_Source_Index_
+- uid: SpessaSharp.SoundBank.Modulator.Source.Index.op_Inequality*
+  commentId: Overload:SpessaSharp.SoundBank.Modulator.Source.Index.op_Inequality
+  href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_op_Inequality_SpessaSharp_SoundBank_Modulator_Source_Index_SpessaSharp_SoundBank_Modulator_Source_Index_
+  name: operator !=
+  nameWithType: Modulator.Source.Index.operator !=
+  fullName: SpessaSharp.SoundBank.Modulator.Source.Index.operator !=
+  nameWithType.vb: Modulator.Source.Index.<>
+  fullName.vb: SpessaSharp.SoundBank.Modulator.Source.Index.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index.op_Inequality*
+    name: '!='
+    href: SpessaSharp.SoundBank.Modulator.Source.Index.html#SpessaSharp_SoundBank_Modulator_Source_Index_op_Inequality_SpessaSharp_SoundBank_Modulator_Source_Index_SpessaSharp_SoundBank_Modulator_Source_Index_

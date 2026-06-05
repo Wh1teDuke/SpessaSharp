@@ -1,0 +1,708 @@
+### YamlMime:TableOfContent
+items:
+- uid: SpessaSharp.MIDI
+  name: SpessaSharp.MIDI
+  type: Namespace
+  items:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    type: Class
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: Midi.CC
+    type: Enum
+  - uid: SpessaSharp.MIDI.Midi.Enumerable
+    name: Midi.Enumerable
+    type: Struct
+  - uid: SpessaSharp.MIDI.Midi.Enumerator
+    name: Midi.Enumerator
+    type: Struct
+  - uid: SpessaSharp.MIDI.Midi.Enumerator.Entry
+    name: Midi.Enumerator.Entry
+    type: Struct
+  - uid: SpessaSharp.MIDI.Midi.LoopType
+    name: Midi.LoopType
+    type: Enum
+  - uid: SpessaSharp.MIDI.Midi.MidiLoop
+    name: Midi.MidiLoop
+    type: Struct
+  - uid: SpessaSharp.MIDI.Midi.NoteTime
+    name: Midi.NoteTime
+    type: Struct
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: Midi.System
+    type: Enum
+  - uid: SpessaSharp.MIDI.Midi.TempoChange
+    name: Midi.TempoChange
+    type: Struct
+  - uid: SpessaSharp.MIDI.Midi.TimeSignatureChange
+    name: Midi.TimeSignatureChange
+    type: Struct
+  - uid: SpessaSharp.MIDI.Midi.TimelineEvent
+    name: Midi.TimelineEvent
+    type: Struct
+  - uid: SpessaSharp.MIDI.MidiFormat
+    name: MidiFormat
+    type: Enum
+  - uid: SpessaSharp.MIDI.MidiMessage
+    name: MidiMessage
+    type: Struct
+  - uid: SpessaSharp.MIDI.MidiMessage.Type
+    name: MidiMessage.Type
+    type: Enum
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    type: Struct
+  - uid: SpessaSharp.MIDI.MidiPatch.Full
+    name: MidiPatch.Full
+    type: Struct
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    type: Class
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: RMidi.Info
+    type: Class
+  - uid: SpessaSharp.MIDI.RMidi.Info.Key
+    name: RMidi.Info.Key
+    type: Enum
+  - uid: SpessaSharp.MIDI.StatusByte
+    name: StatusByte
+    type: Struct
+  - uid: SpessaSharp.MIDI.Track
+    name: Track
+    type: Class
+  - uid: SpessaSharp.MIDI.TypeEx
+    name: TypeEx
+    type: Class
+- uid: SpessaSharp.MIDI.Utils
+  name: SpessaSharp.MIDI.Utils
+  type: Namespace
+  items:
+  - uid: SpessaSharp.MIDI.Utils.ExtendedParameters
+    name: ExtendedParameters
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.ExtendedParameters.NRPN
+    name: ExtendedParameters.NRPN
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.ExtendedParameters.NRPN.LSB
+    name: ExtendedParameters.NRPN.LSB
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.ExtendedParameters.NRPN.MSB
+    name: ExtendedParameters.NRPN.MSB
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+    name: ExtendedParameters.RPN
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.InstrumentInfo
+    name: InstrumentInfo
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.InstrumentInfo.Drum
+    name: InstrumentInfo.Drum
+    type: Enum
+  - uid: SpessaSharp.MIDI.Utils.InstrumentInfo.Family
+    name: InstrumentInfo.Family
+    type: Enum
+  - uid: SpessaSharp.MIDI.Utils.InstrumentInfo.Melodic
+    name: InstrumentInfo.Melodic
+    type: Enum
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder
+    name: MidiBuilder
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.ChannelBuilder
+    name: MidiBuilder.ChannelBuilder
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.DrumBuilder
+    name: MidiBuilder.DrumBuilder
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.Options
+    name: MidiBuilder.Options
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder
+    name: MidiBuilder.TrackBuilder
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+    name: MidiEditor.ChannelModification
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Options
+    name: MidiEditor.Options
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: MidiEditor.Parameter<T>
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils
+    name: MidiUtils
+    type: Class
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage
+    name: MidiUtils.AnalyzedMessage
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+    name: MidiUtils.AnalyzedMessage.Type
+    type: Enum
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter
+    name: MidiUtils.AnalyzedParameter
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedParameter.Type
+    name: MidiUtils.AnalyzedParameter.Type
+    type: Enum
+  - uid: SpessaSharp.MIDI.Utils.ParamTracker
+    name: ParamTracker
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.ParamTracker.ParamController
+    name: ParamTracker.ParamController
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations
+    name: PresetsWithKeyCombinations
+    type: Struct
+  - uid: SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations.Enumerator
+    name: PresetsWithKeyCombinations.Enumerator
+    type: Struct
+- uid: SpessaSharp.MIDI.Write
+  name: SpessaSharp.MIDI.Write
+  type: Namespace
+  items:
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi
+    name: WriterRMidi
+    type: Class
+  - uid: SpessaSharp.MIDI.Write.WriterRMidi.Options
+    name: WriterRMidi.Options
+    type: Struct
+- uid: SpessaSharp.Sequencer
+  name: SpessaSharp.Sequencer
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Sequencer.Event
+    name: Event
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.CbLoopCountChange
+    name: Event.CbLoopCountChange
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.CbMetaEvent
+    name: Event.CbMetaEvent
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.CbMidiMessage
+    name: Event.CbMidiMessage
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.CbSongAdded
+    name: Event.CbSongAdded
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.CbSongChange
+    name: Event.CbSongChange
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.CbSongListChange
+    name: Event.CbSongListChange
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.CbTimeChange
+    name: Event.CbTimeChange
+    type: Struct
+  - uid: SpessaSharp.Sequencer.Event.Type
+    name: Event.Type
+    type: Enum
+  - uid: SpessaSharp.Sequencer.SpessaSharpSequencer
+    name: SpessaSharpSequencer
+    type: Class
+- uid: SpessaSharp.SoundBank
+  name: SpessaSharp.SoundBank
+  type: Namespace
+  items:
+  - uid: SpessaSharp.SoundBank.BasicInstrument
+    name: BasicInstrument
+    type: Class
+  - uid: SpessaSharp.SoundBank.BasicInstrument.Zone
+    name: BasicInstrument.Zone
+    type: Struct
+  - uid: SpessaSharp.SoundBank.BasicPreset
+    name: BasicPreset
+    type: Class
+  - uid: SpessaSharp.SoundBank.BasicPreset.InstrumentZoneEnumerable
+    name: BasicPreset.InstrumentZoneEnumerable
+    type: Struct
+  - uid: SpessaSharp.SoundBank.BasicPreset.InstrumentZoneEnumerator
+    name: BasicPreset.InstrumentZoneEnumerator
+    type: Struct
+  - uid: SpessaSharp.SoundBank.BasicPreset.InstrumentZoneEnumerator.Entry
+    name: BasicPreset.InstrumentZoneEnumerator.Entry
+    type: Struct
+  - uid: SpessaSharp.SoundBank.BasicPreset.Zone
+    name: BasicPreset.Zone
+    type: Struct
+  - uid: SpessaSharp.SoundBank.BasicSample
+    name: BasicSample
+    type: Class
+  - uid: SpessaSharp.SoundBank.BasicSample.Type
+    name: BasicSample.Type
+    type: Enum
+  - uid: SpessaSharp.SoundBank.BasicZone
+    name: BasicZone
+    type: Class
+  - uid: SpessaSharp.SoundBank.Generator
+    name: Generator
+    type: Struct
+  - uid: SpessaSharp.SoundBank.Generator.Type
+    name: Generator.Type
+    type: Enum
+  - uid: SpessaSharp.SoundBank.IPresetGetter
+    name: IPresetGetter
+    type: Interface
+  - uid: SpessaSharp.SoundBank.ISf2Channel
+    name: ISf2Channel
+    type: Interface
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    type: Struct
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Modulator.Source
+    type: Struct
+  - uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+    name: Modulator.Source.ControllerSource
+    type: Enum
+  - uid: SpessaSharp.SoundBank.Modulator.Source.Index
+    name: Modulator.Source.Index
+    type: Struct
+  - uid: SpessaSharp.SoundBank.Modulator.TransformType
+    name: Modulator.TransformType
+    type: Enum
+  - uid: SpessaSharp.SoundBank.ModulatorCurve
+    name: ModulatorCurve
+    type: Class
+  - uid: SpessaSharp.SoundBank.ModulatorCurve.Type
+    name: ModulatorCurve.Type
+    type: Enum
+  - uid: SpessaSharp.SoundBank.SoundBank
+    name: SoundBank
+    type: Class
+  - uid: SpessaSharp.SoundBank.SoundBank.BankType
+    name: SoundBank.BankType
+    type: Enum
+  - uid: SpessaSharp.SoundBank.SoundBank.Decode
+    name: SoundBank.Decode
+    type: Delegate
+  - uid: SpessaSharp.SoundBank.SoundBank.Encode
+    name: SoundBank.Encode
+    type: Delegate
+  - uid: SpessaSharp.SoundBank.SoundBank.InfoData
+    name: SoundBank.InfoData
+    type: Struct
+  - uid: SpessaSharp.SoundBank.SoundBank.ProgressFunc
+    name: SoundBank.ProgressFunc
+    type: Delegate
+  - uid: SpessaSharp.SoundBank.SoundBank.Vorbis
+    name: SoundBank.Vorbis
+    type: Class
+- uid: SpessaSharp.SoundBank.DLS
+  name: SpessaSharp.SoundBank.DLS
+  type: Namespace
+  items:
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    type: Struct
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSDestination
+    name: ConnectionSource.DLSDestination
+    type: Struct
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    name: ConnectionSource.DLSSource
+    type: Struct
+  - uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+    name: DLSWriteOptions
+    type: Struct
+- uid: SpessaSharp.SoundBank.SoundFont
+  name: SpessaSharp.SoundBank.SoundFont
+  type: Namespace
+  items:
+  - uid: SpessaSharp.SoundBank.SoundFont.ExtendedSF2Chunks
+    name: ExtendedSF2Chunks
+    type: Class
+  - uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+    name: SF2WriteOptions
+    type: Struct
+  - uid: SpessaSharp.SoundBank.SoundFont.SoundFontWriteIndexes
+    name: SoundFontWriteIndexes
+    type: Class
+- uid: SpessaSharp.SoundBank.Utils
+  name: SpessaSharp.SoundBank.Utils
+  type: Namespace
+  items:
+  - uid: SpessaSharp.SoundBank.Utils.SharedSampleBuffer
+    name: SharedSampleBuffer
+    type: Class
+- uid: SpessaSharp.Synthesizer
+  name: SpessaSharp.Synthesizer
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: Event.CbChannelMidiParameterChange
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    name: Event.CbChannelPressure
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+    name: Event.CbControllerChange
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    name: Event.CbDisplayMessage
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: Event.CbEffectChange
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+    name: Event.CbEffectChange.Chorus
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+    name: Event.CbEffectChange.Delay
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+    name: Event.CbEffectChange.Insertion
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+    name: Event.CbEffectChange.Reverb
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    name: Event.CbEffectChange.Type
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    name: Event.CbGlobalMidiParameterChange
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    name: Event.CbMuteChannel
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+    name: Event.CbNoteOff
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+    name: Event.CbNoteOn
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    name: Event.CbPolyPressure
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    name: Event.CbPresetListChange
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+    name: Event.CbProgramChange
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbReset
+    name: Event.CbReset
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbStopAll
+    name: Event.CbStopAll
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    name: Event.CbSystemParameterChange
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Event.Type
+    name: Event.Type
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.SpessaSharpProcessor
+    name: SpessaSharpProcessor
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: Synthesizer.InterpolationType
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+    name: Synthesizer.MissingPresetHandler
+    type: Delegate
+  - uid: SpessaSharp.Synthesizer.Synthesizer.Options
+    name: Synthesizer.Options
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode
+    name: Synthesizer.SampleLoopingMode
+    type: Enum
+- uid: SpessaSharp.Synthesizer.Engine
+  name: SpessaSharp.Synthesizer.Engine
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.KeyModifier
+    name: KeyModifier
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.KeyModifier.Manager
+    name: KeyModifier.Manager
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.SoundBankManager
+    name: SoundBankManager
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot
+    name: SynthesizerSnapshot
+    type: Class
+- uid: SpessaSharp.Synthesizer.Engine.Channel
+  name: SpessaSharp.Synthesizer.Engine.Channel
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN
+    name: Awe32NRPN
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators
+    name: Awe32NRPN.ChannelGenerators
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot
+    name: ChannelSnapshot
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+    name: DrumParameters
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+    name: DynamicModulatorManager
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+    name: MidiChannel
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    name: MidiChannel.Assign
+    type: Enum
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  name: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: ChannelMidiParameter.Type
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameters
+    name: ChannelMidiParameters
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: ChannelSystemParameter.Type
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameters
+    name: ChannelSystemParameters
+    type: Class
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+    name: Effect.BaseEffect
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+    name: Effect.ChorusProcessor
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    name: Effect.ChorusProcessorSnapshot
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+    name: Effect.DelayProcessor
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    name: Effect.DelayProcessorSnapshot
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+    name: Effect.FxChorusType
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    name: Effect.FxDelayType
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    name: Effect.FxReverbType
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+    name: Effect.InsertionProcessor
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor
+    name: Effect.InsertionProcessor.Constructor
+    type: Delegate
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: Effect.InsertionProcessorSnapshot
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor
+    name: Effect.ReverbProcessor
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    name: Effect.ReverbProcessorSnapshot
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSChorus
+    name: SSChorus
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay
+    name: SSDelay
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line
+    name: SSDelay.Line
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSReverb
+    name: SSReverb
+    type: Class
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  name: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoPanFX
+    name: AutoPanFX
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX
+    name: AutoWahFX
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+    name: AutoWahFX.FilterType
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Param
+    name: AutoWahFX.Param
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+    name: AutoWahFX.Polarity
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.PhAutoWahFX
+    name: PhAutoWahFX
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.PhaserFX
+    name: PhaserFX
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.PhaserFX.Param
+    name: PhaserFX.Param
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.StereoEQFX
+    name: StereoEQFX
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.ThruFX
+    name: ThruFX
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.TremoloFX
+    name: TremoloFX
+    type: Class
+- uid: SpessaSharp.Synthesizer.Engine.Parameters
+  name: SpessaSharp.Synthesizer.Engine.Parameters
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: GlobalMidiParameter.Type
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameters
+    name: GlobalMidiParameters
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+    name: GlobalSystemParameter
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+    name: GlobalSystemParameter.Type
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameters
+    name: GlobalSystemParameters
+    type: Class
+- uid: SpessaSharp.Synthesizer.Engine.Sysex
+  name: SpessaSharp.Synthesizer.Engine.Sysex
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+    name: Macro
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus
+    name: Macro.Chorus
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay
+    name: Macro.Delay
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb
+    name: Macro.Reverb
+    type: Enum
+- uid: SpessaSharp.Synthesizer.Engine.Voice
+  name: SpessaSharp.Synthesizer.Engine.Voice
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.LowpassFilter
+    name: LowpassFilter
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.ModulationEnvelope
+    name: ModulationEnvelope
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.Voice
+    name: Voice
+    type: Class
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.Voice.Modulator
+    name: Voice.Modulator
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.Voice.Modulator.ID
+    name: Voice.Modulator.ID
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope
+    name: VolumeEnvelope
+    type: Struct
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.VEState
+    name: VolumeEnvelope.VEState
+    type: Enum
+  - uid: SpessaSharp.Synthesizer.Engine.Voice.WaveTableOscillator
+    name: WaveTableOscillator
+    type: Struct
+- uid: SpessaSharp.Utils
+  name: SpessaSharp.Utils
+  type: Namespace
+  items:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    type: Class
+  - uid: SpessaSharp.Utils.AudioUtil.WaveMetadata
+    name: AudioUtil.WaveMetadata
+    type: Struct
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: AudioUtil.WaveWriteOptions
+    type: Struct
+  - uid: SpessaSharp.Utils.BasePrinter
+    name: BasePrinter
+    type: Class
+  - uid: SpessaSharp.Utils.BasePrinter.SHWrapper
+    name: BasePrinter.SHWrapper
+    type: Struct
+  - uid: SpessaSharp.Utils.MidiPrinter
+    name: MidiPrinter
+    type: Class
+  - uid: SpessaSharp.Utils.MidiPrinter.Options
+    name: MidiPrinter.Options
+    type: Struct
+  - uid: SpessaSharp.Utils.Params
+    name: Params
+    type: Class
+  - uid: SpessaSharp.Utils.Params.Type
+    name: Params.Type
+    type: Enum
+  - uid: SpessaSharp.Utils.SoundBankPrinter
+    name: SoundBankPrinter
+    type: Class
+  - uid: SpessaSharp.Utils.SoundBankPrinter.Options
+    name: SoundBankPrinter.Options
+    type: Struct
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    type: Class
+  - uid: SpessaSharp.Utils.SpessaException.IMidiException
+    name: SpessaException.IMidiException
+    type: Interface
+  - uid: SpessaSharp.Utils.SpessaException.ISoundBankException
+    name: SpessaException.ISoundBankException
+    type: Interface
+  - uid: SpessaSharp.Utils.SpessaException.ISynthesizerException
+    name: SpessaException.ISynthesizerException
+    type: Interface
+  - uid: SpessaSharp.Utils.SpessaException.Parser
+    name: SpessaException.Parser
+    type: Class
+  - uid: SpessaSharp.Utils.SpessaException.ParserMidi
+    name: SpessaException.ParserMidi
+    type: Class
+  - uid: SpessaSharp.Utils.SpessaException.ParserSoundBank
+    name: SpessaException.ParserSoundBank
+    type: Class
+  - uid: SpessaSharp.Utils.SpessaLog
+    name: SpessaLog
+    type: Class
+  - uid: SpessaSharp.Utils.SpessaUtil
+    name: SpessaUtil
+    type: Class
+  - uid: SpessaSharp.Utils.SpessaUtil.FileKind
+    name: SpessaUtil.FileKind
+    type: Enum
+memberLayout: SamePage

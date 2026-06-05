@@ -1,0 +1,1257 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Options
+  id: MidiEditor.Options
+  parent: SpessaSharp.MIDI.Utils
+  children:
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.#ctor(System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object},System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot})
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams
+  - SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams
+  langs:
+  - csharp
+  - vb
+  name: MidiEditor.Options
+  nameWithType: MidiEditor.Options
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Options
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 60
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    Allows easy editing of the file by removing channels, changing programs,
+
+    changing controllers and transposing channels. Note that this modifies the MIDI in-place.
+  example: []
+  syntax:
+    content: 'public readonly record struct MidiEditor.Options : IEquatable<MidiEditor.Options>'
+    content.vb: Public Structure MidiEditor.Options Implements IEquatable(Of MidiEditor.Options)
+  implements:
+  - System.IEquatable{SpessaSharp.MIDI.Utils.MidiEditor.Options}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.#ctor(System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object},System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot})
+  commentId: M:SpessaSharp.MIDI.Utils.MidiEditor.Options.#ctor(System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object},System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object},System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot},SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot})'
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: Options(Dictionary<int, Parameter<ChannelModification>>?, Parameter<object>?, Dictionary<Type, Parameter<GlobalMidiParameter>>?, Parameter<ReverbProcessorSnapshot>?, Parameter<ChorusProcessorSnapshot>?, Parameter<DelayProcessorSnapshot>?, Parameter<InsertionProcessorSnapshot>?)
+  nameWithType: MidiEditor.Options.Options(Dictionary<int, MidiEditor.Parameter<MidiEditor.ChannelModification>>?, MidiEditor.Parameter<object>?, Dictionary<GlobalMidiParameter.Type, MidiEditor.Parameter<GlobalMidiParameter>>?, MidiEditor.Parameter<Effect.ReverbProcessorSnapshot>?, MidiEditor.Parameter<Effect.ChorusProcessorSnapshot>?, MidiEditor.Parameter<Effect.DelayProcessorSnapshot>?, MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>?)
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.Options(System.Collections.Generic.Dictionary<int, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification>>?, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<object>?, System.Collections.Generic.Dictionary<SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter>>?, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot>?, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot>?, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot>?, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot>?)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 60
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    Allows easy editing of the file by removing channels, changing programs,
+
+    changing controllers and transposing channels. Note that this modifies the MIDI in-place.
+  example: []
+  syntax:
+    content: public Options(Dictionary<int, MidiEditor.Parameter<MidiEditor.ChannelModification>>? Channels, MidiEditor.Parameter<object>? DrumSetupParams, Dictionary<GlobalMidiParameter.Type, MidiEditor.Parameter<GlobalMidiParameter>>? MidiParams, MidiEditor.Parameter<Effect.ReverbProcessorSnapshot>? ReverbParams, MidiEditor.Parameter<Effect.ChorusProcessorSnapshot>? ChorusParams, MidiEditor.Parameter<Effect.DelayProcessorSnapshot>? DelayParams, MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>? InsertionParams)
+    parameters:
+    - id: Channels
+      type: System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}}
+      description: >-
+        The channel changes.<br />
+
+        - Key: the MIDI channel number.<br />
+
+        - value:<br />
+          - <b>Clear</b> - all MIDI messages for this channel, such as Note On are removed.<br />
+          - <b>ChannelModification</b> - modifies the channel.
+    - id: DrumSetupParams
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object}
+      description: >-
+        The drum parameter changes.<br />
+
+        - <b>Clear</b> - all existing drum change MIDI messages are removed.<br />
+
+        - <b>Null</b> - not yet implemented.
+    - id: MidiParams
+      type: System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}}
+      description: >-
+        The global MIDI parameter changes.
+
+
+        <ul><li>Key: the MIDI parameter name.</li><li>value:
+
+
+        <ul><li>Clear - all changes for this parameter are removed.</li><li>Specific value - clear + sets the new parameter at the start of the song, effectively locking them to the set value.</li></ul></li></ul>
+
+
+        Please note that <b>clear</b> is not supported for the <b>system</b> parameter,
+
+        as it may cause issues with the MIDI system detection and reset insertion.
+    - id: ReverbParams
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot}
+      description: >-
+        The desired GS reverb parameters.<br />
+
+        - <b>Clear</b> - all existing parameter change MIDI messages are removed.<br />
+
+        - <b>ReverbProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    - id: ChorusParams
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot}
+      description: >-
+        The GS chorus parameters.<br />
+
+        - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br />
+
+        - <b>ChorusProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    - id: DelayParams
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot}
+      description: >-
+        The GS delay parameters.<br />
+
+        - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br />
+
+        - <b>DelayProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    - id: InsertionParams
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot}
+      description: >-
+        The GS Insertion Effect parameters.<br />
+
+        - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br />
+
+        - <b>InsertionProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+    content.vb: Public Sub New(Channels As Dictionary(Of Integer, MidiEditor.Parameter(Of MidiEditor.ChannelModification)), DrumSetupParams As MidiEditor.Parameter(Of Object), MidiParams As Dictionary(Of GlobalMidiParameter.Type, MidiEditor.Parameter(Of GlobalMidiParameter)), ReverbParams As MidiEditor.Parameter(Of Effect.ReverbProcessorSnapshot), ChorusParams As MidiEditor.Parameter(Of Effect.ChorusProcessorSnapshot), DelayParams As MidiEditor.Parameter(Of Effect.DelayProcessorSnapshot), InsertionParams As MidiEditor.Parameter(Of Effect.InsertionProcessorSnapshot))
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.#ctor*
+  nameWithType.vb: MidiEditor.Options.New(Dictionary(Of Integer, MidiEditor.Parameter(Of MidiEditor.ChannelModification)), MidiEditor.Parameter(Of Object), Dictionary(Of GlobalMidiParameter.Type, MidiEditor.Parameter(Of GlobalMidiParameter)), MidiEditor.Parameter(Of Effect.ReverbProcessorSnapshot), MidiEditor.Parameter(Of Effect.ChorusProcessorSnapshot), MidiEditor.Parameter(Of Effect.DelayProcessorSnapshot), MidiEditor.Parameter(Of Effect.InsertionProcessorSnapshot))
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Options.New(System.Collections.Generic.Dictionary(Of Integer, SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification)), SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of Object), System.Collections.Generic.Dictionary(Of SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter)), SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot), SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot), SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot), SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot))
+  name.vb: New(Dictionary(Of Integer, Parameter(Of ChannelModification)), Parameter(Of Object), Dictionary(Of Type, Parameter(Of GlobalMidiParameter)), Parameter(Of ReverbProcessorSnapshot), Parameter(Of ChorusProcessorSnapshot), Parameter(Of DelayProcessorSnapshot), Parameter(Of InsertionProcessorSnapshot))
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels
+  commentId: P:SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels
+  id: Channels
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: Channels
+  nameWithType: MidiEditor.Options.Channels
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Channels
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 61
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The channel changes.<br />
+
+    - Key: the MIDI channel number.<br />
+
+    - value:<br />
+      - <b>Clear</b> - all MIDI messages for this channel, such as Note On are removed.<br />
+      - <b>ChannelModification</b> - modifies the channel.
+  example: []
+  syntax:
+    content: public Dictionary<int, MidiEditor.Parameter<MidiEditor.ChannelModification>>? Channels { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}}
+    content.vb: Public Property Channels As Dictionary(Of Integer, MidiEditor.Parameter(Of MidiEditor.ChannelModification))
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels*
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams
+  commentId: P:SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams
+  id: DrumSetupParams
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: DrumSetupParams
+  nameWithType: MidiEditor.Options.DrumSetupParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DrumSetupParams
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 62
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The drum parameter changes.<br />
+
+    - <b>Clear</b> - all existing drum change MIDI messages are removed.<br />
+
+    - <b>Null</b> - not yet implemented.
+  example: []
+  syntax:
+    content: public MidiEditor.Parameter<object>? DrumSetupParams { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object}
+    content.vb: Public Property DrumSetupParams As MidiEditor.Parameter(Of Object)
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams*
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams
+  commentId: P:SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams
+  id: MidiParams
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: MidiParams
+  nameWithType: MidiEditor.Options.MidiParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiParams
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 63
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The global MIDI parameter changes.
+
+
+    <ul><li>Key: the MIDI parameter name.</li><li>value:
+
+
+    <ul><li>Clear - all changes for this parameter are removed.</li><li>Specific value - clear + sets the new parameter at the start of the song, effectively locking them to the set value.</li></ul></li></ul>
+
+
+    Please note that <b>clear</b> is not supported for the <b>system</b> parameter,
+
+    as it may cause issues with the MIDI system detection and reset insertion.
+  example: []
+  syntax:
+    content: public Dictionary<GlobalMidiParameter.Type, MidiEditor.Parameter<GlobalMidiParameter>>? MidiParams { get; init; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}}
+    content.vb: Public Property MidiParams As Dictionary(Of GlobalMidiParameter.Type, MidiEditor.Parameter(Of GlobalMidiParameter))
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams*
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams
+  commentId: P:SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams
+  id: ReverbParams
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: ReverbParams
+  nameWithType: MidiEditor.Options.ReverbParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ReverbParams
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 66
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The desired GS reverb parameters.<br />
+
+    - <b>Clear</b> - all existing parameter change MIDI messages are removed.<br />
+
+    - <b>ReverbProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+  example: []
+  syntax:
+    content: public MidiEditor.Parameter<Effect.ReverbProcessorSnapshot>? ReverbParams { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot}
+    content.vb: Public Property ReverbParams As MidiEditor.Parameter(Of Effect.ReverbProcessorSnapshot)
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams*
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams
+  commentId: P:SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams
+  id: ChorusParams
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: ChorusParams
+  nameWithType: MidiEditor.Options.ChorusParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChorusParams
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 67
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The GS chorus parameters.<br />
+
+    - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br />
+
+    - <b>ChorusProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+  example: []
+  syntax:
+    content: public MidiEditor.Parameter<Effect.ChorusProcessorSnapshot>? ChorusParams { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot}
+    content.vb: Public Property ChorusParams As MidiEditor.Parameter(Of Effect.ChorusProcessorSnapshot)
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams*
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams
+  commentId: P:SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams
+  id: DelayParams
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: DelayParams
+  nameWithType: MidiEditor.Options.DelayParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayParams
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 68
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The GS delay parameters.<br />
+
+    - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br />
+
+    - <b>DelayProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+  example: []
+  syntax:
+    content: public MidiEditor.Parameter<Effect.DelayProcessorSnapshot>? DelayParams { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot}
+    content.vb: Public Property DelayParams As MidiEditor.Parameter(Of Effect.DelayProcessorSnapshot)
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams*
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams
+  commentId: P:SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams
+  id: InsertionParams
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.Options
+  langs:
+  - csharp
+  - vb
+  name: InsertionParams
+  nameWithType: MidiEditor.Options.InsertionParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InsertionParams
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 69
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The GS Insertion Effect parameters.<br />
+
+    - <b>Clear</b> - all existing parameter change MIDI messages are cleared.<br />
+
+    - <b>InsertionProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
+  example: []
+  syntax:
+    content: public MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>? InsertionParams { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot}
+    content.vb: Public Property InsertionParams As MidiEditor.Parameter(Of Effect.InsertionProcessorSnapshot)
+  overload: SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams*
+references:
+- uid: SpessaSharp.MIDI.Utils
+  commentId: N:SpessaSharp.MIDI.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Utils
+  nameWithType: SpessaSharp.MIDI.Utils
+  fullName: SpessaSharp.MIDI.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+- uid: System.IEquatable{SpessaSharp.MIDI.Utils.MidiEditor.Options}
+  commentId: T:System.IEquatable{SpessaSharp.MIDI.Utils.MidiEditor.Options}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<MidiEditor.Options>
+  nameWithType: IEquatable<MidiEditor.Options>
+  fullName: System.IEquatable<SpessaSharp.MIDI.Utils.MidiEditor.Options>
+  nameWithType.vb: IEquatable(Of MidiEditor.Options)
+  fullName.vb: System.IEquatable(Of SpessaSharp.MIDI.Utils.MidiEditor.Options)
+  name.vb: IEquatable(Of MidiEditor.Options)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Options
+    name: Options
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Options
+    name: Options
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.#ctor*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.#ctor
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options__ctor_System_Collections_Generic_Dictionary_System_Int32_SpessaSharp_MIDI_Utils_MidiEditor_Parameter_SpessaSharp_MIDI_Utils_MidiEditor_ChannelModification___SpessaSharp_MIDI_Utils_MidiEditor_Parameter_System_Object__System_Collections_Generic_Dictionary_SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_Type_SpessaSharp_MIDI_Utils_MidiEditor_Parameter_SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter___SpessaSharp_MIDI_Utils_MidiEditor_Parameter_SpessaSharp_Synthesizer_Engine_Effects_Effect_ReverbProcessorSnapshot__SpessaSharp_MIDI_Utils_MidiEditor_Parameter_SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot__SpessaSharp_MIDI_Utils_MidiEditor_Parameter_SpessaSharp_Synthesizer_Engine_Effects_Effect_DelayProcessorSnapshot__SpessaSharp_MIDI_Utils_MidiEditor_Parameter_SpessaSharp_Synthesizer_Engine_Effects_Effect_InsertionProcessorSnapshot__
+  name: Options
+  nameWithType: MidiEditor.Options.Options
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.Options
+  nameWithType.vb: MidiEditor.Options.New
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Options.New
+  name.vb: New
+- uid: System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}}
+  commentId: T:System.Collections.Generic.Dictionary{System.Int32,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<int, MidiEditor.Parameter<MidiEditor.ChannelModification>>
+  nameWithType: Dictionary<int, MidiEditor.Parameter<MidiEditor.ChannelModification>>
+  fullName: System.Collections.Generic.Dictionary<int, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification>>
+  nameWithType.vb: Dictionary(Of Integer, MidiEditor.Parameter(Of MidiEditor.ChannelModification))
+  fullName.vb: System.Collections.Generic.Dictionary(Of Integer, SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification))
+  name.vb: Dictionary(Of Integer, MidiEditor.Parameter(Of MidiEditor.ChannelModification))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+    name: ChannelModification
+    href: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+    name: ChannelModification
+    href: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.html
+  - name: )
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object}
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Object}
+  parent: SpessaSharp.MIDI.Utils
+  definition: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<object>
+  nameWithType: MidiEditor.Parameter<object>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<object>
+  nameWithType.vb: MidiEditor.Parameter(Of Object)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of Object)
+  name.vb: MidiEditor.Parameter(Of Object)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}}
+  commentId: T:System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<GlobalMidiParameter.Type, MidiEditor.Parameter<GlobalMidiParameter>>
+  nameWithType: Dictionary<GlobalMidiParameter.Type, MidiEditor.Parameter<GlobalMidiParameter>>
+  fullName: System.Collections.Generic.Dictionary<SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter>>
+  nameWithType.vb: Dictionary(Of GlobalMidiParameter.Type, MidiEditor.Parameter(Of GlobalMidiParameter))
+  fullName.vb: System.Collections.Generic.Dictionary(Of SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type, SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter))
+  name.vb: Dictionary(Of GlobalMidiParameter.Type, MidiEditor.Parameter(Of GlobalMidiParameter))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: )
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot}
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot}
+  parent: SpessaSharp.MIDI.Utils
+  definition: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<Effect.ReverbProcessorSnapshot>
+  nameWithType: MidiEditor.Parameter<Effect.ReverbProcessorSnapshot>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot>
+  nameWithType.vb: MidiEditor.Parameter(Of Effect.ReverbProcessorSnapshot)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot)
+  name.vb: MidiEditor.Parameter(Of Effect.ReverbProcessorSnapshot)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    name: ReverbProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    name: ReverbProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot.html
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot}
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot}
+  parent: SpessaSharp.MIDI.Utils
+  definition: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<Effect.ChorusProcessorSnapshot>
+  nameWithType: MidiEditor.Parameter<Effect.ChorusProcessorSnapshot>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot>
+  nameWithType.vb: MidiEditor.Parameter(Of Effect.ChorusProcessorSnapshot)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot)
+  name.vb: MidiEditor.Parameter(Of Effect.ChorusProcessorSnapshot)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    name: ChorusProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    name: ChorusProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot}
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot}
+  parent: SpessaSharp.MIDI.Utils
+  definition: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<Effect.DelayProcessorSnapshot>
+  nameWithType: MidiEditor.Parameter<Effect.DelayProcessorSnapshot>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot>
+  nameWithType.vb: MidiEditor.Parameter(Of Effect.DelayProcessorSnapshot)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot)
+  name.vb: MidiEditor.Parameter(Of Effect.DelayProcessorSnapshot)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    name: DelayProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    name: DelayProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot}
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot}
+  parent: SpessaSharp.MIDI.Utils
+  definition: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>
+  nameWithType: MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot>
+  nameWithType.vb: MidiEditor.Parameter(Of Effect.InsertionProcessorSnapshot)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)
+  name.vb: MidiEditor.Parameter(Of Effect.InsertionProcessorSnapshot)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  parent: SpessaSharp.MIDI.Utils
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<T>
+  nameWithType: MidiEditor.Parameter<T>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<T>
+  nameWithType.vb: MidiEditor.Parameter(Of T)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of T)
+  name.vb: MidiEditor.Parameter(Of T)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options_Channels
+  name: Channels
+  nameWithType: MidiEditor.Options.Channels
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.Channels
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options_DrumSetupParams
+  name: DrumSetupParams
+  nameWithType: MidiEditor.Options.DrumSetupParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.DrumSetupParams
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options_MidiParams
+  name: MidiParams
+  nameWithType: MidiEditor.Options.MidiParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.MidiParams
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options_ReverbParams
+  name: ReverbParams
+  nameWithType: MidiEditor.Options.ReverbParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.ReverbParams
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options_ChorusParams
+  name: ChorusParams
+  nameWithType: MidiEditor.Options.ChorusParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.ChorusParams
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options_DelayParams
+  name: DelayParams
+  nameWithType: MidiEditor.Options.DelayParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.DelayParams
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams*
+  commentId: Overload:SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams
+  href: SpessaSharp.MIDI.Utils.MidiEditor.Options.html#SpessaSharp_MIDI_Utils_MidiEditor_Options_InsertionParams
+  name: InsertionParams
+  nameWithType: MidiEditor.Options.InsertionParams
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Options.InsertionParams

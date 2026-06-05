@@ -1,0 +1,1347 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  id: ChannelSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  children:
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.PType
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: ChannelSystemParameter
+  nameWithType: ChannelSystemParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelSystemParameter
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 132
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: The system parameters of the channel.
+  example: []
+  syntax:
+    content: 'public readonly record struct ChannelSystemParameter : IEquatable<ChannelSystemParameter>'
+    content.vb: Public Structure ChannelSystemParameter Implements IEquatable(Of ChannelSystemParameter)
+  implements:
+  - System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.PType
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.PType
+  id: PType
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: PType
+  nameWithType: ChannelSystemParameter.PType
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.PType
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PType
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 135
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public readonly ChannelSystemParameter.Type PType
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    content.vb: Public ReadOnly PType As ChannelSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool
+  id: AsBool
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: AsBool
+  nameWithType: ChannelSystemParameter.AsBool
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsBool
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 137
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public bool AsBool { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property AsBool As Boolean
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat
+  id: AsFloat
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: AsFloat
+  nameWithType: ChannelSystemParameter.AsFloat
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsFloat
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 146
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public float AsFloat { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public ReadOnly Property AsFloat As Single
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt
+  id: AsInt
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: AsInt
+  nameWithType: ChannelSystemParameter.AsInt
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsInt
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 155
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public int AsInt { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property AsInt As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType
+  id: AsOptInterpolationType
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: AsOptInterpolationType
+  nameWithType: ChannelSystemParameter.AsOptInterpolationType
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsOptInterpolationType
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 164
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public Synthesizer.InterpolationType? AsOptInterpolationType { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Synthesizer.InterpolationType}
+    content.vb: Public ReadOnly Property AsOptInterpolationType As Synthesizer.InterpolationType?
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool
+  commentId: P:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool
+  id: AsOptBool
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: AsOptBool
+  nameWithType: ChannelSystemParameter.AsOptBool
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsOptBool
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 173
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public bool? AsOptBool { get; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public ReadOnly Property AsOptBool As Boolean?
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single)
+  id: Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, float)
+  nameWithType: ChannelSystemParameter.Of(ChannelSystemParameter.Type, float)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, float)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 215
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelSystemParameter Of(ChannelSystemParameter.Type type, float value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    - id: value
+      type: System.Single
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Function [Of](type As ChannelSystemParameter.Type, value As Single) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of*
+  nameWithType.vb: ChannelSystemParameter.Of(ChannelSystemParameter.Type, Single)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, Single)
+  name.vb: Of(Type, Single)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32)
+  id: Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, int)
+  nameWithType: ChannelSystemParameter.Of(ChannelSystemParameter.Type, int)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 221
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelSystemParameter Of(ChannelSystemParameter.Type type, int value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    - id: value
+      type: System.Int32
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Function [Of](type As ChannelSystemParameter.Type, value As Integer) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of*
+  nameWithType.vb: ChannelSystemParameter.Of(ChannelSystemParameter.Type, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, Integer)
+  name.vb: Of(Type, Integer)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  id: Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(Type, bool)
+  nameWithType: ChannelSystemParameter.Of(ChannelSystemParameter.Type, bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 227
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelSystemParameter Of(ChannelSystemParameter.Type type, bool value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    - id: value
+      type: System.Boolean
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Function [Of](type As ChannelSystemParameter.Type, value As Boolean) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of*
+  nameWithType.vb: ChannelSystemParameter.Of(ChannelSystemParameter.Type, Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, Boolean)
+  name.vb: Of(Type, Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  id: OfOpt(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: OfOpt(Type, bool)
+  nameWithType: ChannelSystemParameter.OfOpt(ChannelSystemParameter.Type, bool)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, bool)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfOpt
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 233
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelSystemParameter OfOpt(ChannelSystemParameter.Type type, bool value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    - id: value
+      type: System.Boolean
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Function OfOpt(type As ChannelSystemParameter.Type, value As Boolean) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt*
+  nameWithType.vb: ChannelSystemParameter.OfOpt(ChannelSystemParameter.Type, Boolean)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, Boolean)
+  name.vb: OfOpt(Type, Boolean)
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)
+  id: Of(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: Of(InterpolationType)
+  nameWithType: ChannelSystemParameter.Of(Synthesizer.InterpolationType)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 239
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelSystemParameter Of(Synthesizer.InterpolationType type)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Function [Of](type As Synthesizer.InterpolationType) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type)
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type)
+  id: OfNull(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type)
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: OfNull(Type)
+  nameWithType: ChannelSystemParameter.OfNull(ChannelSystemParameter.Type)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull(SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfNull
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 247
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static ChannelSystemParameter OfNull(ChannelSystemParameter.Type type)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Function OfNull(type As ChannelSystemParameter.Type) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull*
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelSystemParameter((Type type, bool value))
+  nameWithType: ChannelSystemParameter.implicit operator ChannelSystemParameter((ChannelSystemParameter.Type type, bool value))
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter((SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type type, bool value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 282
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelSystemParameter((ChannelSystemParameter.Type type, bool value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Widening Operator CType(param As (type As ChannelSystemParameter.Type, value As Boolean)) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit*
+  nameWithType.vb: ChannelSystemParameter.CType((type As ChannelSystemParameter.Type, value As Boolean))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.CType((type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, value As Boolean))
+  name.vb: CType((type As Type, value As Boolean))
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelSystemParameter((Type type, float value))
+  nameWithType: ChannelSystemParameter.implicit operator ChannelSystemParameter((ChannelSystemParameter.Type type, float value))
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter((SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type type, float value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 284
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelSystemParameter((ChannelSystemParameter.Type type, float value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Widening Operator CType(param As (type As ChannelSystemParameter.Type, value As Single)) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit*
+  nameWithType.vb: ChannelSystemParameter.CType((type As ChannelSystemParameter.Type, value As Single))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.CType((type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, value As Single))
+  name.vb: CType((type As Type, value As Single))
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  id: op_Implicit(System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32})~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelSystemParameter((Type type, int value))
+  nameWithType: ChannelSystemParameter.implicit operator ChannelSystemParameter((ChannelSystemParameter.Type type, int value))
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter((SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type type, int value))
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 286
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelSystemParameter((ChannelSystemParameter.Type type, int value) param)
+    parameters:
+    - id: param
+      type: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32}
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Widening Operator CType(param As (type As ChannelSystemParameter.Type, value As Integer)) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit*
+  nameWithType.vb: ChannelSystemParameter.CType((type As ChannelSystemParameter.Type, value As Integer))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.CType((type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, value As Integer))
+  name.vb: CType((type As Type, value As Integer))
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  commentId: M:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  id: op_Implicit(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)~SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  langs:
+  - csharp
+  - vb
+  name: implicit operator ChannelSystemParameter(InterpolationType)
+  nameWithType: ChannelSystemParameter.implicit operator ChannelSystemParameter(Synthesizer.InterpolationType)
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.implicit operator SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelSystemParameter.cs
+    startLine: 288
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public static implicit operator ChannelSystemParameter(Synthesizer.InterpolationType param)
+    parameters:
+    - id: param
+      type: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    content.vb: Public Shared Widening Operator CType(param As Synthesizer.InterpolationType) As ChannelSystemParameter
+  overload: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit*
+  nameWithType.vb: ChannelSystemParameter.CType(Synthesizer.InterpolationType)
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.CType(SpessaSharp.Synthesizer.Synthesizer.InterpolationType)
+  name.vb: CType(InterpolationType)
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+- uid: System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter}
+  commentId: T:System.IEquatable{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ChannelSystemParameter>
+  nameWithType: IEquatable<ChannelSystemParameter>
+  fullName: System.IEquatable<SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter>
+  nameWithType.vb: IEquatable(Of ChannelSystemParameter)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter)
+  name.vb: IEquatable(Of ChannelSystemParameter)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  name: ChannelSystemParameter.Type
+  nameWithType: ChannelSystemParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_AsBool
+  name: AsBool
+  nameWithType: ChannelSystemParameter.AsBool
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsBool
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_AsFloat
+  name: AsFloat
+  nameWithType: ChannelSystemParameter.AsFloat
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsFloat
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_AsInt
+  name: AsInt
+  nameWithType: ChannelSystemParameter.AsInt
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsInt
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_AsOptInterpolationType
+  name: AsOptInterpolationType
+  nameWithType: ChannelSystemParameter.AsOptInterpolationType
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptInterpolationType
+- uid: System.Nullable{SpessaSharp.Synthesizer.Synthesizer.InterpolationType}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Synthesizer.InterpolationType}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer.InterpolationType?
+  nameWithType: Synthesizer.InterpolationType?
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_AsOptBool
+  name: AsOptBool
+  nameWithType: ChannelSystemParameter.AsOptBool
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.AsOptBool
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_Of_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_Type_System_Single_
+  name: Of
+  nameWithType: ChannelSystemParameter.Of
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Of
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  name: ChannelSystemParameter
+  nameWithType: ChannelSystemParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_OfOpt_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_Type_System_Boolean_
+  name: OfOpt
+  nameWithType: ChannelSystemParameter.OfOpt
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfOpt
+- uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer.InterpolationType
+  nameWithType: Synthesizer.InterpolationType
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html#SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_OfNull_SpessaSharp_Synthesizer_Engine_Channel_Parameters_ChannelSystemParameter_Type_
+  name: OfNull
+  nameWithType: ChannelSystemParameter.OfNull
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.OfNull
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.op_Implicit
+  name: implicit operator
+  nameWithType: ChannelSystemParameter.implicit operator
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.implicit operator
+  nameWithType.vb: ChannelSystemParameter.CType
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  name: (ChannelSystemParameter.Type type, bool value)
+  nameWithType: (ChannelSystemParameter.Type type, bool value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type type, bool value)
+  nameWithType.vb: (type As ChannelSystemParameter.Type, value As Boolean)
+  fullName.vb: (type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, value As Boolean)
+  name.vb: (type As ChannelSystemParameter.Type, value As Boolean)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean}.type
+    name: type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.boolean-.type
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean}.value
+    name: value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.boolean-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean}.type
+    name: type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.boolean-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Boolean}.value
+    name: value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.boolean-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  name: (ChannelSystemParameter.Type type, float value)
+  nameWithType: (ChannelSystemParameter.Type type, float value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type type, float value)
+  nameWithType.vb: (type As ChannelSystemParameter.Type, value As Single)
+  fullName.vb: (type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, value As Single)
+  name.vb: (type As ChannelSystemParameter.Type, value As Single)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single}.type
+    name: type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.single-.type
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single}.value
+    name: value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.single-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single}.type
+    name: type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.single-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Single}.value
+    name: value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.single-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32}
+  commentId: T:System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32}
+  parent: System
+  definition: System.ValueTuple`2
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  name: (ChannelSystemParameter.Type type, int value)
+  nameWithType: (ChannelSystemParameter.Type type, int value)
+  fullName: (SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type type, int value)
+  nameWithType.vb: (type As ChannelSystemParameter.Type, value As Integer)
+  fullName.vb: (type As SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type, value As Integer)
+  name.vb: (type As ChannelSystemParameter.Type, value As Integer)
+  spec.csharp:
+  - name: (
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32}.type
+    name: type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.int32-.type
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32}.value
+    name: value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.int32-.value
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32}.type
+    name: type
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.int32-.type
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter
+    name: ChannelSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelSystemParameter.Type,System.Int32}.value
+    name: value
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-spessasharp.synthesizer.engine.channel.parameters.channelsystemparameter.type,system.int32-.value
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )

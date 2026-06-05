@@ -1,0 +1,141 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Channel
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel
+  id: SpessaSharp.Synthesizer.Engine.Channel
+  children:
+  - SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN
+  - SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators
+  - SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot
+  - SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  - SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.Synthesizer.Engine.Channel
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN
+  href: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.html
+  name: Awe32NRPN
+  nameWithType: Awe32NRPN
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.html
+  name: Awe32NRPN.ChannelGenerators
+  nameWithType: Awe32NRPN.ChannelGenerators
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN
+    name: Awe32NRPN
+    href: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators
+    name: ChannelGenerators
+    href: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN
+    name: Awe32NRPN
+    href: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators
+    name: ChannelGenerators
+    href: SpessaSharp.Synthesizer.Engine.Channel.Awe32NRPN.ChannelGenerators.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot.html
+  name: ChannelSnapshot
+  nameWithType: ChannelSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.ChannelSnapshot
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters.html
+  name: DrumParameters
+  nameWithType: DrumParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DrumParameters
+- uid: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager.html
+  name: DynamicModulatorManager
+  nameWithType: DynamicModulatorManager
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.DynamicModulatorManager
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  name: MidiChannel
+  nameWithType: MidiChannel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  name: MidiChannel.Assign
+  nameWithType: MidiChannel.Assign
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+    name: MidiChannel
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    name: Assign
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+    name: MidiChannel
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    name: Assign
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html

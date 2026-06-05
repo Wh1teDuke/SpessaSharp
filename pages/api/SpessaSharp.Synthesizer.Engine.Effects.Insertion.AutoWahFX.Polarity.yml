@@ -1,0 +1,152 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  id: AutoWahFX.Polarity
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Down
+  - SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Up
+  langs:
+  - csharp
+  - vb
+  name: AutoWahFX.Polarity
+  nameWithType: AutoWahFX.Polarity
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Polarity
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  syntax:
+    content: public enum AutoWahFX.Polarity
+    content.vb: Public Enum AutoWahFX.Polarity
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Down
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Down
+  id: Down
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  langs:
+  - csharp
+  - vb
+  name: Down
+  nameWithType: AutoWahFX.Polarity.Down
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Down
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Down
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  syntax:
+    content: Down = 0
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Up
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Up
+  id: Up
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  langs:
+  - csharp
+  - vb
+  name: Up
+  nameWithType: AutoWahFX.Polarity.Up
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.Up
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Up
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  syntax:
+    content: Up = 1
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.html
+  name: AutoWahFX.Polarity
+  nameWithType: AutoWahFX.Polarity
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX
+    name: AutoWahFX
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+    name: Polarity
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX
+    name: AutoWahFX
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity
+    name: Polarity
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.Polarity.html

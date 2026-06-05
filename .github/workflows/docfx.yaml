@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'pages/**'
+      - 'SpessaSharp/**'
 
 permissions:
   actions: read
@@ -23,18 +26,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
       - name: Dotnet Setup
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '10.0.x'
 
-      - run: dotnet tool update -g docfx
-      - run: docfx SpessaSharp/docfx.json
+      - name: Install/Update DocFX
+        run: dotnet tool update -g docfx
+
+      - name: Build DocFX Site
+        run: docfx pages/docfx.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: 'SpessaSharp/_site'
+          path: 'pages/_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -1,0 +1,750 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  id: GlobalSystemParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  children:
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.AutoAllocateVoices
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.BlackMIDIMode
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusGain
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusLock
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayGain
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayLock
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DeviceID
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DrumLock
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EffectsEnabled
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EventsEnabled
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.FineTune
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Gain
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InsertionEffectLock
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InterpolationType
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.KeyShift
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.MonophonicRetrigger
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.NprnParamLock
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Pan
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbGain
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbLock
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.VoiceCap
+  langs:
+  - csharp
+  - vb
+  name: GlobalSystemParameter.Type
+  nameWithType: GlobalSystemParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 296
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  syntax:
+    content: public enum GlobalSystemParameter.Type
+    content.vb: Public Enum GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EffectsEnabled
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EffectsEnabled
+  id: EffectsEnabled
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: EffectsEnabled
+  nameWithType: GlobalSystemParameter.Type.EffectsEnabled
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EffectsEnabled
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: EffectsEnabled
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 300
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: If the synthesizer processes the audio effects.
+  example: []
+  syntax:
+    content: EffectsEnabled = 0
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EventsEnabled
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EventsEnabled
+  id: EventsEnabled
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: EventsEnabled
+  nameWithType: GlobalSystemParameter.Type.EventsEnabled
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.EventsEnabled
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: EventsEnabled
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 302
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: If the event system is enabled.
+  example: []
+  syntax:
+    content: EventsEnabled = 1
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.VoiceCap
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.VoiceCap
+  id: VoiceCap
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: VoiceCap
+  nameWithType: GlobalSystemParameter.Type.VoiceCap
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.VoiceCap
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VoiceCap
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 308
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    The maximum number of voices that can be played at once.
+
+        Increasing this value causes memory allocation for more voices.
+        It is recommended to set it at the beginning, before rendering audio to avoid GC.
+        Decreasing it does not cause memory usage change, so it's fine to use.
+  example: []
+  syntax:
+    content: VoiceCap = 2
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.AutoAllocateVoices
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.AutoAllocateVoices
+  id: AutoAllocateVoices
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: AutoAllocateVoices
+  nameWithType: GlobalSystemParameter.Type.AutoAllocateVoices
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.AutoAllocateVoices
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AutoAllocateVoices
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 313
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    Enabling this parameter will cause a new voice allocation when the voice cap is hit, rather than stealing existing voices.
+
+    This is not recommended in real-time environments.
+  example: []
+  syntax:
+    content: AutoAllocateVoices = 3
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbGain
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbGain
+  id: ReverbGain
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: ReverbGain
+  nameWithType: GlobalSystemParameter.Type.ReverbGain
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbGain
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ReverbGain
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 315
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The reverb gain. From 0 to any number. 1 is 100% reverb.
+  example: []
+  syntax:
+    content: ReverbGain = 4
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbLock
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbLock
+  id: ReverbLock
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: ReverbLock
+  nameWithType: GlobalSystemParameter.Type.ReverbLock
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ReverbLock
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ReverbLock
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 322
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    If the synthesizer should prevent editing of the reverb parameters.
+
+    This effect is modified using MIDI system exclusive messages, so
+
+    the recommended use case would be setting
+
+    the reverb parameters then locking it to prevent changes by MIDI files.
+  example: []
+  syntax:
+    content: ReverbLock = 5
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusGain
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusGain
+  id: ChorusGain
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: ChorusGain
+  nameWithType: GlobalSystemParameter.Type.ChorusGain
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusGain
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChorusGain
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 324
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The chorus gain. From 0 to any number. 1 is 100% chorus.
+  example: []
+  syntax:
+    content: ChorusGain = 6
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusLock
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusLock
+  id: ChorusLock
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: ChorusLock
+  nameWithType: GlobalSystemParameter.Type.ChorusLock
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.ChorusLock
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChorusLock
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 331
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    If the synthesizer should prevent editing of the chorus parameters.
+
+    This effect is modified using MIDI system exclusive messages, so
+
+    the recommended use case would be setting
+
+    the chorus parameters then locking it to prevent changes by MIDI files.
+  example: []
+  syntax:
+    content: ChorusLock = 7
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayGain
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayGain
+  id: DelayGain
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: DelayGain
+  nameWithType: GlobalSystemParameter.Type.DelayGain
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayGain
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayGain
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 335
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The delay gain. From 0 to any number. 1 is 100% delay.
+  example: []
+  syntax:
+    content: DelayGain = 8
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayLock
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayLock
+  id: DelayLock
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: DelayLock
+  nameWithType: GlobalSystemParameter.Type.DelayLock
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DelayLock
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayLock
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 342
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    If the synthesizer should prevent editing of the delay parameters.
+
+    This effect is modified using MIDI system exclusive messages, so
+
+    the recommended use case would be setting
+
+    the delay parameters then locking it to prevent changes by MIDI files.
+  example: []
+  syntax:
+    content: DelayLock = 9
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InsertionEffectLock
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InsertionEffectLock
+  id: InsertionEffectLock
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: InsertionEffectLock
+  nameWithType: GlobalSystemParameter.Type.InsertionEffectLock
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InsertionEffectLock
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InsertionEffectLock
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 351
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    If the synthesizer should prevent changing the insertion effect type and parameters.
+
+    This effect is modified using MIDI system exclusive messages, so
+
+    the recommended use case would be setting
+
+    the insertion effect type and parameters then locking it to prevent changes by MIDI files.
+
+
+    To lock the channel insertion assign, lock the <b>EfxAssign</b> parameter instead.
+  example: []
+  syntax:
+    content: InsertionEffectLock = 10
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DrumLock
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DrumLock
+  id: DrumLock
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: DrumLock
+  nameWithType: GlobalSystemParameter.Type.DrumLock
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DrumLock
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DrumLock
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 358
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    If the synthesizer should prevent editing of the drum parameters.
+
+    These params are modified using MIDI system exclusive messages or NRPN, so
+
+    the recommended use case would be setting
+
+    the drum parameters then locking it to prevent changes by MIDI files.
+  example: []
+  syntax:
+    content: DrumLock = 11
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.BlackMIDIMode
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.BlackMIDIMode
+  id: BlackMIDIMode
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: BlackMIDIMode
+  nameWithType: GlobalSystemParameter.Type.BlackMIDIMode
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.BlackMIDIMode
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BlackMIDIMode
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 360
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: Forces note killing instead of releasing. Improves performance in black MIDIs.
+  example: []
+  syntax:
+    content: BlackMIDIMode = 12
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DeviceID
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DeviceID
+  id: DeviceID
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: DeviceID
+  nameWithType: GlobalSystemParameter.Type.DeviceID
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.DeviceID
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DeviceID
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 362
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: Synthesizer's device ID for system exclusive messages. Set to -1 to accept all.
+  example: []
+  syntax:
+    content: DeviceID = 13
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Gain
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Gain
+  id: Gain
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: Gain
+  nameWithType: GlobalSystemParameter.Type.Gain
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Gain
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Gain
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 364
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The master gain. From 0 to any number. 1 is 100% volume.
+  example: []
+  syntax:
+    content: Gain = 14
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Pan
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Pan
+  id: Pan
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: Pan
+  nameWithType: GlobalSystemParameter.Type.Pan
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.Pan
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Pan
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 366
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The master pan. From -1 (left) to 1 (right). 0 is center.
+  example: []
+  syntax:
+    content: Pan = 15
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.KeyShift
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.KeyShift
+  id: KeyShift
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: KeyShift
+  nameWithType: GlobalSystemParameter.Type.KeyShift
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.KeyShift
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: KeyShift
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 368
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The global key shift in semitones. Drum channels ignore this value.
+  example: []
+  syntax:
+    content: KeyShift = 16
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.FineTune
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.FineTune
+  id: FineTune
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: FineTune
+  nameWithType: GlobalSystemParameter.Type.FineTune
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.FineTune
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FineTune
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 370
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The global tuning in cents. Drum channels ignore this value.
+  example: []
+  syntax:
+    content: FineTune = 17
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InterpolationType
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InterpolationType
+  id: InterpolationType
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: InterpolationType
+  nameWithType: GlobalSystemParameter.Type.InterpolationType
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.InterpolationType
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InterpolationType
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 372
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: The interpolation type used for sample playback.
+  example: []
+  syntax:
+    content: InterpolationType = 18
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.NprnParamLock
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.NprnParamLock
+  id: NprnParamLock
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: NprnParamLock
+  nameWithType: GlobalSystemParameter.Type.NprnParamLock
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.NprnParamLock
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NprnParamLock
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 376
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: If the synthesizer should prevent changing any parameters via NRPN.
+  example: []
+  syntax:
+    content: NprnParamLock = 19
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.MonophonicRetrigger
+  commentId: F:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.MonophonicRetrigger
+  id: MonophonicRetrigger
+  parent: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: MonophonicRetrigger
+  nameWithType: GlobalSystemParameter.Type.MonophonicRetrigger
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.MonophonicRetrigger
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MonophonicRetrigger
+    path: ../SpessaSharp/Synthesizer/Engine/Parameters/GlobalSystemParameter.cs
+    startLine: 382
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Parameters
+  summary: >-
+    Indicates whether the synthesizer is in monophonic retrigger mode.
+
+    This emulates the behavior of Microsoft GS Wavetable Synth,
+
+    Where a new note will kill the previous one if it is still playing.
+  example: []
+  syntax:
+    content: MonophonicRetrigger = 20
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Parameters.html
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  name: GlobalSystemParameter.Type
+  nameWithType: GlobalSystemParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+    name: GlobalSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+    name: GlobalSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.html

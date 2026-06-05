@@ -1,0 +1,688 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  commentId: T:SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  id: AudioUtil.WaveWriteOptions
+  parent: SpessaSharp.Utils
+  children:
+  - SpessaSharp.Utils.AudioUtil.WaveWriteOptions.#ctor(System.Boolean,System.Nullable{System.ValueTuple{System.Single,System.Single}},System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata})
+  - SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Default
+  - SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop
+  - SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata
+  - SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio
+  langs:
+  - csharp
+  - vb
+  name: AudioUtil.WaveWriteOptions
+  nameWithType: AudioUtil.WaveWriteOptions
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: WaveWriteOptions
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  summary: This will find the max sample point and set it to 1, and scale others with it. Recommended
+  example: []
+  syntax:
+    content: 'public readonly record struct AudioUtil.WaveWriteOptions : IEquatable<AudioUtil.WaveWriteOptions>'
+    content.vb: Public Structure AudioUtil.WaveWriteOptions Implements IEquatable(Of AudioUtil.WaveWriteOptions)
+  implements:
+  - System.IEquatable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.#ctor(System.Boolean,System.Nullable{System.ValueTuple{System.Single,System.Single}},System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata})
+  commentId: M:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.#ctor(System.Boolean,System.Nullable{System.ValueTuple{System.Single,System.Single}},System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata})
+  id: '#ctor(System.Boolean,System.Nullable{System.ValueTuple{System.Single,System.Single}},System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata})'
+  parent: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  langs:
+  - csharp
+  - vb
+  name: WaveWriteOptions(bool, (float Start, float End)?, WaveMetadata?)
+  nameWithType: AudioUtil.WaveWriteOptions.WaveWriteOptions(bool, (float Start, float End)?, AudioUtil.WaveMetadata?)
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.WaveWriteOptions(bool, (float Start, float End)?, SpessaSharp.Utils.AudioUtil.WaveMetadata?)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  summary: This will find the max sample point and set it to 1, and scale others with it. Recommended
+  example: []
+  syntax:
+    content: public WaveWriteOptions(bool NormalizeAudio, (float Start, float End)? Loop, AudioUtil.WaveMetadata? Metadata)
+    parameters:
+    - id: NormalizeAudio
+      type: System.Boolean
+      description: The loop start and end points in seconds. Undefined if no loop should be written.
+    - id: Loop
+      type: System.Nullable{System.ValueTuple{System.Single,System.Single}}
+      description: ''
+    - id: Metadata
+      type: System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata}
+      description: The metadata to write into the file.
+    content.vb: Public Sub New(NormalizeAudio As Boolean, [Loop] As (Start As Single, [End] As Single)?, Metadata As AudioUtil.WaveMetadata?)
+  overload: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.#ctor*
+  nameWithType.vb: AudioUtil.WaveWriteOptions.New(Boolean, (Start As Single, End As Single)?, AudioUtil.WaveMetadata?)
+  fullName.vb: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.New(Boolean, (Start As Single, End As Single)?, SpessaSharp.Utils.AudioUtil.WaveMetadata?)
+  name.vb: New(Boolean, (Start As Single, End As Single)?, WaveMetadata?)
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio
+  commentId: P:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio
+  id: NormalizeAudio
+  parent: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  langs:
+  - csharp
+  - vb
+  name: NormalizeAudio
+  nameWithType: AudioUtil.WaveWriteOptions.NormalizeAudio
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NormalizeAudio
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  summary: The loop start and end points in seconds. Undefined if no loop should be written.
+  example: []
+  syntax:
+    content: public bool NormalizeAudio { get; init; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property NormalizeAudio As Boolean
+  overload: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio*
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop
+  commentId: P:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop
+  id: Loop
+  parent: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  langs:
+  - csharp
+  - vb
+  name: Loop
+  nameWithType: AudioUtil.WaveWriteOptions.Loop
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Loop
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 26
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  summary: ''
+  example: []
+  syntax:
+    content: public (float Start, float End)? Loop { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{System.ValueTuple{System.Single,System.Single}}
+    content.vb: Public Property [Loop] As (Start As Single, [End] As Single)?
+  overload: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop*
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata
+  commentId: P:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata
+  id: Metadata
+  parent: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  langs:
+  - csharp
+  - vb
+  name: Metadata
+  nameWithType: AudioUtil.WaveWriteOptions.Metadata
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Metadata
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 31
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  summary: The metadata to write into the file.
+  example: []
+  syntax:
+    content: public AudioUtil.WaveMetadata? Metadata { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata}
+    content.vb: Public Property Metadata As AudioUtil.WaveMetadata?
+  overload: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata*
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Default
+  commentId: F:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Default
+  id: Default
+  parent: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: AudioUtil.WaveWriteOptions.Default
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Default
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Default
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 33
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  syntax:
+    content: public static readonly AudioUtil.WaveWriteOptions Default
+    return:
+      type: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    content.vb: Public Shared ReadOnly [Default] As AudioUtil.WaveWriteOptions
+references:
+- uid: SpessaSharp.Utils
+  commentId: N:SpessaSharp.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.Utils
+  nameWithType: SpessaSharp.Utils
+  fullName: SpessaSharp.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+- uid: System.IEquatable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions}
+  commentId: T:System.IEquatable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<AudioUtil.WaveWriteOptions>
+  nameWithType: IEquatable<AudioUtil.WaveWriteOptions>
+  fullName: System.IEquatable<SpessaSharp.Utils.AudioUtil.WaveWriteOptions>
+  nameWithType.vb: IEquatable(Of AudioUtil.WaveWriteOptions)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Utils.AudioUtil.WaveWriteOptions)
+  name.vb: IEquatable(Of AudioUtil.WaveWriteOptions)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.#ctor*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.#ctor
+  href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html#SpessaSharp_Utils_AudioUtil_WaveWriteOptions__ctor_System_Boolean_System_Nullable_System_ValueTuple_System_Single_System_Single___System_Nullable_SpessaSharp_Utils_AudioUtil_WaveMetadata__
+  name: WaveWriteOptions
+  nameWithType: AudioUtil.WaveWriteOptions.WaveWriteOptions
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.WaveWriteOptions
+  nameWithType.vb: AudioUtil.WaveWriteOptions.New
+  fullName.vb: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.New
+  name.vb: New
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Nullable{System.ValueTuple{System.Single,System.Single}}
+  commentId: T:System.Nullable{System.ValueTuple{System.Single,System.Single}}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: (float Start, float End)?
+  nameWithType: (float Start, float End)?
+  fullName: (float Start, float End)?
+  nameWithType.vb: (Start As Single, End As Single)?
+  fullName.vb: (Start As Single, End As Single)?
+  name.vb: (Start As Single, End As Single)?
+  spec.csharp:
+  - name: (
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: " "
+  - uid: System.ValueTuple{System.Single,System.Single}.Start
+    name: Start
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.single,system.single-.start
+  - name: ','
+  - name: " "
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: " "
+  - uid: System.ValueTuple{System.Single,System.Single}.End
+    name: End
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.single,system.single-.end
+  - name: )
+  - name: '?'
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Single,System.Single}.Start
+    name: Start
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.single,system.single-.start
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Single,System.Single}.End
+    name: End
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.single,system.single-.end
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  - name: '?'
+- uid: System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata}
+  commentId: T:System.Nullable{SpessaSharp.Utils.AudioUtil.WaveMetadata}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Utils.AudioUtil.html
+  name: AudioUtil.WaveMetadata?
+  nameWithType: AudioUtil.WaveMetadata?
+  fullName: SpessaSharp.Utils.AudioUtil.WaveMetadata?
+  spec.csharp:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveMetadata
+    name: WaveMetadata
+    href: SpessaSharp.Utils.AudioUtil.WaveMetadata.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveMetadata
+    name: WaveMetadata
+    href: SpessaSharp.Utils.AudioUtil.WaveMetadata.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio
+  href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html#SpessaSharp_Utils_AudioUtil_WaveWriteOptions_NormalizeAudio
+  name: NormalizeAudio
+  nameWithType: AudioUtil.WaveWriteOptions.NormalizeAudio
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.NormalizeAudio
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop
+  href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html#SpessaSharp_Utils_AudioUtil_WaveWriteOptions_Loop
+  name: Loop
+  nameWithType: AudioUtil.WaveWriteOptions.Loop
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Loop
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata
+  href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html#SpessaSharp_Utils_AudioUtil_WaveWriteOptions_Metadata
+  name: Metadata
+  nameWithType: AudioUtil.WaveWriteOptions.Metadata
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.Metadata
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  commentId: T:SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.AudioUtil.html
+  name: AudioUtil.WaveWriteOptions
+  nameWithType: AudioUtil.WaveWriteOptions
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  spec.csharp:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html

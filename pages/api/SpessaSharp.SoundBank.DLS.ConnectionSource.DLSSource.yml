@@ -1,0 +1,998 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  commentId: T:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  id: ConnectionSource.DLSSource
+  parent: SpessaSharp.SoundBank.DLS
+  children:
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.#ctor(System.Int32)
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ChannelPresure
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Chorus
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.CoarseTune
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Expression
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.FineTune
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.KeyNum
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModEnv
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModLFO
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModulationWheel
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.None
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Pan
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheel
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheelRange
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PolyPressure
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Reverb
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Velocity
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VibratoLFO
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VolEnv
+  - SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Volume
+  langs:
+  - csharp
+  - vb
+  name: ConnectionSource.DLSSource
+  nameWithType: ConnectionSource.DLSSource
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DLSSource
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: 'public readonly record struct ConnectionSource.DLSSource : IEquatable<ConnectionSource.DLSSource>'
+    content.vb: Public Structure ConnectionSource.DLSSource Implements IEquatable(Of ConnectionSource.DLSSource)
+  implements:
+  - System.IEquatable{SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.#ctor(System.Int32)
+  commentId: M:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: DLSSource(int)
+  nameWithType: ConnectionSource.DLSSource.DLSSource(int)
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.DLSSource(int)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public DLSSource(int Value)
+    parameters:
+    - id: Value
+      type: System.Int32
+    content.vb: Public Sub New(Value As Integer)
+  overload: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.#ctor*
+  nameWithType.vb: ConnectionSource.DLSSource.New(Integer)
+  fullName.vb: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.New(Integer)
+  name.vb: New(Integer)
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value
+  commentId: P:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value
+  id: Value
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: ConnectionSource.DLSSource.Value
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Value
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public int Value { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Value As Integer
+  overload: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value*
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.None
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.None
+  id: None
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: ConnectionSource.DLSSource.None
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.None
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: None
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource None
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly None As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModLFO
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModLFO
+  id: ModLFO
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: ModLFO
+  nameWithType: ConnectionSource.DLSSource.ModLFO
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModLFO
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ModLFO
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource ModLFO
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly ModLFO As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Velocity
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Velocity
+  id: Velocity
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: Velocity
+  nameWithType: ConnectionSource.DLSSource.Velocity
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Velocity
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Velocity
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 21
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource Velocity
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly Velocity As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.KeyNum
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.KeyNum
+  id: KeyNum
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: KeyNum
+  nameWithType: ConnectionSource.DLSSource.KeyNum
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.KeyNum
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: KeyNum
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 22
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource KeyNum
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly KeyNum As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VolEnv
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VolEnv
+  id: VolEnv
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: VolEnv
+  nameWithType: ConnectionSource.DLSSource.VolEnv
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VolEnv
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VolEnv
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 23
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource VolEnv
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly VolEnv As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModEnv
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModEnv
+  id: ModEnv
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: ModEnv
+  nameWithType: ConnectionSource.DLSSource.ModEnv
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModEnv
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ModEnv
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource ModEnv
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly ModEnv As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheel
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheel
+  id: PitchWheel
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: PitchWheel
+  nameWithType: ConnectionSource.DLSSource.PitchWheel
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheel
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheel
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource PitchWheel
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly PitchWheel As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PolyPressure
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PolyPressure
+  id: PolyPressure
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: PolyPressure
+  nameWithType: ConnectionSource.DLSSource.PolyPressure
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PolyPressure
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PolyPressure
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 26
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource PolyPressure
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly PolyPressure As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ChannelPresure
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ChannelPresure
+  id: ChannelPresure
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: ChannelPresure
+  nameWithType: ConnectionSource.DLSSource.ChannelPresure
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ChannelPresure
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelPresure
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 27
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource ChannelPresure
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly ChannelPresure As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VibratoLFO
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VibratoLFO
+  id: VibratoLFO
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: VibratoLFO
+  nameWithType: ConnectionSource.DLSSource.VibratoLFO
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.VibratoLFO
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VibratoLFO
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 28
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource VibratoLFO
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly VibratoLFO As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModulationWheel
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModulationWheel
+  id: ModulationWheel
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: ModulationWheel
+  nameWithType: ConnectionSource.DLSSource.ModulationWheel
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.ModulationWheel
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ModulationWheel
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 30
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource ModulationWheel
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly ModulationWheel As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Volume
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Volume
+  id: Volume
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: Volume
+  nameWithType: ConnectionSource.DLSSource.Volume
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Volume
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Volume
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 31
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource Volume
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly Volume As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Pan
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Pan
+  id: Pan
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: Pan
+  nameWithType: ConnectionSource.DLSSource.Pan
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Pan
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Pan
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 32
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource Pan
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly Pan As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Expression
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Expression
+  id: Expression
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: Expression
+  nameWithType: ConnectionSource.DLSSource.Expression
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Expression
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Expression
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 33
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource Expression
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly Expression As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Chorus
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Chorus
+  id: Chorus
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: Chorus
+  nameWithType: ConnectionSource.DLSSource.Chorus
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Chorus
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Chorus
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 36
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource Chorus
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly Chorus As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Reverb
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Reverb
+  id: Reverb
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: Reverb
+  nameWithType: ConnectionSource.DLSSource.Reverb
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Reverb
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Reverb
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 37
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource Reverb
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly Reverb As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheelRange
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheelRange
+  id: PitchWheelRange
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: PitchWheelRange
+  nameWithType: ConnectionSource.DLSSource.PitchWheelRange
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.PitchWheelRange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheelRange
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 39
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource PitchWheelRange
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly PitchWheelRange As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.FineTune
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.FineTune
+  id: FineTune
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: FineTune
+  nameWithType: ConnectionSource.DLSSource.FineTune
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.FineTune
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FineTune
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 40
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource FineTune
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly FineTune As ConnectionSource.DLSSource
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.CoarseTune
+  commentId: F:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.CoarseTune
+  id: CoarseTune
+  parent: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  langs:
+  - csharp
+  - vb
+  name: CoarseTune
+  nameWithType: ConnectionSource.DLSSource.CoarseTune
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.CoarseTune
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CoarseTune
+    path: ../SpessaSharp/SoundBank/DLS/ConnectionSource.cs
+    startLine: 41
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank.DLS
+  syntax:
+    content: public static readonly ConnectionSource.DLSSource CoarseTune
+    return:
+      type: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    content.vb: Public Shared ReadOnly CoarseTune As ConnectionSource.DLSSource
+references:
+- uid: SpessaSharp.SoundBank.DLS
+  commentId: N:SpessaSharp.SoundBank.DLS
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank.DLS
+  nameWithType: SpessaSharp.SoundBank.DLS
+  fullName: SpessaSharp.SoundBank.DLS
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS
+    name: DLS
+    href: SpessaSharp.SoundBank.DLS.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS
+    name: DLS
+    href: SpessaSharp.SoundBank.DLS.html
+- uid: System.IEquatable{SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource}
+  commentId: T:System.IEquatable{SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ConnectionSource.DLSSource>
+  nameWithType: IEquatable<ConnectionSource.DLSSource>
+  fullName: System.IEquatable<SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource>
+  nameWithType.vb: IEquatable(Of ConnectionSource.DLSSource)
+  fullName.vb: System.IEquatable(Of SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource)
+  name.vb: IEquatable(Of ConnectionSource.DLSSource)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    name: DLSSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    name: DLSSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.#ctor*
+  commentId: Overload:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.#ctor
+  href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html#SpessaSharp_SoundBank_DLS_ConnectionSource_DLSSource__ctor_System_Int32_
+  name: DLSSource
+  nameWithType: ConnectionSource.DLSSource.DLSSource
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.DLSSource
+  nameWithType.vb: ConnectionSource.DLSSource.New
+  fullName.vb: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value*
+  commentId: Overload:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value
+  href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html#SpessaSharp_SoundBank_DLS_ConnectionSource_DLSSource_Value
+  name: Value
+  nameWithType: ConnectionSource.DLSSource.Value
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.Value
+- uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  commentId: T:SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  parent: SpessaSharp.SoundBank.DLS
+  href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  name: ConnectionSource.DLSSource
+  nameWithType: ConnectionSource.DLSSource
+  fullName: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    name: DLSSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource
+    name: ConnectionSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource
+    name: DLSSource
+    href: SpessaSharp.SoundBank.DLS.ConnectionSource.DLSSource.html

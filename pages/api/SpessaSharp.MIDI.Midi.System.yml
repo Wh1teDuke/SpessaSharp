@@ -1,0 +1,182 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Midi.System
+  commentId: T:SpessaSharp.MIDI.Midi.System
+  id: Midi.System
+  parent: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.Midi.System.GM
+  - SpessaSharp.MIDI.Midi.System.GM2
+  - SpessaSharp.MIDI.Midi.System.GS
+  - SpessaSharp.MIDI.Midi.System.XG
+  langs:
+  - csharp
+  - vb
+  name: Midi.System
+  nameWithType: Midi.System
+  fullName: SpessaSharp.MIDI.Midi.System
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: System
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public enum Midi.System
+    content.vb: Public Enum Midi.System
+- uid: SpessaSharp.MIDI.Midi.System.GM
+  commentId: F:SpessaSharp.MIDI.Midi.System.GM
+  id: GM
+  parent: SpessaSharp.MIDI.Midi.System
+  langs:
+  - csharp
+  - vb
+  name: GM
+  nameWithType: Midi.System.GM
+  fullName: SpessaSharp.MIDI.Midi.System.GM
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GM
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: GM = 0
+    return:
+      type: SpessaSharp.MIDI.Midi.System
+- uid: SpessaSharp.MIDI.Midi.System.GM2
+  commentId: F:SpessaSharp.MIDI.Midi.System.GM2
+  id: GM2
+  parent: SpessaSharp.MIDI.Midi.System
+  langs:
+  - csharp
+  - vb
+  name: GM2
+  nameWithType: Midi.System.GM2
+  fullName: SpessaSharp.MIDI.Midi.System.GM2
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GM2
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: GM2 = 1
+    return:
+      type: SpessaSharp.MIDI.Midi.System
+- uid: SpessaSharp.MIDI.Midi.System.GS
+  commentId: F:SpessaSharp.MIDI.Midi.System.GS
+  id: GS
+  parent: SpessaSharp.MIDI.Midi.System
+  langs:
+  - csharp
+  - vb
+  name: GS
+  nameWithType: Midi.System.GS
+  fullName: SpessaSharp.MIDI.Midi.System.GS
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GS
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: GS = 2
+    return:
+      type: SpessaSharp.MIDI.Midi.System
+- uid: SpessaSharp.MIDI.Midi.System.XG
+  commentId: F:SpessaSharp.MIDI.Midi.System.XG
+  id: XG
+  parent: SpessaSharp.MIDI.Midi.System
+  langs:
+  - csharp
+  - vb
+  name: XG
+  nameWithType: Midi.System.XG
+  fullName: SpessaSharp.MIDI.Midi.System.XG
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: XG
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: XG = 3
+    return:
+      type: SpessaSharp.MIDI.Midi.System
+references:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.MIDI.Midi.System
+  commentId: T:SpessaSharp.MIDI.Midi.System
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.System
+  nameWithType: Midi.System
+  fullName: SpessaSharp.MIDI.Midi.System
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html

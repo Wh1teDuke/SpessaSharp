@@ -1,0 +1,406 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Utils
+  commentId: N:SpessaSharp.Utils
+  id: SpessaSharp.Utils
+  children:
+  - SpessaSharp.Utils.AudioUtil
+  - SpessaSharp.Utils.AudioUtil.WaveMetadata
+  - SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  - SpessaSharp.Utils.BasePrinter
+  - SpessaSharp.Utils.BasePrinter.SHWrapper
+  - SpessaSharp.Utils.MidiPrinter
+  - SpessaSharp.Utils.MidiPrinter.Options
+  - SpessaSharp.Utils.Params
+  - SpessaSharp.Utils.Params.Type
+  - SpessaSharp.Utils.SoundBankPrinter
+  - SpessaSharp.Utils.SoundBankPrinter.Options
+  - SpessaSharp.Utils.SpessaException
+  - SpessaSharp.Utils.SpessaException.IMidiException
+  - SpessaSharp.Utils.SpessaException.ISoundBankException
+  - SpessaSharp.Utils.SpessaException.ISynthesizerException
+  - SpessaSharp.Utils.SpessaException.Parser
+  - SpessaSharp.Utils.SpessaException.ParserMidi
+  - SpessaSharp.Utils.SpessaException.ParserSoundBank
+  - SpessaSharp.Utils.SpessaLog
+  - SpessaSharp.Utils.SpessaUtil
+  - SpessaSharp.Utils.SpessaUtil.FileKind
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.Utils
+  nameWithType: SpessaSharp.Utils
+  fullName: SpessaSharp.Utils
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.Utils.AudioUtil
+  commentId: T:SpessaSharp.Utils.AudioUtil
+  href: SpessaSharp.Utils.AudioUtil.html
+  name: AudioUtil
+  nameWithType: AudioUtil
+  fullName: SpessaSharp.Utils.AudioUtil
+- uid: SpessaSharp.Utils.AudioUtil.WaveMetadata
+  commentId: T:SpessaSharp.Utils.AudioUtil.WaveMetadata
+  href: SpessaSharp.Utils.AudioUtil.html
+  name: AudioUtil.WaveMetadata
+  nameWithType: AudioUtil.WaveMetadata
+  fullName: SpessaSharp.Utils.AudioUtil.WaveMetadata
+  spec.csharp:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveMetadata
+    name: WaveMetadata
+    href: SpessaSharp.Utils.AudioUtil.WaveMetadata.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveMetadata
+    name: WaveMetadata
+    href: SpessaSharp.Utils.AudioUtil.WaveMetadata.html
+- uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  commentId: T:SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.AudioUtil.html
+  name: AudioUtil.WaveWriteOptions
+  nameWithType: AudioUtil.WaveWriteOptions
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+  spec.csharp:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html
+- uid: SpessaSharp.Utils.BasePrinter
+  commentId: T:SpessaSharp.Utils.BasePrinter
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.BasePrinter.html
+  name: BasePrinter
+  nameWithType: BasePrinter
+  fullName: SpessaSharp.Utils.BasePrinter
+- uid: SpessaSharp.Utils.BasePrinter.SHWrapper
+  commentId: T:SpessaSharp.Utils.BasePrinter.SHWrapper
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.BasePrinter.html
+  name: BasePrinter.SHWrapper
+  nameWithType: BasePrinter.SHWrapper
+  fullName: SpessaSharp.Utils.BasePrinter.SHWrapper
+  spec.csharp:
+  - uid: SpessaSharp.Utils.BasePrinter
+    name: BasePrinter
+    href: SpessaSharp.Utils.BasePrinter.html
+  - name: .
+  - uid: SpessaSharp.Utils.BasePrinter.SHWrapper
+    name: SHWrapper
+    href: SpessaSharp.Utils.BasePrinter.SHWrapper.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.BasePrinter
+    name: BasePrinter
+    href: SpessaSharp.Utils.BasePrinter.html
+  - name: .
+  - uid: SpessaSharp.Utils.BasePrinter.SHWrapper
+    name: SHWrapper
+    href: SpessaSharp.Utils.BasePrinter.SHWrapper.html
+- uid: SpessaSharp.Utils.MidiPrinter
+  commentId: T:SpessaSharp.Utils.MidiPrinter
+  href: SpessaSharp.Utils.MidiPrinter.html
+  name: MidiPrinter
+  nameWithType: MidiPrinter
+  fullName: SpessaSharp.Utils.MidiPrinter
+- uid: SpessaSharp.Utils.MidiPrinter.Options
+  commentId: T:SpessaSharp.Utils.MidiPrinter.Options
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.MidiPrinter.html
+  name: MidiPrinter.Options
+  nameWithType: MidiPrinter.Options
+  fullName: SpessaSharp.Utils.MidiPrinter.Options
+  spec.csharp:
+  - uid: SpessaSharp.Utils.MidiPrinter
+    name: MidiPrinter
+    href: SpessaSharp.Utils.MidiPrinter.html
+  - name: .
+  - uid: SpessaSharp.Utils.MidiPrinter.Options
+    name: Options
+    href: SpessaSharp.Utils.MidiPrinter.Options.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.MidiPrinter
+    name: MidiPrinter
+    href: SpessaSharp.Utils.MidiPrinter.html
+  - name: .
+  - uid: SpessaSharp.Utils.MidiPrinter.Options
+    name: Options
+    href: SpessaSharp.Utils.MidiPrinter.Options.html
+- uid: SpessaSharp.Utils.Params
+  commentId: T:SpessaSharp.Utils.Params
+  href: SpessaSharp.Utils.Params.html
+  name: Params
+  nameWithType: Params
+  fullName: SpessaSharp.Utils.Params
+- uid: SpessaSharp.Utils.Params.Type
+  commentId: T:SpessaSharp.Utils.Params.Type
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.Params.html
+  name: Params.Type
+  nameWithType: Params.Type
+  fullName: SpessaSharp.Utils.Params.Type
+  spec.csharp:
+  - uid: SpessaSharp.Utils.Params
+    name: Params
+    href: SpessaSharp.Utils.Params.html
+  - name: .
+  - uid: SpessaSharp.Utils.Params.Type
+    name: Type
+    href: SpessaSharp.Utils.Params.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.Params
+    name: Params
+    href: SpessaSharp.Utils.Params.html
+  - name: .
+  - uid: SpessaSharp.Utils.Params.Type
+    name: Type
+    href: SpessaSharp.Utils.Params.Type.html
+- uid: SpessaSharp.Utils.SoundBankPrinter
+  commentId: T:SpessaSharp.Utils.SoundBankPrinter
+  href: SpessaSharp.Utils.SoundBankPrinter.html
+  name: SoundBankPrinter
+  nameWithType: SoundBankPrinter
+  fullName: SpessaSharp.Utils.SoundBankPrinter
+- uid: SpessaSharp.Utils.SoundBankPrinter.Options
+  commentId: T:SpessaSharp.Utils.SoundBankPrinter.Options
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SoundBankPrinter.html
+  name: SoundBankPrinter.Options
+  nameWithType: SoundBankPrinter.Options
+  fullName: SpessaSharp.Utils.SoundBankPrinter.Options
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SoundBankPrinter
+    name: SoundBankPrinter
+    href: SpessaSharp.Utils.SoundBankPrinter.html
+  - name: .
+  - uid: SpessaSharp.Utils.SoundBankPrinter.Options
+    name: Options
+    href: SpessaSharp.Utils.SoundBankPrinter.Options.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SoundBankPrinter
+    name: SoundBankPrinter
+    href: SpessaSharp.Utils.SoundBankPrinter.html
+  - name: .
+  - uid: SpessaSharp.Utils.SoundBankPrinter.Options
+    name: Options
+    href: SpessaSharp.Utils.SoundBankPrinter.Options.html
+- uid: SpessaSharp.Utils.SpessaException
+  commentId: T:SpessaSharp.Utils.SpessaException
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SpessaException.html
+  name: SpessaException
+  nameWithType: SpessaException
+  fullName: SpessaSharp.Utils.SpessaException
+- uid: SpessaSharp.Utils.SpessaException.IMidiException
+  commentId: T:SpessaSharp.Utils.SpessaException.IMidiException
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SpessaException.html
+  name: SpessaException.IMidiException
+  nameWithType: SpessaException.IMidiException
+  fullName: SpessaSharp.Utils.SpessaException.IMidiException
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.IMidiException
+    name: IMidiException
+    href: SpessaSharp.Utils.SpessaException.IMidiException.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.IMidiException
+    name: IMidiException
+    href: SpessaSharp.Utils.SpessaException.IMidiException.html
+- uid: SpessaSharp.Utils.SpessaException.ISoundBankException
+  commentId: T:SpessaSharp.Utils.SpessaException.ISoundBankException
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SpessaException.html
+  name: SpessaException.ISoundBankException
+  nameWithType: SpessaException.ISoundBankException
+  fullName: SpessaSharp.Utils.SpessaException.ISoundBankException
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ISoundBankException
+    name: ISoundBankException
+    href: SpessaSharp.Utils.SpessaException.ISoundBankException.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ISoundBankException
+    name: ISoundBankException
+    href: SpessaSharp.Utils.SpessaException.ISoundBankException.html
+- uid: SpessaSharp.Utils.SpessaException.ISynthesizerException
+  commentId: T:SpessaSharp.Utils.SpessaException.ISynthesizerException
+  href: SpessaSharp.Utils.SpessaException.html
+  name: SpessaException.ISynthesizerException
+  nameWithType: SpessaException.ISynthesizerException
+  fullName: SpessaSharp.Utils.SpessaException.ISynthesizerException
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ISynthesizerException
+    name: ISynthesizerException
+    href: SpessaSharp.Utils.SpessaException.ISynthesizerException.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ISynthesizerException
+    name: ISynthesizerException
+    href: SpessaSharp.Utils.SpessaException.ISynthesizerException.html
+- uid: SpessaSharp.Utils.SpessaException.Parser
+  commentId: T:SpessaSharp.Utils.SpessaException.Parser
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SpessaException.html
+  name: SpessaException.Parser
+  nameWithType: SpessaException.Parser
+  fullName: SpessaSharp.Utils.SpessaException.Parser
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.Parser
+    name: Parser
+    href: SpessaSharp.Utils.SpessaException.Parser.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.Parser
+    name: Parser
+    href: SpessaSharp.Utils.SpessaException.Parser.html
+- uid: SpessaSharp.Utils.SpessaException.ParserMidi
+  commentId: T:SpessaSharp.Utils.SpessaException.ParserMidi
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SpessaException.html
+  name: SpessaException.ParserMidi
+  nameWithType: SpessaException.ParserMidi
+  fullName: SpessaSharp.Utils.SpessaException.ParserMidi
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ParserMidi
+    name: ParserMidi
+    href: SpessaSharp.Utils.SpessaException.ParserMidi.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ParserMidi
+    name: ParserMidi
+    href: SpessaSharp.Utils.SpessaException.ParserMidi.html
+- uid: SpessaSharp.Utils.SpessaException.ParserSoundBank
+  commentId: T:SpessaSharp.Utils.SpessaException.ParserSoundBank
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SpessaException.html
+  name: SpessaException.ParserSoundBank
+  nameWithType: SpessaException.ParserSoundBank
+  fullName: SpessaSharp.Utils.SpessaException.ParserSoundBank
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ParserSoundBank
+    name: ParserSoundBank
+    href: SpessaSharp.Utils.SpessaException.ParserSoundBank.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SpessaException
+    name: SpessaException
+    href: SpessaSharp.Utils.SpessaException.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaException.ParserSoundBank
+    name: ParserSoundBank
+    href: SpessaSharp.Utils.SpessaException.ParserSoundBank.html
+- uid: SpessaSharp.Utils.SpessaLog
+  commentId: T:SpessaSharp.Utils.SpessaLog
+  href: SpessaSharp.Utils.SpessaLog.html
+  name: SpessaLog
+  nameWithType: SpessaLog
+  fullName: SpessaSharp.Utils.SpessaLog
+- uid: SpessaSharp.Utils.SpessaUtil
+  commentId: T:SpessaSharp.Utils.SpessaUtil
+  href: SpessaSharp.Utils.SpessaUtil.html
+  name: SpessaUtil
+  nameWithType: SpessaUtil
+  fullName: SpessaSharp.Utils.SpessaUtil
+- uid: SpessaSharp.Utils.SpessaUtil.FileKind
+  commentId: T:SpessaSharp.Utils.SpessaUtil.FileKind
+  parent: SpessaSharp.Utils
+  href: SpessaSharp.Utils.SpessaUtil.html
+  name: SpessaUtil.FileKind
+  nameWithType: SpessaUtil.FileKind
+  fullName: SpessaSharp.Utils.SpessaUtil.FileKind
+  spec.csharp:
+  - uid: SpessaSharp.Utils.SpessaUtil
+    name: SpessaUtil
+    href: SpessaSharp.Utils.SpessaUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaUtil.FileKind
+    name: FileKind
+    href: SpessaSharp.Utils.SpessaUtil.FileKind.html
+  spec.vb:
+  - uid: SpessaSharp.Utils.SpessaUtil
+    name: SpessaUtil
+    href: SpessaSharp.Utils.SpessaUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.SpessaUtil.FileKind
+    name: FileKind
+    href: SpessaSharp.Utils.SpessaUtil.FileKind.html
+- uid: SpessaSharp.Utils
+  commentId: N:SpessaSharp.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.Utils
+  nameWithType: SpessaSharp.Utils
+  fullName: SpessaSharp.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html

@@ -1,0 +1,156 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  id: AutoWahFX.FilterType
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.BPF
+  - SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.LPF
+  langs:
+  - csharp
+  - vb
+  name: AutoWahFX.FilterType
+  nameWithType: AutoWahFX.FilterType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FilterType
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  syntax:
+    content: public enum AutoWahFX.FilterType
+    content.vb: Public Enum AutoWahFX.FilterType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.LPF
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.LPF
+  id: LPF
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  langs:
+  - csharp
+  - vb
+  name: LPF
+  nameWithType: AutoWahFX.FilterType.LPF
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.LPF
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LPF
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  summary: The wah effect will be applied over a wide frequency range.
+  example: []
+  syntax:
+    content: LPF = 0
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.BPF
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.BPF
+  id: BPF
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  langs:
+  - csharp
+  - vb
+  name: BPF
+  nameWithType: AutoWahFX.FilterType.BPF
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.BPF
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BPF
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Insertion/AutoWahFX.cs
+    startLine: 21
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  summary: The wah effect will be applied over a narrow frequency range.
+  example: []
+  syntax:
+    content: BPF = 1
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Insertion
+  href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.html
+  name: AutoWahFX.FilterType
+  nameWithType: AutoWahFX.FilterType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX
+    name: AutoWahFX
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+    name: FilterType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX
+    name: AutoWahFX
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType
+    name: FilterType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Insertion.AutoWahFX.FilterType.html

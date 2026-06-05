@@ -1,0 +1,442 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Sequencer.Event.CbTimeChange
+  commentId: T:SpessaSharp.Sequencer.Event.CbTimeChange
+  id: Event.CbTimeChange
+  parent: SpessaSharp.Sequencer
+  children:
+  - SpessaSharp.Sequencer.Event.CbTimeChange.#ctor(System.Double)
+  - SpessaSharp.Sequencer.Event.CbTimeChange.NewTime
+  langs:
+  - csharp
+  - vb
+  name: Event.CbTimeChange
+  nameWithType: Event.CbTimeChange
+  fullName: SpessaSharp.Sequencer.Event.CbTimeChange
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CbTimeChange
+    path: ../SpessaSharp/Sequencer/Event.cs
+    startLine: 36
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Called when the time is changed. It also gets called when a song gets changed.
+  example: []
+  syntax:
+    content: 'public readonly record struct Event.CbTimeChange : IEquatable<Event.CbTimeChange>'
+    content.vb: Public Structure [Event].CbTimeChange Implements IEquatable(Of Event.CbTimeChange)
+  implements:
+  - System.IEquatable{SpessaSharp.Sequencer.Event.CbTimeChange}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Sequencer.Event.CbTimeChange.#ctor(System.Double)
+  commentId: M:SpessaSharp.Sequencer.Event.CbTimeChange.#ctor(System.Double)
+  id: '#ctor(System.Double)'
+  parent: SpessaSharp.Sequencer.Event.CbTimeChange
+  langs:
+  - csharp
+  - vb
+  name: CbTimeChange(double)
+  nameWithType: Event.CbTimeChange.CbTimeChange(double)
+  fullName: SpessaSharp.Sequencer.Event.CbTimeChange.CbTimeChange(double)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Sequencer/Event.cs
+    startLine: 36
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Called when the time is changed. It also gets called when a song gets changed.
+  example: []
+  syntax:
+    content: public CbTimeChange(double NewTime)
+    parameters:
+    - id: NewTime
+      type: System.Double
+      description: The new time in seconds.
+    content.vb: Public Sub New(NewTime As Double)
+  overload: SpessaSharp.Sequencer.Event.CbTimeChange.#ctor*
+  nameWithType.vb: Event.CbTimeChange.New(Double)
+  fullName.vb: SpessaSharp.Sequencer.Event.CbTimeChange.New(Double)
+  name.vb: New(Double)
+- uid: SpessaSharp.Sequencer.Event.CbTimeChange.NewTime
+  commentId: P:SpessaSharp.Sequencer.Event.CbTimeChange.NewTime
+  id: NewTime
+  parent: SpessaSharp.Sequencer.Event.CbTimeChange
+  langs:
+  - csharp
+  - vb
+  name: NewTime
+  nameWithType: Event.CbTimeChange.NewTime
+  fullName: SpessaSharp.Sequencer.Event.CbTimeChange.NewTime
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NewTime
+    path: ../SpessaSharp/Sequencer/Event.cs
+    startLine: 36
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The new time in seconds.
+  example: []
+  syntax:
+    content: public double NewTime { get; init; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public Property NewTime As Double
+  overload: SpessaSharp.Sequencer.Event.CbTimeChange.NewTime*
+references:
+- uid: SpessaSharp.Sequencer
+  commentId: N:SpessaSharp.Sequencer
+  href: SpessaSharp.html
+  name: SpessaSharp.Sequencer
+  nameWithType: SpessaSharp.Sequencer
+  fullName: SpessaSharp.Sequencer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Sequencer
+    name: Sequencer
+    href: SpessaSharp.Sequencer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Sequencer
+    name: Sequencer
+    href: SpessaSharp.Sequencer.html
+- uid: System.IEquatable{SpessaSharp.Sequencer.Event.CbTimeChange}
+  commentId: T:System.IEquatable{SpessaSharp.Sequencer.Event.CbTimeChange}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Event.CbTimeChange>
+  nameWithType: IEquatable<Event.CbTimeChange>
+  fullName: System.IEquatable<SpessaSharp.Sequencer.Event.CbTimeChange>
+  nameWithType.vb: IEquatable(Of Event.CbTimeChange)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Sequencer.Event.CbTimeChange)
+  name.vb: IEquatable(Of Event.CbTimeChange)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Sequencer.Event
+    name: Event
+    href: SpessaSharp.Sequencer.Event.html
+  - name: .
+  - uid: SpessaSharp.Sequencer.Event.CbTimeChange
+    name: CbTimeChange
+    href: SpessaSharp.Sequencer.Event.CbTimeChange.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Sequencer.Event
+    name: Event
+    href: SpessaSharp.Sequencer.Event.html
+  - name: .
+  - uid: SpessaSharp.Sequencer.Event.CbTimeChange
+    name: CbTimeChange
+    href: SpessaSharp.Sequencer.Event.CbTimeChange.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Sequencer.Event.CbTimeChange.#ctor*
+  commentId: Overload:SpessaSharp.Sequencer.Event.CbTimeChange.#ctor
+  href: SpessaSharp.Sequencer.Event.CbTimeChange.html#SpessaSharp_Sequencer_Event_CbTimeChange__ctor_System_Double_
+  name: CbTimeChange
+  nameWithType: Event.CbTimeChange.CbTimeChange
+  fullName: SpessaSharp.Sequencer.Event.CbTimeChange.CbTimeChange
+  nameWithType.vb: Event.CbTimeChange.New
+  fullName.vb: SpessaSharp.Sequencer.Event.CbTimeChange.New
+  name.vb: New
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: SpessaSharp.Sequencer.Event.CbTimeChange.NewTime*
+  commentId: Overload:SpessaSharp.Sequencer.Event.CbTimeChange.NewTime
+  href: SpessaSharp.Sequencer.Event.CbTimeChange.html#SpessaSharp_Sequencer_Event_CbTimeChange_NewTime
+  name: NewTime
+  nameWithType: Event.CbTimeChange.NewTime
+  fullName: SpessaSharp.Sequencer.Event.CbTimeChange.NewTime

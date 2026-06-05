@@ -1,0 +1,827 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  id: MidiEditor.ChannelModification
+  parent: SpessaSharp.MIDI.Utils
+  children:
+  - SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Controllers
+  - SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.FineTune
+  - SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.KeyShift
+  - SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.MidiParameters
+  - SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Patch
+  langs:
+  - csharp
+  - vb
+  name: MidiEditor.ChannelModification
+  nameWithType: MidiEditor.ChannelModification
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelModification
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 93
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: ''
+  example: []
+  syntax:
+    content: public sealed class MidiEditor.ChannelModification
+    content.vb: Public NotInheritable Class MidiEditor.ChannelModification
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Controllers
+  commentId: F:SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Controllers
+  id: Controllers
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  langs:
+  - csharp
+  - vb
+  name: Controllers
+  nameWithType: MidiEditor.ChannelModification.Controllers
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Controllers
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Controllers
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 106
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    All controllers that should be modified for this channel.
+
+
+    <ul><li><b>Key</b>: the MIDI controller number.</li><li><b>Value</b>:
+
+
+    <ul><li><b>Clear</b> - all controller changes for this controller are removed.</li><li><b>Int</b> - clear + sets the new controller at the start of the song, effectively locking them to the set value.</li></ul></li></ul>
+  example: []
+  syntax:
+    content: public Dictionary<Midi.CC, MidiEditor.Parameter<int>>? Controllers
+    return:
+      type: System.Collections.Generic.Dictionary{SpessaSharp.MIDI.Midi.CC,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Int32}}
+    content.vb: Public Controllers As Dictionary(Of Midi.CC, MidiEditor.Parameter(Of Integer))
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Patch
+  commentId: F:SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Patch
+  id: Patch
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  langs:
+  - csharp
+  - vb
+  name: Patch
+  nameWithType: MidiEditor.ChannelModification.Patch
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.Patch
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Patch
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 115
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The new program of this channel.
+
+
+    <ul><li><b>Clear</b> - all program changes for this channel are removed.</li><li><b>MidiPatch</b> - clear + sets the new patch according to the MIDI system at the start of the sequence.</li></ul>
+  example: []
+  syntax:
+    content: public MidiEditor.Parameter<MidiPatch>? Patch
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.MidiPatch}
+    content.vb: Public Patch As MidiEditor.Parameter(Of MidiPatch)
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.MidiParameters
+  commentId: F:SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.MidiParameters
+  id: MidiParameters
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  langs:
+  - csharp
+  - vb
+  name: MidiParameters
+  nameWithType: MidiEditor.ChannelModification.MidiParameters
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.MidiParameters
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiParameters
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 131
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The new MIDI parameters of this channel.
+
+
+    <ul><li><b>Key</b>: the MIDI parameter name.</li><li><b>Value</b>:
+
+
+    <ul><li><b>Clear</b> - all changes for this parameter are removed.</li><li><b>Specific Value</b> - clear + sets the new parameter at the start of the song, effectively locking them to the set value.</li></ul>
+
+    </li></ul>
+  example: []
+  syntax:
+    content: public Dictionary<ChannelMidiParameter.Type, MidiEditor.Parameter<ChannelMidiParameter>>? MidiParameters
+    return:
+      type: System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}}
+    content.vb: Public MidiParameters As Dictionary(Of ChannelMidiParameter.Type, MidiEditor.Parameter(Of ChannelMidiParameter))
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.KeyShift
+  commentId: F:SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.KeyShift
+  id: KeyShift
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  langs:
+  - csharp
+  - vb
+  name: KeyShift
+  nameWithType: MidiEditor.ChannelModification.KeyShift
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.KeyShift
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: KeyShift
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 138
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The channel key shift in semitones. Note on/off numbers are shifted.
+
+    This differs from the `keyShift` MIDI Parameter in that it shifts the actual note numbers,
+
+    and doesn't delete or overwrite existing shifts.
+  example: []
+  syntax:
+    content: public int? KeyShift
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public KeyShift As Integer?
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.FineTune
+  commentId: F:SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.FineTune
+  id: FineTune
+  parent: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification
+  langs:
+  - csharp
+  - vb
+  name: FineTune
+  nameWithType: MidiEditor.ChannelModification.FineTune
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.ChannelModification.FineTune
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiEditor.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FineTune
+    path: ../SpessaSharp/MIDI/Utils/MidiEditor.cs
+    startLine: 146
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  summary: >-
+    The channel tuning in cents. Tuned using RPN Fine Tune. Range is <b>[-100; 99.986]</b> cents.
+
+    This differs from the `fineTune` MIDI Parameter
+
+    in that it is relative to the tuning applied in the MIDI file,
+
+    and it does not overwrite it.
+  example: []
+  syntax:
+    content: public float? FineTune
+    return:
+      type: System.Nullable{System.Single}
+    content.vb: Public FineTune As Single?
+references:
+- uid: SpessaSharp.MIDI.Utils
+  commentId: N:SpessaSharp.MIDI.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Utils
+  nameWithType: SpessaSharp.MIDI.Utils
+  fullName: SpessaSharp.MIDI.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.Dictionary{SpessaSharp.MIDI.Midi.CC,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Int32}}
+  commentId: T:System.Collections.Generic.Dictionary{SpessaSharp.MIDI.Midi.CC,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{System.Int32}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<Midi.CC, MidiEditor.Parameter<int>>
+  nameWithType: Dictionary<Midi.CC, MidiEditor.Parameter<int>>
+  fullName: System.Collections.Generic.Dictionary<SpessaSharp.MIDI.Midi.CC, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<int>>
+  nameWithType.vb: Dictionary(Of Midi.CC, MidiEditor.Parameter(Of Integer))
+  fullName.vb: System.Collections.Generic.Dictionary(Of SpessaSharp.MIDI.Midi.CC, SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of Integer))
+  name.vb: Dictionary(Of Midi.CC, MidiEditor.Parameter(Of Integer))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.MidiPatch}
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.MIDI.MidiPatch}
+  parent: SpessaSharp.MIDI.Utils
+  definition: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<MidiPatch>
+  nameWithType: MidiEditor.Parameter<MidiPatch>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.MIDI.MidiPatch>
+  nameWithType.vb: MidiEditor.Parameter(Of MidiPatch)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.MIDI.MidiPatch)
+  name.vb: MidiEditor.Parameter(Of MidiPatch)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: )
+- uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  commentId: T:SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+  parent: SpessaSharp.MIDI.Utils
+  href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  name: MidiEditor.Parameter<T>
+  nameWithType: MidiEditor.Parameter<T>
+  fullName: SpessaSharp.MIDI.Utils.MidiEditor.Parameter<T>
+  nameWithType.vb: MidiEditor.Parameter(Of T)
+  fullName.vb: SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of T)
+  name.vb: MidiEditor.Parameter(Of T)
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}}
+  commentId: T:System.Collections.Generic.Dictionary{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type,SpessaSharp.MIDI.Utils.MidiEditor.Parameter{SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<ChannelMidiParameter.Type, MidiEditor.Parameter<ChannelMidiParameter>>
+  nameWithType: Dictionary<ChannelMidiParameter.Type, MidiEditor.Parameter<ChannelMidiParameter>>
+  fullName: System.Collections.Generic.Dictionary<SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, SpessaSharp.MIDI.Utils.MidiEditor.Parameter<SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter>>
+  nameWithType.vb: Dictionary(Of ChannelMidiParameter.Type, MidiEditor.Parameter(Of ChannelMidiParameter))
+  fullName.vb: System.Collections.Generic.Dictionary(Of SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type, SpessaSharp.MIDI.Utils.MidiEditor.Parameter(Of SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter))
+  name.vb: Dictionary(Of ChannelMidiParameter.Type, MidiEditor.Parameter(Of ChannelMidiParameter))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor
+    name: MidiEditor
+    href: SpessaSharp.MIDI.Utils.MidiEditor.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiEditor.Parameter`1
+    name: Parameter
+    href: SpessaSharp.MIDI.Utils.MidiEditor.Parameter-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: )
+  - name: )
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Nullable{System.Single}
+  commentId: T:System.Nullable{System.Single}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float?
+  nameWithType: float?
+  fullName: float?
+  nameWithType.vb: Single?
+  fullName.vb: Single?
+  name.vb: Single?
+  spec.csharp:
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '?'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '?'

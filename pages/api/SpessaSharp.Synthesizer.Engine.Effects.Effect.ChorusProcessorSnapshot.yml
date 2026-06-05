@@ -1,0 +1,625 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  id: Effect.ChorusProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb
+  langs:
+  - csharp
+  - vb
+  name: Effect.ChorusProcessorSnapshot
+  nameWithType: Effect.ChorusProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChorusProcessorSnapshot
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 117
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: 'public class Effect.ChorusProcessorSnapshot : Effect.BaseEffect'
+    content.vb: Public Class Effect.ChorusProcessorSnapshot Inherits Effect.BaseEffect
+  inheritance:
+  - System.Object
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  derivedClasses:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+  inheritedMembers:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback
+  id: Feedback
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Feedback
+  nameWithType: Effect.ChorusProcessorSnapshot.Feedback
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Feedback
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 125
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the level at which the chorus sound is re-input (fed back) into the
+
+    chorus. By using feedback, a denser chorus sound can be created.
+
+    Higher values result in a greater feedback level.
+  example: []
+  syntax:
+    content: public virtual int Feedback { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property Feedback As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay
+  id: Delay
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Delay
+  nameWithType: Effect.ChorusProcessorSnapshot.Delay
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Delay
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 131
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the delay time of the chorus effect.
+  example: []
+  syntax:
+    content: public virtual int Delay { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property Delay As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate
+  id: Rate
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Rate
+  nameWithType: Effect.ChorusProcessorSnapshot.Rate
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Rate
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 138
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the speed (frequency) at which the chorus sound is modulated.
+
+    Higher values result in faster modulation.
+  example: []
+  syntax:
+    content: public virtual int Rate { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property Rate As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth
+  id: Depth
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Depth
+  nameWithType: Effect.ChorusProcessorSnapshot.Depth
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Depth
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 145
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the depth at which the chorus sound is modulated.
+
+    Higher values result in deeper modulation.
+  example: []
+  syntax:
+    content: public virtual int Depth { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property Depth As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb
+  id: SendLevelToReverb
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: SendLevelToReverb
+  nameWithType: Effect.ChorusProcessorSnapshot.SendLevelToReverb
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SendLevelToReverb
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 152
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the amount of chorus sound that will be sent to the reverb.
+
+    Higher values result in more sound being sent.
+  example: []
+  syntax:
+    content: public virtual int SendLevelToReverb { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property SendLevelToReverb As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay
+  id: SendLevelToDelay
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: SendLevelToDelay
+  nameWithType: Effect.ChorusProcessorSnapshot.SendLevelToDelay
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SendLevelToDelay
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 159
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: >-
+    0-127<br />
+
+    This parameter sets the amount of chorus sound that will be sent to the delay.
+
+    Higher values result in more sound being sent.
+  example: []
+  syntax:
+    content: public virtual int SendLevelToDelay { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property SendLevelToDelay As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay*
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.BaseEffect
+  nameWithType: Effect.BaseEffect
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+    name: BaseEffect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+    name: BaseEffect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_BaseEffect_Level
+  name: Level
+  nameWithType: Effect.BaseEffect.Level
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.Level
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_BaseEffect_PreLowPass
+  name: PreLowPass
+  nameWithType: Effect.BaseEffect.PreLowPass
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.PreLowPass
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot_Feedback
+  name: Feedback
+  nameWithType: Effect.ChorusProcessorSnapshot.Feedback
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Feedback
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot_Delay
+  name: Delay
+  nameWithType: Effect.ChorusProcessorSnapshot.Delay
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Delay
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot_Rate
+  name: Rate
+  nameWithType: Effect.ChorusProcessorSnapshot.Rate
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Rate
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot_Depth
+  name: Depth
+  nameWithType: Effect.ChorusProcessorSnapshot.Depth
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.Depth
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot_SendLevelToReverb
+  name: SendLevelToReverb
+  nameWithType: Effect.ChorusProcessorSnapshot.SendLevelToReverb
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToReverb
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_ChorusProcessorSnapshot_SendLevelToDelay
+  name: SendLevelToDelay
+  nameWithType: Effect.ChorusProcessorSnapshot.SendLevelToDelay
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.SendLevelToDelay

@@ -1,0 +1,935 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.MidiPatch.Full
+  commentId: T:SpessaSharp.MIDI.MidiPatch.Full
+  id: MidiPatch.Full
+  parent: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.MidiPatch.Full.#ctor(SpessaSharp.MIDI.MidiPatch,System.String,System.Boolean)
+  - SpessaSharp.MIDI.MidiPatch.Full.BankLSB
+  - SpessaSharp.MIDI.MidiPatch.Full.BankMSB
+  - SpessaSharp.MIDI.MidiPatch.Full.Data
+  - SpessaSharp.MIDI.MidiPatch.Full.From(System.ReadOnlySpan{System.Char})
+  - SpessaSharp.MIDI.MidiPatch.Full.IsDrum
+  - SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum
+  - SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum
+  - SpessaSharp.MIDI.MidiPatch.Full.Name
+  - SpessaSharp.MIDI.MidiPatch.Full.Program
+  - SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString
+  langs:
+  - csharp
+  - vb
+  name: MidiPatch.Full
+  nameWithType: MidiPatch.Full
+  fullName: SpessaSharp.MIDI.MidiPatch.Full
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Full
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: ''
+  example: []
+  syntax:
+    content: 'public readonly record struct MidiPatch.Full : IEquatable<MidiPatch.Full>'
+    content.vb: Public Structure MidiPatch.Full Implements IEquatable(Of MidiPatch.Full)
+  implements:
+  - System.IEquatable{SpessaSharp.MIDI.MidiPatch.Full}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.MIDI.MidiPatch.Full.#ctor(SpessaSharp.MIDI.MidiPatch,System.String,System.Boolean)
+  commentId: M:SpessaSharp.MIDI.MidiPatch.Full.#ctor(SpessaSharp.MIDI.MidiPatch,System.String,System.Boolean)
+  id: '#ctor(SpessaSharp.MIDI.MidiPatch,System.String,System.Boolean)'
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: Full(MidiPatch, string, bool)
+  nameWithType: MidiPatch.Full.Full(MidiPatch, string, bool)
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Full(SpessaSharp.MIDI.MidiPatch, string, bool)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: ''
+  example: []
+  syntax:
+    content: public Full(MidiPatch Data, string Name, bool IsDrum)
+    parameters:
+    - id: Data
+      type: SpessaSharp.MIDI.MidiPatch
+      description: The Patch itself.
+    - id: Name
+      type: System.String
+      description: The name of the patch.
+    - id: IsDrum
+      type: System.Boolean
+      description: >-
+        Indicates if this patch is a drum patch.
+
+        This is the recommended way of determining if this is a drum preset.<br />
+
+        If <b>IsDrum</b> is true, then this is a GM/GS drum preset.<br />
+
+        If <b>IsDrum</b> is false, then this is a GM2/XG drum preset.
+    content.vb: Public Sub New(Data As MidiPatch, Name As String, IsDrum As Boolean)
+  overload: SpessaSharp.MIDI.MidiPatch.Full.#ctor*
+  nameWithType.vb: MidiPatch.Full.New(MidiPatch, String, Boolean)
+  fullName.vb: SpessaSharp.MIDI.MidiPatch.Full.New(SpessaSharp.MIDI.MidiPatch, String, Boolean)
+  name.vb: New(MidiPatch, String, Boolean)
+- uid: SpessaSharp.MIDI.MidiPatch.Full.Data
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.Data
+  id: Data
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: MidiPatch.Full.Data
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Data
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Data
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The Patch itself.
+  example: []
+  syntax:
+    content: public MidiPatch Data { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.MidiPatch
+    content.vb: Public Property Data As MidiPatch
+  overload: SpessaSharp.MIDI.MidiPatch.Full.Data*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.Name
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.Name
+  id: Name
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: MidiPatch.Full.Name
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Name
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Name
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The name of the patch.
+  example: []
+  syntax:
+    content: public string Name { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: SpessaSharp.MIDI.MidiPatch.Full.Name*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.IsDrum
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.IsDrum
+  id: IsDrum
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: IsDrum
+  nameWithType: MidiPatch.Full.IsDrum
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.IsDrum
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: IsDrum
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: >-
+    Indicates if this patch is a drum patch.
+
+    This is the recommended way of determining if this is a drum preset.<br />
+
+    If <b>IsDrum</b> is true, then this is a GM/GS drum preset.<br />
+
+    If <b>IsDrum</b> is false, then this is a GM2/XG drum preset.
+  example: []
+  syntax:
+    content: public bool IsDrum { get; init; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsDrum As Boolean
+  overload: SpessaSharp.MIDI.MidiPatch.Full.IsDrum*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.BankMSB
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.BankMSB
+  id: BankMSB
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: BankMSB
+  nameWithType: MidiPatch.Full.BankMSB
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.BankMSB
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BankMSB
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 27
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public int BankMSB { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property BankMSB As Integer
+  overload: SpessaSharp.MIDI.MidiPatch.Full.BankMSB*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.BankLSB
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.BankLSB
+  id: BankLSB
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: BankLSB
+  nameWithType: MidiPatch.Full.BankLSB
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.BankLSB
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: BankLSB
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 28
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public int BankLSB { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property BankLSB As Integer
+  overload: SpessaSharp.MIDI.MidiPatch.Full.BankLSB*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.Program
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.Program
+  id: Program
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: Program
+  nameWithType: MidiPatch.Full.Program
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Program
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Program
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 29
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public int Program { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Program As Integer
+  overload: SpessaSharp.MIDI.MidiPatch.Full.Program*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum
+  id: IsGMGSDrum
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: IsGMGSDrum
+  nameWithType: MidiPatch.Full.IsGMGSDrum
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: IsGMGSDrum
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 30
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public bool IsGMGSDrum { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsGMGSDrum As Boolean
+  overload: SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum
+  commentId: P:SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum
+  id: IsXGDrum
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: IsXGDrum
+  nameWithType: MidiPatch.Full.IsXGDrum
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: IsXGDrum
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 32
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: Checks if the given patch is an XG/GM2 drum patch.
+  example: []
+  syntax:
+    content: public bool IsXGDrum { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsXGDrum As Boolean
+  overload: SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString
+  commentId: M:SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString
+  id: ToFullMidiString
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: ToFullMidiString()
+  nameWithType: MidiPatch.Full.ToFullMidiString()
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ToFullMidiString
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 40
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: >-
+    Converts a given `MIDIPatchFull`to string.
+
+    The format is:<br />
+
+    - `[MIDIPatch string] D [name]` for `isDrum` set to `true`.<br />
+
+    - `[MIDIPatch string] M [name]` for `isDrum` set to `false`.
+  example: []
+  syntax:
+    content: public string ToFullMidiString()
+    return:
+      type: System.String
+    content.vb: Public Function ToFullMidiString() As String
+  overload: SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString*
+- uid: SpessaSharp.MIDI.MidiPatch.Full.From(System.ReadOnlySpan{System.Char})
+  commentId: M:SpessaSharp.MIDI.MidiPatch.Full.From(System.ReadOnlySpan{System.Char})
+  id: From(System.ReadOnlySpan{System.Char})
+  parent: SpessaSharp.MIDI.MidiPatch.Full
+  langs:
+  - csharp
+  - vb
+  name: From(ReadOnlySpan<char>)
+  nameWithType: MidiPatch.Full.From(ReadOnlySpan<char>)
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.From(System.ReadOnlySpan<char>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiPatch.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: From
+    path: ../SpessaSharp/MIDI/MidiPatch.cs
+    startLine: 46
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: Gets a named MIDI patch from a string.
+  example: []
+  syntax:
+    content: public static MidiPatch.Full From(ReadOnlySpan<char> midiString)
+    parameters:
+    - id: midiString
+      type: System.ReadOnlySpan{System.Char}
+      description: ''
+    return:
+      type: SpessaSharp.MIDI.MidiPatch.Full
+    content.vb: Public Shared Function From(midiString As ReadOnlySpan(Of Char)) As MidiPatch.Full
+  overload: SpessaSharp.MIDI.MidiPatch.Full.From*
+  exceptions:
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: ''
+  nameWithType.vb: MidiPatch.Full.From(ReadOnlySpan(Of Char))
+  fullName.vb: SpessaSharp.MIDI.MidiPatch.Full.From(System.ReadOnlySpan(Of Char))
+  name.vb: From(ReadOnlySpan(Of Char))
+references:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: System.IEquatable{SpessaSharp.MIDI.MidiPatch.Full}
+  commentId: T:System.IEquatable{SpessaSharp.MIDI.MidiPatch.Full}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<MidiPatch.Full>
+  nameWithType: IEquatable<MidiPatch.Full>
+  fullName: System.IEquatable<SpessaSharp.MIDI.MidiPatch.Full>
+  nameWithType.vb: IEquatable(Of MidiPatch.Full)
+  fullName.vb: System.IEquatable(Of SpessaSharp.MIDI.MidiPatch.Full)
+  name.vb: IEquatable(Of MidiPatch.Full)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiPatch.Full
+    name: Full
+    href: SpessaSharp.MIDI.MidiPatch.Full.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiPatch.Full
+    name: Full
+    href: SpessaSharp.MIDI.MidiPatch.Full.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.MIDI.MidiPatch.Full.#ctor*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.#ctor
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full__ctor_SpessaSharp_MIDI_MidiPatch_System_String_System_Boolean_
+  name: Full
+  nameWithType: MidiPatch.Full.Full
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Full
+  nameWithType.vb: MidiPatch.Full.New
+  fullName.vb: SpessaSharp.MIDI.MidiPatch.Full.New
+  name.vb: New
+- uid: SpessaSharp.MIDI.MidiPatch
+  commentId: T:SpessaSharp.MIDI.MidiPatch
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiPatch.html
+  name: MidiPatch
+  nameWithType: MidiPatch
+  fullName: SpessaSharp.MIDI.MidiPatch
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.MIDI.MidiPatch.Full.Data*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.Data
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_Data
+  name: Data
+  nameWithType: MidiPatch.Full.Data
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Data
+- uid: SpessaSharp.MIDI.MidiPatch.Full.Name*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.Name
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_Name
+  name: Name
+  nameWithType: MidiPatch.Full.Name
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Name
+- uid: SpessaSharp.MIDI.MidiPatch.Full.IsDrum*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.IsDrum
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_IsDrum
+  name: IsDrum
+  nameWithType: MidiPatch.Full.IsDrum
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.IsDrum
+- uid: SpessaSharp.MIDI.MidiPatch.Full.BankMSB*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.BankMSB
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_BankMSB
+  name: BankMSB
+  nameWithType: MidiPatch.Full.BankMSB
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.BankMSB
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.MIDI.MidiPatch.Full.BankLSB*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.BankLSB
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_BankLSB
+  name: BankLSB
+  nameWithType: MidiPatch.Full.BankLSB
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.BankLSB
+- uid: SpessaSharp.MIDI.MidiPatch.Full.Program*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.Program
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_Program
+  name: Program
+  nameWithType: MidiPatch.Full.Program
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.Program
+- uid: SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_IsGMGSDrum
+  name: IsGMGSDrum
+  nameWithType: MidiPatch.Full.IsGMGSDrum
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.IsGMGSDrum
+- uid: SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_IsXGDrum
+  name: IsXGDrum
+  nameWithType: MidiPatch.Full.IsXGDrum
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.IsXGDrum
+- uid: SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_ToFullMidiString
+  name: ToFullMidiString
+  nameWithType: MidiPatch.Full.ToFullMidiString
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.ToFullMidiString
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: SpessaSharp.MIDI.MidiPatch.Full.From*
+  commentId: Overload:SpessaSharp.MIDI.MidiPatch.Full.From
+  href: SpessaSharp.MIDI.MidiPatch.Full.html#SpessaSharp_MIDI_MidiPatch_Full_From_System_ReadOnlySpan_System_Char__
+  name: From
+  nameWithType: MidiPatch.Full.From
+  fullName: SpessaSharp.MIDI.MidiPatch.Full.From
+- uid: System.ReadOnlySpan{System.Char}
+  commentId: T:System.ReadOnlySpan{System.Char}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<char>
+  nameWithType: ReadOnlySpan<char>
+  fullName: System.ReadOnlySpan<char>
+  nameWithType.vb: ReadOnlySpan(Of Char)
+  fullName.vb: System.ReadOnlySpan(Of Char)
+  name.vb: ReadOnlySpan(Of Char)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Char
+    name: char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Char
+    name: Char
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.char
+  - name: )
+- uid: SpessaSharp.MIDI.MidiPatch.Full
+  commentId: T:SpessaSharp.MIDI.MidiPatch.Full
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiPatch.html
+  name: MidiPatch.Full
+  nameWithType: MidiPatch.Full
+  fullName: SpessaSharp.MIDI.MidiPatch.Full
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiPatch.Full
+    name: Full
+    href: SpessaSharp.MIDI.MidiPatch.Full.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiPatch.Full
+    name: Full
+    href: SpessaSharp.MIDI.MidiPatch.Full.html
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

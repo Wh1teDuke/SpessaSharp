@@ -1,0 +1,2390 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.SoundBank
+  commentId: T:SpessaSharp.SoundBank.SoundBank
+  id: SoundBank
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.SoundBank.#ctor(SpessaSharp.SoundBank.SoundBank.BankType)
+  - SpessaSharp.SoundBank.SoundBank.AddCompletePresets(System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset})
+  - SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicInstrument)
+  - SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicPreset)
+  - SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicSample)
+  - SpessaSharp.SoundBank.SoundBank.CustomDefaultModulators
+  - SpessaSharp.SoundBank.SoundBank.DefaultModulators
+  - SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicInstrument)
+  - SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicPreset)
+  - SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicSample)
+  - SpessaSharp.SoundBank.SoundBank.Destroy
+  - SpessaSharp.SoundBank.SoundBank.Flush
+  - SpessaSharp.SoundBank.SoundBank.From(SpessaSharp.SoundBank.SoundBank)
+  - SpessaSharp.SoundBank.SoundBank.From(System.ArraySegment{System.Byte})
+  - SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+  - SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+  - SpessaSharp.SoundBank.SoundBank.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+  - SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile
+  - SpessaSharp.SoundBank.SoundBank.Info
+  - SpessaSharp.SoundBank.SoundBank.Instruments
+  - SpessaSharp.SoundBank.SoundBank.IsXGBank
+  - SpessaSharp.SoundBank.SoundBank.Merge(System.Collections.Generic.List{SpessaSharp.SoundBank.SoundBank})
+  - SpessaSharp.SoundBank.SoundBank.Presets
+  - SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements
+  - SpessaSharp.SoundBank.SoundBank.Samples
+  - SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Midi)
+  - SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations)
+  - SpessaSharp.SoundBank.SoundBank.Type
+  - SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  - SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  - SpessaSharp.SoundBank.SoundBank.WriteDLS(System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  - SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  - SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  - SpessaSharp.SoundBank.SoundBank.WriteSF2(System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  langs:
+  - csharp
+  - vb
+  name: SoundBank
+  nameWithType: SoundBank
+  fullName: SpessaSharp.SoundBank.SoundBank
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SoundBank
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Represents a single sound bank, be it DLS or SF2.
+  example: []
+  syntax:
+    content: 'public sealed class SoundBank : IPresetGetter'
+    content.vb: Public NotInheritable Class SoundBank Implements IPresetGetter
+  inheritance:
+  - System.Object
+  implements:
+  - SpessaSharp.SoundBank.IPresetGetter
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.SoundBank.SoundBank.#ctor(SpessaSharp.SoundBank.SoundBank.BankType)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.#ctor(SpessaSharp.SoundBank.SoundBank.BankType)
+  id: '#ctor(SpessaSharp.SoundBank.SoundBank.BankType)'
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: SoundBank(BankType)
+  nameWithType: SoundBank.SoundBank(SoundBank.BankType)
+  fullName: SpessaSharp.SoundBank.SoundBank.SoundBank(SpessaSharp.SoundBank.SoundBank.BankType)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Represents a single sound bank, be it DLS or SF2.
+  example: []
+  syntax:
+    content: public SoundBank(SoundBank.BankType type = BankType.SF2)
+    parameters:
+    - id: type
+      type: SpessaSharp.SoundBank.SoundBank.BankType
+    content.vb: Public Sub New(type As SoundBank.BankType = BankType.SF2)
+  overload: SpessaSharp.SoundBank.SoundBank.#ctor*
+  nameWithType.vb: SoundBank.New(SoundBank.BankType)
+  fullName.vb: SpessaSharp.SoundBank.SoundBank.New(SpessaSharp.SoundBank.SoundBank.BankType)
+  name.vb: New(BankType)
+- uid: SpessaSharp.SoundBank.SoundBank.Info
+  commentId: P:SpessaSharp.SoundBank.SoundBank.Info
+  id: Info
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Info
+  nameWithType: SoundBank.Info
+  fullName: SpessaSharp.SoundBank.SoundBank.Info
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Info
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 46
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public SoundBank.InfoData Info { get; set; }
+    parameters: []
+    return:
+      type: SpessaSharp.SoundBank.SoundBank.InfoData
+    content.vb: Public Property Info As SoundBank.InfoData
+  overload: SpessaSharp.SoundBank.SoundBank.Info*
+- uid: SpessaSharp.SoundBank.SoundBank.Presets
+  commentId: F:SpessaSharp.SoundBank.SoundBank.Presets
+  id: Presets
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Presets
+  nameWithType: SoundBank.Presets
+  fullName: SpessaSharp.SoundBank.SoundBank.Presets
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Presets
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 57
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The sound bank's presets.
+  example: []
+  syntax:
+    content: public readonly List<BasicPreset> Presets
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset}
+    content.vb: Public ReadOnly Presets As List(Of BasicPreset)
+- uid: SpessaSharp.SoundBank.SoundBank.Samples
+  commentId: F:SpessaSharp.SoundBank.SoundBank.Samples
+  id: Samples
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Samples
+  nameWithType: SoundBank.Samples
+  fullName: SpessaSharp.SoundBank.SoundBank.Samples
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Samples
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 59
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The sound bank's samples.
+  example: []
+  syntax:
+    content: public readonly List<BasicSample> Samples
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.BasicSample}
+    content.vb: Public ReadOnly Samples As List(Of BasicSample)
+- uid: SpessaSharp.SoundBank.SoundBank.Instruments
+  commentId: F:SpessaSharp.SoundBank.SoundBank.Instruments
+  id: Instruments
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Instruments
+  nameWithType: SoundBank.Instruments
+  fullName: SpessaSharp.SoundBank.SoundBank.Instruments
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Instruments
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 61
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: The sound bank's instruments.
+  example: []
+  syntax:
+    content: public readonly List<BasicInstrument> Instruments
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.BasicInstrument}
+    content.vb: Public ReadOnly Instruments As List(Of BasicInstrument)
+- uid: SpessaSharp.SoundBank.SoundBank.Type
+  commentId: F:SpessaSharp.SoundBank.SoundBank.Type
+  id: Type
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: SoundBank.Type
+  fullName: SpessaSharp.SoundBank.SoundBank.Type
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 71
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: >-
+    The type of the sound bank that was loaded.
+
+    Either <b>sf2</b> for SoundFont2/SoundFont3 or <b>dls</b> for DownLoadable Sounds.
+
+
+    <p>
+
+    Please note that SF3 or SFOGG files are parsed as <b>sf2</b> files, but with compressed samples.
+
+    The type is still <b>sf2</b>.
+
+    </p>
+  example: []
+  syntax:
+    content: public readonly SoundBank.BankType Type
+    return:
+      type: SpessaSharp.SoundBank.SoundBank.BankType
+    content.vb: Public ReadOnly Type As SoundBank.BankType
+- uid: SpessaSharp.SoundBank.SoundBank.DefaultModulators
+  commentId: F:SpessaSharp.SoundBank.SoundBank.DefaultModulators
+  id: DefaultModulators
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: DefaultModulators
+  nameWithType: SoundBank.DefaultModulators
+  fullName: SpessaSharp.SoundBank.SoundBank.DefaultModulators
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DefaultModulators
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 74
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Sound bank's default modulators.
+  example: []
+  syntax:
+    content: public readonly List<Modulator> DefaultModulators
+    return:
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.Modulator}
+    content.vb: Public ReadOnly DefaultModulators As List(Of Modulator)
+- uid: SpessaSharp.SoundBank.SoundBank.CustomDefaultModulators
+  commentId: F:SpessaSharp.SoundBank.SoundBank.CustomDefaultModulators
+  id: CustomDefaultModulators
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: CustomDefaultModulators
+  nameWithType: SoundBank.CustomDefaultModulators
+  fullName: SpessaSharp.SoundBank.SoundBank.CustomDefaultModulators
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CustomDefaultModulators
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 78
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: If the sound bank has custom default modulators (DMOD).
+  example: []
+  syntax:
+    content: public bool CustomDefaultModulators
+    return:
+      type: System.Boolean
+    content.vb: Public CustomDefaultModulators As Boolean
+- uid: SpessaSharp.SoundBank.SoundBank.IsXGBank
+  commentId: P:SpessaSharp.SoundBank.SoundBank.IsXGBank
+  id: IsXGBank
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: IsXGBank
+  nameWithType: SoundBank.IsXGBank
+  fullName: SpessaSharp.SoundBank.SoundBank.IsXGBank
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: IsXGBank
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 81
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Checks for XG drum sets and considers if this sound bank is XG.
+  example: []
+  syntax:
+    content: public bool IsXGBank { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsXGBank As Boolean
+  overload: SpessaSharp.SoundBank.SoundBank.IsXGBank*
+- uid: SpessaSharp.SoundBank.SoundBank.From(System.ArraySegment{System.Byte})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.From(System.ArraySegment{System.Byte})
+  id: From(System.ArraySegment{System.Byte})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: From(ArraySegment<byte>)
+  nameWithType: SoundBank.From(ArraySegment<byte>)
+  fullName: SpessaSharp.SoundBank.SoundBank.From(System.ArraySegment<byte>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: From
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 98
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Loads a sound bank from a file buffer.
+  remarks: If your soundbank is large (&gt;2GB), use <xref href="SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)" data-throw-if-not-resolved="false"></xref> or <xref href="SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public static SoundBank From(ArraySegment<byte> buffer)
+    parameters:
+    - id: buffer
+      type: System.ArraySegment{System.Byte}
+      description: The binary file buffer to load.
+    return:
+      type: SpessaSharp.SoundBank.SoundBank
+      description: The loaded sound bank, a BasicSoundBank instance.
+    content.vb: Public Shared Function From(buffer As ArraySegment(Of Byte)) As SoundBank
+  overload: SpessaSharp.SoundBank.SoundBank.From*
+  nameWithType.vb: SoundBank.From(ArraySegment(Of Byte))
+  fullName.vb: SpessaSharp.SoundBank.SoundBank.From(System.ArraySegment(Of Byte))
+  name.vb: From(ArraySegment(Of Byte))
+- uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+  id: From(System.IO.FileInfo)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: From(FileInfo)
+  nameWithType: SoundBank.From(FileInfo)
+  fullName: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: From
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 111
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Loads a sound bank from a file buffer.
+  example: []
+  syntax:
+    content: public static SoundBank From(FileInfo file)
+    parameters:
+    - id: file
+      type: System.IO.FileInfo
+      description: The file to load. Use this for large (&gt;2GB) soundbanks
+    return:
+      type: SpessaSharp.SoundBank.SoundBank
+      description: The loaded sound bank, a BasicSoundBank instance.
+    content.vb: Public Shared Function From(file As FileInfo) As SoundBank
+  overload: SpessaSharp.SoundBank.SoundBank.From*
+- uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+  id: From(System.IO.FileStream)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: From(FileStream)
+  nameWithType: SoundBank.From(FileStream)
+  fullName: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: From
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 120
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Loads a sound bank from a file buffer.
+  example: []
+  syntax:
+    content: public static SoundBank From(FileStream stream)
+    parameters:
+    - id: stream
+      type: System.IO.FileStream
+      description: The file stream to load. Use this for large (&gt;2GB) soundbanks
+    return:
+      type: SpessaSharp.SoundBank.SoundBank
+      description: The loaded sound bank, a BasicSoundBank instance.
+    content.vb: Public Shared Function From(stream As FileStream) As SoundBank
+  overload: SpessaSharp.SoundBank.SoundBank.From*
+- uid: SpessaSharp.SoundBank.SoundBank.Merge(System.Collections.Generic.List{SpessaSharp.SoundBank.SoundBank})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Merge(System.Collections.Generic.List{SpessaSharp.SoundBank.SoundBank})
+  id: Merge(System.Collections.Generic.List{SpessaSharp.SoundBank.SoundBank})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Merge(List<SoundBank>)
+  nameWithType: SoundBank.Merge(List<SoundBank>)
+  fullName: SpessaSharp.SoundBank.SoundBank.Merge(System.Collections.Generic.List<SpessaSharp.SoundBank.SoundBank>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Merge
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 140
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Merges sound banks with the given order. Keep in mind that the info read is copied from the first one
+  example: []
+  syntax:
+    content: public static SoundBank Merge(List<SoundBank> soundBanks)
+    parameters:
+    - id: soundBanks
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.SoundBank}
+      description: The sound banks to merge, the first overwrites the last
+    return:
+      type: SpessaSharp.SoundBank.SoundBank
+      description: The new merged soundbank
+    content.vb: Public Shared Function Merge(soundBanks As List(Of SoundBank)) As SoundBank
+  overload: SpessaSharp.SoundBank.SoundBank.Merge*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: Empty Soundbank list
+  nameWithType.vb: SoundBank.Merge(List(Of SoundBank))
+  fullName.vb: SpessaSharp.SoundBank.SoundBank.Merge(System.Collections.Generic.List(Of SpessaSharp.SoundBank.SoundBank))
+  name.vb: Merge(List(Of SoundBank))
+- uid: SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile
+  commentId: M:SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile
+  id: GetSampleSoundBankFile
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: GetSampleSoundBankFile()
+  nameWithType: SoundBank.GetSampleSoundBankFile()
+  fullName: SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetSampleSoundBankFile
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 170
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Creates a simple sound bank with one saw wave preset.
+  example: []
+  syntax:
+    content: public static ArraySegment<byte> GetSampleSoundBankFile()
+    return:
+      type: System.ArraySegment{System.Byte}
+      description: ''
+    content.vb: Public Shared Function GetSampleSoundBankFile() As ArraySegment(Of Byte)
+  overload: SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile*
+- uid: SpessaSharp.SoundBank.SoundBank.From(SpessaSharp.SoundBank.SoundBank)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.From(SpessaSharp.SoundBank.SoundBank)
+  id: From(SpessaSharp.SoundBank.SoundBank)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: From(SoundBank)
+  nameWithType: SoundBank.From(SoundBank)
+  fullName: SpessaSharp.SoundBank.SoundBank.From(SpessaSharp.SoundBank.SoundBank)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: From
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 214
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Copies a given sound bank.
+  example: []
+  syntax:
+    content: public static SoundBank From(SoundBank bank)
+    parameters:
+    - id: bank
+      type: SpessaSharp.SoundBank.SoundBank
+      description: The sound bank to copy.
+    return:
+      type: SpessaSharp.SoundBank.SoundBank
+      description: The new copy
+    content.vb: Public Shared Function From(bank As SoundBank) As SoundBank
+  overload: SpessaSharp.SoundBank.SoundBank.From*
+- uid: SpessaSharp.SoundBank.SoundBank.AddCompletePresets(System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.AddCompletePresets(System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset})
+  id: AddCompletePresets(System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: AddCompletePresets(List<BasicPreset>)
+  nameWithType: SoundBank.AddCompletePresets(List<BasicPreset>)
+  fullName: SpessaSharp.SoundBank.SoundBank.AddCompletePresets(System.Collections.Generic.List<SpessaSharp.SoundBank.BasicPreset>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AddCompletePresets
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 224
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Adds complete presets along with their instruments and samples.
+  example: []
+  syntax:
+    content: public void AddCompletePresets(List<BasicPreset> presets)
+    parameters:
+    - id: presets
+      type: System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset}
+      description: The presets to add.
+    content.vb: Public Sub AddCompletePresets(presets As List(Of BasicPreset))
+  overload: SpessaSharp.SoundBank.SoundBank.AddCompletePresets*
+  nameWithType.vb: SoundBank.AddCompletePresets(List(Of BasicPreset))
+  fullName.vb: SpessaSharp.SoundBank.SoundBank.AddCompletePresets(System.Collections.Generic.List(Of SpessaSharp.SoundBank.BasicPreset))
+  name.vb: AddCompletePresets(List(Of BasicPreset))
+- uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteDLS(System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  id: WriteDLS(System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: WriteDLS(DLSWriteOptions?)
+  nameWithType: SoundBank.WriteDLS(DLSWriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteDLS(SpessaSharp.SoundBank.DLS.DLSWriteOptions?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: WriteDLS
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 255
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Write the sound bank as a .dls file. This may not be 100% accurate. Note that samples are always written in the s16le PCM encoding.
+  remarks: >-
+    If your soundbank is large (&gt;2GB), use <xref href="SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo%2cSystem.Nullable%7bSpessaSharp.SoundBank.DLS.DLSWriteOptions%7d)" data-throw-if-not-resolved="false"></xref>
+        or <xref href="SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream%2cSystem.Nullable%7bSpessaSharp.SoundBank.DLS.DLSWriteOptions%7d)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public ArraySegment<byte> WriteDLS(DLSWriteOptions? options = null)
+    parameters:
+    - id: options
+      type: System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions}
+      description: Options for writing the file.
+    return:
+      type: System.ArraySegment{System.Byte}
+      description: The DLS in binary form.
+    content.vb: Public Function WriteDLS(options As DLSWriteOptions? = Nothing) As ArraySegment(Of Byte)
+  overload: SpessaSharp.SoundBank.SoundBank.WriteDLS*
+- uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  id: WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: WriteDLS(FileInfo, DLSWriteOptions?)
+  nameWithType: SoundBank.WriteDLS(FileInfo, DLSWriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo, SpessaSharp.SoundBank.DLS.DLSWriteOptions?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: WriteDLS
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 266
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Write the sound bank as a .dls file. This may not be 100% accurate. Note that samples are always written in the s16le PCM encoding.
+  example: []
+  syntax:
+    content: public void WriteDLS(FileInfo file, DLSWriteOptions? options = null)
+    parameters:
+    - id: file
+      type: System.IO.FileInfo
+      description: The path to save the data. Use this for large (&gt;2GB) soundbanks
+    - id: options
+      type: System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions}
+      description: Options for writing the file.
+    content.vb: Public Sub WriteDLS(file As FileInfo, options As DLSWriteOptions? = Nothing)
+  overload: SpessaSharp.SoundBank.SoundBank.WriteDLS*
+- uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  id: WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: WriteDLS(Stream, DLSWriteOptions?)
+  nameWithType: SoundBank.WriteDLS(Stream, DLSWriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream, SpessaSharp.SoundBank.DLS.DLSWriteOptions?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: WriteDLS
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 276
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Write the sound bank as a .dls file. This may not be 100% accurate. Note that samples are always written in the s16le PCM encoding.
+  example: []
+  syntax:
+    content: public void WriteDLS(Stream stream, DLSWriteOptions? options = null)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+      description: The stream to save the data. Use this for large (&gt;2GB) soundbanks
+    - id: options
+      type: System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions}
+      description: Options for writing the file.
+    content.vb: Public Sub WriteDLS(stream As Stream, options As DLSWriteOptions? = Nothing)
+  overload: SpessaSharp.SoundBank.SoundBank.WriteDLS*
+- uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteSF2(System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  id: WriteSF2(System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: WriteSF2(SF2WriteOptions?)
+  nameWithType: SoundBank.WriteSF2(SF2WriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteSF2(SpessaSharp.SoundBank.SoundFont.SF2WriteOptions?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: WriteSF2
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 299
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Writes the sound bank as an SF2 file.
+  remarks: >-
+    If your soundbank is large (&gt;2GB), use <xref href="SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo%2cSystem.Nullable%7bSpessaSharp.SoundBank.SoundFont.SF2WriteOptions%7d)" data-throw-if-not-resolved="false"></xref>
+        or <xref href="SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream%2cSystem.Nullable%7bSpessaSharp.SoundBank.SoundFont.SF2WriteOptions%7d)" data-throw-if-not-resolved="false"></xref>
+  example: []
+  syntax:
+    content: public ArraySegment<byte> WriteSF2(SF2WriteOptions? options = null)
+    parameters:
+    - id: options
+      type: System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions}
+      description: The options for writing.
+    return:
+      type: System.ArraySegment{System.Byte}
+      description: The binary file data.
+    content.vb: Public Function WriteSF2(options As SF2WriteOptions? = Nothing) As ArraySegment(Of Byte)
+  overload: SpessaSharp.SoundBank.SoundBank.WriteSF2*
+- uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  id: WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: WriteSF2(FileInfo, SF2WriteOptions?)
+  nameWithType: SoundBank.WriteSF2(FileInfo, SF2WriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo, SpessaSharp.SoundBank.SoundFont.SF2WriteOptions?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: WriteSF2
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 310
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Writes the sound bank as an SF2 file.
+  example: []
+  syntax:
+    content: public void WriteSF2(FileInfo file, SF2WriteOptions? options = null)
+    parameters:
+    - id: file
+      type: System.IO.FileInfo
+      description: The path to save the data. Use this for large (&gt;2GB) soundbanks
+    - id: options
+      type: System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions}
+      description: The options for writing.
+    content.vb: Public Sub WriteSF2(file As FileInfo, options As SF2WriteOptions? = Nothing)
+  overload: SpessaSharp.SoundBank.SoundBank.WriteSF2*
+- uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  id: WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: WriteSF2(Stream, SF2WriteOptions?)
+  nameWithType: SoundBank.WriteSF2(Stream, SF2WriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream, SpessaSharp.SoundBank.SoundFont.SF2WriteOptions?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: WriteSF2
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 319
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Writes the sound bank as an SF2 file.
+  example: []
+  syntax:
+    content: public void WriteSF2(Stream stream, SF2WriteOptions? options = null)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+      description: The stream to save the data. Use this for large (&gt;2GB) soundbanks
+    - id: options
+      type: System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions}
+      description: The options for writing.
+    content.vb: Public Sub WriteSF2(stream As Stream, options As SF2WriteOptions? = Nothing)
+  overload: SpessaSharp.SoundBank.SoundBank.WriteSF2*
+- uid: SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicSample)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicSample)
+  id: Clone(SpessaSharp.SoundBank.BasicSample)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Clone(BasicSample)
+  nameWithType: SoundBank.Clone(BasicSample)
+  fullName: SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicSample)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Clone
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 325
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Clones a sample into this bank.
+  example: []
+  syntax:
+    content: public BasicSample Clone(BasicSample sample)
+    parameters:
+    - id: sample
+      type: SpessaSharp.SoundBank.BasicSample
+      description: The sample to copy.
+    return:
+      type: SpessaSharp.SoundBank.BasicSample
+      description: The copied sample, if a sample exists with that name, it is returned instead
+    content.vb: Public Function Clone(sample As BasicSample) As BasicSample
+  overload: SpessaSharp.SoundBank.SoundBank.Clone*
+- uid: SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicInstrument)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicInstrument)
+  id: Clone(SpessaSharp.SoundBank.BasicInstrument)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Clone(BasicInstrument)
+  nameWithType: SoundBank.Clone(BasicInstrument)
+  fullName: SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicInstrument)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Clone
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 362
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Recursively clones an instrument into this sound bank, as well as its samples.
+  example: []
+  syntax:
+    content: public BasicInstrument Clone(BasicInstrument instrument)
+    parameters:
+    - id: instrument
+      type: SpessaSharp.SoundBank.BasicInstrument
+      description: The copied instrument, if an instrument exists with that name, it is returned instead.
+    return:
+      type: SpessaSharp.SoundBank.BasicInstrument
+      description: The cloned instrument
+    content.vb: Public Function Clone(instrument As BasicInstrument) As BasicInstrument
+  overload: SpessaSharp.SoundBank.SoundBank.Clone*
+- uid: SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicPreset)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicPreset)
+  id: Clone(SpessaSharp.SoundBank.BasicPreset)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Clone(BasicPreset)
+  nameWithType: SoundBank.Clone(BasicPreset)
+  fullName: SpessaSharp.SoundBank.SoundBank.Clone(SpessaSharp.SoundBank.BasicPreset)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Clone
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 387
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Recursively clones a preset into this sound bank, as well as its instruments and samples.
+  example: []
+  syntax:
+    content: public BasicPreset Clone(BasicPreset preset)
+    parameters:
+    - id: preset
+      type: SpessaSharp.SoundBank.BasicPreset
+      description: The copied preset, if a preset exists with that name, it is returned instead.
+    return:
+      type: SpessaSharp.SoundBank.BasicPreset
+      description: The cloned preset
+    content.vb: Public Function Clone(preset As BasicPreset) As BasicPreset
+  overload: SpessaSharp.SoundBank.SoundBank.Clone*
+- uid: SpessaSharp.SoundBank.SoundBank.Flush
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Flush
+  id: Flush
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Flush()
+  nameWithType: SoundBank.Flush()
+  fullName: SpessaSharp.SoundBank.SoundBank.Flush()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Flush
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 414
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public void Flush()
+    content.vb: Public Sub Flush()
+  overload: SpessaSharp.SoundBank.SoundBank.Flush*
+- uid: SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Midi)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Midi)
+  id: Trim(SpessaSharp.MIDI.Midi)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Trim(Midi)
+  nameWithType: SoundBank.Trim(Midi)
+  fullName: SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Midi)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Trim
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 428
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: >-
+    Trims the sound bank _in-place_ to only contain samples in a given MIDI file.
+
+    Absent presets will be removed from the sound bank, and samples that don't
+
+    get activated in the remaining presets will be removed as well.
+  example: []
+  syntax:
+    content: public void Trim(Midi mid)
+    parameters:
+    - id: mid
+      type: SpessaSharp.MIDI.Midi
+      description: The MIDI file
+    content.vb: Public Sub Trim(mid As Midi)
+  overload: SpessaSharp.SoundBank.SoundBank.Trim*
+- uid: SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations)
+  id: Trim(SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Trim(PresetsWithKeyCombinations)
+  nameWithType: SoundBank.Trim(PresetsWithKeyCombinations)
+  fullName: SpessaSharp.SoundBank.SoundBank.Trim(SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Trim
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 437
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: >-
+    Trims the sound bank _in-place_ to only contain samples in a given MIDI file.
+
+    Absent presets will be removed from the sound bank, and samples that don't
+
+    get activated in the remaining presets will be removed as well.
+  example: []
+  syntax:
+    content: public void Trim(PresetsWithKeyCombinations presetData)
+    parameters:
+    - id: presetData
+      type: SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations
+      description: 'A Map: BasicPreset -&gt; (key-velocity).'
+    content.vb: Public Sub Trim(presetData As PresetsWithKeyCombinations)
+  overload: SpessaSharp.SoundBank.SoundBank.Trim*
+- uid: SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements
+  commentId: M:SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements
+  id: RemoveUnusedElements
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: RemoveUnusedElements()
+  nameWithType: SoundBank.RemoveUnusedElements()
+  fullName: SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RemoveUnusedElements
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 553
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public void RemoveUnusedElements()
+    content.vb: Public Sub RemoveUnusedElements()
+  overload: SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements*
+- uid: SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicInstrument)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicInstrument)
+  id: Delete(SpessaSharp.SoundBank.BasicInstrument)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Delete(BasicInstrument)
+  nameWithType: SoundBank.Delete(BasicInstrument)
+  fullName: SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicInstrument)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Delete
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 571
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public void Delete(BasicInstrument instrument)
+    parameters:
+    - id: instrument
+      type: SpessaSharp.SoundBank.BasicInstrument
+    content.vb: Public Sub Delete(instrument As BasicInstrument)
+  overload: SpessaSharp.SoundBank.SoundBank.Delete*
+- uid: SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicPreset)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicPreset)
+  id: Delete(SpessaSharp.SoundBank.BasicPreset)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Delete(BasicPreset)
+  nameWithType: SoundBank.Delete(BasicPreset)
+  fullName: SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicPreset)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Delete
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 577
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public void Delete(BasicPreset preset)
+    parameters:
+    - id: preset
+      type: SpessaSharp.SoundBank.BasicPreset
+    content.vb: Public Sub Delete(preset As BasicPreset)
+  overload: SpessaSharp.SoundBank.SoundBank.Delete*
+- uid: SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicSample)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicSample)
+  id: Delete(SpessaSharp.SoundBank.BasicSample)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Delete(BasicSample)
+  nameWithType: SoundBank.Delete(BasicSample)
+  fullName: SpessaSharp.SoundBank.SoundBank.Delete(SpessaSharp.SoundBank.BasicSample)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Delete
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 583
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public void Delete(BasicSample sample)
+    parameters:
+    - id: sample
+      type: SpessaSharp.SoundBank.BasicSample
+    content.vb: Public Sub Delete(sample As BasicSample)
+  overload: SpessaSharp.SoundBank.SoundBank.Delete*
+- uid: SpessaSharp.SoundBank.SoundBank.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+  id: GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: GetPreset(MidiPatch, System)
+  nameWithType: SoundBank.GetPreset(MidiPatch, Midi.System)
+  fullName: SpessaSharp.SoundBank.SoundBank.GetPreset(SpessaSharp.MIDI.MidiPatch, SpessaSharp.MIDI.Midi.System)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetPreset
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 593
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: Get the appropriate preset.
+  example: []
+  syntax:
+    content: public BasicPreset GetPreset(MidiPatch patch, Midi.System system)
+    parameters:
+    - id: patch
+      type: SpessaSharp.MIDI.MidiPatch
+      description: ''
+    - id: system
+      type: SpessaSharp.MIDI.Midi.System
+      description: ''
+    return:
+      type: SpessaSharp.SoundBank.BasicPreset
+      description: ''
+    content.vb: Public Function GetPreset(patch As MidiPatch, system As Midi.System) As BasicPreset
+  overload: SpessaSharp.SoundBank.SoundBank.GetPreset*
+  implements:
+  - SpessaSharp.SoundBank.IPresetGetter.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+- uid: SpessaSharp.SoundBank.SoundBank.Destroy
+  commentId: M:SpessaSharp.SoundBank.SoundBank.Destroy
+  id: Destroy
+  parent: SpessaSharp.SoundBank.SoundBank
+  langs:
+  - csharp
+  - vb
+  name: Destroy()
+  nameWithType: SoundBank.Destroy()
+  fullName: SpessaSharp.SoundBank.SoundBank.Destroy()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/SoundBank.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Destroy
+    path: ../SpessaSharp/SoundBank/SoundBank.cs
+    startLine: 597
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public void Destroy()
+    content.vb: Public Sub Destroy()
+  overload: SpessaSharp.SoundBank.SoundBank.Destroy*
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.SoundBank.IPresetGetter
+  commentId: T:SpessaSharp.SoundBank.IPresetGetter
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.IPresetGetter.html
+  name: IPresetGetter
+  nameWithType: IPresetGetter
+  fullName: SpessaSharp.SoundBank.IPresetGetter
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.SoundBank.SoundBank.#ctor*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.#ctor
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank__ctor_SpessaSharp_SoundBank_SoundBank_BankType_
+  name: SoundBank
+  nameWithType: SoundBank.SoundBank
+  fullName: SpessaSharp.SoundBank.SoundBank.SoundBank
+  nameWithType.vb: SoundBank.New
+  fullName.vb: SpessaSharp.SoundBank.SoundBank.New
+  name.vb: New
+- uid: SpessaSharp.SoundBank.SoundBank.BankType
+  commentId: T:SpessaSharp.SoundBank.SoundBank.BankType
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.SoundBank.html
+  name: SoundBank.BankType
+  nameWithType: SoundBank.BankType
+  fullName: SpessaSharp.SoundBank.SoundBank.BankType
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.SoundBank.BankType
+    name: BankType
+    href: SpessaSharp.SoundBank.SoundBank.BankType.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.SoundBank.BankType
+    name: BankType
+    href: SpessaSharp.SoundBank.SoundBank.BankType.html
+- uid: SpessaSharp.SoundBank.SoundBank.Info*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.Info
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_Info
+  name: Info
+  nameWithType: SoundBank.Info
+  fullName: SpessaSharp.SoundBank.SoundBank.Info
+- uid: SpessaSharp.SoundBank.SoundBank.InfoData
+  commentId: T:SpessaSharp.SoundBank.SoundBank.InfoData
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.SoundBank.html
+  name: SoundBank.InfoData
+  nameWithType: SoundBank.InfoData
+  fullName: SpessaSharp.SoundBank.SoundBank.InfoData
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.SoundBank.InfoData
+    name: InfoData
+    href: SpessaSharp.SoundBank.SoundBank.InfoData.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.SoundBank.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.SoundBank.InfoData
+    name: InfoData
+    href: SpessaSharp.SoundBank.SoundBank.InfoData.html
+- uid: System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.SoundBank.BasicPreset}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<BasicPreset>
+  nameWithType: List<BasicPreset>
+  fullName: System.Collections.Generic.List<SpessaSharp.SoundBank.BasicPreset>
+  nameWithType.vb: List(Of BasicPreset)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.SoundBank.BasicPreset)
+  name.vb: List(Of BasicPreset)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.BasicPreset
+    name: BasicPreset
+    href: SpessaSharp.SoundBank.BasicPreset.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.BasicPreset
+    name: BasicPreset
+    href: SpessaSharp.SoundBank.BasicPreset.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.List{SpessaSharp.SoundBank.BasicSample}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.SoundBank.BasicSample}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<BasicSample>
+  nameWithType: List<BasicSample>
+  fullName: System.Collections.Generic.List<SpessaSharp.SoundBank.BasicSample>
+  nameWithType.vb: List(Of BasicSample)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.SoundBank.BasicSample)
+  name.vb: List(Of BasicSample)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.BasicSample
+    name: BasicSample
+    href: SpessaSharp.SoundBank.BasicSample.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.BasicSample
+    name: BasicSample
+    href: SpessaSharp.SoundBank.BasicSample.html
+  - name: )
+- uid: System.Collections.Generic.List{SpessaSharp.SoundBank.BasicInstrument}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.SoundBank.BasicInstrument}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<BasicInstrument>
+  nameWithType: List<BasicInstrument>
+  fullName: System.Collections.Generic.List<SpessaSharp.SoundBank.BasicInstrument>
+  nameWithType.vb: List(Of BasicInstrument)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.SoundBank.BasicInstrument)
+  name.vb: List(Of BasicInstrument)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.BasicInstrument
+    name: BasicInstrument
+    href: SpessaSharp.SoundBank.BasicInstrument.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.BasicInstrument
+    name: BasicInstrument
+    href: SpessaSharp.SoundBank.BasicInstrument.html
+  - name: )
+- uid: System.Collections.Generic.List{SpessaSharp.SoundBank.Modulator}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.SoundBank.Modulator}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Modulator>
+  nameWithType: List<Modulator>
+  fullName: System.Collections.Generic.List<SpessaSharp.SoundBank.Modulator>
+  nameWithType.vb: List(Of Modulator)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.SoundBank.Modulator)
+  name.vb: List(Of Modulator)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.SoundBank.SoundBank.IsXGBank*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.IsXGBank
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_IsXGBank
+  name: IsXGBank
+  nameWithType: SoundBank.IsXGBank
+  fullName: SpessaSharp.SoundBank.SoundBank.IsXGBank
+- uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+  isExternal: true
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_From_System_IO_FileInfo_
+  name: From(FileInfo)
+  nameWithType: SoundBank.From(FileInfo)
+  fullName: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+    name: From
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_From_System_IO_FileInfo_
+  - name: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.fileinfo
+  - name: )
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileInfo)
+    name: From
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_From_System_IO_FileInfo_
+  - name: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.fileinfo
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+  commentId: M:SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+  isExternal: true
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_From_System_IO_FileStream_
+  name: From(FileStream)
+  nameWithType: SoundBank.From(FileStream)
+  fullName: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+    name: From
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_From_System_IO_FileStream_
+  - name: (
+  - uid: System.IO.FileStream
+    name: FileStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.filestream
+  - name: )
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank.From(System.IO.FileStream)
+    name: From
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_From_System_IO_FileStream_
+  - name: (
+  - uid: System.IO.FileStream
+    name: FileStream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.filestream
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank.From*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.From
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_From_System_ArraySegment_System_Byte__
+  name: From
+  nameWithType: SoundBank.From
+  fullName: SpessaSharp.SoundBank.SoundBank.From
+- uid: System.ArraySegment{System.Byte}
+  commentId: T:System.ArraySegment{System.Byte}
+  parent: System
+  definition: System.ArraySegment`1
+  href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  name: ArraySegment<byte>
+  nameWithType: ArraySegment<byte>
+  fullName: System.ArraySegment<byte>
+  nameWithType.vb: ArraySegment(Of Byte)
+  fullName.vb: System.ArraySegment(Of Byte)
+  name.vb: ArraySegment(Of Byte)
+  spec.csharp:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank
+  commentId: T:SpessaSharp.SoundBank.SoundBank
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.SoundBank.html
+  name: SoundBank
+  nameWithType: SoundBank
+  fullName: SpessaSharp.SoundBank.SoundBank
+- uid: System.ArraySegment`1
+  commentId: T:System.ArraySegment`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  name: ArraySegment<T>
+  nameWithType: ArraySegment<T>
+  fullName: System.ArraySegment<T>
+  nameWithType.vb: ArraySegment(Of T)
+  fullName.vb: System.ArraySegment(Of T)
+  name.vb: ArraySegment(Of T)
+  spec.csharp:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.IO.FileInfo
+  commentId: T:System.IO.FileInfo
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.fileinfo
+  name: FileInfo
+  nameWithType: FileInfo
+  fullName: System.IO.FileInfo
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: System.IO.FileStream
+  commentId: T:System.IO.FileStream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.filestream
+  name: FileStream
+  nameWithType: FileStream
+  fullName: System.IO.FileStream
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: SpessaSharp.SoundBank.SoundBank.Merge*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.Merge
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_Merge_System_Collections_Generic_List_SpessaSharp_SoundBank_SoundBank__
+  name: Merge
+  nameWithType: SoundBank.Merge
+  fullName: SpessaSharp.SoundBank.SoundBank.Merge
+- uid: System.Collections.Generic.List{SpessaSharp.SoundBank.SoundBank}
+  commentId: T:System.Collections.Generic.List{SpessaSharp.SoundBank.SoundBank}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<SoundBank>
+  nameWithType: List<SoundBank>
+  fullName: System.Collections.Generic.List<SpessaSharp.SoundBank.SoundBank>
+  nameWithType.vb: List(Of SoundBank)
+  fullName.vb: System.Collections.Generic.List(Of SpessaSharp.SoundBank.SoundBank)
+  name.vb: List(Of SoundBank)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: SpessaSharp.SoundBank.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.SoundBank.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.SoundBank.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.SoundBank.html
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_GetSampleSoundBankFile
+  name: GetSampleSoundBankFile
+  nameWithType: SoundBank.GetSampleSoundBankFile
+  fullName: SpessaSharp.SoundBank.SoundBank.GetSampleSoundBankFile
+- uid: SpessaSharp.SoundBank.SoundBank.AddCompletePresets*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.AddCompletePresets
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_AddCompletePresets_System_Collections_Generic_List_SpessaSharp_SoundBank_BasicPreset__
+  name: AddCompletePresets
+  nameWithType: SoundBank.AddCompletePresets
+  fullName: SpessaSharp.SoundBank.SoundBank.AddCompletePresets
+- uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  isExternal: true
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteDLS_System_IO_FileInfo_System_Nullable_SpessaSharp_SoundBank_DLS_DLSWriteOptions__
+  name: WriteDLS(FileInfo, DLSWriteOptions?)
+  nameWithType: SoundBank.WriteDLS(FileInfo, DLSWriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo, SpessaSharp.SoundBank.DLS.DLSWriteOptions?)
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+    name: WriteDLS
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteDLS_System_IO_FileInfo_System_Nullable_SpessaSharp_SoundBank_DLS_DLSWriteOptions__
+  - name: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.fileinfo
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+    name: DLSWriteOptions
+    href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+    name: WriteDLS
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteDLS_System_IO_FileInfo_System_Nullable_SpessaSharp_SoundBank_DLS_DLSWriteOptions__
+  - name: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.fileinfo
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+    name: DLSWriteOptions
+    href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  - name: '?'
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+  isExternal: true
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteDLS_System_IO_Stream_System_Nullable_SpessaSharp_SoundBank_DLS_DLSWriteOptions__
+  name: WriteDLS(Stream, DLSWriteOptions?)
+  nameWithType: SoundBank.WriteDLS(Stream, DLSWriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream, SpessaSharp.SoundBank.DLS.DLSWriteOptions?)
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+    name: WriteDLS
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteDLS_System_IO_Stream_System_Nullable_SpessaSharp_SoundBank_DLS_DLSWriteOptions__
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+    name: DLSWriteOptions
+    href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteDLS(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions})
+    name: WriteDLS
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteDLS_System_IO_Stream_System_Nullable_SpessaSharp_SoundBank_DLS_DLSWriteOptions__
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+    name: DLSWriteOptions
+    href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  - name: '?'
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank.WriteDLS*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.WriteDLS
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteDLS_System_Nullable_SpessaSharp_SoundBank_DLS_DLSWriteOptions__
+  name: WriteDLS
+  nameWithType: SoundBank.WriteDLS
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteDLS
+- uid: System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions}
+  commentId: T:System.Nullable{SpessaSharp.SoundBank.DLS.DLSWriteOptions}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  name: DLSWriteOptions?
+  nameWithType: DLSWriteOptions?
+  fullName: SpessaSharp.SoundBank.DLS.DLSWriteOptions?
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+    name: DLSWriteOptions
+    href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.DLS.DLSWriteOptions
+    name: DLSWriteOptions
+    href: SpessaSharp.SoundBank.DLS.DLSWriteOptions.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  isExternal: true
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteSF2_System_IO_FileInfo_System_Nullable_SpessaSharp_SoundBank_SoundFont_SF2WriteOptions__
+  name: WriteSF2(FileInfo, SF2WriteOptions?)
+  nameWithType: SoundBank.WriteSF2(FileInfo, SF2WriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo, SpessaSharp.SoundBank.SoundFont.SF2WriteOptions?)
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+    name: WriteSF2
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteSF2_System_IO_FileInfo_System_Nullable_SpessaSharp_SoundBank_SoundFont_SF2WriteOptions__
+  - name: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.fileinfo
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+    name: SF2WriteOptions
+    href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.FileInfo,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+    name: WriteSF2
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteSF2_System_IO_FileInfo_System_Nullable_SpessaSharp_SoundBank_SoundFont_SF2WriteOptions__
+  - name: (
+  - uid: System.IO.FileInfo
+    name: FileInfo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.fileinfo
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+    name: SF2WriteOptions
+    href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  - name: '?'
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  commentId: M:SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+  isExternal: true
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteSF2_System_IO_Stream_System_Nullable_SpessaSharp_SoundBank_SoundFont_SF2WriteOptions__
+  name: WriteSF2(Stream, SF2WriteOptions?)
+  nameWithType: SoundBank.WriteSF2(Stream, SF2WriteOptions?)
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream, SpessaSharp.SoundBank.SoundFont.SF2WriteOptions?)
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+    name: WriteSF2
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteSF2_System_IO_Stream_System_Nullable_SpessaSharp_SoundBank_SoundFont_SF2WriteOptions__
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+    name: SF2WriteOptions
+    href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  - name: '?'
+  - name: )
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundBank.WriteSF2(System.IO.Stream,System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions})
+    name: WriteSF2
+    href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteSF2_System_IO_Stream_System_Nullable_SpessaSharp_SoundBank_SoundFont_SF2WriteOptions__
+  - name: (
+  - uid: System.IO.Stream
+    name: Stream
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+    name: SF2WriteOptions
+    href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  - name: '?'
+  - name: )
+- uid: SpessaSharp.SoundBank.SoundBank.WriteSF2*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.WriteSF2
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_WriteSF2_System_Nullable_SpessaSharp_SoundBank_SoundFont_SF2WriteOptions__
+  name: WriteSF2
+  nameWithType: SoundBank.WriteSF2
+  fullName: SpessaSharp.SoundBank.SoundBank.WriteSF2
+- uid: System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions}
+  commentId: T:System.Nullable{SpessaSharp.SoundBank.SoundFont.SF2WriteOptions}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  name: SF2WriteOptions?
+  nameWithType: SF2WriteOptions?
+  fullName: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions?
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+    name: SF2WriteOptions
+    href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions
+    name: SF2WriteOptions
+    href: SpessaSharp.SoundBank.SoundFont.SF2WriteOptions.html
+  - name: '?'
+- uid: SpessaSharp.SoundBank.SoundBank.Clone*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.Clone
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_Clone_SpessaSharp_SoundBank_BasicSample_
+  name: Clone
+  nameWithType: SoundBank.Clone
+  fullName: SpessaSharp.SoundBank.SoundBank.Clone
+- uid: SpessaSharp.SoundBank.BasicSample
+  commentId: T:SpessaSharp.SoundBank.BasicSample
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.BasicSample.html
+  name: BasicSample
+  nameWithType: BasicSample
+  fullName: SpessaSharp.SoundBank.BasicSample
+- uid: SpessaSharp.SoundBank.BasicInstrument
+  commentId: T:SpessaSharp.SoundBank.BasicInstrument
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.BasicInstrument.html
+  name: BasicInstrument
+  nameWithType: BasicInstrument
+  fullName: SpessaSharp.SoundBank.BasicInstrument
+- uid: SpessaSharp.SoundBank.BasicPreset
+  commentId: T:SpessaSharp.SoundBank.BasicPreset
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.BasicPreset.html
+  name: BasicPreset
+  nameWithType: BasicPreset
+  fullName: SpessaSharp.SoundBank.BasicPreset
+- uid: SpessaSharp.SoundBank.SoundBank.Flush*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.Flush
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_Flush
+  name: Flush
+  nameWithType: SoundBank.Flush
+  fullName: SpessaSharp.SoundBank.SoundBank.Flush
+- uid: SpessaSharp.SoundBank.SoundBank.Trim*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.Trim
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_Trim_SpessaSharp_MIDI_Midi_
+  name: Trim
+  nameWithType: SoundBank.Trim
+  fullName: SpessaSharp.SoundBank.SoundBank.Trim
+- uid: SpessaSharp.MIDI.Midi
+  commentId: T:SpessaSharp.MIDI.Midi
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi
+  nameWithType: Midi
+  fullName: SpessaSharp.MIDI.Midi
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations
+  commentId: T:SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations
+  parent: SpessaSharp.MIDI.Utils
+  href: SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations.html
+  name: PresetsWithKeyCombinations
+  nameWithType: PresetsWithKeyCombinations
+  fullName: SpessaSharp.MIDI.Utils.PresetsWithKeyCombinations
+- uid: SpessaSharp.MIDI.Utils
+  commentId: N:SpessaSharp.MIDI.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Utils
+  nameWithType: SpessaSharp.MIDI.Utils
+  fullName: SpessaSharp.MIDI.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+- uid: SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_RemoveUnusedElements
+  name: RemoveUnusedElements
+  nameWithType: SoundBank.RemoveUnusedElements
+  fullName: SpessaSharp.SoundBank.SoundBank.RemoveUnusedElements
+- uid: SpessaSharp.SoundBank.SoundBank.Delete*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.Delete
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_Delete_SpessaSharp_SoundBank_BasicInstrument_
+  name: Delete
+  nameWithType: SoundBank.Delete
+  fullName: SpessaSharp.SoundBank.SoundBank.Delete
+- uid: SpessaSharp.SoundBank.SoundBank.GetPreset*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.GetPreset
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_GetPreset_SpessaSharp_MIDI_MidiPatch_SpessaSharp_MIDI_Midi_System_
+  name: GetPreset
+  nameWithType: SoundBank.GetPreset
+  fullName: SpessaSharp.SoundBank.SoundBank.GetPreset
+- uid: SpessaSharp.SoundBank.IPresetGetter.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+  commentId: M:SpessaSharp.SoundBank.IPresetGetter.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+  parent: SpessaSharp.SoundBank.IPresetGetter
+  href: SpessaSharp.SoundBank.IPresetGetter.html#SpessaSharp_SoundBank_IPresetGetter_GetPreset_SpessaSharp_MIDI_MidiPatch_SpessaSharp_MIDI_Midi_System_
+  name: GetPreset(MidiPatch, System)
+  nameWithType: IPresetGetter.GetPreset(MidiPatch, Midi.System)
+  fullName: SpessaSharp.SoundBank.IPresetGetter.GetPreset(SpessaSharp.MIDI.MidiPatch, SpessaSharp.MIDI.Midi.System)
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.IPresetGetter.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+    name: GetPreset
+    href: SpessaSharp.SoundBank.IPresetGetter.html#SpessaSharp_SoundBank_IPresetGetter_GetPreset_SpessaSharp_MIDI_MidiPatch_SpessaSharp_MIDI_Midi_System_
+  - name: (
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+  - name: )
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.IPresetGetter.GetPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)
+    name: GetPreset
+    href: SpessaSharp.SoundBank.IPresetGetter.html#SpessaSharp_SoundBank_IPresetGetter_GetPreset_SpessaSharp_MIDI_MidiPatch_SpessaSharp_MIDI_Midi_System_
+  - name: (
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: ','
+  - name: " "
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+  - name: )
+- uid: SpessaSharp.MIDI.MidiPatch
+  commentId: T:SpessaSharp.MIDI.MidiPatch
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiPatch.html
+  name: MidiPatch
+  nameWithType: MidiPatch
+  fullName: SpessaSharp.MIDI.MidiPatch
+- uid: SpessaSharp.MIDI.Midi.System
+  commentId: T:SpessaSharp.MIDI.Midi.System
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.System
+  nameWithType: Midi.System
+  fullName: SpessaSharp.MIDI.Midi.System
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+- uid: SpessaSharp.SoundBank.SoundBank.Destroy*
+  commentId: Overload:SpessaSharp.SoundBank.SoundBank.Destroy
+  href: SpessaSharp.SoundBank.SoundBank.html#SpessaSharp_SoundBank_SoundBank_Destroy
+  name: Destroy
+  nameWithType: SoundBank.Destroy
+  fullName: SpessaSharp.SoundBank.SoundBank.Destroy

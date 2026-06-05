@@ -1,0 +1,1125 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange
+  id: Event.CbEffectChange
+  parent: SpessaSharp.Synthesizer
+  children:
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.#ctor(SpessaSharp.Synthesizer.Event.CbEffectChange.Type,System.Int32,System.Int32)
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType,System.Int32)
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType,System.Int32)
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion(System.Int32,System.Int32)
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType,System.Int32)
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Value
+  langs:
+  - csharp
+  - vb
+  name: Event.CbEffectChange
+  nameWithType: Event.CbEffectChange
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CbEffectChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 92
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: The effect that was changed, "reverb", "chorus", "delay" or "insertion"
+  example: []
+  syntax:
+    content: 'public readonly record struct Event.CbEffectChange : IEquatable<Event.CbEffectChange>'
+    content.vb: Public Structure [Event].CbEffectChange Implements IEquatable(Of Event.CbEffectChange)
+  implements:
+  - System.IEquatable{SpessaSharp.Synthesizer.Event.CbEffectChange}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.#ctor(SpessaSharp.Synthesizer.Event.CbEffectChange.Type,System.Int32,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Event.CbEffectChange.#ctor(SpessaSharp.Synthesizer.Event.CbEffectChange.Type,System.Int32,System.Int32)
+  id: '#ctor(SpessaSharp.Synthesizer.Event.CbEffectChange.Type,System.Int32,System.Int32)'
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: CbEffectChange(Type, int, int)
+  nameWithType: Event.CbEffectChange.CbEffectChange(Event.CbEffectChange.Type, int, int)
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.CbEffectChange(SpessaSharp.Synthesizer.Event.CbEffectChange.Type, int, int)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 92
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: The effect that was changed, "reverb", "chorus", "delay" or "insertion"
+  example: []
+  syntax:
+    content: public CbEffectChange(Event.CbEffectChange.Type EffectType, int Parameter, int Value)
+    parameters:
+    - id: EffectType
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+      description: ''
+    - id: Parameter
+      type: System.Int32
+      description: ''
+    - id: Value
+      type: System.Int32
+      description: ''
+    content.vb: Public Sub New(EffectType As [Event].CbEffectChange.Type, Parameter As Integer, Value As Integer)
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.#ctor*
+  nameWithType.vb: Event.CbEffectChange.New(Event.CbEffectChange.Type, Integer, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbEffectChange.New(SpessaSharp.Synthesizer.Event.CbEffectChange.Type, Integer, Integer)
+  name.vb: New(Type, Integer, Integer)
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType
+  commentId: P:SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType
+  id: EffectType
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: EffectType
+  nameWithType: Event.CbEffectChange.EffectType
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: EffectType
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 93
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: ''
+  example: []
+  syntax:
+    content: public Event.CbEffectChange.Type EffectType { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    content.vb: Public Property EffectType As [Event].CbEffectChange.Type
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType*
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter
+  commentId: P:SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter
+  id: Parameter
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: Parameter
+  nameWithType: Event.CbEffectChange.Parameter
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Parameter
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 93
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: ''
+  example: []
+  syntax:
+    content: public int Parameter { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Parameter As Integer
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter*
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Value
+  commentId: P:SpessaSharp.Synthesizer.Event.CbEffectChange.Value
+  id: Value
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: Event.CbEffectChange.Value
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Value
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Value
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 93
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  summary: ''
+  example: []
+  syntax:
+    content: public int Value { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Value As Integer
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.Value*
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType,System.Int32)
+  id: OfReverb(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType,System.Int32)
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: OfReverb(FxReverbType, int)
+  nameWithType: Event.CbEffectChange.OfReverb(Effect.FxReverbType, int)
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfReverb
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 103
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event.CbEffectChange OfReverb(Effect.FxReverbType type, int value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    - id: value
+      type: System.Int32
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange
+    content.vb: Public Shared Function OfReverb(type As Effect.FxReverbType, value As Integer) As [Event].CbEffectChange
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb*
+  nameWithType.vb: Event.CbEffectChange.OfReverb(Effect.FxReverbType, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType, Integer)
+  name.vb: OfReverb(FxReverbType, Integer)
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb
+  commentId: P:SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb
+  id: AsReverb
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: AsReverb
+  nameWithType: Event.CbEffectChange.AsReverb
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsReverb
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 107
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbEffectChange.Reverb AsReverb { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+    content.vb: Public ReadOnly Property AsReverb As [Event].CbEffectChange.Reverb
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb*
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType,System.Int32)
+  id: OfChorus(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType,System.Int32)
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: OfChorus(FxChorusType, int)
+  nameWithType: Event.CbEffectChange.OfChorus(Effect.FxChorusType, int)
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfChorus
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 119
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event.CbEffectChange OfChorus(Effect.FxChorusType type, int value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+    - id: value
+      type: System.Int32
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange
+    content.vb: Public Shared Function OfChorus(type As Effect.FxChorusType, value As Integer) As [Event].CbEffectChange
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus*
+  nameWithType.vb: Event.CbEffectChange.OfChorus(Effect.FxChorusType, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType, Integer)
+  name.vb: OfChorus(FxChorusType, Integer)
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus
+  commentId: P:SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus
+  id: AsChorus
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: AsChorus
+  nameWithType: Event.CbEffectChange.AsChorus
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsChorus
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 123
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbEffectChange.Chorus AsChorus { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+    content.vb: Public ReadOnly Property AsChorus As [Event].CbEffectChange.Chorus
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus*
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType,System.Int32)
+  id: OfDelay(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType,System.Int32)
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: OfDelay(FxDelayType, int)
+  nameWithType: Event.CbEffectChange.OfDelay(Effect.FxDelayType, int)
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfDelay
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 135
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event.CbEffectChange OfDelay(Effect.FxDelayType type, int value)
+    parameters:
+    - id: type
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    - id: value
+      type: System.Int32
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange
+    content.vb: Public Shared Function OfDelay(type As Effect.FxDelayType, value As Integer) As [Event].CbEffectChange
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay*
+  nameWithType.vb: Event.CbEffectChange.OfDelay(Effect.FxDelayType, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay(SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType, Integer)
+  name.vb: OfDelay(FxDelayType, Integer)
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay
+  commentId: P:SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay
+  id: AsDelay
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: AsDelay
+  nameWithType: Event.CbEffectChange.AsDelay
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsDelay
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 139
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbEffectChange.Delay AsDelay { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+    content.vb: Public ReadOnly Property AsDelay As [Event].CbEffectChange.Delay
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay*
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion(System.Int32,System.Int32)
+  commentId: M:SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion(System.Int32,System.Int32)
+  id: OfInsertion(System.Int32,System.Int32)
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: OfInsertion(int, int)
+  nameWithType: Event.CbEffectChange.OfInsertion(int, int)
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion(int, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfInsertion
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 163
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event.CbEffectChange OfInsertion(int parameter, int value)
+    parameters:
+    - id: parameter
+      type: System.Int32
+    - id: value
+      type: System.Int32
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange
+    content.vb: Public Shared Function OfInsertion(parameter As Integer, value As Integer) As [Event].CbEffectChange
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion*
+  nameWithType.vb: Event.CbEffectChange.OfInsertion(Integer, Integer)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion(Integer, Integer)
+  name.vb: OfInsertion(Integer, Integer)
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion
+  commentId: P:SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion
+  id: AsInsertion
+  parent: SpessaSharp.Synthesizer.Event.CbEffectChange
+  langs:
+  - csharp
+  - vb
+  name: AsInsertion
+  nameWithType: Event.CbEffectChange.AsInsertion
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsInsertion
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 166
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbEffectChange.Insertion AsInsertion { get; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+    content.vb: Public ReadOnly Property AsInsertion As [Event].CbEffectChange.Insertion
+  overload: SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion*
+references:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: System.IEquatable{SpessaSharp.Synthesizer.Event.CbEffectChange}
+  commentId: T:System.IEquatable{SpessaSharp.Synthesizer.Event.CbEffectChange}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Event.CbEffectChange>
+  nameWithType: IEquatable<Event.CbEffectChange>
+  fullName: System.IEquatable<SpessaSharp.Synthesizer.Event.CbEffectChange>
+  nameWithType.vb: IEquatable(Of Event.CbEffectChange)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Synthesizer.Event.CbEffectChange)
+  name.vb: IEquatable(Of Event.CbEffectChange)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.#ctor*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.#ctor
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange__ctor_SpessaSharp_Synthesizer_Event_CbEffectChange_Type_System_Int32_System_Int32_
+  name: CbEffectChange
+  nameWithType: Event.CbEffectChange.CbEffectChange
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.CbEffectChange
+  nameWithType.vb: Event.CbEffectChange.New
+  fullName.vb: SpessaSharp.Synthesizer.Event.CbEffectChange.New
+  name.vb: New
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Type
+  nameWithType: Event.CbEffectChange.Type
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.html
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_EffectType
+  name: EffectType
+  nameWithType: Event.CbEffectChange.EffectType
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.EffectType
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_Parameter
+  name: Parameter
+  nameWithType: Event.CbEffectChange.Parameter
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Parameter
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Value*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.Value
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_Value
+  name: Value
+  nameWithType: Event.CbEffectChange.Value
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Value
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_OfReverb_SpessaSharp_Synthesizer_Engine_Effects_Effect_FxReverbType_System_Int32_
+  name: OfReverb
+  nameWithType: Event.CbEffectChange.OfReverb
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfReverb
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxReverbType
+  nameWithType: Effect.FxReverbType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    name: FxReverbType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    name: FxReverbType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange
+  nameWithType: Event.CbEffectChange
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_AsReverb
+  name: AsReverb
+  nameWithType: Event.CbEffectChange.AsReverb
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsReverb
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Reverb
+  nameWithType: Event.CbEffectChange.Reverb
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+    name: Reverb
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+    name: Reverb
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_OfChorus_SpessaSharp_Synthesizer_Engine_Effects_Effect_FxChorusType_System_Int32_
+  name: OfChorus
+  nameWithType: Event.CbEffectChange.OfChorus
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfChorus
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxChorusType
+  nameWithType: Effect.FxChorusType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+    name: FxChorusType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+    name: FxChorusType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_AsChorus
+  name: AsChorus
+  nameWithType: Event.CbEffectChange.AsChorus
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsChorus
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Chorus
+  nameWithType: Event.CbEffectChange.Chorus
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+    name: Chorus
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+    name: Chorus
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_OfDelay_SpessaSharp_Synthesizer_Engine_Effects_Effect_FxDelayType_System_Int32_
+  name: OfDelay
+  nameWithType: Event.CbEffectChange.OfDelay
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfDelay
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxDelayType
+  nameWithType: Effect.FxDelayType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    name: FxDelayType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    name: FxDelayType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_AsDelay
+  name: AsDelay
+  nameWithType: Event.CbEffectChange.AsDelay
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsDelay
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Delay
+  nameWithType: Event.CbEffectChange.Delay
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+    name: Delay
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+    name: Delay
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_OfInsertion_System_Int32_System_Int32_
+  name: OfInsertion
+  nameWithType: Event.CbEffectChange.OfInsertion
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.OfInsertion
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion
+  href: SpessaSharp.Synthesizer.Event.CbEffectChange.html#SpessaSharp_Synthesizer_Event_CbEffectChange_AsInsertion
+  name: AsInsertion
+  nameWithType: Event.CbEffectChange.AsInsertion
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.AsInsertion
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Insertion
+  nameWithType: Event.CbEffectChange.Insertion
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion.html

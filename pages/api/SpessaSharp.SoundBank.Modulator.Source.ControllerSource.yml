@@ -1,0 +1,379 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  commentId: T:SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  id: Modulator.Source.ControllerSource
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.AuxiliaryEnvelope
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.ChannelPressure
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF1
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF2
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.Link
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoController
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnKeyNum
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnVelocity
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheel
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheelRange
+  - SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PolyPressure
+  langs:
+  - csharp
+  - vb
+  name: Modulator.Source.ControllerSource
+  nameWithType: Modulator.Source.ControllerSource
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ControllerSource
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 56
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public enum Modulator.Source.ControllerSource
+    content.vb: Public Enum Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoController
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoController
+  id: NoController
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: NoController
+  nameWithType: Modulator.Source.ControllerSource.NoController
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoController
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoController
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 58
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: NoController = 0
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnVelocity
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnVelocity
+  id: NoteOnVelocity
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: NoteOnVelocity
+  nameWithType: Modulator.Source.ControllerSource.NoteOnVelocity
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnVelocity
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOnVelocity
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 58
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: NoteOnVelocity = 1
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnKeyNum
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnKeyNum
+  id: NoteOnKeyNum
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: NoteOnKeyNum
+  nameWithType: Modulator.Source.ControllerSource.NoteOnKeyNum
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.NoteOnKeyNum
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOnKeyNum
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 58
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: NoteOnKeyNum = 2
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PolyPressure
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PolyPressure
+  id: PolyPressure
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: PolyPressure
+  nameWithType: Modulator.Source.ControllerSource.PolyPressure
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PolyPressure
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PolyPressure
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 58
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: PolyPressure = 3
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.ChannelPressure
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.ChannelPressure
+  id: ChannelPressure
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: ChannelPressure
+  nameWithType: Modulator.Source.ControllerSource.ChannelPressure
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.ChannelPressure
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelPressure
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 59
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: ChannelPressure = 4
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheel
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheel
+  id: PitchWheel
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: PitchWheel
+  nameWithType: Modulator.Source.ControllerSource.PitchWheel
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheel
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheel
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 59
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: PitchWheel = 5
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheelRange
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheelRange
+  id: PitchWheelRange
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: PitchWheelRange
+  nameWithType: Modulator.Source.ControllerSource.PitchWheelRange
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.PitchWheelRange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheelRange
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 59
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: PitchWheelRange = 6
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.AuxiliaryEnvelope
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.AuxiliaryEnvelope
+  id: AuxiliaryEnvelope
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: AuxiliaryEnvelope
+  nameWithType: Modulator.Source.ControllerSource.AuxiliaryEnvelope
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.AuxiliaryEnvelope
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AuxiliaryEnvelope
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 62
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: AuxiliaryEnvelope = 7
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF1
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF1
+  id: LF1
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: LF1
+  nameWithType: Modulator.Source.ControllerSource.LF1
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF1
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LF1
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 62
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: LF1 = 8
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF2
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF2
+  id: LF2
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: LF2
+  nameWithType: Modulator.Source.ControllerSource.LF2
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.LF2
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LF2
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 62
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: LF2 = 9
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.Link
+  commentId: F:SpessaSharp.SoundBank.Modulator.Source.ControllerSource.Link
+  id: Link
+  parent: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  langs:
+  - csharp
+  - vb
+  name: Link
+  nameWithType: Modulator.Source.ControllerSource.Link
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.Link
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/Modulator.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Link
+    path: ../SpessaSharp/SoundBank/Modulator.cs
+    startLine: 64
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Link = 10
+    return:
+      type: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  commentId: T:SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.Modulator.html
+  name: Modulator.Source.ControllerSource
+  nameWithType: Modulator.Source.ControllerSource
+  fullName: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+    name: ControllerSource
+    href: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.Modulator
+    name: Modulator
+    href: SpessaSharp.SoundBank.Modulator.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source
+    name: Source
+    href: SpessaSharp.SoundBank.Modulator.Source.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.Modulator.Source.ControllerSource
+    name: ControllerSource
+    href: SpessaSharp.SoundBank.Modulator.Source.ControllerSource.html

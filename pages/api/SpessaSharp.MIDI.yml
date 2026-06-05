@@ -1,0 +1,474 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  id: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.Midi
+  - SpessaSharp.MIDI.Midi.CC
+  - SpessaSharp.MIDI.Midi.Enumerable
+  - SpessaSharp.MIDI.Midi.Enumerator
+  - SpessaSharp.MIDI.Midi.Enumerator.Entry
+  - SpessaSharp.MIDI.Midi.LoopType
+  - SpessaSharp.MIDI.Midi.MidiLoop
+  - SpessaSharp.MIDI.Midi.NoteTime
+  - SpessaSharp.MIDI.Midi.System
+  - SpessaSharp.MIDI.Midi.TempoChange
+  - SpessaSharp.MIDI.Midi.TimeSignatureChange
+  - SpessaSharp.MIDI.Midi.TimelineEvent
+  - SpessaSharp.MIDI.MidiFormat
+  - SpessaSharp.MIDI.MidiMessage
+  - SpessaSharp.MIDI.MidiMessage.Type
+  - SpessaSharp.MIDI.MidiPatch
+  - SpessaSharp.MIDI.MidiPatch.Full
+  - SpessaSharp.MIDI.RMidi
+  - SpessaSharp.MIDI.RMidi.Info
+  - SpessaSharp.MIDI.RMidi.Info.Key
+  - SpessaSharp.MIDI.StatusByte
+  - SpessaSharp.MIDI.Track
+  - SpessaSharp.MIDI.TypeEx
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.MIDI.Midi
+  commentId: T:SpessaSharp.MIDI.Midi
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi
+  nameWithType: Midi
+  fullName: SpessaSharp.MIDI.Midi
+- uid: SpessaSharp.MIDI.Midi.CC
+  commentId: T:SpessaSharp.MIDI.Midi.CC
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.CC
+  nameWithType: Midi.CC
+  fullName: SpessaSharp.MIDI.Midi.CC
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.CC
+    name: CC
+    href: SpessaSharp.MIDI.Midi.CC.html
+- uid: SpessaSharp.MIDI.Midi.LoopType
+  commentId: T:SpessaSharp.MIDI.Midi.LoopType
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.LoopType
+  nameWithType: Midi.LoopType
+  fullName: SpessaSharp.MIDI.Midi.LoopType
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.LoopType
+    name: LoopType
+    href: SpessaSharp.MIDI.Midi.LoopType.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.LoopType
+    name: LoopType
+    href: SpessaSharp.MIDI.Midi.LoopType.html
+- uid: SpessaSharp.MIDI.Midi.System
+  commentId: T:SpessaSharp.MIDI.Midi.System
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.System
+  nameWithType: Midi.System
+  fullName: SpessaSharp.MIDI.Midi.System
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.System
+    name: System
+    href: SpessaSharp.MIDI.Midi.System.html
+- uid: SpessaSharp.MIDI.Midi.MidiLoop
+  commentId: T:SpessaSharp.MIDI.Midi.MidiLoop
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.MidiLoop
+  nameWithType: Midi.MidiLoop
+  fullName: SpessaSharp.MIDI.Midi.MidiLoop
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.MidiLoop
+    name: MidiLoop
+    href: SpessaSharp.MIDI.Midi.MidiLoop.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.MidiLoop
+    name: MidiLoop
+    href: SpessaSharp.MIDI.Midi.MidiLoop.html
+- uid: SpessaSharp.MIDI.Midi.TempoChange
+  commentId: T:SpessaSharp.MIDI.Midi.TempoChange
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.TempoChange
+  nameWithType: Midi.TempoChange
+  fullName: SpessaSharp.MIDI.Midi.TempoChange
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.TempoChange
+    name: TempoChange
+    href: SpessaSharp.MIDI.Midi.TempoChange.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.TempoChange
+    name: TempoChange
+    href: SpessaSharp.MIDI.Midi.TempoChange.html
+- uid: SpessaSharp.MIDI.Midi.TimeSignatureChange
+  commentId: T:SpessaSharp.MIDI.Midi.TimeSignatureChange
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.TimeSignatureChange
+  nameWithType: Midi.TimeSignatureChange
+  fullName: SpessaSharp.MIDI.Midi.TimeSignatureChange
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.TimeSignatureChange
+    name: TimeSignatureChange
+    href: SpessaSharp.MIDI.Midi.TimeSignatureChange.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.TimeSignatureChange
+    name: TimeSignatureChange
+    href: SpessaSharp.MIDI.Midi.TimeSignatureChange.html
+- uid: SpessaSharp.MIDI.Midi.NoteTime
+  commentId: T:SpessaSharp.MIDI.Midi.NoteTime
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.NoteTime
+  nameWithType: Midi.NoteTime
+  fullName: SpessaSharp.MIDI.Midi.NoteTime
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.NoteTime
+    name: NoteTime
+    href: SpessaSharp.MIDI.Midi.NoteTime.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.NoteTime
+    name: NoteTime
+    href: SpessaSharp.MIDI.Midi.NoteTime.html
+- uid: SpessaSharp.MIDI.Midi.TimelineEvent
+  commentId: T:SpessaSharp.MIDI.Midi.TimelineEvent
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.TimelineEvent
+  nameWithType: Midi.TimelineEvent
+  fullName: SpessaSharp.MIDI.Midi.TimelineEvent
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.TimelineEvent
+    name: TimelineEvent
+    href: SpessaSharp.MIDI.Midi.TimelineEvent.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.TimelineEvent
+    name: TimelineEvent
+    href: SpessaSharp.MIDI.Midi.TimelineEvent.html
+- uid: SpessaSharp.MIDI.Midi.Enumerable
+  commentId: T:SpessaSharp.MIDI.Midi.Enumerable
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.Enumerable
+  nameWithType: Midi.Enumerable
+  fullName: SpessaSharp.MIDI.Midi.Enumerable
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerable
+    name: Enumerable
+    href: SpessaSharp.MIDI.Midi.Enumerable.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerable
+    name: Enumerable
+    href: SpessaSharp.MIDI.Midi.Enumerable.html
+- uid: SpessaSharp.MIDI.Midi.Enumerator
+  commentId: T:SpessaSharp.MIDI.Midi.Enumerator
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.Enumerator
+  nameWithType: Midi.Enumerator
+  fullName: SpessaSharp.MIDI.Midi.Enumerator
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator
+    name: Enumerator
+    href: SpessaSharp.MIDI.Midi.Enumerator.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator
+    name: Enumerator
+    href: SpessaSharp.MIDI.Midi.Enumerator.html
+- uid: SpessaSharp.MIDI.Midi.Enumerator.Entry
+  commentId: T:SpessaSharp.MIDI.Midi.Enumerator.Entry
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.Enumerator.Entry
+  nameWithType: Midi.Enumerator.Entry
+  fullName: SpessaSharp.MIDI.Midi.Enumerator.Entry
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator
+    name: Enumerator
+    href: SpessaSharp.MIDI.Midi.Enumerator.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator.Entry
+    name: Entry
+    href: SpessaSharp.MIDI.Midi.Enumerator.Entry.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator
+    name: Enumerator
+    href: SpessaSharp.MIDI.Midi.Enumerator.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator.Entry
+    name: Entry
+    href: SpessaSharp.MIDI.Midi.Enumerator.Entry.html
+- uid: SpessaSharp.MIDI.MidiFormat
+  commentId: T:SpessaSharp.MIDI.MidiFormat
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiFormat.html
+  name: MidiFormat
+  nameWithType: MidiFormat
+  fullName: SpessaSharp.MIDI.MidiFormat
+- uid: SpessaSharp.MIDI.StatusByte
+  commentId: T:SpessaSharp.MIDI.StatusByte
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.StatusByte.html
+  name: StatusByte
+  nameWithType: StatusByte
+  fullName: SpessaSharp.MIDI.StatusByte
+- uid: SpessaSharp.MIDI.MidiMessage
+  commentId: T:SpessaSharp.MIDI.MidiMessage
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiMessage.html
+  name: MidiMessage
+  nameWithType: MidiMessage
+  fullName: SpessaSharp.MIDI.MidiMessage
+- uid: SpessaSharp.MIDI.MidiMessage.Type
+  commentId: T:SpessaSharp.MIDI.MidiMessage.Type
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiMessage.html
+  name: MidiMessage.Type
+  nameWithType: MidiMessage.Type
+  fullName: SpessaSharp.MIDI.MidiMessage.Type
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.MidiMessage
+    name: MidiMessage
+    href: SpessaSharp.MIDI.MidiMessage.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiMessage.Type
+    name: Type
+    href: SpessaSharp.MIDI.MidiMessage.Type.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.MidiMessage
+    name: MidiMessage
+    href: SpessaSharp.MIDI.MidiMessage.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiMessage.Type
+    name: Type
+    href: SpessaSharp.MIDI.MidiMessage.Type.html
+- uid: SpessaSharp.MIDI.TypeEx
+  commentId: T:SpessaSharp.MIDI.TypeEx
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.TypeEx.html
+  name: TypeEx
+  nameWithType: TypeEx
+  fullName: SpessaSharp.MIDI.TypeEx
+- uid: SpessaSharp.MIDI.MidiPatch
+  commentId: T:SpessaSharp.MIDI.MidiPatch
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiPatch.html
+  name: MidiPatch
+  nameWithType: MidiPatch
+  fullName: SpessaSharp.MIDI.MidiPatch
+- uid: SpessaSharp.MIDI.MidiPatch.Full
+  commentId: T:SpessaSharp.MIDI.MidiPatch.Full
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiPatch.html
+  name: MidiPatch.Full
+  nameWithType: MidiPatch.Full
+  fullName: SpessaSharp.MIDI.MidiPatch.Full
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiPatch.Full
+    name: Full
+    href: SpessaSharp.MIDI.MidiPatch.Full.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.MidiPatch
+    name: MidiPatch
+    href: SpessaSharp.MIDI.MidiPatch.html
+  - name: .
+  - uid: SpessaSharp.MIDI.MidiPatch.Full
+    name: Full
+    href: SpessaSharp.MIDI.MidiPatch.Full.html
+- uid: SpessaSharp.MIDI.RMidi
+  commentId: T:SpessaSharp.MIDI.RMidi
+  href: SpessaSharp.MIDI.RMidi.html
+  name: RMidi
+  nameWithType: RMidi
+  fullName: SpessaSharp.MIDI.RMidi
+- uid: SpessaSharp.MIDI.RMidi.Info
+  commentId: T:SpessaSharp.MIDI.RMidi.Info
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.RMidi.html
+  name: RMidi.Info
+  nameWithType: RMidi.Info
+  fullName: SpessaSharp.MIDI.RMidi.Info
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+- uid: SpessaSharp.MIDI.RMidi.Info.Key
+  commentId: T:SpessaSharp.MIDI.RMidi.Info.Key
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.RMidi.html
+  name: RMidi.Info.Key
+  nameWithType: RMidi.Info.Key
+  fullName: SpessaSharp.MIDI.RMidi.Info.Key
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info.Key
+    name: Key
+    href: SpessaSharp.MIDI.RMidi.Info.Key.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info.Key
+    name: Key
+    href: SpessaSharp.MIDI.RMidi.Info.Key.html
+- uid: SpessaSharp.MIDI.Track
+  commentId: T:SpessaSharp.MIDI.Track
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Track.html
+  name: Track
+  nameWithType: Track
+  fullName: SpessaSharp.MIDI.Track
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html

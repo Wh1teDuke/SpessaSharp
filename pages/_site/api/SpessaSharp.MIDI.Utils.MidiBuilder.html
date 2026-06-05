@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct MidiBuilder | SpessaSharp </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct MidiBuilder | SpessaSharp ">
+      
+      <meta name="description" content="A class that helps to build a MIDI file from scratch.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Wh1teDuke/SpessaSharp/new/master/apiSpec/new?filename=SpessaSharp_MIDI_Utils_MidiBuilder.md&amp;value=---%0Auid%3A%20SpessaSharp.MIDI.Utils.MidiBuilder%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="SpessaSharp">
+            SpessaSharp
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="SpessaSharp.MIDI.Utils.MidiBuilder">
+
+
+
+  <h1 id="SpessaSharp_MIDI_Utils_MidiBuilder" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder" class="text-break">
+Struct MidiBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="SpessaSharp.html">SpessaSharp</a>.<a class="xref" href="SpessaSharp.MIDI.html">MIDI</a>.<a class="xref" href="SpessaSharp.MIDI.Utils.html">Utils</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>SpessaSharp.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A class that helps to build a MIDI file from scratch.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly record struct MidiBuilder : IEquatable&lt;MidiBuilder&gt;</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.html">MidiBuilder</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_Midi_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.Midi*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_Midi" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.Midi">
+  Midi
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Midi Midi { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.MIDI.Midi.html">Midi</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_AddEvent_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_AddEvent_SpessaSharp_MIDI_Track_System_Int32_SpessaSharp_MIDI_StatusByte_System_ArraySegment_System_Byte__" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.AddEvent(SpessaSharp.MIDI.Track,System.Int32,SpessaSharp.MIDI.StatusByte,System.ArraySegment{System.Byte})">
+  AddEvent(Track, int, StatusByte, ArraySegment&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new MIDI Event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddEvent(Track track, int ticks, StatusByte sb, ArraySegment&lt;byte&gt; eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd><p>The track to use.</p>
+</dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tick time of the event (absolute).</p>
+</dd>
+    <dt><code>sb</code> <a class="xref" href="SpessaSharp.MIDI.StatusByte.html">StatusByte</a></dt>
+    <dd><p>MIDI Status byte.</p>
+</dd>
+    <dt><code>eventData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arraysegment-1">ArraySegment</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The raw event data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_AddTrack_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_AddTrack_System_String_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.AddTrack(System.String,System.Int32)">
+  AddTrack(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new MIDI track.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddTrack(string name, int port = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The new track's name.</p>
+</dd>
+    <dt><code>port</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The new track's port.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>MIDI with format 0</p>
+</dd>
+  </dl>
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_ControllerChange_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_ControllerChange_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.ControllerChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)">
+  ControllerChange(Track, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L283"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new Controller Change event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ControllerChange(Track track, int ticks, int channel, int controller, int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd><p>The track to use.</p>
+</dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tick time of the event.</p>
+</dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The channel to use.</p>
+</dd>
+    <dt><code>controller</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI CC to use.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The new CC value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_New_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.New*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_New_System_Nullable_SpessaSharp_MIDI_Utils_MidiBuilder_Options__" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.New(System.Nullable{SpessaSharp.MIDI.Utils.MidiBuilder.Options})">
+  New(Options?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MidiBuilder New(MidiBuilder.Options? options = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>options</code> <a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.html">MidiBuilder</a>.<a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.Options.html">Options</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.html">MidiBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_NonRegisteredParameter_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_NonRegisteredParameter_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)">
+  NonRegisteredParameter(Track, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L347"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NonRegisteredParameter(Track track, int ticks, int channel, int parameter, int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd></dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>parameter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_NonRegisteredParameter_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_NonRegisteredParameter_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NonRegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+  NonRegisteredParameter(int, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L343"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NonRegisteredParameter(int ticks, int track, int channel, int parameter, int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>track</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>parameter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOff_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOff_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)">
+  NoteOff(Track, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NoteOff(Track track, int ticks, int channel, int midiNote, int velocity = 64)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd></dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>velocity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOff_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOff_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOff(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+  NoteOff(int, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new Note Off event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NoteOff(int ticks, int track, int channel, int midiNote, int velocity = 64)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tick time of the event.</p>
+</dd>
+    <dt><code>track</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The track number to use.</p>
+</dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The channel to use.</p>
+</dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The midi note of the key release.</p>
+</dd>
+    <dt><code>velocity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Optional and unsupported by SpessaSynth.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOn_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOn_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)">
+  NoteOn(Track, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NoteOn(Track track, int ticks, int channel, int midiNote, int velocity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd></dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>velocity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOn_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_NoteOn_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.NoteOn(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+  NoteOn(int, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new Note On event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NoteOn(int ticks, int track, int channel, int midiNote, int velocity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tick time of the event.</p>
+</dd>
+    <dt><code>track</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The track number to use.</p>
+</dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The channel to use.</p>
+</dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The midi note of the keypress.</p>
+</dd>
+    <dt><code>velocity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The velocity of the keypress.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_OfTrack_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_OfTrack_SpessaSharp_MIDI_Track_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(SpessaSharp.MIDI.Track)">
+  OfTrack(Track)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MidiBuilder.TrackBuilder OfTrack(Track track)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.html">MidiBuilder</a>.<a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder.html">TrackBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_OfTrack_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_OfTrack_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.OfTrack(System.Int32)">
+  OfTrack(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MidiBuilder.TrackBuilder OfTrack(int track)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.html">MidiBuilder</a>.<a class="xref" href="SpessaSharp.MIDI.Utils.MidiBuilder.TrackBuilder.html">TrackBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_PitchWheel_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_PitchWheel_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.PitchWheel(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)">
+  PitchWheel(Track, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L301"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new Pitch Wheel event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PitchWheel(Track track, int ticks, int channel, int pitch)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd><p>The track to use.</p>
+</dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tick time of the event.</p>
+</dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The channel to use.</p>
+</dd>
+    <dt><code>pitch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pitch (0 - 16383).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_ProgramChange_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_ProgramChange_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.ProgramChange(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32)">
+  ProgramChange(Track, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new Program Change event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProgramChange(Track track, int ticks, int channel, int program)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd><p>The track to use.</p>
+</dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tick time of the event.</p>
+</dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The channel to use.</p>
+</dd>
+    <dt><code>program</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI program to use.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_RegisteredParameter_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_RegisteredParameter_SpessaSharp_MIDI_Track_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(SpessaSharp.MIDI.Track,System.Int32,System.Int32,System.Int32,System.Int32)">
+  RegisteredParameter(Track, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L329"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Selects a new Registered Parameter Number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisteredParameter(Track track, int ticks, int channel, int parameter, int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd><p>The track to use.</p>
+</dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Ticks the tick time of the events.</p>
+</dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The channel to use.</p>
+</dd>
+    <dt><code>parameter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The 14-bit registered parameter number. For example 0 is pitch wheel range.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The 14-bit value for this parameter.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_RegisteredParameter_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_RegisteredParameter_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.RegisteredParameter(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+  RegisteredParameter(int, int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L318"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Selects a new Registered Parameter Number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisteredParameter(int ticks, int track, int channel, int parameter, int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Ticks the tick time of the events.</p>
+</dd>
+    <dt><code>track</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The track to use.</p>
+</dd>
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The channel to use.</p>
+</dd>
+    <dt><code>parameter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The 14-bit registered parameter number. For example 0 is pitch wheel range.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The 14-bit value for this parameter.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopEnd_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopEnd_SpessaSharp_MIDI_Track_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(SpessaSharp.MIDI.Track,System.Int32)">
+  SetLoopEnd(Track, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L274"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLoopEnd(Track track, int ticks)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd></dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopEnd_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopEnd_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopEnd(System.Int32,System.Int32)">
+  SetLoopEnd(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLoopEnd(int track, int ticks)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopStart_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopStart_SpessaSharp_MIDI_Track_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(SpessaSharp.MIDI.Track,System.Int32)">
+  SetLoopStart(Track, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLoopStart(Track track, int ticks)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="SpessaSharp.MIDI.Track.html">Track</a></dt>
+    <dd></dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopStart_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_SetLoopStart_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetLoopStart(System.Int32,System.Int32)">
+  SetLoopStart(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLoopStart(int track, int ticks)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>track</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_MIDI_Utils_MidiBuilder_SetTempo_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo*"></a>
+
+  <h3 id="SpessaSharp_MIDI_Utils_MidiBuilder_SetTempo_System_Int32_System_Int32_" data-uid="SpessaSharp.MIDI.Utils.MidiBuilder.SetTempo(System.Int32,System.Int32)">
+  SetTempo(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a new Set Tempo event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTempo(int ticks, int tempo)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ticks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tick number of the event.</p>
+</dd>
+    <dt><code>tempo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The tempo in beats per minute (BPM).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/MIDI/Utils/MidiBuilder.cs/#L6" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

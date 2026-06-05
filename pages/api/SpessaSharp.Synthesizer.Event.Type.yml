@@ -1,0 +1,533 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Event.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.Type
+  id: Event.Type
+  parent: SpessaSharp.Synthesizer
+  children:
+  - SpessaSharp.Synthesizer.Event.Type.ChannelAdded
+  - SpessaSharp.Synthesizer.Event.Type.ChannelMidiParameterChange
+  - SpessaSharp.Synthesizer.Event.Type.ChannelPressure
+  - SpessaSharp.Synthesizer.Event.Type.ControllerChange
+  - SpessaSharp.Synthesizer.Event.Type.DisplayMessage
+  - SpessaSharp.Synthesizer.Event.Type.EffectChange
+  - SpessaSharp.Synthesizer.Event.Type.GlobalMidiParameterChange
+  - SpessaSharp.Synthesizer.Event.Type.MuteChannel
+  - SpessaSharp.Synthesizer.Event.Type.NoteOff
+  - SpessaSharp.Synthesizer.Event.Type.NoteOn
+  - SpessaSharp.Synthesizer.Event.Type.Null
+  - SpessaSharp.Synthesizer.Event.Type.PolyPressure
+  - SpessaSharp.Synthesizer.Event.Type.PresetListChange
+  - SpessaSharp.Synthesizer.Event.Type.ProgramChange
+  - SpessaSharp.Synthesizer.Event.Type.Reset
+  - SpessaSharp.Synthesizer.Event.Type.StopAll
+  - SpessaSharp.Synthesizer.Event.Type.SystemParameterChange
+  langs:
+  - csharp
+  - vb
+  name: Event.Type
+  nameWithType: Event.Type
+  fullName: SpessaSharp.Synthesizer.Event.Type
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 11
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public enum Event.Type
+    content.vb: Public Enum [Event].Type
+- uid: SpessaSharp.Synthesizer.Event.Type.Null
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.Null
+  id: "Null"
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: "Null"
+  nameWithType: Event.Type.Null
+  fullName: SpessaSharp.Synthesizer.Event.Type.Null
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: "Null"
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 13
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Null = 0
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.NoteOn
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.NoteOn
+  id: NoteOn
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: NoteOn
+  nameWithType: Event.Type.NoteOn
+  fullName: SpessaSharp.Synthesizer.Event.Type.NoteOn
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOn
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 15
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: NoteOn = 1
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.NoteOff
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.NoteOff
+  id: NoteOff
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: NoteOff
+  nameWithType: Event.Type.NoteOff
+  fullName: SpessaSharp.Synthesizer.Event.Type.NoteOff
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: NoteOff
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 15
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: NoteOff = 2
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.ControllerChange
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.ControllerChange
+  id: ControllerChange
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: ControllerChange
+  nameWithType: Event.Type.ControllerChange
+  fullName: SpessaSharp.Synthesizer.Event.Type.ControllerChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ControllerChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: ControllerChange = 3
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.ProgramChange
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.ProgramChange
+  id: ProgramChange
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: ProgramChange
+  nameWithType: Event.Type.ProgramChange
+  fullName: SpessaSharp.Synthesizer.Event.Type.ProgramChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ProgramChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: ProgramChange = 4
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.ChannelPressure
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.ChannelPressure
+  id: ChannelPressure
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: ChannelPressure
+  nameWithType: Event.Type.ChannelPressure
+  fullName: SpessaSharp.Synthesizer.Event.Type.ChannelPressure
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelPressure
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: ChannelPressure = 5
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.PolyPressure
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.PolyPressure
+  id: PolyPressure
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: PolyPressure
+  nameWithType: Event.Type.PolyPressure
+  fullName: SpessaSharp.Synthesizer.Event.Type.PolyPressure
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PolyPressure
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: PolyPressure = 6
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.StopAll
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.StopAll
+  id: StopAll
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: StopAll
+  nameWithType: Event.Type.StopAll
+  fullName: SpessaSharp.Synthesizer.Event.Type.StopAll
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: StopAll
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: StopAll = 7
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.ChannelAdded
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.ChannelAdded
+  id: ChannelAdded
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: ChannelAdded
+  nameWithType: Event.Type.ChannelAdded
+  fullName: SpessaSharp.Synthesizer.Event.Type.ChannelAdded
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelAdded
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 17
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: ChannelAdded = 8
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.MuteChannel
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.MuteChannel
+  id: MuteChannel
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: MuteChannel
+  nameWithType: Event.Type.MuteChannel
+  fullName: SpessaSharp.Synthesizer.Event.Type.MuteChannel
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MuteChannel
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 18
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: MuteChannel = 9
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.PresetListChange
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.PresetListChange
+  id: PresetListChange
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: PresetListChange
+  nameWithType: Event.Type.PresetListChange
+  fullName: SpessaSharp.Synthesizer.Event.Type.PresetListChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PresetListChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 18
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: PresetListChange = 10
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.Reset
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.Reset
+  id: Reset
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: Reset
+  nameWithType: Event.Type.Reset
+  fullName: SpessaSharp.Synthesizer.Event.Type.Reset
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Reset
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 18
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: Reset = 11
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.DisplayMessage
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.DisplayMessage
+  id: DisplayMessage
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: DisplayMessage
+  nameWithType: Event.Type.DisplayMessage
+  fullName: SpessaSharp.Synthesizer.Event.Type.DisplayMessage
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DisplayMessage
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: DisplayMessage = 12
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.SystemParameterChange
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.SystemParameterChange
+  id: SystemParameterChange
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: SystemParameterChange
+  nameWithType: Event.Type.SystemParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.Type.SystemParameterChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SystemParameterChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 19
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: SystemParameterChange = 13
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.EffectChange
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.EffectChange
+  id: EffectChange
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: EffectChange
+  nameWithType: Event.Type.EffectChange
+  fullName: SpessaSharp.Synthesizer.Event.Type.EffectChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: EffectChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: EffectChange = 14
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.ChannelMidiParameterChange
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.ChannelMidiParameterChange
+  id: ChannelMidiParameterChange
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: ChannelMidiParameterChange
+  nameWithType: Event.Type.ChannelMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.Type.ChannelMidiParameterChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChannelMidiParameterChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 21
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: ChannelMidiParameterChange = 15
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+- uid: SpessaSharp.Synthesizer.Event.Type.GlobalMidiParameterChange
+  commentId: F:SpessaSharp.Synthesizer.Event.Type.GlobalMidiParameterChange
+  id: GlobalMidiParameterChange
+  parent: SpessaSharp.Synthesizer.Event.Type
+  langs:
+  - csharp
+  - vb
+  name: GlobalMidiParameterChange
+  nameWithType: Event.Type.GlobalMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.Type.GlobalMidiParameterChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GlobalMidiParameterChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 22
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: GlobalMidiParameterChange = 16
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+references:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: SpessaSharp.Synthesizer.Event.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.Type
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.Type
+  nameWithType: Event.Type
+  fullName: SpessaSharp.Synthesizer.Event.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.Type.html

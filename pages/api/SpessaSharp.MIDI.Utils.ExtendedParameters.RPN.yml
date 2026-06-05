@@ -1,0 +1,457 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  commentId: T:SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  id: ExtendedParameters.RPN
+  parent: SpessaSharp.MIDI.Utils
+  children:
+  - SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.CoarseTuning
+  - SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.FineTuning
+  - SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ModulationDepth
+  - SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.PitchWheelRange
+  - SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ResetParameters
+  langs:
+  - csharp
+  - vb
+  name: ExtendedParameters.RPN
+  nameWithType: ExtendedParameters.RPN
+  fullName: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RPN
+    path: ../SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+    startLine: 4
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public static class ExtendedParameters.RPN
+    content.vb: Public Module ExtendedParameters.RPN
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.PitchWheelRange
+  commentId: F:SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.PitchWheelRange
+  id: PitchWheelRange
+  parent: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  langs:
+  - csharp
+  - vb
+  name: PitchWheelRange
+  nameWithType: ExtendedParameters.RPN.PitchWheelRange
+  fullName: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.PitchWheelRange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheelRange
+    path: ../SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+    startLine: 6
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public const int PitchWheelRange = 0
+    return:
+      type: System.Int32
+    content.vb: Public Const PitchWheelRange As Integer = 0
+- uid: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.FineTuning
+  commentId: F:SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.FineTuning
+  id: FineTuning
+  parent: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  langs:
+  - csharp
+  - vb
+  name: FineTuning
+  nameWithType: ExtendedParameters.RPN.FineTuning
+  fullName: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.FineTuning
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FineTuning
+    path: ../SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+    startLine: 7
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public const int FineTuning = 1
+    return:
+      type: System.Int32
+    content.vb: Public Const FineTuning As Integer = 1
+- uid: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.CoarseTuning
+  commentId: F:SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.CoarseTuning
+  id: CoarseTuning
+  parent: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  langs:
+  - csharp
+  - vb
+  name: CoarseTuning
+  nameWithType: ExtendedParameters.RPN.CoarseTuning
+  fullName: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.CoarseTuning
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CoarseTuning
+    path: ../SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+    startLine: 8
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public const int CoarseTuning = 2
+    return:
+      type: System.Int32
+    content.vb: Public Const CoarseTuning As Integer = 2
+- uid: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ModulationDepth
+  commentId: F:SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ModulationDepth
+  id: ModulationDepth
+  parent: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  langs:
+  - csharp
+  - vb
+  name: ModulationDepth
+  nameWithType: ExtendedParameters.RPN.ModulationDepth
+  fullName: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ModulationDepth
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ModulationDepth
+    path: ../SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+    startLine: 9
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public const int ModulationDepth = 5
+    return:
+      type: System.Int32
+    content.vb: Public Const ModulationDepth As Integer = 5
+- uid: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ResetParameters
+  commentId: F:SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ResetParameters
+  id: ResetParameters
+  parent: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN
+  langs:
+  - csharp
+  - vb
+  name: ResetParameters
+  nameWithType: ExtendedParameters.RPN.ResetParameters
+  fullName: SpessaSharp.MIDI.Utils.ExtendedParameters.RPN.ResetParameters
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ResetParameters
+    path: ../SpessaSharp/MIDI/Utils/ExtendedParameters.cs
+    startLine: 10
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: public const int ResetParameters = 16383
+    return:
+      type: System.Int32
+    content.vb: Public Const ResetParameters As Integer = 16383
+references:
+- uid: SpessaSharp.MIDI.Utils
+  commentId: N:SpessaSharp.MIDI.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Utils
+  nameWithType: SpessaSharp.MIDI.Utils
+  fullName: SpessaSharp.MIDI.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

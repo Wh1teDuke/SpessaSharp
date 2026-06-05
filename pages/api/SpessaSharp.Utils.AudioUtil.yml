@@ -1,0 +1,848 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Utils.AudioUtil
+  commentId: T:SpessaSharp.Utils.AudioUtil
+  id: AudioUtil
+  parent: SpessaSharp.Utils
+  children:
+  - SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16(System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  - SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32(System.ReadOnlySpan{System.Byte},System.Span{System.Single},System.Int32)
+  - SpessaSharp.Utils.AudioUtil.Interleave(System.ReadOnlySpan{System.Single},System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  - SpessaSharp.Utils.AudioUtil.Normalize(System.Span{System.Single})
+  - SpessaSharp.Utils.AudioUtil.ToWav(System.ReadOnlySpan{System.ArraySegment{System.Single}},System.Int32,System.Nullable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions})
+  langs:
+  - csharp
+  - vb
+  name: AudioUtil
+  nameWithType: AudioUtil
+  fullName: SpessaSharp.Utils.AudioUtil
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AudioUtil
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 8
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  syntax:
+    content: public static class AudioUtil
+    content.vb: Public Module AudioUtil
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.Utils.AudioUtil.ToWav(System.ReadOnlySpan{System.ArraySegment{System.Single}},System.Int32,System.Nullable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions})
+  commentId: M:SpessaSharp.Utils.AudioUtil.ToWav(System.ReadOnlySpan{System.ArraySegment{System.Single}},System.Int32,System.Nullable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions})
+  id: ToWav(System.ReadOnlySpan{System.ArraySegment{System.Single}},System.Int32,System.Nullable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions})
+  parent: SpessaSharp.Utils.AudioUtil
+  langs:
+  - csharp
+  - vb
+  name: ToWav(ReadOnlySpan<ArraySegment<float>>, int, WaveWriteOptions?)
+  nameWithType: AudioUtil.ToWav(ReadOnlySpan<ArraySegment<float>>, int, AudioUtil.WaveWriteOptions?)
+  fullName: SpessaSharp.Utils.AudioUtil.ToWav(System.ReadOnlySpan<System.ArraySegment<float>>, int, SpessaSharp.Utils.AudioUtil.WaveWriteOptions?)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ToWav
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 44
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  summary: Writes an audio into a valid WAV file.
+  example: []
+  syntax:
+    content: public static byte[] ToWav(ReadOnlySpan<ArraySegment<float>> audioData, int sampleRate, AudioUtil.WaveWriteOptions? options = null)
+    parameters:
+    - id: audioData
+      type: System.ReadOnlySpan{System.ArraySegment{System.Single}}
+      description: The audio data channels.
+    - id: sampleRate
+      type: System.Int32
+      description: The sample rate, in Hertz.
+    - id: options
+      type: System.Nullable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions}
+      description: Additional options for writing the file.
+    return:
+      type: System.Byte[]
+      description: The binary file.
+    content.vb: Public Shared Function ToWav(audioData As ReadOnlySpan(Of ArraySegment(Of Single)), sampleRate As Integer, options As AudioUtil.WaveWriteOptions? = Nothing) As Byte()
+  overload: SpessaSharp.Utils.AudioUtil.ToWav*
+  nameWithType.vb: AudioUtil.ToWav(ReadOnlySpan(Of ArraySegment(Of Single)), Integer, AudioUtil.WaveWriteOptions?)
+  fullName.vb: SpessaSharp.Utils.AudioUtil.ToWav(System.ReadOnlySpan(Of System.ArraySegment(Of Single)), Integer, SpessaSharp.Utils.AudioUtil.WaveWriteOptions?)
+  name.vb: ToWav(ReadOnlySpan(Of ArraySegment(Of Single)), Integer, WaveWriteOptions?)
+- uid: SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32(System.ReadOnlySpan{System.Byte},System.Span{System.Single},System.Int32)
+  commentId: M:SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32(System.ReadOnlySpan{System.Byte},System.Span{System.Single},System.Int32)
+  id: ConvertPCM16ToFloat32(System.ReadOnlySpan{System.Byte},System.Span{System.Single},System.Int32)
+  parent: SpessaSharp.Utils.AudioUtil
+  langs:
+  - csharp
+  - vb
+  name: ConvertPCM16ToFloat32(ReadOnlySpan<byte>, Span<float>, int)
+  nameWithType: AudioUtil.ConvertPCM16ToFloat32(ReadOnlySpan<byte>, Span<float>, int)
+  fullName: SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32(System.ReadOnlySpan<byte>, System.Span<float>, int)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ConvertPCM16ToFloat32
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 251
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  syntax:
+    content: public static void ConvertPCM16ToFloat32(ReadOnlySpan<byte> source, Span<float> dest, int sampleCount)
+    parameters:
+    - id: source
+      type: System.ReadOnlySpan{System.Byte}
+    - id: dest
+      type: System.Span{System.Single}
+    - id: sampleCount
+      type: System.Int32
+    content.vb: Public Shared Sub ConvertPCM16ToFloat32(source As ReadOnlySpan(Of Byte), dest As Span(Of Single), sampleCount As Integer)
+  overload: SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32*
+  nameWithType.vb: AudioUtil.ConvertPCM16ToFloat32(ReadOnlySpan(Of Byte), Span(Of Single), Integer)
+  fullName.vb: SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32(System.ReadOnlySpan(Of Byte), System.Span(Of Single), Integer)
+  name.vb: ConvertPCM16ToFloat32(ReadOnlySpan(Of Byte), Span(Of Single), Integer)
+- uid: SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16(System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  commentId: M:SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16(System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  id: ConvertFloat32ToPCM16(System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  parent: SpessaSharp.Utils.AudioUtil
+  langs:
+  - csharp
+  - vb
+  name: ConvertFloat32ToPCM16(ReadOnlySpan<float>, Span<short>)
+  nameWithType: AudioUtil.ConvertFloat32ToPCM16(ReadOnlySpan<float>, Span<short>)
+  fullName: SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16(System.ReadOnlySpan<float>, System.Span<short>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ConvertFloat32ToPCM16
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 314
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  syntax:
+    content: public static void ConvertFloat32ToPCM16(ReadOnlySpan<float> source, Span<short> target)
+    parameters:
+    - id: source
+      type: System.ReadOnlySpan{System.Single}
+    - id: target
+      type: System.Span{System.Int16}
+    content.vb: Public Shared Sub ConvertFloat32ToPCM16(source As ReadOnlySpan(Of Single), target As Span(Of Short))
+  overload: SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16*
+  nameWithType.vb: AudioUtil.ConvertFloat32ToPCM16(ReadOnlySpan(Of Single), Span(Of Short))
+  fullName.vb: SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16(System.ReadOnlySpan(Of Single), System.Span(Of Short))
+  name.vb: ConvertFloat32ToPCM16(ReadOnlySpan(Of Single), Span(Of Short))
+- uid: SpessaSharp.Utils.AudioUtil.Interleave(System.ReadOnlySpan{System.Single},System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  commentId: M:SpessaSharp.Utils.AudioUtil.Interleave(System.ReadOnlySpan{System.Single},System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  id: Interleave(System.ReadOnlySpan{System.Single},System.ReadOnlySpan{System.Single},System.Span{System.Int16})
+  parent: SpessaSharp.Utils.AudioUtil
+  langs:
+  - csharp
+  - vb
+  name: Interleave(ReadOnlySpan<float>, ReadOnlySpan<float>, Span<short>)
+  nameWithType: AudioUtil.Interleave(ReadOnlySpan<float>, ReadOnlySpan<float>, Span<short>)
+  fullName: SpessaSharp.Utils.AudioUtil.Interleave(System.ReadOnlySpan<float>, System.ReadOnlySpan<float>, System.Span<short>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Interleave
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 351
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  syntax:
+    content: public static void Interleave(ReadOnlySpan<float> left, ReadOnlySpan<float> right, Span<short> output)
+    parameters:
+    - id: left
+      type: System.ReadOnlySpan{System.Single}
+    - id: right
+      type: System.ReadOnlySpan{System.Single}
+    - id: output
+      type: System.Span{System.Int16}
+    content.vb: Public Shared Sub Interleave(left As ReadOnlySpan(Of Single), right As ReadOnlySpan(Of Single), output As Span(Of Short))
+  overload: SpessaSharp.Utils.AudioUtil.Interleave*
+  nameWithType.vb: AudioUtil.Interleave(ReadOnlySpan(Of Single), ReadOnlySpan(Of Single), Span(Of Short))
+  fullName.vb: SpessaSharp.Utils.AudioUtil.Interleave(System.ReadOnlySpan(Of Single), System.ReadOnlySpan(Of Single), System.Span(Of Short))
+  name.vb: Interleave(ReadOnlySpan(Of Single), ReadOnlySpan(Of Single), Span(Of Short))
+- uid: SpessaSharp.Utils.AudioUtil.Normalize(System.Span{System.Single})
+  commentId: M:SpessaSharp.Utils.AudioUtil.Normalize(System.Span{System.Single})
+  id: Normalize(System.Span{System.Single})
+  parent: SpessaSharp.Utils.AudioUtil
+  langs:
+  - csharp
+  - vb
+  name: Normalize(Span<float>)
+  nameWithType: AudioUtil.Normalize(Span<float>)
+  fullName: SpessaSharp.Utils.AudioUtil.Normalize(System.Span<float>)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Utils/AudioUtil.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Normalize
+    path: ../SpessaSharp/Utils/AudioUtil.cs
+    startLine: 401
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Utils
+  syntax:
+    content: public static void Normalize(Span<float> sampleData)
+    parameters:
+    - id: sampleData
+      type: System.Span{System.Single}
+    content.vb: Public Shared Sub Normalize(sampleData As Span(Of Single))
+  overload: SpessaSharp.Utils.AudioUtil.Normalize*
+  nameWithType.vb: AudioUtil.Normalize(Span(Of Single))
+  fullName.vb: SpessaSharp.Utils.AudioUtil.Normalize(System.Span(Of Single))
+  name.vb: Normalize(Span(Of Single))
+references:
+- uid: SpessaSharp.Utils
+  commentId: N:SpessaSharp.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.Utils
+  nameWithType: SpessaSharp.Utils
+  fullName: SpessaSharp.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Utils
+    name: Utils
+    href: SpessaSharp.Utils.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.Utils.AudioUtil.ToWav*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.ToWav
+  href: SpessaSharp.Utils.AudioUtil.html#SpessaSharp_Utils_AudioUtil_ToWav_System_ReadOnlySpan_System_ArraySegment_System_Single___System_Int32_System_Nullable_SpessaSharp_Utils_AudioUtil_WaveWriteOptions__
+  name: ToWav
+  nameWithType: AudioUtil.ToWav
+  fullName: SpessaSharp.Utils.AudioUtil.ToWav
+- uid: System.ReadOnlySpan{System.ArraySegment{System.Single}}
+  commentId: T:System.ReadOnlySpan{System.ArraySegment{System.Single}}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<ArraySegment<float>>
+  nameWithType: ReadOnlySpan<ArraySegment<float>>
+  fullName: System.ReadOnlySpan<System.ArraySegment<float>>
+  nameWithType.vb: ReadOnlySpan(Of ArraySegment(Of Single))
+  fullName.vb: System.ReadOnlySpan(Of System.ArraySegment(Of Single))
+  name.vb: ReadOnlySpan(Of ArraySegment(Of Single))
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Nullable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions}
+  commentId: T:System.Nullable{SpessaSharp.Utils.AudioUtil.WaveWriteOptions}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Utils.AudioUtil.html
+  name: AudioUtil.WaveWriteOptions?
+  nameWithType: AudioUtil.WaveWriteOptions?
+  fullName: SpessaSharp.Utils.AudioUtil.WaveWriteOptions?
+  spec.csharp:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Utils.AudioUtil
+    name: AudioUtil
+    href: SpessaSharp.Utils.AudioUtil.html
+  - name: .
+  - uid: SpessaSharp.Utils.AudioUtil.WaveWriteOptions
+    name: WaveWriteOptions
+    href: SpessaSharp.Utils.AudioUtil.WaveWriteOptions.html
+  - name: '?'
+- uid: System.Byte[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte[]
+  nameWithType: byte[]
+  fullName: byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: (
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32
+  href: SpessaSharp.Utils.AudioUtil.html#SpessaSharp_Utils_AudioUtil_ConvertPCM16ToFloat32_System_ReadOnlySpan_System_Byte__System_Span_System_Single__System_Int32_
+  name: ConvertPCM16ToFloat32
+  nameWithType: AudioUtil.ConvertPCM16ToFloat32
+  fullName: SpessaSharp.Utils.AudioUtil.ConvertPCM16ToFloat32
+- uid: System.ReadOnlySpan{System.Byte}
+  commentId: T:System.ReadOnlySpan{System.Byte}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<byte>
+  nameWithType: ReadOnlySpan<byte>
+  fullName: System.ReadOnlySpan<byte>
+  nameWithType.vb: ReadOnlySpan(Of Byte)
+  fullName.vb: System.ReadOnlySpan(Of Byte)
+  name.vb: ReadOnlySpan(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.Span{System.Single}
+  commentId: T:System.Span{System.Single}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<float>
+  nameWithType: Span<float>
+  fullName: System.Span<float>
+  nameWithType.vb: Span(Of Single)
+  fullName.vb: System.Span(Of Single)
+  name.vb: Span(Of Single)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16
+  href: SpessaSharp.Utils.AudioUtil.html#SpessaSharp_Utils_AudioUtil_ConvertFloat32ToPCM16_System_ReadOnlySpan_System_Single__System_Span_System_Int16__
+  name: ConvertFloat32ToPCM16
+  nameWithType: AudioUtil.ConvertFloat32ToPCM16
+  fullName: SpessaSharp.Utils.AudioUtil.ConvertFloat32ToPCM16
+- uid: System.ReadOnlySpan{System.Single}
+  commentId: T:System.ReadOnlySpan{System.Single}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<float>
+  nameWithType: ReadOnlySpan<float>
+  fullName: System.ReadOnlySpan<float>
+  nameWithType.vb: ReadOnlySpan(Of Single)
+  fullName.vb: System.ReadOnlySpan(Of Single)
+  name.vb: ReadOnlySpan(Of Single)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Single
+    name: float
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Single
+    name: Single
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.single
+  - name: )
+- uid: System.Span{System.Int16}
+  commentId: T:System.Span{System.Int16}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<short>
+  nameWithType: Span<short>
+  fullName: System.Span<short>
+  nameWithType.vb: Span(Of Short)
+  fullName.vb: System.Span(Of Short)
+  name.vb: Span(Of Short)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Int16
+    name: short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int16
+    name: Short
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int16
+  - name: )
+- uid: SpessaSharp.Utils.AudioUtil.Interleave*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.Interleave
+  href: SpessaSharp.Utils.AudioUtil.html#SpessaSharp_Utils_AudioUtil_Interleave_System_ReadOnlySpan_System_Single__System_ReadOnlySpan_System_Single__System_Span_System_Int16__
+  name: Interleave
+  nameWithType: AudioUtil.Interleave
+  fullName: SpessaSharp.Utils.AudioUtil.Interleave
+- uid: SpessaSharp.Utils.AudioUtil.Normalize*
+  commentId: Overload:SpessaSharp.Utils.AudioUtil.Normalize
+  href: SpessaSharp.Utils.AudioUtil.html#SpessaSharp_Utils_AudioUtil_Normalize_System_Span_System_Single__
+  name: Normalize
+  nameWithType: AudioUtil.Normalize
+  fullName: SpessaSharp.Utils.AudioUtil.Normalize

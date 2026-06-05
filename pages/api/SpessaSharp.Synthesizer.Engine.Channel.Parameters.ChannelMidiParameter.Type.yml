@@ -1,0 +1,628 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  id: ChannelMidiParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  children:
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.AssignMode
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC1
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC2
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.DrumMap
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.EfxAssign
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.FineTune
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.KeyShift
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.ModulationDepth
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheel
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheelRange
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PolyMode
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.Pressure
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RandomPan
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RxChannel
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseDepth
+  - SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseOffset
+  langs:
+  - csharp
+  - vb
+  name: ChannelMidiParameter.Type
+  nameWithType: ChannelMidiParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 293
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  syntax:
+    content: public enum ChannelMidiParameter.Type
+    content.vb: Public Enum ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheel
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheel
+  id: PitchWheel
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: PitchWheel
+  nameWithType: ChannelMidiParameter.Type.PitchWheel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheel
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheel
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 296
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: The current pitch wheel value (0-16,383) of this channel.
+  example: []
+  syntax:
+    content: PitchWheel = 0
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheelRange
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheelRange
+  id: PitchWheelRange
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: PitchWheelRange
+  nameWithType: ChannelMidiParameter.Type.PitchWheelRange
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PitchWheelRange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PitchWheelRange
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 298
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: The current pitch wheel range, in semitones.
+  example: []
+  syntax:
+    content: PitchWheelRange = 1
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.Pressure
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.Pressure
+  id: Pressure
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: Pressure
+  nameWithType: ChannelMidiParameter.Type.Pressure
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.Pressure
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Pressure
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 300
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: The current pressure (aftertouch) of this channel.
+  example: []
+  syntax:
+    content: Pressure = 2
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.ModulationDepth
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.ModulationDepth
+  id: ModulationDepth
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: ModulationDepth
+  nameWithType: ChannelMidiParameter.Type.ModulationDepth
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.ModulationDepth
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ModulationDepth
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 312
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: >-
+    The modulation depth in cents.
+
+    This is internally converted to a multiplier by dividing by 50.
+
+
+    The MIDI specification assumes the default modulation depth is 50 cents,
+
+    but it may vary for different sound banks.
+
+    For example, if a MIDI requests a modulation depth of 100 cents,
+
+    the multiplier will be 2,
+
+    which, for a preset with a depth of 50,
+
+    will create a total modulation depth of 100 cents.
+  example: []
+  syntax:
+    content: ModulationDepth = 3
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RxChannel
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RxChannel
+  id: RxChannel
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: RxChannel
+  nameWithType: ChannelMidiParameter.Type.RxChannel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RxChannel
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RxChannel
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 318
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: >-
+    The channel's receiving number (0-based index).
+
+    This allows triggering multiple parts (channels) with a single note message.
+  remarks: Only used when customChannelNumbers is enabled.
+  example: []
+  syntax:
+    content: RxChannel = 4
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PolyMode
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PolyMode
+  id: PolyMode
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: PolyMode
+  nameWithType: ChannelMidiParameter.Type.PolyMode
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.PolyMode
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PolyMode
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 324
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: >-
+    If the channel is in the poly mode.<br />
+
+    <b>true</b> - POLY ON - regular playback.<br />
+
+    <b>false</b> - MONO ON - one note per channel, others are killed on NoteOn
+  example: []
+  syntax:
+    content: PolyMode = 5
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.KeyShift
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.KeyShift
+  id: KeyShift
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: KeyShift
+  nameWithType: ChannelMidiParameter.Type.KeyShift
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.KeyShift
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: KeyShift
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 326
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: The key shift of the channel (in semitones). Drum channels ignore this value.
+  example: []
+  syntax:
+    content: KeyShift = 6
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.FineTune
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.FineTune
+  id: FineTune
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: FineTune
+  nameWithType: ChannelMidiParameter.Type.FineTune
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.FineTune
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FineTune
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 328
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: Cents, RPN/SysEx for fine-tuning. Drum channels ignore this value.
+  example: []
+  syntax:
+    content: FineTune = 7
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RandomPan
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RandomPan
+  id: RandomPan
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: RandomPan
+  nameWithType: ChannelMidiParameter.Type.RandomPan
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.RandomPan
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RandomPan
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 330
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: Enables random panning for every note played on this channel.
+  example: []
+  syntax:
+    content: RandomPan = 8
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.AssignMode
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.AssignMode
+  id: AssignMode
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: AssignMode
+  nameWithType: ChannelMidiParameter.Type.AssignMode
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.AssignMode
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AssignMode
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 332
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: Assign mode for the channel.
+  example: []
+  syntax:
+    content: AssignMode = 9
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.EfxAssign
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.EfxAssign
+  id: EfxAssign
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: EfxAssign
+  nameWithType: ChannelMidiParameter.Type.EfxAssign
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.EfxAssign
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: EfxAssign
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 334
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: Indicates whether this channel uses the insertion EFX processor.
+  example: []
+  syntax:
+    content: EfxAssign = 10
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC1
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC1
+  id: CC1
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: CC1
+  nameWithType: ChannelMidiParameter.Type.CC1
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC1
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CC1
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 338
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: CC1 for GS controller matrix. An arbitrary MIDI controller, which can be bound to any synthesis parameter. Default is 16.
+  example: []
+  syntax:
+    content: CC1 = 11
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC2
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC2
+  id: CC2
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: CC2
+  nameWithType: ChannelMidiParameter.Type.CC2
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.CC2
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CC2
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 342
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: CC2 for GS controller matrix. An arbitrary MIDI controller, which can be bound to any synthesis parameter. Default is 17.
+  example: []
+  syntax:
+    content: CC2 = 12
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.DrumMap
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.DrumMap
+  id: DrumMap
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: DrumMap
+  nameWithType: ChannelMidiParameter.Type.DrumMap
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.DrumMap
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DrumMap
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 349
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: >-
+    Drum map for GS system exclusive tracking.
+
+    Only used for selecting the correct channel when setting drum parameters through sysEx,
+
+    as those don't specify the channel, but the drum number.
+
+    The only values that are allowed are 0 (melodic) 1 or 2.
+  example: []
+  syntax:
+    content: DrumMap = 13
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseDepth
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseDepth
+  id: VelocitySenseDepth
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: VelocitySenseDepth
+  nameWithType: ChannelMidiParameter.Type.VelocitySenseDepth
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseDepth
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VelocitySenseDepth
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 368
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: >-
+    The relation between the input and the actual velocity.
+
+
+    <p>
+
+    If Velo Depth is increased, small differences in your playing dynamics will make a large difference in the loudness of the sound.
+
+    If Velo Depth is decreased, even large differences in your playing dynamics will make only a small difference in the loudness of the sound.
+
+    </p>
+  remarks: >-
+    Examples (with offset being set to normal):
+
+
+    <ul><li>64 is normal.</li><li>32 is half velocity at max volume.</li><li>127 is max velocity at half volume.</li></ul>
+
+
+    Refer to <a href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</a>, page 56.
+  example: []
+  syntax:
+    content: VelocitySenseDepth = 14
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseOffset
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseOffset
+  id: VelocitySenseOffset
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  langs:
+  - csharp
+  - vb
+  name: VelocitySenseOffset
+  nameWithType: ChannelMidiParameter.Type.VelocitySenseOffset
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.VelocitySenseOffset
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VelocitySenseOffset
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/Parameters/ChannelMidiParameter.cs
+    startLine: 387
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  summary: >-
+    The offset to add to the input velocity.
+
+
+    If Velo Offset is set higher than 64, even softly played notes (i.e., notes with a low velocity)
+
+    will be sounded loudly. If Velo Offset is set lower than 64,
+
+    even strongly played notes (i.e., notes with a high velocity) will be sounded softly.
+  remarks: >-
+    Examples (with depth set to normal):
+
+
+    <ul><li>64 is normal.</li><li>32 is silent until half velocity, max velocity is half volume.</li><li>96 starts at half volume and reaches max volume at half velocity.</li><li>127 always forces velocity to max.</li></ul>
+
+
+    Refer to <a href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</a>, page 56.
+  example: []
+  syntax:
+    content: VelocitySenseOffset = 15
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Channel.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  name: ChannelMidiParameter.Type
+  nameWithType: ChannelMidiParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter
+    name: ChannelMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Channel.Parameters.ChannelMidiParameter.Type.html

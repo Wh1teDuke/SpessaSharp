@@ -1,0 +1,424 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  id: SpessaSharp.Synthesizer.Engine.Effects
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+  - SpessaSharp.Synthesizer.Engine.Effects.SSChorus
+  - SpessaSharp.Synthesizer.Engine.Effects.SSDelay
+  - SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line
+  - SpessaSharp.Synthesizer.Engine.Effects.SSReverb
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect
+  nameWithType: Effect
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxReverbType
+  nameWithType: Effect.FxReverbType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    name: FxReverbType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    name: FxReverbType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxChorusType
+  nameWithType: Effect.FxChorusType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+    name: FxChorusType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType
+    name: FxChorusType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxChorusType.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxDelayType
+  nameWithType: Effect.FxDelayType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    name: FxDelayType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    name: FxDelayType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.BaseEffect
+  nameWithType: Effect.BaseEffect
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+    name: BaseEffect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect
+    name: BaseEffect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.BaseEffect.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.ReverbProcessorSnapshot
+  nameWithType: Effect.ReverbProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    name: ReverbProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot
+    name: ReverbProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessorSnapshot.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.ReverbProcessor
+  nameWithType: Effect.ReverbProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor
+    name: ReverbProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor
+    name: ReverbProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.ChorusProcessorSnapshot
+  nameWithType: Effect.ChorusProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    name: ChorusProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot
+    name: ChorusProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessorSnapshot.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.ChorusProcessor
+  nameWithType: Effect.ChorusProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+    name: ChorusProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor
+    name: ChorusProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.DelayProcessorSnapshot
+  nameWithType: Effect.DelayProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    name: DelayProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot
+    name: DelayProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessorSnapshot.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.DelayProcessor
+  nameWithType: Effect.DelayProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+    name: DelayProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor
+    name: DelayProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.InsertionProcessor
+  nameWithType: Effect.InsertionProcessor
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+    name: InsertionProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+    name: InsertionProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.InsertionProcessor.Constructor
+  nameWithType: Effect.InsertionProcessor.Constructor
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+    name: InsertionProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor
+    name: Constructor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor
+    name: InsertionProcessor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor
+    name: Constructor
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessor.Constructor.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.InsertionProcessorSnapshot
+  nameWithType: Effect.InsertionProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.SSChorus
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.SSChorus
+  href: SpessaSharp.Synthesizer.Engine.Effects.SSChorus.html
+  name: SSChorus
+  nameWithType: SSChorus
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.SSChorus
+- uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.SSDelay
+  href: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.html
+  name: SSDelay
+  nameWithType: SSDelay
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.SSDelay
+- uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line
+  href: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.html
+  name: SSDelay.Line
+  nameWithType: SSDelay.Line
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay
+    name: SSDelay
+    href: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line
+    name: Line
+    href: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay
+    name: SSDelay
+    href: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line
+    name: Line
+    href: SpessaSharp.Synthesizer.Engine.Effects.SSDelay.Line.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.SSReverb
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.SSReverb
+  href: SpessaSharp.Synthesizer.Engine.Effects.SSReverb.html
+  name: SSReverb
+  nameWithType: SSReverb
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.SSReverb
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html

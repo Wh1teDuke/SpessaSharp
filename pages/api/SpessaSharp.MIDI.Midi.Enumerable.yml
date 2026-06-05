@@ -1,0 +1,382 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Midi.Enumerable
+  commentId: T:SpessaSharp.MIDI.Midi.Enumerable
+  id: Midi.Enumerable
+  parent: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.Midi.Enumerable.#ctor(SpessaSharp.MIDI.Midi)
+  - SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator
+  langs:
+  - csharp
+  - vb
+  name: Midi.Enumerable
+  nameWithType: Midi.Enumerable
+  fullName: SpessaSharp.MIDI.Midi.Enumerable
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Enumerable
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 743
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public readonly ref struct Midi.Enumerable
+    content.vb: Public Structure Midi.Enumerable
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.MIDI.Midi.Enumerable.#ctor(SpessaSharp.MIDI.Midi)
+  commentId: M:SpessaSharp.MIDI.Midi.Enumerable.#ctor(SpessaSharp.MIDI.Midi)
+  id: '#ctor(SpessaSharp.MIDI.Midi)'
+  parent: SpessaSharp.MIDI.Midi.Enumerable
+  langs:
+  - csharp
+  - vb
+  name: Enumerable(Midi)
+  nameWithType: Midi.Enumerable.Enumerable(Midi)
+  fullName: SpessaSharp.MIDI.Midi.Enumerable.Enumerable(SpessaSharp.MIDI.Midi)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 743
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public Enumerable(Midi midi)
+    parameters:
+    - id: midi
+      type: SpessaSharp.MIDI.Midi
+    content.vb: Public Sub New(midi As Midi)
+  overload: SpessaSharp.MIDI.Midi.Enumerable.#ctor*
+  nameWithType.vb: Midi.Enumerable.New(Midi)
+  fullName.vb: SpessaSharp.MIDI.Midi.Enumerable.New(SpessaSharp.MIDI.Midi)
+  name.vb: New(Midi)
+- uid: SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator
+  commentId: M:SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator
+  id: GetEnumerator
+  parent: SpessaSharp.MIDI.Midi.Enumerable
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: Midi.Enumerable.GetEnumerator()
+  fullName: SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GetEnumerator
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 744
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public Midi.Enumerator GetEnumerator()
+    return:
+      type: SpessaSharp.MIDI.Midi.Enumerator
+    content.vb: Public Function GetEnumerator() As Midi.Enumerator
+  overload: SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator*
+references:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.MIDI.Midi.Enumerable.#ctor*
+  commentId: Overload:SpessaSharp.MIDI.Midi.Enumerable.#ctor
+  href: SpessaSharp.MIDI.Midi.Enumerable.html#SpessaSharp_MIDI_Midi_Enumerable__ctor_SpessaSharp_MIDI_Midi_
+  name: Enumerable
+  nameWithType: Midi.Enumerable.Enumerable
+  fullName: SpessaSharp.MIDI.Midi.Enumerable.Enumerable
+  nameWithType.vb: Midi.Enumerable.New
+  fullName.vb: SpessaSharp.MIDI.Midi.Enumerable.New
+  name.vb: New
+- uid: SpessaSharp.MIDI.Midi
+  commentId: T:SpessaSharp.MIDI.Midi
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi
+  nameWithType: Midi
+  fullName: SpessaSharp.MIDI.Midi
+- uid: SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator*
+  commentId: Overload:SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator
+  href: SpessaSharp.MIDI.Midi.Enumerable.html#SpessaSharp_MIDI_Midi_Enumerable_GetEnumerator
+  name: GetEnumerator
+  nameWithType: Midi.Enumerable.GetEnumerator
+  fullName: SpessaSharp.MIDI.Midi.Enumerable.GetEnumerator
+- uid: SpessaSharp.MIDI.Midi.Enumerator
+  commentId: T:SpessaSharp.MIDI.Midi.Enumerator
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.Enumerator
+  nameWithType: Midi.Enumerator
+  fullName: SpessaSharp.MIDI.Midi.Enumerator
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator
+    name: Enumerator
+    href: SpessaSharp.MIDI.Midi.Enumerator.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.Enumerator
+    name: Enumerator
+    href: SpessaSharp.MIDI.Midi.Enumerator.html

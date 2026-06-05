@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SpessaSharpProcessor | SpessaSharp </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SpessaSharpProcessor | SpessaSharp ">
+      
+      <meta name="description" content="The core synthesis engine of spessasynth.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Wh1teDuke/SpessaSharp/new/master/apiSpec/new?filename=SpessaSharp_Synthesizer_SpessaSharpProcessor.md&amp;value=---%0Auid%3A%20SpessaSharp.Synthesizer.SpessaSharpProcessor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="SpessaSharp">
+            SpessaSharp
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor">
+
+
+
+  <h1 id="SpessaSharp_Synthesizer_SpessaSharpProcessor" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor" class="text-break">
+Class SpessaSharpProcessor  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="SpessaSharp.html">SpessaSharp</a>.<a class="xref" href="SpessaSharp.Synthesizer.html">Synthesizer</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>SpessaSharp.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The core synthesis engine of spessasynth.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SpessaSharpProcessor</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SpessaSharpProcessor</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor__ctor_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.#ctor*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor__ctor_System_Int32_System_Nullable_SpessaSharp_Synthesizer_Synthesizer_Options__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.#ctor(System.Int32,System.Nullable{SpessaSharp.Synthesizer.Synthesizer.Options})">
+  SpessaSharpProcessor(int, Options?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new synthesizer engine.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpessaSharpProcessor(int sampleRate, Synthesizer.Options? opts = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sampleRate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>sample rate, in Hertz.</p>
+</dd>
+    <dt><code>opts</code> <a class="xref" href="SpessaSharp.Synthesizer.Synthesizer.html">Synthesizer</a>.<a class="xref" href="SpessaSharp.Synthesizer.Synthesizer.Options.html">Options</a>?</dt>
+    <dd><p>The processor's options.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_OnEvent" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.OnEvent">
+  OnEvent
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;Event&gt;? OnEvent</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="SpessaSharp.Synthesizer.Event.html">Event</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SampleRate" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SampleRate">
+  SampleRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sample rate in Hertz.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int SampleRate</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ChorusMacro_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ChorusMacro*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ChorusMacro" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ChorusMacro">
+  ChorusMacro
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Macro.Chorus ChorusMacro { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.Sysex.Macro.html">Macro</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus.html">Chorus</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ChorusProcessor_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ChorusProcessor*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ChorusProcessor" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ChorusProcessor">
+  ChorusProcessor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L223"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Synthesizer's Chorus processor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Effect.ChorusProcessor ChorusProcessor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.Effects.Effect.html">Effect</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Effects.Effect.ChorusProcessor.html">ChorusProcessor</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_CurrentTime_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.CurrentTime*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_CurrentTime" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.CurrentTime">
+  CurrentTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The current time of the synthesizer, in seconds. You probably should not modify this directly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double CurrentTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_DelayMacro_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.DelayMacro*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_DelayMacro" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.DelayMacro">
+  DelayMacro
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Macro.Delay DelayMacro { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.Sysex.Macro.html">Macro</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay.html">Delay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_DelayProcessor_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.DelayProcessor*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_DelayProcessor" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.DelayProcessor">
+  DelayProcessor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Synthesizer's Delay processor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Effect.DelayProcessor DelayProcessor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.Effects.Effect.html">Effect</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Effects.Effect.DelayProcessor.html">DelayProcessor</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_KeyModifierManager_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.KeyModifierManager*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_KeyModifierManager" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.KeyModifierManager">
+  KeyModifierManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Handles the custom key overrides: velocity and preset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KeyModifier.Manager KeyModifierManager { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.KeyModifier.html">KeyModifier</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.KeyModifier.Manager.html">Manager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_MidiChannels_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.MidiChannels*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_MidiChannels" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.MidiChannels">
+  MidiChannels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>All MIDI channels of the synthesizer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;MidiChannel&gt; MidiChannels { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html">MidiChannel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_MidiParameters_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.MidiParameters*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_MidiParameters" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.MidiParameters">
+  MidiParameters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The global MIDI parameters of the synthesizer.
+These are only editable via MIDI messages.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;GlobalMidiParameter&gt; MidiParameters { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html">GlobalMidiParameter</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ReverbMacro_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ReverbMacro*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ReverbMacro" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ReverbMacro">
+  ReverbMacro
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Macro.Reverb ReverbMacro { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.Sysex.Macro.html">Macro</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb.html">Reverb</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ReverbProcessor_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ReverbProcessor*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ReverbProcessor" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ReverbProcessor">
+  ReverbProcessor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Synthesizer's reverb processor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Effect.ReverbProcessor ReverbProcessor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.Effects.Effect.html">Effect</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Effects.Effect.ReverbProcessor.html">ReverbProcessor</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SoundBankManager_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SoundBankManager*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SoundBankManager" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SoundBankManager">
+  SoundBankManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L230"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The sound bank manager, which manages all sound banks and presets.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SoundBankManager SoundBankManager { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.SoundBankManager.html">SoundBankManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SystemParameters_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SystemParameters*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SystemParameters" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SystemParameters">
+  SystemParameters
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The global system parameters of the synthesizer.
+These are only editable via the API.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;GlobalSystemParameter&gt; SystemParameters { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html">GlobalSystemParameter</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_VoiceCount_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.VoiceCount*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_VoiceCount" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.VoiceCount">
+  VoiceCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Current total amount of voices that are currently playing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int VoiceCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Apply_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Apply*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Apply_SpessaSharp_Synthesizer_Engine_SynthesizerSnapshot_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Apply(SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot)">
+  Apply(SynthesizerSnapshot)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Applies the snapshot to the synth.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Apply(SynthesizerSnapshot snapshot)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>snapshot</code> <a class="xref" href="SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.html">SynthesizerSnapshot</a></dt>
+    <dd><p>The snapshot to apply.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ChannelPressure_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ChannelPressure*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ChannelPressure_System_Int32_System_Int32_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ChannelPressure(System.Int32,System.Int32)">
+  ChannelPressure(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a MIDI Channel Pressure (Aftertouch) message on the specified channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ChannelPressure(int channel, int pressure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI channel to send the channel pressure on.</p>
+</dd>
+    <dt><code>pressure</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pressure value, from 0 to 127.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ClearCache_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ClearCache*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ClearCache" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ClearCache">
+  ClearCache()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L331"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the synthesizer's voice cache.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCache()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ControllerChange_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ControllerChange*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ControllerChange_System_Int32_SpessaSharp_MIDI_Midi_CC_System_Int32_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ControllerChange(System.Int32,SpessaSharp.MIDI.Midi.CC,System.Int32)">
+  ControllerChange(int, CC, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a MIDI controller change message on the specified channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ControllerChange(int channel, Midi.CC controller, int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI channel to change the controller on.</p>
+</dd>
+    <dt><code>controller</code> <a class="xref" href="SpessaSharp.MIDI.Midi.html">Midi</a>.<a class="xref" href="SpessaSharp.MIDI.Midi.CC.html">CC</a></dt>
+    <dd><p>The MIDI controller number (0-127).</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The value of the controller (0-127).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_CreateMIDIChannel_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.CreateMIDIChannel*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_CreateMIDIChannel" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.CreateMIDIChannel">
+  CreateMIDIChannel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new MIDI channel and adds it to the synthesizer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateMIDIChannel()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_DestroySynthProcessor_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.DestroySynthProcessor*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_DestroySynthProcessor" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.DestroySynthProcessor">
+  DestroySynthProcessor()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L328"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Destroy the synthesizer processor, clearing all channels and voices. This is irreversible, so use with caution.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DestroySynthProcessor()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_GetSnapshot_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.GetSnapshot*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_GetSnapshot" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.GetSnapshot">
+  GetSnapshot()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L279"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a synthesizer snapshot from this processor instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SynthesizerSnapshot GetSnapshot()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.SynthesizerSnapshot.html">SynthesizerSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_LockParameter_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.LockParameter*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_LockParameter_SpessaSharp_Synthesizer_Engine_Parameters_GlobalMidiParameter_Type_System_Boolean_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.LockParameter(SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type,System.Boolean)">
+  LockParameter(Type, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L254"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Locks or unlocks a given Global MIDI Parameter.
+This prevents any changes to it until it's unlocked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LockParameter(GlobalMidiParameter.Type parameter, bool isLocked)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parameter</code> <a class="xref" href="SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html">GlobalMidiParameter</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html">Type</a></dt>
+    <dd><p>The Global MIDI Parameter to lock.</p>
+</dd>
+    <dt><code>isLocked</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If the parameter should be locked.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_NoteOff_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.NoteOff*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_NoteOff_System_Int32_System_Int32_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.NoteOff(System.Int32,System.Int32)">
+  NoteOff(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a MIDI Note Off message on the specified channel. Stops playing a note.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NoteOff(int channel, int midiNote)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI channel to send the note off.</p>
+</dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI note number to stop playing.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_NoteOn_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.NoteOn*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_NoteOn_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.NoteOn(System.Int32,System.Int32,System.Int32)">
+  NoteOn(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a MIDI Note On message on the specified channel.
+Starts playing a note.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NoteOn(int channel, int midiNote, int velocity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI channel to send the note on.</p>
+</dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI note number to play.</p>
+</dd>
+    <dt><code>velocity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The velocity of the note, from 0 to 127.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="SpessaSharp_Synthesizer_SpessaSharpProcessor_NoteOn_System_Int32_System_Int32_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the velocity is 0, it will be treated as a Note Off message.</p>
+</div>
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_OnMissingPreset_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.OnMissingPreset*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_OnMissingPreset_SpessaSharp_MIDI_MidiPatch_SpessaSharp_MIDI_Midi_System_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.OnMissingPreset(SpessaSharp.MIDI.MidiPatch,SpessaSharp.MIDI.Midi.System)">
+  OnMissingPreset(MidiPatch, System)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A handler for missing presets during program change. By default, it warns to console.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BasicPreset? OnMissingPreset(MidiPatch patch, Midi.System system)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>patch</code> <a class="xref" href="SpessaSharp.MIDI.MidiPatch.html">MidiPatch</a></dt>
+    <dd><p>The MIDI patch that was requested.</p>
+</dd>
+    <dt><code>system</code> <a class="xref" href="SpessaSharp.MIDI.Midi.html">Midi</a>.<a class="xref" href="SpessaSharp.MIDI.Midi.System.html">System</a></dt>
+    <dd><p>The MIDI System for the request.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.SoundBank.BasicPreset.html">BasicPreset</a></dt>
+    <dd><p>If a BasicPreset instance is returned, it will be used by the channel.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_PitchWheel_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.PitchWheel*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_PitchWheel_System_Int32_System_Int32_System_Nullable_System_Int32__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.PitchWheel(System.Int32,System.Int32,System.Nullable{System.Int32})">
+  PitchWheel(int, int, int?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a MIDI Pitch Wheel message on the specified channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PitchWheel(int channel, int pitch, int? midiNote = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI channel to send the pitch wheel on.</p>
+</dd>
+    <dt><code>pitch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The new pitch value: 0-16383</p>
+</dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>The MIDI note number (optional), pass -1 for the regular pitch wheel.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_PolyPressure_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.PolyPressure*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_PolyPressure_System_Int32_System_Int32_System_Int32_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.PolyPressure(System.Int32,System.Int32,System.Int32)">
+  PolyPressure(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a MIDI Poly Pressure (Aftertouch) message on the specified channel.
+This differs from the Channel Pressure in that it's per-note and not for the whole channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PolyPressure(int channel, int midiNote, int pressure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI channel to send the poly pressure on.</p>
+</dd>
+    <dt><code>midiNote</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI note number to apply the pressure to.</p>
+</dd>
+    <dt><code>pressure</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The pressure value, from 0 to 127.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Process_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Process*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Process_System_ArraySegment_System_Single__System_ArraySegment_System_Single__System_Nullable_System_Int32__System_Nullable_System_Int32__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Process(System.ArraySegment{System.Single},System.ArraySegment{System.Single},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+  Process(ArraySegment&lt;float&gt;, ArraySegment&lt;float&gt;, int?, int?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Renders float32 audio data to stereo outputs; buffer size must be equal or smaller than <b>maxBufferSize</b>. All float arrays must have the same length.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Process(ArraySegment&lt;float&gt; left, ArraySegment&lt;float&gt; right, int? startIndex = 0, int? sampleCount = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arraysegment-1">ArraySegment</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd><p>The left output channel.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arraysegment-1">ArraySegment</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd><p>The right output channel.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>Start offset of the passed arrays, rendering starts at this index, defaults to 0.</p>
+</dd>
+    <dt><code>sampleCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>The length of the rendered buffer, defaults to float32array length - startOffset.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Process_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Process*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Process_System_Span_System_Int16__System_Nullable_System_Int32__System_Nullable_System_Int32__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Process(System.Span{System.Int16},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+  Process(Span&lt;short&gt;, int?, int?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Process(Span&lt;short&gt; output, int? startIndex = 0, int? sampleCount = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>output</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+    <dt><code>sampleCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProcessMessage_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProcessMessage*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProcessMessage_System_ArraySegment_System_Byte__System_Nullable_System_Int32__System_Nullable_System_Double__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProcessMessage(System.ArraySegment{System.Byte},System.Nullable{System.Int32},System.Nullable{System.Double})">
+  ProcessMessage(ArraySegment&lt;byte&gt;, int?, double?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Processes a raw MIDI message and allows scheduling it at a specific time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessMessage(ArraySegment&lt;byte&gt; message, int? channelOffset = null, double? time = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arraysegment-1">ArraySegment</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The MIDI message to process.</p>
+</dd>
+    <dt><code>channelOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>The channel offset for the message. It will be added to message's channel number if applicable</p>
+</dd>
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>?</dt>
+    <dd><p>The audio context time when the event should execute, in seconds.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProcessMessage_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProcessMessage*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProcessMessage_System_ReadOnlySpan_System_Byte__System_Nullable_System_Int32__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProcessMessage(System.ReadOnlySpan{System.Byte},System.Nullable{System.Int32})">
+  ProcessMessage(ReadOnlySpan&lt;byte&gt;, int?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Processes a raw MIDI</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessMessage(ReadOnlySpan&lt;byte&gt; message, int? channelOffset = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The MIDI message to process.</p>
+</dd>
+    <dt><code>channelOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>The channel offset for the message. It will be added to message's channel number if applicable</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProcessSplit_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProcessSplit*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProcessSplit_System_ReadOnlySpan_System_ValueTuple_System_ArraySegment_System_Single__System_ArraySegment_System_Single____System_Span_System_Single__System_Span_System_Single__System_Nullable_System_Int32__System_Nullable_System_Int32__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProcessSplit(System.ReadOnlySpan{System.ValueTuple{System.ArraySegment{System.Single},System.ArraySegment{System.Single}}},System.Span{System.Single},System.Span{System.Single},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+  ProcessSplit(ReadOnlySpan&lt;(ArraySegment&lt;float&gt; Left, ArraySegment&lt;float&gt; Right)&gt;, Span&lt;float&gt;, Span&lt;float&gt;, int?, int?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Renders float32 audio data to stereo outputs; buffer size must be equal or smaller than <b>maxBufferSize</b>. All float arrays must have the same length.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessSplit(ReadOnlySpan&lt;(ArraySegment&lt;float&gt; Left, ArraySegment&lt;float&gt; Right)&gt; outputs, Span&lt;float&gt; effectsLeft, Span&lt;float&gt; effectsRight, int? startIndex, int? samples = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>outputs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arraysegment-1">ArraySegment</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.arraysegment-system.single-,system.arraysegment-system.single--.left">Left</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arraysegment-1">ArraySegment</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.arraysegment-system.single-,system.arraysegment-system.single--.right">Right</a>)&gt;</dt>
+    <dd><p>Any number stereo pairs (L, R) to render channels separately into.</p>
+</dd>
+    <dt><code>effectsLeft</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd><p>The left stereo effect output buffer.</p>
+</dd>
+    <dt><code>effectsRight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd><p>The right stereo effect output buffer.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>Start offset of the passed arrays, rendering starts at this index, defaults to 0.</p>
+</dd>
+    <dt><code>samples</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>The length of the rendered buffer, defaults to float32array length - startOffset.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProgramChange_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProgramChange*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_ProgramChange_System_Int32_System_Int32_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.ProgramChange(System.Int32,System.Int32)">
+  ProgramChange(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a MIDI Program Change message on the specified channel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProgramChange(int channel, int programNumber)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>channel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The MIDI channel to send the program change on.</p>
+</dd>
+    <dt><code>programNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>programNumber The program number to change to, from 0 to 127.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Reset_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Reset*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Reset" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Reset">
+  Reset()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L267"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a full synthesizer reset.
+This will reset all controllers to their default values, except for the locked controllers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SendAddress_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SendAddress*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SendAddress_System_Int32_System_Int32_System_Int32_System_ReadOnlySpan_System_Byte__System_Int32_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SendAddress(System.Int32,System.Int32,System.Int32,System.ReadOnlySpan{System.Byte},System.Int32)">
+  SendAddress(int, int, int, ReadOnlySpan&lt;byte&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SendAddress(int a1, int a2, int a3, ReadOnlySpan&lt;byte&gt; data, int offset = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>a2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>a3</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Set_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Set*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_Set_SpessaSharp_Synthesizer_Engine_Parameters_GlobalSystemParameter_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.Set(SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter)">
+  Set(GlobalSystemParameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a system parameter of the synthesizer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Set(GlobalSystemParameter param)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>param</code> <a class="xref" href="SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html">GlobalSystemParameter</a></dt>
+    <dd><p>The type and value of the system parameter to set.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_StopAllChannels_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.StopAllChannels*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_StopAllChannels_System_Boolean_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.StopAllChannels(System.Boolean)">
+  StopAllChannels(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stops all notes on all channels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopAllChannels(bool force = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>force</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true, all notes are stopped immediately, otherwise they are stopped gracefully.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SystemExclusive_" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SystemExclusive*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_SpessaSharpProcessor_SystemExclusive_System_ReadOnlySpan_System_Byte__System_Nullable_System_Int32__" data-uid="SpessaSharp.Synthesizer.SpessaSharpProcessor.SystemExclusive(System.ReadOnlySpan{System.Byte},System.Nullable{System.Int32})">
+  SystemExclusive(ReadOnlySpan&lt;byte&gt;, int?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Executes a system exclusive message for the synthesizer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SystemExclusive(ReadOnlySpan&lt;byte&gt; syx, int? channelOffset = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>syx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The system exclusive message as an array of bytes.</p>
+</dd>
+    <dt><code>channelOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd><p>The channel offset to apply (default is 0).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/SpessaSharpProcessor.cs/#L16" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

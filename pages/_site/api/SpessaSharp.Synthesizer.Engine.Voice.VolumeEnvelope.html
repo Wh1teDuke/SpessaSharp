@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct VolumeEnvelope | SpessaSharp </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct VolumeEnvelope | SpessaSharp ">
+      
+      <meta name="description" content="Applies a volume envelope for a given voice. For performance reasons, cbAttenuationToGain is inlined here.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Wh1teDuke/SpessaSharp/new/master/apiSpec/new?filename=SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope.md&amp;value=---%0Auid%3A%20SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="SpessaSharp">
+            SpessaSharp
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope">
+
+
+
+  <h1 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope" class="text-break">
+Struct VolumeEnvelope  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="SpessaSharp.html">SpessaSharp</a>.<a class="xref" href="SpessaSharp.Synthesizer.html">Synthesizer</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.html">Engine</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Voice.html">Voice</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>SpessaSharp.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Applies a volume envelope for a given voice. For performance reasons, cbAttenuationToGain is inlined here.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct VolumeEnvelope</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope__ctor_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.#ctor*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope__ctor_System_Int32_System_Int32_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.#ctor(System.Int32,System.Int32)">
+  VolumeEnvelope(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VolumeEnvelope(int sampleRate, int bufferSize)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sampleRate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Hz</p>
+</dd>
+    <dt><code>bufferSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>samples</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_AttenuationCb" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.AttenuationCb">
+  AttenuationCb
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The current attenuation of the envelope in cB.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float AttenuationCb</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_OutputGain" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.OutputGain">
+  OutputGain
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The target gain for the current rendering block.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float OutputGain</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_State" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.State">
+  State
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The current stage of the volume envelope.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VolumeEnvelope.VEState State</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.html">VolumeEnvelope</a>.<a class="xref" href="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.VEState.html">VEState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_Init_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.Init*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_Init_SpessaSharp_Synthesizer_Engine_Voice_Voice_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.Init(SpessaSharp.Synthesizer.Engine.Voice.Voice)">
+  Init(Voice)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initialize the volume envelope</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Init(Voice voice)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>voice</code> <a class="xref" href="SpessaSharp.Synthesizer.Engine.Voice.Voice.html">Voice</a></dt>
+    <dd><p>The voice this envelope belongs to</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_Process_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.Process*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_Process_System_Int32_System_Single_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.Process(System.Int32,System.Single)">
+  Process(int, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L238"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the gain value for the last sample in the block and writes it to <code>outputGain</code>. Essentially we use approach of 100dB is silence, 0dB is peak.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Process(int sampleCount, float gainTarget)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sampleCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The amount of samples to write</p>
+</dd>
+    <dt><code>gainTarget</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>The gain to apply.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If the voice has finished.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_StartRelease_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.StartRelease*"></a>
+
+  <h3 id="SpessaSharp_Synthesizer_Engine_Voice_VolumeEnvelope_StartRelease_SpessaSharp_Synthesizer_Engine_Voice_Voice_" data-uid="SpessaSharp.Synthesizer.Engine.Voice.VolumeEnvelope.StartRelease(SpessaSharp.Synthesizer.Engine.Voice.Voice)">
+  StartRelease(Voice)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Starts the release phase in the envelope.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool StartRelease(Voice voice)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>voice</code> <a class="xref" href="SpessaSharp.Synthesizer.Engine.Voice.Voice.html">Voice</a></dt>
+    <dd><p>The voice this envelope belongs to.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If the voice is off.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Wh1teDuke/SpessaSharp/blob/master/SpessaSharp/Synthesizer/Engine/Voice/VolumeEnvelope.cs/#L7" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

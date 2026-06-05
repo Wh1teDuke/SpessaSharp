@@ -1,0 +1,562 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  id: Effect.InsertionProcessorSnapshot
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.#ctor(System.Int32,System.ArraySegment{System.Byte})
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type
+  langs:
+  - csharp
+  - vb
+  name: Effect.InsertionProcessorSnapshot
+  nameWithType: Effect.InsertionProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InsertionProcessorSnapshot
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 357
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: ''
+  example: []
+  syntax:
+    content: 'public readonly record struct Effect.InsertionProcessorSnapshot : IEquatable<Effect.InsertionProcessorSnapshot>'
+    content.vb: Public Structure Effect.InsertionProcessorSnapshot Implements IEquatable(Of Effect.InsertionProcessorSnapshot)
+  implements:
+  - System.IEquatable{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.#ctor(System.Int32,System.ArraySegment{System.Byte})
+  commentId: M:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.#ctor(System.Int32,System.ArraySegment{System.Byte})
+  id: '#ctor(System.Int32,System.ArraySegment{System.Byte})'
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: InsertionProcessorSnapshot(int, ArraySegment<byte>)
+  nameWithType: Effect.InsertionProcessorSnapshot.InsertionProcessorSnapshot(int, ArraySegment<byte>)
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.InsertionProcessorSnapshot(int, System.ArraySegment<byte>)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 357
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: ''
+  example: []
+  syntax:
+    content: public InsertionProcessorSnapshot(int Type, ArraySegment<byte> Params)
+    parameters:
+    - id: Type
+      type: System.Int32
+      description: ''
+    - id: Params
+      type: System.ArraySegment{System.Byte}
+      description: 20 parameters for the effect, 255 means "no change" + 3 effect sends (index 20, 21, 22)
+    content.vb: Public Sub New(Type As Integer, Params As ArraySegment(Of Byte))
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.#ctor*
+  nameWithType.vb: Effect.InsertionProcessorSnapshot.New(Integer, ArraySegment(Of Byte))
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.New(Integer, System.ArraySegment(Of Byte))
+  name.vb: New(Integer, ArraySegment(Of Byte))
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type
+  id: Type
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: Effect.InsertionProcessorSnapshot.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 358
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: ''
+  example: []
+  syntax:
+    content: public int Type { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Type As Integer
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type*
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params
+  commentId: P:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params
+  id: Params
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+  langs:
+  - csharp
+  - vb
+  name: Params
+  nameWithType: Effect.InsertionProcessorSnapshot.Params
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Params
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 359
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  summary: 20 parameters for the effect, 255 means "no change" + 3 effect sends (index 20, 21, 22)
+  example: []
+  syntax:
+    content: public ArraySegment<byte> Params { get; init; }
+    parameters: []
+    return:
+      type: System.ArraySegment{System.Byte}
+    content.vb: Public Property Params As ArraySegment(Of Byte)
+  overload: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params*
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+- uid: System.IEquatable{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot}
+  commentId: T:System.IEquatable{SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Effect.InsertionProcessorSnapshot>
+  nameWithType: IEquatable<Effect.InsertionProcessorSnapshot>
+  fullName: System.IEquatable<SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot>
+  nameWithType.vb: IEquatable(Of Effect.InsertionProcessorSnapshot)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot)
+  name.vb: IEquatable(Of Effect.InsertionProcessorSnapshot)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot
+    name: InsertionProcessorSnapshot
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.#ctor*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.#ctor
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_InsertionProcessorSnapshot__ctor_System_Int32_System_ArraySegment_System_Byte__
+  name: InsertionProcessorSnapshot
+  nameWithType: Effect.InsertionProcessorSnapshot.InsertionProcessorSnapshot
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.InsertionProcessorSnapshot
+  nameWithType.vb: Effect.InsertionProcessorSnapshot.New
+  fullName.vb: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.ArraySegment{System.Byte}
+  commentId: T:System.ArraySegment{System.Byte}
+  parent: System
+  definition: System.ArraySegment`1
+  href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  name: ArraySegment<byte>
+  nameWithType: ArraySegment<byte>
+  fullName: System.ArraySegment<byte>
+  nameWithType.vb: ArraySegment(Of Byte)
+  fullName.vb: System.ArraySegment(Of Byte)
+  name.vb: ArraySegment(Of Byte)
+  spec.csharp:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.ArraySegment`1
+  commentId: T:System.ArraySegment`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  name: ArraySegment<T>
+  nameWithType: ArraySegment<T>
+  fullName: System.ArraySegment<T>
+  nameWithType.vb: ArraySegment(Of T)
+  fullName.vb: System.ArraySegment(Of T)
+  name.vb: ArraySegment(Of T)
+  spec.csharp:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_InsertionProcessorSnapshot_Type
+  name: Type
+  nameWithType: Effect.InsertionProcessorSnapshot.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Type
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params*
+  commentId: Overload:SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.html#SpessaSharp_Synthesizer_Engine_Effects_Effect_InsertionProcessorSnapshot_Params
+  name: Params
+  nameWithType: Effect.InsertionProcessorSnapshot.Params
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.InsertionProcessorSnapshot.Params

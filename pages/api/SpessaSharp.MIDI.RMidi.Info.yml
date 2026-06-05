@@ -1,0 +1,1089 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.RMidi.Info
+  commentId: T:SpessaSharp.MIDI.RMidi.Info
+  id: RMidi.Info
+  parent: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.RMidi.Info.#ctor(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.ArraySegment{System.Byte}},System.String,System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String)
+  - SpessaSharp.MIDI.RMidi.Info.Album
+  - SpessaSharp.MIDI.RMidi.Info.Artist
+  - SpessaSharp.MIDI.RMidi.Info.Comment
+  - SpessaSharp.MIDI.RMidi.Info.Copyright
+  - SpessaSharp.MIDI.RMidi.Info.CreationDate
+  - SpessaSharp.MIDI.RMidi.Info.Engineer
+  - SpessaSharp.MIDI.RMidi.Info.Genre
+  - SpessaSharp.MIDI.RMidi.Info.Get(SpessaSharp.MIDI.RMidi.Info.Key)
+  - SpessaSharp.MIDI.RMidi.Info.InfoEncoding
+  - SpessaSharp.MIDI.RMidi.Info.MidiEncoding
+  - SpessaSharp.MIDI.RMidi.Info.Name
+  - SpessaSharp.MIDI.RMidi.Info.Picture
+  - SpessaSharp.MIDI.RMidi.Info.Software
+  - SpessaSharp.MIDI.RMidi.Info.Subject
+  langs:
+  - csharp
+  - vb
+  name: RMidi.Info
+  nameWithType: RMidi.Info
+  fullName: SpessaSharp.MIDI.RMidi.Info
+  type: Class
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Info
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: Info type represents metadata for an RMIDI file.
+  example: []
+  syntax:
+    content: 'public sealed record RMidi.Info : IEquatable<RMidi.Info>'
+    content.vb: Public NotInheritable Class RMidi.Info Implements IEquatable(Of RMidi.Info)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{SpessaSharp.MIDI.RMidi.Info}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: SpessaSharp.MIDI.RMidi.Info.#ctor(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.ArraySegment{System.Byte}},System.String,System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String)
+  commentId: M:SpessaSharp.MIDI.RMidi.Info.#ctor(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.ArraySegment{System.Byte}},System.String,System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.ArraySegment{System.Byte}},System.String,System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String)'
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Info(string?, string?, string?, string?, string?, ArraySegment<byte>?, string?, DateTime?, string?, string?, string?, string?, string?)
+  nameWithType: RMidi.Info.Info(string?, string?, string?, string?, string?, ArraySegment<byte>?, string?, DateTime?, string?, string?, string?, string?, string?)
+  fullName: SpessaSharp.MIDI.RMidi.Info.Info(string?, string?, string?, string?, string?, System.ArraySegment<byte>?, string?, System.DateTime?, string?, string?, string?, string?, string?)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: Info type represents metadata for an RMIDI file.
+  example: []
+  syntax:
+    content: public Info(string? Name = null, string? Engineer = null, string? Artist = null, string? Album = null, string? Genre = null, ArraySegment<byte>? Picture = null, string? Comment = null, DateTime? CreationDate = null, string? Copyright = null, string? InfoEncoding = null, string? MidiEncoding = null, string? Software = null, string? Subject = null)
+    parameters:
+    - id: Name
+      type: System.String
+      description: The name of the song.
+    - id: Engineer
+      type: System.String
+      description: The engineer who worked on the sound bank file.
+    - id: Artist
+      type: System.String
+      description: The artist of the MIDI file.
+    - id: Album
+      type: System.String
+      description: The album of the song.
+    - id: Genre
+      type: System.String
+      description: The genre of the song.
+    - id: Picture
+      type: System.Nullable{System.ArraySegment{System.Byte}}
+      description: The image for the file (album cover).
+    - id: Comment
+      type: System.String
+      description: The comment of the file.
+    - id: CreationDate
+      type: System.Nullable{System.DateTime}
+      description: The creation date of the file.
+    - id: Copyright
+      type: System.String
+      description: The copyright of the file.
+    - id: InfoEncoding
+      type: System.String
+      description: The encoding of the RMIDI info.
+    - id: MidiEncoding
+      type: System.String
+      description: The encoding of the MIDI file's text messages.
+    - id: Software
+      type: System.String
+      description: The software used to write the file.
+    - id: Subject
+      type: System.String
+      description: The subject of the file.
+    content.vb: Public Sub New(Name As String = Nothing, Engineer As String = Nothing, Artist As String = Nothing, Album As String = Nothing, Genre As String = Nothing, Picture As ArraySegment(Of Byte)? = Nothing, Comment As String = Nothing, CreationDate As Date? = Nothing, Copyright As String = Nothing, InfoEncoding As String = Nothing, MidiEncoding As String = Nothing, Software As String = Nothing, Subject As String = Nothing)
+  overload: SpessaSharp.MIDI.RMidi.Info.#ctor*
+  nameWithType.vb: RMidi.Info.New(String, String, String, String, String, ArraySegment(Of Byte)?, String, Date?, String, String, String, String, String)
+  fullName.vb: SpessaSharp.MIDI.RMidi.Info.New(String, String, String, String, String, System.ArraySegment(Of Byte)?, String, Date?, String, String, String, String, String)
+  name.vb: New(String, String, String, String, String, ArraySegment(Of Byte)?, String, Date?, String, String, String, String, String)
+- uid: SpessaSharp.MIDI.RMidi.Info.Name
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Name
+  id: Name
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: RMidi.Info.Name
+  fullName: SpessaSharp.MIDI.RMidi.Info.Name
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Name
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 21
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The name of the song.
+  example: []
+  syntax:
+    content: public string? Name { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Name*
+- uid: SpessaSharp.MIDI.RMidi.Info.Engineer
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Engineer
+  id: Engineer
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Engineer
+  nameWithType: RMidi.Info.Engineer
+  fullName: SpessaSharp.MIDI.RMidi.Info.Engineer
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Engineer
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 22
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The engineer who worked on the sound bank file.
+  example: []
+  syntax:
+    content: public string? Engineer { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Engineer As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Engineer*
+- uid: SpessaSharp.MIDI.RMidi.Info.Artist
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Artist
+  id: Artist
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Artist
+  nameWithType: RMidi.Info.Artist
+  fullName: SpessaSharp.MIDI.RMidi.Info.Artist
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Artist
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 23
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The artist of the MIDI file.
+  example: []
+  syntax:
+    content: public string? Artist { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Artist As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Artist*
+- uid: SpessaSharp.MIDI.RMidi.Info.Album
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Album
+  id: Album
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Album
+  nameWithType: RMidi.Info.Album
+  fullName: SpessaSharp.MIDI.RMidi.Info.Album
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Album
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 24
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The album of the song.
+  example: []
+  syntax:
+    content: public string? Album { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Album As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Album*
+- uid: SpessaSharp.MIDI.RMidi.Info.Genre
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Genre
+  id: Genre
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Genre
+  nameWithType: RMidi.Info.Genre
+  fullName: SpessaSharp.MIDI.RMidi.Info.Genre
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Genre
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The genre of the song.
+  example: []
+  syntax:
+    content: public string? Genre { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Genre As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Genre*
+- uid: SpessaSharp.MIDI.RMidi.Info.Picture
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Picture
+  id: Picture
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Picture
+  nameWithType: RMidi.Info.Picture
+  fullName: SpessaSharp.MIDI.RMidi.Info.Picture
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Picture
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 26
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The image for the file (album cover).
+  example: []
+  syntax:
+    content: public ArraySegment<byte>? Picture { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{System.ArraySegment{System.Byte}}
+    content.vb: Public Property Picture As ArraySegment(Of Byte)?
+  overload: SpessaSharp.MIDI.RMidi.Info.Picture*
+- uid: SpessaSharp.MIDI.RMidi.Info.Comment
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Comment
+  id: Comment
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Comment
+  nameWithType: RMidi.Info.Comment
+  fullName: SpessaSharp.MIDI.RMidi.Info.Comment
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Comment
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 27
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The comment of the file.
+  example: []
+  syntax:
+    content: public string? Comment { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Comment As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Comment*
+- uid: SpessaSharp.MIDI.RMidi.Info.CreationDate
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.CreationDate
+  id: CreationDate
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: CreationDate
+  nameWithType: RMidi.Info.CreationDate
+  fullName: SpessaSharp.MIDI.RMidi.Info.CreationDate
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CreationDate
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 28
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The creation date of the file.
+  example: []
+  syntax:
+    content: public DateTime? CreationDate { get; init; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+    content.vb: Public Property CreationDate As Date?
+  overload: SpessaSharp.MIDI.RMidi.Info.CreationDate*
+- uid: SpessaSharp.MIDI.RMidi.Info.Copyright
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Copyright
+  id: Copyright
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Copyright
+  nameWithType: RMidi.Info.Copyright
+  fullName: SpessaSharp.MIDI.RMidi.Info.Copyright
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Copyright
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 29
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The copyright of the file.
+  example: []
+  syntax:
+    content: public string? Copyright { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Copyright As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Copyright*
+- uid: SpessaSharp.MIDI.RMidi.Info.InfoEncoding
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.InfoEncoding
+  id: InfoEncoding
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: InfoEncoding
+  nameWithType: RMidi.Info.InfoEncoding
+  fullName: SpessaSharp.MIDI.RMidi.Info.InfoEncoding
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InfoEncoding
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 30
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The encoding of the RMIDI info.
+  example: []
+  syntax:
+    content: public string? InfoEncoding { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property InfoEncoding As String
+  overload: SpessaSharp.MIDI.RMidi.Info.InfoEncoding*
+- uid: SpessaSharp.MIDI.RMidi.Info.MidiEncoding
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.MidiEncoding
+  id: MidiEncoding
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: MidiEncoding
+  nameWithType: RMidi.Info.MidiEncoding
+  fullName: SpessaSharp.MIDI.RMidi.Info.MidiEncoding
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiEncoding
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 31
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The encoding of the MIDI file's text messages.
+  example: []
+  syntax:
+    content: public string? MidiEncoding { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property MidiEncoding As String
+  overload: SpessaSharp.MIDI.RMidi.Info.MidiEncoding*
+- uid: SpessaSharp.MIDI.RMidi.Info.Software
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Software
+  id: Software
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Software
+  nameWithType: RMidi.Info.Software
+  fullName: SpessaSharp.MIDI.RMidi.Info.Software
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Software
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 32
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The software used to write the file.
+  example: []
+  syntax:
+    content: public string? Software { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Software As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Software*
+- uid: SpessaSharp.MIDI.RMidi.Info.Subject
+  commentId: P:SpessaSharp.MIDI.RMidi.Info.Subject
+  id: Subject
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Subject
+  nameWithType: RMidi.Info.Subject
+  fullName: SpessaSharp.MIDI.RMidi.Info.Subject
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Subject
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 33
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  summary: The subject of the file.
+  example: []
+  syntax:
+    content: public string? Subject { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Subject As String
+  overload: SpessaSharp.MIDI.RMidi.Info.Subject*
+- uid: SpessaSharp.MIDI.RMidi.Info.Get(SpessaSharp.MIDI.RMidi.Info.Key)
+  commentId: M:SpessaSharp.MIDI.RMidi.Info.Get(SpessaSharp.MIDI.RMidi.Info.Key)
+  id: Get(SpessaSharp.MIDI.RMidi.Info.Key)
+  parent: SpessaSharp.MIDI.RMidi.Info
+  langs:
+  - csharp
+  - vb
+  name: Get(Key)
+  nameWithType: RMidi.Info.Get(RMidi.Info.Key)
+  fullName: SpessaSharp.MIDI.RMidi.Info.Get(SpessaSharp.MIDI.RMidi.Info.Key)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/MIDI/RMidi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Get
+    path: ../SpessaSharp/MIDI/RMidi.cs
+    startLine: 41
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public object? Get(RMidi.Info.Key key)
+    parameters:
+    - id: key
+      type: SpessaSharp.MIDI.RMidi.Info.Key
+    return:
+      type: System.Object
+    content.vb: Public Function [Get](key As RMidi.Info.Key) As Object
+  overload: SpessaSharp.MIDI.RMidi.Info.Get*
+references:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{SpessaSharp.MIDI.RMidi.Info}
+  commentId: T:System.IEquatable{SpessaSharp.MIDI.RMidi.Info}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<RMidi.Info>
+  nameWithType: IEquatable<RMidi.Info>
+  fullName: System.IEquatable<SpessaSharp.MIDI.RMidi.Info>
+  nameWithType.vb: IEquatable(Of RMidi.Info)
+  fullName.vb: System.IEquatable(Of SpessaSharp.MIDI.RMidi.Info)
+  name.vb: IEquatable(Of RMidi.Info)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.MIDI.RMidi.Info.#ctor*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.#ctor
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info__ctor_System_String_System_String_System_String_System_String_System_String_System_Nullable_System_ArraySegment_System_Byte___System_String_System_Nullable_System_DateTime__System_String_System_String_System_String_System_String_System_String_
+  name: Info
+  nameWithType: RMidi.Info.Info
+  fullName: SpessaSharp.MIDI.RMidi.Info.Info
+  nameWithType.vb: RMidi.Info.New
+  fullName.vb: SpessaSharp.MIDI.RMidi.Info.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Nullable{System.ArraySegment{System.Byte}}
+  commentId: T:System.Nullable{System.ArraySegment{System.Byte}}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  name: ArraySegment<byte>?
+  nameWithType: ArraySegment<byte>?
+  fullName: System.ArraySegment<byte>?
+  nameWithType.vb: ArraySegment(Of Byte)?
+  fullName.vb: System.ArraySegment(Of Byte)?
+  name.vb: ArraySegment(Of Byte)?
+  spec.csharp:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: '?'
+  spec.vb:
+  - uid: System.ArraySegment`1
+    name: ArraySegment
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.arraysegment-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: '?'
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.MIDI.RMidi.Info.Name*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Name
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Name
+  name: Name
+  nameWithType: RMidi.Info.Name
+  fullName: SpessaSharp.MIDI.RMidi.Info.Name
+- uid: SpessaSharp.MIDI.RMidi.Info.Engineer*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Engineer
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Engineer
+  name: Engineer
+  nameWithType: RMidi.Info.Engineer
+  fullName: SpessaSharp.MIDI.RMidi.Info.Engineer
+- uid: SpessaSharp.MIDI.RMidi.Info.Artist*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Artist
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Artist
+  name: Artist
+  nameWithType: RMidi.Info.Artist
+  fullName: SpessaSharp.MIDI.RMidi.Info.Artist
+- uid: SpessaSharp.MIDI.RMidi.Info.Album*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Album
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Album
+  name: Album
+  nameWithType: RMidi.Info.Album
+  fullName: SpessaSharp.MIDI.RMidi.Info.Album
+- uid: SpessaSharp.MIDI.RMidi.Info.Genre*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Genre
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Genre
+  name: Genre
+  nameWithType: RMidi.Info.Genre
+  fullName: SpessaSharp.MIDI.RMidi.Info.Genre
+- uid: SpessaSharp.MIDI.RMidi.Info.Picture*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Picture
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Picture
+  name: Picture
+  nameWithType: RMidi.Info.Picture
+  fullName: SpessaSharp.MIDI.RMidi.Info.Picture
+- uid: SpessaSharp.MIDI.RMidi.Info.Comment*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Comment
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Comment
+  name: Comment
+  nameWithType: RMidi.Info.Comment
+  fullName: SpessaSharp.MIDI.RMidi.Info.Comment
+- uid: SpessaSharp.MIDI.RMidi.Info.CreationDate*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.CreationDate
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_CreationDate
+  name: CreationDate
+  nameWithType: RMidi.Info.CreationDate
+  fullName: SpessaSharp.MIDI.RMidi.Info.CreationDate
+- uid: SpessaSharp.MIDI.RMidi.Info.Copyright*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Copyright
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Copyright
+  name: Copyright
+  nameWithType: RMidi.Info.Copyright
+  fullName: SpessaSharp.MIDI.RMidi.Info.Copyright
+- uid: SpessaSharp.MIDI.RMidi.Info.InfoEncoding*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.InfoEncoding
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_InfoEncoding
+  name: InfoEncoding
+  nameWithType: RMidi.Info.InfoEncoding
+  fullName: SpessaSharp.MIDI.RMidi.Info.InfoEncoding
+- uid: SpessaSharp.MIDI.RMidi.Info.MidiEncoding*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.MidiEncoding
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_MidiEncoding
+  name: MidiEncoding
+  nameWithType: RMidi.Info.MidiEncoding
+  fullName: SpessaSharp.MIDI.RMidi.Info.MidiEncoding
+- uid: SpessaSharp.MIDI.RMidi.Info.Software*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Software
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Software
+  name: Software
+  nameWithType: RMidi.Info.Software
+  fullName: SpessaSharp.MIDI.RMidi.Info.Software
+- uid: SpessaSharp.MIDI.RMidi.Info.Subject*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Subject
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Subject
+  name: Subject
+  nameWithType: RMidi.Info.Subject
+  fullName: SpessaSharp.MIDI.RMidi.Info.Subject
+- uid: SpessaSharp.MIDI.RMidi.Info.Get*
+  commentId: Overload:SpessaSharp.MIDI.RMidi.Info.Get
+  href: SpessaSharp.MIDI.RMidi.Info.html#SpessaSharp_MIDI_RMidi_Info_Get_SpessaSharp_MIDI_RMidi_Info_Key_
+  name: Get
+  nameWithType: RMidi.Info.Get
+  fullName: SpessaSharp.MIDI.RMidi.Info.Get
+- uid: SpessaSharp.MIDI.RMidi.Info.Key
+  commentId: T:SpessaSharp.MIDI.RMidi.Info.Key
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.RMidi.html
+  name: RMidi.Info.Key
+  nameWithType: RMidi.Info.Key
+  fullName: SpessaSharp.MIDI.RMidi.Info.Key
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info.Key
+    name: Key
+    href: SpessaSharp.MIDI.RMidi.Info.Key.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.RMidi
+    name: RMidi
+    href: SpessaSharp.MIDI.RMidi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info
+    name: Info
+    href: SpessaSharp.MIDI.RMidi.Info.html
+  - name: .
+  - uid: SpessaSharp.MIDI.RMidi.Info.Key
+    name: Key
+    href: SpessaSharp.MIDI.RMidi.Info.Key.html

@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Parameters
+  id: SpessaSharp.Synthesizer.Engine.Parameters
+  children:
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameters
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  - SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameters
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.Synthesizer.Engine.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameters
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameters.html
+  name: GlobalMidiParameters
+  nameWithType: GlobalMidiParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameters
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  name: GlobalMidiParameter
+  nameWithType: GlobalMidiParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  name: GlobalMidiParameter.Type
+  nameWithType: GlobalMidiParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter
+    name: GlobalMidiParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalMidiParameter.Type.html
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameters
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameters.html
+  name: GlobalSystemParameters
+  nameWithType: GlobalSystemParameters
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameters
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  name: GlobalSystemParameter
+  nameWithType: GlobalSystemParameter
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+- uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  commentId: T:SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  parent: SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  name: GlobalSystemParameter.Type
+  nameWithType: GlobalSystemParameter.Type
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+    name: GlobalSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter
+    name: GlobalSystemParameter
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Engine.Parameters.GlobalSystemParameter.Type.html
+- uid: SpessaSharp.Synthesizer.Engine.Parameters
+  commentId: N:SpessaSharp.Synthesizer.Engine.Parameters
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Parameters
+  nameWithType: SpessaSharp.Synthesizer.Engine.Parameters
+  fullName: SpessaSharp.Synthesizer.Engine.Parameters
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Parameters.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Parameters
+    name: Parameters
+    href: SpessaSharp.Synthesizer.Engine.Parameters.html

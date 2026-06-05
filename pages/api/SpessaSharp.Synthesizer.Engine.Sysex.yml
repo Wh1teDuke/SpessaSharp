@@ -1,0 +1,133 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Sysex
+  commentId: N:SpessaSharp.Synthesizer.Engine.Sysex
+  id: SpessaSharp.Synthesizer.Engine.Sysex
+  children:
+  - SpessaSharp.Synthesizer.Engine.Sysex.Macro
+  - SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus
+  - SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay
+  - SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.Synthesizer.Engine.Sysex
+  nameWithType: SpessaSharp.Synthesizer.Engine.Sysex
+  fullName: SpessaSharp.Synthesizer.Engine.Sysex
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+  commentId: T:SpessaSharp.Synthesizer.Engine.Sysex.Macro
+  href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  name: Macro
+  nameWithType: Macro
+  fullName: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+- uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb
+  commentId: T:SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb
+  parent: SpessaSharp.Synthesizer.Engine.Sysex
+  href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  name: Macro.Reverb
+  nameWithType: Macro.Reverb
+  fullName: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+    name: Macro
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb
+    name: Reverb
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+    name: Macro
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb
+    name: Reverb
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Reverb.html
+- uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus
+  commentId: T:SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus
+  parent: SpessaSharp.Synthesizer.Engine.Sysex
+  href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  name: Macro.Chorus
+  nameWithType: Macro.Chorus
+  fullName: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+    name: Macro
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus
+    name: Chorus
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+    name: Macro
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus
+    name: Chorus
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Chorus.html
+- uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay
+  commentId: T:SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay
+  parent: SpessaSharp.Synthesizer.Engine.Sysex
+  href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  name: Macro.Delay
+  nameWithType: Macro.Delay
+  fullName: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+    name: Macro
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay
+    name: Delay
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro
+    name: Macro
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay
+    name: Delay
+    href: SpessaSharp.Synthesizer.Engine.Sysex.Macro.Delay.html
+- uid: SpessaSharp.Synthesizer.Engine.Sysex
+  commentId: N:SpessaSharp.Synthesizer.Engine.Sysex
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Sysex
+  nameWithType: SpessaSharp.Synthesizer.Engine.Sysex
+  fullName: SpessaSharp.Synthesizer.Engine.Sysex
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex
+    name: Sysex
+    href: SpessaSharp.Synthesizer.Engine.Sysex.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Sysex
+    name: Sysex
+    href: SpessaSharp.Synthesizer.Engine.Sysex.html

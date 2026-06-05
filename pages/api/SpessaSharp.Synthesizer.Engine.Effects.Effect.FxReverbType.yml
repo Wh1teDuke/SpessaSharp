@@ -1,0 +1,279 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  id: Effect.FxReverbType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Character
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.DelayFeedback
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Level
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Macro
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreDelayTime
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreLowPass
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Time
+  langs:
+  - csharp
+  - vb
+  name: Effect.FxReverbType
+  nameWithType: Effect.FxReverbType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FxReverbType
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 6
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: public enum Effect.FxReverbType
+    content.vb: Public Enum Effect.FxReverbType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Level
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Level
+  id: Level
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: Effect.FxReverbType.Level
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Level
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Level
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 8
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: Level = 0
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreLowPass
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreLowPass
+  id: PreLowPass
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  langs:
+  - csharp
+  - vb
+  name: PreLowPass
+  nameWithType: Effect.FxReverbType.PreLowPass
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreLowPass
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PreLowPass
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 9
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: PreLowPass = 1
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Character
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Character
+  id: Character
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  langs:
+  - csharp
+  - vb
+  name: Character
+  nameWithType: Effect.FxReverbType.Character
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Character
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Character
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 10
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: Character = 2
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Time
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Time
+  id: Time
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  langs:
+  - csharp
+  - vb
+  name: Time
+  nameWithType: Effect.FxReverbType.Time
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Time
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Time
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 11
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: Time = 3
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.DelayFeedback
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.DelayFeedback
+  id: DelayFeedback
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  langs:
+  - csharp
+  - vb
+  name: DelayFeedback
+  nameWithType: Effect.FxReverbType.DelayFeedback
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.DelayFeedback
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayFeedback
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: DelayFeedback = 4
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreDelayTime
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreDelayTime
+  id: PreDelayTime
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  langs:
+  - csharp
+  - vb
+  name: PreDelayTime
+  nameWithType: Effect.FxReverbType.PreDelayTime
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.PreDelayTime
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PreDelayTime
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 13
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: PreDelayTime = 5
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Macro
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Macro
+  id: Macro
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  langs:
+  - csharp
+  - vb
+  name: Macro
+  nameWithType: Effect.FxReverbType.Macro
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.Macro
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Macro
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 14
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: Macro = 6
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxReverbType
+  nameWithType: Effect.FxReverbType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    name: FxReverbType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType
+    name: FxReverbType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxReverbType.html

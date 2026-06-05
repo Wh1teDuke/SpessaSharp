@@ -1,0 +1,360 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  commentId: T:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  id: MidiUtils.AnalyzedMessage.Type
+  parent: SpessaSharp.MIDI.Utils
+  children:
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ChorusParam
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DelayParam
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DisplayData
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DrumsOn
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.InsertionParam
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ProgramChange
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ReverbParam
+  - SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.VariationParam
+  langs:
+  - csharp
+  - vb
+  name: MidiUtils.AnalyzedMessage.Type
+  nameWithType: MidiUtils.AnalyzedMessage.Type
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 66
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: 'public enum MidiUtils.AnalyzedMessage.Type : byte'
+    content.vb: Public Enum MidiUtils.AnalyzedMessage.Type As Byte
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+  id: AnalyzedParameter
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: AnalyzedParameter
+  nameWithType: MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AnalyzedParameter
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 68
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: AnalyzedParameter = 0
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ReverbParam
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ReverbParam
+  id: ReverbParam
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: ReverbParam
+  nameWithType: MidiUtils.AnalyzedMessage.Type.ReverbParam
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ReverbParam
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ReverbParam
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 69
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: ReverbParam = 1
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ChorusParam
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ChorusParam
+  id: ChorusParam
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: ChorusParam
+  nameWithType: MidiUtils.AnalyzedMessage.Type.ChorusParam
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ChorusParam
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ChorusParam
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 69
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: ChorusParam = 2
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DelayParam
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DelayParam
+  id: DelayParam
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: DelayParam
+  nameWithType: MidiUtils.AnalyzedMessage.Type.DelayParam
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DelayParam
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DelayParam
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 69
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: DelayParam = 3
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.VariationParam
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.VariationParam
+  id: VariationParam
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: VariationParam
+  nameWithType: MidiUtils.AnalyzedMessage.Type.VariationParam
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.VariationParam
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: VariationParam
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 69
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: VariationParam = 4
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.InsertionParam
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.InsertionParam
+  id: InsertionParam
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: InsertionParam
+  nameWithType: MidiUtils.AnalyzedMessage.Type.InsertionParam
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.InsertionParam
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: InsertionParam
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 70
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: InsertionParam = 5
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DrumsOn
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DrumsOn
+  id: DrumsOn
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: DrumsOn
+  nameWithType: MidiUtils.AnalyzedMessage.Type.DrumsOn
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DrumsOn
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DrumsOn
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 71
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: DrumsOn = 6
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ProgramChange
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ProgramChange
+  id: ProgramChange
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: ProgramChange
+  nameWithType: MidiUtils.AnalyzedMessage.Type.ProgramChange
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.ProgramChange
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: ProgramChange
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 71
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: ProgramChange = 7
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DisplayData
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DisplayData
+  id: DisplayData
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: DisplayData
+  nameWithType: MidiUtils.AnalyzedMessage.Type.DisplayData
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.DisplayData
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: DisplayData
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 72
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: DisplayData = 8
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter
+  commentId: F:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter
+  id: GlobalMidiParameter
+  parent: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  langs:
+  - csharp
+  - vb
+  name: GlobalMidiParameter
+  nameWithType: MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Utils/MidiUtils.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: GlobalMidiParameter
+    path: ../SpessaSharp/MIDI/Utils/MidiUtils.cs
+    startLine: 73
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI.Utils
+  syntax:
+    content: GlobalMidiParameter = 9
+    return:
+      type: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+references:
+- uid: SpessaSharp.MIDI.Utils
+  commentId: N:SpessaSharp.MIDI.Utils
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI.Utils
+  nameWithType: SpessaSharp.MIDI.Utils
+  fullName: SpessaSharp.MIDI.Utils
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils
+    name: Utils
+    href: SpessaSharp.MIDI.Utils.html
+- uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  commentId: T:SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  parent: SpessaSharp.MIDI.Utils
+  href: SpessaSharp.MIDI.Utils.MidiUtils.html
+  name: MidiUtils.AnalyzedMessage.Type
+  nameWithType: MidiUtils.AnalyzedMessage.Type
+  fullName: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils
+    name: MidiUtils
+    href: SpessaSharp.MIDI.Utils.MidiUtils.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage
+    name: AnalyzedMessage
+    href: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+    name: Type
+    href: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils
+    name: MidiUtils
+    href: SpessaSharp.MIDI.Utils.MidiUtils.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage
+    name: AnalyzedMessage
+    href: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type
+    name: Type
+    href: SpessaSharp.MIDI.Utils.MidiUtils.AnalyzedMessage.Type.html

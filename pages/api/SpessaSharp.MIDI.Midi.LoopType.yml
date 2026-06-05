@@ -1,0 +1,128 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.Midi.LoopType
+  commentId: T:SpessaSharp.MIDI.Midi.LoopType
+  id: Midi.LoopType
+  parent: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.Midi.LoopType.Hard
+  - SpessaSharp.MIDI.Midi.LoopType.Soft
+  langs:
+  - csharp
+  - vb
+  name: Midi.LoopType
+  nameWithType: Midi.LoopType
+  fullName: SpessaSharp.MIDI.Midi.LoopType
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LoopType
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 52
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public enum Midi.LoopType
+    content.vb: Public Enum Midi.LoopType
+- uid: SpessaSharp.MIDI.Midi.LoopType.Soft
+  commentId: F:SpessaSharp.MIDI.Midi.LoopType.Soft
+  id: Soft
+  parent: SpessaSharp.MIDI.Midi.LoopType
+  langs:
+  - csharp
+  - vb
+  name: Soft
+  nameWithType: Midi.LoopType.Soft
+  fullName: SpessaSharp.MIDI.Midi.LoopType.Soft
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Soft
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 52
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: Soft = 0
+    return:
+      type: SpessaSharp.MIDI.Midi.LoopType
+- uid: SpessaSharp.MIDI.Midi.LoopType.Hard
+  commentId: F:SpessaSharp.MIDI.Midi.LoopType.Hard
+  id: Hard
+  parent: SpessaSharp.MIDI.Midi.LoopType
+  langs:
+  - csharp
+  - vb
+  name: Hard
+  nameWithType: Midi.LoopType.Hard
+  fullName: SpessaSharp.MIDI.Midi.LoopType.Hard
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/Midi.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Hard
+    path: ../SpessaSharp/MIDI/Midi.cs
+    startLine: 52
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: Hard = 1
+    return:
+      type: SpessaSharp.MIDI.Midi.LoopType
+references:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.MIDI.Midi.LoopType
+  commentId: T:SpessaSharp.MIDI.Midi.LoopType
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.Midi.html
+  name: Midi.LoopType
+  nameWithType: Midi.LoopType
+  fullName: SpessaSharp.MIDI.Midi.LoopType
+  spec.csharp:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.LoopType
+    name: LoopType
+    href: SpessaSharp.MIDI.Midi.LoopType.html
+  spec.vb:
+  - uid: SpessaSharp.MIDI.Midi
+    name: Midi
+    href: SpessaSharp.MIDI.Midi.html
+  - name: .
+  - uid: SpessaSharp.MIDI.Midi.LoopType
+    name: LoopType
+    href: SpessaSharp.MIDI.Midi.LoopType.html

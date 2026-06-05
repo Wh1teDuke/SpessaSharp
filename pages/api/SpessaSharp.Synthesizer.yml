@@ -1,0 +1,702 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  id: SpessaSharp.Synthesizer
+  children:
+  - SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  - SpessaSharp.Synthesizer.Event.CbChannelPressure
+  - SpessaSharp.Synthesizer.Event.CbControllerChange
+  - SpessaSharp.Synthesizer.Event.CbDisplayMessage
+  - SpessaSharp.Synthesizer.Event.CbEffectChange
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+  - SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  - SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+  - SpessaSharp.Synthesizer.Event.CbMuteChannel
+  - SpessaSharp.Synthesizer.Event.CbNoteOff
+  - SpessaSharp.Synthesizer.Event.CbNoteOn
+  - SpessaSharp.Synthesizer.Event.CbPolyPressure
+  - SpessaSharp.Synthesizer.Event.CbPresetListChange
+  - SpessaSharp.Synthesizer.Event.CbProgramChange
+  - SpessaSharp.Synthesizer.Event.CbReset
+  - SpessaSharp.Synthesizer.Event.CbStopAll
+  - SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+  - SpessaSharp.Synthesizer.Event.Type
+  - SpessaSharp.Synthesizer.SpessaSharpProcessor
+  - SpessaSharp.Synthesizer.Synthesizer
+  - SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  - SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+  - SpessaSharp.Synthesizer.Synthesizer.Options
+  - SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode
+  langs:
+  - csharp
+  - vb
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  type: Namespace
+  assemblies:
+  - SpessaSharp
+references:
+- uid: SpessaSharp.Synthesizer.Event
+  commentId: T:SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event
+  nameWithType: Event
+  fullName: SpessaSharp.Synthesizer.Event
+- uid: SpessaSharp.Synthesizer.Event.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.Type
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.Type
+  nameWithType: Event.Type
+  fullName: SpessaSharp.Synthesizer.Event.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.Type.html
+- uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+  commentId: T:SpessaSharp.Synthesizer.Event.CbNoteOn
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbNoteOn
+  nameWithType: Event.CbNoteOn
+  fullName: SpessaSharp.Synthesizer.Event.CbNoteOn
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+    name: CbNoteOn
+    href: SpessaSharp.Synthesizer.Event.CbNoteOn.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+    name: CbNoteOn
+    href: SpessaSharp.Synthesizer.Event.CbNoteOn.html
+- uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+  commentId: T:SpessaSharp.Synthesizer.Event.CbNoteOff
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbNoteOff
+  nameWithType: Event.CbNoteOff
+  fullName: SpessaSharp.Synthesizer.Event.CbNoteOff
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+    name: CbNoteOff
+    href: SpessaSharp.Synthesizer.Event.CbNoteOff.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+    name: CbNoteOff
+    href: SpessaSharp.Synthesizer.Event.CbNoteOff.html
+- uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbProgramChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbProgramChange
+  nameWithType: Event.CbProgramChange
+  fullName: SpessaSharp.Synthesizer.Event.CbProgramChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+    name: CbProgramChange
+    href: SpessaSharp.Synthesizer.Event.CbProgramChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+    name: CbProgramChange
+    href: SpessaSharp.Synthesizer.Event.CbProgramChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbControllerChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbControllerChange
+  nameWithType: Event.CbControllerChange
+  fullName: SpessaSharp.Synthesizer.Event.CbControllerChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+    name: CbControllerChange
+    href: SpessaSharp.Synthesizer.Event.CbControllerChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+    name: CbControllerChange
+    href: SpessaSharp.Synthesizer.Event.CbControllerChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+  commentId: T:SpessaSharp.Synthesizer.Event.CbMuteChannel
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbMuteChannel
+  nameWithType: Event.CbMuteChannel
+  fullName: SpessaSharp.Synthesizer.Event.CbMuteChannel
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    name: CbMuteChannel
+    href: SpessaSharp.Synthesizer.Event.CbMuteChannel.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    name: CbMuteChannel
+    href: SpessaSharp.Synthesizer.Event.CbMuteChannel.html
+- uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbPresetListChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbPresetListChange
+  nameWithType: Event.CbPresetListChange
+  fullName: SpessaSharp.Synthesizer.Event.CbPresetListChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    name: CbPresetListChange
+    href: SpessaSharp.Synthesizer.Event.CbPresetListChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    name: CbPresetListChange
+    href: SpessaSharp.Synthesizer.Event.CbPresetListChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbReset
+  commentId: T:SpessaSharp.Synthesizer.Event.CbReset
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbReset
+  nameWithType: Event.CbReset
+  fullName: SpessaSharp.Synthesizer.Event.CbReset
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbReset
+    name: CbReset
+    href: SpessaSharp.Synthesizer.Event.CbReset.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbReset
+    name: CbReset
+    href: SpessaSharp.Synthesizer.Event.CbReset.html
+- uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+  commentId: T:SpessaSharp.Synthesizer.Event.CbDisplayMessage
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbDisplayMessage
+  nameWithType: Event.CbDisplayMessage
+  fullName: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    name: CbDisplayMessage
+    href: SpessaSharp.Synthesizer.Event.CbDisplayMessage.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    name: CbDisplayMessage
+    href: SpessaSharp.Synthesizer.Event.CbDisplayMessage.html
+- uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+  commentId: T:SpessaSharp.Synthesizer.Event.CbChannelPressure
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbChannelPressure
+  nameWithType: Event.CbChannelPressure
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelPressure
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    name: CbChannelPressure
+    href: SpessaSharp.Synthesizer.Event.CbChannelPressure.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    name: CbChannelPressure
+    href: SpessaSharp.Synthesizer.Event.CbChannelPressure.html
+- uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+  commentId: T:SpessaSharp.Synthesizer.Event.CbPolyPressure
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbPolyPressure
+  nameWithType: Event.CbPolyPressure
+  fullName: SpessaSharp.Synthesizer.Event.CbPolyPressure
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    name: CbPolyPressure
+    href: SpessaSharp.Synthesizer.Event.CbPolyPressure.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    name: CbPolyPressure
+    href: SpessaSharp.Synthesizer.Event.CbPolyPressure.html
+- uid: SpessaSharp.Synthesizer.Event.CbStopAll
+  commentId: T:SpessaSharp.Synthesizer.Event.CbStopAll
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbStopAll
+  nameWithType: Event.CbStopAll
+  fullName: SpessaSharp.Synthesizer.Event.CbStopAll
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbStopAll
+    name: CbStopAll
+    href: SpessaSharp.Synthesizer.Event.CbStopAll.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbStopAll
+    name: CbStopAll
+    href: SpessaSharp.Synthesizer.Event.CbStopAll.html
+- uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbSystemParameterChange
+  nameWithType: Event.CbSystemParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    name: CbSystemParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbSystemParameterChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    name: CbSystemParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbSystemParameterChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange
+  nameWithType: Event.CbEffectChange
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Type
+  nameWithType: Event.CbEffectChange.Type
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Type.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Reverb
+  nameWithType: Event.CbEffectChange.Reverb
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+    name: Reverb
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb
+    name: Reverb
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Reverb.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Chorus
+  nameWithType: Event.CbEffectChange.Chorus
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+    name: Chorus
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus
+    name: Chorus
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Chorus.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Delay
+  nameWithType: Event.CbEffectChange.Delay
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+    name: Delay
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay
+    name: Delay
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Delay.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange.Insertion
+  nameWithType: Event.CbEffectChange.Insertion
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion
+    name: Insertion
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.Insertion.html
+- uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbGlobalMidiParameterChange
+  nameWithType: Event.CbGlobalMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    name: CbGlobalMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    name: CbGlobalMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbChannelMidiParameterChange
+  nameWithType: Event.CbChannelMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+- uid: SpessaSharp.Synthesizer.SpessaSharpProcessor
+  commentId: T:SpessaSharp.Synthesizer.SpessaSharpProcessor
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.SpessaSharpProcessor.html
+  name: SpessaSharpProcessor
+  nameWithType: SpessaSharpProcessor
+  fullName: SpessaSharp.Synthesizer.SpessaSharpProcessor
+- uid: SpessaSharp.Synthesizer.Synthesizer
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer
+  nameWithType: Synthesizer
+  fullName: SpessaSharp.Synthesizer.Synthesizer
+- uid: SpessaSharp.Synthesizer.Synthesizer.Options
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.Options
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer.Options
+  nameWithType: Synthesizer.Options
+  fullName: SpessaSharp.Synthesizer.Synthesizer.Options
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.Options
+    name: Options
+    href: SpessaSharp.Synthesizer.Synthesizer.Options.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.Options
+    name: Options
+    href: SpessaSharp.Synthesizer.Synthesizer.Options.html
+- uid: SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer.SampleLoopingMode
+  nameWithType: Synthesizer.SampleLoopingMode
+  fullName: SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode
+    name: SampleLoopingMode
+    href: SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode
+    name: SampleLoopingMode
+    href: SpessaSharp.Synthesizer.Synthesizer.SampleLoopingMode.html
+- uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer.InterpolationType
+  nameWithType: Synthesizer.InterpolationType
+  fullName: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.InterpolationType
+    name: InterpolationType
+    href: SpessaSharp.Synthesizer.Synthesizer.InterpolationType.html
+- uid: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+  commentId: T:SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Synthesizer.html
+  name: Synthesizer.MissingPresetHandler
+  nameWithType: Synthesizer.MissingPresetHandler
+  fullName: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+    name: MissingPresetHandler
+    href: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler
+    name: MissingPresetHandler
+    href: SpessaSharp.Synthesizer.Synthesizer.MissingPresetHandler.html
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html

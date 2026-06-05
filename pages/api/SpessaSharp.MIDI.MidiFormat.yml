@@ -1,0 +1,139 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.MIDI.MidiFormat
+  commentId: T:SpessaSharp.MIDI.MidiFormat
+  id: MidiFormat
+  parent: SpessaSharp.MIDI
+  children:
+  - SpessaSharp.MIDI.MidiFormat.m0
+  - SpessaSharp.MIDI.MidiFormat.m1
+  - SpessaSharp.MIDI.MidiFormat.m2
+  langs:
+  - csharp
+  - vb
+  name: MidiFormat
+  nameWithType: MidiFormat
+  fullName: SpessaSharp.MIDI.MidiFormat
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiFormat.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: MidiFormat
+    path: ../SpessaSharp/MIDI/MidiFormat.cs
+    startLine: 2
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: public enum MidiFormat
+    content.vb: Public Enum MidiFormat
+- uid: SpessaSharp.MIDI.MidiFormat.m0
+  commentId: F:SpessaSharp.MIDI.MidiFormat.m0
+  id: m0
+  parent: SpessaSharp.MIDI.MidiFormat
+  langs:
+  - csharp
+  - vb
+  name: m0
+  nameWithType: MidiFormat.m0
+  fullName: SpessaSharp.MIDI.MidiFormat.m0
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiFormat.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: m0
+    path: ../SpessaSharp/MIDI/MidiFormat.cs
+    startLine: 2
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: m0 = 0
+    return:
+      type: SpessaSharp.MIDI.MidiFormat
+- uid: SpessaSharp.MIDI.MidiFormat.m1
+  commentId: F:SpessaSharp.MIDI.MidiFormat.m1
+  id: m1
+  parent: SpessaSharp.MIDI.MidiFormat
+  langs:
+  - csharp
+  - vb
+  name: m1
+  nameWithType: MidiFormat.m1
+  fullName: SpessaSharp.MIDI.MidiFormat.m1
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiFormat.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: m1
+    path: ../SpessaSharp/MIDI/MidiFormat.cs
+    startLine: 2
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: m1 = 1
+    return:
+      type: SpessaSharp.MIDI.MidiFormat
+- uid: SpessaSharp.MIDI.MidiFormat.m2
+  commentId: F:SpessaSharp.MIDI.MidiFormat.m2
+  id: m2
+  parent: SpessaSharp.MIDI.MidiFormat
+  langs:
+  - csharp
+  - vb
+  name: m2
+  nameWithType: MidiFormat.m2
+  fullName: SpessaSharp.MIDI.MidiFormat.m2
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/MIDI/MidiFormat.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: m2
+    path: ../SpessaSharp/MIDI/MidiFormat.cs
+    startLine: 2
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.MIDI
+  syntax:
+    content: m2 = 2
+    return:
+      type: SpessaSharp.MIDI.MidiFormat
+references:
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.MIDI.MidiFormat
+  commentId: T:SpessaSharp.MIDI.MidiFormat
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiFormat.html
+  name: MidiFormat
+  nameWithType: MidiFormat
+  fullName: SpessaSharp.MIDI.MidiFormat

@@ -1,0 +1,2749 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Event
+  commentId: T:SpessaSharp.Synthesizer.Event
+  id: Event
+  parent: SpessaSharp.Synthesizer
+  children:
+  - SpessaSharp.Synthesizer.Event.AsChannelParameterChange
+  - SpessaSharp.Synthesizer.Event.AsChannelPressure
+  - SpessaSharp.Synthesizer.Event.AsControllerChange
+  - SpessaSharp.Synthesizer.Event.AsDisplayMessage
+  - SpessaSharp.Synthesizer.Event.AsEffectChange
+  - SpessaSharp.Synthesizer.Event.AsGlobalParameterChange
+  - SpessaSharp.Synthesizer.Event.AsMuteChannel
+  - SpessaSharp.Synthesizer.Event.AsNoteOff
+  - SpessaSharp.Synthesizer.Event.AsNoteOn
+  - SpessaSharp.Synthesizer.Event.AsPolyPressure
+  - SpessaSharp.Synthesizer.Event.AsPresetListChange
+  - SpessaSharp.Synthesizer.Event.AsProgramChange
+  - SpessaSharp.Synthesizer.Event.AsReset
+  - SpessaSharp.Synthesizer.Event.AsStopAll
+  - SpessaSharp.Synthesizer.Event.AsSystemParameterChange
+  - SpessaSharp.Synthesizer.Event.EventType
+  - SpessaSharp.Synthesizer.Event.IsChannelAdded
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelPressure)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbControllerChange)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbDisplayMessage)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbEffectChange)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbMuteChannel)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOff)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOn)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPolyPressure)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPresetListChange)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbProgramChange)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbReset)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbStopAll)
+  - SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)
+  - SpessaSharp.Synthesizer.Event.OfChannelAdded
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelPressure)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbControllerChange)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbDisplayMessage)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbEffectChange)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbMuteChannel)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOff)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOn)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbPolyPressure)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbPresetListChange)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbProgramChange)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbReset)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbStopAll)~SpessaSharp.Synthesizer.Event
+  - SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)~SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Event
+  nameWithType: Event
+  fullName: SpessaSharp.Synthesizer.Event
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Event
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 9
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public readonly struct Event
+    content.vb: Public Structure [Event]
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Synthesizer.Event.EventType
+  commentId: P:SpessaSharp.Synthesizer.Event.EventType
+  id: EventType
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: EventType
+  nameWithType: Event.EventType
+  fullName: SpessaSharp.Synthesizer.Event.EventType
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: EventType
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 222
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.Type EventType { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.Synthesizer.Event.Type
+    content.vb: Public Property EventType As [Event].Type
+  overload: SpessaSharp.Synthesizer.Event.EventType*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOn)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOn)
+  id: Of(SpessaSharp.Synthesizer.Event.CbNoteOn)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbNoteOn)
+  nameWithType: Event.Of(Event.CbNoteOn)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOn)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 227
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbNoteOn noteOn)
+    parameters:
+    - id: noteOn
+      type: SpessaSharp.Synthesizer.Event.CbNoteOn
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](noteOn As [Event].CbNoteOn) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOff)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOff)
+  id: Of(SpessaSharp.Synthesizer.Event.CbNoteOff)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbNoteOff)
+  nameWithType: Event.Of(Event.CbNoteOff)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbNoteOff)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 233
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbNoteOff noteOff)
+    parameters:
+    - id: noteOff
+      type: SpessaSharp.Synthesizer.Event.CbNoteOff
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](noteOff As [Event].CbNoteOff) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbControllerChange)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbControllerChange)
+  id: Of(SpessaSharp.Synthesizer.Event.CbControllerChange)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbControllerChange)
+  nameWithType: Event.Of(Event.CbControllerChange)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbControllerChange)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 239
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbControllerChange controllerChange)
+    parameters:
+    - id: controllerChange
+      type: SpessaSharp.Synthesizer.Event.CbControllerChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](controllerChange As [Event].CbControllerChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbProgramChange)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbProgramChange)
+  id: Of(SpessaSharp.Synthesizer.Event.CbProgramChange)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbProgramChange)
+  nameWithType: Event.Of(Event.CbProgramChange)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbProgramChange)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 245
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbProgramChange programChange)
+    parameters:
+    - id: programChange
+      type: SpessaSharp.Synthesizer.Event.CbProgramChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](programChange As [Event].CbProgramChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelPressure)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelPressure)
+  id: Of(SpessaSharp.Synthesizer.Event.CbChannelPressure)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbChannelPressure)
+  nameWithType: Event.Of(Event.CbChannelPressure)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelPressure)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 251
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbChannelPressure channelPressure)
+    parameters:
+    - id: channelPressure
+      type: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](channelPressure As [Event].CbChannelPressure) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPolyPressure)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPolyPressure)
+  id: Of(SpessaSharp.Synthesizer.Event.CbPolyPressure)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbPolyPressure)
+  nameWithType: Event.Of(Event.CbPolyPressure)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPolyPressure)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 257
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbPolyPressure polyPressure)
+    parameters:
+    - id: polyPressure
+      type: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](polyPressure As [Event].CbPolyPressure) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbStopAll)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbStopAll)
+  id: Of(SpessaSharp.Synthesizer.Event.CbStopAll)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbStopAll)
+  nameWithType: Event.Of(Event.CbStopAll)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbStopAll)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 263
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbStopAll stopAll)
+    parameters:
+    - id: stopAll
+      type: SpessaSharp.Synthesizer.Event.CbStopAll
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](stopAll As [Event].CbStopAll) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.OfChannelAdded
+  commentId: M:SpessaSharp.Synthesizer.Event.OfChannelAdded
+  id: OfChannelAdded
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: OfChannelAdded()
+  nameWithType: Event.OfChannelAdded()
+  fullName: SpessaSharp.Synthesizer.Event.OfChannelAdded()
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: OfChannelAdded
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 269
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event OfChannelAdded()
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function OfChannelAdded() As [Event]
+  overload: SpessaSharp.Synthesizer.Event.OfChannelAdded*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbMuteChannel)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbMuteChannel)
+  id: Of(SpessaSharp.Synthesizer.Event.CbMuteChannel)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbMuteChannel)
+  nameWithType: Event.Of(Event.CbMuteChannel)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbMuteChannel)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 272
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbMuteChannel muteChannel)
+    parameters:
+    - id: muteChannel
+      type: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](muteChannel As [Event].CbMuteChannel) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbReset)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbReset)
+  id: Of(SpessaSharp.Synthesizer.Event.CbReset)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbReset)
+  nameWithType: Event.Of(Event.CbReset)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbReset)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 278
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbReset reset)
+    parameters:
+    - id: reset
+      type: SpessaSharp.Synthesizer.Event.CbReset
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](reset As [Event].CbReset) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)
+  id: Of(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbSystemParameterChange)
+  nameWithType: Event.Of(Event.CbSystemParameterChange)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 284
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbSystemParameterChange systemParamChange)
+    parameters:
+    - id: systemParamChange
+      type: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](systemParamChange As [Event].CbSystemParameterChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbEffectChange)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbEffectChange)
+  id: Of(SpessaSharp.Synthesizer.Event.CbEffectChange)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbEffectChange)
+  nameWithType: Event.Of(Event.CbEffectChange)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbEffectChange)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 290
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbEffectChange effectChange)
+    parameters:
+    - id: effectChange
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](effectChange As [Event].CbEffectChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)
+  id: Of(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbGlobalMidiParameterChange)
+  nameWithType: Event.Of(Event.CbGlobalMidiParameterChange)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 296
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbGlobalMidiParameterChange globalParamChange)
+    parameters:
+    - id: globalParamChange
+      type: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](globalParamChange As [Event].CbGlobalMidiParameterChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  id: Of(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbChannelMidiParameterChange)
+  nameWithType: Event.Of(Event.CbChannelMidiParameterChange)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 302
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbChannelMidiParameterChange channelParamChange)
+    parameters:
+    - id: channelParamChange
+      type: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](channelParamChange As [Event].CbChannelMidiParameterChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPresetListChange)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPresetListChange)
+  id: Of(SpessaSharp.Synthesizer.Event.CbPresetListChange)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbPresetListChange)
+  nameWithType: Event.Of(Event.CbPresetListChange)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbPresetListChange)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 308
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbPresetListChange presetListChange)
+    parameters:
+    - id: presetListChange
+      type: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](presetListChange As [Event].CbPresetListChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbDisplayMessage)
+  commentId: M:SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbDisplayMessage)
+  id: Of(SpessaSharp.Synthesizer.Event.CbDisplayMessage)
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: Of(CbDisplayMessage)
+  nameWithType: Event.Of(Event.CbDisplayMessage)
+  fullName: SpessaSharp.Synthesizer.Event.Of(SpessaSharp.Synthesizer.Event.CbDisplayMessage)
+  type: Method
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Of
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 314
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static Event Of(Event.CbDisplayMessage displayMessage)
+    parameters:
+    - id: displayMessage
+      type: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Function [Of](displayMessage As [Event].CbDisplayMessage) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.Of*
+- uid: SpessaSharp.Synthesizer.Event.AsNoteOn
+  commentId: P:SpessaSharp.Synthesizer.Event.AsNoteOn
+  id: AsNoteOn
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsNoteOn
+  nameWithType: Event.AsNoteOn
+  fullName: SpessaSharp.Synthesizer.Event.AsNoteOn
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsNoteOn
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 320
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbNoteOn? AsNoteOn { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbNoteOn}
+    content.vb: Public ReadOnly Property AsNoteOn As [Event].CbNoteOn?
+  overload: SpessaSharp.Synthesizer.Event.AsNoteOn*
+- uid: SpessaSharp.Synthesizer.Event.AsNoteOff
+  commentId: P:SpessaSharp.Synthesizer.Event.AsNoteOff
+  id: AsNoteOff
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsNoteOff
+  nameWithType: Event.AsNoteOff
+  fullName: SpessaSharp.Synthesizer.Event.AsNoteOff
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsNoteOff
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 322
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbNoteOff? AsNoteOff { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbNoteOff}
+    content.vb: Public ReadOnly Property AsNoteOff As [Event].CbNoteOff?
+  overload: SpessaSharp.Synthesizer.Event.AsNoteOff*
+- uid: SpessaSharp.Synthesizer.Event.AsControllerChange
+  commentId: P:SpessaSharp.Synthesizer.Event.AsControllerChange
+  id: AsControllerChange
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsControllerChange
+  nameWithType: Event.AsControllerChange
+  fullName: SpessaSharp.Synthesizer.Event.AsControllerChange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsControllerChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 324
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbControllerChange? AsControllerChange { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbControllerChange}
+    content.vb: Public ReadOnly Property AsControllerChange As [Event].CbControllerChange?
+  overload: SpessaSharp.Synthesizer.Event.AsControllerChange*
+- uid: SpessaSharp.Synthesizer.Event.AsProgramChange
+  commentId: P:SpessaSharp.Synthesizer.Event.AsProgramChange
+  id: AsProgramChange
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsProgramChange
+  nameWithType: Event.AsProgramChange
+  fullName: SpessaSharp.Synthesizer.Event.AsProgramChange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsProgramChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 326
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbProgramChange? AsProgramChange { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbProgramChange}
+    content.vb: Public ReadOnly Property AsProgramChange As [Event].CbProgramChange?
+  overload: SpessaSharp.Synthesizer.Event.AsProgramChange*
+- uid: SpessaSharp.Synthesizer.Event.AsChannelPressure
+  commentId: P:SpessaSharp.Synthesizer.Event.AsChannelPressure
+  id: AsChannelPressure
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsChannelPressure
+  nameWithType: Event.AsChannelPressure
+  fullName: SpessaSharp.Synthesizer.Event.AsChannelPressure
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsChannelPressure
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 328
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbChannelPressure? AsChannelPressure { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbChannelPressure}
+    content.vb: Public ReadOnly Property AsChannelPressure As [Event].CbChannelPressure?
+  overload: SpessaSharp.Synthesizer.Event.AsChannelPressure*
+- uid: SpessaSharp.Synthesizer.Event.AsPolyPressure
+  commentId: P:SpessaSharp.Synthesizer.Event.AsPolyPressure
+  id: AsPolyPressure
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsPolyPressure
+  nameWithType: Event.AsPolyPressure
+  fullName: SpessaSharp.Synthesizer.Event.AsPolyPressure
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsPolyPressure
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 330
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbPolyPressure? AsPolyPressure { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbPolyPressure}
+    content.vb: Public ReadOnly Property AsPolyPressure As [Event].CbPolyPressure?
+  overload: SpessaSharp.Synthesizer.Event.AsPolyPressure*
+- uid: SpessaSharp.Synthesizer.Event.AsStopAll
+  commentId: P:SpessaSharp.Synthesizer.Event.AsStopAll
+  id: AsStopAll
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsStopAll
+  nameWithType: Event.AsStopAll
+  fullName: SpessaSharp.Synthesizer.Event.AsStopAll
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsStopAll
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 332
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbStopAll? AsStopAll { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbStopAll}
+    content.vb: Public ReadOnly Property AsStopAll As [Event].CbStopAll?
+  overload: SpessaSharp.Synthesizer.Event.AsStopAll*
+- uid: SpessaSharp.Synthesizer.Event.IsChannelAdded
+  commentId: P:SpessaSharp.Synthesizer.Event.IsChannelAdded
+  id: IsChannelAdded
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: IsChannelAdded
+  nameWithType: Event.IsChannelAdded
+  fullName: SpessaSharp.Synthesizer.Event.IsChannelAdded
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: IsChannelAdded
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 334
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public bool IsChannelAdded { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsChannelAdded As Boolean
+  overload: SpessaSharp.Synthesizer.Event.IsChannelAdded*
+- uid: SpessaSharp.Synthesizer.Event.AsMuteChannel
+  commentId: P:SpessaSharp.Synthesizer.Event.AsMuteChannel
+  id: AsMuteChannel
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsMuteChannel
+  nameWithType: Event.AsMuteChannel
+  fullName: SpessaSharp.Synthesizer.Event.AsMuteChannel
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsMuteChannel
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 335
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbMuteChannel? AsMuteChannel { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbMuteChannel}
+    content.vb: Public ReadOnly Property AsMuteChannel As [Event].CbMuteChannel?
+  overload: SpessaSharp.Synthesizer.Event.AsMuteChannel*
+- uid: SpessaSharp.Synthesizer.Event.AsReset
+  commentId: P:SpessaSharp.Synthesizer.Event.AsReset
+  id: AsReset
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsReset
+  nameWithType: Event.AsReset
+  fullName: SpessaSharp.Synthesizer.Event.AsReset
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsReset
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 337
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbReset? AsReset { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbReset}
+    content.vb: Public ReadOnly Property AsReset As [Event].CbReset?
+  overload: SpessaSharp.Synthesizer.Event.AsReset*
+- uid: SpessaSharp.Synthesizer.Event.AsSystemParameterChange
+  commentId: P:SpessaSharp.Synthesizer.Event.AsSystemParameterChange
+  id: AsSystemParameterChange
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsSystemParameterChange
+  nameWithType: Event.AsSystemParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.AsSystemParameterChange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsSystemParameterChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 339
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbSystemParameterChange? AsSystemParameterChange { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbSystemParameterChange}
+    content.vb: Public ReadOnly Property AsSystemParameterChange As [Event].CbSystemParameterChange?
+  overload: SpessaSharp.Synthesizer.Event.AsSystemParameterChange*
+- uid: SpessaSharp.Synthesizer.Event.AsEffectChange
+  commentId: P:SpessaSharp.Synthesizer.Event.AsEffectChange
+  id: AsEffectChange
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsEffectChange
+  nameWithType: Event.AsEffectChange
+  fullName: SpessaSharp.Synthesizer.Event.AsEffectChange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsEffectChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 341
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbEffectChange? AsEffectChange { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbEffectChange}
+    content.vb: Public ReadOnly Property AsEffectChange As [Event].CbEffectChange?
+  overload: SpessaSharp.Synthesizer.Event.AsEffectChange*
+- uid: SpessaSharp.Synthesizer.Event.AsGlobalParameterChange
+  commentId: P:SpessaSharp.Synthesizer.Event.AsGlobalParameterChange
+  id: AsGlobalParameterChange
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsGlobalParameterChange
+  nameWithType: Event.AsGlobalParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.AsGlobalParameterChange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsGlobalParameterChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 343
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbGlobalMidiParameterChange? AsGlobalParameterChange { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange}
+    content.vb: Public ReadOnly Property AsGlobalParameterChange As [Event].CbGlobalMidiParameterChange?
+  overload: SpessaSharp.Synthesizer.Event.AsGlobalParameterChange*
+- uid: SpessaSharp.Synthesizer.Event.AsChannelParameterChange
+  commentId: P:SpessaSharp.Synthesizer.Event.AsChannelParameterChange
+  id: AsChannelParameterChange
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsChannelParameterChange
+  nameWithType: Event.AsChannelParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.AsChannelParameterChange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsChannelParameterChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 345
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbChannelMidiParameterChange? AsChannelParameterChange { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange}
+    content.vb: Public ReadOnly Property AsChannelParameterChange As [Event].CbChannelMidiParameterChange?
+  overload: SpessaSharp.Synthesizer.Event.AsChannelParameterChange*
+- uid: SpessaSharp.Synthesizer.Event.AsPresetListChange
+  commentId: P:SpessaSharp.Synthesizer.Event.AsPresetListChange
+  id: AsPresetListChange
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsPresetListChange
+  nameWithType: Event.AsPresetListChange
+  fullName: SpessaSharp.Synthesizer.Event.AsPresetListChange
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsPresetListChange
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 347
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbPresetListChange? AsPresetListChange { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbPresetListChange}
+    content.vb: Public ReadOnly Property AsPresetListChange As [Event].CbPresetListChange?
+  overload: SpessaSharp.Synthesizer.Event.AsPresetListChange*
+- uid: SpessaSharp.Synthesizer.Event.AsDisplayMessage
+  commentId: P:SpessaSharp.Synthesizer.Event.AsDisplayMessage
+  id: AsDisplayMessage
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: AsDisplayMessage
+  nameWithType: Event.AsDisplayMessage
+  fullName: SpessaSharp.Synthesizer.Event.AsDisplayMessage
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: AsDisplayMessage
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 349
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public Event.CbDisplayMessage? AsDisplayMessage { get; }
+    parameters: []
+    return:
+      type: System.Nullable{SpessaSharp.Synthesizer.Event.CbDisplayMessage}
+    content.vb: Public ReadOnly Property AsDisplayMessage As [Event].CbDisplayMessage?
+  overload: SpessaSharp.Synthesizer.Event.AsDisplayMessage*
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOn)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOn)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOn)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbNoteOn)
+  nameWithType: Event.implicit operator Event(Event.CbNoteOn)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbNoteOn)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 352
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbNoteOn ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbNoteOn
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbNoteOn) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbNoteOn)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbNoteOn)
+  name.vb: CType(CbNoteOn)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOff)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOff)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbNoteOff)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbNoteOff)
+  nameWithType: Event.implicit operator Event(Event.CbNoteOff)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbNoteOff)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 353
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbNoteOff ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbNoteOff
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbNoteOff) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbNoteOff)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbNoteOff)
+  name.vb: CType(CbNoteOff)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbControllerChange)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbControllerChange)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbControllerChange)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbControllerChange)
+  nameWithType: Event.implicit operator Event(Event.CbControllerChange)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbControllerChange)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 354
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbControllerChange ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbControllerChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbControllerChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbControllerChange)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbControllerChange)
+  name.vb: CType(CbControllerChange)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbProgramChange)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbProgramChange)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbProgramChange)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbProgramChange)
+  nameWithType: Event.implicit operator Event(Event.CbProgramChange)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbProgramChange)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 355
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbProgramChange ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbProgramChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbProgramChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbProgramChange)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbProgramChange)
+  name.vb: CType(CbProgramChange)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelPressure)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelPressure)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelPressure)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbChannelPressure)
+  nameWithType: Event.implicit operator Event(Event.CbChannelPressure)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbChannelPressure)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 356
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbChannelPressure ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbChannelPressure) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbChannelPressure)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbChannelPressure)
+  name.vb: CType(CbChannelPressure)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbPolyPressure)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbPolyPressure)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbPolyPressure)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbPolyPressure)
+  nameWithType: Event.implicit operator Event(Event.CbPolyPressure)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbPolyPressure)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 357
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbPolyPressure ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbPolyPressure) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbPolyPressure)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbPolyPressure)
+  name.vb: CType(CbPolyPressure)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbStopAll)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbStopAll)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbStopAll)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbStopAll)
+  nameWithType: Event.implicit operator Event(Event.CbStopAll)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbStopAll)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 358
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbStopAll ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbStopAll
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbStopAll) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbStopAll)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbStopAll)
+  name.vb: CType(CbStopAll)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbMuteChannel)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbMuteChannel)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbMuteChannel)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbMuteChannel)
+  nameWithType: Event.implicit operator Event(Event.CbMuteChannel)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbMuteChannel)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 359
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbMuteChannel ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbMuteChannel) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbMuteChannel)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbMuteChannel)
+  name.vb: CType(CbMuteChannel)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbReset)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbReset)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbReset)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbReset)
+  nameWithType: Event.implicit operator Event(Event.CbReset)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbReset)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 360
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbReset ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbReset
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbReset) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbReset)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbReset)
+  name.vb: CType(CbReset)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbSystemParameterChange)
+  nameWithType: Event.implicit operator Event(Event.CbSystemParameterChange)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 361
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbSystemParameterChange ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbSystemParameterChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbSystemParameterChange)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbSystemParameterChange)
+  name.vb: CType(CbSystemParameterChange)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbEffectChange)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbEffectChange)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbEffectChange)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbEffectChange)
+  nameWithType: Event.implicit operator Event(Event.CbEffectChange)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbEffectChange)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 362
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbEffectChange ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbEffectChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbEffectChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbEffectChange)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbEffectChange)
+  name.vb: CType(CbEffectChange)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbGlobalMidiParameterChange)
+  nameWithType: Event.implicit operator Event(Event.CbGlobalMidiParameterChange)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 363
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbGlobalMidiParameterChange ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbGlobalMidiParameterChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbGlobalMidiParameterChange)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange)
+  name.vb: CType(CbGlobalMidiParameterChange)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbChannelMidiParameterChange)
+  nameWithType: Event.implicit operator Event(Event.CbChannelMidiParameterChange)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 364
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbChannelMidiParameterChange ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbChannelMidiParameterChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbChannelMidiParameterChange)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange)
+  name.vb: CType(CbChannelMidiParameterChange)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbPresetListChange)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbPresetListChange)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbPresetListChange)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbPresetListChange)
+  nameWithType: Event.implicit operator Event(Event.CbPresetListChange)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbPresetListChange)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 365
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbPresetListChange ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbPresetListChange) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbPresetListChange)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbPresetListChange)
+  name.vb: CType(CbPresetListChange)
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbDisplayMessage)~SpessaSharp.Synthesizer.Event
+  commentId: M:SpessaSharp.Synthesizer.Event.op_Implicit(SpessaSharp.Synthesizer.Event.CbDisplayMessage)~SpessaSharp.Synthesizer.Event
+  id: op_Implicit(SpessaSharp.Synthesizer.Event.CbDisplayMessage)~SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer.Event
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Event(CbDisplayMessage)
+  nameWithType: Event.implicit operator Event(Event.CbDisplayMessage)
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator SpessaSharp.Synthesizer.Event(SpessaSharp.Synthesizer.Event.CbDisplayMessage)
+  type: Operator
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: op_Implicit
+    path: ../SpessaSharp/Synthesizer/Event.cs
+    startLine: 366
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer
+  syntax:
+    content: public static implicit operator Event(Event.CbDisplayMessage ev)
+    parameters:
+    - id: ev
+      type: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    return:
+      type: SpessaSharp.Synthesizer.Event
+    content.vb: Public Shared Widening Operator CType(ev As [Event].CbDisplayMessage) As [Event]
+  overload: SpessaSharp.Synthesizer.Event.op_Implicit*
+  nameWithType.vb: Event.CType(Event.CbDisplayMessage)
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType(SpessaSharp.Synthesizer.Event.CbDisplayMessage)
+  name.vb: CType(CbDisplayMessage)
+references:
+- uid: SpessaSharp.Synthesizer
+  commentId: N:SpessaSharp.Synthesizer
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer
+  nameWithType: SpessaSharp.Synthesizer
+  fullName: SpessaSharp.Synthesizer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SpessaSharp.Synthesizer.Event.EventType*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.EventType
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_EventType
+  name: EventType
+  nameWithType: Event.EventType
+  fullName: SpessaSharp.Synthesizer.Event.EventType
+- uid: SpessaSharp.Synthesizer.Event.Type
+  commentId: T:SpessaSharp.Synthesizer.Event.Type
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.Type
+  nameWithType: Event.Type
+  fullName: SpessaSharp.Synthesizer.Event.Type
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.Type.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.Type
+    name: Type
+    href: SpessaSharp.Synthesizer.Event.Type.html
+- uid: SpessaSharp.Synthesizer.Event.Of*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.Of
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_Of_SpessaSharp_Synthesizer_Event_CbNoteOn_
+  name: Of
+  nameWithType: Event.Of
+  fullName: SpessaSharp.Synthesizer.Event.Of
+- uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+  commentId: T:SpessaSharp.Synthesizer.Event.CbNoteOn
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbNoteOn
+  nameWithType: Event.CbNoteOn
+  fullName: SpessaSharp.Synthesizer.Event.CbNoteOn
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+    name: CbNoteOn
+    href: SpessaSharp.Synthesizer.Event.CbNoteOn.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+    name: CbNoteOn
+    href: SpessaSharp.Synthesizer.Event.CbNoteOn.html
+- uid: SpessaSharp.Synthesizer.Event
+  commentId: T:SpessaSharp.Synthesizer.Event
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event
+  nameWithType: Event
+  fullName: SpessaSharp.Synthesizer.Event
+- uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+  commentId: T:SpessaSharp.Synthesizer.Event.CbNoteOff
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbNoteOff
+  nameWithType: Event.CbNoteOff
+  fullName: SpessaSharp.Synthesizer.Event.CbNoteOff
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+    name: CbNoteOff
+    href: SpessaSharp.Synthesizer.Event.CbNoteOff.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+    name: CbNoteOff
+    href: SpessaSharp.Synthesizer.Event.CbNoteOff.html
+- uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbControllerChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbControllerChange
+  nameWithType: Event.CbControllerChange
+  fullName: SpessaSharp.Synthesizer.Event.CbControllerChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+    name: CbControllerChange
+    href: SpessaSharp.Synthesizer.Event.CbControllerChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+    name: CbControllerChange
+    href: SpessaSharp.Synthesizer.Event.CbControllerChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbProgramChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbProgramChange
+  nameWithType: Event.CbProgramChange
+  fullName: SpessaSharp.Synthesizer.Event.CbProgramChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+    name: CbProgramChange
+    href: SpessaSharp.Synthesizer.Event.CbProgramChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+    name: CbProgramChange
+    href: SpessaSharp.Synthesizer.Event.CbProgramChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+  commentId: T:SpessaSharp.Synthesizer.Event.CbChannelPressure
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbChannelPressure
+  nameWithType: Event.CbChannelPressure
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelPressure
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    name: CbChannelPressure
+    href: SpessaSharp.Synthesizer.Event.CbChannelPressure.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    name: CbChannelPressure
+    href: SpessaSharp.Synthesizer.Event.CbChannelPressure.html
+- uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+  commentId: T:SpessaSharp.Synthesizer.Event.CbPolyPressure
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbPolyPressure
+  nameWithType: Event.CbPolyPressure
+  fullName: SpessaSharp.Synthesizer.Event.CbPolyPressure
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    name: CbPolyPressure
+    href: SpessaSharp.Synthesizer.Event.CbPolyPressure.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    name: CbPolyPressure
+    href: SpessaSharp.Synthesizer.Event.CbPolyPressure.html
+- uid: SpessaSharp.Synthesizer.Event.CbStopAll
+  commentId: T:SpessaSharp.Synthesizer.Event.CbStopAll
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbStopAll
+  nameWithType: Event.CbStopAll
+  fullName: SpessaSharp.Synthesizer.Event.CbStopAll
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbStopAll
+    name: CbStopAll
+    href: SpessaSharp.Synthesizer.Event.CbStopAll.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbStopAll
+    name: CbStopAll
+    href: SpessaSharp.Synthesizer.Event.CbStopAll.html
+- uid: SpessaSharp.Synthesizer.Event.OfChannelAdded*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.OfChannelAdded
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_OfChannelAdded
+  name: OfChannelAdded
+  nameWithType: Event.OfChannelAdded
+  fullName: SpessaSharp.Synthesizer.Event.OfChannelAdded
+- uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+  commentId: T:SpessaSharp.Synthesizer.Event.CbMuteChannel
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbMuteChannel
+  nameWithType: Event.CbMuteChannel
+  fullName: SpessaSharp.Synthesizer.Event.CbMuteChannel
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    name: CbMuteChannel
+    href: SpessaSharp.Synthesizer.Event.CbMuteChannel.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    name: CbMuteChannel
+    href: SpessaSharp.Synthesizer.Event.CbMuteChannel.html
+- uid: SpessaSharp.Synthesizer.Event.CbReset
+  commentId: T:SpessaSharp.Synthesizer.Event.CbReset
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbReset
+  nameWithType: Event.CbReset
+  fullName: SpessaSharp.Synthesizer.Event.CbReset
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbReset
+    name: CbReset
+    href: SpessaSharp.Synthesizer.Event.CbReset.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbReset
+    name: CbReset
+    href: SpessaSharp.Synthesizer.Event.CbReset.html
+- uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbSystemParameterChange
+  nameWithType: Event.CbSystemParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    name: CbSystemParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbSystemParameterChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    name: CbSystemParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbSystemParameterChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbEffectChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange
+  nameWithType: Event.CbEffectChange
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbGlobalMidiParameterChange
+  nameWithType: Event.CbGlobalMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    name: CbGlobalMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    name: CbGlobalMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbChannelMidiParameterChange
+  nameWithType: Event.CbChannelMidiParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+  commentId: T:SpessaSharp.Synthesizer.Event.CbPresetListChange
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbPresetListChange
+  nameWithType: Event.CbPresetListChange
+  fullName: SpessaSharp.Synthesizer.Event.CbPresetListChange
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    name: CbPresetListChange
+    href: SpessaSharp.Synthesizer.Event.CbPresetListChange.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    name: CbPresetListChange
+    href: SpessaSharp.Synthesizer.Event.CbPresetListChange.html
+- uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+  commentId: T:SpessaSharp.Synthesizer.Event.CbDisplayMessage
+  parent: SpessaSharp.Synthesizer
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbDisplayMessage
+  nameWithType: Event.CbDisplayMessage
+  fullName: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    name: CbDisplayMessage
+    href: SpessaSharp.Synthesizer.Event.CbDisplayMessage.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    name: CbDisplayMessage
+    href: SpessaSharp.Synthesizer.Event.CbDisplayMessage.html
+- uid: SpessaSharp.Synthesizer.Event.AsNoteOn*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsNoteOn
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsNoteOn
+  name: AsNoteOn
+  nameWithType: Event.AsNoteOn
+  fullName: SpessaSharp.Synthesizer.Event.AsNoteOn
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbNoteOn}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbNoteOn}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbNoteOn?
+  nameWithType: Event.CbNoteOn?
+  fullName: SpessaSharp.Synthesizer.Event.CbNoteOn?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+    name: CbNoteOn
+    href: SpessaSharp.Synthesizer.Event.CbNoteOn.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOn
+    name: CbNoteOn
+    href: SpessaSharp.Synthesizer.Event.CbNoteOn.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: SpessaSharp.Synthesizer.Event.AsNoteOff*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsNoteOff
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsNoteOff
+  name: AsNoteOff
+  nameWithType: Event.AsNoteOff
+  fullName: SpessaSharp.Synthesizer.Event.AsNoteOff
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbNoteOff}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbNoteOff}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbNoteOff?
+  nameWithType: Event.CbNoteOff?
+  fullName: SpessaSharp.Synthesizer.Event.CbNoteOff?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+    name: CbNoteOff
+    href: SpessaSharp.Synthesizer.Event.CbNoteOff.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbNoteOff
+    name: CbNoteOff
+    href: SpessaSharp.Synthesizer.Event.CbNoteOff.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsControllerChange*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsControllerChange
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsControllerChange
+  name: AsControllerChange
+  nameWithType: Event.AsControllerChange
+  fullName: SpessaSharp.Synthesizer.Event.AsControllerChange
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbControllerChange}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbControllerChange}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbControllerChange?
+  nameWithType: Event.CbControllerChange?
+  fullName: SpessaSharp.Synthesizer.Event.CbControllerChange?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+    name: CbControllerChange
+    href: SpessaSharp.Synthesizer.Event.CbControllerChange.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbControllerChange
+    name: CbControllerChange
+    href: SpessaSharp.Synthesizer.Event.CbControllerChange.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsProgramChange*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsProgramChange
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsProgramChange
+  name: AsProgramChange
+  nameWithType: Event.AsProgramChange
+  fullName: SpessaSharp.Synthesizer.Event.AsProgramChange
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbProgramChange}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbProgramChange}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbProgramChange?
+  nameWithType: Event.CbProgramChange?
+  fullName: SpessaSharp.Synthesizer.Event.CbProgramChange?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+    name: CbProgramChange
+    href: SpessaSharp.Synthesizer.Event.CbProgramChange.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbProgramChange
+    name: CbProgramChange
+    href: SpessaSharp.Synthesizer.Event.CbProgramChange.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsChannelPressure*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsChannelPressure
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsChannelPressure
+  name: AsChannelPressure
+  nameWithType: Event.AsChannelPressure
+  fullName: SpessaSharp.Synthesizer.Event.AsChannelPressure
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbChannelPressure}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbChannelPressure}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbChannelPressure?
+  nameWithType: Event.CbChannelPressure?
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelPressure?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    name: CbChannelPressure
+    href: SpessaSharp.Synthesizer.Event.CbChannelPressure.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelPressure
+    name: CbChannelPressure
+    href: SpessaSharp.Synthesizer.Event.CbChannelPressure.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsPolyPressure*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsPolyPressure
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsPolyPressure
+  name: AsPolyPressure
+  nameWithType: Event.AsPolyPressure
+  fullName: SpessaSharp.Synthesizer.Event.AsPolyPressure
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbPolyPressure}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbPolyPressure}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbPolyPressure?
+  nameWithType: Event.CbPolyPressure?
+  fullName: SpessaSharp.Synthesizer.Event.CbPolyPressure?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    name: CbPolyPressure
+    href: SpessaSharp.Synthesizer.Event.CbPolyPressure.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPolyPressure
+    name: CbPolyPressure
+    href: SpessaSharp.Synthesizer.Event.CbPolyPressure.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsStopAll*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsStopAll
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsStopAll
+  name: AsStopAll
+  nameWithType: Event.AsStopAll
+  fullName: SpessaSharp.Synthesizer.Event.AsStopAll
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbStopAll}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbStopAll}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbStopAll?
+  nameWithType: Event.CbStopAll?
+  fullName: SpessaSharp.Synthesizer.Event.CbStopAll?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbStopAll
+    name: CbStopAll
+    href: SpessaSharp.Synthesizer.Event.CbStopAll.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbStopAll
+    name: CbStopAll
+    href: SpessaSharp.Synthesizer.Event.CbStopAll.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.IsChannelAdded*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.IsChannelAdded
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_IsChannelAdded
+  name: IsChannelAdded
+  nameWithType: Event.IsChannelAdded
+  fullName: SpessaSharp.Synthesizer.Event.IsChannelAdded
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: SpessaSharp.Synthesizer.Event.AsMuteChannel*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsMuteChannel
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsMuteChannel
+  name: AsMuteChannel
+  nameWithType: Event.AsMuteChannel
+  fullName: SpessaSharp.Synthesizer.Event.AsMuteChannel
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbMuteChannel}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbMuteChannel}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbMuteChannel?
+  nameWithType: Event.CbMuteChannel?
+  fullName: SpessaSharp.Synthesizer.Event.CbMuteChannel?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    name: CbMuteChannel
+    href: SpessaSharp.Synthesizer.Event.CbMuteChannel.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbMuteChannel
+    name: CbMuteChannel
+    href: SpessaSharp.Synthesizer.Event.CbMuteChannel.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsReset*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsReset
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsReset
+  name: AsReset
+  nameWithType: Event.AsReset
+  fullName: SpessaSharp.Synthesizer.Event.AsReset
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbReset}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbReset}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbReset?
+  nameWithType: Event.CbReset?
+  fullName: SpessaSharp.Synthesizer.Event.CbReset?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbReset
+    name: CbReset
+    href: SpessaSharp.Synthesizer.Event.CbReset.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbReset
+    name: CbReset
+    href: SpessaSharp.Synthesizer.Event.CbReset.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsSystemParameterChange*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsSystemParameterChange
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsSystemParameterChange
+  name: AsSystemParameterChange
+  nameWithType: Event.AsSystemParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.AsSystemParameterChange
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbSystemParameterChange}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbSystemParameterChange}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbSystemParameterChange?
+  nameWithType: Event.CbSystemParameterChange?
+  fullName: SpessaSharp.Synthesizer.Event.CbSystemParameterChange?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    name: CbSystemParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbSystemParameterChange.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbSystemParameterChange
+    name: CbSystemParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbSystemParameterChange.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsEffectChange*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsEffectChange
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsEffectChange
+  name: AsEffectChange
+  nameWithType: Event.AsEffectChange
+  fullName: SpessaSharp.Synthesizer.Event.AsEffectChange
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbEffectChange}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbEffectChange}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbEffectChange?
+  nameWithType: Event.CbEffectChange?
+  fullName: SpessaSharp.Synthesizer.Event.CbEffectChange?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbEffectChange
+    name: CbEffectChange
+    href: SpessaSharp.Synthesizer.Event.CbEffectChange.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsGlobalParameterChange*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsGlobalParameterChange
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsGlobalParameterChange
+  name: AsGlobalParameterChange
+  nameWithType: Event.AsGlobalParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.AsGlobalParameterChange
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbGlobalMidiParameterChange?
+  nameWithType: Event.CbGlobalMidiParameterChange?
+  fullName: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    name: CbGlobalMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange
+    name: CbGlobalMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbGlobalMidiParameterChange.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsChannelParameterChange*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsChannelParameterChange
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsChannelParameterChange
+  name: AsChannelParameterChange
+  nameWithType: Event.AsChannelParameterChange
+  fullName: SpessaSharp.Synthesizer.Event.AsChannelParameterChange
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbChannelMidiParameterChange?
+  nameWithType: Event.CbChannelMidiParameterChange?
+  fullName: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange
+    name: CbChannelMidiParameterChange
+    href: SpessaSharp.Synthesizer.Event.CbChannelMidiParameterChange.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsPresetListChange*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsPresetListChange
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsPresetListChange
+  name: AsPresetListChange
+  nameWithType: Event.AsPresetListChange
+  fullName: SpessaSharp.Synthesizer.Event.AsPresetListChange
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbPresetListChange}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbPresetListChange}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbPresetListChange?
+  nameWithType: Event.CbPresetListChange?
+  fullName: SpessaSharp.Synthesizer.Event.CbPresetListChange?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    name: CbPresetListChange
+    href: SpessaSharp.Synthesizer.Event.CbPresetListChange.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbPresetListChange
+    name: CbPresetListChange
+    href: SpessaSharp.Synthesizer.Event.CbPresetListChange.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.AsDisplayMessage*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.AsDisplayMessage
+  href: SpessaSharp.Synthesizer.Event.html#SpessaSharp_Synthesizer_Event_AsDisplayMessage
+  name: AsDisplayMessage
+  nameWithType: Event.AsDisplayMessage
+  fullName: SpessaSharp.Synthesizer.Event.AsDisplayMessage
+- uid: System.Nullable{SpessaSharp.Synthesizer.Event.CbDisplayMessage}
+  commentId: T:System.Nullable{SpessaSharp.Synthesizer.Event.CbDisplayMessage}
+  parent: System
+  definition: System.Nullable`1
+  href: SpessaSharp.Synthesizer.Event.html
+  name: Event.CbDisplayMessage?
+  nameWithType: Event.CbDisplayMessage?
+  fullName: SpessaSharp.Synthesizer.Event.CbDisplayMessage?
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    name: CbDisplayMessage
+    href: SpessaSharp.Synthesizer.Event.CbDisplayMessage.html
+  - name: '?'
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Event
+    name: Event
+    href: SpessaSharp.Synthesizer.Event.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Event.CbDisplayMessage
+    name: CbDisplayMessage
+    href: SpessaSharp.Synthesizer.Event.CbDisplayMessage.html
+  - name: '?'
+- uid: SpessaSharp.Synthesizer.Event.op_Implicit*
+  commentId: Overload:SpessaSharp.Synthesizer.Event.op_Implicit
+  name: implicit operator
+  nameWithType: Event.implicit operator
+  fullName: SpessaSharp.Synthesizer.Event.implicit operator
+  nameWithType.vb: Event.CType
+  fullName.vb: SpessaSharp.Synthesizer.Event.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator

@@ -1,0 +1,512 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Sequencer.Event.CbMetaEvent
+  commentId: T:SpessaSharp.Sequencer.Event.CbMetaEvent
+  id: Event.CbMetaEvent
+  parent: SpessaSharp.Sequencer
+  children:
+  - SpessaSharp.Sequencer.Event.CbMetaEvent.#ctor(SpessaSharp.MIDI.MidiMessage,System.Int32)
+  - SpessaSharp.Sequencer.Event.CbMetaEvent.Event
+  - SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex
+  langs:
+  - csharp
+  - vb
+  name: Event.CbMetaEvent
+  nameWithType: Event.CbMetaEvent
+  fullName: SpessaSharp.Sequencer.Event.CbMetaEvent
+  type: Struct
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: CbMetaEvent
+    path: ../SpessaSharp/Sequencer/Event.cs
+    startLine: 53
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Called when a MIDI Meta event is encountered.
+  example: []
+  syntax:
+    content: 'public readonly record struct Event.CbMetaEvent : IEquatable<Event.CbMetaEvent>'
+    content.vb: Public Structure [Event].CbMetaEvent Implements IEquatable(Of Event.CbMetaEvent)
+  implements:
+  - System.IEquatable{SpessaSharp.Sequencer.Event.CbMetaEvent}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: SpessaSharp.Sequencer.Event.CbMetaEvent.#ctor(SpessaSharp.MIDI.MidiMessage,System.Int32)
+  commentId: M:SpessaSharp.Sequencer.Event.CbMetaEvent.#ctor(SpessaSharp.MIDI.MidiMessage,System.Int32)
+  id: '#ctor(SpessaSharp.MIDI.MidiMessage,System.Int32)'
+  parent: SpessaSharp.Sequencer.Event.CbMetaEvent
+  langs:
+  - csharp
+  - vb
+  name: CbMetaEvent(MidiMessage, int)
+  nameWithType: Event.CbMetaEvent.CbMetaEvent(MidiMessage, int)
+  fullName: SpessaSharp.Sequencer.Event.CbMetaEvent.CbMetaEvent(SpessaSharp.MIDI.MidiMessage, int)
+  type: Constructor
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: .ctor
+    path: ../SpessaSharp/Sequencer/Event.cs
+    startLine: 53
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: Called when a MIDI Meta event is encountered.
+  example: []
+  syntax:
+    content: public CbMetaEvent(MidiMessage Event, int TrackIndex)
+    parameters:
+    - id: Event
+      type: SpessaSharp.MIDI.MidiMessage
+      description: The MIDI message of the meta event.
+    - id: TrackIndex
+      type: System.Int32
+      description: The index of the track where the meta event was encountered.
+    content.vb: Public Sub New([Event] As MidiMessage, TrackIndex As Integer)
+  overload: SpessaSharp.Sequencer.Event.CbMetaEvent.#ctor*
+  nameWithType.vb: Event.CbMetaEvent.New(MidiMessage, Integer)
+  fullName.vb: SpessaSharp.Sequencer.Event.CbMetaEvent.New(SpessaSharp.MIDI.MidiMessage, Integer)
+  name.vb: New(MidiMessage, Integer)
+- uid: SpessaSharp.Sequencer.Event.CbMetaEvent.Event
+  commentId: P:SpessaSharp.Sequencer.Event.CbMetaEvent.Event
+  id: Event
+  parent: SpessaSharp.Sequencer.Event.CbMetaEvent
+  langs:
+  - csharp
+  - vb
+  name: Event
+  nameWithType: Event.CbMetaEvent.Event
+  fullName: SpessaSharp.Sequencer.Event.CbMetaEvent.Event
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Event
+    path: ../SpessaSharp/Sequencer/Event.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The MIDI message of the meta event.
+  example: []
+  syntax:
+    content: public MidiMessage Event { get; init; }
+    parameters: []
+    return:
+      type: SpessaSharp.MIDI.MidiMessage
+    content.vb: Public Property [Event] As MidiMessage
+  overload: SpessaSharp.Sequencer.Event.CbMetaEvent.Event*
+- uid: SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex
+  commentId: P:SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex
+  id: TrackIndex
+  parent: SpessaSharp.Sequencer.Event.CbMetaEvent
+  langs:
+  - csharp
+  - vb
+  name: TrackIndex
+  nameWithType: Event.CbMetaEvent.TrackIndex
+  fullName: SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex
+  type: Property
+  source:
+    remote:
+      path: SpessaSharp/Sequencer/Event.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TrackIndex
+    path: ../SpessaSharp/Sequencer/Event.cs
+    startLine: 54
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Sequencer
+  summary: The index of the track where the meta event was encountered.
+  example: []
+  syntax:
+    content: public int TrackIndex { get; init; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TrackIndex As Integer
+  overload: SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex*
+references:
+- uid: SpessaSharp.Sequencer
+  commentId: N:SpessaSharp.Sequencer
+  href: SpessaSharp.html
+  name: SpessaSharp.Sequencer
+  nameWithType: SpessaSharp.Sequencer
+  fullName: SpessaSharp.Sequencer
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Sequencer
+    name: Sequencer
+    href: SpessaSharp.Sequencer.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Sequencer
+    name: Sequencer
+    href: SpessaSharp.Sequencer.html
+- uid: System.IEquatable{SpessaSharp.Sequencer.Event.CbMetaEvent}
+  commentId: T:System.IEquatable{SpessaSharp.Sequencer.Event.CbMetaEvent}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Event.CbMetaEvent>
+  nameWithType: IEquatable<Event.CbMetaEvent>
+  fullName: System.IEquatable<SpessaSharp.Sequencer.Event.CbMetaEvent>
+  nameWithType.vb: IEquatable(Of Event.CbMetaEvent)
+  fullName.vb: System.IEquatable(Of SpessaSharp.Sequencer.Event.CbMetaEvent)
+  name.vb: IEquatable(Of Event.CbMetaEvent)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: SpessaSharp.Sequencer.Event
+    name: Event
+    href: SpessaSharp.Sequencer.Event.html
+  - name: .
+  - uid: SpessaSharp.Sequencer.Event.CbMetaEvent
+    name: CbMetaEvent
+    href: SpessaSharp.Sequencer.Event.CbMetaEvent.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: SpessaSharp.Sequencer.Event
+    name: Event
+    href: SpessaSharp.Sequencer.Event.html
+  - name: .
+  - uid: SpessaSharp.Sequencer.Event.CbMetaEvent
+    name: CbMetaEvent
+    href: SpessaSharp.Sequencer.Event.CbMetaEvent.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: SpessaSharp.Sequencer.Event.CbMetaEvent.#ctor*
+  commentId: Overload:SpessaSharp.Sequencer.Event.CbMetaEvent.#ctor
+  href: SpessaSharp.Sequencer.Event.CbMetaEvent.html#SpessaSharp_Sequencer_Event_CbMetaEvent__ctor_SpessaSharp_MIDI_MidiMessage_System_Int32_
+  name: CbMetaEvent
+  nameWithType: Event.CbMetaEvent.CbMetaEvent
+  fullName: SpessaSharp.Sequencer.Event.CbMetaEvent.CbMetaEvent
+  nameWithType.vb: Event.CbMetaEvent.New
+  fullName.vb: SpessaSharp.Sequencer.Event.CbMetaEvent.New
+  name.vb: New
+- uid: SpessaSharp.MIDI.MidiMessage
+  commentId: T:SpessaSharp.MIDI.MidiMessage
+  parent: SpessaSharp.MIDI
+  href: SpessaSharp.MIDI.MidiMessage.html
+  name: MidiMessage
+  nameWithType: MidiMessage
+  fullName: SpessaSharp.MIDI.MidiMessage
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: SpessaSharp.MIDI
+  commentId: N:SpessaSharp.MIDI
+  href: SpessaSharp.html
+  name: SpessaSharp.MIDI
+  nameWithType: SpessaSharp.MIDI
+  fullName: SpessaSharp.MIDI
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.MIDI
+    name: MIDI
+    href: SpessaSharp.MIDI.html
+- uid: SpessaSharp.Sequencer.Event.CbMetaEvent.Event*
+  commentId: Overload:SpessaSharp.Sequencer.Event.CbMetaEvent.Event
+  href: SpessaSharp.Sequencer.Event.CbMetaEvent.html#SpessaSharp_Sequencer_Event_CbMetaEvent_Event
+  name: Event
+  nameWithType: Event.CbMetaEvent.Event
+  fullName: SpessaSharp.Sequencer.Event.CbMetaEvent.Event
+- uid: SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex*
+  commentId: Overload:SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex
+  href: SpessaSharp.Sequencer.Event.CbMetaEvent.html#SpessaSharp_Sequencer_Event_CbMetaEvent_TrackIndex
+  name: TrackIndex
+  nameWithType: Event.CbMetaEvent.TrackIndex
+  fullName: SpessaSharp.Sequencer.Event.CbMetaEvent.TrackIndex

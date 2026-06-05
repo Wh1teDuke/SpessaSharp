@@ -1,0 +1,319 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.SoundBank.BasicSample.Type
+  commentId: T:SpessaSharp.SoundBank.BasicSample.Type
+  id: BasicSample.Type
+  parent: SpessaSharp.SoundBank
+  children:
+  - SpessaSharp.SoundBank.BasicSample.Type.Left
+  - SpessaSharp.SoundBank.BasicSample.Type.Linked
+  - SpessaSharp.SoundBank.BasicSample.Type.Mono
+  - SpessaSharp.SoundBank.BasicSample.Type.Null
+  - SpessaSharp.SoundBank.BasicSample.Type.Right
+  - SpessaSharp.SoundBank.BasicSample.Type.RomLeft
+  - SpessaSharp.SoundBank.BasicSample.Type.RomLinked
+  - SpessaSharp.SoundBank.BasicSample.Type.RomMono
+  - SpessaSharp.SoundBank.BasicSample.Type.RomRight
+  langs:
+  - csharp
+  - vb
+  name: BasicSample.Type
+  nameWithType: BasicSample.Type
+  fullName: SpessaSharp.SoundBank.BasicSample.Type
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Type
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 12
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: public enum BasicSample.Type
+    content.vb: Public Enum BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.Null
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.Null
+  id: "Null"
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: "Null"
+  nameWithType: BasicSample.Type.Null
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.Null
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: "Null"
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 15
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  summary: EOS
+  example: []
+  syntax:
+    content: Null = 0
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.Mono
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.Mono
+  id: Mono
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: Mono
+  nameWithType: BasicSample.Type.Mono
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.Mono
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Mono
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Mono = 1
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.Right
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.Right
+  id: Right
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: BasicSample.Type.Right
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.Right
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Right
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Right = 2
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.Left
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.Left
+  id: Left
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: BasicSample.Type.Left
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.Left
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Left
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Left = 3
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.Linked
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.Linked
+  id: Linked
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: Linked
+  nameWithType: BasicSample.Type.Linked
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.Linked
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Linked
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: Linked = 4
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.RomMono
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.RomMono
+  id: RomMono
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: RomMono
+  nameWithType: BasicSample.Type.RomMono
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.RomMono
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RomMono
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: RomMono = 5
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.RomRight
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.RomRight
+  id: RomRight
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: RomRight
+  nameWithType: BasicSample.Type.RomRight
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.RomRight
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RomRight
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: RomRight = 6
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.RomLeft
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.RomLeft
+  id: RomLeft
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: RomLeft
+  nameWithType: BasicSample.Type.RomLeft
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.RomLeft
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RomLeft
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: RomLeft = 7
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+- uid: SpessaSharp.SoundBank.BasicSample.Type.RomLinked
+  commentId: F:SpessaSharp.SoundBank.BasicSample.Type.RomLinked
+  id: RomLinked
+  parent: SpessaSharp.SoundBank.BasicSample.Type
+  langs:
+  - csharp
+  - vb
+  name: RomLinked
+  nameWithType: BasicSample.Type.RomLinked
+  fullName: SpessaSharp.SoundBank.BasicSample.Type.RomLinked
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/SoundBank/BasicSample.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: RomLinked
+    path: ../SpessaSharp/SoundBank/BasicSample.cs
+    startLine: 16
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.SoundBank
+  syntax:
+    content: RomLinked = 8
+    return:
+      type: SpessaSharp.SoundBank.BasicSample.Type
+references:
+- uid: SpessaSharp.SoundBank
+  commentId: N:SpessaSharp.SoundBank
+  href: SpessaSharp.html
+  name: SpessaSharp.SoundBank
+  nameWithType: SpessaSharp.SoundBank
+  fullName: SpessaSharp.SoundBank
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.SoundBank
+    name: SoundBank
+    href: SpessaSharp.SoundBank.html
+- uid: SpessaSharp.SoundBank.BasicSample.Type
+  commentId: T:SpessaSharp.SoundBank.BasicSample.Type
+  parent: SpessaSharp.SoundBank
+  href: SpessaSharp.SoundBank.BasicSample.html
+  name: BasicSample.Type
+  nameWithType: BasicSample.Type
+  fullName: SpessaSharp.SoundBank.BasicSample.Type
+  spec.csharp:
+  - uid: SpessaSharp.SoundBank.BasicSample
+    name: BasicSample
+    href: SpessaSharp.SoundBank.BasicSample.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.BasicSample.Type
+    name: Type
+    href: SpessaSharp.SoundBank.BasicSample.Type.html
+  spec.vb:
+  - uid: SpessaSharp.SoundBank.BasicSample
+    name: BasicSample
+    href: SpessaSharp.SoundBank.BasicSample.html
+  - name: .
+  - uid: SpessaSharp.SoundBank.BasicSample.Type
+    name: Type
+    href: SpessaSharp.SoundBank.BasicSample.Type.html

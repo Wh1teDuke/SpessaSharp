@@ -1,0 +1,387 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  id: Effect.FxDelayType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  children:
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Feedback
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Level
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelCenter
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelLeft
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelRight
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Macro
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.PreLowPass
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.SendLevelToReverb
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeCenter
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioLeft
+  - SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioRight
+  langs:
+  - csharp
+  - vb
+  name: Effect.FxDelayType
+  nameWithType: Effect.FxDelayType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FxDelayType
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 30
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: public enum Effect.FxDelayType
+    content.vb: Public Enum Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Level
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Level
+  id: Level
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: Effect.FxDelayType.Level
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Level
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Level
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 32
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: Level = 0
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.PreLowPass
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.PreLowPass
+  id: PreLowPass
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: PreLowPass
+  nameWithType: Effect.FxDelayType.PreLowPass
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.PreLowPass
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: PreLowPass
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 33
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: PreLowPass = 1
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeCenter
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeCenter
+  id: TimeCenter
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: TimeCenter
+  nameWithType: Effect.FxDelayType.TimeCenter
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeCenter
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TimeCenter
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 34
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: TimeCenter = 2
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioLeft
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioLeft
+  id: TimeRatioLeft
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: TimeRatioLeft
+  nameWithType: Effect.FxDelayType.TimeRatioLeft
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioLeft
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TimeRatioLeft
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 35
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: TimeRatioLeft = 3
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioRight
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioRight
+  id: TimeRatioRight
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: TimeRatioRight
+  nameWithType: Effect.FxDelayType.TimeRatioRight
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.TimeRatioRight
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: TimeRatioRight
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 36
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: TimeRatioRight = 4
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelCenter
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelCenter
+  id: LevelCenter
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: LevelCenter
+  nameWithType: Effect.FxDelayType.LevelCenter
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelCenter
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LevelCenter
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 37
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: LevelCenter = 5
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelLeft
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelLeft
+  id: LevelLeft
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: LevelLeft
+  nameWithType: Effect.FxDelayType.LevelLeft
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelLeft
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LevelLeft
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 38
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: LevelLeft = 6
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelRight
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelRight
+  id: LevelRight
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: LevelRight
+  nameWithType: Effect.FxDelayType.LevelRight
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.LevelRight
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LevelRight
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 39
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: LevelRight = 7
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Feedback
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Feedback
+  id: Feedback
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: Feedback
+  nameWithType: Effect.FxDelayType.Feedback
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Feedback
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Feedback
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 40
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: Feedback = 8
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.SendLevelToReverb
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.SendLevelToReverb
+  id: SendLevelToReverb
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: SendLevelToReverb
+  nameWithType: Effect.FxDelayType.SendLevelToReverb
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.SendLevelToReverb
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: SendLevelToReverb
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 41
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: SendLevelToReverb = 9
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Macro
+  commentId: F:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Macro
+  id: Macro
+  parent: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  langs:
+  - csharp
+  - vb
+  name: Macro
+  nameWithType: Effect.FxDelayType.Macro
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.Macro
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Macro
+    path: ../SpessaSharp/Synthesizer/Engine/Effects/Effect.cs
+    startLine: 42
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Effects
+  syntax:
+    content: Macro = 10
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Effects
+  commentId: N:SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Effects
+  nameWithType: SpessaSharp.Synthesizer.Engine.Effects
+  fullName: SpessaSharp.Synthesizer.Engine.Effects
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects
+    name: Effects
+    href: SpessaSharp.Synthesizer.Engine.Effects.html
+- uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  commentId: T:SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  parent: SpessaSharp.Synthesizer.Engine.Effects
+  href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  name: Effect.FxDelayType
+  nameWithType: Effect.FxDelayType
+  fullName: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    name: FxDelayType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect
+    name: Effect
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType
+    name: FxDelayType
+    href: SpessaSharp.Synthesizer.Engine.Effects.Effect.FxDelayType.html

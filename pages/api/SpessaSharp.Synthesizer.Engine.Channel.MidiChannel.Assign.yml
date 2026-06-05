@@ -1,0 +1,186 @@
+### YamlMime:ManagedReference
+items:
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  id: MidiChannel.Assign
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  children:
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.FullMulti
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.LimitedMulti
+  - SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.Single
+  langs:
+  - csharp
+  - vb
+  name: MidiChannel.Assign
+  nameWithType: MidiChannel.Assign
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  type: Enum
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Assign
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 20
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: Parameter that determines how voice assignment will be handled when sounds overlap on identical note numbers in the same channel (i.e., repeatedly struck notes). This is initialized to a mode suitable for each Part, so for general purposes there is no need to change this.
+  example: []
+  syntax:
+    content: public enum MidiChannel.Assign
+    content.vb: Public Enum MidiChannel.Assign
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.Single
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.Single
+  id: Single
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  langs:
+  - csharp
+  - vb
+  name: Single
+  nameWithType: MidiChannel.Assign.Single
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.Single
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: Single
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 23
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: If the same note is played multiple times in succession, the previously-sounding note will be completely silenced, and then the new note will be sounded.
+  example: []
+  syntax:
+    content: Single = 0
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.LimitedMulti
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.LimitedMulti
+  id: LimitedMulti
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  langs:
+  - csharp
+  - vb
+  name: LimitedMulti
+  nameWithType: MidiChannel.Assign.LimitedMulti
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.LimitedMulti
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: LimitedMulti
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 25
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: If the same note is played multiple times in succession, the previously-sounding note will be continued to a certain extent even after the new note is sounded. (Default setting)
+  example: []
+  syntax:
+    content: LimitedMulti = 1
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.FullMulti
+  commentId: F:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.FullMulti
+  id: FullMulti
+  parent: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  langs:
+  - csharp
+  - vb
+  name: FullMulti
+  nameWithType: MidiChannel.Assign.FullMulti
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.FullMulti
+  type: Field
+  source:
+    remote:
+      path: SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+      branch: master
+      repo: git@github.com:Wh1teDuke/SpessaSharp.git
+    id: FullMulti
+    path: ../SpessaSharp/Synthesizer/Engine/Channel/MidiChannel.cs
+    startLine: 32
+  assemblies:
+  - SpessaSharp
+  namespace: SpessaSharp.Synthesizer.Engine.Channel
+  summary: >-
+    If the same note is played multiple times in succession,
+
+    the previously-sounding note(s) will continue sounding for their natural length even after the new note is sounded.<br />
+
+    SpessaSynth treats LimitedMulti like FullMulti.
+
+    Essentially Limited and Full are normal and Single is like <b>monophonicRetrigger</b> system parameter.
+  example: []
+  syntax:
+    content: FullMulti = 2
+    return:
+      type: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+references:
+- uid: SpessaSharp.Synthesizer.Engine.Channel
+  commentId: N:SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.html
+  name: SpessaSharp.Synthesizer.Engine.Channel
+  nameWithType: SpessaSharp.Synthesizer.Engine.Channel
+  fullName: SpessaSharp.Synthesizer.Engine.Channel
+  spec.csharp:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+  spec.vb:
+  - uid: SpessaSharp
+    name: SpessaSharp
+    href: SpessaSharp.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer
+    name: Synthesizer
+    href: SpessaSharp.Synthesizer.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine
+    name: Engine
+    href: SpessaSharp.Synthesizer.Engine.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel
+    name: Channel
+    href: SpessaSharp.Synthesizer.Engine.Channel.html
+- uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  commentId: T:SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  parent: SpessaSharp.Synthesizer.Engine.Channel
+  href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  name: MidiChannel.Assign
+  nameWithType: MidiChannel.Assign
+  fullName: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+  spec.csharp:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+    name: MidiChannel
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    name: Assign
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.html
+  spec.vb:
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel
+    name: MidiChannel
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.html
+  - name: .
+  - uid: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign
+    name: Assign
+    href: SpessaSharp.Synthesizer.Engine.Channel.MidiChannel.Assign.html
