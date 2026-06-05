@@ -1,6 +1,6 @@
 /* Change the main background color of the top navbar */
 .navbar {
-    background-color: #449180 !important;
+    background-color: rgba(68, 145, 128, 0.9) !important;
 
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
