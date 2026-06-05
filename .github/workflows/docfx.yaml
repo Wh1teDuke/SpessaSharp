@@ -32,6 +32,12 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      - name: List files for debugging
+        run: ls -R
+
+      - name: Build DocFX Site
+        run: docfx pages/docfx.json
+
       - name: Install/Update DocFX
         run: dotnet tool update -g docfx
 
