@@ -38,7 +38,7 @@ jobs:
 
       - name: Build DocFX Site
         working-directory: pages
-        run: dotnet tool run docfx docfx.json
+        run: docfx docfx.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
