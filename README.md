@@ -23,8 +23,7 @@ var soundBank = SoundBank.From(new FileInfo(pathSoundBank));
 
 // Initialize the synthesizer
 const int sampleRate = 48_000;
-var processor = new SpessaSharpProcessor(
-    sampleRate, Synthesizer.Options.Default with { EventsEnabled = false });
+var processor = new SpessaSharpProcessor(sampleRate);
 processor.SoundBankManager.Add(soundBank, "main");
 
 // Initialize the sequencer
@@ -38,7 +37,8 @@ var outLeft = new float[sampleCount];
 var outRight = new float[sampleCount];
 var filledSamples = 0;
 
-// Note: buffer size is recommended to be very small, as this is the interval between modulator updates and LFO updates
+// Note: buffer size is recommended to be very small, 
+// as this is the interval between modulator updates and LFO updates
 const int BUFFER_SIZE = 128;
 
 while (filledSamples < sampleCount)
