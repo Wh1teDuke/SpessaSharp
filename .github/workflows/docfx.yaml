@@ -32,7 +32,7 @@ jobs:
       - run: docfx SpessaSharp/docfx.json
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v6
+        uses: actions/upload-pages-artifact@v5
         with:
           path: 'SpessaSharp/_site'
 
