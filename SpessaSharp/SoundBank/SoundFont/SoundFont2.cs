@@ -11,9 +11,9 @@ internal static class SoundFont2
 {
     public static SoundBank Load(RootChunk buffer)
     {
-        var bank = new SoundBank();
+        var bank = new SoundBank(SoundBank.BankType.SF2);
         
-        Debug.WriteLine("Parsing a SoundFont2 file...");
+        SpessaLog.Info("Parsing a SoundFont2 file...");
         
         // Read the main chunk
         {

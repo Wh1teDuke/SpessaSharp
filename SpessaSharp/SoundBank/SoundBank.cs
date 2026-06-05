@@ -10,7 +10,8 @@ using SpessaSharp.Utils;
 namespace SpessaSharp.SoundBank;
 
 /// <summary>Represents a single sound bank, be it DLS or SF2.</summary>
-public sealed class SoundBank: IPresetGetter
+public sealed class SoundBank(
+    SoundBank.BankType type = SoundBank.BankType.SF2): IPresetGetter
 {
     /// <summary>
     /// 
@@ -50,12 +51,25 @@ public sealed class SoundBank: IPresetGetter
         SoundEngine:    "E-mu 10K2",
         Software:       "SpessaSharp");
 
+
+    public enum BankType { SF2, DLS }
+
     /// <summary>The sound bank's presets.</summary>
     public readonly List<BasicPreset> Presets = [];
     /// <summary>The sound bank's samples.</summary>
     public readonly List<BasicSample> Samples = [];
     /// <summary>The sound bank's instruments.</summary>
     public readonly List<BasicInstrument> Instruments = [];
+
+    /// <summary>
+    /// The type of the sound bank that was loaded.
+    /// Either <b>sf2</b> for SoundFont2/SoundFont3 or <b>dls</b> for DownLoadable Sounds.
+    /// <para>
+    /// Please note that SF3 or SFOGG files are parsed as <b>sf2</b> files, but with compressed samples.
+    /// The type is still <b>sf2</b>.
+    /// </para>
+    /// </summary>
+    public readonly BankType Type = type;
 
     /// <summary>Sound bank's default modulators.</summary>
     public readonly List<Modulator> DefaultModulators =

@@ -4,7 +4,7 @@
 
 [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> SpessaSharp command line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview)
 
-Last commit: [4.3.7](https://github.com/spessasus/spessasynth_core/commit/12a56420ebcf72251df46c7cd9dd474c6e912226)
+Last commit: [add a type field](https://github.com/spessasus/spessasynth_core/commit/acb1c98a195a4181730824fff37b869193a82509)
 
 ```csharp
 using SpessaSharp.MIDI;

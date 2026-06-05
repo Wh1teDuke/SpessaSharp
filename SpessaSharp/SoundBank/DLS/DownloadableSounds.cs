@@ -413,10 +413,9 @@ internal sealed class DownloadableSounds
     public SoundBank ToSF()
     {
         Debug.WriteLine("Converting DLS to SF2 ...");
-        var bank = new SoundBank();
+        var bank = new SoundBank(SoundBank.BankType.DLS)
+        { Info = Info with { Version = (2, 4), }, };
 
-        bank.Info = Info with { Version = (2, 4), };
-        
         foreach (var sample in Samples)
             sample.ToSFSample(bank);
         foreach (var instrument in Instruments)
