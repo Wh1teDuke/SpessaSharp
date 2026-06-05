@@ -1,3 +1,8 @@
+/* Change the main background color of the top navbar */
+.navbar {
+    background-color: #4bb881 !important;
+}
+
 /* Force the top navigation dropdowns to scroll if they exceed the screen height */
 .navbar .dropdown-menu {
     max-height: 80vh;
