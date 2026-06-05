@@ -275,10 +275,13 @@ public sealed class Synthesizer
     
     /// <summary>Last time the priorities were assigned. Used to prevent assigning priorities multiple times when more than one voice is triggered during a quantum. </summary>
     private double _lastPriorityAssignmentTime;
+
+    private readonly record struct EventQueueData(
+        ArraySegment<byte>? AsSegment, (byte A, byte? B, byte? C)? AsInline);
     
     /// <summary>Synth's event queue from the main thread</summary>
     private readonly List<
-            (ArraySegment<byte> Message, int ChannelOffset, double Time)>
+            (EventQueueData Message, int ChannelOffset, double Time)>
         _eventQueue = [];
     
     /// <summary>The time of a single sample, in seconds.</summary>
@@ -515,23 +518,34 @@ public sealed class Synthesizer
     /// <param name="channelOffset">The channel offset for the message.</param>
     /// <param name="time">The audio context time when the event should execute, in seconds.</param>
     public void ProcessMessage(
-        ArraySegment<byte> message, int channelOffset = 0, double? time = null)
+        ReadOnlySpan<byte> message, int channelOffset = 0, double? time = null)
     {
-        if (time > CurrentTime) 
+        if (time == null || time <= CurrentTime)
         {
-            _eventQueue.Add((message, channelOffset, time.Value));
-            _eventQueue.Sort((e1, e2) =>
-                e1.Time.CompareTo(e2.Time));
-        } 
-        else ProcessMessageInternal(message, channelOffset);
+            ProcessMessageInternal(message, channelOffset);
+            return;
+        }
+
+        EventQueueData data;
+
+        if (message.Length > 3)
+            data = new EventQueueData(
+                AsSegment: message.ToArray(), AsInline: null);
+
+        else
+        {
+            (byte A, byte? B, byte? C) bytes = (0, null, null);
+            bytes.A = message[0];
+            if (message.Length > 1) bytes.B = message[1];
+            if (message.Length > 2) bytes.C = message[2];
+
+            data = new EventQueueData(AsSegment: null, AsInline: bytes);
+        }
+
+        _eventQueue.Add((data, channelOffset, time.Value));
+        _eventQueue.Sort((e1, e2) =>
+            e1.Time.CompareTo(e2.Time));
     }
-    
-    /// <summary>Processes a raw MIDI message.</summary>
-    /// <param name="message">The message to process.</param>
-    /// <param name="channelOffset">The channel offset for the message.</param>
-    public void ProcessMessage(
-        ReadOnlySpan<byte> message, int channelOffset = 0) =>
-        ProcessMessageInternal(message, channelOffset);
 
     public void Destroy() 
     {
@@ -719,12 +733,28 @@ public sealed class Synthesizer
         // Process event queue
         if (_eventQueue.Count > 0) 
         {
+            var dataSpan = (Span<byte>)stackalloc byte[3];
             var time = CurrentTime;
             while (_eventQueue.Count > 0 && _eventQueue[0].Time <= time) 
             {
                 var q = _eventQueue[0];
                 _eventQueue.RemoveAt(0);
-                ProcessMessageInternal(q.Message, q.ChannelOffset);
+                
+                if (q.Message.AsSegment is {} segment)
+                {
+                    ProcessMessageInternal(segment, q.ChannelOffset);
+                    continue;
+                }
+
+                var data = q.Message.AsInline!.Value;
+                var span = dataSpan;
+                var len = 0;
+
+                span[len++] = data.A;
+                if (data.B is { } b) span[len++] = b;
+                if (data.C is { } c) span[len++] = c;
+                    
+                ProcessMessageInternal(span[..len], q.ChannelOffset);
             }
         }
 

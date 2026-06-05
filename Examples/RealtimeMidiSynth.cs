@@ -35,8 +35,7 @@ synth.SoundBankManager.Add(SoundBank.From(sf), "main");
 
 // Initialize the MIDI inputs
 var device = args.Length > 1
-    ? args[1]
-    : MidiPortFactory.GetInputPortNames()[0];
+    ? args[1] : MidiPortFactory.GetInputPortNames()[0];
 
 Console.WriteLine($"Listening on '{device}'");
 using var port = MidiPortFactory.OpenInput(device);
@@ -45,8 +44,7 @@ port.MessageReceived += m =>
 {
     var (t, s, d1, d2) = (m.Type, m.Status, m.Data1, m.Data2);
     Console.WriteLine($"{t,-20}(0x{s:X2} 0x{d1:X2} 0x{d2:X2})");
-    lock(synthLock)
-        synth.ProcessMessage([s, d1, d2]);
+    lock (synthLock) synth.ProcessMessage([s, d1, d2]);
 };
 
 port.Start();
