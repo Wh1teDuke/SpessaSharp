@@ -14,7 +14,10 @@
     height: 2rem !important; /* Adjust this value up or down to scale your logo */
     width: auto;
     object-fit: contain;
-    padding-right: 12px !important;
+    margin-right: 12px !important;
+
+    border: 2px solid #000000 !important;
+    border-radius: 50% !important;
 }
 
 /* Ensure the left sidebar/nav menu also scrolls cleanly if you have tons of items */
