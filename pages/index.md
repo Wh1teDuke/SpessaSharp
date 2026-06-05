@@ -10,7 +10,7 @@ _layout: landing
 
 ## Getting Started
 
-* [Synthesising a midi file]()
+* [Synthesising a midi file](https://github.com/Wh1teDuke/SpessaSharp#example)
 * [Examples folder](https://github.com/Wh1teDuke/SpessaSharp/tree/master/Examples)
 * Most important classes:
   * [Midi](https://wh1teduke.github.io/SpessaSharp/api/SpessaSharp.MIDI.Midi.html)
