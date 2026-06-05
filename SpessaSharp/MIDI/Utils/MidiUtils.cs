@@ -480,15 +480,16 @@ public static class MidiUtils
                     (int)float.Floor(parameter.AsFloat * 81.92f + 8_192)),
             ChannelMidiParameter.Type.RandomPan =>
                 // Only set via SysEx in both GS and XG (value 0 means random pan)
-                system == Midi.System.XG
-                    ? [XgMessage(ticks, 0x08, channel, 0x0e, [0])]
-                    : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1c, [0])],
+                [system == Midi.System.XG
+                    ? XgMessage(ticks, 0x08, channel, 0x0e, [0])
+                    : GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1c, [0])],
             ChannelMidiParameter.Type.AssignMode =>
-                // GS only
-                [
-                    GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x14, 
-                        [(byte)parameter.AsAssignMode])
-                ],
+                // XG/GS only
+                [system == Midi.System.XG
+                    ? XgMessage(ticks, 0x08, channel, 0x06,
+                        [(byte)parameter.AsInt])
+                    : GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x14,
+                        [(byte)parameter.AsInt])],
             ChannelMidiParameter.Type.EfxAssign =>
                 // GS only (again)
                 [

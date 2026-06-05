@@ -20,15 +20,17 @@ public sealed class MidiChannel: ISf2Channel
     /// </summary>
     public enum Assign
     {
-        /// <summary> If the same note is played multiple times in succession, the previously-sounding note will be completely silenced, and then the new note will be sounded.</summary>
+        /// <summary> A new note will kill the previous one if it is still playing.</summary>
         Single,
-        /// <summary> If the same note is played multiple times in succession, the previously-sounding note will be continued to a certain extent even after the new note is sounded. (Default setting)</summary>
-        LimitedMulti, 
         /// <summary>
-        /// If the same note is played multiple times in succession,
-        /// the previously-sounding note(s) will continue sounding for their natural length even after the new note is sounded.<br/>
-        /// SpessaSynth treats LimitedMulti like FullMulti.
-        /// Essentially Limited and Full are normal and Single is like <b>monophonicRetrigger</b> system parameter.
+        /// A new note will not kill the previous notes (default).
+        /// While GS and XG differentiate 1 (Limited Multi for GS/Multi for XG) and 2 (Full Multi for GS/Inst (for Drum)),
+        /// SpessaSynth treats them both as full Multi. (no note killing is performed)
+        ///
+        /// This may be useful for emulating SC-55 hi-hat cutoff or MSGS note cutoff.
+        ///
+        /// Refer to [SC-8850 Owner's Manual](https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf), page 238 for more description.
+        /// Note that <b>SAME NOTE NUMBER KEY ON ASSIGN</b> in XG is also recognized as assign mode.
         /// </summary>
         FullMulti
     }

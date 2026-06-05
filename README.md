@@ -4,7 +4,7 @@
 
 [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> SpessaSharp command line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview)
 
-Last commit: [add a type field](https://github.com/spessasus/spessasynth_core/commit/acb1c98a195a4181730824fff37b869193a82509)
+Last commit: [improve assign mode support and docs](https://github.com/spessasus/spessasynth_core/commit/a8ef0dbeca40a5b9a361854991e5840c028a25c3)
 
 ## Example
 

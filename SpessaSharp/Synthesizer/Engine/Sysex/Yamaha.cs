@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
@@ -164,6 +165,14 @@ internal static class Yamaha
                         SpessaLog.XGInfo(
                             $"Mono/poly on {channel}",
                             poly ? "POLY" : "MONO");
+                        break;
+                    
+                    // Same note number key on assign
+                    case 0x06:
+                        ch.Set((MidiChannel.Assign)data);
+                        SpessaLog.XGInfo(
+                            $"Same Note Number Key On Assign on {channel}",
+                            data);
                         break;
 
                     // Part mode
