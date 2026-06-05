@@ -53,6 +53,7 @@
       "_customCss": "public/main.css",
       "_appBaseURL": "/SpessaSharp/",
       "_appLogoPath": "public/spessasharp_logo_rounded.png",
+      "_appFaviconPath": "public/spessasharp_logo_rounded.png",
       "_repositoryUrl": "https://github.com/Wh1teDuke/SpessaSharp",
       "iconLinks": [
         {

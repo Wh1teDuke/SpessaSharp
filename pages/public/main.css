@@ -17,7 +17,7 @@
     margin-right: 12px !important;
 
     border: 2px solid #000000 !important;
-    border-radius: 50% !important;
+    border-radius: 3px !important;
 }
 
 /* Ensure the left sidebar/nav menu also scrolls cleanly if you have tons of items */
