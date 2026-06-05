@@ -38,4 +38,6 @@ msbuild.err
 msbuild.wrn
 
 # Visual Studio 2015
-.vs/
+.vs/pages/_site/
+pages/api/
+pages/obj/
