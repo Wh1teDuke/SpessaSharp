@@ -1,0 +1,55 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../SpessaSharp",
+          "files": [
+            "SpessaSharp.csproj"
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**",
+          "obj/**"
+        ]
+      },
+      {
+        "src": "api",
+        "files": [
+          "**/*.yml"
+        ],
+        "dest": "api"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "public/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "SpessaSharp",
+      "_appTitle": "SpessaSharp",
+      "_enableSearch": true,
+      "pdf": false,
+      "_customCss": "public/main.css"
+    }
+  }
+}
