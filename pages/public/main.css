@@ -9,6 +9,13 @@
     overflow-y: auto;
 }
 
+/* Ensure the custom logo fits perfectly inside the navbar */
+.navbar-brand img {
+    height: 2rem !important; /* Adjust this value up or down to scale your logo */
+    width: auto;
+    object-fit: contain;
+}
+
 /* Ensure the left sidebar/nav menu also scrolls cleanly if you have tons of items */
 .sidebar .nav {
     overflow-y: auto;
