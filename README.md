@@ -6,6 +6,8 @@
 
 Last commit: [add a type field](https://github.com/spessasus/spessasynth_core/commit/acb1c98a195a4181730824fff37b869193a82509)
 
+## Example
+
 ```csharp
 using SpessaSharp.MIDI;
 using SpessaSharp.Sequencer;

@@ -50,7 +50,8 @@
       "_enableSearch": true,
       "pdf": false,
       "_customCss": "public/main.css",
-      "_appBaseURL": "/SpessaSharp/"
+      "_appBaseURL": "/SpessaSharp/",
+      "_appLogo": "public/spessasharp_logo_rounded.png"
     }
   }
 }

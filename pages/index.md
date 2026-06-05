@@ -2,11 +2,18 @@
 _layout: landing
 ---
 
-# Welcome to SpessaSharp
+# Welcome to the SpessaSharp Documentation site
 
-This is the automated documentation portal for the SpessaSharp library.
+**[SpessaSharp](https://github.com/Wh1teDuke/SpessaSharp)** is a C# port of the [**SpessaSynth**](https://github.com/spessasus/spessasynth_core) library by [**Spessasus**](https://github.com/spessasus).
+
+* [SpessaSynth original docs](https://spessasus.github.io/spessasynth_core/)
 
 ## Getting Started
 
-* Navigate through the **API Documentation** using the top navigation bar to explore namespaces, classes, and methods.
-* All code reference material here is automatically generated from the source code XML documentation comments.
+* [Synthesising a midi file]()
+* [Examples folder](https://github.com/Wh1teDuke/SpessaSharp/tree/master/Examples)
+* Most important classes:
+  * [Midi](https://wh1teduke.github.io/SpessaSharp/api/SpessaSharp.MIDI.Midi.html)
+  * [SoundBank](https://wh1teduke.github.io/SpessaSharp/api/SpessaSharp.SoundBank.SoundBank.html)
+  * [Processor](https://wh1teduke.github.io/SpessaSharp/api/SpessaSharp.Synthesizer.SpessaSharpProcessor.html)
+  * [Sequencer](https://wh1teduke.github.io/SpessaSharp/api/SpessaSharp.Sequencer.SpessaSharpSequencer.html)
