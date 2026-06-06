@@ -4,7 +4,7 @@
 
 [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> SpessaSharp command line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview)
 
-Last commit: [improve assign mode support and docs](https://github.com/spessasus/spessasynth_core/commit/a8ef0dbeca40a5b9a361854991e5840c028a25c3)
+Last commit: [add support for GS Block B](https://github.com/spessasus/spessasynth_core/commit/f141a4fc1bd3d335ab6795d2d8bec715614a527a)
 
 ## Example
 

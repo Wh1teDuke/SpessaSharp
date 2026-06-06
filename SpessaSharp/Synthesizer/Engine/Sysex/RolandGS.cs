@@ -41,17 +41,34 @@ internal static class RolandGS
                         // Sanity check
                         var data = byte.Min(syx[7], 127);
                         // SYSTEM MODE SET
-                        if (a1 == 0 && a2 == 0 && a3 == 0x7f && data == 0x00) 
+                        if (
+                            a1 == 0 && 
+                            a2 == 0 && 
+                            a3 == 0x7f &&
+                            data is 0x00 or 0x01) 
                         {
+                            if (data == 0x01) 
+                            {
+                                // Double module mode, ensure at least 32 channels
+                                SpessaLog.GSInfo("Mode", "Double Module");
+                                while (synth.MidiChannels.Count < 32)
+                                    synth.CreateMIDIChannel(true);
+                            }
+                            
                             // This is a GS reset
-                            Debug.WriteLine("GS Reset received!");
+                            SpessaLog.CoolInfo("MIDI System", "Roland GS");
                             synth.Reset(Midi.System.GS);
                             return;
                         }
 
                         // Patch Parameter
-                        if (a1 == 0x40) 
+                        if (a1 is 0x40 or 0x50) 
                         {
+                            // 50 means BLOCK B (+16 channels)
+                            // Testcase: 95043-2.KYC.mid
+                            if (a1 == 0x50)
+                                channelOffset += 16;
+                            
                             // System Parameter
                             if (a2 == 0x00) 
                             {
@@ -522,6 +539,16 @@ internal static class RolandGS
                                 var channel =
                                     MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
                                 // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
+
+                                if (channel < 0 || channel >= synth.MidiChannels.Count)
+                                {
+                                    SpessaLog.GSFail(
+                                        $"Patch Parameter for {channel}", 
+                                        syx,
+                                        "Invalid channel number");
+                                    return;
+                                }
+                                
                                 var ch = synth.MidiChannels[channel];
                                 switch (a3) 
                                 {
@@ -925,10 +952,13 @@ internal static class RolandGS
                             return;
                         }
                         // Drum setup
-                        if (a1 == 0x41) 
+                        if (a1 is 0x41 or 0x51) 
                         {
+                            // 51 means BLOCK B (+16 channels)
+                            // Testcase: 95043-2.KYC.mid
                             if (synth.SystemParameters.DrumLock) 
                                 return;
+
                             var map = (a2 >> 4) + 1;
                             var drumKey = a3;
                             var param = a2 & 0xf;

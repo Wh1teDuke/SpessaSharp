@@ -1047,8 +1047,9 @@ public static class MidiUtils
                 // MODE SET
                 case 0x7f:
                 {
-                    if (data == 0x00)
-                        // GS Reset/Mode-1
+                    if (data is 
+                        0x00 or // GS Reset/Mode-1  
+                        0x01)   // GS Reset/Mode-2 (Double Module Mode)
                         return AnalyzedMessage.Of(Midi.System.GS);
                     if (data == 0x7f)
                         // GS Off, default to gm
@@ -1060,7 +1061,8 @@ public static class MidiUtils
         }
 
         if (a1 == 0x41) return AnalyzedParameter.Type.DrumSetup;
-        if (a1 != 0x40) return AnalyzedParameter.Type.Other;
+        // 0x40 -> Part Parameters, 0x50 -> Part Parameters (BLOCK B) Testcase: 95043-2.KYC.mid
+        if (a1 is not 0x40 and not 0x50) return AnalyzedParameter.Type.Other;
         
         if (a2 == 0x00 && a3 == 0x05)
             return AnalyzedMessage.Of(
