@@ -801,34 +801,26 @@ public static class MidiUtils
                     ) return AnalyzedParameter.Type.Other;
 
                     // Slot Path LSB
-                    switch (syx[8]) 
+                    return syx[8] switch
                     {
-                        default: return AnalyzedParameter.Type.Other;
-
-                        case 0x01:
-                        {
+                        0x01 =>
                             // Reverb
                             // Parameter
-                            return syx[9] switch
+                            (syx[9] switch
                             {
-                                0x01 or 0x02 =>
-                                    AnalyzedMessage.Type.ReverbParam,
+                                0x00 or 0x01 => AnalyzedMessage.Type.ReverbParam,
                                 _ => AnalyzedParameter.Type.Other
-                            };
-                        }
-
-                        case 0x02:
-                        {
+                            }),
+                        0x02 =>
                             // Chorus
                             // Parameter
-                            return syx[9] switch
+                            (syx[9] switch
                             {
-                                0x01 or 0x02 or 0x03 or 0x04 => 
-                                    AnalyzedMessage.Type.ChorusParam,
+                                0x00 or 0x01 or 0x02 or 0x03 or 0x04 => AnalyzedMessage.Type.ChorusParam,
                                 _ => AnalyzedParameter.Type.Other
-                            };
-                        }
-                    }
+                            }),
+                        _ => AnalyzedParameter.Type.Other
+                    };
                 }
             }
         }
