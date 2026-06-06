@@ -608,7 +608,7 @@ public sealed class Synthesizer
         CallEvent(new Event.CbReset(system));
         // Reset MIDI parameters
         Set(system);
-        Set((GlobalMidiParameter.Type.Gain, 1f));
+        Set((GlobalMidiParameter.Type.Volume, 1f));
         Set((GlobalMidiParameter.Type.Pan, 0f));
         Set((GlobalMidiParameter.Type.KeyShift, 0));
         Set((GlobalMidiParameter.Type.FineTune, 0f));

@@ -354,7 +354,7 @@ public static class MidiUtils
                 }
             }
                 
-            case GlobalMidiParameter.Type.Gain:
+            case GlobalMidiParameter.Type.Volume:
             {
                 // All three once more!
                 // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
@@ -365,7 +365,7 @@ public static class MidiUtils
                         // MIDI Master Volume corresponds to CC volume, so the effective volume is squared.
                         // Reverse that here
                         var gainValue = (int)float.Floor(
-                            float.Sqrt(parameter.AsFloat) * 16_383);
+                            parameter.AsFloat * 16_383);
                         return [DeviceControlMessage(ticks, 0x01, [
                                 (byte)(gainValue & 0x7f), // LSB
                                 (byte)((gainValue >> 7) & 0x7f), // MSB
@@ -762,7 +762,7 @@ public static class MidiUtils
                     // It corresponds to CC volume, so volume is squared.
                     var gain = float.Pow(value, 2);
                     return AnalyzedMessage.Of(
-                        (GlobalMidiParameter.Type.Gain, gain));
+                        (GlobalMidiParameter.Type.Volume, gain));
                 }
                 
                 case 0x02:
@@ -1022,7 +1022,7 @@ public static class MidiUtils
                 // Master Volume
                 case 0x04:
                     return AnalyzedMessage.Of(
-                        (GlobalMidiParameter.Type.Gain, data / 127f));
+                        (GlobalMidiParameter.Type.Volume, data / 127f));
 
                 // Master Key-Shift
                 case 0x05:

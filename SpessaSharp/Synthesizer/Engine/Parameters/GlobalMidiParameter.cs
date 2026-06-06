@@ -8,10 +8,10 @@ public static class GlobalMidiParameters
 {
     extension(ReadOnlySpan<GlobalMidiParameter> parameters)
     {
-        public float Gain
+        public float Volume
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.Gain].AsFloat;
+                parameters[(int)GlobalMidiParameter.Type.Volume].AsFloat;
         }
         
         public float Pan
@@ -61,7 +61,7 @@ public static class GlobalMidiParameters
     {
         // Avoid setting the param in the wrong position
         var list = (ReadOnlySpan<GlobalMidiParameter>)[
-            (GlobalMidiParameter.Type.Gain, 1f),
+            (GlobalMidiParameter.Type.Volume, 1f),
             (GlobalMidiParameter.Type.Pan, 0f),
             (GlobalMidiParameter.Type.KeyShift, 0),
             (GlobalMidiParameter.Type.FineTune, 0f),
@@ -158,8 +158,13 @@ public readonly record struct GlobalMidiParameter
         KeyShift, 
         /// <summary>The global tuning in cents. Drum channels ignore this value. Set by MIDI SysEx.</summary>
         FineTune,
-        /// <summary>The master gain. From 0 to any number. 1 is 100% volume.</summary>
-        Gain, 
+        /// <summary>
+        /// The master volume.
+        /// From 0 (silent) to 1 (full volume).
+        ///
+        /// This differs from the <b>gain</b> system parameter in that it is squared internally.
+        /// </summary>
+        Volume, 
         /// <summary>The master pan. From -1 (left) to 1 (right). 0 is center.</summary>
         Pan,
     }
@@ -167,7 +172,7 @@ public readonly record struct GlobalMidiParameter
     public static Params.Type TypeOf(Type type) => type switch
     {
         Type.MidiSystem => Params.Type.MidiSystem,
-        Type.Gain => Params.Type.Float,
+        Type.Volume => Params.Type.Float,
         Type.Pan => Params.Type.Float,
         Type.KeyShift => Params.Type.Int,
         Type.FineTune => Params.Type.Float,

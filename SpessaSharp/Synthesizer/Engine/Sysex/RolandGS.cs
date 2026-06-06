@@ -94,8 +94,8 @@ internal static class RolandGS
                                         // Roland GS master volume
                                         SpessaLog.GSInfo("Master Volume", data);
                                         synth.Set(
-                                            (GlobalMidiParameter.Type.Gain,
-                                                float.Pow(data / 127f, 2)));
+                                            (GlobalMidiParameter.Type.Volume,
+                                                data / 127f));
                                         break;
 
                                     case 0x05: 
@@ -1154,7 +1154,7 @@ internal static class RolandGS
                     {
                         // This is a roland master volume message
                         synth.Set((
-                            GlobalMidiParameter.Type.Gain,
+                            GlobalMidiParameter.Type.Volume,
                             syx[7] / 100f));
                         Debug.WriteLine(
                             $"Roland Master Volume control set to: {syx[7]}");

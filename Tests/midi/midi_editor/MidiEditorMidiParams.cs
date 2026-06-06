@@ -62,7 +62,7 @@ midi.Modify(new MidiEditor.Options
     MidiParams = InitGlobalMods(
         (GlobalMidiParameter.Type.KeyShift, -2),
         (GlobalMidiParameter.Type.FineTune, 30f),
-        (GlobalMidiParameter.Type.Gain, 0.7f),
+        (GlobalMidiParameter.Type.Volume, 0.7f),
         (GlobalMidiParameter.Type.Pan, -0.7f)),
     Channels = channels,
 });

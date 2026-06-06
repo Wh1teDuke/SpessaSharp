@@ -50,10 +50,8 @@ internal static class Universal
                     {
                         // Master volume
                         var vol = (syx[5] << 7) | syx[4];
-                        // It corresponds to CC volume, so volume is squared.
-                        var gain = float.Pow(vol / 16_383f, 2);
                         synth.Set((
-                            GlobalMidiParameter.Type.Gain, gain));
+                            GlobalMidiParameter.Type.Volume, vol / 16_383f));
                         SpessaLog.GMInfo("Master Volume", vol);
                         break;
                     }

@@ -363,7 +363,11 @@ public readonly record struct GlobalSystemParameter
         DeviceID,
         /// <summary>The master gain. From 0 to any number. 1 is 100% volume. </summary>
         Gain,
-        /// <summary>The master pan. From -1 (left) to 1 (right). 0 is center. </summary>
+        /// <summary>
+        /// The master pan. From -1 (left) to 1 (right). 0 is center.
+        ///
+        /// This uses the cosine panning law, so the perceived loudness remains constant as the pan changes.
+        /// </summary>
         Pan,
         /// <summary>The global key shift in semitones. Drum channels ignore this value.</summary>
         KeyShift,

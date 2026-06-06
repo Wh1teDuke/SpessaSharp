@@ -556,7 +556,8 @@ public sealed class MidiChannel: ISf2Channel
             // Global System
             globalSystem.Gain *
             // Global MIDI
-            globalMIDI.Gain *
+            // It corresponds to CC volume, so volume is squared.
+            float.Pow(globalMIDI.Volume, 2) *
             // Channel System
             channelSystem.Gain;
         // Channel MIDI are the volume/expression controllers

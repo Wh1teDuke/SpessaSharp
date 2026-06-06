@@ -53,7 +53,7 @@ internal static class Yamaha
                     // Master volume
                     case 0x04: 
                         synth.Set((
-                            GlobalMidiParameter.Type.Gain,
+                            GlobalMidiParameter.Type.Volume,
                             data / 127f));
                         SpessaLog.XGInfo("Master Volume", data);
                         break;
@@ -62,8 +62,8 @@ internal static class Yamaha
                     case 0x05: 
                         var vol = 127 - data;
                         synth.Set((
-                            GlobalMidiParameter.Type.Gain,
-                            data / 127f));
+                            GlobalMidiParameter.Type.Volume,
+                            vol / 127f));
                         SpessaLog.XGInfo("Master Attenuation", data);
                         break;
 
