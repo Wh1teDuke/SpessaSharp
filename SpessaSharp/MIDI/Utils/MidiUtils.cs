@@ -1063,10 +1063,6 @@ public static class MidiUtils
         if (a1 == 0x41) return AnalyzedParameter.Type.DrumSetup;
         // 0x40 -> Part Parameters, 0x50 -> Part Parameters (BLOCK B) Testcase: 95043-2.KYC.mid
         if (a1 is not 0x40 and not 0x50) return AnalyzedParameter.Type.Other;
-        
-        if (a2 == 0x00 && a3 == 0x05)
-            return AnalyzedMessage.Of(
-                (GlobalMidiParameter.Type.KeyShift, data - 64));
 
         // Effects
         if (a2 == 0x01)

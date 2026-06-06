@@ -95,7 +95,7 @@ internal static class RolandGS
                                         SpessaLog.GSInfo("Master Volume", data);
                                         synth.Set(
                                             (GlobalMidiParameter.Type.Gain,
-                                                data / 127f));
+                                                float.Pow(data / 127f, 2)));
                                         break;
 
                                     case 0x05: 
