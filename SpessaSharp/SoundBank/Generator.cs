@@ -144,6 +144,18 @@ public readonly struct Generator
         Invalid,
     }
 
+    public enum LoopMode
+    {
+        /// <summary>No loop</summary>
+        NoLoop,
+        /// <summary>Loop</summary>
+        Loop,
+        /// <summary>Start on release</summary>
+        OnRelease,
+        /// <summary>Loop and play till the end in release phase</summary>
+        UntilRelease,
+    }
+
     public static readonly Type[] List = Enum.GetValues<Type>();
     public static readonly int Amount = List.Length;
     public static readonly short Max = (short)List[^1];

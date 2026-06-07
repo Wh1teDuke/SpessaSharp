@@ -36,6 +36,18 @@ public sealed class BasicZone
             SetGenerator(Generator.Type.FineTune, fine);
         }
     }
+
+    /// <summary>
+    /// The current SamplesMode. No Loop (0) is the default.
+    /// </summary>
+    public Generator.LoopMode LoopMode
+    {
+        get => (Generator.LoopMode)(GetGenerator(
+            Generator.Type.SampleModes) ?? 0);
+        set => SetGenerator(
+            Generator.Type.SampleModes,
+            value == Generator.LoopMode.NoLoop ? null : (int)value);
+    }
     
     /// <summary>Sets a generator to a given value if preset, otherwise adds a new one.</summary>
     /// <param name="type">The generator type.</param>
