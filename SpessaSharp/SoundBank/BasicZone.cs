@@ -42,13 +42,36 @@ public sealed class BasicZone
     /// </summary>
     public Generator.LoopMode LoopMode
     {
-        get => (Generator.LoopMode)(GetGenerator(
-            Generator.Type.SampleModes) ?? 0);
-        set => SetGenerator(
-            Generator.Type.SampleModes,
-            value == Generator.LoopMode.NoLoop ? null : (int)value);
+        get => (Generator.LoopMode)GetOrDefault(Generator.Type.SampleModes);
+        set => SetOrRemoveDefault(Generator.Type.SampleModes, (int)value);
+    }
+
+    /// <summary>
+    /// The current release vol envelope.
+    /// </summary>
+    public int ReleaseVolEnv
+    {
+        get => GetOrDefault(Generator.Type.ReleaseVolEnv);
+        set => SetOrRemoveDefault(Generator.Type.ReleaseVolEnv, value);
     }
     
+    /// <summary>
+    /// The current release mod envelope.
+    /// </summary>
+    public int ReleaseModEnv
+    {
+        get => GetOrDefault(Generator.Type.ReleaseModEnv);
+        set => SetOrRemoveDefault(Generator.Type.ReleaseModEnv, value);
+    }
+
+    private int GetOrDefault(Generator.Type type) =>
+        GetGenerator(type) ??
+        Generator.Limits.GetValueOrDefault(type).Def;
+
+    private void SetOrRemoveDefault(Generator.Type type, int value) => 
+        SetGenerator(
+            type, Generator.IsDefaultValue(type, value) ? null : value);
+
     /// <summary>Sets a generator to a given value if preset, otherwise adds a new one.</summary>
     /// <param name="type">The generator type.</param>
     /// <param name="value">The value to set. Set to null to remove this generator (set as "unset").</param>

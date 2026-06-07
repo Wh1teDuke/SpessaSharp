@@ -282,6 +282,9 @@ public readonly struct Generator
     
     public static bool HasDefaultValue(Generator g) =>
         Limits.TryGetValue(g.GType, out var limit) && g.Value == limit.Def;
+    
+    public static bool IsDefaultValue(Type type, int value) =>
+        Limits.TryGetValue(type, out var limit) && limit.Def == value;
 
     public static List<Generator> Copy(List<Generator> target, List<Generator> source)
     {
