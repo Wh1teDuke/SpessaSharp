@@ -106,31 +106,51 @@ public static class ArgCommands
             return;
             void Setup(SpessaSharpSequencer seq)
             {
-                if (pr.GetValue(oChanMute) is { } mutedChans)
-                {
-                    foreach (var chan in mutedChans)
-                    {
-                        var cIdx = chan - 1;
-                        if (cIdx < 0 || cIdx >= seq.Synth.MidiChannels.Length)
-                            Etc.Error("Channel index out of range: " + chan);
+                List<int>? enabled = null;
+                
+                var tokens = pr.Tokens;
+                
+                var disIdx = tokens.Select((t, idx) => new { t, idx })
+                    .FirstOrDefault(x => x.t.Value == oChanMute.Name)?.idx ?? -1;
 
-                        seq.Synth.MidiChannels[cIdx].Set(
-                            (ChannelSystemParameter.Type.IsMuted, true));
+                var enIdx = tokens.Select((t, idx) => new { t, idx })
+                    .FirstOrDefault(x => x.t.Value == oChanEnable.Name)?.idx ?? -1;
+
+                while (disIdx != -1 || enIdx != -1)
+                {
+                    if (disIdx != -1 && (enIdx == -1 || disIdx < enIdx))
+                    {
+                        enabled ??= Enumerable.Range(1, 16).ToList();
+                        disIdx = -1;
+                        
+                        foreach (var chan in pr.GetValue(oChanMute) ?? [])
+                        {
+                            if (chan < 1 || chan > seq.Synth.MidiChannels.Length)
+                                Etc.Error("Channel index out of range: " + chan);
+                            enabled.Remove(chan);
+                        }
+                    }
+
+                    if (enIdx != -1 && (disIdx == -1 || enIdx < disIdx))
+                    {
+                        enIdx = -1;
+                        enabled ??= [];
+                        enabled.AddRange(pr.GetValue(oChanEnable) ?? []);
                     }
                 }
                 
-                if (pr.GetValue(oChanEnable) is { } enabledChans)
+                if (enabled != null)
                 {
                     foreach (var chan in Enumerable.Range(1, 16))
                     {
-                        if (enabledChans.Contains(chan)) continue;
-                        
+                        if (enabled.Contains(chan)) continue;
+                            
                         var cIdx = chan - 1;
                         seq.Synth.MidiChannels[cIdx].Set(
                             (ChannelSystemParameter.Type.IsMuted, true));
                     }
                 }
-                
+
                 if (pr.GetValue(oLoop)) seq.LoopCount = 777;
                 setRes(seq.Synth, pr);
             }
