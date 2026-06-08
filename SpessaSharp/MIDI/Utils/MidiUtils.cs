@@ -20,6 +20,8 @@ public static class MidiUtils
         private struct InternalData
         {
             [FieldOffset(0)] public (Midi.CC Controller, int Value, int Channel) _controllerChange;
+            
+            /// <summary>Channel number may be above 15</summary>
             [FieldOffset(0)] public (ChannelMidiParameter Param, int Channel) _channelMidiParam;
         }
         
@@ -1056,6 +1058,9 @@ public static class MidiUtils
         // 0x40 -> Part Parameters, 0x50 -> Part Parameters (BLOCK B) Testcase: 95043-2.KYC.mid
         if (a1 is not 0x40 and not 0x50) return AnalyzedParameter.Type.Other;
 
+        // Block B is the second 16-channel set
+        var channelOffset = a1 == 0x50 ? 16 : 0;
+        
         // Effects
         if (a2 == 0x01)
         {
@@ -1071,7 +1076,7 @@ public static class MidiUtils
         // Patch parameter
         if (a2 >> 4 == 1)
         {
-            var channel = SyxToChannel(a2 & 0x0f);
+            var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
             return a3 switch
             {
                 0x00 =>
@@ -1159,7 +1164,7 @@ public static class MidiUtils
         // Patch Parameter Tone Map
         if (a2 >> 4 == 4)
         {
-            var channel = SyxToChannel(a2 & 0x0f);
+            var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
             return a3 switch
             {
                 0x00 or

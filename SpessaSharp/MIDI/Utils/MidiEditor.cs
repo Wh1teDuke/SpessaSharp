@@ -7,7 +7,6 @@ namespace SpessaSharp.MIDI.Utils;
 
 public static class MidiEditor
 {
-
     /// <summary>
     /// Allows easy editing of the file by removing channels, changing programs,
     /// changing controllers and transposing channels. Note that this modifies the MIDI in-place.
@@ -801,10 +800,16 @@ public static class MidiEditor
                             
                             if (cmp.Param.PType == ChannelMidiParameter.Type.FineTune)
                             {
-                                var syxStatus = channelStatus[
-                                    cmp.Channel + portOffset];
+                                var sysStatusIdx = cmp.Channel + portOffset;
+                                var syxStatus =
+                                    sysStatusIdx >= 0 &&
+                                    sysStatusIdx < channelStatus.Length
+                                    ? channelStatus[sysStatusIdx]
+                                    : null;
                             
-                                if (syxStatus.IsFirstNoteOn &&
+                                if (
+                                    // Syx.channel may be above 15, check if it exists
+                                    syxStatus is { IsFirstNoteOn: true } &&
                                     syxChannel != null)
                                 {
                                     // No note-on yet. Then use it as relative!

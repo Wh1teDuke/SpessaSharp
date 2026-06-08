@@ -4,7 +4,7 @@
 
 [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> SpessaSharp command line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview)
 
-Last commit: [rename gain to volume and make it squared properly](https://github.com/spessasus/spessasynth_core/commit/c2a0df520b3aa3b2372c81fa36ef9f9947497b05)
+Last commit: [support analysis of channels 16 and above](https://github.com/spessasus/spessasynth_core/commit/6c7d386c15b84af6ac52af156322bbba5c6908f4)
 
 ## Example
 

@@ -217,6 +217,10 @@ public static class WriterRMidi
                     {
                         var dO = syx.AsDrumsOn!.Value;
                         var sysexChannel = dO.Channel + portOffset;
+                        // Ensure check as syx.channel may be above 15
+                        if (sysexChannel < 0 ||
+                            sysexChannel >= channels.Length)
+                            break;
                         ref var chan = ref channels[sysexChannel];
                         chan = chan with { IsDrum = dO.IsDrum };
                         goto Continue;
@@ -243,6 +247,9 @@ public static class WriterRMidi
                             { AsControllerChange: {} cc }:
                     {
                         // Replace the system exclusive with a regular controller change
+                        // Channel number may be above 15
+                        if (cc.Channel >= 16) goto Continue;
+                        
                         e = MidiMessage.ControllerChange(
                             e.Ticks, cc.Channel, cc.Controller, cc.Value);
                         SpessaLog.Info("Replaced a system exclusive with controller change!");
@@ -254,6 +261,9 @@ public static class WriterRMidi
                     {
                         // Replace the system exclusive with a regular program
                         var pc = syx.AsProgramChange!.Value;
+                        // Channel number may be above 15
+                        if (pc.Channel >= 16) goto Continue;
+                        
                         e = MidiMessage.ProgramChange(
                             e.Ticks, pc.Channel, pc.Value );
                         SpessaLog.Info("Replaced a system exclusive with program change!");

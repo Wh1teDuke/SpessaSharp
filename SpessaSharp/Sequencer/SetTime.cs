@@ -153,6 +153,9 @@ internal static class SetTime
                                 { AsControllerChange: var
                                     (controller, value, chan) }:
                         {
+                            // Channel number may be above 15
+                            if (chan >= channelsToSave) break;
+                            
                             // Empty tracks cannot controller change
                             if (seq.Midi.IsMultiPort &&
                                 track.Channels.Count == 0)

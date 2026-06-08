@@ -245,8 +245,8 @@ internal static class UsedProgramsAndKeys
             }
             else if (status == MidiMessage.Type.ControllerChange.ID())
             {
-                var channel = e.StatusByte.Channel + channelOffset;
-                ref var ch = ref channels.AsSpan()[channel];
+                var chanIdx = e.StatusByte.Channel + channelOffset;
+                ref var ch = ref channels.AsSpan()[chanIdx];
 
                 var cc = (Midi.CC)e.Data[0];
                 var value = e.Data[1];
@@ -339,6 +339,10 @@ internal static class UsedProgramsAndKeys
                     {
                         if (cmp.Param.PType == ChannelMidiParameter.Type.KeyShift)
                         {
+                            // Channel may be above 15
+                            if (cmp.Channel < 0 || cmp.Channel >= channels.Count)
+                                break;
+                            
                             ref var chan = ref channels.AsSpan()[cmp.Channel];
                             // Drum channels ignore key shift
                             // Testcase: th07_19_user_gm.mid
@@ -351,6 +355,10 @@ internal static class UsedProgramsAndKeys
                     {
                         var dO = syx.AsDrumsOn!.Value;
                         var sysexChannel = dO.Channel + channelOffset;
+                        // Channel may be above 15
+                        if (sysexChannel < 0 || sysexChannel >= channels.Count)
+                            break;
+
                         ref var ch = ref channels.AsSpan()[sysexChannel];
                         ch.IsDrum = dO.IsDrum;
                         break;
@@ -359,6 +367,10 @@ internal static class UsedProgramsAndKeys
                     {
                         var pc = syx.AsProgramChange!.Value;
                         var sysexChannel = pc.Channel + channelOffset;
+                        // Channel may be above 15
+                        if (sysexChannel < 0 || sysexChannel >= channels.Count)
+                            break;
+
                         ref var ch = ref channels.AsSpan()[sysexChannel];
                         ch.Preset = getPreset.GetPreset(new MidiPatch(
                             BankMSB: ch.BankMSB,
@@ -371,6 +383,10 @@ internal static class UsedProgramsAndKeys
                         syx.AsAnalyzedParameter is {AsControllerChange: {} cc}:
                     {
                         var sysexChannel = cc.Channel + channelOffset;
+                        // Channel may be above 15
+                        if (sysexChannel < 0 || sysexChannel >= channels.Count)
+                            break;
+
                         ref var ch = ref channels.AsSpan()[sysexChannel];
                         
                         if (cc.Controller == Midi.CC.BankSelectLSB)
@@ -387,7 +403,7 @@ internal static class UsedProgramsAndKeys
         foreach (var (preset, keysForPreset) in usedProgramsAndKeys)
         {
             if (keysForPreset.Count == 0)
-                Debug.WriteLine($"Detected change but no keys for {preset.Name}");
+                SpessaLog.Info($"Detected change but no keys for {preset.Name}");
         }
         #endif
         
