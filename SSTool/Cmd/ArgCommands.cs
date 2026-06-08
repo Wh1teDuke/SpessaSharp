@@ -2,9 +2,11 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using SpessaSharp.Sequencer;
 using SpessaSharp.Synthesizer;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 using SSTool.Actions;
+using SSTool.Util;
 
 namespace SSTool.Cmd;
 
@@ -71,10 +73,28 @@ public static class ArgCommands
             Description = "VST3 plugin path",
             Required = false,
         };
+
+        var oChanMute = new Option<int[]>("--mute")
+        {
+            Description = "List of muted channels",
+            Required = false,
+            Arity = ArgumentArity.OneOrMore,
+            AllowMultipleArgumentsPerToken = true,
+        };
+        
+        var oChanEnable = new Option<int[]>("--enable")
+        {
+            Description = "Mute every channel excluded from this list",
+            Required = false,
+            Arity = ArgumentArity.OneOrMore,
+            AllowMultipleArgumentsPerToken = true,
+        };
         
         cmd.Options.Add(oLoop);
         cmd.Options.Add(oGui);
         cmd.Options.Add(oVST);
+        cmd.Options.Add(oChanMute);
+        cmd.Options.Add(oChanEnable);
 
         cmd.SetAction(pr =>
         {
@@ -86,6 +106,31 @@ public static class ArgCommands
             return;
             void Setup(SpessaSharpSequencer seq)
             {
+                if (pr.GetValue(oChanMute) is { } mutedChans)
+                {
+                    foreach (var chan in mutedChans)
+                    {
+                        var cIdx = chan - 1;
+                        if (cIdx < 0 || cIdx >= seq.Synth.MidiChannels.Length)
+                            Etc.Error("Channel index out of range: " + chan);
+
+                        seq.Synth.MidiChannels[cIdx].Set(
+                            (ChannelSystemParameter.Type.IsMuted, true));
+                    }
+                }
+                
+                if (pr.GetValue(oChanEnable) is { } enabledChans)
+                {
+                    foreach (var chan in Enumerable.Range(1, 16))
+                    {
+                        if (enabledChans.Contains(chan)) continue;
+                        
+                        var cIdx = chan - 1;
+                        seq.Synth.MidiChannels[cIdx].Set(
+                            (ChannelSystemParameter.Type.IsMuted, true));
+                    }
+                }
+                
                 if (pr.GetValue(oLoop)) seq.LoopCount = 777;
                 setRes(seq.Synth, pr);
             }
