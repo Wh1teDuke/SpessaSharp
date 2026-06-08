@@ -970,13 +970,14 @@ internal static class RolandGS
 
                                 case 0x0: 
                                 {
-                                    // Drum map name. cool!
-                                    // Not sure what to do with it, but let's log it!
-                                    var patchName = 
-                                        Util.ReadBinaryString(syx.Slice(7, 12));
-                                    CoolInfo(
-                                        $"Patch Name for MAP{map}", 
+                                    // Drum map name
+                                    var patchName = Util.ReadBinaryString(
+                                        syx.Slice(7, 12)).ToArray();
+                                    SpessaLog.GSInfo(
+                                        $"Drum Map name for MAP{map}", 
                                         Util.ToString(patchName));
+                                    synth.CallEvent(Event.Of(
+                                        new Event.CbDisplayMessage(patchName)));
                                     break;
                                 }
 
@@ -1126,25 +1127,11 @@ internal static class RolandGS
                     // 0x45: GS Display Data
                     // Check for embedded copyright
                     // (Roland SC display sysex) http://www.bandtrax.com.au/sysex.htm
+                    // Sound Canvas Display
                     if (syx[4] == 0x10) // Sound Canvas Display
                     {
-                        if (syx[5] == 0x00)
-                        {
-                            // Display letters
-                            synth.CallEvent(new Event.CbDisplayMessage(
+                        synth.CallEvent(new Event.CbDisplayMessage(
                             syx.ToArray()));
-                        } 
-                        else if (syx[5] == 0x01) 
-                        {
-                            // Matrix display
-                            synth.CallEvent(new Event.CbDisplayMessage(
-                            syx.ToArray()));
-                        } 
-                        else 
-                        {
-                            // This is some other GS sysex...
-                            Engine.SystemExclusive.NotRecognized(syx, "Roland GS Display");
-                        }
                     }
                     return;
 
