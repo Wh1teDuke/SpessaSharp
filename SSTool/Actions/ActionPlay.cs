@@ -13,7 +13,7 @@ namespace SSTool.Actions;
 public static class ActionPlay
 {
     public enum GuiMode { Full, None }
-
+    
     public static void This(
         Action<SpessaSharpSequencer> setup,
         FileInfo fileMidi,
