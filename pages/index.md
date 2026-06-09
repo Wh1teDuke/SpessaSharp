@@ -20,6 +20,7 @@ _layout: landing
   * [Processor](https://wh1teduke.github.io/SpessaSharp/api/SpessaSharp.Synthesizer.SpessaSharpProcessor.html)
   * [Sequencer](https://wh1teduke.github.io/SpessaSharp/api/SpessaSharp.Sequencer.SpessaSharpSequencer.html)
 
+
 * From SpessaSynth:
   * [MIDI Implementation](https://spessasus.github.io/spessasynth_core/extra/midi-implementation/)
   * [Kinds Of Parameters](https://spessasus.github.io/spessasynth_core/extra/kinds-of-parameters/)
