@@ -31,4 +31,9 @@
     <File Path=".github\workflows\sstool.yml" />
 
   </Folder>
+  <Folder Name="/Root/.github/ISSUE_TEMPLATE/">
+    <File Path=".github\ISSUE_TEMPLATE\bug_report.yml" />
+    <File Path=".github\ISSUE_TEMPLATE\config.yml" />
+    <File Path=".github\ISSUE_TEMPLATE\feature_request.yml" />
+  </Folder>
 </Solution>
