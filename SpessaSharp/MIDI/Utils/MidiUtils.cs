@@ -442,7 +442,7 @@ public static class MidiUtils
         ChannelMidiParameter parameter)
     {
         channel %= 16;
-        var gsChannel = SyxToChannel(channel);
+        var gsChannel = ChannelToSyx(channel);
 
         return parameter.PType switch
         {
@@ -463,9 +463,9 @@ public static class MidiUtils
             ChannelMidiParameter.Type.RxChannel => 
                 system == Midi.System.XG
                     ? [XgMessage(ticks, 0x08, channel, 0x04, 
-                        [(byte)parameter.AsFloat])]
+                        [(byte)parameter.AsInt])]
                     : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x02,
-                        [(byte)parameter.AsFloat])],
+                        [(byte)parameter.AsInt])],
             ChannelMidiParameter.Type.PolyMode => parameter.AsBool
                 ? [MidiMessage.ControllerChange(ticks, channel, Midi.CC.PolyModeOn, 0)]
                 : [MidiMessage.ControllerChange(ticks, channel, Midi.CC.MonoModeOn, 0)],
@@ -922,6 +922,12 @@ public static class MidiUtils
                     // Poly/mono
                     AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
                         data == 1 ? Midi.CC.PolyModeOn : Midi.CC.MonoModeOn, 0, channel)),
+                0x06 =>
+                    // Same Note Number Key On Assign
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                        data == 0 
+                            ? MidiChannel.Assign.Single 
+                            : MidiChannel.Assign.FullMulti, channel)),
                 0x07 =>
                     // Part mode
                     AnalyzedMessage.OfDrumsOn(channel, data > 0),
@@ -1096,6 +1102,16 @@ public static class MidiUtils
                 0x19 =>
                     // Part level (cc#7)
                     OfControllerChange(Midi.CC.MainVolume),
+                0x1a =>
+                    // Velocity Sense Depth
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.VelocitySenseDepth, 
+                            data), channel)),
+                0x1b =>
+                    // Velocity Sense Offset
+                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.VelocitySenseOffset, 
+                            data), channel)),
                 0x1c =>
                     // Pan position
                     OfControllerChange(Midi.CC.Pan),
