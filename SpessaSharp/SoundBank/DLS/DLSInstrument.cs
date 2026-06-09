@@ -185,13 +185,13 @@ internal sealed class DLSInstrument
             new RIFFChunk.FourCC("ins "), CollectionsMarshal.AsSpan(chunks), true);
     }
     
-    /// <summary> Performs the full DLS to SF2 instrument conversion.</summary>
+    /// <summary>Performs the full DLS to SF2 instrument conversion.</summary>
     /// <param name="bank"></param>
     public void ToSFPreset(SoundBank bank)
     {
         var preset = new BasicPreset(bank) { Patch = MidiPatch, };
-        
         var instrument = new BasicInstrument();
+
         instrument.Name = preset.Name;
         preset.CreateZone(instrument);
         

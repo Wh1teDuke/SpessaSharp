@@ -420,7 +420,7 @@ internal sealed class DownloadableSounds
             sample.ToSFSample(bank);
         foreach (var instrument in Instruments)
             instrument.ToSFPreset(bank);
-        
+
         bank.Flush();
 
         Debug.WriteLine("Conversion complete!");
