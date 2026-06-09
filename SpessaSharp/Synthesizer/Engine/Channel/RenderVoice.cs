@@ -446,7 +446,7 @@ internal static class RenderVoice
         {
             var delayGain = outputGain * systemParameters.DelayGain *
                             (((int)delaySend >> 7) / 127f);
-            var delayInput = core.ChorusInput.AsSpan()[..sampleCount];
+            var delayInput = core.DelayInput.AsSpan()[..sampleCount];
             TensorPrimitives.MultiplyAdd(
                 buffer[..sampleCount], delayGain, delayInput, delayInput);
         }

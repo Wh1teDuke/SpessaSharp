@@ -97,34 +97,30 @@ internal static class Yamaha
                     _ => "Variation",
                 };
 
-                Debug.WriteLine(
-                    $"[WARN] Unsupported XG {effectType} Parameter: {effect:X}");
+                SpessaLog.XGFail(
+                    $"{effectType} Parameter", [effect]);
                 return;
             }
 
             if (a1 == 0x08/* A2 is the channel number*/) 
             {
-                // XG part parameter
-                if (!BankSelectHacks.IsSystemXG(
-                        synth.MidiParameters.MidiSystem))
-                    return;
-
                 var channel = a2 + channelOffset;
                 if (channel >= synth.MidiChannels.Count)
                 {
                     // Invalid channel
-                    Debug.WriteLine(
-                        $"[WARN] Discarding XG SysEx with invalid part number: {channel}");
+                    SpessaLog.XGFail(
+                        "Part Setup",
+                        syx,
+                        $"Invalid part number: {channel}");
                     return;
                 }
 
                 var ch = synth.MidiChannels[channel];
                 switch (a3) 
                 {
-                    default: 
-                        Debug.WriteLine(
-                            $"[WARN] Unsupported Yamaha XG Part Setup: {
-                                syx[5]:X} for channel {channel}");
+                    default:
+                        SpessaLog.XGFail(
+                            "Part Setup", [syx[5]]); 
                         break;
                     
                     // Bank-select MSB
