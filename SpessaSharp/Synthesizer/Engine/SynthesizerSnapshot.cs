@@ -93,7 +93,7 @@ public sealed class SynthesizerSnapshot(
         
         dp.Feedback = ds.Feedback;
         dp.Level = ds.Level;
-        dp.PreLowPass = dp.PreLowPass;
+        dp.PreLowPass = ds.PreLowPass;
         dp.SendLevelToReverb = ds.SendLevelToReverb;
         dp.LevelCenter = ds.LevelCenter;
         dp.LevelLeft = ds.LevelLeft;

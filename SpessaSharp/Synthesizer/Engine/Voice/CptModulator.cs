@@ -64,7 +64,7 @@ internal static class CptModulator
             which, for a preset with a depth of 50,
             will create a total modulation depth of 100 cents.
              */
-            computedValue *= chan.MidiParamArray.ModulationDepth / 50;
+            computedValue *= chan.MidiParameters.ModulationDepth / 50f;
         }
 
         return voice.ModulatorValues[modulatorIndex] = (short)computedValue;

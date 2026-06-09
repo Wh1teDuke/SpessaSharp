@@ -189,7 +189,7 @@ public sealed class SSChorus: Effect.ChorusProcessor
             bufferL[write] = inputSample + outL * feedback;
 
             // Same for the right line (shared buffer for now for testing)
-            var dR = float.Clamp(1, delay + (1 - lfo) * depth, bufferLen);
+            var dR = float.Clamp(delay + (1 - lfo) * depth, 1, bufferLen);
             var readPosR = write - dR;
             if (readPosR < 0) readPosR += bufferLen;
 
