@@ -168,7 +168,7 @@ internal static class SetTime
                             }
                             if (NonSkippableCCs.Contains(controller))
                                 seq.SendCC(chan, controller, value);
-                            else channels[channel]?.Controllers.AsSpan()
+                            else channels[chan]?.Controllers.AsSpan()
                                 [(int)controller] = (short)(value << 7);
                             break;
                         }
