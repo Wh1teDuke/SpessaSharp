@@ -10,9 +10,8 @@ rm bun-linux-x64.zip
 
 chmod +x ./bun
 
-BUN_INSTALL_CACHE_DIR=bcc
-./bun init -y
-./bun add spessasynth_core
+BUN_INSTALL_CACHE_DIR=bcc ./bun init -y
+BUN_INSTALL_CACHE_DIR=bcc ./bun add spessasynth_core
 
 
 # Setup SpessaSharp, SpessaSynth's dark twin
