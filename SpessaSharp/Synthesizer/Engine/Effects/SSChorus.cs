@@ -176,7 +176,7 @@ public sealed class SSChorus: Effect.ChorusProcessor
             // Read position
             var dL = float.Clamp(delay + lfo * depth, 1, bufferLen);
             var readPosL = write - dL;
-            if (readPosL < 0) readPosL += bufferLen;
+            if ((int)readPosL < 0) readPosL += bufferLen;
 
             // Linear interpolation
             var x0 = (int)readPosL;
@@ -191,7 +191,7 @@ public sealed class SSChorus: Effect.ChorusProcessor
             // Same for the right line (shared buffer for now for testing)
             var dR = float.Clamp(delay + (1 - lfo) * depth, 1, bufferLen);
             var readPosR = write - dR;
-            if (readPosR < 0) readPosR += bufferLen;
+            if ((int)readPosR < 0) readPosR += bufferLen;
 
             // Linear interpolation
             x0 = (int)readPosR;
