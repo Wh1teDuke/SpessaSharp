@@ -26,7 +26,6 @@ mv "Shan SGM ES8A.SF2" banks/
 
 wget "https://github.com/mrbumpy409/GeneralUser-GS/raw/refs/heads/main/GeneralUser-GS.sf2" -P banks/
 
-###BLOCK-COMMENT
 
 # Download MIDIs
 wget "https://github.com/AyHa1810/touhou-midi-collection/raw/refs/heads/main/6%20-%20Arranges/nomico%20-%20Bad%20Apple!!%20(Unknown).mid" -P midis/
