@@ -5,7 +5,7 @@ namespace SpessaSharp.Synthesizer.Engine.Voice;
 /// <summary>
 /// Converts soundfont units into more usable values with the use of lookup tables to improve performance
 /// </summary>
-internal static class UnitConverter
+public static class UnitConverter
 {
     // Timecent lookup table
     private const int MIN_TIMECENT = -15_000;
@@ -22,6 +22,19 @@ internal static class UnitConverter
         timecents <= -32_767
             ? 0
             : TimecentLookupTable[timecents - MIN_TIMECENT];
+    
+    /// <summary>Converts seconds to timecents.</summary>
+    /// <param name="seconds">The seconds value.</param>
+    /// <returns>The time in timecents.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static short SecondsToTimecents(double seconds)
+    {
+        if (seconds is <= 0 or double.NaN) return -12_000;
+
+        var timecents = 1_200.0 * Math.Log2(seconds);
+        return (short)Math.Clamp(
+            (long)Math.Round(timecents), -12_000, short.MaxValue);
+    }
     
     // Abs cent lookup table
     private const int MIN_ABS_CENT = -20_000; // FreqVibLfo
@@ -42,7 +55,7 @@ internal static class UnitConverter
     public const int MIN_CENTIBELS = -16_600; // -1660 dB
     private const int MAX_CENTIBELS = 16_000; //  1600 dB
     
-    public static readonly float[] CentibelLookupTable = new float[
+    internal static readonly float[] CentibelLookupTable = new float[
         MAX_CENTIBELS - MIN_CENTIBELS + 1];
 
     /// <summary>Converts centibel attenuation to gain</summary>
