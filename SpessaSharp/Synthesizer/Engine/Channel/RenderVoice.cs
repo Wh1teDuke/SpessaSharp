@@ -29,8 +29,9 @@ internal static class RenderVoice
             // Clamp to 0-1
             var realPan = (pan - MIN_PAN) / (float)PAN_RESOLUTION;
             var tableIndex = pan - MIN_PAN;
-            PanTableLeft[tableIndex] = float.Cos(HALF_PI * realPan);
-            PanTableRight[tableIndex] = float.Sin(HALF_PI * realPan);
+            var (sin, cos) = float.SinCos(HALF_PI * realPan);
+            PanTableLeft[tableIndex] = sin;
+            PanTableRight[tableIndex] = cos;
         }
     }
     
