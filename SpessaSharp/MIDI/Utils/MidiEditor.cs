@@ -604,7 +604,7 @@ public static class MidiEditor
                                         data.AsControllerChange!.Value;
 
                                     if (channelChange?.Controllers?
-                                            .ContainsKey(ccNum) is true)
+                                        .ContainsKey(cc) is true)
                                     {
                                         // This controller is locked, BEGONE CHANGE!
                                         DeleteParameter(chan);
