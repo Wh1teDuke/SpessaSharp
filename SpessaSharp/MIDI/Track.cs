@@ -30,7 +30,7 @@ public sealed class Track
         Name = track.Name;
         Port = track.Port;
         Channels.Or(track.Channels);
-        EventList.AddRange(track.EventList);
+        EventList.AddRange(track.EventList);// TODO: Depth array copy
     }
     
     /// <summary>Adds an event to the track.</summary>
