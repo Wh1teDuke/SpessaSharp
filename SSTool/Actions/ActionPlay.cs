@@ -43,7 +43,7 @@ public static class ActionPlay
         
         var player = new Player(
             sequencer,
-            bufferLen: TimeSpan.FromSeconds(.6));
+            bufferLen: TimeSpan.FromSeconds(.25));
 
         if (fileVst is { } fVst)
             LoadPlugin(fVst);
