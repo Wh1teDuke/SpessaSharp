@@ -300,7 +300,8 @@ public static class MidiEditor
 
         // To avoid messing with MidiMessage pointer, apply insertions at the end.
         // For events deletion, it is the last thing done and should be safe.
-        var toInsert = new List<(Track, MidiMessage, int)>();
+        var toInsert = new List<
+            (Track Track, MidiMessage Event, int EIndex)>();
 
         foreach (var entry in midi.Iterate())
         {
@@ -870,10 +871,22 @@ public static class MidiEditor
             Continue:;
             continue;
 
-            void DeleteThisEvent()
+            void DeleteThisEvent() =>
+                DeleteEvent(index, trackNum);
+
+            void DeleteEvent(int eventIndex, int trackIndex)
             {
-                track.DeleteEvent(index);
-                eventIndexes[trackNum]--;
+                var thisTrack = midi.Tracks[trackIndex];
+                thisTrack.DeleteEvent(eventIndex);
+                eventIndexes[trackIndex]--;
+                
+                // Fix to insert list
+                for (var i = 0; i < toInsert.Count; i++)
+                {
+                    var (track, ev, idx) = toInsert[i];
+                    if (track == thisTrack && idx > eventIndex)
+                        toInsert[i] = (track, ev, idx - 1);
+                }
             }
 
             void AddEventBefore(MidiMessage e) =>
@@ -927,8 +940,7 @@ public static class MidiEditor
                 if (!ch.ClearedParams.MSB) 
                 {
                     // Delete data MSB
-                    midi.Tracks[msb.Track].DeleteEvent(msb.Event);
-                    eventIndexes[msb.Track]--;
+                    DeleteEvent(msb.Event, msb.Track);
 
                     // Shift the LSB down if they are on the same track (very likely)
                     if (msb.Track == lsb.Track && msb.Event < lsb.Event)
@@ -938,8 +950,7 @@ public static class MidiEditor
                 if (!ch.ClearedParams.LSB) 
                 {
                     // Delete data LSB
-                    midi.Tracks[lsb.Track].DeleteEvent(lsb.Event);
-                    eventIndexes[lsb.Track]--;
+                    DeleteEvent(lsb.Event, lsb.Track);
                 }
 
                 p.ParamMSB = msb;
@@ -951,9 +962,19 @@ public static class MidiEditor
         }
         
         // Apply midi event insertion
-        foreach (var (track, e, index) in toInsert)
-            track.Add(e, index);
-        toInsert.Clear();
+        foreach (var trackGroup in toInsert.GroupBy(x => x.Track))
+        {
+            var trackTarget = trackGroup.Key;
+
+            foreach (var indexGroup in trackGroup
+                         .GroupBy(x => x.EIndex)
+                         .OrderByDescending(g => g.Key))
+            {
+                var eventsToInsert = indexGroup.Select(x => x.Event).ToList();
+                trackTarget.EventList.InsertRange(indexGroup.Key, eventsToInsert);
+            }
+        }
+
         // --------------------------
 
         // Check for reset and insert it to ensure that a reset always exists.
