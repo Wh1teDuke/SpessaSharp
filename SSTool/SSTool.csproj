@@ -31,7 +31,7 @@
         <PackageReference Include="OggVorbisEncoder" Version="1.2.2" />
         <PackageReference Include="OwnAudioVst" Version="1.6.3" />
         <PackageReference Include="SFML.Audio" Version="3.0.0" />
-        <PackageReference Include="System.CommandLine" Version="2.0.8" />
+        <PackageReference Include="System.CommandLine" Version="2.0.9" />
         <ProjectReference Include="..\SpessaSharp\SpessaSharp.csproj" />
 
         <EmbeddedResource Include="assets/GM.dls" />
