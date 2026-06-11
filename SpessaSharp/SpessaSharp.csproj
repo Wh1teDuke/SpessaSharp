@@ -7,6 +7,7 @@
         <Authors>WhiteDuke</Authors>
         <Description>SpessaSynth ported to C#</Description>
         <RepositoryUrl>https://github.com/Wh1teDuke/SpessaSharp</RepositoryUrl>
+        <PackageProjectUrl>https://wh1teduke.github.io/SpessaSharp/</PackageProjectUrl>
         <PackageIcon>spessasharp_logo_rounded.png</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>midi;rmidi;synthesizer;dls;soundfont;audio;spessasynth</PackageTags>
