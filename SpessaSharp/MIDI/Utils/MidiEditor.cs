@@ -815,7 +815,7 @@ public static class MidiEditor
                                     // No note-on yet. Then use it as relative!
                                     var newTune = 
                                         syxStatus.FineTune + cmp.Param.AsFloat;
-                                    syxStatus.CurrentKeyShift += (int)
+                                    syxStatus.CurrentKeyShift = (int)
                                         float.Truncate(newTune / 100);
                                     syxStatus.FineTune = newTune % 100;
 
