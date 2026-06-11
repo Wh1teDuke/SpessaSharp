@@ -1,12 +1,27 @@
-/* Update your main.css to target Zensical's layout variables and classes */
-:root {
-    --zs-color-primary: #449180; /* Changes theme color dynamically */
+/* Change the main background color of the top navbar */
+.navbar {
+    background-color: #449180 !important;
 }
 
-/* Ensure custom logo fits neatly */
-.zs-logo img {
-    height: 2rem;
+/* Force the top navigation dropdowns to scroll if they exceed the screen height */
+.navbar .dropdown-menu {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Ensure the custom logo fits perfectly inside the navbar */
+.navbar-brand img {
+    height: 2rem !important; /* Adjust this value up or down to scale your logo */
     width: auto;
-    border: 1px solid #000000;
-    border-radius: 3px;
+    object-fit: contain;
+    margin-right: 12px !important;
+
+    border: 1px solid #000000 !important;
+    border-radius: 3px !important;
+}
+
+/* Ensure the left sidebar/nav menu also scrolls cleanly if you have tons of items */
+.sidebar .nav {
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
 }
