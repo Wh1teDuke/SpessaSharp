@@ -270,22 +270,26 @@ public sealed class Midi
         _timeline = mid.Timeline.ToArray();
     }
     
+
     /// <summary>Converts MIDI ticks to time in seconds.</summary>
+    /// <param name="tempoChanges">The tempo changes in the sequence, ordered from the last change to the first.</param>
+    /// <param name="timeDivision">The time division of the sequence, representing the number of MIDI ticks per beat.</param>
     /// <param name="ticks">The time in MIDI ticks.</param>
     /// <returns>The time in seconds.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Zero tempo changes</exception>
     /// <exception cref="InvalidOperationException">Last tempo change is not at tick 0</exception>
-    public double MidiTicksToSeconds(int ticks)
+    public static double MidiTicksToSeconds(
+        List<TempoChange> tempoChanges, int timeDivision, int ticks)
     {
         // One is added automatically, but the user may have tampered with it
         ArgumentOutOfRangeException.ThrowIfZero(
-            TempoChanges.Count,
+            tempoChanges.Count,
             "There are no tempo changes in the sequence. At least one is needed.");
 
         // Sanity check
-        if (TempoChanges[^1].Ticks != 0) throw SpessaException.Invalid(
+        if (tempoChanges[^1].Ticks != 0) throw SpessaException.Invalid(
             $"The last tempo change is not at 0 ticks. Got {
-                TempoChanges[^1].Ticks} ticks.");
+                tempoChanges[^1].Ticks} ticks.");
         
         ticks = Math.Max(ticks, 0);
 
@@ -294,9 +298,9 @@ public sealed class Midi
         // (always at tick 0 and tempo 120)
         // Find the last tempo change that has occurred
         var tempoIndex = -1;
-        for (var i = 0; i < TempoChanges.Count; i++)
+        for (var i = 0; i < tempoChanges.Count; i++)
         {
-            if (TempoChanges[i].Ticks > ticks) continue;
+            if (tempoChanges[i].Ticks > ticks) continue;
             tempoIndex = i;
             break;
         }
@@ -304,18 +308,26 @@ public sealed class Midi
         Debug.Assert(tempoIndex != -1);
 
         var totalSeconds = 0d;
-        while (tempoIndex < TempoChanges.Count) 
+        while (tempoIndex < tempoChanges.Count) 
         {
-            var tempo = TempoChanges[tempoIndex++];
+            var tempo = tempoChanges[tempoIndex++];
             // Calculate the difference and tempo time
             var ticksSinceLastTempo = (double)ticks - tempo.Ticks;
             totalSeconds +=
-                (ticksSinceLastTempo * 60) / (tempo.Tempo * TimeDivision);
+                (ticksSinceLastTempo * 60) / (tempo.Tempo * timeDivision);
             ticks = tempo.Ticks;
         }
 
         return totalSeconds;
     }
+
+    /// <summary>Converts MIDI ticks to time in seconds.</summary>
+    /// <param name="ticks">The time in MIDI ticks.</param>
+    /// <returns>The time in seconds.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Zero tempo changes</exception>
+    /// <exception cref="InvalidOperationException">Last tempo change is not at tick 0</exception>
+    public double MidiTicksToSeconds(int ticks) =>
+        MidiTicksToSeconds(TempoChanges, TimeDivision, ticks);
 
     /// <summary>Converts seconds to time in MIDI ticks.</summary>
     /// <param name="seconds">The time in seconds.</param>
@@ -403,7 +415,7 @@ public sealed class Midi
     /// <param name="synth">synth</param>
     public void Preload(SpessaSharpProcessor synth) 
     {
-        Debug.WriteLine("Preloading samples ...");
+        SpessaLog.Info("Preloading samples ...");
 
         // Smart preloading: load only samples used in the midi!
         // TODO: This is not preloading everything for Bad Apple feat. nomico (s__msgs).mid
@@ -412,7 +424,7 @@ public sealed class Midi
 
         foreach (var (preset, combos) in used)
         {
-            Debug.WriteLine($"Preloading used samples on {preset.Name} ...");
+            SpessaLog.Info($"Preloading used samples on {preset.Name} ...");
             foreach (var (midiNote, velocity) in combos) 
                 synth.GetVoicesForPreset(preset, midiNote, velocity);
         }
@@ -618,7 +630,7 @@ public sealed class Midi
                 rawName = Encoding.GetEncoding(encoding).GetString(bName).Trim();
             } 
             catch (Exception error) 
-            { Debug.WriteLine($"[WARN] Failed to decode MIDI name: {error}"); }
+            { SpessaLog.Warn($"Failed to decode MIDI name: {error}"); }
         }
 
         return rawName ?? FileName;
@@ -729,7 +741,7 @@ public sealed class Midi
         } 
         catch (Exception error) 
         {
-            Debug.WriteLine($"[WARN] Failed to decode {infoType} name: {error}");
+            SpessaLog.Warn($"Failed to decode {infoType} name: {error}");
             return null;
         }
     }
@@ -860,7 +872,7 @@ public sealed class Midi
     /// <summary>Parses internal MIDI values</summary>
     private void ParseInternal()
     {
-        Debug.WriteLine("Interpreting MIDI events...");
+        SpessaLog.Info("Interpreting MIDI events...");
         
         /*
          * For karaoke files, text events starting with @T are considered titles,
@@ -960,7 +972,7 @@ public sealed class Midi
                                 // Check RMID
                                 if (IsDLSRMIDI && e.Data[1] != 0 && e.Data[1] != 127)
                                 {
-                                    Debug.WriteLine("DLS RMIDI with offset 1 detected!");
+                                    SpessaLog.Info("DLS RMIDI with offset 1 detected!");
                                     BankOffset = 1;
                                 }
                                 break;
@@ -985,7 +997,7 @@ public sealed class Midi
                     if (i != track.Events.Length - 1) 
                     {
                         track.DeleteEvent(i--);
-                        Debug.WriteLine("[WARN] Unexpected EndOfTrack. Removing");
+                        SpessaLog.Warn("Unexpected EndOfTrack. Removing");
                     }
                 }
                 else if (e.StatusByte.Is(MidiMessage.Type.TimeSignature))
@@ -1032,7 +1044,7 @@ public sealed class Midi
                         if (trimEventText.AsSpan().StartsWith("@KMIDI KARAOKE FILE"u8))
                         {
                             IsKaraokeFile = true;
-                            Debug.WriteLine("Karaoke MIDI detected!");
+                            SpessaLog.Info("Karaoke MIDI detected!");
                         }
 
                         if (IsKaraokeFile)
@@ -1056,7 +1068,7 @@ public sealed class Midi
                         if (checkedText.StartsWith("@KMIDI KARAOKE FILE"u8))
                         {
                             IsKaraokeFile = true;
-                            Debug.WriteLine("Karaoke MIDI detected!");
+                            SpessaLog.Info("Karaoke MIDI detected!");
                         }
                         else if (IsKaraokeFile)
                         {
@@ -1115,7 +1127,7 @@ public sealed class Midi
         
         // Reverse the tempo changes
         TempoChanges.Reverse();
-        Debug.WriteLine("Correcting loops, ports and detecting notes...");
+        SpessaLog.Info("Correcting loops, ports and detecting notes...");
 
         var fNoteOn = int.MaxValue;
         foreach (var track in Tracks)
@@ -1128,7 +1140,7 @@ public sealed class Midi
         
         FirstNoteOn = fNoteOn;
         
-        Debug.WriteLine($"First note-on detected at: {FirstNoteOn} ticks!");
+        SpessaLog.Info($"First note-on detected at: {FirstNoteOn} ticks!");
         
         // Loop detection
         loopStart ??= FirstNoteOn;
@@ -1141,7 +1153,7 @@ public sealed class Midi
         // Testcase: 7. Bad Apple!! (icebhm23230 - XG).mid
         LastVoiceEventTick = Math.Max(LastVoiceEventTick, Loop.End);
         
-        Debug.WriteLine($"Loop points: start: {Loop.Start} end: {Loop.End}");
+        SpessaLog.Info($"Loop points: start: {Loop.Start} end: {Loop.End}");
         
         // Determine ports
         var portOffset = 0;
@@ -1201,12 +1213,12 @@ public sealed class Midi
             PortChannelOffsetMap.Add(0);
         if (PortChannelOffsetMap.Count < 2) 
         {
-            Debug.WriteLine("No additional MIDI Ports detected.");
+            SpessaLog.Info("No additional MIDI Ports detected.");
         } 
         else 
         {
             IsMultiPort = true;
-            Debug.WriteLine("MIDI Ports detected!");
+            SpessaLog.Info("MIDI Ports detected!");
         }
         
         // MIDI name
@@ -1283,7 +1295,7 @@ public sealed class Midi
         if (_binaryName?.Count == 0)
             _binaryName = null;
         
-        Debug.WriteLine(
+        SpessaLog.Info(
             $"MIDI file parsed. Total tick time: {LastVoiceEventTick
             }, total seconds time: {
                 TimeSpan.FromSeconds(Math.Ceiling(_duration)).TotalSeconds}");
