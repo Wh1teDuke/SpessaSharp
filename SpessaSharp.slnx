@@ -25,6 +25,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Root/.github/">
+    <File Path=".github\workflows\docfx.yaml" />
     <File Path=".github\workflows\nuget-github.yaml" />
     <File Path=".github\workflows\nuget-nightly.yaml" />
     <File Path=".github\workflows\nuget.yaml" />
