@@ -40,7 +40,12 @@ public static class ActionPlay
 
         sequencer.LoadNewSongList([midi]);
 
-        Console.WriteLine($"'{midi.GetName()}' with '{sb.Info.Name}'");
+        var infoText = $"'{midi.GetName()}' with '{sb.Info.Name}'";
+        
+        if (gui == GuiMode.Full)
+            Console.WriteLine(infoText);
+        else
+            Console.Write(infoText);
         
         var player = new Player(
             sequencer,
@@ -49,16 +54,6 @@ public static class ActionPlay
         if (fileVst is { } fVst)
             LoadPlugin(fVst);
 
-        if (gui == GuiMode.None)
-        {
-            TriggerGC();
-            player.Play();
-            while (!player.Sequencer.IsFinished || player.VoiceCount > 0)
-                Thread.Sleep(100);
-            return;
-        }
-
-        Console.CursorVisible = false;
         var edInterval = Process<Synthesizer.InterpolationType>();
         var edReverb = Process<Macro.Reverb>();
         var edChorus = Process<Macro.Chorus>();
@@ -86,19 +81,34 @@ public static class ActionPlay
         var loop = true;
         var clear = false;
         var renderLines = 0;
+        
+        if (gui == GuiMode.Full)
+            Console.CursorVisible = false;
 
         while (loop)
         {
-            PrintInfo();
-            clear = true;
-            
+            switch (gui)
+            {
+                case GuiMode.None when
+                    player.Sequencer.IsFinished &&
+                    player.VoiceCount == 0:
+                    return;
+                case GuiMode.Full:
+                    PrintInfo();
+                    clear = true;
+                    break;
+                default:
+                    break;
+            }
+
             const float volInc = .2f;
             const float panInc = .1f;
             const float seekInc = 5f; // Seconds
 
             if (!Console.KeyAvailable)
             {
-                Thread.Sleep(250);
+                var sleepAmount = gui == GuiMode.Full ? 250 : 1;
+                Thread.Sleep(sleepAmount);
                 continue;
             }
                 
