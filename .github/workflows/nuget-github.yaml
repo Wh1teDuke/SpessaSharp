@@ -1,10 +1,9 @@
-name: Publish SpessaSharp NuGet to Github
+name: Publish SpessaSharp NuGet to Github Nightly
 
 on:
-  push:
-    branches: ["master"]
-    paths:
-      - 'SpessaSharp/**'
+  schedule:
+    # Runs at 00:00 UTC every day
+    - cron: '0 0 * * *'
 
   workflow_dispatch:
 
@@ -19,6 +18,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Check for changes
+        id: changes
+        uses: tj-actions/changed-files@v47.0.6
+        with:
+          files: SpessaSharp/**
+
+      - name: Exit if no changes
+        if: steps.changes.outputs.any_changed != 'true'
+        run: |
+          echo "No changes. Skipping nightly publish."
+          exit 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
