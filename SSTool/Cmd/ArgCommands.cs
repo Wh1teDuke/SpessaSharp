@@ -73,6 +73,13 @@ public static class ArgCommands
             Description = "VST3 plugin path",
             Required = false,
         };
+        
+        var oBufferLen = new Option<double>("--buffer")
+        {
+            Description = "Player's buffer length in seconds",
+            Required = false,
+            DefaultValueFactory = _ => .1,
+        };
 
         var oChanMute = new Option<int[]>("--mute")
         {
@@ -93,6 +100,7 @@ public static class ArgCommands
         cmd.Options.Add(oLoop);
         cmd.Options.Add(oGui);
         cmd.Options.Add(oVST);
+        cmd.Options.Add(oBufferLen);
         cmd.Options.Add(oChanMute);
         cmd.Options.Add(oChanEnable);
 
@@ -101,8 +109,14 @@ public static class ArgCommands
             var (midi, sb) = getFiles(pr);
             var vst = pr.GetValue(oVST);
             var gui = pr.GetValue(oGui);
-            ActionPlay.This(Setup, midi, sb, vst, gui);
 
+            ActionPlay.This(
+                Setup, 
+                midi, 
+                sb,
+                vst, 
+            TimeSpan.FromSeconds(pr.GetValue(oBufferLen)),
+                gui);
             return;
             void Setup(SpessaSharpSequencer seq)
             {

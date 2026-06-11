@@ -19,6 +19,7 @@ public static class ActionPlay
         FileInfo fileMidi,
         FileInfo? fileSoundBank,
         FileSystemInfo? fileVst,
+        TimeSpan bufferLen,
         GuiMode gui)
     {
         if (!fileMidi.Exists)
@@ -43,7 +44,7 @@ public static class ActionPlay
         
         var player = new Player(
             sequencer,
-            bufferLen: TimeSpan.FromSeconds(.25));
+            bufferLen: bufferLen);
 
         if (fileVst is { } fVst)
             LoadPlugin(fVst);
