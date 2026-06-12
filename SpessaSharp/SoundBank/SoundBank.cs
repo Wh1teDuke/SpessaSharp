@@ -181,7 +181,7 @@ public sealed class SoundBank(
         sample.Name             = "Saw";
         sample.OriginalKey      = 65;
         sample.PitchCorrection  = 20;
-        sample.LoopEnd          = samples - 1;
+        sample.LoopEnd          = samples;
         sample.SetAudioData(sampleData, 44_100);
         font.Samples.Add(sample);
 
@@ -204,7 +204,7 @@ public sealed class SoundBank(
 
         font.Presets.Add(preset);
 
-        font.Info = font.Info with { Name = "Dummy" };
+        font.Info = font.Info with { Name = "SpessaSynth Sample Sound Bank" };
         font.Flush();
         return font.WriteSF2();
     }

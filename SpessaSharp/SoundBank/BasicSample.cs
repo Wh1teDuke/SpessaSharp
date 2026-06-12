@@ -154,9 +154,9 @@ public class BasicSample
         } 
         catch (Exception error) 
         {
-            Debug.WriteLine(
+            SpessaLog.Warn(
                 $"Failed to compress {Name}, {error.Message
-                }. Leaving as uncompressed");
+                }. Leaving as uncompressed!");
             CompressedData = null;
         }
     }

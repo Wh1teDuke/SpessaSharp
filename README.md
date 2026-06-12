@@ -4,7 +4,7 @@
 
 [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> SpessaSharp command line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview)
 
-Last commit: [support analysis of channels 16 and above](https://github.com/spessasus/spessasynth_core/commit/6c7d386c15b84af6ac52af156322bbba5c6908f4)
+Last commit: [minor loop stuff fixes](https://github.com/spessasus/spessasynth_core/commit/056a143ce8fbd7f384244d0adb0e3db648d4be0b)
 
 ## Example
 
