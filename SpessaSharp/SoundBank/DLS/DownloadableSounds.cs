@@ -71,7 +71,7 @@ internal sealed class DownloadableSounds
 
     public static DownloadableSounds Load(Stream stream)
     {
-        Debug.WriteLine("Parsing DLS file ...");
+        SpessaLog.Info("Parsing DLS file ...");
         
         // Read the main chunk
         var headerBuff = new byte[12];
@@ -241,7 +241,7 @@ internal sealed class DownloadableSounds
         var instruments = DLSVerifier.VerifyAndReadList(
             instrumentListChunk, new RIFFChunk.DLSFourCC("lins"));
         
-        Debug.WriteLine("Loading instruments ...");
+        SpessaLog.Info("Loading instruments ...");
         
         if (instruments.Count != instrumentAmount)
             Debug.WriteLine(
@@ -263,7 +263,7 @@ internal sealed class DownloadableSounds
 
         if (aliasingChunkIndex != -1)
         {
-            Debug.WriteLine("Found the instrument aliasing chunk!");
+            SpessaLog.Info("Found the instrument aliasing chunk!");
 
             var pgalData = chunks[aliasingChunkIndex].Data;
 
@@ -443,15 +443,15 @@ internal sealed class DownloadableSounds
         var colh = RIFFChunk.Write(
             new RIFFChunk.FourCC("colh"), colhNum);
         
-        Debug.WriteLine("Writing instruments ...");
+        SpessaLog.Info("Writing instruments ...");
 
         var lins = RIFFChunk.WriteParts(
             new RIFFChunk.FourCC("lins"),
             Instruments.Select(i => i.Write()).ToArray(),
-            true);
+            false, true);
         
-        Debug.WriteLine("Success!");
-        Debug.WriteLine("Writing WAVE samples ...");
+        SpessaLog.Info("Success!");
+        SpessaLog.Info("Writing WAVE samples ...");
 
         var currentIndex = 0L;
         var ptblOffsets = new List<long>();
@@ -535,15 +535,15 @@ internal sealed class DownloadableSounds
             CollectionsMarshal.AsSpan(infos),
             true);
         
-        Debug.WriteLine("Combining everything ...");
+        SpessaLog.Info("Combining everything ...");
 
         RIFFChunk.WriteParts(
             new RIFFChunk.FourCC("RIFF"),
             [(ArraySegment<byte>)"DLS "u8.ToArray(), 
-                colh, lins, ptbl, samples, info], stream);
+                colh, lins, ptbl, samples, info], false, stream);
         
         stream.Flush();
-        Debug.WriteLine("Saved successfully!");
+        SpessaLog.Info("Saved successfully!");
         return;
 
         void WriteDLSInfo(RIFFChunk.FourCC type, string data) =>

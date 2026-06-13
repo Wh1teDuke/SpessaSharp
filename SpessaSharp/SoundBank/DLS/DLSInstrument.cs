@@ -163,14 +163,14 @@ internal sealed class DLSInstrument
 
     public ArraySegment<byte> Write()
     {
-        Debug.WriteLine($"Writing Preset '{Name}' ...");
+        SpessaLog.Info($"Writing Preset '{Name}' ...");
 
         var chunks = 
             new List<ArraySegment<byte>>([WriteHeader()]);
 
         var regionChunks = Regions.Select(r => r.Write()).ToArray();
         chunks.Add(RIFFChunk.WriteParts(
-            new RIFFChunk.FourCC("lrgn"), regionChunks, true));
+            new RIFFChunk.FourCC("lrgn"), regionChunks, false, true));
         
         // This will mostly be false as SF2 -> DLS can't have both global and local regions,
         // So it only has global, hence this check.
@@ -182,7 +182,8 @@ internal sealed class DLSInstrument
         chunks.Add(RIFFChunk.Write(new RIFFChunk.FourCC("INFO"), iname, false, true));
         
         return RIFFChunk.WriteParts(
-            new RIFFChunk.FourCC("ins "), CollectionsMarshal.AsSpan(chunks), true);
+            new RIFFChunk.FourCC("ins "), 
+            CollectionsMarshal.AsSpan(chunks), false, true);
     }
     
     /// <summary>Performs the full DLS to SF2 instrument conversion.</summary>

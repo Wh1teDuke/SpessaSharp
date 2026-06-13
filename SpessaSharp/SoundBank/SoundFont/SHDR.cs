@@ -5,7 +5,10 @@ namespace SpessaSharp.SoundBank.SoundFont;
 internal static class SHDR
 {
     public static ExtendedSF2Chunks Get(
-        SoundBank bank, List<uint> smplStartOffsets, List<uint> smplEndOffsets)
+        SoundBank bank,
+        List<uint> smplStartOffsets,
+        List<uint> smplEndOffsets,
+        bool rf64)
     {
         const int sampleLen = 46;
         var shdrSize = sampleLen * (bank.Samples.Count + 1); // +1 because EOP
@@ -78,8 +81,10 @@ internal static class SHDR
         Util.WriteBinaryString(ref shdrSeg, "EOS", sampleLen);
         Util.WriteBinaryString(ref xshdrSeg, "EOS", sampleLen);
 
-        var shdr = RIFFChunk.Write(new RIFFChunk.FourCC("shdr"), shdrData);
-        var xshdr = RIFFChunk.Write(new RIFFChunk.FourCC("shdr"), xshdrData);
+        var shdr = RIFFChunk.Write(
+            new RIFFChunk.FourCC("shdr"), shdrData, rf64);
+        var xshdr = RIFFChunk.Write(
+            new RIFFChunk.FourCC("shdr"), xshdrData, rf64);
 
         return new ExtendedSF2Chunks { pdta = shdr, xdta = xshdr, };
     }

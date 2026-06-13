@@ -57,40 +57,36 @@ public static class AudioUtil
         var infoChunk = ArraySegment<byte>.Empty;
         if (fullOptions.Metadata is { } infoOn)
         {
+            byte[] zeroByte = [0];
             var infoChunks = new List<ArraySegment<byte>>();
-            infoChunks.Add(RIFFChunk.Write(
+            infoChunks.Add(RIFFChunk.WriteParts(
                 new RIFFChunk.FourCC("ICMT"), 
-                "Created with SpessaSharp"u8,
-                true));
+                [Util.Utf8.GetBytes("Created with SpessaSharp"), zeroByte]));
             
             if (infoOn.Artist is {} artist)
-                infoChunks.Add(RIFFChunk.Write(
+                infoChunks.Add(RIFFChunk.WriteParts(
                     new RIFFChunk.FourCC("IART"), 
-                    Util.Utf8.GetBytes(artist),
-                    true));
+                    [Util.Utf8.GetBytes(artist), zeroByte]));
             
             if (infoOn.Album is {} album)
-                infoChunks.Add(RIFFChunk.Write(
+                infoChunks.Add(RIFFChunk.WriteParts(
                     new RIFFChunk.FourCC("IPRD"), 
-                    Util.Utf8.GetBytes(album),
-                    true));
+                    [Util.Utf8.GetBytes(album), zeroByte]));
             
             if (infoOn.Genre is {} genre)
-                infoChunks.Add(RIFFChunk.Write(
+                infoChunks.Add(RIFFChunk.WriteParts(
                     new RIFFChunk.FourCC("IGNR"), 
-                    Util.Utf8.GetBytes(genre),
-                    true));
+                    [Util.Utf8.GetBytes(genre), zeroByte]));
             
             if (infoOn.Title is {} title)
-                infoChunks.Add(RIFFChunk.Write(
+                infoChunks.Add(RIFFChunk.WriteParts(
                     new RIFFChunk.FourCC("INAM"), 
-                    Util.Utf8.GetBytes(title),
-                    true));
+                    [Util.Utf8.GetBytes(title), zeroByte]));
 
             infoChunk = RIFFChunk.WriteParts(
                 new RIFFChunk.FourCC("INFO"), 
                 CollectionsMarshal.AsSpan(infoChunks), 
-                true);
+                false, true);
         }
         
         // Prepare CUE chunk

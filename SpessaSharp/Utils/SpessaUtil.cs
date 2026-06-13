@@ -21,7 +21,7 @@ public static class SpessaUtil
         {
             "mid" or "midi" or "smf" or "kar"
                     => FileKind.Midi,
-            "sf" or "sf2" or "sf3" or "sfogg" or "dls" or "dlp"
+            "sf" or "sf2" or "sf3" or "sf4" or "sfogg" or "dls" or "dlp"
                     => FileKind.SoundBank,
             "rmi" or "xmf" or "mxmf"
                     => FileKind.EmbeddedMidi,

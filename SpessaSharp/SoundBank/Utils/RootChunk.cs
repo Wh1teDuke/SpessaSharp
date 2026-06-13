@@ -5,9 +5,10 @@ namespace SpessaSharp.SoundBank.Utils;
 // Util to handle RIFFChunks with large sdta chunks
 internal abstract class RootChunk
 {
-    public abstract RIFFChunk PeekRIFFChunk();
-    public abstract RIFFChunk ReadRIFFChunk();
+    public abstract RIFFChunk PeekRIFFChunk(bool rf64);
+    public abstract RIFFChunk ReadRIFFChunk(bool rf64);
     public abstract ArraySegment<byte> ReadString(int bytes);
+    public abstract ArraySegment<byte> PeekString(int bytes);
     public abstract RootChunk Slice(long? start = null, long? end = null);
     public abstract ArraySegment<byte> AsSegment();
 
@@ -17,21 +18,21 @@ internal abstract class RootChunk
 
     public sealed class Stream(FileStream stream) : RootChunk
     {
-        public override RIFFChunk PeekRIFFChunk() => 
+        public override RIFFChunk PeekRIFFChunk(bool rf64) => 
             new Segment(Slice(
                 stream.Position, 
-                stream.Position + 8, 
-                false)).PeekRIFFChunk();
+                stream.Position + (rf64 ? 12 : 8), 
+                false)).PeekRIFFChunk(rf64);
 
-        public override RIFFChunk ReadRIFFChunk()
+        public override RIFFChunk ReadRIFFChunk(bool rf64)
         {
-            var riff = PeekRIFFChunk();
+            var riff = PeekRIFFChunk(rf64);
             var size = riff.Size;
-            stream.Position -= 8;
+            stream.Position -= rf64 ? 12 : 8;
             return new Segment(Slice(
                 stream.Position, 
-                stream.Position + size + 8, 
-                false)).ReadRIFFChunk();
+                stream.Position + size + (rf64 ? 12 : 8), 
+                false)).ReadRIFFChunk(rf64);
         }
 
         public override ArraySegment<byte> ReadString(int bytes) => 
@@ -39,6 +40,12 @@ internal abstract class RootChunk
                     stream.Position, 
                     stream.Position + bytes, 
                     false)).ReadString(bytes);
+        
+        public override ArraySegment<byte> PeekString(int bytes) => 
+            new Segment(Slice(
+                stream.Position, 
+                stream.Position + bytes, 
+                false)).PeekString(bytes);
 
         public override RootChunk Slice(long? start = null, long? end = null)
         {
@@ -86,14 +93,17 @@ internal abstract class RootChunk
     {
         private ArraySegment<byte> _buffer = buffer;
 
-        public override RIFFChunk PeekRIFFChunk() => 
-            RIFFChunk.Read(ref _buffer, false);
+        public override RIFFChunk PeekRIFFChunk(bool rf64) => 
+            RIFFChunk.Read(ref _buffer, rf64, false);
 
-        public override RIFFChunk ReadRIFFChunk() =>
-            RIFFChunk.Read(ref _buffer);
+        public override RIFFChunk ReadRIFFChunk(bool rf64) =>
+            RIFFChunk.Read(ref _buffer, rf64, true);
 
         public override ArraySegment<byte> ReadString(int bytes) => 
             Util.ReadBinaryString(ref _buffer, bytes);
+        
+        public override ArraySegment<byte> PeekString(int bytes) => 
+            Util.ReadBinaryString(_buffer[.. bytes]);
 
         public override RootChunk Slice(long? start = null, long? end = null) =>
             new Segment(_buffer[

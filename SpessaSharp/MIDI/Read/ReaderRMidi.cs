@@ -34,7 +34,7 @@ internal static class ReaderRMidi
         while (binaryData.Count > 0)
         {
             var start = binaryData;
-            var currentChunk = RIFFChunk.Read(ref binaryData, true);
+            var currentChunk = RIFFChunk.Read(ref binaryData);
             var ccData = currentChunk.Data;
 
             if (currentChunk.Header == "RIFF")
@@ -42,11 +42,11 @@ internal static class ReaderRMidi
                 var type = Util.ReadBinaryString(ref ccData, 4);
                 if (Util.EqualsIgnoreCase(type, "sfbk", "sfpk", "dls "))
                 {
-                    Debug.WriteLine("Found embedded soundbank!");
+                    SpessaLog.Info("Found embedded soundbank!");
                     outputMIDI.EmbeddedSoundBank = start[..(8 + currentChunk.Size)];
                 }
                 else
-                    Debug.WriteLine($"Unknown RIFF chunk: '{Util.ToString(type)}'");
+                    SpessaLog.Info($"Unknown RIFF chunk: '{Util.ToString(type)}'");
 
                 if (Ascii.EqualsIgnoreCase(type, "dls "))
                 {
@@ -61,10 +61,10 @@ internal static class ReaderRMidi
                 var type = Util.ReadBinaryString(ref ccData, 4);
                 if (Ascii.Equals(type,"INFO"))
                 {
-                    Debug.WriteLine("Found RMIDI INFO chunk!");
+                    SpessaLog.Info("Found RMIDI INFO chunk!");
                     while (ccData.Count > 0)
                     {
-                        var infoChunk = RIFFChunk.Read(ref ccData, true);
+                        var infoChunk = RIFFChunk.Read(ref ccData);
                         var infoHeader = infoChunk.Header;
                         var infoData = infoChunk.Data;
 

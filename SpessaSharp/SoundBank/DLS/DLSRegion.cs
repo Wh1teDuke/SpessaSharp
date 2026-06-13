@@ -174,7 +174,8 @@ internal struct DLSRegion
             Articulation.Write(),
         ];
 
-        return RIFFChunk.WriteParts(new RIFFChunk.FourCC("rgn2"), chunks, true);
+        return RIFFChunk.WriteParts(
+            new RIFFChunk.FourCC("rgn2"), chunks, false, true);
     }
 
     public BasicInstrument.Zone ToSFZone(
