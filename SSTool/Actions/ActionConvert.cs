@@ -116,7 +116,7 @@ public static class ActionConvert
                     case "sf2" or "sf3":
                     {
                         var opt = SF2WriteOptions.Default;
-                        if (ex is "sf3") opt = opt with { Compress = true };
+                        if (ex is not "sf2") opt = opt with { Compress = true };
                     
                         sb.WriteSF2(fileInfo, opt);
                         break;
