@@ -18,17 +18,21 @@ public static class ArgCommands
     
     public static void Eval(string[] args)
     {
-        if (args.Length == 0) args = ["--help"];
-
         ReadOnlySpan<Func<Command>> cmdList = 
-            [Convert, Dump, Info, Play, Tour,];
+            [Play, Convert, Dump, Info, Tour,];
 
         var root = Root();
         foreach (var cmd in cmdList)
             root.Subcommands.Add(cmd());
         
-        var plResult = root.Parse(args);
+        if (args.Length == 0) 
+            args = ["--help"];
+        else if (!args[0].StartsWith('-') && !root.Subcommands
+                .SelectMany(c => new[] { c.Name }.Concat(c.Aliases))
+                .ToHashSet(StringComparer.OrdinalIgnoreCase).Contains(args[0]))
+            args = [root.Subcommands[0].Name, ..args];
 
+        var plResult = root.Parse(args);
         Environment.ExitCode = plResult.Invoke();
     }
 
