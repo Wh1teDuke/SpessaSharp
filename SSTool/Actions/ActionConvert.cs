@@ -108,7 +108,7 @@ public static class ActionConvert
                 }
                 
                 if (ex == "sf3")
-                    Console.WriteLine("[WARNING] At the time vorbis encoding is bugged");
+                    Etc.Warn("Vorbis encoding not supported");
 
                 var fileInfo = new FileInfo(outputName);
                 switch (ex)
@@ -116,7 +116,7 @@ public static class ActionConvert
                     case "sf2" or "sf3":
                     {
                         var opt = SF2WriteOptions.Default;
-                        if (ex is not "sf2") opt = opt with { Compress = true };
+                        //if (ex is not "sf2") opt = opt with { Compress = true };
                     
                         sb.WriteSF2(fileInfo, opt);
                         break;
