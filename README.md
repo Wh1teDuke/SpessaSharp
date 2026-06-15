@@ -2,7 +2,7 @@
 
 **SpessaSharp** is a C# port of the multipurpose SF2/DLS/MIDI JavaScript library [**SpessaSynth**](https://github.com/spessasus/spessasynth_core) by [**Spessasus**](https://github.com/spessasus).
 
-<img src='https://spessasus.github.io/spessasynth_core/assets/favicon.png' height="16" style="height: 16px; vertical-align: sub"></img> Last commit: [minor loop stuff fixes](https://github.com/spessasus/spessasynth_core/commit/056a143ce8fbd7f384244d0adb0e3db648d4be0b) | [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> Command-line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview)
+[<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> Command-line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview) | <img src='https://spessasus.github.io/spessasynth_core/assets/favicon.png' height="16" style="height: 16px; vertical-align: sub"></img> Last commit: [minor loop stuff fixes](https://github.com/spessasus/spessasynth_core/commit/056a143ce8fbd7f384244d0adb0e3db648d4be0b)
 
 ## Example
 
