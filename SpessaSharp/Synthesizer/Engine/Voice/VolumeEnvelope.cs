@@ -60,6 +60,10 @@ public struct VolumeEnvelope
     /// </summary>
     private readonly int _updateInterval;
     
+    private float _invAttackDuration;
+    private float _invDecayDuration;
+    private float _invReleaseDuration;
+    
     /// <summary>
     /// If sustain stage is silent, then we can turn off the voice when it is silent. We can't do that with modulated as it can silence the volume and then raise it again, and the voice must keep playing.
     /// </summary>
@@ -167,6 +171,8 @@ public struct VolumeEnvelope
         // (changing from release start to -100dB instead of from peak to -100dB)
         var releaseFraction = (CB_SILENCE - _releaseStartCb) / CB_SILENCE;
         _releaseDuration = (int)(_releaseDuration * releaseFraction);
+        _invReleaseDuration = _releaseDuration > 0 ? 1f / _releaseDuration : 0f;
+        
         // Voice may be off instantly
         // Testcase: mono mode
         return _releaseStartCb >= PERCEIVED_CB_SILENCE;
@@ -204,6 +210,9 @@ public struct VolumeEnvelope
         _decayDuration = (int)(TimecentsToSamples(
             voice.GetModulatedGenerator(Generator.Type.DecayVolEnv) +
             keyNumAddition) * fraction);
+        
+        _invAttackDuration = _attackDuration > 0 ? 1f / _attackDuration : 0f;
+        _invDecayDuration  = _decayDuration  > 0 ? 1f / _decayDuration  : 0f;
         
         // Calculate absolute end times for the values
         _delayEnd = TimecentsToSamples(
@@ -247,9 +256,8 @@ public struct VolumeEnvelope
             var cbDifference = CB_SILENCE - _releaseStartCb;
 
             // Linearly ramp down decibels
-            AttenuationCb =
-                (elapsedRelease / (float)_releaseDuration) * cbDifference +
-                _releaseStartCb;
+            AttenuationCb = 
+                elapsedRelease * _invReleaseDuration * cbDifference + _releaseStartCb;
             OutputGain =
                 UnitConverter.CentibelLookupTable[
                     (int)(AttenuationCb - UnitConverter.MIN_CENTIBELS)
@@ -279,8 +287,7 @@ public struct VolumeEnvelope
                     // Set current attenuation to peak as its invalid during this phase
                     AttenuationCb = 0;
                     // Special case: linear gain ramp instead of linear db ramp
-                    var linearGain =
-                        1 - (_attackEnd - sampleTime) / (float)_attackDuration;
+                    var linearGain = 1f - (_attackEnd - sampleTime) * _invAttackDuration;
                     OutputGain = linearGain * gainTarget;
                     return true;
                 }
@@ -306,9 +313,7 @@ public struct VolumeEnvelope
                 if (sampleTime < _decayEnd) 
                 {
                     // Linear centibel ramp down to sustain
-                    AttenuationCb =
-                        (1 - (_decayEnd - sampleTime) / (float)_decayDuration) *
-                        _sustainCb;
+                    AttenuationCb = (1f - (_decayEnd - sampleTime) * _invDecayDuration) * _sustainCb;
                     OutputGain =
                         gainTarget *
                         UnitConverter.CentibelLookupTable[(int)(

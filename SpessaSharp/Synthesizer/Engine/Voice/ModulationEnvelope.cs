@@ -14,13 +14,14 @@ public struct ModulationEnvelope()
 
     static ModulationEnvelope()
     {
+        var len = (float)CONVEX_ATTACK.Length;
         for (var i = 0; i < CONVEX_ATTACK.Length; i++) 
         {
             // This makes the db linear (I think)
             CONVEX_ATTACK[i] = ModulatorCurve.GetValue(
                 0,
                 ModulatorCurve.Type.Convex,
-                i / 1_000f);
+                i / len);
         }
     }
     
@@ -48,6 +49,10 @@ public struct ModulationEnvelope()
     private bool _enteredRelease = false;
     /// <summary>Decay phase end time in seconds, absolute (audio context time).</summary>
     private float _decayEnd = 0;
+    
+    private float _invAttackDuration;
+    private float _invDecayDuration;
+    private float _invReleaseDuration;
 
     /// <summary>
     /// Calculates the current modulation envelope value for the given time and voice.
@@ -63,11 +68,9 @@ public struct ModulationEnvelope()
             // Start level will be 0 that will result in divide by zero
             if (_releaseStartLevel == 0) return 0;
 
-            return float.Max(
-                0,
-                (1 -
-                (currentTime - voice.ReleaseStartTime) /
-                 _releaseDuration) * _releaseStartLevel);
+            return float.Max(0, 
+                (1f - (currentTime - voice.ReleaseStartTime) * _invReleaseDuration)
+                * _releaseStartLevel);
         }
         
         if (currentTime < _delayEnd)
@@ -75,10 +78,9 @@ public struct ModulationEnvelope()
         else if (currentTime < _attackEnd) 
         {
             // Modulation envelope uses convex curve for attack
-            _currentValue =
-                CONVEX_ATTACK[Math.Clamp((int)((1 - 
-                    (_attackEnd - currentTime) /
-                    _attackDuration) * 1_000), 0, CONVEX_ATTACK.Length - 1)];
+            _currentValue = CONVEX_ATTACK[Math.Clamp(
+                (int)((1f - (_attackEnd - currentTime) * 
+                    _invAttackDuration) * CONVEX_ATTACK.Length), 0, CONVEX_ATTACK.Length - 1)];
         }
         else if (currentTime < _holdEnd)
             // Hold: stay at 1
@@ -86,9 +88,8 @@ public struct ModulationEnvelope()
         else if (currentTime < _decayEnd) 
         {
             // Decay: linear ramp from 1 to sustain level
-            _currentValue =
-                (1f - (_decayEnd - currentTime) / _decayDuration) *
-                (_sustainLevel - MODENV_PEAK) + MODENV_PEAK;
+            _currentValue = (1f - (_decayEnd - currentTime) * _invDecayDuration)
+                * (_sustainLevel - MODENV_PEAK) + MODENV_PEAK;
         } 
         else
             // Sustain: stay at sustain level
@@ -111,6 +112,7 @@ public struct ModulationEnvelope()
         // Release time is from the full level to 0%
         // To get the actual time, multiply by the release start level
         _releaseDuration = releaseTime * _releaseStartLevel;
+        _invReleaseDuration = _releaseDuration > 0 ? 1f / _releaseDuration : 0f;
     }
     
     /// <summary> Initializes the modulation envelope. </summary>
@@ -136,6 +138,9 @@ public struct ModulationEnvelope()
         // Calculate the time to reach actual sustain level,
         // For example, sustain 0.6 will be 0.4 of the decay time
         _decayDuration = decayTime * (1 - _sustainLevel);
+        
+        _invAttackDuration = _attackDuration > 0 ? 1f / _attackDuration : 0f;
+        _invDecayDuration  = _decayDuration  > 0 ? 1f / _decayDuration  : 0f;
 
         var holdKeyExcursionCents =
             (60 - voice.TargetKey) *

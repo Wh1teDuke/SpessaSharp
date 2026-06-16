@@ -52,6 +52,8 @@ public struct LowpassFilter
     /// Maximum cutoff frequency in Hz. This is used to prevent aliasing and ensure the filter operates within the valid frequency range.
     /// </summary>
     private readonly float _maxCutoff;
+    
+    private readonly float _twoPiOverSampleRate;
 
     /// <summary>Initializes a new instance of the filter.</summary>
     /// <param name="sampleRate">The sample rate of the audio engine in Hz.</param>
@@ -59,6 +61,7 @@ public struct LowpassFilter
     {
         _sampleRate = sampleRate;
         _maxCutoff = _sampleRate * .45f;
+        _twoPiOverSampleRate = 2f * MathF.PI / sampleRate;
     }
 
     public void Init()
@@ -101,7 +104,7 @@ public struct LowpassFilter
         var qGain = float.ReciprocalSqrtEstimate(
             UnitConverter.CbAttenuationToGain(-qCb));
 
-        var w = (2 * MathF.PI * cutoffHz) / _sampleRate;
+        var w = _twoPiOverSampleRate * cutoffHz;
         var (sinw, cosw) = float.SinCos(w);
         var alpha = sinw / (2 * resonanceGain);
 
