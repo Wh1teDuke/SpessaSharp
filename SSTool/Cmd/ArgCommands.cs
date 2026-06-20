@@ -62,6 +62,12 @@ public static class ArgCommands
 
         var getFiles = MidiMaybeSoundBank(cmd);
         var setRes = AddMasterParameterOptions(cmd);
+
+        var oSampleRate = new Option<int>("--sample-rate")
+        {
+            Description = "Sample rate in Hertz",
+            DefaultValueFactory = _ => 44_100,
+        };
         
         var oLoop = new Option<bool>("--loop", "-l")
         { Description = "Loop the midi", };
@@ -101,6 +107,7 @@ public static class ArgCommands
             AllowMultipleArgumentsPerToken = true,
         };
         
+        cmd.Options.Add(oSampleRate);
         cmd.Options.Add(oLoop);
         cmd.Options.Add(oGui);
         cmd.Options.Add(oVST);
@@ -113,12 +120,14 @@ public static class ArgCommands
             var (midi, sb) = getFiles(pr);
             var vst = pr.GetValue(oVST);
             var gui = pr.GetValue(oGui);
+            var sampleRate = pr.GetValue(oSampleRate);
 
             ActionPlay.This(
                 Setup, 
                 midi, 
                 sb,
                 vst, 
+                sampleRate,
             TimeSpan.FromSeconds(pr.GetValue(oBufferLen)),
                 gui);
             return;
