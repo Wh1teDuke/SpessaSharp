@@ -72,6 +72,8 @@ public sealed class Midi
     {
         ///<summary>New tempo in BPM.</summary>
         public double Tempo => 60_000_000d / MPQN;
+        ///<summary>Convert bmp to MPQN</summary>
+        public static double ToMPQN(int bpm) => 60_000_000d / bpm;
     }
 
     /// <param name="Ticks">MIDI ticks of the change, absolute value from the start of the MIDI file.</param>
@@ -120,7 +122,7 @@ public sealed class Midi
     /// Each change is represented by an object with a MIDI tick position and a tempo value in beats per minute.
     /// </summary>
     public readonly List<TempoChange> TempoChanges = [
-        new (0, 500_000)];
+        new (0, (int)TempoChange.ToMPQN(120))];
     
     /// <summary>
     /// The time signature changes in the sequence.
@@ -884,7 +886,7 @@ public sealed class Midi
         // Reset values
         // https://github.com/spessasus/spessasynth_core/issues/20
         TempoChanges.Clear();
-        TempoChanges.Add(new TempoChange(0, 500_000));
+        TempoChanges.Add(new TempoChange(0, (int)TempoChange.ToMPQN(120)));
         TimeSignatureChanges.Clear();
         TimeSignatureChanges.Add(new TimeSignatureChange(0, (4, 2)));
         ExtraMetadata.Clear();
