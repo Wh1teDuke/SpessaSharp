@@ -279,11 +279,11 @@ public sealed class Midi
     /// <exception cref="ArgumentOutOfRangeException">Zero tempo changes</exception>
     /// <exception cref="InvalidOperationException">Last tempo change is not at tick 0</exception>
     public static double MidiTicksToSeconds(
-        List<TempoChange> tempoChanges, int timeDivision, int ticks)
+        ReadOnlySpan<TempoChange> tempoChanges, int timeDivision, int ticks)
     {
         // One is added automatically, but the user may have tampered with it
         ArgumentOutOfRangeException.ThrowIfZero(
-            tempoChanges.Count,
+            tempoChanges.Length,
             "There are no tempo changes in the sequence. At least one is needed.");
 
         // Sanity check
@@ -298,7 +298,7 @@ public sealed class Midi
         // (always at tick 0 and tempo 120)
         // Find the last tempo change that has occurred
         var tempoIndex = -1;
-        for (var i = 0; i < tempoChanges.Count; i++)
+        for (var i = 0; i < tempoChanges.Length; i++)
         {
             if (tempoChanges[i].Ticks > ticks) continue;
             tempoIndex = i;
@@ -308,7 +308,7 @@ public sealed class Midi
         Debug.Assert(tempoIndex != -1);
 
         var totalSeconds = 0d;
-        while (tempoIndex < tempoChanges.Count) 
+        while (tempoIndex < tempoChanges.Length) 
         {
             var tempo = tempoChanges[tempoIndex++];
             // Calculate the difference and tempo time
@@ -327,7 +327,8 @@ public sealed class Midi
     /// <exception cref="ArgumentOutOfRangeException">Zero tempo changes</exception>
     /// <exception cref="InvalidOperationException">Last tempo change is not at tick 0</exception>
     public double MidiTicksToSeconds(int ticks) =>
-        MidiTicksToSeconds(TempoChanges, TimeDivision, ticks);
+        MidiTicksToSeconds(
+            CollectionsMarshal.AsSpan(TempoChanges), TimeDivision, ticks);
 
     /// <summary>Converts seconds to time in MIDI ticks.</summary>
     /// <param name="seconds">The time in seconds.</param>
