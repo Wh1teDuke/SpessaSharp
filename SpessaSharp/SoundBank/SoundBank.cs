@@ -129,7 +129,7 @@ public sealed class SoundBank(
     /// <returns>The loaded sound bank, a BasicSoundBank instance.</returns>
     public static SoundBank From(FileStream stream)
     {
-        if (stream.Length <= int.MaxValue)
+        if (stream.Length < int.MaxValue)
             using (var reader = new BinaryReader(stream))
                 return From(reader.ReadBytes((int)stream.Length));
 

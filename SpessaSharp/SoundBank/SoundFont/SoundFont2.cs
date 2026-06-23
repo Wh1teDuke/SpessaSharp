@@ -23,7 +23,7 @@ internal static class SoundFont2
         if (rf64) SpessaLog.Info("RIFF64 Detected!");
 
         // Read the main chunk (don't verify as we just did)
-        /*discard*/buffer.PeekRIFFChunk(rf64);
+        _ = buffer.PeekRIFFChunk(rf64);
         
         var type = buffer.ReadString(4);
         VerifyTexts(type, "sfbk", "sfpk", "sfen");

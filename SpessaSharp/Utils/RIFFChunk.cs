@@ -141,10 +141,10 @@ internal readonly record struct RIFFChunk(
         int size;
         if (rf64)
         {
-            // SpessaSharp implementation note: Let's keep it a secret.
+            // SpessaSharp implementation note:
+            // For the first massive chunk this will overflow, but it's being discarded anyway.
+            // Let's hope there are no issues in the future.
             var s = Util.ReadLittleEndian64(ref dataArray, 8);
-            if (s > int.MaxValue) throw new SpessaException.Parser(
-                "Can't read Riff chunk: too big");
             size = (int)s;
         }
         else

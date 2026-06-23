@@ -45,7 +45,7 @@ internal abstract class RootChunk
             new Segment(Slice(
                 stream.Position, 
                 stream.Position + bytes, 
-                false)).PeekString(bytes);
+                true)).PeekString(bytes);
 
         public override RootChunk Slice(long? start = null, long? end = null)
         {
