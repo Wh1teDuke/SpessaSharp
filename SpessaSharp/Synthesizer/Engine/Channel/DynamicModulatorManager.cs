@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
+using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;
 
@@ -64,19 +65,18 @@ public sealed class DynamicModulatorManager(int channel)
         switch (addr3 & 0x0f)
         {
             case 0x00:
+                var v = Math.Clamp(centeredValue, -24, +24);
                 // Pitch Control
                 SetModulator(
                     source,
                     isCC,
                     Generator.Type.FineTune,
-                    (short)(centeredValue * 100),
+                    (short)(v * 100),
                     bipolar);
 
-                Logging(
-                    channel,
-                    centeredValue,
-                    sourceName,
-                    " pitch control",
+                SpessaLog.CoolInfo(
+                    $"Channel {channel} {sourceName} pitch control",
+                    v,
                     "semitones");
                 break;
             
