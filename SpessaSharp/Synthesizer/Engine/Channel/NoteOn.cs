@@ -40,12 +40,11 @@ internal static class NoteOn
             // Or channel has no preset ...
             chan.Preset == null)
             return;
-
-        var transformed =
-            velocity * (chan.MidiParameters.VelocitySenseDepth / 64f) +
-            (chan.MidiParameters.VelocitySenseOffset - 64) * 2;
         
         // Apply Velocity Sense and clamp
+        var transformed =
+            float.Floor(velocity * (chan.MidiParameters.VelocitySenseDepth / 64f) +
+             (chan.MidiParameters.VelocitySenseOffset - 64) * 2);
         var realVelocity = (int)Math.Clamp(transformed, 0, 127);
 
         // Note which we should grab presets from (strictly internal)
