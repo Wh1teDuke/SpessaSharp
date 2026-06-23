@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using SpessaSharp.MIDI;
-using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;

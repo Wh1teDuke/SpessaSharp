@@ -617,9 +617,10 @@ public sealed class BasicPreset
     /// <summary>Writes the SF2 header</summary>
     /// <param name="phdrData"></param>
     /// <param name="index"></param>
-    public void Write(ExtendedSF2Chunks phdrData, int index) 
+    /// <param name="writeLSB"></param>
+    internal void Write(ExtendedSF2Chunks phdrData, int index, bool writeLSB) 
     {
-        Debug.WriteLine($"Writing Preset '{Name}' ...");
+        SpessaLog.Info($"Writing Preset '{Name}' ...");
         
         // Split up the name
         Util.WriteBinaryString(ref phdrData.pdta, 
@@ -629,15 +630,27 @@ public sealed class BasicPreset
 
         Util.WriteWord(ref phdrData.pdta, (short)Program);
         var wBank = BankMSB;
-        if (IsGMGSDrum) 
+        if (writeLSB)
         {
-            // Drum flag
-            wBank = 0x80;
-        } 
-        else if (BankMSB == 0) 
+            wBank = (BankMSB & 0x7f) | ((BankLSB & 0x7f) << 8);
+            if (IsGMGSDrum) 
+            {
+                // Drum flag
+                wBank |= 0x80;
+            }
+        }
+        else
         {
-            // If bank MSB is zero, write bank LSB (XG)
-            wBank = BankLSB;
+            if (IsGMGSDrum)
+            {
+                // Drum flag
+                wBank = 0x80;
+            }
+            else if (BankMSB == 0)
+            {
+                // If bank MSB is zero, write bank LSB (XG)
+                wBank = BankLSB;
+            }
         }
         Util.WriteWord(ref phdrData.pdta, (short)wBank);
         // Skip wBank and wProgram

@@ -78,7 +78,7 @@ public static class ActionConvert
                 break;
             }
 
-            case var ex and ("sf2" or "sf3" or "dls"):
+            case var ex and ("sf2" or "sf3" or "sf4" or "dls"):
             {
                 SoundBank? sb = null;
                 var file = inputFile;
@@ -113,12 +113,17 @@ public static class ActionConvert
                 var fileInfo = new FileInfo(outputName);
                 switch (ex)
                 {
-                    case "sf2" or "sf3":
+                    case "sf2" or "sf3" or "sf4":
                     {
                         var opt = SF2WriteOptions.Default;
                         //if (ex is not "sf2") opt = opt with { Compress = true };
                     
-                        sb.WriteSF2(fileInfo, opt);
+                        if (ex is "sf4") 
+                            sb.WriteSFE(
+                                fileInfo,
+                                SFEWriteOptions.Default with { Base = opt });
+                        else 
+                            sb.WriteSF2(fileInfo, opt);
                         break;
                     }
                     

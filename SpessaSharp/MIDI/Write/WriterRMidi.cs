@@ -145,7 +145,7 @@ public static class WriterRMidi
             new RIFFChunk.FourCC("RIFF"), [
             Util.GetStringBytes("RMID"),
             RIFFChunk.Write(new RIFFChunk.FourCC("data"), newMid),
-            RIFFChunk.WriteParts(new RIFFChunk.FourCC("INFO"), infoSpan, true),
+            RIFFChunk.WriteParts(new RIFFChunk.FourCC("INFO"), infoSpan, false, true),
             soundBank]);
         
         void WriteInfo(RIFFChunk.FourCC type, ArraySegment<byte> data) =>

@@ -37,8 +37,12 @@ namespace SpessaSharp.Utils;
 /// <param name="Header">The chunks FourCC code.</param>
 /// <param name="Size">Chunk's size, in bytes.</param>
 /// <param name="Data">Chunk's binary data. Note that this will have a length of 0 if "readData" was set to false.</param>
+/// <param name="HeaderSize">The size of the chunk's header in bytes. This varies for 32-bit and 64-bit RIFF chunks.</param>
 internal readonly record struct RIFFChunk(
-    RIFFChunk.FourCC Header, int Size, ArraySegment<byte> Data)
+    RIFFChunk.FourCC Header,
+    int Size,
+    ArraySegment<byte> Data,
+    int HeaderSize = 8)
 {
     public readonly record struct FourCC(string Str)
     {
@@ -48,7 +52,7 @@ internal readonly record struct RIFFChunk(
             DLSInfo, DLSChunk, RMIDInfo,
         }
         
-        public static readonly Type[] Types = Enum.GetValues<Type>();
+        private static readonly Type[] Types = Enum.GetValues<Type>();
 
         public new Type? GetType()
         {
@@ -59,7 +63,7 @@ internal readonly record struct RIFFChunk(
 
         public bool Is(Type t) => t switch
         {
-            Type.GenericRIFF => Str is "RIFF" or "LIST" or "INFO",
+            Type.GenericRIFF => Str is "RIFF" or "RIFS" or "LIST" or "INFO",
             Type.WAV => Str is "wave" or "cue " or "fmt ",
             Type.SoundBankInfo => Str is "name" or "version" or "creationDate"
                 or "soundEngine" or "engineer" or "product" or "copyright" or "comment"
@@ -117,26 +121,37 @@ internal readonly record struct RIFFChunk(
     
     /// <summary> Reads a RIFF chunk from an array. </summary>
     /// <param name="dataArray">The array to read from.</param>
+    /// <param name="rf64">If the chunk uses a 64-bit size.</param>
     /// <param name="readData">If the data should be read as well.</param>
-    /// <param name="forceShift">If the index should be shifted to the end of the chunk even if the data has not been read.</param>
     /// <returns></returns>
     public static RIFFChunk Read(
         ref ArraySegment<byte> dataArray,
-        bool readData = true,
-        bool forceShift = false)
+        bool rf64 = false,
+        bool readData = true)
     {
         if (dataArray.Count < 8)
         {
-            dataArray = ArraySegment<byte>.Empty;
-            return new RIFFChunk(new FourCC(""), 0, Array.Empty<byte>());
+            dataArray = [];
+            return new RIFFChunk(new FourCC(""), 0, dataArray);
         }
         
         var header = new FourCC(Util.ToString(
             Util.ReadBinaryString(ref dataArray, 4)));
-        var size = Util.ReadLittleEndian(ref dataArray, 4);
+
+        int size;
+        if (rf64)
+        {
+            // SpessaSharp implementation note:
+            // For the first massive chunk this will overflow, but it's being discarded anyway.
+            // Let's hope there are no issues in the future.
+            var s = Util.ReadLittleEndian64(ref dataArray, 8);
+            size = (int)s;
+        }
+        else
+            size = Util.ReadLittleEndian(ref dataArray, 4);
         
         // Not all RIFF files are compliant
-        if (header.Str == "")
+        if (header.Str.IsWhiteSpace())
         {
             // Safeguard against evil DLS files
             // The test case: CrysDLS v1.23.dls
@@ -144,40 +159,38 @@ internal readonly record struct RIFFChunk(
             size = 0;
         }
 
-        var chunkData = readData
-            ? dataArray[..size] : ArraySegment<byte>.Empty;
+        var chunkData = readData ? dataArray[..size] : [];
 
-        if (readData || forceShift)
+        if (readData)
         {
             dataArray = dataArray[size..];
             if (size % 2 != 0) dataArray = dataArray[1..];
         }
         
-        return new RIFFChunk(header, size, chunkData);
+        return new RIFFChunk(header, size, chunkData, rf64 ? 12 : 8);
     }
 
-    /// <summary> Writes a RIFF chunk correctly </summary>
-    /// <param name="header">Header fourCC</param>
+    /// <summary>Writes a RIFF chunk correctly</summary>
+    /// <param name="header">The fourCC code of the header.</param>
     /// <param name="data">Chunk data</param>
-    /// <param name="addZeroByte">Add a zero byte into the chunk size</param>
+    /// <param name="rf64">If the chunk uses a 64-bit size.</param>
     /// <param name="isList">Adds "LIST" as the chunk type and writes the actual type at the start of the data</param>
     /// <returns>The binary data</returns>
     /// <exception cref="Exception"></exception>
     public static ArraySegment<byte> Write(
         FourCC header,
         ReadOnlySpan<byte> data,
-        bool addZeroByte = false,
+        bool rf64 = false,
         bool isList = false)
     {
         if (header.Str.Length != 4)
             throw new ArgumentException(
                 $"Invalid header length: {header.Str.Length}");
 
-        var dataStartOffset = 8;
+        // FourCC + 8 bytes for 64-bit size
+        var dataStartOffset = rf64 ? 12 : 8;
         var headerWritten = header.Str;
         var dataLen = data.Length;
-        if (addZeroByte) dataLen++;
-
         var writtenSize = dataLen;
         if (isList)
         {
@@ -198,9 +211,11 @@ internal readonly record struct RIFFChunk(
         var outSeg = (ArraySegment<byte>)outArray;
         // FourCC ("RIFF", "LIST", "pdta" etc.)
         Util.WriteBinaryString(ref outSeg, headerWritten);
+
         // Chunk size
         Debug.Assert(writtenSize > 0);
-        Util.WriteDword(ref outSeg, writtenSize);
+        if (rf64) Util.WriteQword(ref outSeg, writtenSize);
+        else Util.WriteDword(ref outSeg, writtenSize);
         if (isList)
         {
             // List type (e.g. "INFO")
@@ -215,13 +230,16 @@ internal readonly record struct RIFFChunk(
     /// <param name="header">The fourCC code of the header.</param>
     /// <param name="chunks">Binary chunk data parts, will be combined in order.</param>
     /// <param name="isList">If a "LIST" should be set as the chunk type and the actual type should be written at the start of the data.</param>
+    /// <param name="rf64">If the chunk uses a 64-bit size.</param>
     /// <returns>The binary data</returns>
     public static ArraySegment<byte> WriteParts(
         FourCC header,
         ReadOnlySpan<ArraySegment<byte>> chunks,
+        bool rf64 = false,
         bool isList = false)
     {
-        var dataOffset = 8;
+        // FourCC + 8 bytes for 64-bit size
+        var dataOffset = rf64 ? 12 : 8;
         var headerWritten = header.Str;
         var dataLen = Util.Sum(chunks, s => s.Count);
         var writtenSize = dataLen;
@@ -248,7 +266,8 @@ internal readonly record struct RIFFChunk(
         Util.WriteBinaryString(ref outSeg, headerWritten);
         
         // Chunk size
-        Util.WriteDword(ref outSeg, writtenSize);
+        if (rf64) Util.WriteQword(ref outSeg, writtenSize);
+        else Util.WriteDword(ref outSeg, writtenSize);
         if (isList)
         {
             // List type (e.g. "INFO")
@@ -265,13 +284,15 @@ internal readonly record struct RIFFChunk(
         return outArray;
     }
     
+    /// <summary>'GetParts' + 'WriteParts'</summary>
     internal static void WriteParts(
         FourCC header,
         ReadOnlySpan<
             object/*ArraySegment<byte>|List<ArraySegment<byte>>*/> chunks,
+        bool rf64,
         Stream stream)
     {
-        var dataOffset = 8L;
+        var dataOffset = rf64 ? 12L : 8L;
         var headerWritten = header.Str;
         var dataLen = 0L;
 
@@ -286,7 +307,7 @@ internal readonly record struct RIFFChunk(
             };
         }
 
-        var writtenSize = checked((uint)dataLen);
+        var writtenSize = checked((uint)dataLen);// TODO
         var finalSize = dataOffset + dataLen;
 
         if (finalSize % 2 != 0)
@@ -295,14 +316,15 @@ internal readonly record struct RIFFChunk(
             finalSize++;
         }
 
-        var headerBytes = new byte[8];
+        var headerBytes = new byte[rf64 ? 12 : 8];
         var headerSeg = (ArraySegment<byte>)headerBytes;
         
         // FourCC ("RIFF", "LIST", "pdta" etc.)
         Util.WriteBinaryString(ref headerSeg, headerWritten);
         
         // Chunk size
-        Util.WriteDword(ref headerSeg, unchecked((int)writtenSize));
+        if (rf64) Util.WriteQword(ref headerSeg, dataLen);
+        else Util.WriteDword(ref headerSeg, unchecked((int)writtenSize));
         
         stream.Write(headerBytes);
 

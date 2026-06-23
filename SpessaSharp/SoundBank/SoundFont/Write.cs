@@ -41,6 +41,20 @@ public readonly record struct SF2WriteOptions(
     );
 }
 
+/// <summary>Options for writing an SFE 4 file.</summary>
+/// <param name="rf64">
+/// If the RIFS (64-bit RIFF chunks) should be used.
+/// Increases maximum size from 4GB to effectively infinite.
+/// Recommended, since SFE 4 is effectively incompatible with SF2.
+/// </param>
+public readonly record struct SFEWriteOptions(
+    SF2WriteOptions Base,
+    bool rf64)
+{
+    public static readonly SFEWriteOptions Default = new (
+        SF2WriteOptions.Default, true);
+}
+
 
 /// <summary> Write indexes for tracking writing a SoundFont file. </summary>
 public sealed class SoundFontWriteIndexes
@@ -62,10 +76,51 @@ internal static class Write
     /// <param name="bank"></param>
     /// <param name="options">The options for writing.</param>
     /// <param name="output">The binary file data.</param>
-    /// <exception cref="ArgumentException">No compression function supplied</exception>
-    /// <exception cref="ArgumentException">Cannot compress and decompress at the same time</exception>
     public static void SF2(
         SoundBank bank, SF2WriteOptions options, Stream output)
+    {
+        SF(
+            bank, 
+            options, 
+            options.WriteDefaultModulators, 
+            options.WriteExtendedLimits, 
+            false, 
+            false, 
+            output);
+    }
+    
+    /// <summary>Writes the sound bank as an SFE 4 file.</summary>
+    /// <param name="bank"></param>
+    /// <param name="options"></param>
+    /// <param name="output"></param>
+    public static void SFE(
+        SoundBank bank, SFEWriteOptions options, Stream output)
+    {
+        SF(
+            bank, 
+            options.Base, 
+            true, true, true, options.rf64, 
+            output);
+    }
+    
+    /// <summary>General writing function for both SFE and SF2.</summary>
+    /// <param name="bank">The bank</param>
+    /// <param name="options">The options for writing.</param>
+    /// <param name="writeDefaultModulators">SFE + SF2 compatible</param>
+    /// <param name="writeExtendedLimits">SFE + SF2 compatible</param>
+    /// <param name="writeBankLSB">SFE Only</param>
+    /// <param name="rf64">SFE Only</param>
+    /// <param name="output">The binary file data.</param>
+    /// <exception cref="ArgumentException">No compression function supplied</exception>
+    /// <exception cref="ArgumentException">Cannot compress and decompress at the same time</exception>
+    public static void SF(
+        SoundBank bank, 
+        SF2WriteOptions options,
+        bool writeDefaultModulators,
+        bool writeExtendedLimits,
+        bool writeBankLSB,
+        bool rf64,
+        Stream output)
     {
         if (options.Compress)
         {
@@ -78,10 +133,10 @@ internal static class Write
                     "Decompressed and compressed at the same time.");
         }
         
-        Debug.WriteLine("Saving soundbank ...");
-        Debug.WriteLine($"Compression: {options.Compress}");
+        SpessaLog.Info("Saving soundbank ...");
+        SpessaLog.Info($"Compression: {options.Compress}");
         
-        Debug.WriteLine("Writing INFO ...");
+        SpessaLog.Info("Writing INFO ...");
         
         // Write INFO
         var infoArrays = new List<ArraySegment<byte>>();
@@ -106,7 +161,7 @@ internal static class Write
         
         Util.WriteWord(ref ifilData, (short)info.Version.Major);
         Util.WriteWord(ref ifilData, (short)info.Version.Minor);
-        infoArrays.Add(RIFFChunk.Write(new RIFFChunk.FourCC("ifil"), buff));
+        infoArrays.Add(RIFFChunk.Write(new RIFFChunk.FourCC("ifil"), buff, rf64));
         
         // Special comment case: merge subject and comment
         string? commentText = null;
@@ -131,7 +186,7 @@ internal static class Write
             
             Util.WriteWord(ref ifilData, (short)romVersion.Major);
             Util.WriteWord(ref ifilData, (short)romVersion.Minor);
-            infoArrays.Add(RIFFChunk.Write(new RIFFChunk.FourCC("iver"), buff));
+            infoArrays.Add(RIFFChunk.Write(new RIFFChunk.FourCC("iver"), buff, rf64));
         }
         // creationDate
         WriteSF2Info(new RIFFChunk.FourCC("ICRD"), Util.ToIsoString(info.CreationDate));
@@ -162,10 +217,10 @@ internal static class Write
             if (!unchangedDefaultModulators) break;
         }
 
-        if (unchangedDefaultModulators && options.WriteDefaultModulators)
+        if (unchangedDefaultModulators && writeDefaultModulators)
         {
             var mods = bank.DefaultModulators;
-            Debug.WriteLine($"Writing {mods.Count} default modulators ...");
+            SpessaLog.Info($"Writing {mods.Count} default modulators ...");
             
             var dmodSize = Modulator.ByteSize + mods.Count * Modulator.ByteSize;
             var dmodData = (Span<byte>)stackalloc byte[dmodSize];
@@ -177,10 +232,10 @@ internal static class Write
             // Terminal modulator, is zero
             Util.WriteLittleEndian(
                 ref dmodSeg, 0, Modulator.ByteSize);
-            infoArrays.Add(RIFFChunk.Write(new RIFFChunk.FourCC("DMOD"), dmodData));
+            infoArrays.Add(RIFFChunk.Write(new RIFFChunk.FourCC("DMOD"), dmodData, rf64));
         }
         
-        Debug.WriteLine("Writing SDTA ...");
+        SpessaLog.Info("Writing SDTA ...");
         
         // Write sdta
         var smplStartOffsets = new List<uint>();
@@ -189,29 +244,31 @@ internal static class Write
             bank,
             smplStartOffsets,
             smplEndOffsets,
+            rf64,
+            
             options.Compress,
             options.Decompress,
             SoundBank.Vorbis.Encoder,
             options.ProgressFunc);
         
-        Debug.WriteLine("Writing PDTA ...");
+        SpessaLog.Info("Writing PDTA ...");
         
         // Write pdta
         // Go in reverse so the indexes are correct
         // Instruments
         
-        Debug.WriteLine("Writing SHDR ...");
+        SpessaLog.Info("Writing SHDR ...");
         var shdrChunk = SHDR.Get(
-            bank, smplStartOffsets, smplEndOffsets);
+            bank, smplStartOffsets, smplEndOffsets, rf64);
         
         // Note:
         // https://github.com/spessasus/soundfont-proposals/blob/main/extended_limits.md
 
-        Debug.WriteLine("Writing instruments ...");
-        var instData = WriteSF2Elements(bank, false);
+        SpessaLog.Info("Writing instruments ...");
+        var instData = WriteSF2Elements(bank, rf64, false);
         
-        Debug.WriteLine("Writing presets ...");
-        var presData = WriteSF2Elements(bank, true);
+        SpessaLog.Info("Writing presets ...");
+        var presData = WriteSF2Elements(bank, rf64, true, writeBankLSB);
 
         var chunks = (ExtendedSF2Chunks[])[
             presData.HDR,
@@ -231,10 +288,10 @@ internal static class Write
         var pdtaChunk = RIFFChunk.WriteParts(
             new RIFFChunk.FourCC("pdta"),
             chunks.Select(c => c.pdta).ToArray(),
-            true);
+            rf64, true);
 
         var writeXDTA =
-            options.WriteExtendedLimits &&
+            writeExtendedLimits &&
             (instData.WriteXDTA ||
             bank.Presets.Any(p => p.Name.Length > 20) ||
             bank.Instruments.Any(i => i.Name.Length > 20) ||
@@ -242,41 +299,43 @@ internal static class Write
 
         if (writeXDTA)
         {
-            Debug.WriteLine("Writing the xdta chunk as 'WriteExtendedLimits' is enabled and at least one condition was met.");
+            SpessaLog.Info("Writing the xdta chunk as 'WriteExtendedLimits' is enabled and at least one condition was met.");
             // https://github.com/spessasus/soundfont-proposals/blob/main/extended_limits.md
             var xpdtaChunk = RIFFChunk.WriteParts(
                 new RIFFChunk.FourCC("xdta"),
                 chunks.Select(c => c.xdta).ToArray(),
-                true);
+                rf64, true);
             infoArrays.Add(xpdtaChunk);
         }
 
         var infoChunk = RIFFChunk.WriteParts(
             new RIFFChunk.FourCC("INFO"), 
             CollectionsMarshal.AsSpan(infoArrays), 
-            true);
-        Debug.WriteLine("Writing the output file...");
+            rf64, true);
+        SpessaLog.Info("Writing the output file...");
 
         // Finally, combine everything
         RIFFChunk.WriteParts(
-            new RIFFChunk.FourCC("RIFF"), 
-            [(ArraySegment<byte>)Util.GetStringBytes("sfbk"), 
+            new RIFFChunk.FourCC(rf64 ? "RIFS" : "RIFF"), 
+            [(ArraySegment<byte>)Util.GetStringBytes(writeBankLSB ? "sfen" : "sfbk"), 
                 infoChunk, 
                 sdtaChunk,
                 pdtaChunk],
+            rf64,
             output);
         
         output.Flush();
         
-        Debug.WriteLine(
+        SpessaLog.Info(
             $"Saved successfully! Final file size: {output.Length}");
 
         return;
 
         void WriteSF2Info(RIFFChunk.FourCC type, string data) =>
             infoArrays.Add(RIFFChunk.Write(
-                type, // Pad with zero and ensure even length
-                Util.GetStringBytes(data, true, true)));
+                type,
+                // Pad with zero and ensure even length
+                Util.GetStringBytes(data, true, true), rf64));
     }
 
     private readonly record struct SF2Elements(
@@ -287,7 +346,11 @@ internal static class Write
         bool WriteXDTA);
 
     private static SF2Elements WriteSF2Elements(
-        SoundBank bank, bool isPreset)
+        SoundBank bank, 
+        bool rf64, 
+        bool isPreset,
+        // Preset only
+        bool writeBankLSB = false)
     {
         // Note:
         // https://github.com/spessasus/soundfont-proposals/blob/main/extended_limits.md
@@ -392,7 +455,7 @@ internal static class Write
         
         if (isPreset)
             for (var i = 0; i < bank.Presets.Count; i++)
-                bank.Presets[i].Write(hdrData, zoneIndexes[i]);
+                bank.Presets[i].Write(hdrData, zoneIndexes[i], writeBankLSB);
         else
             for (var i = 0; i < bank.Instruments.Count; i++)
                 bank.Instruments[i].Write(hdrData, zoneIndexes[i]);
@@ -436,25 +499,25 @@ internal static class Write
             return new SF2Elements(
                 Gen: new ExtendedSF2Chunks
                 {
-                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(genHeader), genData),
+                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(genHeader), genData, rf64),
                     // Same as pmod, this chunk includes only the terminal generator record to allow reuse of the pdta parser.
-                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(modHeader), genBuff),
+                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(modHeader), genBuff, rf64),
                 },
                 Mod: new ExtendedSF2Chunks
                 {
-                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(modHeader), modData),
+                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(modHeader), modData, rf64),
                     // This chunk exists solely to preserve parser compatibility and contains only the terminal modulator record.
-                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(modHeader), modBuff),
+                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(modHeader), modBuff, rf64),
                 },
                 Bag: new ExtendedSF2Chunks
                 {
-                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(bagHeader), bagData.pdta), 
-                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(bagHeader), bagData.xdta), 
+                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(bagHeader), bagData.pdta, rf64), 
+                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(bagHeader), bagData.xdta, rf64), 
                 },
                 HDR: new ExtendedSF2Chunks
                 {
-                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(hdrHeader), hdrData.pdta), 
-                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(hdrHeader), hdrData.xdta), 
+                    pdta = RIFFChunk.Write(new RIFFChunk.FourCC(hdrHeader), hdrData.pdta, rf64), 
+                    xdta = RIFFChunk.Write(new RIFFChunk.FourCC(hdrHeader), hdrData.xdta, rf64), 
                 },
                 WriteXDTA: 
                     Math.Max(currentGenIndex,

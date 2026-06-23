@@ -9,24 +9,24 @@ namespace SpessaSharp.SoundBank.SoundFont;
 /// <summary>Parses a soundfont2 file </summary>
 internal static class SoundFont2
 {
-    public static SoundBank Load(RootChunk buffer)
+    public static SoundBank Load(RootChunk buffer, bool sfe)
     {
-        var bank = new SoundBank(SoundBank.BankType.SF2);
+        var bank = new SoundBank(
+            sfe ? SoundBank.BankType.SFE : SoundBank.BankType.SF2);
         
         SpessaLog.Info("Parsing a SoundFont2 file...");
         
-        // Read the main chunk
-        {
-            var header = buffer.PeekRIFFChunk();
-            VerifyHeader(header, "riff");            
-        }
+        // Read RIFF header
+        var fourCC = buffer.PeekString(4);
+        VerifyTexts(fourCC, "riff", "rifs");
+        var rf64 = Util.EqualsIgnoreCase(fourCC, "rifs");
+        if (rf64) SpessaLog.Info("RIFF64 Detected!");
 
+        // Read the main chunk (don't verify as we just did)
+        _ = buffer.PeekRIFFChunk(rf64);
+        
         var type = buffer.ReadString(4);
-        if (!(Ascii.EqualsIgnoreCase(type, "sfbk") ||
-            Ascii.EqualsIgnoreCase(type, "sfpk")))
-            throw SpessaException.ParsingSoundBank(
-                $"Invalid SoundFont! Expected 'sfbk' or 'sfpk', got '{
-                    Util.ToString(type)}'");
+        VerifyTexts(type, "sfbk", "sfpk", "sfen");
 
         /*
         Some SF2Pack description:
@@ -36,21 +36,19 @@ internal static class SoundFont2
         var isSF2Pack = Ascii.EqualsIgnoreCase(type, "sfpk");
         
         // INFO
-        var infoChunk = buffer.ReadRIFFChunk();
+        var infoChunk = buffer.ReadRIFFChunk(rf64);
         var infoChunkData = infoChunk.Data;
         
         VerifyHeader(infoChunk, "list");
         
         var infoString = Util.ReadBinaryString(ref infoChunkData, 4);
-        if (!Ascii.Equals(infoString, "INFO"))
-            throw SpessaException.ParsingSoundBank($"Invalid SoundFont! Expected 'INFO', got '{
-                Util.ToString(infoString)}'");
+        VerifyText(infoString, "info");
 
         RIFFChunk? xdtaChunk = null;
         
         while (infoChunkData.Count > 0)
         {
-            var chunk = RIFFChunk.Read(ref infoChunkData);
+            var chunk = RIFFChunk.Read(ref infoChunkData, rf64);
             var chunkData = chunk.Data;
 
             // Special cases
@@ -78,7 +76,7 @@ internal static class SoundFont2
                     var listType = Util.ReadBinaryString(ref chunkData, 4);
                     if (Ascii.Equals(listType, "xdta"))
                     {
-                        Debug.WriteLine("Extended SF2 found!");
+                        SpessaLog.Info("Extended SF2 found!");
                         xdtaChunk = chunk;
                     }
                     break;
@@ -117,7 +115,7 @@ internal static class SoundFont2
             }
         }
         
-        Debug.WriteLine(bank.Info);
+        SpessaLog.Info(bank.Info.ToString());
         // https://github.com/spessasus/soundfont-proposals/blob/main/extended_limits.md
         (
             RIFFChunk phdr,
@@ -139,32 +137,32 @@ internal static class SoundFont2
             // SpessaSharp: When 'xdta' is read, xdtaChunk is unaffected.
             var xdtaChunkData = xdtaChunk.Value.Data[4..];
             xChunks = (
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData),
-                RIFFChunk.Read(ref xdtaChunkData));
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64),
+                RIFFChunk.Read(ref xdtaChunkData, rf64));
         }
         
         // SDTA
-        var sdtaChunk = buffer.PeekRIFFChunk();
+        var sdtaChunk = buffer.PeekRIFFChunk(rf64);
         VerifyHeader(sdtaChunk, "list");
         VerifyText(buffer.ReadString(4), "sdta");
         
         // Smpl
-        Debug.WriteLine("[WARN] Verifying smpl chunk ...");
-        var sampleDataChunk = buffer.PeekRIFFChunk();
+        SpessaLog.Info("[WARN] Verifying smpl chunk ...");
+        var sampleDataChunk = buffer.PeekRIFFChunk(rf64);
         VerifyHeader(sampleDataChunk, "smpl");
         SampleChunk? sampleData;
         //var sampleDataStartIndex = 0;
         // SF2Pack: the entire data is compressed
         if (isSF2Pack)
         {
-            Debug.WriteLine(
+            SpessaLog.Info(
                 "SF2Pack detected, attempting to decode the smpl chunk ...");
 
             if (SoundBank.Vorbis.Decoder is not {} decoder)
@@ -174,9 +172,11 @@ internal static class SoundFont2
             try
             {
                 var decoded = decoder(
-                    buffer.Slice(
-                        end: buffer.Offset + (sdtaChunk.Size - 12)).AsSegment());
-                Debug.WriteLine(
+                    buffer.Slice(end:
+                        buffer.Offset +
+                        (sdtaChunk.Size - 4 - sdtaChunk.HeaderSize)
+                        ).AsSegment());
+                SpessaLog.Info(
                     $"Decoded the smpl chunk! Length: {decoded.Count}");
                 sampleData = SampleChunk.Of(decoded);
             }
@@ -192,15 +192,16 @@ internal static class SoundFont2
             //sampleDataStartIndex = buffer.Offset;
         }
 
-        var sdtaLen = unchecked((uint)sdtaChunk.Size) - 12; 
-        Debug.WriteLine(
+        var sdtaLen = unchecked(
+            (uint)sdtaChunk.Size - 4 - sdtaChunk.HeaderSize);
+        SpessaLog.Info(
             $"Skipping sample chunk, length: {sdtaLen}");
         
         buffer = buffer.Slice(start: buffer.Offset + sdtaLen);
         
         // PDTA
-        Debug.WriteLine("[WARN] Loading preset data chunk ...");
-        var presetChunk = buffer.ReadRIFFChunk();
+        SpessaLog.Info("[WARN] Loading preset data chunk ...");
+        var presetChunk = buffer.ReadRIFFChunk(rf64);
         var presetChunkData = presetChunk.Data;
         
         VerifyHeader(presetChunk, "list");
@@ -217,7 +218,7 @@ internal static class SoundFont2
         var igenChunk = ReadRiffChunk(ref presetChunkData, "igen");
         var shdrChunk = ReadRiffChunk(ref presetChunkData, "shdr");
         
-        Debug.WriteLine("Parsing samples ...");
+        SpessaLog.Info("Parsing samples ...");
         
         /*
          * Read all the samples
@@ -383,7 +384,7 @@ internal static class SoundFont2
 
         RIFFChunk ReadRiffChunk(ref ArraySegment<byte> data, string expected)
         {
-            var chunk = RIFFChunk.Read(ref data);
+            var chunk = RIFFChunk.Read(ref data, rf64);
             VerifyHeader(chunk, expected);
             return chunk;
         }
@@ -403,5 +404,19 @@ internal static class SoundFont2
             return;
         throw SoundBank.ParsingError(
             $"'Invalid FourCC: Expected {expected}, got {Util.ToString(text)}'");
+    }
+    
+    private static void VerifyTexts(
+        ReadOnlySpan<byte> text, 
+        params ReadOnlySpan<string> expected)
+    {
+        foreach (var exp in expected)
+            if (Util.EqualsIgnoreCase(text, exp))
+                return;
+
+        throw SoundBank.ParsingError(
+            $"'Invalid FourCC: Expected {
+                string.Join(", ", expected.ToArray().Select(s => $"'{s}'"))}, got '{
+                Util.ToString(text)}'");
     }
 }

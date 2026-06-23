@@ -25,8 +25,8 @@ internal sealed class DownloadableSoundsSample(
             waveChunk, new RIFFChunk.DLSFourCC("wave"));
 
         var fmtChunkIdx = chunks.FindIndex(c => c.Header == "fmt ");
-        if (fmtChunkIdx == -1)
-            throw SpessaException.ParsingSoundBank("No fmt chunk in the wave file!");
+        if (fmtChunkIdx == -1) throw SpessaException.ParsingSoundBank(
+            "No fmt chunk in the wave file!");
         
         var fmtChunk = chunks[fmtChunkIdx];
         var fmtData = fmtChunk.Data;
@@ -145,10 +145,11 @@ internal sealed class DownloadableSoundsSample(
         var info = RIFFChunk.Write(
             new RIFFChunk.FourCC("INFO"), iname, false, true);
         
-        Debug.WriteLine($"Saved {Name} successfully!");
+        SpessaLog.Info($"Saved {Name} successfully!");
 
         return RIFFChunk.WriteParts(
-            new RIFFChunk.FourCC("wave"), [fmt, wsmp, data, info], true);
+            new RIFFChunk.FourCC("wave"), 
+            [fmt, wsmp, data, info], false, true);
     }
 
     private ArraySegment<byte> WriteFmt()

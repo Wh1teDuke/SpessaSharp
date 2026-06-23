@@ -329,7 +329,7 @@ public sealed class BasicInstrument
         }
     }
     
-    public void Write(ExtendedSF2Chunks instData, int index) 
+    internal void Write(ExtendedSF2Chunks instData, int index) 
     {
         Debug.WriteLine($"Writing Instrument '{Name}' ...");
 

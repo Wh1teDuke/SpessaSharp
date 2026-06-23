@@ -52,7 +52,7 @@ public sealed class SoundBank(
         Software:       "SpessaSharp");
 
 
-    public enum BankType { SF2, DLS }
+    public enum BankType { SF2, SFE, DLS }
 
     /// <summary>The sound bank's presets.</summary>
     public readonly List<BasicPreset> Presets = [];
@@ -63,7 +63,7 @@ public sealed class SoundBank(
 
     /// <summary>
     /// The type of the sound bank that was loaded.
-    /// Either <b>sf2</b> for SoundFont2/SoundFont3 or <b>dls</b> for DownLoadable Sounds.
+    /// Either <b>sf2</b> for SoundFont2/SoundFont3 or <b>dls</b> for DownLoadable Sounds or <b>sfe</b> for SF-Enhanced..
     /// <para>
     /// Please note that SF3 or SFOGG files are parsed as <b>sf2</b> files, but with compressed samples.
     /// The type is still <b>sf2</b>.
@@ -98,12 +98,21 @@ public sealed class SoundBank(
     /// <returns>The loaded sound bank, a BasicSoundBank instance.</returns>
     public static SoundBank From(ArraySegment<byte> buffer)
     {
-        var check = buffer[8 .. 12];
+        var riffCheck = buffer[..4];
+        if (!Util.Equals(riffCheck, "RIFF", "RIFS"))
+            throw SpessaException.ParsingSoundBank(
+                $"Expected 'RIFF' or 'RIFS' header, got '{
+                    Util.ToString(riffCheck)}'");
+
+        var rf64 = Util.Equals(riffCheck, "RIFS");
+        var check = buffer[rf64 ? 12 .. 16 : 8 .. 12];
         var id= Util.ReadBinaryString(check);
         return Ascii.EqualsIgnoreCase(id, "dls ") 
             ? DownloadableSounds.Load(new MemoryStream(
                 buffer.Array!, buffer.Offset, buffer.Count)).ToSF()
-            : SoundFont2.Load(new RootChunk.Segment(buffer));
+            : SoundFont2.Load(
+                new RootChunk.Segment(buffer),
+                Util.Equals(id, "sfen"));
     }
 
     /// <summary>Loads a sound bank from a file buffer.</summary>
@@ -120,16 +129,24 @@ public sealed class SoundBank(
     /// <returns>The loaded sound bank, a BasicSoundBank instance.</returns>
     public static SoundBank From(FileStream stream)
     {
-        if (stream.Length <= int.MaxValue)
+        if (stream.Length < int.MaxValue)
             using (var reader = new BinaryReader(stream))
                 return From(reader.ReadBytes((int)stream.Length));
 
         var chunk = new RootChunk.Stream(stream);
-        var check = chunk.Slice(8, 12).AsSegment();
+        var riffCheck = chunk.Slice(0, 4).AsSegment();
+        if (!Util.Equals(riffCheck, "RIFF", "RIFS"))
+            throw SpessaException.ParsingSoundBank(
+                $"Expected 'RIFF' or 'RIFS' header, got '{
+                    Util.ToString(riffCheck)}'");
+        
+        var rf64 = Util.Equals(riffCheck, "RIFS");
+        var check =
+            (rf64 ? chunk.Slice(12, 16) : chunk.Slice(8, 12)).AsSegment();
         var id= Util.ReadBinaryString(check);
         return Ascii.EqualsIgnoreCase(id, "dls ") 
             ? DownloadableSounds.Load(stream).ToSF()
-            : SoundFont2.Load(chunk);
+            : SoundFont2.Load(chunk, Util.Equals(id, "sfen"));
     }
 
     /// <summary>
@@ -319,7 +336,38 @@ public sealed class SoundBank(
     /// <param name="options">The options for writing.</param>
     public void WriteSF2(Stream stream, SF2WriteOptions? options = null) => 
         Write.SF2(this, options ?? SF2WriteOptions.Default, stream);
+    
+    /// <summary>
+    /// Writes the sound bank as an [SFE 4](https://sfe-team-was-taken.github.io/SFE/) file.
+    /// This enables features such as bank LSB and RIFF64.
+    /// Note that spessasynth is currently the only software that can read these files.</summary>
+    /// <param name="options">The options for writing.</param>
+    /// <remarks>If your soundbank is large (>2GB), use <see cref="WriteSFE(FileInfo, SFEWriteOptions?)"/>
+    /// or <see cref="WriteSFE(Stream, SFEWriteOptions?)"/></remarks>
+    /// <returns>The binary file data.</returns>
+    public ArraySegment<byte> WriteSFE(SFEWriteOptions? options = null)
+    {
+        var stream = new MemoryStream();
+        Write.SFE(this, options ?? SFEWriteOptions.Default, stream);
+        stream.Seek(0, SeekOrigin.Begin);
+        return stream.ToArray();
+    }
 
+    /// <summary>Writes the sound bank as an SFE file.</summary>
+    /// <param name="file">The path to save the data. Use this for large (>2GB) soundbanks</param>
+    /// <param name="options">The options for writing.</param>
+    public void WriteSFE(FileInfo file, SFEWriteOptions? options = null)
+    {
+        using var stream = file.OpenWrite();
+        WriteSFE(stream, options);
+    }
+    
+    /// <summary>Writes the sound bank as an SFE file.</summary>
+    /// <param name="stream">The stream to save the data. Use this for large (>2GB) soundbanks</param>
+    /// <param name="options">The options for writing.</param>
+    public void WriteSFE(Stream stream, SFEWriteOptions? options = null) => 
+        Write.SFE(this, options ?? SFEWriteOptions.Default, stream);
+    
     /// <summary> Clones a sample into this bank. </summary>
     /// <param name="sample">The sample to copy.</param>
     /// <returns>The copied sample, if a sample exists with that name, it is returned instead</returns>

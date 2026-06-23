@@ -232,6 +232,14 @@ internal static class Util
         return false;
     }
     
+    public static bool Equals(
+        ReadOnlySpan<byte> str, params ReadOnlySpan<string> list)
+    {
+        foreach (ref readonly var str2 in list)
+            if (Ascii.Equals(str, str2)) return true;
+        return false;
+    }
+    
     public static int ReadBigEndian(ReadOnlySpan<byte> data)
     {
         if (data.Length == 4)
@@ -261,9 +269,25 @@ internal static class Util
         return r;
     }
 
+    /// <summary>Reads the number as little endian from a span.</summary>
+    /// <param name="data">The span to read from.</param>
+    /// <returns>The number</returns>
+    public static long ReadLittleEndian64(ReadOnlySpan<byte> data) => 
+        data.Length == 8 
+            ? BinaryPrimitives.ReadInt64LittleEndian(data) 
+            : ReadLittleEndian(data);
+
     public static int ReadLittleEndian(
         ref ArraySegment<byte> data, int bytes) =>
             ReadLittleEndian(SliceThenInc(ref data, bytes));
+    
+    /// <summary>Reads the number as little endian from a span.</summary>
+    /// <param name="data">The span to read from.</param>
+    /// <param name="bytes">The number of bytes to read.</param>
+    /// <returns>The number</returns>
+    public static long ReadLittleEndian64(
+        ref ArraySegment<byte> data, int bytes) =>
+        ReadLittleEndian64(SliceThenInc(ref data, bytes));
     
     /// <summary>Reads two bytes as a signed short.</summary>
     /// <param name="a"></param>
@@ -322,7 +346,7 @@ internal static class Util
                 data[i] = (byte)((n >> (i * 8)) & 0xff);
     }
     
-    /// <summary>Writes a WORD (SHORT)</summary>
+    /// <summary>Writes a WORD (SHORT). 16 bits</summary>
     /// <param name="dataArray"></param>
     /// <param name="word"></param>
     public static void WriteWord(ref ArraySegment<byte> dataArray, short word)
@@ -331,13 +355,16 @@ internal static class Util
         dataArray = dataArray[2..];
     }
     
+    /// <summary>Writes a WORD (SHORT). 16 bits</summary>
+    /// <param name="dataArray"></param>
+    /// <param name="word"></param>
     public static void WriteWord(ref Span<byte> dataArray, short word)
     {
         BinaryPrimitives.WriteInt16LittleEndian(dataArray, word);
         dataArray = dataArray[2..];
     }
     
-    /// <summary>Writes a DWORD (INT)</summary>
+    /// <summary>Writes a DWORD (INT). 32 bits</summary>
     /// <param name="dataArray"></param>
     /// <param name="dword"></param>
     public static void WriteDword(ref ArraySegment<byte> dataArray, int dword)
@@ -346,10 +373,31 @@ internal static class Util
         dataArray = dataArray[4..];
     }
     
+    /// <summary>Writes a DWORD (INT). 32 bits</summary>
+    /// <param name="dataArray"></param>
+    /// <param name="dword"></param>
     public static void WriteDword(ref Span<byte> dataArray, int dword)
     {
         BinaryPrimitives.WriteInt32LittleEndian(dataArray, dword);
         dataArray = dataArray[4..];
+    }
+    
+    /// <summary>Writes a QWORD (LONG)* 64 bits.</summary>
+    /// <param name="dataArray"></param>
+    /// <param name="qword"></param>
+    public static void WriteQword(ref ArraySegment<byte> dataArray, long qword)
+    {
+        BinaryPrimitives.WriteInt64LittleEndian(dataArray, qword);
+        dataArray = dataArray[8..];
+    }
+
+    /// <summary>Writes a QWORD (LONG)* 64 bits.</summary>
+    /// <param name="dataArray"></param>
+    /// <param name="qword"></param>
+    public static void WriteQword(ref Span<byte> dataArray, long qword)
+    {
+        BinaryPrimitives.WriteInt64LittleEndian(dataArray, qword);
+        dataArray = dataArray[8..];
     }
 
     /// <summary>Reads VLQ from a MIDI byte array.</summary>

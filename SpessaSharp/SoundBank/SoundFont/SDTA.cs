@@ -26,6 +26,8 @@ internal static class SDTA
         SoundBank bank,
         List<uint> smplStartOffsets,
         List<uint> smplEndOffsets,
+        bool rf64,
+        //
         bool compress,
         bool decompress,
         SoundBank.Encode? encodeFunc = null,
@@ -52,7 +54,7 @@ internal static class SDTA
             
             progressFunc?.Invoke(writtenCount / (float)bank.Samples.Count);
             
-            Debug.WriteLine($"Encode sample {writtenCount}. {s.Name} of {
+            SpessaLog.Info($"Encode sample {writtenCount}. {s.Name} of {
                 bank.Samples.Count}. Compressed: {s.IsCompressed}.");
             
             /* 6.1 Sample Data Format in the smpl Sub-chunk
@@ -70,11 +72,10 @@ internal static class SDTA
         }
 
         var addByte = smplChunkSize % 2 != 0;
-        if (addByte)
-            smplChunkSize++;
+        if (addByte) smplChunkSize++;
 
         var sdta = new List<ArraySegment<byte>>(bank.Samples.Count * 2 + 1);
-        var sdtaHeader = new byte[SDTA_TO_DATA_OFFSET];
+        var sdtaHeader = new byte[SDTA_TO_DATA_OFFSET + (rf64 ? 8 : 0)];
         sdta.Add(sdtaHeader);
         
         var sdtaSeg = (ArraySegment<byte>)sdtaHeader;
@@ -82,15 +83,28 @@ internal static class SDTA
         // Avoid using writeRIFFChunk for performance
         // Sdta chunk
         Util.WriteBinaryString(ref sdtaSeg, "LIST");
+
         // "sdta" + full smpl length
-        Util.WriteLittleEndian(
-            ref sdtaSeg, 
-            unchecked((int)(smplChunkSize + SDTA_TO_DATA_OFFSET - 8)), 
-            4);
+        if (rf64)
+            Util.WriteQword(
+                ref sdtaSeg,
+                smplChunkSize + SDTA_TO_DATA_OFFSET - 4);
+        else
+            Util.WriteLittleEndian(
+                ref sdtaSeg, 
+                unchecked((int)(
+                    smplChunkSize + SDTA_TO_DATA_OFFSET - 8)),
+                4);
+
         Util.WriteBinaryString(ref sdtaSeg, "sdta");
         Util.WriteBinaryString(ref sdtaSeg, "smpl");
-        Util.WriteLittleEndian(
-            ref sdtaSeg, unchecked((int)smplChunkSize), 4);
+        
+        if (rf64)
+            Util.WriteQword(
+                ref sdtaSeg, smplChunkSize);
+        else
+            Util.WriteLittleEndian(
+                ref sdtaSeg, unchecked((int)smplChunkSize), 4);
 
         var offset = 0u;
         var pad = new byte[92];
