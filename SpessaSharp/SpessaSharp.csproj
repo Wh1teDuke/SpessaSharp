@@ -8,7 +8,7 @@
         <Description>SpessaSynth ported to C#</Description>
         <RepositoryUrl>https://github.com/Wh1teDuke/SpessaSharp</RepositoryUrl>
         <PackageProjectUrl>https://wh1teduke.github.io/SpessaSharp/</PackageProjectUrl>
-        <PackageIcon>spessasharp_logo_rounded.png</PackageIcon>
+        <PackageIcon>spessasharp_logo_rounded.jpg</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>midi;rmidi;synthesizer;dls;soundfont;audio;spessasynth</PackageTags>
         <PackageCopyright>Copyright (c) 2026 WhiteDuke</PackageCopyright>
@@ -34,7 +34,7 @@
         <PackageReference Include="System.IO.Hashing" Version="10.0.9" />
         <PackageReference Include="System.Numerics.Tensors" Version="10.0.9" />
 
-        <None Include="..\spessasharp_logo_rounded.png" Pack="true" PackagePath="\"/>
-        <None Include="..\README.md" Pack="true" PackagePath="\" />
+        <None Include="nuget\spessasharp_logo_rounded.jpg" Pack="true" PackagePath="\"/>
+        <None Include="nuget\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 </Project>

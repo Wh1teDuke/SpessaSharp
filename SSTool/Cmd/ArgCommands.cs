@@ -18,17 +18,21 @@ public static class ArgCommands
     
     public static void Eval(string[] args)
     {
-        if (args.Length == 0) args = ["--help"];
-
         ReadOnlySpan<Func<Command>> cmdList = 
-            [Convert, Dump, Info, Play, Tour,];
+            [Play, Convert, Dump, Info, Tour,];
 
         var root = Root();
         foreach (var cmd in cmdList)
             root.Subcommands.Add(cmd());
         
-        var plResult = root.Parse(args);
+        if (args.Length == 0) 
+            args = ["--help"];
+        else if (!args[0].StartsWith('-') && !root.Subcommands
+                .SelectMany(c => new[] { c.Name }.Concat(c.Aliases))
+                .ToHashSet(StringComparer.OrdinalIgnoreCase).Contains(args[0]))
+            args = [root.Subcommands[0].Name, ..args];
 
+        var plResult = root.Parse(args);
         Environment.ExitCode = plResult.Invoke();
     }
 
@@ -58,6 +62,12 @@ public static class ArgCommands
 
         var getFiles = MidiMaybeSoundBank(cmd);
         var setRes = AddMasterParameterOptions(cmd);
+
+        var oSampleRate = new Option<int>("--sample-rate")
+        {
+            Description = "Sample rate in Hertz",
+            DefaultValueFactory = _ => 44_100,
+        };
         
         var oLoop = new Option<bool>("--loop", "-l")
         { Description = "Loop the midi", };
@@ -97,6 +107,7 @@ public static class ArgCommands
             AllowMultipleArgumentsPerToken = true,
         };
         
+        cmd.Options.Add(oSampleRate);
         cmd.Options.Add(oLoop);
         cmd.Options.Add(oGui);
         cmd.Options.Add(oVST);
@@ -109,12 +120,14 @@ public static class ArgCommands
             var (midi, sb) = getFiles(pr);
             var vst = pr.GetValue(oVST);
             var gui = pr.GetValue(oGui);
+            var sampleRate = pr.GetValue(oSampleRate);
 
             ActionPlay.This(
                 Setup, 
                 midi, 
                 sb,
                 vst, 
+                sampleRate,
             TimeSpan.FromSeconds(pr.GetValue(oBufferLen)),
                 gui);
             return;

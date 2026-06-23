@@ -280,9 +280,9 @@ public sealed class Synthesizer
         ArraySegment<byte>? AsSegment, (byte A, byte? B, byte? C)? AsInline);
     
     /// <summary>Synth's event queue from the main thread</summary>
-    private readonly List<
-            (EventQueueData Message, int ChannelOffset, double Time)>
-        _eventQueue = [];
+    private readonly PriorityQueue<
+            (EventQueueData Message, int ChannelOffset), double>
+        _eventQueue = new (64);
     
     /// <summary>The time of a single sample, in seconds.</summary>
     private readonly double _sampleTime;
@@ -542,9 +542,7 @@ public sealed class Synthesizer
             data = new EventQueueData(AsSegment: null, AsInline: bytes);
         }
 
-        _eventQueue.Add((data, channelOffset, time.Value));
-        _eventQueue.Sort((e1, e2) =>
-            e1.Time.CompareTo(e2.Time));
+        _eventQueue.Enqueue((data, channelOffset), time.Value);
     }
 
     public void Destroy() 
@@ -733,28 +731,28 @@ public sealed class Synthesizer
         // Process event queue
         if (_eventQueue.Count > 0) 
         {
-            var dataSpan = (Span<byte>)stackalloc byte[3];
+            var span = (Span<byte>)stackalloc byte[3];
             var time = CurrentTime;
-            while (_eventQueue.Count > 0 && _eventQueue[0].Time <= time) 
+
+            while (_eventQueue.TryPeek(out var ev, out var t) &&
+                t <= time)
             {
-                var q = _eventQueue[0];
-                _eventQueue.RemoveAt(0);
+                _eventQueue.Dequeue();
                 
-                if (q.Message.AsSegment is {} segment)
+                if (ev.Message.AsSegment is {} segment)
                 {
-                    ProcessMessageInternal(segment, q.ChannelOffset);
+                    ProcessMessageInternal(segment, ev.ChannelOffset);
                     continue;
                 }
 
-                var data = q.Message.AsInline!.Value;
-                var span = dataSpan;
+                var data = ev.Message.AsInline!.Value;
                 var len = 0;
 
                 span[len++] = data.A;
                 if (data.B is { } b) span[len++] = b;
                 if (data.C is { } c) span[len++] = c;
                     
-                ProcessMessageInternal(span[..len], q.ChannelOffset);
+                ProcessMessageInternal(span[..len], ev.ChannelOffset);
             }
         }
 

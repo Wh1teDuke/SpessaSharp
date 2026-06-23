@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using OggVorbisEncoder;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Utils;
 
@@ -15,6 +14,13 @@ public static class Etc
         Console.WriteLine("ERROR: " + message);
         Console.ResetColor();
         Environment.Exit(1);   
+    }
+    
+    public static void Warn(string message)
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("WARN: " + message);
+        Console.ResetColor();
     }
     
     public static FileInfo? FindSoundBank(FileInfo midi)
@@ -111,7 +117,7 @@ public static class Etc
     #region Vorbis
     public static ArraySegment<float> DecodeVorbis(ArraySegment<byte> data) =>
         SfmlUtil.DecodeVorbis(data);
-    
+    #if false
     // https://github.com/SteveLillis/.NET-Ogg-Vorbis-Encoder/blob/master/OggVorbisEncoder.Example/Encoder.cs
     public static ArraySegment<byte> EncodeVorbis(
         ArraySegment<float> audioData, int sampleRate)
@@ -176,5 +182,6 @@ public static class Etc
             }
         }
     }
+    #endif
     #endregion
 }

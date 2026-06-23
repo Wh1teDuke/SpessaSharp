@@ -19,6 +19,7 @@ public static class ActionPlay
         FileInfo fileMidi,
         FileInfo? fileSoundBank,
         FileSystemInfo? fileVst,
+        int sampleRate,
         TimeSpan bufferLen,
         GuiMode gui)
     {
@@ -33,7 +34,7 @@ public static class ActionPlay
 
         var midi = Midi.From(fileMidi);
 
-        var processor = new SpessaSharpProcessor(44_100);
+        var processor = new SpessaSharpProcessor(sampleRate);
         var sequencer = new SpessaSharpSequencer(processor);
         processor.SoundBankManager.Add(sb, "main");
         setup(sequencer);

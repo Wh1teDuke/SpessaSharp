@@ -72,6 +72,8 @@ public sealed class Midi
     {
         ///<summary>New tempo in BPM.</summary>
         public double Tempo => 60_000_000d / MPQN;
+        ///<summary>Convert bpm to MPQN</summary>
+        public static double ToMPQN(int bpm) => 60_000_000d / bpm;
     }
 
     /// <param name="Ticks">MIDI ticks of the change, absolute value from the start of the MIDI file.</param>
@@ -120,7 +122,7 @@ public sealed class Midi
     /// Each change is represented by an object with a MIDI tick position and a tempo value in beats per minute.
     /// </summary>
     public readonly List<TempoChange> TempoChanges = [
-        new (0, 500_000)];
+        new (0, (int)TempoChange.ToMPQN(120))];
     
     /// <summary>
     /// The time signature changes in the sequence.
@@ -279,11 +281,11 @@ public sealed class Midi
     /// <exception cref="ArgumentOutOfRangeException">Zero tempo changes</exception>
     /// <exception cref="InvalidOperationException">Last tempo change is not at tick 0</exception>
     public static double MidiTicksToSeconds(
-        List<TempoChange> tempoChanges, int timeDivision, int ticks)
+        ReadOnlySpan<TempoChange> tempoChanges, int timeDivision, int ticks)
     {
         // One is added automatically, but the user may have tampered with it
         ArgumentOutOfRangeException.ThrowIfZero(
-            tempoChanges.Count,
+            tempoChanges.Length,
             "There are no tempo changes in the sequence. At least one is needed.");
 
         // Sanity check
@@ -298,7 +300,7 @@ public sealed class Midi
         // (always at tick 0 and tempo 120)
         // Find the last tempo change that has occurred
         var tempoIndex = -1;
-        for (var i = 0; i < tempoChanges.Count; i++)
+        for (var i = 0; i < tempoChanges.Length; i++)
         {
             if (tempoChanges[i].Ticks > ticks) continue;
             tempoIndex = i;
@@ -308,7 +310,7 @@ public sealed class Midi
         Debug.Assert(tempoIndex != -1);
 
         var totalSeconds = 0d;
-        while (tempoIndex < tempoChanges.Count) 
+        while (tempoIndex < tempoChanges.Length) 
         {
             var tempo = tempoChanges[tempoIndex++];
             // Calculate the difference and tempo time
@@ -327,7 +329,8 @@ public sealed class Midi
     /// <exception cref="ArgumentOutOfRangeException">Zero tempo changes</exception>
     /// <exception cref="InvalidOperationException">Last tempo change is not at tick 0</exception>
     public double MidiTicksToSeconds(int ticks) =>
-        MidiTicksToSeconds(TempoChanges, TimeDivision, ticks);
+        MidiTicksToSeconds(
+            CollectionsMarshal.AsSpan(TempoChanges), TimeDivision, ticks);
 
     /// <summary>Converts seconds to time in MIDI ticks.</summary>
     /// <param name="seconds">The time in seconds.</param>
@@ -883,7 +886,7 @@ public sealed class Midi
         // Reset values
         // https://github.com/spessasus/spessasynth_core/issues/20
         TempoChanges.Clear();
-        TempoChanges.Add(new TempoChange(0, 500_000));
+        TempoChanges.Add(new TempoChange(0, (int)TempoChange.ToMPQN(120)));
         TimeSignatureChanges.Clear();
         TimeSignatureChanges.Add(new TimeSignatureChange(0, (4, 2)));
         ExtraMetadata.Clear();
