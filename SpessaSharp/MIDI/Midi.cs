@@ -72,7 +72,7 @@ public sealed class Midi
     {
         ///<summary>New tempo in BPM.</summary>
         public double Tempo => 60_000_000d / MPQN;
-        ///<summary>Convert bmp to MPQN</summary>
+        ///<summary>Convert bpm to MPQN</summary>
         public static double ToMPQN(int bpm) => 60_000_000d / bpm;
     }
 
