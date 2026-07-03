@@ -1,12 +1,12 @@
 using System.Buffers;
 using System.Runtime.InteropServices;
-using System.Security;
+using Gaiden.SFML.Audio;
 using SpessaSharp.SoundBank.Utils;
 using SpessaSharp.Utils;
 
 namespace SSTool.Util;
 
-internal static partial class SfmlUtil
+internal static class SfmlUtil
 {
     public static ArraySegment<float> DecodeVorbis(
         ArraySegment<byte> compressed)
@@ -22,18 +22,18 @@ internal static partial class SfmlUtil
                 {
                     var d = data;
                     d += compressed.Offset;
-                    var ptr = sfSoundBuffer_createFromMemory(
+                    var ptr = CSFMLAudio.sfSoundBuffer_createFromMemory(
                         (IntPtr)d, (UIntPtr)(ulong)compressed.Count);
 
-                    var len = (int)sfSoundBuffer_getSampleCount(ptr);
+                    var len = (int)CSFMLAudio.sfSoundBuffer_getSampleCount(ptr);
                     buffer = pool.Rent(len);
-                    Marshal.Copy(sfSoundBuffer_getSamples(ptr), buffer, 0, len);
+                    Marshal.Copy(CSFMLAudio.sfSoundBuffer_getSamples(ptr), buffer, 0, len);
                     
                     var res = SharedSampleBuffer.New(len);
                     AudioUtil.ConvertPCM16ToFloat32(
                         MemoryMarshal.AsBytes(buffer), res, len);
 
-                    sfSoundBuffer_destroy(ptr);
+                    CSFMLAudio.sfSoundBuffer_destroy(ptr);
 
                     return res;
                 }
@@ -44,26 +44,4 @@ internal static partial class SfmlUtil
             if (buffer != null) pool.Return(buffer);
         }
     }
-    
-    #region DLLImport
-    [SuppressUnmanagedCodeSecurity]
-    [LibraryImport("csfml-audio")]
-    [UnmanagedCallConv(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvCdecl)])]
-    private static partial IntPtr sfSoundBuffer_createFromMemory(IntPtr data, UIntPtr size);
-    
-    [SuppressUnmanagedCodeSecurity]
-    [LibraryImport("csfml-audio")]
-    [UnmanagedCallConv(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvCdecl)])]
-    private static partial void sfSoundBuffer_destroy(IntPtr soundBuffer);
-    
-    [SuppressUnmanagedCodeSecurity]
-    [LibraryImport("csfml-audio")]
-    [UnmanagedCallConv(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvCdecl)])]
-    private static partial IntPtr sfSoundBuffer_getSamples(IntPtr soundBuffer);
-
-    [SuppressUnmanagedCodeSecurity]
-    [LibraryImport("csfml-audio")]
-    [UnmanagedCallConv(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvCdecl)])]
-    private static partial ulong sfSoundBuffer_getSampleCount(IntPtr soundBuffer);
-    #endregion
 }

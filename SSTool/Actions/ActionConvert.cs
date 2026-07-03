@@ -1,4 +1,4 @@
-using SFML.Audio;
+using Gaiden.SFML.Audio;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
 using SpessaSharp.SoundBank.SoundFont;
