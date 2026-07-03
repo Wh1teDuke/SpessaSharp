@@ -3,8 +3,7 @@
 **SpessaSharp** is a C# port of the multipurpose SF2/DLS/MIDI JavaScript library [**SpessaSynth**](https://github.com/spessasus/spessasynth_core) by [**Spessasus**](https://github.com/spessasus).
 
 [<img src="https://www.nuget.org/Content/gallery/img/nuget-lockup-dark-fill.svg" alt="" height="16" style="height: 16px; vertical-align: sub">](https://www.nuget.org/packages/SpessaSharp)
- | [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> Command-line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview) | <img src='https://spessasus.github.io/spessasynth_core/assets/favicon.png' height="16" style="height: 16px; vertical-align: sub"></img> Last commit: [4.3.12
-](https://github.com/spessasus/spessasynth_core/commit/4ff1a04f8ba5e2d7c2bd9dafdebccb5bc3140df1)
+ | [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> Command-line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview) | <img src='https://spessasus.github.io/spessasynth_core/assets/favicon.png' height="16" style="height: 16px; vertical-align: sub"></img> Last commit: [various tiny fixes](https://github.com/spessasus/spessasynth_core/commit/b46a34547dcce7cf895b060efdcda8a2c740950b)
 
 ## Example
 

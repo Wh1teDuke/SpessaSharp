@@ -29,7 +29,17 @@ public static class WriterRMidi
         bool IsDrum, 
         MidiMessage? LastBank,
         MidiMessage? LastBankLSB,
-        bool HasBankSelect);
+        bool HasBankSelect,
+        /*
+         * In rare cases (example: shop3.mid)
+         * program change on a track, while the notes are on a separate track.
+         * The "usedChannels" tracking only treats track as using the channel if there are note messages.
+         * Since the editor sees that the track has
+         * "no program change" (because there are no program changes in "used" tracks)
+         * it adds a default program change which might mess with the separated one.
+         * Ensure that we track these and the loop that runs after the tracking doesn't miss them.
+         */
+        (int Track, int Index)? ProgramChange);
 
     /// <summary>
     /// Writes an RMIDI file. Note that this method modifies the MIDI file in-place.
@@ -184,16 +194,18 @@ public static class WriterRMidi
                 IsDrum:         i % 16 == Synthesizer.Synthesizer.DEFAULT_PERCUSSION,
                 LastBank:       null,
                 LastBankLSB:    null,
-                HasBankSelect:  false);
+                HasBankSelect:  false,
+                ProgramChange:  null);
         }
 
         foreach (var entry in midi.Iterate())
         {
             ref var e = ref entry.Message;
+            var eventIndexes = entry.EventIndexes;
             var trackNum = entry.TrackNum;
 
             var portOffset = midi.PortChannelOffsetMap[ports[trackNum]];
-            if (e.StatusByte.Is(MidiMessage.Type.MidiPort)) 
+            if (e.StatusByte == MidiMessage.Type.MidiPort) 
             {
                 ports[trackNum] = e.Data[0];
                 continue;
@@ -291,13 +303,22 @@ public static class WriterRMidi
                 );
 
                 var targetPreset = soundBank.GetPreset(patch, system);
-                Debug.Write(
+                SpessaLog.Info(
                     $"Input patch: {patch.ToMidiString()
                     }. Channel {chNum}. Changing patch to {targetPreset}.");
 
                 // Set the program number
                 var eData = e.Data;
                 eData[0] = (byte)targetPreset.Program;
+
+                ch = ch with
+                {
+                    // Track the change
+                    Program = targetPreset.Program,
+                    // Track the trackNum for optionally adding a bank select
+                    // Nullish assignment so we track the first change only
+                    ProgramChange = (trackNum, eventIndexes[trackNum]),
+                };
 
                 if (targetPreset.IsGMGSDrum && BankSelectHacks.IsSystemXG(system)) 
                 {
@@ -348,70 +369,80 @@ public static class WriterRMidi
         // Add all bank selects that are missing for this track
         for (var chNum = 0; chNum < channelsAmount; chNum++)
         {
-            var has = channels[chNum];
-            if (has.HasBankSelect) continue;
+            var ch = channels[chNum];
+            if (ch.HasBankSelect) continue;
 
             // Find the first program change (for the given channel)
             var midiChannel = chNum % 16;
-            var status = ID(MidiMessage.Type.ProgramChange) | midiChannel;
 
             // Find track with this channel being used
             var portOffset = (chNum / 16) * 16;
             var port = midi.PortChannelOffsetMap.IndexOf(portOffset);
-            var track = midi.Tracks.Find(t => 
-                t.Port == port &&
-                t.Channels.Get(midiChannel));
+            // Channel can be split across different tracks (example: shop3.mid, musescore)
+            var tracksUsedByChannel = midi.Tracks.FindAll(
+                t => t.Port == port && t.Channels.Get(midiChannel));
 
-            if (track == null)
+            if (tracksUsedByChannel.Count == 0)
                 // This channel is not used at all
                 continue;
 
-            var indexToAdd = track.EventList.FindIndex(
-                e => e.StatusByte.Byte == status);
-
-            if (indexToAdd == -1) 
+            // Across all tracks this channel is used in, find the index that interests us
+            // Check if we tracked a program change
+            var foundTrack = ch.ProgramChange?.Track is {} pcTrack
+                ? midi.Tracks[pcTrack]
+                : null;
+            var indexToAdd = ch.ProgramChange?.Index ?? -1;
+            if (foundTrack == null) 
             {
                 // No program change...
                 // Add programs if they are missing from the track
                 // (need them to activate bank 1 for the embedded soundfont)
-                var programIndex = track.EventList.FindIndex(
+                // Add it to the first track the program is used in
+                var programChangeTrack = tracksUsedByChannel[0];
+                var programIndex = programChangeTrack.EventList.FindIndex(
                     e =>
-                        e.StatusByte.Byte is > 0x80 and < 0xf0 &&
+                        e.StatusByte.Byte is >= 0x80 and < 0xf0 &&
                         (e.StatusByte.Byte & 0xf) == midiChannel);
 
                 if (programIndex == -1)
                     // No voices??? skip
                     continue;
 
-                var programTicks = track.Events[programIndex].Ticks;
+                var programTicks = programChangeTrack.Events[programIndex].Ticks;
                 var targetProgram = (byte)soundBank.GetPreset(
                     new MidiPatch(), system).Program;
+                
+                SpessaLog.Info($"Adding default program change for {chNum}");
 
-                track.Add(
+                programChangeTrack.Add(
                     MidiMessage.ProgramChange(
                         programTicks, midiChannel, targetProgram),
                     programIndex);
 
                 indexToAdd = programIndex;
+                foundTrack = programChangeTrack;
             }
 
             SpessaLog.Info($"Adding bank select for {chNum}");
             
-            var ticks = track.Events[indexToAdd].Ticks;
+            var ticks = foundTrack.Events[indexToAdd].Ticks;
             var targetPreset = soundBank.GetPreset(
                 new MidiPatch(
                     BankLSB: 0,
                     BankMSB: 0,
-                    Program: has.Program,
-                    IsGMGSDrum: has.IsDrum),
+                    Program: ch.Program,
+                    IsGMGSDrum: ch.IsDrum),
                 system);
+            
+            SpessaLog.Info(
+                $"Adding bank select for {chNum} Targeting preset: {targetPreset}");
 
             var targetBank = (byte)BankSelectHacks.AddBankOffset(
                 targetPreset.BankMSB, 
                 bankOffset, 
                 system == Midi.System.XG);
             
-            track.Add(
+            foundTrack.Add(
                 MidiMessage.ControllerChange(
                     ticks, midiChannel, Midi.CC.BankSelect, targetBank),
                 indexToAdd);

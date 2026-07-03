@@ -127,10 +127,17 @@ internal sealed class SFSample: BasicSample
             // Check for corrupted files (like FluidR3_GM.sf2 that link EVERYTHING to a single sample)
             if (linked.LinkedSample != null)
             {
-                Debug.WriteLine(
+                SpessaLog.Info(
                     $"Invalid linked sample for {Name}: {
                         linked.Name} is already linked to {
                             linked.LinkedSample.Name}");
+                UnlinkSample();
+            }
+            else if (linked == this)
+            {
+                // Testcase: pc98_ym2608.sf2
+                SpessaLog.Info(
+                    $"[WARN] Invalid linked sample for $ {Name}: linked to itself.");
                 UnlinkSample();
             }
             else
@@ -139,7 +146,7 @@ internal sealed class SFSample: BasicSample
         else
         {
             // Log as info because it's common and not really dangerous
-            Debug.WriteLine(
+            SpessaLog.Info(
                 $"Invalid linked sample for {Name}. Setting to mono.");
 
             UnlinkSample();

@@ -199,6 +199,11 @@ public class BasicSample
         if (sample.LinkedSample != null)
             throw new ArgumentException($"{sample.Name} is linked to {
                 sample.LinkedSample.Name}. Unlink it first.");
+        
+        // Testcase: pc98_ym2608.sf2
+        if (this == sample)
+            throw new ArgumentException(
+                $"{sample.Name} cannot be linked to itself.");
 
         LinkedSample = sample;
         sample.LinkedSample = this;
