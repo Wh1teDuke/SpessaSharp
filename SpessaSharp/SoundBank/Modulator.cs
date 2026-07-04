@@ -491,20 +491,6 @@ public readonly record struct Modulator(
         Generator.Type.InitialFilterQ,
         250,
         0),
-
-    // Cc 67 (soft pedal) to attenuation
-    Decoded(
-        GetModSourceEnum(
-            ModulatorCurve.Type.Switch,
-            false,
-            false,
-            true,
-            new Source.Index(Midi.CC.SoftPedal)
-        ), // Switch unipolar positive 67
-        0x0, // No controller
-        Generator.Type.InitialAttenuation,
-        50,
-        0),
     // Cc 67 (soft pedal) to filter fc
     Decoded(
         GetModSourceEnum(
@@ -516,22 +502,8 @@ public readonly record struct Modulator(
         ), // Switch unipolar positive 67
         0x0, // No controller
         Generator.Type.InitialFilterFc,
-        -2_400,
+        -1_200,
         0),
-
-    // Cc 8 (balance) to pan
-    Decoded(
-        GetModSourceEnum(
-            ModulatorCurve.Type.Linear,
-            true,
-            false,
-            true,
-            new Source.Index(Midi.CC.Balance)
-        ), // Linear bipolar positive 8
-        0x0, // No controller
-        Generator.Type.Pan,
-        500,
-        0)
     ];
 
     private static readonly Modulator[] _spessaSynthDefaultMods =
