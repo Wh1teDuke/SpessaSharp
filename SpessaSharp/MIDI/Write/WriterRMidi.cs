@@ -285,6 +285,9 @@ public static class WriterRMidi
                 }
             }
             
+            // Event might have been replaced in sysex analysis
+            status = e.StatusByte.Byte & 0xf0;
+            
             // Program change
             var chNum = e.StatusByte.Channel + portOffset;
             ref var ch = ref channels[chNum];

@@ -43,6 +43,7 @@ public readonly record struct StatusByte(byte Byte)
 /// <param name="StatusByte">The MIDI message status byte. Note that for meta events, it is the second byte. (not 0xFF).</param>
 /// <param name="Data">Message's binary data.</param>
 public readonly record struct MidiMessage(
+    // TODO Rename StatusByte to Status
     int Ticks, StatusByte StatusByte, ArraySegment<byte> Data)
 {
     public enum Type
