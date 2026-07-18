@@ -620,9 +620,6 @@ public sealed class Synthesizer
         SetChorusMacro(2);
         // Delay1 default
         SetDelayMacro(0);
-        if (!SystemParameters.DelayLock)
-            DelayActive = false;
-
         ResetInsertion();
 
         // Avoid crashing
@@ -632,6 +629,12 @@ public sealed class Synthesizer
         // Do not send CC changes as we call reset
         foreach (var ch in MidiChannels)
             ch.Reset(false);
+        
+        // Delay may only be disabled if variations are all set to 0,
+        // They can still be set after a reset due to locking.
+        if (!SystemParameters.DelayLock)
+            DelayActive = MidiChannels.Any(
+                c => c.MidiControllers[(int)Midi.CC.VariationDepth] > 0);
     }
 
     public void Process(
