@@ -979,6 +979,7 @@ public static class MidiEditor
 
         // Check for reset and insert it to ensure that a reset always exists.
         if (!addedReset &&
+            // And only when we add changes, removing them does not warrant the need for a gs reset
             channelChanges.Values.Any(c =>
             c.Patch is not null and not Parameter<MidiPatch>.Clear))
         {

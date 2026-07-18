@@ -317,10 +317,11 @@ internal static class SetTime
             // Every controller that has changed
             for (var i = 0; i < Reset.CONTROLLER_TABLE_SIZE; i++)
             {
-                var value = ch.Controllers[i] >> 7;
+                // 14-bit, defaults are also 14-bit
+                var value = ch.Controllers[i];
                 if (value != defMidiControllers[i] &&
                     !NonSkippableCCs.Contains((Midi.CC)i))
-                    seq.SendCC(channel, (Midi.CC)i, value);
+                    seq.SendCC(channel, (Midi.CC)i, value >> 7);
             }
         }
         
