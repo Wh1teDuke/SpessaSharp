@@ -48,7 +48,7 @@ internal static class SystemExclusive
             
             // Roland
             case 0x41: 
-                RolandGS.SystemExclusive(synth, syx, channelOffset);
+                Roland.SystemExclusive(synth, syx, channelOffset);
                 break;
 
             // Yamaha
