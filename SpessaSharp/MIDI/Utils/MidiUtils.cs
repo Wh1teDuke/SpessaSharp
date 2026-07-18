@@ -495,7 +495,7 @@ public static class MidiUtils
             ChannelMidiParameter.Type.EfxAssign =>
                 // GS only (again)
                 [
-                    GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x22, 
+                    GsMessage(ticks, 0x40, 0x40 | gsChannel, 0x22, 
                         [(byte)(parameter.AsBool ? 1 : 0)])
                 ],
             ChannelMidiParameter.Type.CC1 =>
