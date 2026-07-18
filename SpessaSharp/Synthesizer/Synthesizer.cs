@@ -54,11 +54,11 @@ public sealed class Synthesizer
     public static readonly float EFX_SENDS_GAIN_CORRECTION = 
         1f / float.Pow(float.Cos(MathF.PI / 4), 2);
 
-    /// <summary>
+    /// <summary>Initialization options of the Synthesizer</summary>
+    /// <param name="MaxBufferSize">
     /// The maximum buffer size the synthesizer can render at once.
-    /// Attempting to `.Process()` more samples than this will result in an error.
-    /// Defaults to 128.</summary>
-    /// <param name="MaxBufferSize"></param>
+    /// Attempting to <see cref="Synthesizer.Process(Span{short}, int, int?)"/> more samples than this will result in an error.
+    /// Defaults to 128.</param>
     /// <param name="EventsEnabled">Indicates if the event system is enabled. This can be changed later.</param>
     /// <param name="InitialTime">The initial time of the synth, in seconds.</param>
     /// <param name="EffectsEnabled">Indicates if the effects are enabled. This can be changed later.</param>
