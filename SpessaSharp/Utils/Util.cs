@@ -12,6 +12,8 @@ namespace SpessaSharp.Utils;
 
 internal static class Util
 {
+    static Util() => Rand = SplitMix32(81_572);
+
     public static readonly Encoding Utf8 =
         Encoding.GetEncoding("UTF-8");
     
@@ -582,6 +584,29 @@ internal static class Util
     
     public static T[] Sorted<T>(List<T> list, Func<T, T, int> comparer) =>
         Sorted(list, Comparer<T>.Create((a, b) => comparer(a, b)));
+
+    /// <summary>Seedable random generator</summary>
+    /// <remarks>https://stackoverflow.com/a/47593316</remarks>
+    /// <returns></returns>
+    public static Func<double> SplitMix32(int seed)
+    {
+        var a = unchecked((uint)seed);
+        return () =>
+        {
+            unchecked
+            {
+                a += 0x9e_37_79_b9;
+                var t = a ^ (a >>> 16);
+                t *= 0x21_f0_aa_ad;
+                t ^= t >>> 15;
+                t *= 0x73_5a_2d_97;
+                return ((t ^ (t >>> 15)) >>> 0) / 4_294_967_296d;
+            }
+        };
+    }
+
+    [ThreadStatic]
+    public static readonly Func<double> Rand;
 }
 
 internal static partial class RegexExt

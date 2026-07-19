@@ -10,10 +10,6 @@ namespace SpessaSharp.Synthesizer.Engine.Channel;
 
 internal static class NoteOn
 {
-    [ThreadStatic] private static Random? _rng;
-
-    private static Random Rng => _rng ??= new Random();
-
     /// <summary>Sends a "MIDI Note on" message and starts a note. </summary>
     /// <param name="chan"></param>
     /// <param name="midiNote">The MIDI note number (0-127).</param>
@@ -141,7 +137,7 @@ internal static class NoteOn
 
         if (chan.MidiParameters.RandomPan)
             // The range is -500 to 500
-            panOverride = Util.Round(Rng.NextSingle() * 1_000 - 500);
+            panOverride = Util.Round(Util.Rand() * 1_000 - 500);
 
         // Drum parameters
         if (chan.DrumChannel) 
@@ -157,7 +153,7 @@ internal static class NoteOn
                 {
                     // Random pan
                     panOverride =
-                        Util.Round(Rng.NextSingle() * 1_000 - 500);
+                        Util.Round(Util.Rand() * 1_000 - 500);
                 }
                 else
                 {
