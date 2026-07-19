@@ -3,7 +3,8 @@
 **SpessaSharp** is a C# port of the multipurpose SF2/DLS/MIDI JavaScript library [**SpessaSynth**](https://github.com/spessasus/spessasynth_core) by [**Spessasus**](https://github.com/spessasus).
 
 [<img src="https://www.nuget.org/Content/gallery/img/nuget-lockup-dark-fill.svg" alt="" height="16" style="height: 16px; vertical-align: sub">](https://www.nuget.org/packages/SpessaSharp)
- | [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> Command-line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview) | <img src='https://spessasus.github.io/spessasynth_core/assets/favicon.png' height="16" style="height: 16px; vertical-align: sub"></img> Last commit: [fix brackets](https://github.com/spessasus/spessasynth_core/commit/7639b96c794c902362ba70d7969c13ab9f6c1a52)
+ | [<img src="https://raw.githubusercontent.com/oprypin/nightly.link/refs/heads/master/logo.svg" alt="" height="16" style="height: 16px; vertical-align: sub"> Command-line tool](https://nightly.link/Wh1teDuke/SpessaSharp/workflows/sstool/master?preview) | <img src='https://spessasus.github.io/spessasynth_core/assets/favicon.png' height="16" style="height: 16px; vertical-align: sub"></img> Last commit: [Recognize random pan in MIDI analyzer
+](https://github.com/spessasus/spessasynth_core/commit/aeb4fa5be509f98ecf0c8360f1aa24e05b97042f)
 
 ## Example
 

@@ -406,6 +406,9 @@ internal readonly record struct ConnectionBlock(
         // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
         switch (d)
         {
+            case var _ when d == KeyNum:
+                zone.SetGenerator(Generator.Type.KeyNum, value);
+                break;
             case var _ when d == Pan:
                 zone.SetGenerator(Generator.Type.Pan, value);
                 break;
@@ -654,7 +657,7 @@ internal readonly record struct ConnectionBlock(
                 // DLS uses gain, SF uses attenuation
                 Ret2(Generator.Type.InitialAttenuation, -amount),
             _ when d == Pitch => Ret1(Generator.Type.FineTune),
-            _ when d == KeyNum => Ret1(Generator.Type.OverridingRootKey),
+            _ when d == KeyNum => Ret1(Generator.Type.KeyNum),
             // Vol env
             _ when d == VolEnvDelay => Ret1(Generator.Type.DelayVolEnv),
             _ when d == VolEnvAttack => Ret1(Generator.Type.AttackVolEnv),

@@ -289,25 +289,42 @@ internal sealed class DownloadableSounds
 
             for (var keyNum = 0; keyNum < 128; keyNum++)
             {
-                var alias = drumAliases[keyNum];
-                if (alias == keyNum)
+                var source = drumAliases[keyNum];
+                if (source == keyNum)
                     // Skip the same aliases
                     continue;
                 
                 if (!Util.TryFind(
                     CollectionsMarshal.AsSpan(drumInstrument.Regions), 
-                    alias,
+                    source,
                     static (r, alias) =>
                         r.KeyRange.Max == alias && r.KeyRange.Min == alias,
                     out var region))
                 {
-                    Debug.WriteLine(
-                        $"[WARN] Invalid drum alias {keyNum} to {alias}: region does not exist.");
+                    SpessaLog.Warn(
+                        $"Invalid drum alias {keyNum} to {source}: region does not exist.");
                     continue;
                 }
 
                 var copied = DLSRegion.Copy(region);
                 copied.KeyRange = (keyNum, keyNum);
+                
+                // Ensure that the key plays back exactly like the source
+                // https://github.com/FluidSynth/fluidsynth/issues/1804
+                // Testcase: mobile60.dls
+                
+                // Essentially the "keyNum" generator
+                var fixedKeyBlock = new ConnectionBlock(
+                    new ConnectionSource(
+                        ConnectionSource.DLSSource.None, 0, false, false),
+                    new ConnectionSource(
+                        ConnectionSource.DLSSource.None, 0, false, false),
+                    ConnectionSource.DLSDestination.KeyNum,
+                    source << 16,
+                    0
+                );
+                
+                copied.Articulation.Add(fixedKeyBlock);
                 drumInstrument.Regions.Add(copied);
             }
             
