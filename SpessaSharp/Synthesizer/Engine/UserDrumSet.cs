@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
@@ -56,20 +57,44 @@ public sealed class UserDrumSet: SynthPatch
         );
         
         _resolvePatch = resolvePatch;
-
-        Reset();
+        _keyBindings.Clear();
     }
 
     public override bool IsDrum => Patch.IsDrum;
 
-    /// <summary>
-    /// Sets the key binding for a given MIDI key.
-    /// </summary>
-    /// <param name="midiKey">The MIDI key to bind (0-127).</param>
-    /// <param name="target">the MIDI patch to use for this key and the key to play from the target patch (0-127).</param>
-    public void SetKeyBinding(int midiKey, (MidiPatch Patch, int Key) target)
+    /// <summary>Sets the source note number for a specific drum key.</summary>
+    /// <param name="midiNote">The drum key to edit.</param>
+    /// <param name="sourceNote">The MIDI source note number.</param>
+    public void SetSourceNote(int midiNote, int sourceNote)
     {
-        _keyBindings[midiKey] = new KeyBinding(target.Patch, target.Key);
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Key = sourceNote };
+    }
+
+    /// <summary>Sets the source program number for a specific drum key.</summary>
+    /// <param name="midiNote">The drum key to edit.</param>
+    /// <param name="sourceProgram">The MIDI source program number.</param>
+    public void SetSourceProgram(int midiNote, int sourceProgram)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Patch = kb.Patch with { Program = sourceProgram } };
+    }
+    
+    /// <summary>Sets the source MAP (bank LSB) number for a specific drum key.</summary>
+    /// <param name="midiNote">The drum key to edit.</param>
+    /// <param name="sourceMap">The MIDI source MAP (bank LSB) number.</param>
+    public void SetSourceMap(int midiNote, int sourceMap)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Patch = kb.Patch with { BankLSB = sourceMap } };
+    }
+
+    private ref KeyBinding GetOrAdd(int midiNote)
+    {
+        ref var kb = ref CollectionsMarshal
+            .GetValueRefOrAddDefault(_keyBindings, midiNote, out var exists);
+        if (!exists) kb = new KeyBinding(Default, midiNote);
+        return ref kb;
     }
 
     /// <summary>

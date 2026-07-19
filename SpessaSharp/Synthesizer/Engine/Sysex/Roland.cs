@@ -1116,6 +1116,63 @@ internal static class Roland
                         }
                         return;
                     }
+                    // User drum set
+                    if (a1 == 0x21)
+                    {
+                        var drumSetNumber = a2 >> 4;
+                        var drumSet = synth.SoundBankManager.UserDrumSets[
+                            drumSetNumber];
+                        var midiNote = a3;
+                        var command = (byte)(a2 & 0xf);
+                        switch (command)
+                        {
+                            default:
+                                SpessaLog.GSFail("User Drum set", syx);
+                                return;
+                            
+                            // User drum set name
+                            case 0: 
+                            {
+                                var newName = Util.ToString(
+                                    Util.ReadBinaryString(
+                                        syx.Slice(12, 7)));
+                                drumSet.Name = newName;
+                                SpessaLog.GSInfo(
+                                    $"User Drum Set {drumSetNumber} name", newName);
+                                return;
+                            }
+                            
+                            // Source drum set
+                            case 0xa: 
+                            {
+                                drumSet.SetSourceMap(midiNote, data);
+                                SpessaLog.GSInfo(
+                                    $"User Drum Set {drumSetNumber} source drum set for {midiNote}",
+                                    data);
+                                return;
+                            }
+                            
+                            // Program number
+                            case 0xb: 
+                            {
+                                drumSet.SetSourceProgram(midiNote, data);
+                                SpessaLog.GSInfo(
+                                    $"User Drum Set {drumSetNumber} source program for {midiNote}",
+                                    data);
+                                return;
+                            }
+                            
+                            // Source note number
+                            case 0xc: 
+                            {
+                                drumSet.SetSourceNote(midiNote, data);
+                                SpessaLog.GSInfo(
+                                    $"User Drum Set {drumSetNumber} source note for {midiNote}",
+                                    data);
+                                return;
+                            }
+                        }
+                    }
                     // This is some other GS sysex...
                     SpessaLog.GSFail("System Exclusive", syx);
                     return;
