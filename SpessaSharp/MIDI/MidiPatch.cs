@@ -1,5 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Text;
+using SpessaSharp.SoundBank;
+using SpessaSharp.Synthesizer;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI;
@@ -62,6 +64,10 @@ public readonly record struct MidiPatch(
                 SpessaException.ParsingMidi(
                     $"Invalid named MIDI string: {midiString}");
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Full(SynthPatch preset) =>
+            preset.Patch;
     }
     
     /// <summary>

@@ -172,10 +172,10 @@ public sealed class Synthesizer
     public double CurrentTime;
     
     /// <summary> Synth's default (reset) preset. </summary>
-    public BasicPreset? DefaultPreset;
+    public SynthPatch? DefaultPreset;
     
     /// <summary> Synth's default (reset) drum preset. </summary>
-    public BasicPreset? DrumPreset;
+    public SynthPatch? DrumPreset;
     
     /// <summary> Gain smoothing factor, adjusted to the sample rate. </summary>
     public readonly float GainSmoothingFactor;
@@ -884,7 +884,7 @@ public sealed class Synthesizer
     /// <param name="velocity">The velocity to use.</param>
     /// <returns>Output is an array of voices.</returns>
     internal CachedVoiceList GetVoicesForPreset(
-        BasicPreset preset, int midiNote, int velocity)
+        SynthPatch preset, int midiNote, int velocity)
     {
         // If cached, return it!
         if (_cachedVoices.TryGetValue(

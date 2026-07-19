@@ -93,7 +93,7 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary>
     /// The preset currently assigned to the channel. Note that this may be undefined in some cases.<br/> https://github.com/spessasus/spessasynth_core/issues/48
     /// </summary>
-    public BasicPreset? Preset { get; internal set; }
+    public SynthPatch? Preset { get; internal set; }
 
     /// <summary> Indicates the MIDI system when the preset was locked. </summary>
     internal Midi.System LockedSystem = Midi.System.GS;
@@ -244,7 +244,7 @@ public sealed class MidiChannel: ISf2Channel
     /// <param name="channelNumber"></param>
     internal MidiChannel(
         Synthesizer synthCore,
-        BasicPreset? preset,
+        SynthPatch? preset,
         int channelNumber)
     {
         PitchWheels.AsSpan().Fill(8_192);

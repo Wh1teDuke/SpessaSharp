@@ -7,14 +7,16 @@ using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine;
 
-public sealed class SoundBankManager: IPresetGetter
+public sealed class SoundBankManager: BasePreset.IGetter<BasicPreset>
 {
     /// <summary> </summary>
     /// <param name="ID">The unique string identifier of the sound bank.</param>
     /// <param name="SoundBank">The sound bank itself.</param>
     /// <param name="BankOffset">The bank MSB offset for this sound bank.</param>
     internal readonly record struct ListEntry(
-        string ID, SoundBank.SoundBank SoundBank, int BankOffset);
+        string ID,
+        SoundBank.SoundBank SoundBank,
+        int BankOffset);
 
     internal readonly UsedProgramsAndKeys.Cache Cache = new();
     
@@ -157,16 +159,13 @@ public sealed class SoundBankManager: IPresetGetter
         return result;
     }
 
-    private static MidiPatch.Full PatchOf(BasicPreset p, int offset)
-    {
-        var patch = p.Patch;
-        return patch with
+    private static MidiPatch.Full PatchOf(MidiPatch.Full patch, int offset) =>
+        patch with
         {
             Data = patch.Data with
             {
                 BankMSB = BankSelectHacks.AddBankOffset(
-                    p.BankMSB, offset, true),
+                    patch.BankMSB, offset, true),
             }
         };
-    }
 }

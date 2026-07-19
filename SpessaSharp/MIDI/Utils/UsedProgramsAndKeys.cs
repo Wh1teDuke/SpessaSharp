@@ -11,20 +11,26 @@ using SpessaSharp.Utils;
 namespace SpessaSharp.MIDI.Utils;
 
 /// <summary>
-/// - Key - the preset.<br/>
-/// - Value - A Set:<br/>
-///   - Key: The MIDI note number.<br/>
-///   - Value: The velocity for this note number.
-/// </summary>
+/// <list type="bullet">
+/// <item><term>Key </term><description>The preset.</description></item>
+/// <item>
+/// <term>Value </term>
+/// <description>A set:
+/// <list type="bullet">
+/// <item><term>Key </term><description>The MIDI note number.</description></item>
+/// <item><term>Value </term><description>The velocity fpr this note.</description></item>
+/// </list>
+/// </description>
+/// </item></list></summary>
 /// <param name="data"></param>
 public readonly struct PresetsWithKeyCombinations(
-    Dictionary<BasicPreset, HashSet<(int Key, int Velocity)>> data)
+    Dictionary<BasePreset, HashSet<(int Key, int Velocity)>> data)
 {
     private readonly Dictionary<
-        BasicPreset, HashSet<(int Key, int Velocity)>> _data = data;
+        BasePreset, HashSet<(int Key, int Velocity)>> _data = data;
 
     public bool TryGetValue(
-        BasicPreset key, 
+        BasePreset key, 
         [MaybeNullWhen(false)] out HashSet<(int Key, int Velocity)> value) =>
         _data.TryGetValue(key, out value);
 
@@ -33,12 +39,12 @@ public readonly struct PresetsWithKeyCombinations(
     public ref struct Enumerator(PresetsWithKeyCombinations presets)
     {
         private Dictionary<
-            BasicPreset, HashSet<(int Key, int Velocity)>>.Enumerator _enum =
+            BasePreset, HashSet<(int Key, int Velocity)>>.Enumerator _enum =
             presets._data.GetEnumerator();
 
-        private (BasicPreset, HashSet<(int Key, int Velocity)>)? _current = null;
+        private (BasePreset, HashSet<(int Key, int Velocity)>)? _current = null;
         
-        public (BasicPreset, HashSet<(int Key, int Velocity)>) Current => _current!.Value;
+        public (BasePreset, HashSet<(int Key, int Velocity)>) Current => _current!.Value;
 
         public bool MoveNext()
         {
@@ -73,7 +79,7 @@ internal static class UsedProgramsAndKeys
         private bool _inUse;
         
         public readonly Dictionary<
-            BasicPreset, HashSet<(int Key, int Velocity)>>
+            BasePreset, HashSet<(int Key, int Velocity)>>
             ProgramsAndKeys = new(32);
 
         public void Done()
@@ -122,13 +128,13 @@ internal static class UsedProgramsAndKeys
         }
     }
     
-    private record struct InternalChannelType(
-        BasicPreset? Preset,
+    private record struct InternalChannelType<T>(
+        T? Preset,
         int BankMSB,
         int BankLSB,
         ParamTracker Param,
         bool IsDrum,
-        int KeyShift);
+        int KeyShift) where T: BasePreset;
     
     /// <summary>
     /// Gets the used programs and keys for this MIDI file with a given sound bank.
@@ -136,8 +142,8 @@ internal static class UsedProgramsAndKeys
     /// <param name="mid"></param>
     /// <param name="getPreset">The preset provider.</param>
     /// <returns>Patch -> (Key-Velocity)</returns>
-    public static PresetsWithKeyCombinations Get(
-        Midi mid, IPresetGetter getPreset)
+    public static PresetsWithKeyCombinations Get<T>(
+        Midi mid, BasePreset.IGetter<T> getPreset) where T : BasePreset
     {
         var cache = getPreset is SoundBankManager sbm ? sbm.Cache : new Cache();
         return Get(mid, getPreset, cache);
@@ -150,8 +156,8 @@ internal static class UsedProgramsAndKeys
     /// <param name="getPreset">The preset provider.</param>
     /// <param name="cache"></param>
     /// <returns>Patch -> (Key-Velocity)</returns>
-    public static PresetsWithKeyCombinations Get(
-        Midi mid, IPresetGetter getPreset, Cache cache)
+    public static PresetsWithKeyCombinations Get<T>(
+        Midi mid, BasePreset.IGetter<T> getPreset, Cache cache) where T : BasePreset
     {
         Debug.WriteLine(
             "Searching for all used programs and keys ...");
@@ -165,14 +171,14 @@ internal static class UsedProgramsAndKeys
         
         // Track channels and systems
         var channels =
-            Util.Rent<InternalChannelType>(channelsAmount);
+            Util.Rent<InternalChannelType<T>>(channelsAmount);
         var system = Midi.System.GS;
         var masterKeyShift = 0;
         
         for (var i = 0; i < channelsAmount; i++)
         {
             var isDrum = i % 16 == Synthesizer.Synthesizer.DEFAULT_PERCUSSION;
-            channels[i] = new InternalChannelType(
+            channels[i] = new InternalChannelType<T>(
                 Preset: getPreset.GetPreset(
                     new MidiPatch { IsGMGSDrum = isDrum, }, system),
                 BankMSB: 0, 
@@ -403,7 +409,7 @@ internal static class UsedProgramsAndKeys
         foreach (var (preset, keysForPreset) in usedProgramsAndKeys)
         {
             if (keysForPreset.Count == 0)
-                SpessaLog.Info($"Detected change but no keys for {preset.Name}");
+                SpessaLog.Info($"Detected change but no keys for {preset.Patch.Name}");
         }
         #endif
         

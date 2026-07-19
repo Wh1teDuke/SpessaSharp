@@ -97,7 +97,8 @@ internal static class RenderVoice
         
         // MIDI Tuning Standard
         // Use `midiNote` here since it was used for selecting the preset if tuning was active
-        var tuning = core.Tunings[chan.Preset!.Program * 128 + voice.MidiNote];
+        var tuning = core.Tunings[
+            chan.Preset!.Patch.Program * 128 + voice.MidiNote];
         if ((int)tuning != -1) 
         {
             // Tuning is encoded as float

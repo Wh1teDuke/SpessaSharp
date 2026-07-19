@@ -407,8 +407,9 @@ public sealed class Midi
     /// </summary>
     /// <param name="getPreset">The Preset provider.</param>
     /// <returns>The output data is a key-value pair: Preset -> (Key-Velocity)</returns>
-    public PresetsWithKeyCombinations GetUsedProgramsAndKeys(
-        IPresetGetter getPreset) => UsedProgramsAndKeys.Get(this, getPreset);
+    public PresetsWithKeyCombinations GetUsedProgramsAndKeys<T>(
+            BasePreset.IGetter<T> getPreset) where T : BasePreset =>
+        UsedProgramsAndKeys.Get(this, getPreset);
 
     /// <summary>
     /// Preloads all voices for this sequence in a given synth.
@@ -427,7 +428,7 @@ public sealed class Midi
 
         foreach (var (preset, combos) in used)
         {
-            SpessaLog.Info($"Preloading used samples on {preset.Name} ...");
+            SpessaLog.Info($"Preloading used samples on {preset.Patch.Name} ...");
             foreach (var (midiNote, velocity) in combos) 
                 synth.GetVoicesForPreset(preset, midiNote, velocity);
         }

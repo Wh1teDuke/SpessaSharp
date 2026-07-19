@@ -50,7 +50,7 @@ internal static class NoteOn
         if (midiNote is > 127 or < 0) return;
         
         // MIDI Tuning Standard
-        var program = chan.Preset.Program;
+        var program = chan.Preset.Patch.Program;
         var tune = synth.Tunings[program * 128 + midiNote];
         if (tune >= 0)
             // Overwrite the note with MIDI tuning standard!

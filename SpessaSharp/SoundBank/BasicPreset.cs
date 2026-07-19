@@ -8,7 +8,7 @@ using SpessaSharp.Utils;
 
 namespace SpessaSharp.SoundBank;
 
-public sealed class BasicPreset
+public sealed class BasicPreset: BasePreset
 {
     public readonly record struct Zone
     {
@@ -65,7 +65,6 @@ public sealed class BasicPreset
         }
     }
     
-    public MidiPatch.Full Patch;
     /// <summary>The parent soundbank instance. Currently used for determining default modulators and XG status.</summary>
     public readonly SoundBank Parent;
     
@@ -264,7 +263,7 @@ public sealed class BasicPreset
     /// <param name="note">The MIDI note number.</param>
     /// <param name="velocity">The MIDI velocity.</param>
     /// <returns>The returned sound data.</returns>
-    internal ArraySegment<((BasicZone, BasicZone), Voice.Parameters)> 
+    internal override ArraySegment<((BasicZone, BasicZone), Voice.Parameters)>
         GetVoiceParameters(
             CachedVoice.Base.Cache cCache, int note, int velocity)
     {
