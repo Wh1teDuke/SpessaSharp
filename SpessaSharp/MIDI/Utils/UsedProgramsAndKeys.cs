@@ -314,7 +314,7 @@ internal static class UsedProgramsAndKeys
             else if (status == MidiMessage.Type.SystemExclusive.ID())
             {
                 // Check for drum sysex
-                var syx = MidiUtils.AnalyzeSysEx(e);
+                foreach (var syx in MidiUtils.AnalyzeSysEx(e))
                 // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
                 switch (syx.MType)
                 {

@@ -218,70 +218,72 @@ public static class WriterRMidi
             
             if (Is(status, MidiMessage.Type.SystemExclusive))
             {
-                var syx = MidiUtils.AnalyzeSysEx(e);
-                // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
-                switch (syx.MType)
+                foreach (var syx in MidiUtils.AnalyzeSysEx(e))
                 {
-                    default: goto Continue;
+                    // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+                    switch (syx.MType)
+                    {
+                        default: goto Continue;
                         
-                    // Check for drum sysex
-                    case MidiUtils.AnalyzedMessage.Type.DrumsOn:
-                    {
-                        var dO = syx.AsDrumsOn!.Value;
-                        var sysexChannel = dO.Channel + portOffset;
-                        // Ensure check as syx.channel may be above 15
-                        if (sysexChannel < 0 ||
-                            sysexChannel >= channels.Length)
-                            break;
-                        ref var chan = ref channels[sysexChannel];
-                        chan = chan with { IsDrum = dO.IsDrum };
-                        goto Continue;
-                    }
-
-                    case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
-                    {
-                        var gmp = syx.AsGlobalMidiParameter!.Value;
-                        if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                        // Check for drum sysex
+                        case MidiUtils.AnalyzedMessage.Type.DrumsOn:
                         {
-                            system = gmp.AsMidiSystem;
-                            if (system == Midi.System.GM)
-                            {
-                                // We do not want gm1
-                                unwantedSystems.Add((tNum: trackNum, e: e));
-                            }
+                            var dO = syx.AsDrumsOn!.Value;
+                            var sysexChannel = dO.Channel + portOffset;
+                            // Ensure check as syx.channel may be above 15
+                            if (sysexChannel < 0 ||
+                                sysexChannel >= channels.Length)
+                                break;
+                            ref var chan = ref channels[sysexChannel];
+                            chan = chan with { IsDrum = dO.IsDrum };
+                            goto Continue;
                         }
 
-                        break;
-                    }
+                        case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                        {
+                            var gmp = syx.AsGlobalMidiParameter!.Value;
+                            if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                            {
+                                system = gmp.AsMidiSystem;
+                                if (system == Midi.System.GM)
+                                {
+                                    // We do not want gm1
+                                    unwantedSystems.Add((tNum: trackNum, e: e));
+                                }
+                            }
 
-                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
-                        when syx.AsAnalyzedParameter is
-                            { AsControllerChange: {} cc }:
-                    {
-                        // Replace the system exclusive with a regular controller change
-                        // Channel number may be above 15
-                        if (cc.Channel >= 16) goto Continue;
+                            break;
+                        }
+
+                        case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                            when syx.AsAnalyzedParameter is
+                                { AsControllerChange: {} cc }:
+                        {
+                            // Replace the system exclusive with a regular controller change
+                            // Channel number may be above 15
+                            if (cc.Channel >= 16) goto Continue;
                         
-                        e = MidiMessage.ControllerChange(
-                            e.Ticks, cc.Channel, cc.Controller, cc.Value);
-                        SpessaLog.Info("Replaced a system exclusive with controller change!");
+                            e = MidiMessage.ControllerChange(
+                                e.Ticks, cc.Channel, cc.Controller, cc.Value);
+                            SpessaLog.Info("Replaced a system exclusive with controller change!");
 
-                        break; // Do not return, keep parsing
-                    }
+                            break; // Do not return, keep parsing
+                        }
 
-                    case MidiUtils.AnalyzedMessage.Type.ProgramChange:
-                    {
-                        // Replace the system exclusive with a regular program
-                        var pc = syx.AsProgramChange!.Value;
-                        // Channel number may be above 15
-                        if (pc.Channel >= 16) goto Continue;
+                        case MidiUtils.AnalyzedMessage.Type.ProgramChange:
+                        {
+                            // Replace the system exclusive with a regular program
+                            var pc = syx.AsProgramChange!.Value;
+                            // Channel number may be above 15
+                            if (pc.Channel >= 16) goto Continue;
                         
-                        e = MidiMessage.ProgramChange(
-                            e.Ticks, pc.Channel, pc.Value );
-                        SpessaLog.Info("Replaced a system exclusive with program change!");
+                            e = MidiMessage.ProgramChange(
+                                e.Ticks, pc.Channel, pc.Value );
+                            SpessaLog.Info("Replaced a system exclusive with program change!");
 
-                        break; // Do not return, keep parsing
-                    }
+                            break; // Do not return, keep parsing
+                        }
+                    }   
                 }
             }
             

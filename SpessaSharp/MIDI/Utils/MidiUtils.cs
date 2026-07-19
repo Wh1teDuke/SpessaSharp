@@ -147,38 +147,6 @@ public static class MidiUtils
         public static implicit operator AnalyzedMessage(
             AnalyzedParameter.Type type) => Of(AnalyzedParameter.Of(type));
     }
-
-    /// <summary>
-    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
-    /// </summary>
-    /// <param name="e">The message to analyze</param>
-    /// <returns></returns>
-    public static AnalyzedMessage AnalyzeSysEx(MidiMessage e) =>
-        AnalyzeSysEx(e.Data);
-
-    /// <summary>
-    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
-    /// </summary>
-    /// <param name="syx">The System Exclusive message, WITHOUT the first 0xF0 System Exclusive byte!</param>
-    /// <returns></returns>
-    public static AnalyzedMessage AnalyzeSysEx(ReadOnlySpan<byte> syx)
-    {
-        // At least Manufacturer ID, Device ID and XG/GS model ID
-        if (syx.Length < 3) return 
-            AnalyzedParameter.Type.Other;
-
-        return syx[0] switch
-        {
-            // Non realtime GM
-            // Realtime GM
-            0x7e or 0x7f => AnalyzeGM(syx),
-            // Roland
-            0x41 => AnalyzeGS(syx),
-            // Yamaha
-            0x43 => AnalyzeXG(syx),
-            _ => AnalyzedParameter.Type.Other
-        };
-    }
     
     /// <summary>
     /// Analyzes a MIDI Registered Parameter Number and returns an identification and data for it.
@@ -748,7 +716,89 @@ public static class MidiUtils
             _ => throw new ArgumentOutOfRangeException(nameof(system), system, null)
         };
 
-    private static AnalyzedMessage AnalyzeGM(ReadOnlySpan<byte> syx)
+    public readonly ref struct AnalyzedMessageEnumerable(
+        ArraySegment<AnalyzedMessage>? messages,
+        AnalyzedMessage? single)
+    {
+        public AnalyzedMessageEnumerator GetEnumerator() =>
+            new(messages, single);
+
+        public static AnalyzedMessageEnumerable Of(AnalyzedMessage single) =>
+            new (null, single);
+        
+        public static AnalyzedMessageEnumerable Of(
+                ArraySegment<AnalyzedMessage> messages) =>
+            new (messages, null);
+
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedMessage msg) => Of(msg);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedParameter msg) => Of(msg);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedParameter.Type msg) => Of(msg);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedMessage.Type msg) => Of(msg);
+    }
+    
+    public ref struct AnalyzedMessageEnumerator(
+        ArraySegment<AnalyzedMessage>? messages,
+        AnalyzedMessage? single): IDisposable
+    {
+        private int _index = -1;
+        public AnalyzedMessage Current =>
+            single
+            ?? messages?[_index]
+            ?? throw new InvalidOperationException();
+
+        public bool MoveNext() => 
+            single != null 
+                ? ++_index <= 1
+                : ++_index < messages?.Count;
+
+        public void Dispose()
+        {
+            if (messages is {} msgs)
+                Util.Return(msgs);
+        }
+    }
+    
+    /// <summary>
+    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
+    /// Note that bulk dump and other sysExes are supported so this method may return more than one result.
+    /// </summary>
+    /// <param name="e">The message to analyze</param>
+    /// <returns></returns>
+    public static AnalyzedMessageEnumerable AnalyzeSysEx(MidiMessage e) =>
+        AnalyzeSysEx(e.Data);
+
+    /// <summary>
+    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
+    /// Note that bulk dump and other sysExes are supported so this method may return more than one result.
+    /// </summary>
+    /// <param name="syx">The System Exclusive message, WITHOUT the first 0xF0 System Exclusive byte!</param>
+    /// <returns></returns>
+    public static AnalyzedMessageEnumerable AnalyzeSysEx(ReadOnlySpan<byte> syx)
+    {
+        // At least Manufacturer ID, Device ID and XG/GS model ID
+        if (syx.Length < 3) return AnalyzedParameter.Type.Other;
+
+        return syx[0] switch
+        {
+            // Non realtime GM
+            // Realtime GM
+            0x7e or 0x7f => AnalyzeGM(syx),
+            // Roland
+            0x41 => AnalyzeGS(syx),
+            // Yamaha
+            0x43 => AnalyzeXG(syx),
+            _ => AnalyzedParameter.Type.Other
+        };
+    }
+
+    private static AnalyzedMessageEnumerable AnalyzeGM(ReadOnlySpan<byte> syx)
     {
         if (syx.Length < 4) 
             return AnalyzedParameter.Type.Other;
@@ -842,7 +892,7 @@ public static class MidiUtils
         };
     }
     
-    private static AnalyzedMessage AnalyzeXG(ReadOnlySpan<byte> syx)
+    private static AnalyzedMessageEnumerable AnalyzeXG(ReadOnlySpan<byte> syx)
     {
         // Ensure XG
         if (syx[2] != 0x4c || syx.Length < 7)
@@ -994,7 +1044,7 @@ public static class MidiUtils
         return AnalyzedParameter.Type.Other;
     }
     
-    private static AnalyzedMessage AnalyzeGS(ReadOnlySpan<byte> syx)
+    private static AnalyzedMessageEnumerable AnalyzeGS(ReadOnlySpan<byte> syx)
     {
         if (syx.Length < 10 ||
             // 0x12: DT1 (Device Transmit)
