@@ -12,8 +12,6 @@ namespace SpessaSharp.Utils;
 
 internal static class Util
 {
-    static Util() => Rand = SplitMix32(81_572);
-
     public static readonly Encoding Utf8 =
         Encoding.GetEncoding("UTF-8");
     
@@ -605,8 +603,9 @@ internal static class Util
         };
     }
 
-    [ThreadStatic]
-    public static readonly Func<double> Rand;
+    [ThreadStatic] private static Func<double>? _rand;
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static double Rand() => (_rand ??= SplitMix32(81_572))();
 }
 
 internal static partial class RegexExt

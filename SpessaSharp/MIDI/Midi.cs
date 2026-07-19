@@ -759,7 +759,7 @@ public sealed class Midi
     public readonly ref struct Enumerable(Midi midi)
     { public Enumerator GetEnumerator() => new(midi); }
     
-    public ref struct Enumerator
+    public ref struct Enumerator: IDisposable
     {
         public readonly ref struct Entry(
             ref MidiMessage msg, int track, ArraySegment<int> indexes)
