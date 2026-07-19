@@ -140,6 +140,9 @@ public static class MidiUtils
 
         public static implicit operator AnalyzedMessage(
             Type type) => Of(type);
+
+        public static implicit operator AnalyzedMessage(
+            AnalyzedParameter param) => Of(param);
         
         public static implicit operator AnalyzedMessage(
             AnalyzedParameter.Type type) => Of(AnalyzedParameter.Of(type));
@@ -852,7 +855,7 @@ public static class MidiUtils
         
         if (a1 == 0x06 ||   // Display letters
             a1 == 0x07)     // Display bitmap
-            return AnalyzedMessage.Of(AnalyzedMessage.Type.DisplayData);
+            return AnalyzedMessage.Type.DisplayData;
 
         if (a1 == 0x00 && a2 == 0x00)
         {
@@ -933,15 +936,20 @@ public static class MidiUtils
                     AnalyzedMessage.OfDrumsOn(channel, data > 0),
                 0x08 =>
                     // Note shift
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                    AnalyzedParameter.Of(
                         (ChannelMidiParameter.Type.KeyShift, data - 64),
-                        channel)),
+                        channel),
                 0x0b =>
                     // Volume
                     OfControllerChange(Midi.CC.MainVolume),
                 0x0e =>
-                    // Pan
-                    OfControllerChange(Midi.CC.Pan),
+                    // Pan, except for random,
+                    // Which is a different parameter
+                    data == 0
+                        ? AnalyzedParameter.Of(
+                            (ChannelMidiParameter.Type.RandomPan, true),
+                            channel)
+                        : OfControllerChange(Midi.CC.Pan),
                 0x12 =>
                     // Chorus
                     OfControllerChange(Midi.CC.ChorusDepth),
@@ -976,8 +984,7 @@ public static class MidiUtils
             };
 
             AnalyzedMessage OfControllerChange(Midi.CC cc) =>
-                AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
-                    cc, data, channel));
+                AnalyzedParameter.OfControllerChange(cc, data, channel);
         }
 
         // Drum part setup
@@ -1090,43 +1097,47 @@ public static class MidiUtils
                     AnalyzedMessage.OfProgramChange(channel, data),
                 0x13 =>
                     // Mono/poly
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
-                        (ChannelMidiParameter.Type.PolyMode, data == 1), channel)),
+                    AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.PolyMode, data == 1), channel),
                 0x14 =>
                     // Assign mode
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
-                        (MidiChannel.Assign)data, channel)),
+                    AnalyzedParameter.Of((MidiChannel.Assign)data, channel),
                 0x15 => AnalyzedMessage.OfDrumsOn(channel, data > 0),
-                0x16 => AnalyzedMessage.Of(AnalyzedParameter.Of(
-                    (ChannelMidiParameter.Type.KeyShift, data - 64), channel)),
+                0x16 => AnalyzedParameter.Of(
+                    (ChannelMidiParameter.Type.KeyShift, data - 64), channel),
                 0x19 =>
                     // Part level (cc#7)
                     OfControllerChange(Midi.CC.MainVolume),
                 0x1a =>
                     // Velocity Sense Depth
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                    AnalyzedParameter.Of(
                         (ChannelMidiParameter.Type.VelocitySenseDepth, 
-                            data), channel)),
+                            data), channel),
                 0x1b =>
                     // Velocity Sense Offset
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                    AnalyzedParameter.Of(
                         (ChannelMidiParameter.Type.VelocitySenseOffset, 
-                            data), channel)),
+                            data), channel),
                 0x1c =>
-                    // Pan position
-                    OfControllerChange(Midi.CC.Pan),
+                    // Pan position, except for random,
+                    // Which is a different parameter
+                    data == 0
+                    ? AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.RandomPan, 
+                            true), channel)
+                    : OfControllerChange(Midi.CC.Pan),
                 0x1f =>
                     // CC1 Controller number
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                    AnalyzedParameter.Of(
                         new ChannelMidiParameter(
                         ChannelMidiParameter.Type.CC1, (Midi.CC)data), 
-                        channel)),
+                        channel),
                 0x20 =>
                     // CC2 Controller number
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                    AnalyzedParameter.Of(
                         new ChannelMidiParameter(
                         ChannelMidiParameter.Type.CC2, (Midi.CC)data), 
-                        channel)),
+                        channel),
                 0x21 =>
                     // Chorus send
                     OfControllerChange(Midi.CC.ChorusDepth),
@@ -1135,13 +1146,11 @@ public static class MidiUtils
                     OfControllerChange(Midi.CC.ReverbDepth),
                 0x2a =>
                     // Fine tune
-                    AnalyzedMessage.Of(
-                        AnalyzedParameter.Of(
+                    AnalyzedParameter.Of(
                         // 0-16384
                         (ChannelMidiParameter.Type.FineTune,
                         (((data << 7) | syx[8]) - 8_192) / 81.92f),
-                        channel)),
-                    
+                        channel),
                 0x2c =>
                     // Delay send
                     OfControllerChange(Midi.CC.VariationDepth),
@@ -1173,8 +1182,7 @@ public static class MidiUtils
             };
 
             AnalyzedMessage OfControllerChange(Midi.CC cc) =>
-                AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
-                    cc, data, channel));
+                AnalyzedParameter.OfControllerChange(cc, data, channel);
         }
 
         // Patch Parameter Tone Map
@@ -1186,12 +1194,12 @@ public static class MidiUtils
                 0x00 or
                 0x01 =>
                     // Tone map number (cc#32)
-                    AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
-                        Midi.CC.BankSelectLSB, data, channel)),
+                    AnalyzedParameter.OfControllerChange(
+                        Midi.CC.BankSelectLSB, data, channel),
                 0x22 => 
-                    AnalyzedMessage.Of(AnalyzedParameter.Of(
+                    AnalyzedParameter.Of(
                         (ChannelMidiParameter.Type.EfxAssign, data == 1),
-                        channel)),
+                        channel),
                 _ => AnalyzedParameter.Type.Other
             };
         }
