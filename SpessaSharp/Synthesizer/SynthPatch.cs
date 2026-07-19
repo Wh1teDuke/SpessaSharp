@@ -12,6 +12,45 @@ namespace SpessaSharp.Synthesizer;
 public abstract class SynthPatch
 {
     public MidiPatch.Full Patch;
+    
+    public string Name
+    {
+        get => Patch.Name;
+        set => Patch = Patch with { Name = value };
+    }
+
+    public int BankMSB
+    {
+        get => Patch.BankMSB;
+        set => Patch = Patch with { Data = Patch.Data with { BankMSB = value }};
+    }
+
+    public int BankLSB
+    {
+        get => Patch.BankLSB;
+        set => Patch = Patch with { Data = Patch.Data with { BankLSB = value }};
+    }
+
+    public int Program
+    {
+        get => Patch.Program;
+        set => Patch = Patch with { Data = Patch.Data with { Program = value }};
+    }
+
+    public abstract bool IsDrum { get; }
+
+    public bool IsGMGSDrum
+    {
+        get => Patch.IsGMGSDrum;
+        set => Patch = Patch with { Data = Patch.Data with { IsGMGSDrum = value }};
+    }
+    
+    public bool IsXGDrum => Patch.IsXGDrum;
+    
+    /// <summary>Checks if the bank and program numbers are the same for the given preset as this one.</summary>
+    /// <param name="preset">The preset to check.</param>
+    /// <returns></returns>
+    public bool Matches(MidiPatch preset) => Patch.Data.Matches(preset);
         
     /// <summary>Returns the voice synthesis data for this preset.</summary>
     /// <param name="cCache"></param>

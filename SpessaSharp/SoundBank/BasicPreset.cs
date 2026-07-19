@@ -80,38 +80,6 @@ public sealed class BasicPreset: BasePreset
     /// <summary>Unused metadata</summary>
     public uint Morphology;
 
-    public string Name
-    {
-        get => Patch.Name;
-        set => Patch = Patch with { Name = value };
-    }
-
-    public int BankMSB
-    {
-        get => Patch.BankMSB;
-        set => Patch = Patch with { Data = Patch.Data with { BankMSB = value }};
-    }
-
-    public int BankLSB
-    {
-        get => Patch.BankLSB;
-        set => Patch = Patch with { Data = Patch.Data with { BankLSB = value }};
-    }
-
-    public int Program
-    {
-        get => Patch.Program;
-        set => Patch = Patch with { Data = Patch.Data with { Program = value }};
-    }
-
-    public bool IsGMGSDrum
-    {
-        get => Patch.IsGMGSDrum;
-        set => Patch = Patch with { Data = Patch.Data with { IsGMGSDrum = value }};
-    }
-    
-    public bool IsXGDrum => Patch.IsXGDrum;
-
     /// <summary>Creates a new preset representation.</summary>
     /// <param name="parent">The sound bank this preset belongs to.</param>
     /// <param name="globalZone">Optional, a global zone to use.</param>
@@ -127,7 +95,7 @@ public sealed class BasicPreset: BasePreset
     }
     
     /// <summary>Checks if this preset is a drum preset</summary>
-    public bool IsDrum =>
+    public override bool IsDrum =>
         IsGMGSDrum || (Parent.IsXGBank && BankSelectHacks.IsXGDrum(BankMSB));
     
     /// <summary>Unlinks everything from this preset.</summary>
@@ -169,11 +137,6 @@ public sealed class BasicPreset: BasePreset
             }
         }
     }
-
-    /// <summary>Checks if the bank and program numbers are the same for the given preset as this one.</summary>
-    /// <param name="preset">The preset to check.</param>
-    /// <returns></returns>
-    public bool Matches(MidiPatch preset) => Patch.Data.Matches(preset);
 
     public readonly ref struct InstrumentZoneEnumerable(
         BasicPreset preset, int note, int velocity)

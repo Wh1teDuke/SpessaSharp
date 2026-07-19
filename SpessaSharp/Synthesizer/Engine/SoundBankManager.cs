@@ -24,7 +24,7 @@ public sealed class SoundBankManager: BasePreset.IGetter<BasicPreset>
     internal readonly List<ListEntry> SoundBankList = new(8);
     private readonly Action _presetListChangeCallbank;
     
-    private readonly List<BasicPreset> _selectablePresetList = new(400);
+    private readonly List<SynthPatch> _selectablePresetList = new(400);
     private readonly List<MidiPatch.Full> _presetList = new(400);
 
     /// <summary> </summary>
@@ -108,7 +108,7 @@ public sealed class SoundBankManager: BasePreset.IGetter<BasicPreset>
         MidiPatch patch, Midi.System system) =>
         SoundBankList.Count == 0 || _selectablePresetList.Count == 0
             ? null
-            : PresetSelector.Of(_selectablePresetList, patch, system);
+            : (BasicPreset?)PresetSelector.Of(_selectablePresetList, patch, system);
     
     /// <summary>Clears the sound bank list and destroys all sound banks.</summary>
     public void Destroy()
