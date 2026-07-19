@@ -242,7 +242,7 @@ public static class WriterRMidi
                         case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
                         {
                             var gmp = syx.AsGlobalMidiParameter!.Value;
-                            if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                            if (gmp.PType == GlobalMidiParameter.Type.System)
                             {
                                 system = gmp.AsMidiSystem;
                                 if (system == Midi.System.GM)

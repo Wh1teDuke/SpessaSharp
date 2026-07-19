@@ -32,10 +32,10 @@ public static class GlobalMidiParameters
                 parameters[(int)GlobalMidiParameter.Type.FineTune].AsFloat;
         }
         
-        public Midi.System MidiSystem
+        public Midi.System System
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.MidiSystem].AsMidiSystem;
+                parameters[(int)GlobalMidiParameter.Type.System].AsMidiSystem;
         }
         
         public GlobalMidiParameter Get(
@@ -135,8 +135,8 @@ public readonly record struct GlobalMidiParameter
 
     public static GlobalMidiParameter Of(Midi.System system)
     {
-        Assert(Type.MidiSystem, Params.Type.MidiSystem);
-        return new GlobalMidiParameter(Type.MidiSystem, Params.Of(system));
+        Assert(Type.System, Params.Type.MidiSystem);
+        return new GlobalMidiParameter(Type.System, Params.Of(system));
     }
     
     private GlobalMidiParameter(Type type, Params.Data data)
@@ -153,7 +153,7 @@ public readonly record struct GlobalMidiParameter
     public enum Type
     { 
         /// <summary>The currently enabled MIDI system used by the synthesizer for bank selects and system exclusives. (GM, GM2, GS, XG)</summary>
-        MidiSystem, 
+        System, 
         /// <summary>The global key shift in semitones. Drum channels ignore this value. Set by MIDI SysEx.</summary>
         KeyShift, 
         /// <summary>The global tuning in cents. Drum channels ignore this value. Set by MIDI SysEx.</summary>
@@ -171,7 +171,7 @@ public readonly record struct GlobalMidiParameter
     
     public static Params.Type TypeOf(Type type) => type switch
     {
-        Type.MidiSystem => Params.Type.MidiSystem,
+        Type.System => Params.Type.MidiSystem,
         Type.Volume => Params.Type.Float,
         Type.Pan => Params.Type.Float,
         Type.KeyShift => Params.Type.Int,

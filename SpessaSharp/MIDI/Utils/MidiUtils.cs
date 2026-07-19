@@ -254,7 +254,7 @@ public static class MidiUtils
     {
         switch (parameter.PType)
         {
-            case GlobalMidiParameter.Type.MidiSystem:
+            case GlobalMidiParameter.Type.System:
                 // Well, we set the system so we don't care about the current one
                 return [Reset(ticks, parameter.AsMidiSystem)];
 

@@ -321,6 +321,9 @@ public sealed class Synthesizer
             GlobalSystemParameter.Type.EventsEnabled,
             options.EventsEnabled));
         MaxBufferSize = options.MaxBufferSize;
+        
+        // For GS user drum set
+        SoundBankManager.SystemGetter = () => MidiParameters.System;
         // These smoothing factors were tested on 44,100 Hz, adjust them to target sample rate here
         // Volume  smoothing factor
         GainSmoothingFactor = GAIN_SMOOTHING_FACTOR * (44_100f / sampleRate);
@@ -576,7 +579,7 @@ public sealed class Synthesizer
         {
             var patch = KeyModifierManager.GetPatch(channel, midiNote);
             preset = SoundBankManager.GetPreset(
-                patch, MidiParameters.MidiSystem);
+                patch, MidiParameters.System);
         }
 
         // Warning is handled in program change
@@ -833,7 +836,7 @@ public sealed class Synthesizer
 
             // CC#94 in XG is variation, not delay
             if (DelayActive && 
-                MidiParameters.MidiSystem != Midi.System.XG)
+                MidiParameters.System != Midi.System.XG)
             {
                 // Process delay
                 DelayProcessor.Process(

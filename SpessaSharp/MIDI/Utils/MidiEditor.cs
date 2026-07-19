@@ -248,7 +248,7 @@ public static class MidiEditor
         Midi.System? system = Midi.System.GS;
         {
             if (opts.MidiParams?.TryGetValue(
-                GlobalMidiParameter.Type.MidiSystem,
+                GlobalMidiParameter.Type.System,
                 out var parameter) ?? false)
             {
                 system = parameter switch
@@ -743,7 +743,7 @@ public static class MidiEditor
                                     goto Continue;
                                 }
                             
-                                if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                                if (gmp.PType == GlobalMidiParameter.Type.System)
                                 {
                                     if (gmp.AsMidiSystem is Midi.System.GM)
                                     {
@@ -991,7 +991,7 @@ public static class MidiEditor
             // Add the requested system or GS. Clear breaks everything so we don't care.
             var targetSystem = Midi.System.GS;
             if (opts.MidiParams?.TryGetValue(
-                GlobalMidiParameter.Type.MidiSystem, 
+                GlobalMidiParameter.Type.System, 
                 out var value) is true)
             {
                 if (value is Parameter<GlobalMidiParameter>.Replace(var param))
@@ -1012,7 +1012,7 @@ public static class MidiEditor
         // Add MIDI parameters
         foreach (var ompEntry in opts.MidiParams ?? [])
         {
-            if (ompEntry.Key == GlobalMidiParameter.Type.MidiSystem) 
+            if (ompEntry.Key == GlobalMidiParameter.Type.System) 
                 continue;
             if (ompEntry.Value is not 
                 Parameter<GlobalMidiParameter>.Replace(var value))

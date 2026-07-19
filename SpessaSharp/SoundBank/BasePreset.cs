@@ -5,7 +5,7 @@ namespace SpessaSharp.SoundBank;
 
 public abstract class BasePreset: SynthPatch
 {
-    public interface IGetter<out T> where T : BasePreset
+    public interface IGetter<out T> where T : SynthPatch
     {
         public T? GetPreset(MidiPatch patch, Midi.System system);
     }

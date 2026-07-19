@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text;
 using SpessaSharp.SoundBank;
+using SpessaSharp.Synthesizer;
 using SpessaSharp.Synthesizer.Engine;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
@@ -24,13 +25,13 @@ namespace SpessaSharp.MIDI.Utils;
 /// </item></list></summary>
 /// <param name="data"></param>
 public readonly struct PresetsWithKeyCombinations(
-    Dictionary<BasePreset, HashSet<(int Key, int Velocity)>> data)
+    Dictionary<SynthPatch, HashSet<(int Key, int Velocity)>> data)
 {
     private readonly Dictionary<
-        BasePreset, HashSet<(int Key, int Velocity)>> _data = data;
+        SynthPatch, HashSet<(int Key, int Velocity)>> _data = data;
 
     public bool TryGetValue(
-        BasePreset key, 
+        SynthPatch key, 
         [MaybeNullWhen(false)] out HashSet<(int Key, int Velocity)> value) =>
         _data.TryGetValue(key, out value);
 
@@ -39,12 +40,12 @@ public readonly struct PresetsWithKeyCombinations(
     public ref struct Enumerator(PresetsWithKeyCombinations presets)
     {
         private Dictionary<
-            BasePreset, HashSet<(int Key, int Velocity)>>.Enumerator _enum =
+            SynthPatch, HashSet<(int Key, int Velocity)>>.Enumerator _enum =
             presets._data.GetEnumerator();
 
-        private (BasePreset, HashSet<(int Key, int Velocity)>)? _current = null;
+        private (SynthPatch, HashSet<(int Key, int Velocity)>)? _current = null;
         
-        public (BasePreset, HashSet<(int Key, int Velocity)>) Current => _current!.Value;
+        public (SynthPatch, HashSet<(int Key, int Velocity)>) Current => _current!.Value;
 
         public bool MoveNext()
         {
@@ -79,7 +80,7 @@ internal static class UsedProgramsAndKeys
         private bool _inUse;
         
         public readonly Dictionary<
-            BasePreset, HashSet<(int Key, int Velocity)>>
+            SynthPatch, HashSet<(int Key, int Velocity)>>
             ProgramsAndKeys = new(32);
 
         public void Done()
@@ -134,7 +135,7 @@ internal static class UsedProgramsAndKeys
         int BankLSB,
         ParamTracker Param,
         bool IsDrum,
-        int KeyShift) where T: BasePreset;
+        int KeyShift) where T: SynthPatch;
     
     /// <summary>
     /// Gets the used programs and keys for this MIDI file with a given sound bank.
@@ -143,7 +144,7 @@ internal static class UsedProgramsAndKeys
     /// <param name="getPreset">The preset provider.</param>
     /// <returns>Patch -> (Key-Velocity)</returns>
     public static PresetsWithKeyCombinations Get<T>(
-        Midi mid, BasePreset.IGetter<T> getPreset) where T : BasePreset
+        Midi mid, BasePreset.IGetter<T> getPreset) where T : SynthPatch
     {
         var cache = getPreset is SoundBankManager sbm ? sbm.Cache : new Cache();
         return Get(mid, getPreset, cache);
@@ -157,7 +158,7 @@ internal static class UsedProgramsAndKeys
     /// <param name="cache"></param>
     /// <returns>Patch -> (Key-Velocity)</returns>
     public static PresetsWithKeyCombinations Get<T>(
-        Midi mid, BasePreset.IGetter<T> getPreset, Cache cache) where T : BasePreset
+        Midi mid, BasePreset.IGetter<T> getPreset, Cache cache) where T : SynthPatch
     {
         Debug.WriteLine(
             "Searching for all used programs and keys ...");
@@ -331,7 +332,7 @@ internal static class UsedProgramsAndKeys
                         var gmp = syx.AsGlobalMidiParameter!.Value;
                         if (gmp.PType == GlobalMidiParameter.Type.KeyShift)
                             masterKeyShift = gmp.AsInt;
-                        else if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                        else if (gmp.PType == GlobalMidiParameter.Type.System)
                         {
                             Reset(gmp.AsMidiSystem);
                             SpessaLog.Info($"{gmp.AsMidiSystem} on detected!");

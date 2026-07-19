@@ -408,7 +408,7 @@ public sealed class Midi
     /// <param name="getPreset">The Preset provider.</param>
     /// <returns>The output data is a key-value pair: Preset -> (Key-Velocity)</returns>
     public PresetsWithKeyCombinations GetUsedProgramsAndKeys<T>(
-            BasePreset.IGetter<T> getPreset) where T : BasePreset =>
+            BasePreset.IGetter<T> getPreset) where T : SynthPatch =>
         UsedProgramsAndKeys.Get(this, getPreset);
 
     /// <summary>

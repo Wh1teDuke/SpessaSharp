@@ -291,7 +291,7 @@ public sealed class MidiChannel: ISf2Channel
     internal Midi.System ChannelSystem =>
         SystemParamArray.PresetLock
             ? LockedSystem
-            : SynthCore.MidiParameters.MidiSystem;
+            : SynthCore.MidiParameters.System;
     
     /*
     ==========
