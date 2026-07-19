@@ -543,6 +543,13 @@ internal static class Util
     public static ArraySegment<T> Rent<T>(int s) =>
         new(ArrayPool<T>.Shared.Rent(s), 0, s);
 
+    public static ArraySegment<T> Rent<T>(ReadOnlySpan<T> args)
+    {
+        var res = Rent<T>(args.Length);
+        args.CopyTo(res);
+        return res;
+    }
+
     public static void Grow<T>(ref ArraySegment<T> seg, int s)
     {
         Debug.Assert(seg.Count < s);

@@ -734,6 +734,9 @@ public static class MidiUtils
             AnalyzedMessage msg) => Of(msg);
         
         public static implicit operator AnalyzedMessageEnumerable(
+            ArraySegment<AnalyzedMessage> messages) => Of(messages);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
             AnalyzedParameter msg) => Of(msg);
         
         public static implicit operator AnalyzedMessageEnumerable(
@@ -1142,7 +1145,11 @@ public static class MidiUtils
             {
                 0x00 =>
                     // Tone number
-                    AnalyzedMessage.OfProgramChange(channel, data),
+                    Util.Rent([
+                        AnalyzedParameter.OfControllerChange(
+                            Midi.CC.BankSelect, data, channel),
+                        AnalyzedMessage.OfProgramChange(channel, syx[8]),
+                    ]),
                 0x13 =>
                     // Mono/poly
                     AnalyzedParameter.Of(
