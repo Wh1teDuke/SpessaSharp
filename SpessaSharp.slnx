@@ -30,11 +30,20 @@
     <File Path=".github\workflows\nuget-nightly.yaml" />
     <File Path=".github\workflows\nuget.yaml" />
     <File Path=".github\workflows\sstool.yml" />
-
   </Folder>
   <Folder Name="/Root/.github/ISSUE_TEMPLATE/">
     <File Path=".github\ISSUE_TEMPLATE\bug_report.yml" />
     <File Path=".github\ISSUE_TEMPLATE\config.yml" />
     <File Path=".github\ISSUE_TEMPLATE\feature_request.yml" />
+  </Folder>
+  <!-- Tests -->
+  <Folder Name="/Root/Tests/">
+    <File Path="Tests\midi\MidiTestMaker.cs" />
+  </Folder>
+  <Folder Name="/Root/Tests/MidiEditor/">
+    <File Path="Tests\midi\midi_editor\MidiEditorMidiParams.cs" />
+  </Folder>
+  <Folder Name="/Root/Tests/cc/">
+    <File Path="Tests\midi\cc\SoftPedal.cs" />
   </Folder>
 </Solution>
