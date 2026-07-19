@@ -754,9 +754,7 @@ public static class MidiUtils
             ?? throw new InvalidOperationException();
 
         public bool MoveNext() => 
-            single != null 
-                ? ++_index <= 1
-                : ++_index < messages?.Count;
+            ++_index < (single != null ? 1 : messages?.Count);
 
         public void Dispose()
         {
