@@ -567,6 +567,13 @@ public static class MidiUtils
         Gs(a1, a2, a3, [data1, data2], dataArray);
         return dataArray;
     }
+    
+    public static byte[] Gs(int a1, int a2, int a3, ReadOnlySpan<byte> data)
+    {
+        var dataArray = new byte[GsDataMinLen + data.Length];
+        Gs(a1, a2, a3, data, dataArray);
+        return dataArray;
+    }
 
     /// <summary>Gets raw GS System Exclusive message, without the 0xF0 status byte.</summary>
     /// <param name="a1">Address 1</param>
@@ -655,6 +662,13 @@ public static class MidiUtils
         result[6 + data.Length] = 0xf7; // End of exclusive
 
         return result[.. (XgDataMinLen + data.Length)];
+    }
+    
+    public static byte[] Xg(int a1, int a2, int a3, ReadOnlySpan<byte> data)
+    {
+        var dataArray = new byte[XgDataMinLen + data.Length];
+        Xg(a1, a2, a3, data, dataArray);
+        return dataArray;
     }
 
     /// <summary>Gets a XG System Exclusive MIDI message</summary>

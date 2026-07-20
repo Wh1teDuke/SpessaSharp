@@ -45,5 +45,7 @@
   </Folder>
   <Folder Name="/Root/Tests/cc/">
     <File Path="Tests\midi\cc\SoftPedal.cs" />
+    <File Path="Tests\midi\cc\RPNFineTuning.cs" />
+    <File Path="Tests\midi\cc\RealtimeRPNTuning.cs" />
   </Folder>
 </Solution>

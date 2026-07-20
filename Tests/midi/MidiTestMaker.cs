@@ -18,12 +18,14 @@ public sealed class MidiTestMaker
         );
     }
 
-    private MidiBuilder _builder;
     private int _ticks;
     private Midi.System _system;
 
+    private readonly MidiBuilder _builder;
+
     private readonly Track Track;
-    private readonly MidiBuilder.TrackBuilder TBuilder;
+    private readonly MidiBuilder.TrackBuilder T;
+    private readonly MidiBuilder.ChannelBuilder C;
     
     private readonly string Name;
     private readonly int Channel;
@@ -47,20 +49,21 @@ public sealed class MidiTestMaker
 
         Track = _builder.Midi.Tracks[0];
         Track.Add(MidiUtils.Reset(0, opts.System), 0);
-        TBuilder = _builder.OfTrack(Track);
+        T = _builder.OfTrack(Track);
+        C = T.OfChannel(Channel);
     }
 
     public MidiTestMaker Reset(Midi.System system)
     {
         Text($"{system.ToString().ToUpperInvariant()} RESET");
-        TBuilder.Reset(_ticks, system);
+        T.Reset(_ticks, system);
         _system = system;
         return Wait(480);
     }
 
     public MidiTestMaker CC(Midi.CC cc, int value)
     {
-        TBuilder.OfChannel(0).CC(_ticks, cc, value);
+        C.CC(_ticks, cc, value);
         return this;
     }
     
@@ -69,13 +72,13 @@ public sealed class MidiTestMaker
         Text($"Program change {msb}:{lsb} - {program}");
         CC(Midi.CC.BankSelectLSB, lsb);
         CC(Midi.CC.BankSelect, msb);
-        TBuilder.OfChannel(0).ProgramChange(_ticks, program);
+        C.ProgramChange(_ticks, program);
         return this;
     }
     
     public MidiTestMaker Text(string text)
     {
-        TBuilder.Text(_ticks, text);
+        T.Text(_ticks, text);
         return this;
     }
 
@@ -90,15 +93,48 @@ public sealed class MidiTestMaker
 
     public MidiTestMaker NoteOff(int midiNote)
     {
-        TBuilder.OfChannel(0).NoteOff(_ticks, midiNote);
+        C.NoteOff(_ticks, midiNote);
         return this;
     }
     
     public MidiTestMaker NoteOn(int midiNote, int velocity)
     {
-        TBuilder.OfChannel(0).NoteOn(_ticks, midiNote, velocity);
+        C.NoteOn(_ticks, midiNote, velocity);
         return this;
     }
+    
+    public MidiTestMaker GS(int a1, int a2, int a3, ArraySegment<byte> data) 
+    {
+        T.SystemExclusive(_ticks, MidiUtils.Gs(a1, a2, a3, data));
+        return this;
+    }
+
+    public MidiTestMaker XG(int a1, int a2, int a3, ArraySegment<byte> data) 
+    {
+        T.SystemExclusive(_ticks, MidiUtils.Xg(a1, a2, a3, data));
+        return this;
+    }
+    
+    public MidiTestMaker RPN(int rpn, int val) 
+    {
+        Text($"RPN {rpn:x} = {val:x}");
+        C.RegisteredParameter(_ticks, rpn, val);
+        return this;
+    }
+
+    /// <summary>Value is 7-bit only</summary>
+    /// <param name="nrpn"></param>
+    /// <param name="val">7-bit only</param>
+    public MidiTestMaker NRPN(int nrpn, int val) 
+    {
+        // Text($"NRPN {nrpn:x} = {val:x}"); ???
+        C.NonRegisteredParameter(_ticks, nrpn, val << 7);
+        return this;
+    }
+
+    public void Modify(MidiEditor.Options opts) => _builder.Midi.Modify(opts);
+    
+    public void Flush() => _builder.Midi.Flush();
 
     public void Make(DirectoryInfo? outPath = null)
     {
@@ -106,7 +142,7 @@ public sealed class MidiTestMaker
         
         // Wait a little
         Wait(480 * 2).CC(Midi.CC.ModulationWheel, 1);
-        _builder.Midi.Flush();
+        Flush();
         
         var outFile = new FileInfo(
             Path.Join(outPath.FullName, _builder.Midi.FileName + ".mid"));

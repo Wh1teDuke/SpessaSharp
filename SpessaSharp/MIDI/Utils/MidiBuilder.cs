@@ -30,6 +30,9 @@ public readonly record struct MidiBuilder
         
         public void Reset(int ticks, Midi.System system) =>
             Track.EventList.Add(MidiUtils.Reset(ticks, system));
+
+        public void SystemExclusive(int ticks, ArraySegment<byte> data) => Base.AddEvent(
+            Track, ticks, MidiMessage.Type.SystemExclusive, data);
     }
 
     public readonly record struct ChannelBuilder(
