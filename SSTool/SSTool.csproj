@@ -29,7 +29,7 @@
 
     <ItemGroup>
         <PackageReference Include="OwnAudioVst" Version="1.6.7" />
-        <PackageReference Include="SFML.Gaiden.Audio" Version="100.0.2" />
+        <PackageReference Include="SFML.Gaiden.Audio" Version="100.1.0" />
         <PackageReference Include="System.CommandLine" Version="2.0.10" />
         <ProjectReference Include="..\SpessaSharp\SpessaSharp.csproj" />
 
