@@ -50,6 +50,7 @@
     <File Path="Tests\midi\cc\RealtimeRPNTuning.cs" />
   </Folder>
   <Folder Name="/Root/Tests/other/">
+    <File Path="Tests\midi\gs\Filter.cs" />
     <File Path="Tests\midi\other\AssignMode.cs" />
     <File Path="Tests\midi\other\DrumSpam.cs" />
     <File Path="Tests\midi\other\MonoMode.cs" />

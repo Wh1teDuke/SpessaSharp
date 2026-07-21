@@ -1,3 +1,4 @@
+using System.Text;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
@@ -89,6 +90,12 @@ public sealed class MidiTestMaker
         C.ProgramChange(_ticks, program);
         return this;
     }
+
+    public MidiTestMaker Pitch(int value)
+    {
+        C.PitchWheel(_ticks, value);
+        return this;
+    }
     
     public MidiTestMaker Text(string text)
     {
@@ -104,6 +111,128 @@ public sealed class MidiTestMaker
 
     public MidiTestMaker Note(int midiNote, int velocity, int duration = 480) => 
         NoteOn(midiNote, velocity).Wait(duration).NoteOff(midiNote);
+    
+    public MidiTestMaker SweepGS(
+        int a1, int a2, int a3, 
+        int from, int to, 
+        int tickStep = 480, int dataStep = 1) 
+    {
+        var data = from;
+        while (data <= to) 
+        {
+            Text(
+                $"GS sweep {ToHexString([a1, a2, a3])} = {Math.Min(data, to):x}"
+            );
+            GS(a1, a2, a3, [Math.Min(data, to)]);
+            _ticks += tickStep;
+            data += dataStep;
+        }
+        GS(a1, a2, a3, [Math.Min(data, to)]);
+
+        return this;
+    }
+    
+    public MidiTestMaker SweepCC(
+        Midi.CC cc, int from, int to, int tickStep = 480, int dataStep = 1) 
+    {
+        var step = Math.Abs(dataStep);
+
+        if (from <= to) 
+        {
+            var data = from;
+
+            while (data <= to) 
+            {
+                Text($"CC Sweep {cc} = {data}");
+                CC(cc, data);
+                _ticks += tickStep;
+                data += step;
+            }
+        } 
+        else 
+        {
+            var data = from;
+
+            while (data >= to) 
+            {
+                Text($"CC Sweep {cc} = {data}");
+                CC(cc, data);
+                _ticks += tickStep;
+                data -= step;
+            }
+        }
+
+        return this;
+    }
+    
+    /// <summary>Range supports 7-bit only</summary>
+    /// <param name="nrpn"></param>
+    /// <param name="from">7-bit</param>
+    /// <param name="to">7-bit</param>
+    /// <param name="tickStep"></param>
+    /// <param name="dataStep"></param>
+    public MidiTestMaker SweepNrpn(
+        int nrpn, int from, int to, int tickStep = 480, int dataStep = 1) 
+    {
+        var step = Math.Abs(dataStep);
+
+        if (from <= to) 
+        {
+            var data = from;
+
+            while (data <= to) 
+            {
+                Text($"NRPN Sweep {nrpn:x} = {data}");
+                NRPN(nrpn, data);
+                _ticks += tickStep;
+                data += step;
+            }
+        } 
+        else 
+        {
+            var data = from;
+
+            while (data >= to) 
+            {
+                Text($"CC Sweep {nrpn:x} = {data}");
+                NRPN(nrpn, data);
+                _ticks += tickStep;
+                data -= step;
+            }
+        }
+
+        return this;
+    }
+    
+    public MidiTestMaker SweepPitch(
+        int from, int to, int tickStep = 480, int dataStep = 1) 
+    {
+        var step = Math.Abs(dataStep);
+
+        if (from <= to) 
+        {
+            var data = from;
+
+            while (data <= to) {
+                Pitch(data);
+                _ticks += tickStep;
+                data += step;
+            }
+        } 
+        else 
+        {
+            var data = from;
+
+            while (data >= to) 
+            {
+                Pitch(data);
+                _ticks += tickStep;
+                data -= step;
+            }
+        }
+
+        return this;
+    }
 
     public MidiTestMaker NoteOff(int midiNote)
     {
@@ -175,5 +304,12 @@ public sealed class MidiTestMaker
         var result = new byte[array.Length];
         for (var i = 0; i < array.Length; i++) result[i] = (byte)array[i];
         return result;
+    }
+    
+    private static string ToHexString(ReadOnlySpan<int> arr)
+    {
+        var hex = new StringBuilder(arr.Length * 2);
+        foreach (var b in arr) hex.Append($"{b:x2}");
+        return hex.ToString();
     }
 }

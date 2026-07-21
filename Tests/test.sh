@@ -138,6 +138,8 @@ test midi/other/OverlappingNotesTest.cs midi_file/other/overlapping_notes_test.t
 test midi/other/VelocitySense.cs        midi_file/other/velocity_sense.ts         velocity_sense_depth_+_offset.mid
 test midi/other/VelocitySenseBug.cs     midi_file/other/velocity_sense_bug.ts     velocity_sense_depth_bug.mid
 
+test midi/gs/Filter.cs                  midi_file/gs/filter.ts                    gs_filter_test.mid
+
 # -------------------------------------
 
 
