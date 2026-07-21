@@ -101,12 +101,13 @@ test() {
   else
     test_fail=$((test_fail+1))
     failed_tests+=("${ssharp_mid_out}")
-    echo - "✗   "
+    echo -n "✗   "
   fi
   
   # 2 Compare wav
   local threshold=0.1 # TODO: pass optional tresh
-  local max_amp=$(
+  local max_amp
+  max_amp=$(
     sox -m -v 1 "${ssharp_wav_out}" -v -1 "${ssynth_wav_out}" -n stat 2>&1 |
     awk '/Maximum amplitude:/ {print $3}'
   )
@@ -135,6 +136,7 @@ test midi/other/DrumSpam.cs             midi_file/other/drum_spam.ts            
 test midi/other/MonoMode.cs             midi_file/other/mono_mode.ts              mono_mode_test.mid
 test midi/other/OverlappingNotesTest.cs midi_file/other/overlapping_notes_test.ts overlapping_notes_test.mid
 test midi/other/VelocitySense.cs        midi_file/other/velocity_sense.ts         velocity_sense_depth_+_offset.mid
+test midi/other/VelocitySenseBug.cs     midi_file/other/velocity_sense_bug.ts     velocity_sense_depth_bug.mid
 
 # -------------------------------------
 
