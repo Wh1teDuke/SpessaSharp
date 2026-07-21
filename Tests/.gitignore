@@ -1,0 +1,11 @@
+generated/
+rendered/
+*.wav
+
+# SpessaSynth
+spessasynth_core/
+node_modules/
+bcc/
+README.md
+bun*
+*.ts

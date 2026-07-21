@@ -26,7 +26,13 @@ public readonly record struct MidiBuilder
         public void Text(int ticks, string text) => AddEvent(
             ticks,
             MidiMessage.Type.Text,
-            SpessaUtil.MidiEncoding.GetBytes(text));
+            SpessaUtil.MidiEncoding.GetBytes(text + "\n"));
+        
+        public void Reset(int ticks, Midi.System system) =>
+            Track.EventList.Add(MidiUtils.Reset(ticks, system));
+
+        public void SystemExclusive(int ticks, ArraySegment<byte> data) => Base.AddEvent(
+            Track, ticks, MidiMessage.Type.SystemExclusive, data);
     }
 
     public readonly record struct ChannelBuilder(
@@ -261,6 +267,12 @@ public readonly record struct MidiBuilder
             track, ticks,
             SB(MidiMessage.Type.ProgramChange, channel), DataOf(program));
     }
+    
+    public void Text(int ticks, int track, string text) => AddEvent(
+        Midi.Tracks[track],
+        ticks,
+        MidiMessage.Type.Text,
+        SpessaUtil.MidiEncoding.GetBytes(text + "\n"));
 
     public void SetLoopStart(int track, int ticks) =>
         SetLoopStart(Midi.Tracks[track], ticks);

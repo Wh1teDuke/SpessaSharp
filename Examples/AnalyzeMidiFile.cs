@@ -44,7 +44,7 @@ WriteLine("---");
 Group("--- Used Programs ---");
 foreach (var (preset, keys) in used) 
     WriteLine(
-        $"{preset.Patch.ToFullMIDIString(),-30}-> {keys.Count} key combinations detected.");
+        $"{preset.Patch.ToFullMidiString(),-30}-> {keys.Count} key combinations detected.");
 
 GroupEnd();
 WriteLine("---");

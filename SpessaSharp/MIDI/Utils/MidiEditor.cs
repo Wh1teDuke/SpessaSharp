@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Parameters;
@@ -58,15 +59,15 @@ public static class MidiEditor
     /// - <b>InsertionProcessorSnapshot</b> - clear + the new parameters are set via System Exclusive messages.
     /// </param>
     public readonly record struct Options(
-        Dictionary<int, Parameter<ChannelModification>>? Channels,
-        Parameter<object>? DrumSetupParams,
+        Dictionary<int, Parameter<ChannelModification>>? Channels = null,
+        Parameter<object>? DrumSetupParams = null,
         Dictionary<
             GlobalMidiParameter.Type,
-            Parameter<GlobalMidiParameter>>? MidiParams,
-        Parameter<Effect.ReverbProcessorSnapshot>? ReverbParams,
-        Parameter<Effect.ChorusProcessorSnapshot>? ChorusParams,
-        Parameter<Effect.DelayProcessorSnapshot>? DelayParams,
-        Parameter<Effect.InsertionProcessorSnapshot>? InsertionParams);
+            Parameter<GlobalMidiParameter>>? MidiParams = null,
+        Parameter<Effect.ReverbProcessorSnapshot>? ReverbParams = null,
+        Parameter<Effect.ChorusProcessorSnapshot>? ChorusParams = null,
+        Parameter<Effect.DelayProcessorSnapshot>? DelayParams = null,
+        Parameter<Effect.InsertionProcessorSnapshot>? InsertionParams = null);
 
     /// <summary>
     /// Represents a value that means "clear this parameter" instead of "replace this parameter with".
@@ -144,8 +145,25 @@ public static class MidiEditor
         /// and it does not overwrite it.
         /// </summary>
         public float? FineTune;
-    }    
-    
+
+        public Parameter<ChannelModification> Replace() =>
+            MidiEditor.Replace(this);
+    }
+
+    public static Dictionary<
+        int, Parameter<ChannelModification>> ChannelModifications(
+            params ReadOnlySpan<(int Channel, Parameter<ChannelModification> Modification)> values)
+    {
+        var result = new Dictionary<int, Parameter<ChannelModification>>();
+        foreach (var value in values)
+            result.Add(value.Channel, value.Modification);
+        return result;
+    }
+
+    public static Parameter<ChannelModification> Replace(
+        ChannelModification value) =>
+        Parameter<ChannelModification>.OfReplace(value);
+
     private static readonly Effect.ReverbProcessorSnapshot ReverbAddressMap = new()
     {
         Character = 0x31,
@@ -892,14 +910,10 @@ public static class MidiEditor
             void AddEventBefore(MidiMessage e) =>
                 toInsert.Add((track, e, index));
 
-            /*
-             * This function adds the events IN ORDER they are in the array,
-             * So the first event in the array will end up as the first one before the current event.
-             */
-            void AddEventsBefore(MidiMessage[] events)
+            void AddEventsBefore(ReadOnlySpan<MidiMessage> events)
             {
-                for (var i = events.Length - 1; i >= 0; i--)
-                    AddEventBefore(events[i]);
+                foreach (var e in events)
+                    AddEventBefore(e);
             }
 
             void DeleteParameter(int channel)
@@ -1031,13 +1045,16 @@ public static class MidiEditor
         {
             var m = ReverbAddressMap;
             targetTrack.Add([
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Level, [(byte)r.Level]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.PreLowPass, [(byte)r.PreLowPass]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Character, [(byte)r.Character]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Time, [(byte)r.Time]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.DelayFeedback, [(byte)r.DelayFeedback]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.PreDelayTime, [(byte)r.PreDelayTime]),
-                ], targetIndex);
+                GsMessage(m.Level, r.Level),
+                GsMessage(m.PreLowPass, r.PreLowPass),
+                GsMessage(m.Character, r.Character),
+                GsMessage(m.Time, r.Time),
+                GsMessage(m.DelayFeedback, r.DelayFeedback),
+                GsMessage(m.PreDelayTime, r.PreDelayTime),
+            ], targetIndex);
+            
+            MidiMessage GsMessage(int a3, int data) =>
+                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, a3, [(byte)data]);
         }
         
         if (opts.ChorusParams is 
@@ -1046,15 +1063,18 @@ public static class MidiEditor
         {
             var m = ChorusAddressMap;
             targetTrack.Add([
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Level, [(byte)c.Level]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.PreLowPass, [(byte)c.PreLowPass]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Feedback, [(byte)c.Feedback]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Delay, [(byte)c.Delay]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Rate, [(byte)c.Rate]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Depth, [(byte)c.Depth]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.SendLevelToReverb, [(byte)c.SendLevelToReverb]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.SendLevelToDelay, [(byte)c.SendLevelToDelay]),
+                GsMessage(m.Level, c.Level),
+                GsMessage(m.PreLowPass, c.PreLowPass),
+                GsMessage(m.Feedback, c.Feedback),
+                GsMessage(m.Delay, c.Delay),
+                GsMessage(m.Rate, c.Rate),
+                GsMessage(m.Depth, c.Depth),
+                GsMessage(m.SendLevelToReverb, c.SendLevelToReverb),
+                GsMessage(m.SendLevelToDelay, c.SendLevelToDelay),
             ], targetIndex);
+            
+            MidiMessage GsMessage(int a3, int data) =>
+                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, a3, [(byte)data]);
         }
         
         if (opts.DelayParams is 
@@ -1063,17 +1083,20 @@ public static class MidiEditor
         {
             var m = DelayAddressMap;
             targetTrack.Add([
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Level, [(byte)d.Level]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.PreLowPass, [(byte)d.PreLowPass]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.TimeCenter, [(byte)d.TimeCenter]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.TimeRatioLeft, [(byte)d.TimeRatioLeft]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.TimeRatioRight, [(byte)d.TimeRatioRight]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.LevelCenter, [(byte)d.LevelCenter]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.LevelLeft, [(byte)d.LevelLeft]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.LevelRight, [(byte)d.LevelRight]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.Feedback, [(byte)d.Feedback]),
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, m.SendLevelToReverb, [(byte)d.SendLevelToReverb]),
+                GsMessage(m.Level, d.Level),
+                GsMessage(m.PreLowPass, d.PreLowPass),
+                GsMessage(m.TimeCenter, d.TimeCenter),
+                GsMessage(m.TimeRatioLeft, d.TimeRatioLeft),
+                GsMessage(m.TimeRatioRight, d.TimeRatioRight),
+                GsMessage(m.LevelCenter, d.LevelCenter),
+                GsMessage(m.LevelLeft, d.LevelLeft),
+                GsMessage(m.LevelRight, d.LevelRight),
+                GsMessage(m.Feedback, d.Feedback),
+                GsMessage(m.SendLevelToReverb, d.SendLevelToReverb),
             ], targetIndex);
+
+            MidiMessage GsMessage(int a3, int data) =>
+                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, a3, [(byte)data]);
         }
 
         if (opts.InsertionParams is 
