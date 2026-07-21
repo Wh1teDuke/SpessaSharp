@@ -54,5 +54,6 @@
     <File Path="Tests\midi\other\DrumSpam.cs" />
     <File Path="Tests\midi\other\MonoMode.cs" />
     <File Path="Tests\midi\other\OverlappingNotesTest.cs" />
+    <File Path="Tests\midi\other\VelocitySense.cs" />
   </Folder>
 </Solution>

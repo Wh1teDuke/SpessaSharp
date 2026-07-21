@@ -71,7 +71,7 @@ test() {
   rm -f "${ssharp_mid_out}" "${ssharp_wav_out}"
   rm -f "${ssynth_mid_out}" "${ssynth_wav_out}"
 
-  printf "%-40s" "$(printf "%3d" "$((test_total/2))")) ${result} ..."
+  printf "%-45s" "$(printf "%3d" "$((test_total/2))")) ${result} ..."
 
   # Execute both spessasynth and spessasharp
   #   SSynth
@@ -123,7 +123,7 @@ test() {
 # -------------------------------------
 # TEST START
 echo "Test start ..."
-echo " Num Name                              mid wav"
+echo " Num Name                                   mid wav"
 
 # Midi
 test midi/cc/SoftPedal.cs               midi_file/cc/soft_pedal.ts                soft_pedal_test.mid
@@ -134,6 +134,7 @@ test midi/other/AssignMode.cs           midi_file/other/assign_mode.ts          
 test midi/other/DrumSpam.cs             midi_file/other/drum_spam.ts              drum_spam_test.mid
 test midi/other/MonoMode.cs             midi_file/other/mono_mode.ts              mono_mode_test.mid
 test midi/other/OverlappingNotesTest.cs midi_file/other/overlapping_notes_test.ts overlapping_notes_test.mid
+test midi/other/VelocitySense.cs        midi_file/other/velocity_sense.ts         velocity_sense_depth_+_offset.mid
 
 # -------------------------------------
 

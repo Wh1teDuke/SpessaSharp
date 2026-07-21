@@ -117,15 +117,17 @@ public sealed class MidiTestMaker
         return this;
     }
     
-    public MidiTestMaker GS(int a1, int a2, int a3, ReadOnlySpan<byte> data) 
+    public MidiTestMaker GS(int a1, int a2, int a3, ReadOnlySpan<int> data) 
     {
-        T.SystemExclusive(_ticks, MidiUtils.Gs(a1, a2, a3, data));
+        T.SystemExclusive(
+            _ticks, MidiUtils.Gs(a1, a2, a3, ToByteArray(data)));
         return this;
     }
 
-    public MidiTestMaker XG(int a1, int a2, int a3, ReadOnlySpan<byte> data) 
+    public MidiTestMaker XG(int a1, int a2, int a3, ReadOnlySpan<int> data) 
     {
-        T.SystemExclusive(_ticks, MidiUtils.Xg(a1, a2, a3, data));
+        T.SystemExclusive(
+            _ticks, MidiUtils.Xg(a1, a2, a3, ToByteArray(data)));
         return this;
     }
     
@@ -166,5 +168,12 @@ public sealed class MidiTestMaker
         writer.Write(_builder.Midi.Write());
         
         Console.WriteLine($"{Name} written as {outFile.FullName}");
+    }
+
+    private static byte[] ToByteArray(ReadOnlySpan<int> array)
+    {
+        var result = new byte[array.Length];
+        for (var i = 0; i < array.Length; i++) result[i] = (byte)array[i];
+        return result;
     }
 }
