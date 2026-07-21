@@ -39,6 +39,7 @@
   <!-- Tests -->
   <Folder Name="/Root/Tests/">
     <File Path="Tests\midi\MidiTestMaker.cs" />
+    <File Path="Tests\test.sh" />
   </Folder>
   <Folder Name="/Root/Tests/MidiEditor/">
     <File Path="Tests\midi\midi_editor\MidiEditorMidiParams.cs" />
@@ -50,5 +51,6 @@
   </Folder>
   <Folder Name="/Root/Tests/other/">
     <File Path="Tests\midi\other\AssignMode.cs" />
+    <File Path="Tests\midi\other\DrumSpam.cs" />
   </Folder>
 </Solution>

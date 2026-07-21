@@ -131,6 +131,7 @@ test midi/cc/RPNFineTuning.cs     midi_file/cc/rpn_fine_tuning.ts     rpn_fine_t
 test midi/cc/RealtimeRPNTuning.cs midi_file/cc/realtime_rpn_tuning.ts rpn_tuning_real-time_test.mid
 
 test midi/other/AssignMode.cs     midi_file/other/assign_mode.ts      assign_mode_test.mid
+test midi/other/DrumSpam.cs       midi_file/other/drum_spam.ts        drum_spam_test.mid
 
 # -------------------------------------
 
