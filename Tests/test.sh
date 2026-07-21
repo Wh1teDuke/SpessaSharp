@@ -126,13 +126,14 @@ echo "Test start ..."
 echo " Num Name                              mid wav"
 
 # Midi
-test midi/cc/SoftPedal.cs         midi_file/cc/soft_pedal.ts          soft_pedal_test.mid
-test midi/cc/RPNFineTuning.cs     midi_file/cc/rpn_fine_tuning.ts     rpn_fine_tuning_test.mid
-test midi/cc/RealtimeRPNTuning.cs midi_file/cc/realtime_rpn_tuning.ts rpn_tuning_real-time_test.mid
+test midi/cc/SoftPedal.cs               midi_file/cc/soft_pedal.ts                soft_pedal_test.mid
+test midi/cc/RPNFineTuning.cs           midi_file/cc/rpn_fine_tuning.ts           rpn_fine_tuning_test.mid
+test midi/cc/RealtimeRPNTuning.cs       midi_file/cc/realtime_rpn_tuning.ts       rpn_tuning_real-time_test.mid
 
-test midi/other/AssignMode.cs     midi_file/other/assign_mode.ts      assign_mode_test.mid
-test midi/other/DrumSpam.cs       midi_file/other/drum_spam.ts        drum_spam_test.mid
-test midi/other/MonoMode.cs       midi_file/other/mono_mode.ts        mono_mode_test.mid
+test midi/other/AssignMode.cs           midi_file/other/assign_mode.ts            assign_mode_test.mid
+test midi/other/DrumSpam.cs             midi_file/other/drum_spam.ts              drum_spam_test.mid
+test midi/other/MonoMode.cs             midi_file/other/mono_mode.ts              mono_mode_test.mid
+test midi/other/OverlappingNotesTest.cs midi_file/other/overlapping_notes_test.ts overlapping_notes_test.mid
 
 # -------------------------------------
 
