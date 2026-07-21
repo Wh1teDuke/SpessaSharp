@@ -83,7 +83,7 @@ test() {
   #   SSynth
   BUN_INSTALL_CACHE_DIR=bcc ./bun run --silent ./spessasynth_core/examples/midi_to_wav_node.ts "$bank" "${ssynth_mid_out}" "${ssynth_wav_out}" > /dev/null
   #   SSharp
-  dotnet run -c Release ../../Examples/MidiToWavNode.cs -- "$bank" "${ssynth_mid_out}" "${ssharp_wav_out}" > /dev/null
+  dotnet ../../Examples/MidiToWavNode.cs -- "$bank" "${ssynth_mid_out}" "${ssharp_wav_out}" > /dev/null
   
   for file in "${ssharp_mid_out}" "${ssharp_wav_out}" "${ssynth_mid_out}" "${ssynth_wav_out}"; do
     if [ ! -f "${file}" ]; then
