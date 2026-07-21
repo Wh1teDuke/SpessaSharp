@@ -108,12 +108,12 @@ internal static class NoteOn
         chan.PlayingNotes[midiNote] = true;
         
         // Mono mode
-        if (!chan.MidiParamArray.PolyMode) 
+        if (!chan.MidiParameters.PolyMode) 
         {
             if (chan.LastMonoNote >= 0 && chan.LastMonoNote != midiNote)
                 chan.KillNote(chan.LastMonoNote);
             chan.LastMonoNote = midiNote;
-            chan.LastMonoNote = velocity;
+            chan.LastMonoVelocity = velocity;
         }
         
         // Get voices

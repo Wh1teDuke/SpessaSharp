@@ -52,5 +52,6 @@
   <Folder Name="/Root/Tests/other/">
     <File Path="Tests\midi\other\AssignMode.cs" />
     <File Path="Tests\midi\other\DrumSpam.cs" />
+    <File Path="Tests\midi\other\MonoMode.cs" />
   </Folder>
 </Solution>

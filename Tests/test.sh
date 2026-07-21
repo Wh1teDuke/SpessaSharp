@@ -132,6 +132,7 @@ test midi/cc/RealtimeRPNTuning.cs midi_file/cc/realtime_rpn_tuning.ts rpn_tuning
 
 test midi/other/AssignMode.cs     midi_file/other/assign_mode.ts      assign_mode_test.mid
 test midi/other/DrumSpam.cs       midi_file/other/drum_spam.ts        drum_spam_test.mid
+test midi/other/MonoMode.cs       midi_file/other/mono_mode.ts        mono_mode_test.mid
 
 # -------------------------------------
 
