@@ -1,5 +1,7 @@
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 
 public sealed class MidiTestMaker
 {
@@ -60,6 +62,18 @@ public sealed class MidiTestMaker
         _system = system;
         return Wait(480);
     }
+    
+    public MidiTestMaker Set(GlobalMidiParameter param)
+    {
+        T.Set(_ticks, _system, param);
+        return this;
+    }
+
+    public MidiTestMaker Set(ChannelMidiParameter param)
+    {
+        C.Set(_ticks, _system, param);
+        return this;
+    }
 
     public MidiTestMaker CC(Midi.CC cc, int value)
     {
@@ -103,13 +117,13 @@ public sealed class MidiTestMaker
         return this;
     }
     
-    public MidiTestMaker GS(int a1, int a2, int a3, ArraySegment<byte> data) 
+    public MidiTestMaker GS(int a1, int a2, int a3, ReadOnlySpan<byte> data) 
     {
         T.SystemExclusive(_ticks, MidiUtils.Gs(a1, a2, a3, data));
         return this;
     }
 
-    public MidiTestMaker XG(int a1, int a2, int a3, ArraySegment<byte> data) 
+    public MidiTestMaker XG(int a1, int a2, int a3, ReadOnlySpan<byte> data) 
     {
         T.SystemExclusive(_ticks, MidiUtils.Xg(a1, a2, a3, data));
         return this;

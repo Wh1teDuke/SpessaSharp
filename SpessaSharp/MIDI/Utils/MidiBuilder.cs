@@ -1,3 +1,5 @@
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI.Utils;
@@ -33,6 +35,13 @@ public readonly record struct MidiBuilder
 
         public void SystemExclusive(int ticks, ArraySegment<byte> data) => Base.AddEvent(
             Track, ticks, MidiMessage.Type.SystemExclusive, data);
+
+        public void Set(int ticks, Midi.System system, GlobalMidiParameter param)
+        {
+            Track.Add(
+                MidiUtils.Set(ticks, system, param), 
+                Track.Events.Length);
+        }
     }
 
     public readonly record struct ChannelBuilder(
@@ -89,6 +98,13 @@ public readonly record struct MidiBuilder
         public void NonRegisteredParameter(int ticks, int parameter, int value) =>
             Base.Base.NonRegisteredParameter(
                 Base.Track, ticks, Channel, parameter, value);
+
+        public void Set(int ticks, Midi.System system, ChannelMidiParameter param)
+        {
+            Base.Track.Add(
+                MidiUtils.Set(ticks, Channel, system, param), 
+                Base.Track.Events.Length);
+        }
     }
 
     public readonly record struct DrumBuilder(TrackBuilder Base, int Channel = 9)

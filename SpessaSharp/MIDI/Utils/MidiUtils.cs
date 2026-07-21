@@ -492,9 +492,9 @@ public static class MidiUtils
                 // XG/GS only
                 [system == Midi.System.XG
                     ? XgMessage(ticks, 0x08, channel, 0x06,
-                        [(byte)parameter.AsInt])
+                        [(byte)parameter.AsAssignMode])
                     : GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x14,
-                        [(byte)parameter.AsInt])],
+                        [(byte)parameter.AsAssignMode])],
             ChannelMidiParameter.Type.EfxAssign =>
                 // GS only (again)
                 [

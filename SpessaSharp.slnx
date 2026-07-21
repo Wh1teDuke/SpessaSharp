@@ -48,4 +48,7 @@
     <File Path="Tests\midi\cc\RPNFineTuning.cs" />
     <File Path="Tests\midi\cc\RealtimeRPNTuning.cs" />
   </Folder>
+  <Folder Name="/Root/Tests/other/">
+    <File Path="Tests\midi\other\AssignMode.cs" />
+  </Folder>
 </Solution>

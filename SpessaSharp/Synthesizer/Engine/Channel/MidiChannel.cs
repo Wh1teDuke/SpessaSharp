@@ -22,6 +22,7 @@ public sealed class MidiChannel: ISf2Channel
     {
         /// <summary> A new note will kill the previous one if it is still playing.</summary>
         Single,
+        LimitedMulti,
         /// <summary>
         /// A new note will not kill the previous notes (default).
         /// While GS and XG differentiate 1 (Limited Multi for GS/Multi for XG) and 2 (Full Multi for GS/Inst (for Drum)),
