@@ -45,8 +45,8 @@ public sealed class SoundBankManager: BasePreset.IGetter<SynthPatch>
             GetPreset(patch, SystemGetter());
 
         UserDrumSets = [
-            new UserDrumSet(65, "User Drum Set 1", resolvePatch),
-            new UserDrumSet(66, "User Drum Set 2", resolvePatch),
+            new UserDrumSet(Synthesizer.GS_USER_DRUM_1, "User Drum Set 1", resolvePatch),
+            new UserDrumSet(Synthesizer.GS_USER_DRUM_2, "User Drum Set 2", resolvePatch),
         ];
     }
 
@@ -92,6 +92,13 @@ public sealed class SoundBankManager: BasePreset.IGetter<SynthPatch>
         
         SoundBankList.RemoveAt(index);
         GeneratePresetList();
+    }
+
+    /// <summary> Resets the sound bank properties that are controllable by MIDI. </summary>
+    internal void Reset()
+    {
+        foreach (var userDrum in UserDrumSets)
+            userDrum.Reset();
     }
 
     /// <summary>Adds a new sound bank with a given ID, or replaces an existing one.</summary>

@@ -331,7 +331,7 @@ public sealed class SpessaSharpProcessor
     /// <returns>is an array of voices.</returns>
     internal Synthesizer.CachedVoiceList GetVoicesForPreset(
         SynthPatch preset, int midiNote, int velocity) =>
-        _synthCore.GetVoicesForPreset(preset, midiNote, velocity);
+        _synthCore.GetVoicesForPreset(preset, (byte)midiNote, (byte)velocity);
 
     // Private methods
     

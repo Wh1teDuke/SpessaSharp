@@ -1,7 +1,6 @@
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
-using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Voice;
 
 namespace SpessaSharp.Synthesizer.Engine;
@@ -106,9 +105,7 @@ public sealed class UserDrumSet: SynthPatch
         _keyBindings.Clear();
     }
 
-    /// <summary>
-    /// Returns the voice synthesis data for this preset.
-    /// </summary>
+    /// <summary>Returns the voice synthesis data for this preset.</summary>
     /// <param name="cCache"></param>
     /// <param name="note">The MIDI note number.</param>
     /// <param name="velocity">The MIDI velocity.</param>
@@ -121,7 +118,17 @@ public sealed class UserDrumSet: SynthPatch
             note, new KeyBinding(Default, note));
 
         var resolvedPatch = _resolvePatch(binding.Patch);
-        return resolvedPatch?
+        var vParams = resolvedPatch?
             .GetVoiceParameters(cCache, binding.Key, velocity) ?? [];
+
+        // Ensure that the key sounds as intended, similarly to 'PGAL' DLS chunk alias
+        foreach (var (_, param) in vParams)
+        {
+            var generators = param.Generators.AsSpan();
+            ref var gen = ref generators[(int)Generator.Type.KeyNum];
+            if (gen < 0) gen = (short)binding.Key;
+        }
+        
+        return vParams;
     }
 }

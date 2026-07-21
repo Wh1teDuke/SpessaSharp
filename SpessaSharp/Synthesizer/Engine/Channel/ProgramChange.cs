@@ -30,6 +30,16 @@ internal static class ProgramChange
             chan.SetDrumFlag(preset.IsDrum);
 
         chan.ResetDrumParams();
+        
+        // Commit changes made to user drums by purging their cache.
+        // SCVA does not play drum sounds until the change is sent, even if this patch was selected before then.
+        // See the corresponding test in MIDI tests.
+        if (preset is
+            {
+                IsGMGSDrum: true,
+                Program: Synthesizer.GS_USER_DRUM_1 or Synthesizer.GS_USER_DRUM_2
+            }) chan.SynthCore.PurgeCachedPatch(preset.Patch);
+        
         // Do not spread the preset as we don't want to copy it entirely.
         chan.SynthCore.CallEvent(
             new Event.CbProgramChange(preset.Patch, chan.Channel));

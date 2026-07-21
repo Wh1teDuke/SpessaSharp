@@ -24,6 +24,10 @@ public sealed class Synthesizer
     public const int VOICE_CAP = 350;
     public const Midi.System DefaultMode = Midi.System.GS;
     public const short GENERATOR_OVERRIDE_NO_CHANGE_VALUE = short.MaxValue;
+    /// <summary>The program number of GS User Drum Set 1.</summary>
+    public const int GS_USER_DRUM_1 = 64;
+    /// <summary>The program number of GS User Drum Set 2.</summary>
+    public const int GS_USER_DRUM_2 = 65;
     
     /// <summary>This sounds way nicer for an instant hi-hat cutoff</summary>
     public const float MIN_EXCLUSIVE_LENGTH = .07f;
@@ -198,7 +202,7 @@ public sealed class Synthesizer
     /// Cached voices for all presets for this synthesizer.
     /// Nesting is calculated in getCachedVoiceIndex, returns a list of voices for this note.
     /// </summary>
-    private readonly Dictionary<(MidiPatch Patch, int Key, int Vel),
+    private readonly Dictionary<(MidiPatch Patch, byte Key, byte Vel),
         CachedVoiceList> _cachedVoices = new (200);
     
     private readonly CachedVoice.Base.Cache _cvbCache;
@@ -585,7 +589,7 @@ public sealed class Synthesizer
         // Warning is handled in program change
         return preset == null
             ? new CachedVoiceList(null, ArraySegment<CachedVoice>.Empty) 
-            : GetVoicesForPreset(preset, midiNote, velocity);
+            : GetVoicesForPreset(preset, (byte)midiNote, (byte)velocity);
     }
     
     public void CreateMIDIChannel(bool sendEvent) 
@@ -627,6 +631,9 @@ public sealed class Synthesizer
 
         // Avoid crashing
         if (DrumPreset == null || DefaultPreset == null) return;
+
+        // Reset GS user drums
+        SoundBankManager.Reset();
         
         // Reset channels
         // Do not send CC changes as we call reset
@@ -887,7 +894,7 @@ public sealed class Synthesizer
     /// <param name="velocity">The velocity to use.</param>
     /// <returns>Output is an array of voices.</returns>
     internal CachedVoiceList GetVoicesForPreset(
-        SynthPatch preset, int midiNote, int velocity)
+        SynthPatch preset, byte midiNote, byte velocity)
     {
         // If cached, return it!
         if (_cachedVoices.TryGetValue(
@@ -971,6 +978,16 @@ public sealed class Synthesizer
     /// <summary>Copied callback so MIDI channels can call it.</summary>
     /// <param name="ev"></param>
     public void CallEvent(Event ev) => EventCallbackHandler(ev);
+
+    /// <summary>Bad code... make sure to call only when necessary!!!</summary>
+    public void PurgeCachedPatch(MidiPatch patch)
+    {
+        SpessaLog.Info($"Purging cached patch {patch.ToMidiString()}");
+
+        for (byte midiNote = 0; midiNote < 128; midiNote++)
+            for (byte velocity = 0; velocity < 128; velocity++)
+                _cachedVoices.Remove((patch, midiNote, velocity));
+    }
     
     internal void ResetInsertionParams() 
     {
