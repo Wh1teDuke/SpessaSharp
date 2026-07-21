@@ -53,7 +53,7 @@ test_success=0
 failed_tests=()
 
 test() {
-  test_total=$((test_total+1))
+  test_total=$((test_total+2))
 
   local ssharp="../$1"
   local ssynth="spessasynth_core/tests/$2"
@@ -71,7 +71,7 @@ test() {
   rm -f "${ssharp_mid_out}" "${ssharp_wav_out}"
   rm -f "${ssynth_mid_out}" "${ssynth_wav_out}"
 
-  printf "%-40s" "$(printf "%3d" "${test_total}")) ${result} ..."
+  printf "%-40s" "$(printf "%3d" "$((test_total/2))")) ${result} ..."
 
   # Execute both spessasynth and spessasharp
   #   SSynth
@@ -126,17 +126,17 @@ echo "Test start ..."
 echo " Num Name                              mid wav"
 
 # Midi
-test "midi/cc/SoftPedal.cs" "midi_file/cc/soft_pedal.ts" "soft_pedal_test.mid"
-test "midi/cc/RPNFineTuning.cs" "midi_file/cc/rpn_fine_tuning.ts" "rpn_fine_tuning_test.mid"
-test "midi/cc/RealtimeRPNTuning.cs" "midi_file/cc/realtime_rpn_tuning.ts" "rpn_tuning_real-time_test.mid"
+test midi/cc/SoftPedal.cs         midi_file/cc/soft_pedal.ts          soft_pedal_test.mid
+test midi/cc/RPNFineTuning.cs     midi_file/cc/rpn_fine_tuning.ts     rpn_fine_tuning_test.mid
+test midi/cc/RealtimeRPNTuning.cs midi_file/cc/realtime_rpn_tuning.ts rpn_tuning_real-time_test.mid
 
-test "midi/other/AssignMode.cs" "midi_file/other/assign_mode.ts" "assign_mode_test.mid"
+test midi/other/AssignMode.cs     midi_file/other/assign_mode.ts      assign_mode_test.mid
 
 # -------------------------------------
 
 
 echo ""
-echo "$test_total Tests. $test_success passed and $test_fail failed."
+echo "${test_total} ($((test_total/2))) Tests. $test_success passed and $test_fail failed."
 for failed in "${failed_tests[@]}"; do
   echo "  ✗  ${failed}"
 done
