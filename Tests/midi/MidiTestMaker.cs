@@ -21,6 +21,60 @@ public sealed class MidiTestMaker
         );
     }
 
+    public readonly record struct EFXTest(MidiTestMaker Builder)
+    {
+        public static EFXTest New(
+            MidiTestMaker builder,
+            int channel,
+            int msb,
+            int lsb)
+        {
+            var result = new EFXTest(builder);
+            
+            // Type
+            builder.GS(0x40, 0x03, 0x00, [msb, lsb]);
+            // EFX to channel
+            builder.GS(
+                0x40,
+                0x40 | MidiUtils.ChannelToSyx(channel),
+                0x22,
+                [1]
+            );
+            // No reverb
+            builder.GS(0x40, 0x03, 0x17, [0]);
+            
+            return result;
+        }
+        
+        public EFXTest TestEqAndLevel() 
+        {
+            // Low gain
+            SweepParam(0x13, 52, 76);
+            // Hi gain
+            SweepParam(0x14, 52, 76);
+            // Level
+            SweepParam(0x16, 0, 127, 480, 16);
+            return this;
+        }
+        
+        public EFXTest SweepParam(
+            int param,
+            int from,
+            int to,
+            int tickStep = 480,
+            int dataStep = 1) 
+        {
+            Builder.SweepGS(0x40, 0x03, param, from, to, tickStep, dataStep);
+            return this;
+        }
+
+        public EFXTest SetParam(int param, int value) 
+        {
+            Builder.GS(0x40, 0x03, param, [value]);
+            return this;
+        }
+    }
+
     private int _ticks;
     private Midi.System _system;
 
@@ -75,6 +129,9 @@ public sealed class MidiTestMaker
         C.Set(_ticks, _system, param);
         return this;
     }
+    
+    public EFXTest EFX(int typeMSB, int typeLSB) =>
+        EFXTest.New(this, Channel, typeMSB, typeLSB);
 
     public MidiTestMaker CC(Midi.CC cc, int value)
     {
@@ -143,7 +200,7 @@ public sealed class MidiTestMaker
 
             while (data <= to) 
             {
-                Text($"CC Sweep {cc} = {data}");
+                Text($"CC Sweep {(int)cc} = {data}");
                 CC(cc, data);
                 _ticks += tickStep;
                 data += step;
@@ -155,7 +212,7 @@ public sealed class MidiTestMaker
 
             while (data >= to) 
             {
-                Text($"CC Sweep {cc} = {data}");
+                Text($"CC Sweep {(int)cc} = {data}");
                 CC(cc, data);
                 _ticks += tickStep;
                 data -= step;
@@ -213,7 +270,8 @@ public sealed class MidiTestMaker
         {
             var data = from;
 
-            while (data <= to) {
+            while (data <= to) 
+            {
                 Pitch(data);
                 _ticks += tickStep;
                 data += step;
@@ -309,7 +367,7 @@ public sealed class MidiTestMaker
     private static string ToHexString(ReadOnlySpan<int> arr)
     {
         var hex = new StringBuilder(arr.Length * 2);
-        foreach (var b in arr) hex.Append($"{b:x2}");
-        return hex.ToString();
+        foreach (var b in arr) hex.Append($"{b:X2} ");
+        return hex.ToString().TrimEnd();
     }
 }

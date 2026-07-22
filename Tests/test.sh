@@ -1,7 +1,34 @@
 #!/bin/bash
 set -e
 
+# -----------------------------------------------------------------------------
+# > Test List
+test_list() {
+  # Midi
+  root midi/cc                  midi_file/cc
+  test SoftPedal                soft_pedal                soft_pedal_test
+  test RPNFineTuning            rpn_fine_tuning           rpn_fine_tuning_test
+  test RealtimeRPNTuning        realtime_rpn_tuning       rpn_tuning_real-time_test
+  
+  root midi/other               midi_file/other
+  test AssignMode               assign_mode               assign_mode_test
+  test DrumSpam                 drum_spam                 drum_spam_test
+  test MonoMode                 mono_mode                 mono_mode_test
+  test OverlappingNotesTest     overlapping_notes_test    overlapping_notes_test
+  test VelocitySense            velocity_sense            velocity_sense_depth_+_offset
+  test VelocitySenseBug         velocity_sense_bug        velocity_sense_depth_bug
+  
+  root midi/gs                  midi_file/gs
+  test Filter                   filter                    gs_filter_test
+  test PatchCommonParameters    patch_common_parameters   gs_patch_common_parameters
+  test ControllerMatrix         controller_matrix         gs_controller_matrix_comparison
+  
+  root midi/efx                 midi_file/efx
+  test Tremolo                  tremolo                   tremolo_efx_test
+  test StereoEQ                 stereo_eq                 stereo_eq
+}
 
+# -----------------------------------------------------------------------------
 # > Clear
 case "$1" in
   --restart|--clear)
@@ -9,6 +36,7 @@ case "$1" in
     rm -rf generated
     ;;
 esac
+
 
 # > Quit
 case "$1" in
@@ -47,17 +75,25 @@ fi
 
 
 # > Run tests
+test_root_cs=""
+test_root_js=""
 test_total=0
 test_fail=0
 test_success=0
 failed_tests=()
 
+root() {
+  if [ "${test_root_cs}" != "" ]; then echo ""; fi  
+  test_root_cs="$1"
+  test_root_js="$2"
+}
+
 test() {
   test_total=$((test_total+2))
 
-  local ssharp="../$1"
-  local ssynth="spessasynth_core/tests/$2"
-  local result="$3"
+  local ssharp="../${test_root_cs}/$1.cs"
+  local ssynth="spessasynth_core/tests/${test_root_js}/$2.ts"
+  local result="$3.mid"
 
   local ssharp_mid_out="${result}"
   local ssynth_mid_out="spessasynth_core/tests/midi_file/generated/${result}"
@@ -71,7 +107,7 @@ test() {
   rm -f "${ssharp_mid_out}" "${ssharp_wav_out}"
   rm -f "${ssynth_mid_out}" "${ssynth_wav_out}"
 
-  printf "%-45s" "$(printf "%3d" "$((test_total/2))")) ${result} ..."
+  printf "%-45s" "$(printf "%3d" "$((test_total/2))")) ${result}"
 
   # Execute both spessasynth and spessasharp
   #   SSynth
@@ -126,19 +162,7 @@ test() {
 echo "Test start ..."
 echo " Num Name                                   mid wav"
 
-# Midi
-test midi/cc/SoftPedal.cs               midi_file/cc/soft_pedal.ts                soft_pedal_test.mid
-test midi/cc/RPNFineTuning.cs           midi_file/cc/rpn_fine_tuning.ts           rpn_fine_tuning_test.mid
-test midi/cc/RealtimeRPNTuning.cs       midi_file/cc/realtime_rpn_tuning.ts       rpn_tuning_real-time_test.mid
-
-test midi/other/AssignMode.cs           midi_file/other/assign_mode.ts            assign_mode_test.mid
-test midi/other/DrumSpam.cs             midi_file/other/drum_spam.ts              drum_spam_test.mid
-test midi/other/MonoMode.cs             midi_file/other/mono_mode.ts              mono_mode_test.mid
-test midi/other/OverlappingNotesTest.cs midi_file/other/overlapping_notes_test.ts overlapping_notes_test.mid
-test midi/other/VelocitySense.cs        midi_file/other/velocity_sense.ts         velocity_sense_depth_+_offset.mid
-test midi/other/VelocitySenseBug.cs     midi_file/other/velocity_sense_bug.ts     velocity_sense_depth_bug.mid
-
-test midi/gs/Filter.cs                  midi_file/gs/filter.ts                    gs_filter_test.mid
+test_list
 
 # -------------------------------------
 

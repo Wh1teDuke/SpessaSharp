@@ -50,12 +50,20 @@
     <File Path="Tests\midi\cc\RealtimeRPNTuning.cs" />
   </Folder>
   <Folder Name="/Root/Tests/other/">
-    <File Path="Tests\midi\gs\Filter.cs" />
     <File Path="Tests\midi\other\AssignMode.cs" />
     <File Path="Tests\midi\other\DrumSpam.cs" />
     <File Path="Tests\midi\other\MonoMode.cs" />
     <File Path="Tests\midi\other\OverlappingNotesTest.cs" />
     <File Path="Tests\midi\other\VelocitySense.cs" />
     <File Path="Tests\midi\other\VelocitySenseBug.cs" />
+  </Folder>
+  <Folder Name="/Root/Tests/gs/">
+    <File Path="Tests\midi\gs\Filter.cs" />
+    <File Path="Tests\midi\gs\PatchCommonParameters.cs" />
+    <File Path="Tests\midi\gs\ControllerMatrix.cs" />
+  </Folder>
+  <Folder Name="/Root/Tests/efx/">
+    <File Path="Tests\midi\efx\Tremolo.cs" />
+    <File Path="Tests\midi\efx\StereoEQ.cs" />
   </Folder>
 </Solution>
