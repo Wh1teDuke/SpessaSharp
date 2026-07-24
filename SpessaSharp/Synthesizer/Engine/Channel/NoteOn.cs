@@ -173,6 +173,7 @@ internal static class NoteOn
             reverbSend = p.ReverbGain;
             chorusSend = p.ChorusGain;
             delaySend = p.DelayGain;
+            synth.DelayActive = synth.DelayActive || delaySend > 0;
             // 1 is no override
             if (voiceGain >= 1) voiceGain = p.Gain;
         }

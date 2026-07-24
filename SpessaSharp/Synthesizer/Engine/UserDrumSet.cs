@@ -1,7 +1,9 @@
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
+using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Voice;
+using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine;
 
@@ -19,6 +21,7 @@ public sealed class UserDrumSet: SynthPatch
         new(0, 0, 0, true);
     
     public readonly record struct KeyBinding(
+        DrumParameters Params,
         MidiPatch Patch, 
         int Key);
 
@@ -33,6 +36,29 @@ public sealed class UserDrumSet: SynthPatch
     /// Provided by the <see cref="SoundBankManager"/>.
     /// </summary>
     private readonly ResolvePatch _resolvePatch;
+
+    internal void CopyInto(Span<DrumParameters> dParams)
+    {
+        foreach (var i in _keyBindings.Keys)
+        {
+            // SC-55 uses 100 cents, SC-88 and above is 50
+            // Refer to source binding and do it here
+            ref var binding = ref CollectionsMarshal.GetValueRefOrNullRef(
+                _keyBindings, i);
+
+            binding = binding with
+            {
+                Params = binding.Params with
+                {
+                    Pitch = (int)(
+                        binding.Params.Pitch * 
+                        (binding.Patch.BankLSB == 1 ? 1 : 0.5))
+                }
+            };
+
+            dParams[i] = binding.Params;
+        }
+    }
     
     /// <summary>
     /// Creates a new custom drum set.
@@ -69,6 +95,60 @@ public sealed class UserDrumSet: SynthPatch
         ref var kb = ref GetOrAdd(midiNote);
         kb = kb with { Key = sourceNote };
     }
+    
+    public void SetSourcePitch(int midiNote, int sourcePitch)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { Pitch = sourcePitch } };
+    }
+    
+    public void SetSourceGain(int midiNote, float sourceGain)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { Gain = sourceGain } };
+    }
+    
+    public void SetSourceExclusiveClass(int midiNote, int sourceExClass)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { ExclusiveClass = sourceExClass } };
+    }
+    
+    public void SetSourcePan(int midiNote, int sourcePan)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { Pan = sourcePan } };
+    }
+    
+    public void SetSourceReverb(int midiNote, float sourceReverb)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { ReverbGain = sourceReverb } };
+    }
+    
+    public void SetSourceChorus(int midiNote, float sourceChorus)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { ChorusGain = sourceChorus } };
+    }
+    
+    public void SetSourceDelay(int midiNote, float sourceDelay)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { DelayGain = sourceDelay } };
+    }
+    
+    public void SetSourceNoteOff(int midiNote, bool rxNoteOff)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { RxNoteOff = rxNoteOff } };
+    }
+    
+    public void SetSourceNoteOn(int midiNote, bool rxNoteOn)
+    {
+        ref var kb = ref GetOrAdd(midiNote);
+        kb = kb with { Params = kb.Params with { RxNoteOn = rxNoteOn } };
+    }
 
     /// <summary>Sets the source program number for a specific drum key.</summary>
     /// <param name="midiNote">The drum key to edit.</param>
@@ -92,7 +172,10 @@ public sealed class UserDrumSet: SynthPatch
     {
         ref var kb = ref CollectionsMarshal
             .GetValueRefOrAddDefault(_keyBindings, midiNote, out var exists);
-        if (!exists) kb = new KeyBinding(Default, midiNote);
+        if (!exists) kb = new KeyBinding(
+            DefaultFor(midiNote), 
+            Default,
+            midiNote);
         return ref kb;
     }
 
@@ -115,11 +198,19 @@ public sealed class UserDrumSet: SynthPatch
         GetVoiceParameters(CachedVoice.Base.Cache cCache, int note, int velocity)
     {
         var binding = _keyBindings.GetValueOrDefault(
-            note, new KeyBinding(Default, note));
+            note, new KeyBinding(DefaultFor(note), Default, note));
 
         var resolvedPatch = _resolvePatch(binding.Patch);
-        var vParams = resolvedPatch?
-            .GetVoiceParameters(cCache, binding.Key, velocity) ?? [];
+        if (resolvedPatch == null)
+            // No match, no sound
+            return [];
+        
+        SpessaLog.Info(
+            $"Resolving patch for {
+                binding.Patch.ToMidiString()} {
+                    resolvedPatch.Name}");
+        var vParams = 
+            resolvedPatch.GetVoiceParameters(cCache, binding.Key, velocity);
 
         // Ensure that the key sounds as intended, similarly to 'PGAL' DLS chunk alias
         foreach (var (_, param) in vParams)
@@ -131,4 +222,18 @@ public sealed class UserDrumSet: SynthPatch
         
         return vParams;
     }
+
+    private static DrumParameters DefaultFor(int key) =>
+        new()
+        {
+            Pitch = 0,
+            Gain = 1,
+            ExclusiveClass = 0,
+            Pan = 64,
+            ReverbGain = Channel.Reset.DefaultDrumReverb[key] / 127f,
+            ChorusGain = 0,
+            DelayGain = 0, // No drums have delay
+            RxNoteOn = true,
+            RxNoteOff = false,
+        };
 }

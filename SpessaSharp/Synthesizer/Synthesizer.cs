@@ -982,8 +982,6 @@ public sealed class Synthesizer
     /// <summary>Bad code... make sure to call only when necessary!!!</summary>
     public void PurgeCachedPatch(MidiPatch patch)
     {
-        SpessaLog.Info($"Purging cached patch {patch.ToMidiString()}");
-
         for (byte midiNote = 0; midiNote < 128; midiNote++)
             for (byte velocity = 0; velocity < 128; velocity++)
                 _cachedVoices.Remove((patch, midiNote, velocity));
