@@ -633,7 +633,9 @@ public sealed class Synthesizer
         if (DrumPreset == null || DefaultPreset == null) return;
 
         // Reset GS user drums
-        SoundBankManager.Reset();
+        if (!SystemParameters.UserDrumLock)
+            foreach (var userDrum in SoundBankManager.UserDrumSets)
+                userDrum.Reset();
         
         // Reset channels
         // Do not send CC changes as we call reset

@@ -94,13 +94,6 @@ public sealed class SoundBankManager: BasePreset.IGetter<SynthPatch>
         GeneratePresetList();
     }
 
-    /// <summary> Resets the sound bank properties that are controllable by MIDI. </summary>
-    internal void Reset()
-    {
-        foreach (var userDrum in UserDrumSets)
-            userDrum.Reset();
-    }
-
     /// <summary>Adds a new sound bank with a given ID, or replaces an existing one.</summary>
     /// <param name="font">The sound bank to add.</param>
     /// <param name="id">The ID of the sound bank.</param>

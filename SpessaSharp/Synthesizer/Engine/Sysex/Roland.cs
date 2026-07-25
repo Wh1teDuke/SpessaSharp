@@ -1119,6 +1119,9 @@ internal static class Roland
                     // User drum set
                     if (a1 == 0x21)
                     {
+                        if (synth.SystemParameters.UserDrumLock)
+                            return;
+                        
                         var drumSetNumber = a2 >> 4;
                         var drumSet = synth.SoundBankManager.UserDrumSets[
                             drumSetNumber];

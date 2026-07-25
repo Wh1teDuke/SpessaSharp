@@ -1,6 +1,7 @@
 using System.ComponentModel.Design.Serialization;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;
@@ -41,7 +42,7 @@ internal static class ProgramChange
             {
                 IsGMGSDrum: true,
                 Program: Synthesizer.GS_USER_DRUM_1 or Synthesizer.GS_USER_DRUM_2
-            })
+            } && !chan.SynthCore.SystemParameters.UserDrumLock)
         {
             // Purge cache for this preset to cache the new drum voice data
             chan.SynthCore.PurgeCachedPatch(preset.Patch);

@@ -25,10 +25,8 @@ public static class MidiUtils
             /// <summary>Channel number may be above 15</summary>
             [FieldOffset(0)] public (ChannelMidiParameter Param, int Channel) _channelMidiParam;
 
-            [FieldOffset(0)] public (int Key, DrumParameters.Entry Param) _drumSetup;
-            [FieldOffset(0)] public (
-                int Key, int Program, 
-                UserDrumParameters.Entry Param) _userDrumSetup;
+            [FieldOffset(0)] public (int Key, DrumParameters.Entry Parameter) _drumSetup;
+            [FieldOffset(0)] public (int Key, int Program, UserDrumParameters.Entry Parameter) _userDrumSetup;
         }
         
         public Type MType { get; private init; }
@@ -38,6 +36,11 @@ public static class MidiUtils
             MType == Type.ControllerChange ? Data._controllerChange : null;
         public (ChannelMidiParameter Param, int Channel)? AsChannelMidiParameter =>
             MType == Type.ChannelMidiParameter ? Data._channelMidiParam : null;
+        
+        public (int Key, DrumParameters.Entry Parameter)? AsDrumSetup =>
+            MType == Type.DrumSetup ? Data._drumSetup : null;
+        public (int Key, int Program, UserDrumParameters.Entry Parameter)? AsUserDrumSetup =>
+            MType == Type.UserDrumSetup ? Data._userDrumSetup : null;
         
         public static AnalyzedParameter Of(Type type)
         {
@@ -78,6 +81,15 @@ public static class MidiUtils
         
         public static AnalyzedParameter Of(
             int key, int program, UserDrumParameters.Entry param) =>
+            new()
+            {
+                MType = Type.UserDrumSetup, 
+                Data = new InternalData
+                    { _userDrumSetup = (key, program, param) },
+            };
+        
+        public static AnalyzedParameter Of(
+            int key, int program, DrumParameters.Entry param) =>
             new()
             {
                 MType = Type.UserDrumSetup, 
@@ -1240,13 +1252,45 @@ public static class MidiUtils
         if (a1 == 0x21)
         {
             var program = 64 + (a2 >> 4);
-            if ((a2 & 0xf) == 0)
+            return (a2 & 0xf) switch
             {
-                // Drum map name is other
-                return AnalyzedParameter.Type.Other;
-            }
-            // TODO
-            return AnalyzedParameter.Type.Other;
+                // Play Note
+                0x1 => DrumSetup2(DrumParameters.Type.PitchCoarse, data - 60),
+                // Level
+                0x2 => DrumSetup1(DrumParameters.Type.Level, data),
+                // Assign group
+                0x3 => DrumSetup1(DrumParameters.Type.AssignGroup, data),
+                // Pan
+                0x4 => DrumSetup1(DrumParameters.Type.Pan, data),
+                // Reverb Send
+                0x5 => DrumSetup1(DrumParameters.Type.ReverbSend, data),
+                // Chorus Send
+                0x6 => DrumSetup1(DrumParameters.Type.ChorusSend, data),
+                // Rx. Note Off
+                0x7 => DrumSetup3(DrumParameters.Type.RxNoteOff, data == 1),
+                // Rx. Note On
+                0x8 => DrumSetup3(DrumParameters.Type.RxNoteOn, data == 1),
+                // Delay Send Level
+                0x9 => DrumSetup1(DrumParameters.Type.VariationSend, data),
+                // Source Drum Set Map
+                0xa => DrumSetup4(UserDrumParameters.Type.SourceDrumSet, data),
+                // Program Number
+                0xb => DrumSetup4(UserDrumParameters.Type.Program, data),
+                // Source Note Number
+                0xc => DrumSetup4(UserDrumParameters.Type.SourceNoteNumber, data),
+                
+                
+                _ => AnalyzedParameter.Type.Other,
+            };
+            
+            AnalyzedParameter DrumSetup1(DrumParameters.Type type, int val) =>
+                AnalyzedParameter.Of(a3, program, (type, val));
+            AnalyzedParameter DrumSetup2(DrumParameters.Type type, float val) =>
+                AnalyzedParameter.Of(a3, program, (type, val));
+            AnalyzedParameter DrumSetup3(DrumParameters.Type type, bool val) =>
+                AnalyzedParameter.Of(a3, program, (type, val));
+            AnalyzedParameter DrumSetup4(UserDrumParameters.Type type, int val) =>
+                AnalyzedParameter.Of(a3, program, (type, val));
         }
 
         // 0x40 -> Part Parameters, 0x50 -> Part Parameters (BLOCK B) Testcase: 95043-2.KYC.mid
