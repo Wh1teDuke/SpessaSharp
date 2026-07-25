@@ -418,7 +418,7 @@ internal static class RenderVoice
         
         // Disable reverb and chorus if necessary
         var reverbSend =
-            modulated[(int)Generator.Type.ReverbEffectsSend] * voice.ReverbSend;
+            modulated[(int)Generator.Type.ReverbEffectsSend] * voice.ReverbGain;
         if (reverbSend > 0) 
         {
             var reverbGain =
@@ -430,7 +430,7 @@ internal static class RenderVoice
         }
 
         var chorusSend = modulated[
-            (int)Generator.Type.ChorusEffectsSend] * voice.ChorusSend;
+            (int)Generator.Type.ChorusEffectsSend] * voice.ChorusGain;
 
         if (chorusSend > 0) 
         {
@@ -442,7 +442,7 @@ internal static class RenderVoice
         }
 
         var delaySend = chan.MidiControllers[
-            (int)Midi.CC.VariationDepth] * voice.DelaySend;
+            (int)Midi.CC.VariationDepth] * voice.VariationSend;
         
         if (core.DelayActive && delaySend > 0) 
         {

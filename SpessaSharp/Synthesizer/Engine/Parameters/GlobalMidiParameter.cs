@@ -6,40 +6,40 @@ namespace SpessaSharp.Synthesizer.Engine.Parameters;
 
 public static class GlobalMidiParameters
 {
-    extension(ReadOnlySpan<GlobalMidiParameter> parameters)
+    extension(ReadOnlySpan<GlobalMidiParameter> self)
     {
         public float Volume
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.Volume].AsFloat;
+                self[(int)GlobalMidiParameter.Type.Volume].AsFloat;
         }
         
         public float Pan
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.Pan].AsFloat;
+                self[(int)GlobalMidiParameter.Type.Pan].AsFloat;
         }
         
         public int KeyShift
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.KeyShift].AsInt;
+                self[(int)GlobalMidiParameter.Type.KeyShift].AsInt;
         }
         
         public float FineTune
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.FineTune].AsFloat;
+                self[(int)GlobalMidiParameter.Type.FineTune].AsFloat;
         }
         
         public Midi.System System
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.System].AsMidiSystem;
+                self[(int)GlobalMidiParameter.Type.System].AsMidiSystem;
         }
         
         public GlobalMidiParameter Get(
-            GlobalMidiParameter.Type type) => parameters[(int)type];
+            GlobalMidiParameter.Type type) => self[(int)type];
     }
     
     public static void Set(Synthesizer synth, GlobalMidiParameter param)

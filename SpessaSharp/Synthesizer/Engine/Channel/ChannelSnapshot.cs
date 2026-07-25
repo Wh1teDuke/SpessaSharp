@@ -78,16 +78,16 @@ public sealed class ChannelSnapshot(
         return new ChannelSnapshot(
             patch: chan.Preset?.Patch,
             lockedSystem: chan.LockedSystem,
-            midiControllers: chan.MidiControllers.ToArray(),
+            midiControllers: [.. chan.MidiControllers],
             lockedControllers: new BitArray(chan.LockedControllers),
-            pitchWheels: chan.PitchWheels.ToArray(),
+            pitchWheels: [.. chan.PitchWheels],
             generators: gens,
-            midiParameters: chan.MidiParameters.ToArray(),
+            midiParameters: [.. chan.MidiParameters],
             lockedParameters: new BitArray(chan.LockedParameters),
-            systemParameters: chan.SystemParameters.ToArray(),
-            octaveTuning: chan.OctaveTuning.ToArray(),
+            systemParameters: [.. chan.SystemParameters],
+            octaveTuning: [.. chan.OctaveTuning],
             perNotePitch: chan.PerNotePitch,
-            drumParams: chan.DrumParams.ToArray(),
+            drumParams: [.. chan.DrumParams],
             drumChannel: chan.DrumChannel,
             channel: chan.Channel);
     }

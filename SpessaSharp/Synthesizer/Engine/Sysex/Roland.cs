@@ -885,7 +885,7 @@ internal static class Roland
                                     ch.DynamicModulators.SetupReceiver(
                                         a3,
                                         data,
-                                        (int)ch.MidiParamArray.CC1,
+                                        (int)ch.MidiParameters.CC1,
                                         true,
                                         "CC1");
                                     break;
@@ -895,7 +895,7 @@ internal static class Roland
                                     ch.DynamicModulators.SetupReceiver(
                                         a3,
                                         data,
-                                        (int)ch.MidiParamArray.CC2,
+                                        (int)ch.MidiParameters.CC2,
                                         true,
                                         "CC2");
                                     break;
@@ -988,12 +988,12 @@ internal static class Roland
                                 var pitch = data - 60;
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     // Apply same thing: SC-55 uses 100 cents, SC-88 and above is 50
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { Pitch = pitch *
-                                                           (ch.Patch.BankLSB == 1 ? 100 : 50) };
+                                    dp = dp with { PitchCoarse = pitch *
+                                                           (ch.Patch.BankLSB == 1 ? 1 : 0.5f) };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Pitch for MAP{map}, key {drumKey}",
@@ -1005,10 +1005,10 @@ internal static class Roland
                                 // Drum Level
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { Gain = data / 120f };
+                                    dp = dp with { Level = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Level for MAP{map}, key {drumKey}",
@@ -1019,10 +1019,10 @@ internal static class Roland
                                 // Drum Assign Group (exclusive class)
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ExclusiveClass = data };
+                                    dp = dp with { AssignGroup = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Assign Group for MAP{map}, key {drumKey}",
@@ -1033,7 +1033,7 @@ internal static class Roland
                                 // Pan
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { Pan = data };
@@ -1047,10 +1047,10 @@ internal static class Roland
                                 // Reverb
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ReverbGain = data / 127f };
+                                    dp = dp with { ReverbSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Reverb for MAP{map}, key {drumKey}",
@@ -1061,10 +1061,10 @@ internal static class Roland
                                 // Chorus
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ChorusGain = data / 127f };
+                                    dp = dp with { ChorusSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Chorus for MAP{map}, key {drumKey}",
@@ -1075,7 +1075,7 @@ internal static class Roland
                                 // Receive Note Off
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { RxNoteOff = data == 1 };
@@ -1089,7 +1089,7 @@ internal static class Roland
                                 // Receive Note On
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { RxNoteOn = data == 1 };
@@ -1103,10 +1103,10 @@ internal static class Roland
                                 // Delay
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { DelayGain = data / 127f };
+                                    dp = dp with { VariationSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Delay for MAP{map}, key {drumKey}",
@@ -1148,7 +1148,7 @@ internal static class Roland
                                 var pitch = data - 60;
 
                                 // Use the full 100 cents here as we choose the correct pitch (50 or 100 cents) when committing changes
-                                drumSet.SetSourcePitch(drumKey, pitch * 100);
+                                drumSet.SetSourcePitch(drumKey, pitch);
 
                                 SpessaLog.GSInfo(
                                     $"User Drum Set {drumSetNumber} Pitch, key {drumKey}",
@@ -1159,7 +1159,7 @@ internal static class Roland
                             case 0x2:
                             {
                                 // Drum Level
-                                drumSet.SetSourceGain(drumKey, data / 120f);
+                                drumSet.SetSourceLevel(drumKey, data);
                                 SpessaLog.GSInfo(
                                     $"User Drum Set {drumSetNumber} Level, key {drumKey}",
                                     data);
@@ -1169,7 +1169,7 @@ internal static class Roland
                             case 0x3:
                             {
                                 // Drum Assign Group (exclusive class)
-                                drumSet.SetSourceGain(drumKey, data / 120f);
+                                drumSet.SetSourceAssignGroup(drumKey, data);
                                 SpessaLog.GSInfo(
                                     $"User Drum Set {drumSetNumber} Assign Group, key {drumKey}",
                                     data);
@@ -1189,7 +1189,7 @@ internal static class Roland
                             case 0x5:
                             {
                                 // Reverb
-                                drumSet.SetSourceReverb(drumKey,data / 127f);
+                                drumSet.SetSourceReverb(drumKey,data);
                                 SpessaLog.GSInfo(
                                     $"User Drum Set {drumSetNumber} Reverb, key {drumKey}",
                                     data);
@@ -1199,7 +1199,7 @@ internal static class Roland
                             case 0x6:
                             {
                                 // Chorus
-                                drumSet.SetSourceChorus(drumKey,data / 127f);
+                                drumSet.SetSourceChorus(drumKey,data);
                                 SpessaLog.GSInfo(
                                     $"User Drum Set {drumSetNumber} Chorus, key {drumKey}",
                                     data);
@@ -1229,7 +1229,7 @@ internal static class Roland
                             case 0x9:
                             {
                                 // Delay
-                                drumSet.SetSourceDelay(drumKey,data / 127f);
+                                drumSet.SetSourceDelay(drumKey,data);
                                 SpessaLog.GSInfo(
                                     $"User Drum Set {drumSetNumber} Delay, key {drumKey}",
                                     data);

@@ -50,8 +50,8 @@ public sealed class UserDrumSet: SynthPatch
             {
                 Params = binding.Params with
                 {
-                    Pitch = (int)(
-                        binding.Params.Pitch * 
+                    PitchCoarse = (int)(
+                        binding.Params.PitchFine * 
                         (binding.Patch.BankLSB == 1 ? 1 : 0.5))
                 }
             };
@@ -96,22 +96,22 @@ public sealed class UserDrumSet: SynthPatch
         kb = kb with { Key = sourceNote };
     }
     
-    public void SetSourcePitch(int midiNote, int sourcePitch)
+    public void SetSourcePitch(int midiNote, float sourcePitch)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { Pitch = sourcePitch } };
+        kb = kb with { Params = kb.Params with { PitchCoarse = sourcePitch } };
     }
     
-    public void SetSourceGain(int midiNote, float sourceGain)
+    public void SetSourceLevel(int midiNote, int sourceLevel)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { Gain = sourceGain } };
+        kb = kb with { Params = kb.Params with { Level = sourceLevel } };
     }
     
-    public void SetSourceExclusiveClass(int midiNote, int sourceExClass)
+    public void SetSourceAssignGroup(int midiNote, int sourceExClass)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { ExclusiveClass = sourceExClass } };
+        kb = kb with { Params = kb.Params with { AssignGroup = sourceExClass } };
     }
     
     public void SetSourcePan(int midiNote, int sourcePan)
@@ -120,22 +120,22 @@ public sealed class UserDrumSet: SynthPatch
         kb = kb with { Params = kb.Params with { Pan = sourcePan } };
     }
     
-    public void SetSourceReverb(int midiNote, float sourceReverb)
+    public void SetSourceReverb(int midiNote, int sourceReverb)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { ReverbGain = sourceReverb } };
+        kb = kb with { Params = kb.Params with { ReverbSend = sourceReverb } };
     }
     
-    public void SetSourceChorus(int midiNote, float sourceChorus)
+    public void SetSourceChorus(int midiNote, int sourceChorus)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { ChorusGain = sourceChorus } };
+        kb = kb with { Params = kb.Params with { ChorusSend = sourceChorus } };
     }
     
-    public void SetSourceDelay(int midiNote, float sourceDelay)
+    public void SetSourceDelay(int midiNote, int sourceDelay)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { DelayGain = sourceDelay } };
+        kb = kb with { Params = kb.Params with { VariationSend = sourceDelay } };
     }
     
     public void SetSourceNoteOff(int midiNote, bool rxNoteOff)
@@ -226,14 +226,15 @@ public sealed class UserDrumSet: SynthPatch
     private static DrumParameters DefaultFor(int key) =>
         new()
         {
-            Pitch = 0,
-            Gain = 1,
-            ExclusiveClass = 0,
-            Pan = 64,
-            ReverbGain = Channel.Reset.DefaultDrumReverb[key] / 127f,
-            ChorusGain = 0,
-            DelayGain = 0, // No drums have delay
-            RxNoteOn = true,
-            RxNoteOff = false,
+            PitchCoarse     = 0,
+            PitchFine       = 0,
+            Level           = 120,
+            AssignGroup     = 0,
+            Pan             = 64,
+            ReverbSend      = Channel.Reset.DefaultDrumReverb[key],
+            ChorusSend      = 0,
+            RxNoteOn        = true,
+            RxNoteOff       = false,
+            VariationSend   = 0,
         };
 }

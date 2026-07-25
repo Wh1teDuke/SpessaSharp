@@ -254,7 +254,7 @@ public sealed class MidiChannel: ISf2Channel
         Channel = channelNumber;
         MidiParamArray.RxChannel = channelNumber;
         DynamicModulators = new DynamicModulatorManager(channelNumber);
-        
+        // Init
         ResetGeneratorOverrides();
         ResetGeneratorOffsets();
         
@@ -699,18 +699,20 @@ public sealed class MidiChannel: ISf2Channel
 
         foreach (ref var p in DrumParams.AsSpan())
         {
-            var rcGain = Engine.Channel.Reset.DefaultDrumReverb[i++] / 127f;
-            p = new DrumParameters(
-                Pitch: 0,
-                Gain: 1,
-                ExclusiveClass: 0,
-                Pan: 64,
-                ReverbGain: rcGain,
-                ChorusGain: isXG ? rcGain : 0, // Mirror reverb on XG only, GS has no chorus by default
-                DelayGain: 0, // No drums have delay
-                RxNoteOn: true,
-                RxNoteOff: false
-            );
+            var rcGain = Engine.Channel.Reset.DefaultDrumReverb[i++];
+            p = new DrumParameters
+            {
+                PitchCoarse     = 0,
+                PitchFine       = 0,
+                Level           = 120,
+                AssignGroup     = 0,
+                Pan             = 64,
+                ReverbSend      = rcGain,
+                ChorusSend      = isXG ? rcGain : 0, // Mirror reverb on XG only, GS has no chorus by default
+                RxNoteOn        = true,
+                RxNoteOff       = false,
+                VariationSend   = isXG ? rcGain : 0,
+            };
         }
     }
     

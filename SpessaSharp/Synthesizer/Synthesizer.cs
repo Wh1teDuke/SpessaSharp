@@ -54,9 +54,9 @@ public sealed class Synthesizer
     /// This is needed because effects (regular ones) are send straight from the mono signal, whereas
     /// insertion effects receive the panned audio (twice), which reduces gain by a factor of cos(pi/4) * cos(pi/4) (master pan + voice pan).
     /// This reverses it.
+    /// 1 / Math.cos(Math.PI / 4) ** 2 == 2
     /// </summary>
-    public static readonly float EFX_SENDS_GAIN_CORRECTION = 
-        1f / float.Pow(float.Cos(MathF.PI / 4), 2);
+    public const float EFX_SENDS_GAIN_CORRECTION = 2;
 
     /// <summary>Initialization options of the Synthesizer</summary>
     /// <param name="MaxBufferSize">
