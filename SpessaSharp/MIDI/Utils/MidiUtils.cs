@@ -1212,11 +1212,27 @@ public static class MidiUtils
         var a3 = syx[6];
         var data = syx[7];
 
-        // GS reset check
-        if (
-            // Address 1 is 0x00 for SC-88 SYSTEM MODE SET and 0x40 for SC-55 MODE SET
-            a1 is 0x00 or 0x40 &&
-            a2 == 0x00) // System Parameter
+        // System Parameters
+        // MODE SET
+        // This has been separated from 40 00 because 00 00 05 was erroneously
+        // Decoded as "master key shift" even though it means "SC-88 output assign"
+        // Testcase: FADED88.mid
+        if (a1 == 0x00 && a2 == 0x00 && a3 == 0x7f)
+        {
+            return data switch
+            {
+                // GS Reset/Mode-1 (Single Module Mode)
+                // GS Reset/Mode-2 (Double Module Mode)
+                0x00 or 0x01 => AnalyzedMessage.Of(Midi.System.GS),
+                0x7f =>
+                    // GS Off, default to gm
+                    AnalyzedMessage.Of(Midi.System.GM),
+                _ => AnalyzedParameter.Type.Other
+            };
+        }
+        
+        // Patch common parameters
+        if (a1 == 0x40 && a2 == 0x00)// System Parameter
         {
             switch (a3)
             {

@@ -407,7 +407,12 @@ internal static class UsedProgramsAndKeys
                     {
                         var gmp = syx.AsGlobalMidiParameter!.Value;
                         if (gmp.PType == GlobalMidiParameter.Type.KeyShift)
+                        {
                             masterKeyShift = gmp.AsInt;
+                            SpessaLog.Info(
+                                $"Master Key-Shift of {masterKeyShift
+                                } on detected!");
+                        }
                         else if (gmp.PType == GlobalMidiParameter.Type.System)
                         {
                             Reset(gmp.AsMidiSystem);
