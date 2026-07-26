@@ -951,7 +951,7 @@ internal static class Roland
                         SpessaLog.GSFail("Patch Parameter", syx);
                         return;
                     }
-                    // Drum setup
+                    // Drum Setup
                     if (a1 is 0x41 or 0x51) 
                     {
                         // 51 means BLOCK B (+16 channels)
@@ -1116,160 +1116,121 @@ internal static class Roland
                         }
                         return;
                     }
-                    // User drum set
+                    // User Drum Set
                     if (a1 == 0x21)
                     {
-                        if (synth.SystemParameters.UserDrumLock)
-                            return;
-                        
-                        var drumSetNumber = a2 >> 4;
-                        var drumSet = synth.SoundBankManager.UserDrumSets[
-                            drumSetNumber];
-                        var drumKey = a3;
-                        var command = (byte)(a2 & 0xf);
-                        switch (command)
+                        HandleUserDrum(synth, a2, a3, data, syx);
+                        return;
+                    }
+                    
+                    // User Drum Set Bulk Dump
+                    if (a1 == 0x29)
+                    {
+                        var dataLength = syx.Length - 9;
+                        SpessaLog.Info(
+                            $"User Drum Set Bulk Dump detected! Keys: {dataLength}");
+
+                        // Top half of a2 stays the same (indicates which user drum)
+                        // While the bottom param is something else
+                        // Guessed by analyzing 95043-2.KYC.mid
+
+                        var actualDrumParam = 0;
+                        switch (a2 & 0x0f)
                         {
                             default:
-                                SpessaLog.GSFail("User Drum set", syx);
+                                SpessaLog.GSFail(
+                                    "User Drum Bulk Dump System Exclusive",
+                                    syx);
                                 return;
                             
-                            // User drum set name
-                            case 0: 
-                            {
-                                var newName = Util.ToString(
-                                    Util.ReadBinaryString(
-                                        syx.Slice(12, 7)));
-                                drumSet.Name = newName;
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} name", newName);
-                                return;
-                            }
-
+                            case 0x0:
+                                // Most at 60 = play note?
+                                actualDrumParam = 1;
+                                break;
                             case 0x1:
-                            {
-                                // Here it's relative to 60, not 64 like NRPN. For some reason...
-                                var pitch = data - 60;
-
-                                // Use the full 100 cents here as we choose the correct pitch (50 or 100 cents) when committing changes
-                                drumSet.SetSourcePitch(drumKey, pitch);
-
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Pitch, key {drumKey}",
-                                    pitch);
-                                return;
-                            }
-
+                                // Level?
+                                actualDrumParam = 2;
+                                break;
                             case 0x2:
-                            {
-                                // Drum Level
-                                drumSet.SetSourceLevel(drumKey, data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Level, key {drumKey}",
-                                    data);
-                                return;
-                            }
-                            
+                                // Matches gm.dls exclusive class pretty well, assign group?
+                                actualDrumParam = 3;
+                                break;
                             case 0x3:
-                            {
-                                // Drum Assign Group (exclusive class)
-                                drumSet.SetSourceAssignGroup(drumKey, data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Assign Group, key {drumKey}",
-                                    data);
-                                return;
-                            }
-                            
+                                // Most at 64, so pan?
+                                actualDrumParam = 4;
+                                break;
                             case 0x4:
-                            {
-                                // Pan
-                                drumSet.SetSourcePan(drumKey, data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Assign Group, key {drumKey}",
-                                    data);
-                                return;
-                            }
-                            
+                                // 0 on bass, so reverb?
+                                actualDrumParam = 5;
+                                break;
                             case 0x5:
-                            {
-                                // Reverb
-                                drumSet.SetSourceReverb(drumKey,data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Reverb, key {drumKey}",
-                                    data);
-                                return;
-                            }
-                            
+                                // 0 on all, so chorus?
+                                actualDrumParam = 6;
+                                break;
                             case 0x6:
-                            {
-                                // Chorus
-                                drumSet.SetSourceChorus(drumKey,data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Chorus, key {drumKey}",
-                                    data);
+                                // 16 on all
+                                // In the order, rx notes should be here, it's 0x10, so maybe
+                                // It's both? on << 4 | off?
+                                // Special handling is needed
+                                var address2Off = (a2 & 0xf0) | 7;
+                                var address2On = (a2 & 0xf0) | 8;
+                                for (
+                                    var midiNote = 0;
+                                    midiNote < dataLength;
+                                    midiNote++
+                                ) {
+                                    HandleUserDrum(
+                                        synth,
+                                        address2Off,
+                                        midiNote,
+                                        syx[midiNote + 7] & 0xf,
+                                        syx
+                                    );
+                                    HandleUserDrum(
+                                        synth,
+                                        address2On,
+                                        midiNote,
+                                        syx[midiNote + 7] >> 4,
+                                        syx
+                                    );
+                                }
                                 return;
-                            }
-                            
                             case 0x7:
-                            {
-                                // Receive Note Off
-                                drumSet.SetSourceNoteOff(drumKey, data == 1);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Note Off, key {drumKey}",
-                                    data == 1 ? "ON" : "OFF");
-                                return;
-                            }
-                            
+                                // All 0, so delay
+                                actualDrumParam = 9;
+                                break;
                             case 0x8:
-                            {
-                                // Receive Note On
-                                drumSet.SetSourceNoteOn(drumKey, data == 1);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Note On, key {drumKey}",
-                                    data == 1 ? "ON" : "OFF");
-                                return;
-                            }
-                            
+                                // All 2 and this is a 88pro midi, so the map is 2
+                                actualDrumParam = 0xa;
+                                break;
                             case 0x9:
-                            {
-                                // Delay
-                                drumSet.SetSourceDelay(drumKey,data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} Delay, key {drumKey}",
-                                    data);
-                                return;
-                            }
-                            
-                            // Source drum set
-                            case 0xa: 
-                            {
-                                drumSet.SetSourceMap(drumKey, data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} source drum set for {drumKey}",
-                                    data);
-                                return;
-                            }
-                            
-                            // Program number
-                            case 0xb: 
-                            {
-                                drumSet.SetSourceProgram(drumKey, data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} source program for {drumKey}",
-                                    data);
-                                return;
-                            }
-                            
-                            // Source note number
-                            case 0xc: 
-                            {
-                                drumSet.SetSourceNote(drumKey, data);
-                                SpessaLog.GSInfo(
-                                    $"User Drum Set {drumSetNumber} source note for {drumKey}",
-                                    data);
-                                return;
-                            }
+                                // 0xA matches note number so the only one left is the program
+                                actualDrumParam = 0xb;
+                                break;
+                            case 0xa:
+                                // Drum numbers increase so source note
+                                actualDrumParam = 0xc;
+                                break;
+                            case 0xb:
+                                // 16 chars, seems to be a name (spec is wrong? says 12)
+                                actualDrumParam = 0;
+                                break;
                         }
+                        
+                        var address2 = (a2 & 0xf0) | actualDrumParam;
+                        for (var midiNote = 0; midiNote < dataLength; midiNote++) 
+                        {
+                            HandleUserDrum(
+                                synth,
+                                address2,
+                                midiNote,
+                                syx[midiNote + 7],
+                                syx
+                            );
+                        }
+                        return;
                     }
+                    
                     // This is some other GS sysex...
                     SpessaLog.GSFail("System Exclusive", syx);
                     return;
@@ -1313,6 +1274,154 @@ internal static class Roland
             // This is something else...
             SpessaLog.Unsupported("Roland", syx);
             return;
+        }
+    }
+
+    private static void HandleUserDrum(
+        Synthesizer synth, int a2, int a3, int data, ReadOnlySpan<byte> syx)
+    {
+        if (synth.SystemParameters.UserDrumLock) return;
+
+        var drumSetNumber = a2 >> 4;
+        var drumSet = synth.SoundBankManager.UserDrumSets[drumSetNumber];
+        var drumKey = a3;
+        var command = a2 & 0xf;
+
+        switch (command)
+        {
+            default:
+            {
+                SpessaLog.GSFail("User Drum set", syx);
+                return;
+            }
+
+            // User drum set name
+            case 0:
+            {
+                var newName = Util.ToString(
+                    Util.ReadBinaryString(
+                        syx.Slice(12, 7))).Trim();
+                drumSet.Name = newName;
+                SpessaLog.GSInfo($"User Drum Set {drumSetNumber} Name", newName);
+                return;
+            }
+
+            case 0x1:
+            {
+                // Here it's relative to 60, not 64 like NRPN. For some reason...
+                var pitch = data - 60;
+
+                // Use the full 100 cents here as we choose the correct pitch (50 or 100 cents) when committing changes
+                drumSet.SetSourcePitch(drumKey, pitch);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Pitch, key {drumKey}", pitch);
+                return;
+            }
+
+            case 0x2:
+            {
+                // Drum Level
+                drumSet.SetSourceLevel(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber}Level, key {drumKey}", data);
+                return;
+            }
+
+            case 0x3:
+            {
+                // Drum Assign Group (exclusive class)
+                drumSet.SetSourceAssignGroup(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Assign Group, key {drumKey}", data);
+                return;
+            }
+
+            case 0x4:
+            {
+                // Pan
+                drumSet.SetSourcePan(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Pan, key {drumKey}", data);
+                return;
+            }
+
+            case 0x5:
+            {
+                // Reverb
+                drumSet.SetSourceReverb(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Reverb, key {drumKey}", data);
+                return;
+            }
+
+            case 0x6:
+            {
+                // Chorus
+                drumSet.SetSourceChorus(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Chorus, key {drumKey}",
+                    data);
+                return;
+            }
+
+            case 0x7:
+            {
+                // Receive Note Off
+                drumSet.SetSourceNoteOff(drumKey, data == 1);
+
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Note Off, key {drumKey}",
+                    data == 1 ? "ON" : "OFF");
+                return;
+            }
+
+            case 0x8:
+            {
+                // Receive Note On
+                drumSet.SetSourceNoteOn(drumKey, true); // Data === 1;
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Note On, key {drumKey}",
+                    data == 1 ? "ON" : "OFF");
+                return;
+            }
+
+            case 0x9:
+            {
+                // Delay
+                drumSet.SetSourceVariation(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} Delay, key {drumKey}", data);
+                return;
+            }
+
+            // Source drum set
+            case 0xa:
+            {
+                drumSet.SetSourceMap(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} source drum set for {drumKey}", data);
+                return;
+            }
+
+            // Program number
+            case 0xb:
+            {
+                drumSet.SetSourceProgram(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} source program for {drumKey}",
+                    data);
+                return;
+            }
+
+            // Source note number
+            case 0xc:
+            {
+                drumSet.SetSourceNote(drumKey, data);
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSetNumber} source note for {drumKey}",
+                    data);
+                return;
+            }
         }
     }
 }

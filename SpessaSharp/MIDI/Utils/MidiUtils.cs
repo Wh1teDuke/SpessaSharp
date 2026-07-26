@@ -1250,47 +1250,90 @@ public static class MidiUtils
         
         // User Drum Set
         if (a1 == 0x21)
+            return HandleSingleUserDrum(a2, a3, data);
+        
+        // User Drum Set Bulk Dump
+        if (a1 == 0x29)
         {
-            var program = 64 + (a2 >> 4);
-            return (a2 & 0xf) switch
+            var dataLength = syx.Length - 9;
+            // See the corresponding code in synth sysEx handler for comments
+
+            var actualDrumParam = 0;
+            switch (a2 & 0x0f)
             {
-                // Play Note
-                0x1 => DrumSetup2(DrumParameters.Type.PitchCoarse, data - 60),
-                // Level
-                0x2 => DrumSetup1(DrumParameters.Type.Level, data),
-                // Assign group
-                0x3 => DrumSetup1(DrumParameters.Type.AssignGroup, data),
-                // Pan
-                0x4 => DrumSetup1(DrumParameters.Type.Pan, data),
-                // Reverb Send
-                0x5 => DrumSetup1(DrumParameters.Type.ReverbSend, data),
-                // Chorus Send
-                0x6 => DrumSetup1(DrumParameters.Type.ChorusSend, data),
-                // Rx. Note Off
-                0x7 => DrumSetup3(DrumParameters.Type.RxNoteOff, data == 1),
-                // Rx. Note On
-                0x8 => DrumSetup3(DrumParameters.Type.RxNoteOn, data == 1),
-                // Delay Send Level
-                0x9 => DrumSetup1(DrumParameters.Type.VariationSend, data),
-                // Source Drum Set Map
-                0xa => DrumSetup4(UserDrumParameters.Type.SourceDrumSet, data),
-                // Program Number
-                0xb => DrumSetup4(UserDrumParameters.Type.Program, data),
-                // Source Note Number
-                0xc => DrumSetup4(UserDrumParameters.Type.SourceNoteNumber, data),
+                default:
+                    return AnalyzedParameter.Type.Other;
                 
-                
-                _ => AnalyzedParameter.Type.Other,
-            };
-            
-            AnalyzedParameter DrumSetup1(DrumParameters.Type type, int val) =>
-                AnalyzedParameter.Of(a3, program, (type, val));
-            AnalyzedParameter DrumSetup2(DrumParameters.Type type, float val) =>
-                AnalyzedParameter.Of(a3, program, (type, val));
-            AnalyzedParameter DrumSetup3(DrumParameters.Type type, bool val) =>
-                AnalyzedParameter.Of(a3, program, (type, val));
-            AnalyzedParameter DrumSetup4(UserDrumParameters.Type type, int val) =>
-                AnalyzedParameter.Of(a3, program, (type, val));
+                case 0x0:
+                    actualDrumParam = 1;
+                    break;
+                case 0x1:
+                    actualDrumParam = 2;
+                    break;
+                case 0x2:
+                    actualDrumParam = 3;
+                    break;
+                case 0x3:
+                    actualDrumParam = 4;
+                    break;
+                case 0x4:
+                    actualDrumParam = 5;
+                    break;
+                case 0x5:
+                    actualDrumParam = 6;
+                    break;
+                case 0x6:
+                {
+                    var address2Off = (a2 & 0xf0) | 7;
+                    var address2On = (a2 & 0xf0) | 8;
+                    var analyzed = Util.Rent<AnalyzedMessage>(
+                        dataLength * 2);
+                    for (var midiNote = 0; midiNote < dataLength; midiNote++) 
+                    {
+                        analyzed[midiNote * 2 + 0] =
+                            HandleSingleUserDrum(
+                                address2Off,
+                                midiNote,
+                                syx[midiNote + 7] & 0xf);
+                        analyzed[midiNote * 2 + 1] =
+                            HandleSingleUserDrum(
+                                address2On,
+                                midiNote,
+                                syx[midiNote + 7] >> 4);
+                    }
+                    return analyzed;
+                }
+                case 0x7:
+                    actualDrumParam = 9;
+                    break;
+                case 0x8:
+                    actualDrumParam = 0xa;
+                    break;
+                case 0x9:
+                    actualDrumParam = 0xb;
+                    break;
+                case 0xa:
+                    actualDrumParam = 0xc;
+                    break;
+                case 0xb:
+                    actualDrumParam = 0;
+                    break;
+            }
+            {
+                var address2 = (a2 & 0xf0) | actualDrumParam;
+                var analyzed = Util.Rent<AnalyzedMessage>(
+                    dataLength);
+                for (var midiNote = 0; midiNote < dataLength; midiNote++) 
+                {
+                    analyzed[midiNote * 2 + 0] =
+                        HandleSingleUserDrum(
+                            address2,
+                            midiNote,
+                            syx[midiNote + 7]);
+                }
+
+                return analyzed;
+            }
         }
 
         // 0x40 -> Part Parameters, 0x50 -> Part Parameters (BLOCK B) Testcase: 95043-2.KYC.mid
@@ -1434,5 +1477,49 @@ public static class MidiUtils
         }
 
         return AnalyzedParameter.Type.Other;
+    }
+
+    private static AnalyzedMessage HandleSingleUserDrum(
+        int a2, int a3, int data)
+    {
+        var program = 64 + (a2 >> 4);
+        return (a2 & 0xf) switch
+        {
+            // Play Note
+            0x1 => DrumSetup2(DrumParameters.Type.PitchCoarse, data - 60),
+            // Level
+            0x2 => DrumSetup1(DrumParameters.Type.Level, data),
+            // Assign group
+            0x3 => DrumSetup1(DrumParameters.Type.AssignGroup, data),
+            // Pan
+            0x4 => DrumSetup1(DrumParameters.Type.Pan, data),
+            // Reverb Send
+            0x5 => DrumSetup1(DrumParameters.Type.ReverbSend, data),
+            // Chorus Send
+            0x6 => DrumSetup1(DrumParameters.Type.ChorusSend, data),
+            // Rx. Note Off
+            0x7 => DrumSetup3(DrumParameters.Type.RxNoteOff, data == 1),
+            // Rx. Note On
+            0x8 => DrumSetup3(DrumParameters.Type.RxNoteOn, data == 1),
+            // Delay Send Level
+            0x9 => DrumSetup1(DrumParameters.Type.VariationSend, data),
+            // Source Drum Set Map
+            0xa => DrumSetup4(UserDrumParameters.Type.SourceDrumSet, data),
+            // Program Number
+            0xb => DrumSetup4(UserDrumParameters.Type.Program, data),
+            // Source Note Number
+            0xc => DrumSetup4(UserDrumParameters.Type.SourceNoteNumber, data),
+
+            _ => AnalyzedParameter.Type.Other,
+        };
+        
+        AnalyzedParameter DrumSetup1(DrumParameters.Type type, int val) =>
+            AnalyzedParameter.Of(a3, program, (type, val));
+        AnalyzedParameter DrumSetup2(DrumParameters.Type type, float val) =>
+            AnalyzedParameter.Of(a3, program, (type, val));
+        AnalyzedParameter DrumSetup3(DrumParameters.Type type, bool val) =>
+            AnalyzedParameter.Of(a3, program, (type, val));
+        AnalyzedParameter DrumSetup4(UserDrumParameters.Type type, int val) =>
+            AnalyzedParameter.Of(a3, program, (type, val));
     }
 }

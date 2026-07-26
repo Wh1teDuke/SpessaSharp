@@ -3,7 +3,6 @@ using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Voice;
-using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine;
 
@@ -132,7 +131,7 @@ public sealed class UserDrumSet: SynthPatch
         kb = kb with { Params = kb.Params with { ChorusSend = sourceChorus } };
     }
     
-    public void SetSourceDelay(int midiNote, int sourceDelay)
+    public void SetSourceVariation(int midiNote, int sourceDelay)
     {
         ref var kb = ref GetOrAdd(midiNote);
         kb = kb with { Params = kb.Params with { VariationSend = sourceDelay } };
@@ -204,11 +203,7 @@ public sealed class UserDrumSet: SynthPatch
         if (resolvedPatch == null)
             // No match, no sound
             return [];
-        
-        SpessaLog.Info(
-            $"Resolving patch for {
-                binding.Patch.ToMidiString()} {
-                    resolvedPatch.Name}");
+
         var vParams = 
             resolvedPatch.GetVoiceParameters(cCache, binding.Key, velocity);
 
