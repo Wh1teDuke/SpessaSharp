@@ -39,6 +39,7 @@
   <!-- Tests -->
   <Folder Name="/Root/Tests/">
     <File Path="Tests\midi\MidiTestMaker.cs" />
+    <File Path="Tests\test.sh" />
   </Folder>
   <Folder Name="/Root/Tests/MidiEditor/">
     <File Path="Tests\midi\midi_editor\MidiEditorMidiParams.cs" />
@@ -47,5 +48,22 @@
     <File Path="Tests\midi\cc\SoftPedal.cs" />
     <File Path="Tests\midi\cc\RPNFineTuning.cs" />
     <File Path="Tests\midi\cc\RealtimeRPNTuning.cs" />
+  </Folder>
+  <Folder Name="/Root/Tests/other/">
+    <File Path="Tests\midi\other\AssignMode.cs" />
+    <File Path="Tests\midi\other\DrumSpam.cs" />
+    <File Path="Tests\midi\other\MonoMode.cs" />
+    <File Path="Tests\midi\other\OverlappingNotesTest.cs" />
+    <File Path="Tests\midi\other\VelocitySense.cs" />
+    <File Path="Tests\midi\other\VelocitySenseBug.cs" />
+  </Folder>
+  <Folder Name="/Root/Tests/gs/">
+    <File Path="Tests\midi\gs\Filter.cs" />
+    <File Path="Tests\midi\gs\PatchCommonParameters.cs" />
+    <File Path="Tests\midi\gs\ControllerMatrix.cs" />
+  </Folder>
+  <Folder Name="/Root/Tests/efx/">
+    <File Path="Tests\midi\efx\Tremolo.cs" />
+    <File Path="Tests\midi\efx\StereoEQ.cs" />
   </Folder>
 </Solution>
