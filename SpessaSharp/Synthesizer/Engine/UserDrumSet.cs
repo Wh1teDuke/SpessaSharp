@@ -73,7 +73,9 @@ public sealed class UserDrumSet: SynthPatch
         );
         
         _resolvePatch = resolvePatch;
-        _keyParams.Clear();
+
+        // Correct Init
+        Reset();
     }
 
     public override bool IsDrum => Patch.IsDrum;
@@ -227,8 +229,7 @@ public sealed class UserDrumSet: SynthPatch
     {
         ref var kb = ref CollectionsMarshal
             .GetValueRefOrAddDefault(_keyParams, midiNote, out var exists);
-        if (!exists) kb = UserDrumSetParameter.Default with
-        { SourceNoteNumber = midiNote, };
+        if (!exists) kb = UserDrumSetParameter.GetDefault(midiNote);
         return ref kb;
     }
 
@@ -275,7 +276,8 @@ public sealed class UserDrumSet: SynthPatch
         var tempPatch = new MidiPatch(
             binding.Program, 0, binding.SourceDrumSet, true);
         var resolvedPatch = _resolvePatch(tempPatch);
-        if (resolvedPatch == null)
+        // Protect from binding to self as well
+        if (resolvedPatch == null || resolvedPatch == this)
         {
             resolvedPatch = _resolvePatch(new MidiPatch(0, 0, 0, true));
             

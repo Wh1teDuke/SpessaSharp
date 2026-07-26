@@ -493,8 +493,8 @@ internal static class UsedProgramsAndKeys
                             set.MemoryParams, usd.MidiNote, out var exists);
 
                         if (!exists)
-                            param = UserDrumSetParameter.Default with
-                            { SourceNoteNumber = usd.MidiNote, };
+                            param = UserDrumSetParameter.
+                                GetDefault(usd.MidiNote);
 
                         param[usd.Parameter.Type] = usd.Parameter;
                         break;

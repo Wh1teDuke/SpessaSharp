@@ -126,14 +126,15 @@ public record struct UserDrumSetParameter
         set => _buffer[(int)value.Type] = value.Data.Value;
     }
 
-    public static readonly UserDrumSetParameter Default = new ()
-    {
-        DrumParameters = 
-            DrumParameter.Default,
-        SourceDrumSet = 0,
-        SourceNoteNumber = 0,
-        Program = 0,
-    };
+    public static UserDrumSetParameter GetDefault(int midiNote) =>
+        new()
+        {
+            DrumParameters = 
+                DrumParameter.Default,
+            SourceDrumSet = 0,
+            SourceNoteNumber = midiNote,
+            Program = 0,
+        };
 
     public readonly record struct Entry
     {

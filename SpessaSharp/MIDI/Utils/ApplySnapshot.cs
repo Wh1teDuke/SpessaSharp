@@ -153,7 +153,8 @@ internal static class ApplySnapshot
                 midiNote++)
             {
                 var param = snapshotUserDrumSet[midiNote];
-                if (param == UserDrumSetParameter.Default[param.Type])
+                if (param == UserDrumSetParameter
+                        .GetDefault(midiNote)[param.Type])
                     continue;
 
                 if (!userDrumSetParams.Mods.TryGetValue(
