@@ -100,7 +100,7 @@ public static class MidiUtils
             [FieldOffset(0)] public (int Channel, bool IsDrum) _drumsOn;
             [FieldOffset(0)] public (int Channel, int Value) _programChange;
             [FieldOffset(0)] public GlobalMidiParameter _globalMidiParam;
-            [FieldOffset(0)] public (int MidiNote, int DrumSet, UserDrumParameter.Entry Parameter) _userDrumSetup;
+            [FieldOffset(0)] public (int MidiNote, int DrumSet, UserDrumSetParameter.Entry Parameter) _userDrumSetup;
         }
 
         public Type MType { get; private init; }
@@ -114,7 +114,7 @@ public static class MidiUtils
             MType == Type.ProgramChange ? Data._programChange : null;
         public GlobalMidiParameter? AsGlobalMidiParameter =>
             MType == Type.GlobalMidiParameter ? Data._globalMidiParam : null;
-        public (int MidiNote, int DrumSet, UserDrumParameter.Entry Parameter)? AsUserDrumSetup =>
+        public (int MidiNote, int DrumSet, UserDrumSetParameter.Entry Parameter)? AsUserDrumSetup =>
             MType == Type.UserDrumSetup ? Data._userDrumSetup : null;
 
         public static AnalyzedMessage Of(Type type)
@@ -159,7 +159,7 @@ public static class MidiUtils
             };
                 
         public static AnalyzedMessage Of(
-            int midiNote, int drumSet, UserDrumParameter.Entry param) =>
+            int midiNote, int drumSet, UserDrumSetParameter.Entry param) =>
             new()
             {
                 MType = Type.UserDrumSetup, 
@@ -565,15 +565,17 @@ public static class MidiUtils
     /// <returns>The <see cref="MidiMessage"/> that sets the parameter.</returns>
     public static MidiMessage SetUserDrumParameter(
         int ticks, int drumSet, int midiNote, 
-        UserDrumParameter.Entry parameter)
+        UserDrumSetParameter.Entry parameter)
     {
         drumSet %= 2;
         var a2Param = parameter.Type switch
         {
-            UserDrumParameter.Type.DrumParameters => 
+            UserDrumSetParameter.Type.DrumParameters => 
                 parameter.AsDrumParameter.Type switch
             {
                 DrumParameter.Type.PitchCoarse => 1,
+                // Should never be used
+                DrumParameter.Type.PitchFine => 127,
                 DrumParameter.Type.Level => 2,
                 DrumParameter.Type.AssignGroup => 3,
                 DrumParameter.Type.Pan => 4,
@@ -582,14 +584,13 @@ public static class MidiUtils
                 DrumParameter.Type.RxNoteOff => 7,
                 DrumParameter.Type.RxNoteOn => 8,
                 DrumParameter.Type.VariationSend => 9,
-                DrumParameter.Type.PitchFine or
                 _ => throw new Exception(
                     $"Invalid parameter {parameter.Type}")
             },
             //
-            UserDrumParameter.Type.SourceDrumSet => 0xa,
-            UserDrumParameter.Type.Program => 0xb,
-            UserDrumParameter.Type.SourceNoteNumber => 0xc,
+            UserDrumSetParameter.Type.SourceDrumSet => 0xa,
+            UserDrumSetParameter.Type.Program => 0xb,
+            UserDrumSetParameter.Type.SourceNoteNumber => 0xc,
             _ => throw new Exception(
                 $"Invalid parameter {parameter.Type}")
         };
@@ -1551,11 +1552,11 @@ public static class MidiUtils
             // Delay Send Level
             0x9 => DrumSetup1(DrumParameter.Type.VariationSend, data),
             // Source Drum Set Map
-            0xa => DrumSetup4(UserDrumParameter.Type.SourceDrumSet, data),
+            0xa => DrumSetup4(UserDrumSetParameter.Type.SourceDrumSet, data),
             // Program Number
-            0xb => DrumSetup4(UserDrumParameter.Type.Program, data),
+            0xb => DrumSetup4(UserDrumSetParameter.Type.Program, data),
             // Source Note Number
-            0xc => DrumSetup4(UserDrumParameter.Type.SourceNoteNumber, data),
+            0xc => DrumSetup4(UserDrumSetParameter.Type.SourceNoteNumber, data),
 
             _ => AnalyzedParameter.Type.Other,
         };
@@ -1566,7 +1567,7 @@ public static class MidiUtils
             AnalyzedMessage.Of(a3, drumSet, (type, val));
         AnalyzedMessage DrumSetup3(DrumParameter.Type type, bool val) =>
             AnalyzedMessage.Of(a3, drumSet, (type, val));
-        AnalyzedMessage DrumSetup4(UserDrumParameter.Type type, int val) =>
+        AnalyzedMessage DrumSetup4(UserDrumSetParameter.Type type, int val) =>
             AnalyzedMessage.Of(a3, drumSet, (type, val));
     }
 }

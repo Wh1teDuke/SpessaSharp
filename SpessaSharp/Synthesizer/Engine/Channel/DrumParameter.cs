@@ -29,7 +29,10 @@ public record struct DrumParameter
         VariationSend,
         /// <summary>If note on should be received.</summary>
         RxNoteOn,
-        /// <summary>If note off should be received. Note: Due to the way sound banks implement drums (as 100s release time), this means killing the voice on note off, not releasing it.</summary>
+        /// <summary>
+        /// If note off should be received.
+        /// Note: Due to the way sound banks implement drums (as 100s release time),
+        /// this means killing the voice on note off, not releasing it.</summary>
         RxNoteOff,
     }
     
@@ -180,7 +183,7 @@ public record struct DrumParameter
     {
         PitchCoarse     = 0,
         PitchFine       = 0,
-        Level           = 127,
+        Level           = 120,
         AssignGroup     = 0,
         Pan             = 64,
         ReverbSend      = 127,

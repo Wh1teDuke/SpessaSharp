@@ -1312,7 +1312,7 @@ internal static class Roland
                 var pitch = data - 60;
 
                 // Use the full 100 cents here as we choose the correct pitch (50 or 100 cents) when committing changes
-                drumSet.SetSourcePitch(drumKey, pitch);
+                drumSet.SetPitchCoarse(drumKey, pitch);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Pitch, key {drumKey}", pitch);
                 return;
@@ -1321,7 +1321,7 @@ internal static class Roland
             case 0x2:
             {
                 // Drum Level
-                drumSet.SetSourceLevel(drumKey, data);
+                drumSet.SetLevel(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber}Level, key {drumKey}", data);
                 return;
@@ -1330,7 +1330,7 @@ internal static class Roland
             case 0x3:
             {
                 // Drum Assign Group (exclusive class)
-                drumSet.SetSourceAssignGroup(drumKey, data);
+                drumSet.SetAssignGroup(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Assign Group, key {drumKey}", data);
                 return;
@@ -1339,7 +1339,7 @@ internal static class Roland
             case 0x4:
             {
                 // Pan
-                drumSet.SetSourcePan(drumKey, data);
+                drumSet.SetPan(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Pan, key {drumKey}", data);
                 return;
@@ -1348,7 +1348,7 @@ internal static class Roland
             case 0x5:
             {
                 // Reverb
-                drumSet.SetSourceReverb(drumKey, data);
+                drumSet.SetReverb(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Reverb, key {drumKey}", data);
                 return;
@@ -1357,7 +1357,7 @@ internal static class Roland
             case 0x6:
             {
                 // Chorus
-                drumSet.SetSourceChorus(drumKey, data);
+                drumSet.SetChorus(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Chorus, key {drumKey}",
                     data);
@@ -1367,7 +1367,7 @@ internal static class Roland
             case 0x7:
             {
                 // Receive Note Off
-                drumSet.SetSourceNoteOff(drumKey, data == 1);
+                drumSet.SetNoteOff(drumKey, data == 1);
 
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Note Off, key {drumKey}",
@@ -1378,7 +1378,7 @@ internal static class Roland
             case 0x8:
             {
                 // Receive Note On
-                drumSet.SetSourceNoteOn(drumKey, true); // Data === 1;
+                drumSet.SetNoteOn(drumKey, true); // Data === 1;
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Note On, key {drumKey}",
                     data == 1 ? "ON" : "OFF");
@@ -1388,7 +1388,7 @@ internal static class Roland
             case 0x9:
             {
                 // Delay
-                drumSet.SetSourceVariation(drumKey, data);
+                drumSet.SetVariationSend(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} Delay, key {drumKey}", data);
                 return;
@@ -1397,7 +1397,7 @@ internal static class Roland
             // Source drum set
             case 0xa:
             {
-                drumSet.SetSourceMap(drumKey, data);
+                drumSet.SetSourceDrumSet(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} source drum set for {drumKey}", data);
                 return;
@@ -1406,7 +1406,7 @@ internal static class Roland
             // Program number
             case 0xb:
             {
-                drumSet.SetSourceProgram(drumKey, data);
+                drumSet.SetProgram(drumKey, data);
                 SpessaLog.GSInfo(
                     $"User Drum Set {drumSetNumber} source program for {drumKey}",
                     data);

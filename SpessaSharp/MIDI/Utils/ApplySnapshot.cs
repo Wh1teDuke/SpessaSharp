@@ -103,6 +103,10 @@ internal static class ApplySnapshot
                 MidiEditor.Parameter<
                     GlobalMidiParameter>.OfReplace(parameter);
         }
+        
+        // User Drum Set
+        var userDrumSet1Params = GetUserDrumMod(snapshot.UserDrumSet1);
+        var userDrumSet2Params = GetUserDrumMod(snapshot.UserDrumSet2);
 
         midi.Modify(new MidiEditor.Options
         {
@@ -128,6 +132,45 @@ internal static class ApplySnapshot
                 ? MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>
                     .OfReplace(snapshot.InsertionProcessor)
                 : null,
+            UserDrumSet1Params = userDrumSet1Params,
+            UserDrumSet2Params = userDrumSet2Params,
         });
+
+        return;
+
+        MidiEditor.Parameter<MidiEditor.UserDrumModification>? GetUserDrumMod(
+            UserDrumSetParameter.Entry[] snapshotUserDrumSet)
+        {
+            if (!snapshot.SystemParameters.UserDrumLock) return null;
+            
+            // Only set the ones that were changed
+            var userDrumSetParams = 
+                new MidiEditor.UserDrumModification([]);
+
+            for (
+                var midiNote = 0;
+                midiNote < snapshotUserDrumSet.Length;
+                midiNote++)
+            {
+                var param = snapshotUserDrumSet[midiNote];
+                if (param == UserDrumSetParameter.Default[param.Type])
+                    continue;
+
+                if (!userDrumSetParams.Mods.TryGetValue(
+                        midiNote, out var value))
+                {
+                    value = MidiEditor.Parameter<Dictionary<
+                            UserDrumSetParameter.Type,
+                            MidiEditor.Parameter<
+                                UserDrumSetParameter.Entry>>>.OfReplace([]);
+                    userDrumSetParams.Mods[midiNote] = value;
+                }
+
+                var dict = value.AsReplace()!.Value;
+                dict[param.Type] = param;
+            }
+
+            return userDrumSetParams;
+        }
     }
 }

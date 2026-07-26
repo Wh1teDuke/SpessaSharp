@@ -4,7 +4,6 @@ using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Voice;
-using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine;
 
@@ -17,20 +16,12 @@ namespace SpessaSharp.Synthesizer.Engine;
 public sealed class UserDrumSet: SynthPatch
 {
     public delegate SynthPatch? ResolvePatch(MidiPatch patch);
-    
-    public static readonly MidiPatch Default = 
-        new(0, 0, 0, true);
-    
-    public readonly record struct KeyBinding(
-        DrumParameter Params,
-        MidiPatch Patch, 
-        int Key);
 
     /// <summary>
-    /// The key bindings for this drum set.
-    /// Index is the MIDI key, value is the bound patch and target key.
+    /// The key parameters for this drum set.
+    /// Index is the MIDI key, value are the parameters for this key.
     /// </summary>
-    private readonly Dictionary<int, KeyBinding> _keyBindings = [];
+    private readonly Dictionary<int, UserDrumSetParameter> _keyParams = [];
 
     /// <summary>
     /// Callback that resolves a <see cref="MidiPatch"/> to a <see cref="SynthPatch"/>.
@@ -42,24 +33,23 @@ public sealed class UserDrumSet: SynthPatch
 
     internal void CopyInto(Span<DrumParameter> dParams)
     {
-        foreach (var i in _keyBindings.Keys)
+        foreach (var i in _keyParams.Keys)
         {
-            // SC-55 uses 100 cents, SC-88 and above is 50
-            // Refer to source binding and do it here
             ref var binding = ref CollectionsMarshal.GetValueRefOrNullRef(
-                _keyBindings, i);
+                _keyParams, i);
 
             binding = binding with
             {
-                Params = binding.Params with
+                DrumParameters = binding.DrumParameters with
                 {
-                    PitchCoarse = (int)(
-                        binding.Params.PitchFine * 
-                        (binding.Patch.BankLSB == 1 ? 1 : 0.5))
-                }
+                    // SC-55 uses 100 cents, SC-88 and above is 50
+                    // Refer to source binding and do it here
+                    PitchCoarse = binding.DrumParameters.PitchCoarse * 
+                                  (binding.SourceDrumSet == 1 ? 1 : 0.5f),
+                },
             };
 
-            dParams[i] = binding.Params;
+            dParams[i] = binding.DrumParameters;
         }
     }
     
@@ -86,7 +76,7 @@ public sealed class UserDrumSet: SynthPatch
         
         _defaultName = name;
         _resolvePatch = resolvePatch;
-        _keyBindings.Clear();
+        _keyParams.Clear();
     }
 
     public override bool IsDrum => Patch.IsDrum;
@@ -97,102 +87,181 @@ public sealed class UserDrumSet: SynthPatch
     public void SetSourceNote(int midiNote, int sourceNote)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Key = sourceNote };
+        kb = kb with { SourceNoteNumber = sourceNote };
     }
     
-    public void SetSourcePitch(int midiNote, float sourcePitch)
+    public void SetPitchCoarse(int midiNote, float sourcePitch)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { PitchCoarse = sourcePitch } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { PitchCoarse = sourcePitch } };
     }
     
-    public void SetSourceLevel(int midiNote, int sourceLevel)
+    public void SetLevel(int midiNote, int sourceLevel)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { Level = sourceLevel } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { Level = sourceLevel } };
     }
     
-    public void SetSourceAssignGroup(int midiNote, int sourceExClass)
+    public void SetAssignGroup(int midiNote, int sourceExClass)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { AssignGroup = sourceExClass } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { AssignGroup = sourceExClass } };
     }
     
-    public void SetSourcePan(int midiNote, int sourcePan)
+    public void SetPan(int midiNote, int sourcePan)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { Pan = sourcePan } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { Pan = sourcePan } };
     }
     
-    public void SetSourceReverb(int midiNote, int sourceReverb)
+    public void SetReverb(int midiNote, int sourceReverb)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { ReverbSend = sourceReverb } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { ReverbSend = sourceReverb } };
     }
     
-    public void SetSourceChorus(int midiNote, int sourceChorus)
+    public void SetChorus(int midiNote, int sourceChorus)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { ChorusSend = sourceChorus } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { ChorusSend = sourceChorus } };
     }
     
-    public void SetSourceVariation(int midiNote, int sourceDelay)
+    public void SetVariationSend(int midiNote, int sourceDelay)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { VariationSend = sourceDelay } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { VariationSend = sourceDelay } };
     }
     
-    public void SetSourceNoteOff(int midiNote, bool rxNoteOff)
+    public void SetNoteOff(int midiNote, bool rxNoteOff)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { RxNoteOff = rxNoteOff } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { RxNoteOff = rxNoteOff } };
     }
     
-    public void SetSourceNoteOn(int midiNote, bool rxNoteOn)
+    public void SetNoteOn(int midiNote, bool rxNoteOn)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Params = kb.Params with { RxNoteOn = rxNoteOn } };
+        kb = kb with { DrumParameters = kb.DrumParameters 
+            with { RxNoteOn = rxNoteOn } };
     }
 
     /// <summary>Sets the source program number for a specific drum key.</summary>
     /// <param name="midiNote">The drum key to edit.</param>
     /// <param name="sourceProgram">The MIDI source program number.</param>
-    public void SetSourceProgram(int midiNote, int sourceProgram)
+    public void SetProgram(int midiNote, int sourceProgram)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Patch = kb.Patch with { Program = sourceProgram } };
+        kb = kb with { Program = sourceProgram };
     }
     
     /// <summary>Sets the source MAP (bank LSB) number for a specific drum key.</summary>
     /// <param name="midiNote">The drum key to edit.</param>
     /// <param name="sourceMap">The MIDI source MAP (bank LSB) number.</param>
-    public void SetSourceMap(int midiNote, int sourceMap)
+    public void SetSourceDrumSet(int midiNote, int sourceMap)
     {
         ref var kb = ref GetOrAdd(midiNote);
-        kb = kb with { Patch = kb.Patch with { BankLSB = sourceMap } };
+        kb = kb with { SourceDrumSet = sourceMap };
     }
 
-    private ref KeyBinding GetOrAdd(int midiNote)
+    public void Apply(int midiNote, UserDrumSetParameter.Entry entry)
+    {
+        switch (entry.Type)
+        {
+            case UserDrumSetParameter.Type.DrumParameters:
+                var dpEntry = entry.AsDrumParameter;
+                switch (dpEntry.Type)
+                {
+                    case DrumParameter.Type.PitchCoarse:
+                        SetPitchCoarse(midiNote, dpEntry.AsFloat);
+                        break;
+                    case DrumParameter.Type.PitchFine:
+                        throw new UnreachableException();
+                    case DrumParameter.Type.Level:
+                        SetLevel(midiNote, dpEntry.AsInt);
+                        break;
+                    case DrumParameter.Type.AssignGroup:
+                        SetAssignGroup(midiNote, dpEntry.AsInt);
+                        break;
+                    case DrumParameter.Type.Pan:
+                        SetPan(midiNote, dpEntry.AsInt);
+                        break;
+                    case DrumParameter.Type.ReverbSend:
+                        SetReverb(midiNote, dpEntry.AsInt);
+                        break;
+                    case DrumParameter.Type.ChorusSend:
+                        SetChorus(midiNote, dpEntry.AsInt);
+                        break;
+                    case DrumParameter.Type.VariationSend:
+                        SetVariationSend(midiNote, dpEntry.AsInt);
+                        break;
+                    case DrumParameter.Type.RxNoteOn:
+                        SetNoteOn(midiNote, dpEntry.AsBool);
+                        break;
+                    case DrumParameter.Type.RxNoteOff:
+                        SetNoteOff(midiNote, dpEntry.AsBool);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                break;
+            case UserDrumSetParameter.Type.SourceDrumSet:
+                SetSourceDrumSet(midiNote, entry.AsInt);
+                break;
+            case UserDrumSetParameter.Type.Program:
+                SetProgram(midiNote, entry.AsInt);
+                break;
+            case UserDrumSetParameter.Type.SourceNoteNumber:
+                SetSourceNote(midiNote, entry.AsInt);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private ref UserDrumSetParameter GetOrAdd(int midiNote)
     {
         ref var kb = ref CollectionsMarshal
-            .GetValueRefOrAddDefault(_keyBindings, midiNote, out var exists);
-        if (!exists) kb = new KeyBinding(
-            DefaultFor(midiNote), 
-            Default,
-            midiNote);
+            .GetValueRefOrAddDefault(_keyParams, midiNote, out var exists);
+        if (!exists) kb = UserDrumSetParameter.Default with
+        { SourceNoteNumber = midiNote, };
         return ref kb;
     }
 
-    /// <summary>
-    /// Resets the drum set.
-    /// </summary>
+    /// <summary>Resets the drum set.</summary>
     public void Reset()
     {
-        Debug.WriteLine("RESET " + _defaultName);
-        
         // Initialize all 128 keys to the default drum patch
-        _keyBindings.Clear();
+        _keyParams.Clear();
         Patch = Patch with { Name = _defaultName };
+    }
+
+    /// <summary>Gets a snapshot of this User Drum Set instance.</summary>
+    /// <returns></returns>
+    public UserDrumSetParameter.Entry[] GetSnapshot()
+    {
+        var result = new UserDrumSetParameter.Entry[
+            128 * UserDrumSetParameter.Count];
+
+        for (var midiNote = 0; midiNote < 128; midiNote++)
+        {
+            var udp = 
+                _keyParams.TryGetValue(midiNote, out var kb)
+                    ? kb : DefaultFor(midiNote);
+
+            udp.CopyTo(result.AsSpan(
+                midiNote * UserDrumSetParameter.Count,
+                UserDrumSetParameter.Count));
+        }
+        
+        return result;
     }
 
     /// <summary>Returns the voice synthesis data for this preset.</summary>
@@ -204,40 +273,51 @@ public sealed class UserDrumSet: SynthPatch
     internal override ArraySegment<((BasicZone, BasicZone), Voice.Voice.Parameters)> 
         GetVoiceParameters(CachedVoice.Base.Cache cCache, int note, int velocity)
     {
-        var binding = _keyBindings.GetValueOrDefault(
-            note, new KeyBinding(DefaultFor(note), Default, note));
+        var binding = _keyParams.GetValueOrDefault(
+            note, DefaultFor(note));
 
-        var resolvedPatch = _resolvePatch(binding.Patch);
+        var tempPatch = new MidiPatch(
+            binding.Program, 0, binding.SourceDrumSet, true);
+        var resolvedPatch = _resolvePatch(tempPatch);
         if (resolvedPatch == null)
             // No match, no sound
             return [];
 
         var vParams = 
-            resolvedPatch.GetVoiceParameters(cCache, binding.Key, velocity);
+            resolvedPatch.GetVoiceParameters(
+                cCache, binding.SourceNoteNumber, velocity);
 
         // Ensure that the key sounds as intended, similarly to 'PGAL' DLS chunk alias
         foreach (var (_, param) in vParams)
         {
             var generators = param.Generators.AsSpan();
             ref var gen = ref generators[(int)Generator.Type.KeyNum];
-            if (gen < 0) gen = (short)binding.Key;
+            if (gen < 0) gen = (short)binding.SourceNoteNumber;
         }
         
         return vParams;
     }
 
-    private static DrumParameter DefaultFor(int key) =>
+    private static UserDrumSetParameter DefaultFor(int key) =>
         new()
         {
-            PitchCoarse     = 0,
-            PitchFine       = 0,
-            Level           = 120,
-            AssignGroup     = 0,
-            Pan             = 64,
-            ReverbSend      = Channel.Reset.DefaultDrumReverb[key],
-            ChorusSend      = 0,
-            RxNoteOn        = true,
-            RxNoteOff       = false,
-            VariationSend   = 0,
+            DrumParameters = new DrumParameter
+            {
+                PitchCoarse     = 0,
+                // Unused, shouldn't matter
+                PitchFine       = 0,
+                Level           = 120,
+                AssignGroup     = 0,
+                Pan             = 64,
+                ReverbSend      = Channel.Reset.DefaultDrumReverb[key],
+                ChorusSend      = 0,
+                RxNoteOn        = true,
+                RxNoteOff       = false,
+                VariationSend   = 0,                
+            },
+    
+            SourceNoteNumber = key,
+            SourceDrumSet = 0,
+            Program = 0,
         };
 }

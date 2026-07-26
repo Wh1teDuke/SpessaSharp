@@ -199,8 +199,8 @@ public static class MidiEditor
         Dictionary<
             int, 
             Parameter<Dictionary<
-                UserDrumParameter.Type,
-                Parameter<UserDrumParameter.Entry>>>> Mods);
+                UserDrumSetParameter.Type,
+                Parameter<UserDrumSetParameter.Entry>>>> Mods);
 
     public static Dictionary<
         int, Parameter<ChannelModification>> ChannelModifications(
@@ -304,7 +304,7 @@ public static class MidiEditor
             SpessaLog.Info($"Desired User Drum Set 1 parameters: {opts.UserDrumSet2Params}");
         
         // Optimizations
-        var clearDrumParams = opts.DrumSetupParams is Parameter<object>.Clear;
+        var clearDrumParams = opts.DrumSetupParams?.IsClear() is true;
         // Track only channels to clear
         var clearedChannels = new HashSet<int>();
         // Track only channels to change here
@@ -1112,7 +1112,7 @@ public static class MidiEditor
                 GlobalMidiParameter.Type.System, 
                 out var value) is true)
             {
-                if (value is Parameter<GlobalMidiParameter>.Replace(var param))
+                if (value.AsReplace() is { Value: var param })
                     targetSystem = param.AsMidiSystem;
             }
             midi.Tracks[0].Add(MidiUtils.Reset(0, targetSystem), index);
