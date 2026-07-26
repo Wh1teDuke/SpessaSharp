@@ -36,7 +36,7 @@ public record struct UserDrumSetParameter
         get
         {
             var result = 
-                DrumParameter.Default;
+                DrumParameter.GetDefault(0);
 
             for (var i = 3; i < Count; i++)
             {
@@ -130,9 +130,10 @@ public record struct UserDrumSetParameter
         new()
         {
             DrumParameters = 
-                DrumParameter.Default,
-            SourceDrumSet = 0,
+                DrumParameter.GetDefault(midiNote),
             SourceNoteNumber = midiNote,
+            // Default to 2 which is SC-88 drum set (confirmed with SCVA)
+            SourceDrumSet = 2,
             Program = 0,
         };
 

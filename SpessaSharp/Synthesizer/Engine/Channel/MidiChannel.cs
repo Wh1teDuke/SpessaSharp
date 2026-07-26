@@ -257,8 +257,9 @@ public sealed class MidiChannel: ISf2Channel
         // Init
         ResetGeneratorOverrides();
         ResetGeneratorOffsets();
-        
-        DrumParams.AsSpan().Fill(DrumParameter.Default);
+
+        for (var i = 0; i < DrumParams.Length; i++)
+            DrumParams[i] = DrumParameter.GetDefault(i);
         
         ResetDrumParams();
     }

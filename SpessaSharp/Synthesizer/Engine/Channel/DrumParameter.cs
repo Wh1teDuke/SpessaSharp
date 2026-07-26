@@ -180,19 +180,20 @@ public record struct DrumParameter
         _buffer[(int)type] = BitConverter.Int32BitsToSingle(value ? 1 : 0);
     }
 
-    public static readonly DrumParameter Default = new()
-    {
-        PitchCoarse     = 0,
-        PitchFine       = 0,
-        Level           = 120,
-        AssignGroup     = 0,
-        Pan             = 64,
-        ReverbSend      = 127,
-        ChorusSend      = 127,
-        VariationSend   = 127,
-        RxNoteOn        = true,
-        RxNoteOff       = false,
-    };
+    public static DrumParameter GetDefault(int i) =>
+        new()
+        {
+            PitchCoarse     = 0,
+            PitchFine       = 0,
+            Level           = 120,
+            AssignGroup     = 0,
+            Pan             = 64,
+            ReverbSend      = Reset.DefaultDrumReverb[i],
+            ChorusSend      = 127,
+            VariationSend   = 127,
+            RxNoteOn        = true,
+            RxNoteOff       = false,
+        };
     
     public static Params.Type TypeOf(Type type) => type switch
     {
