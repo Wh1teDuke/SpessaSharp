@@ -280,8 +280,13 @@ public sealed class UserDrumSet: SynthPatch
             binding.Program, 0, binding.SourceDrumSet, true);
         var resolvedPatch = _resolvePatch(tempPatch);
         if (resolvedPatch == null)
-            // No match, no sound
-            return [];
+        {
+            resolvedPatch = _resolvePatch(new MidiPatch(0, 0, 0, true));
+            
+            if (resolvedPatch == null)
+                // No match, no sound
+                return [];
+        }
 
         var vParams = 
             resolvedPatch.GetVoiceParameters(
