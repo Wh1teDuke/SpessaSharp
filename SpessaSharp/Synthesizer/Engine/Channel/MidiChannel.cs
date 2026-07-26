@@ -72,7 +72,7 @@ public sealed class MidiChannel: ISf2Channel
     public readonly byte[] OctaveTuning = new byte[128];
     
     /// <summary>Parameters for each drum instrument.</summary>
-    public readonly DrumParameters[] DrumParams = new DrumParameters[128];
+    public readonly DrumParameter[] DrumParams = new DrumParameter[128];
     
     /// <summary>A system for dynamic modulator assignment for advanced system exclusives.</summary>
     public readonly DynamicModulatorManager DynamicModulators;
@@ -258,7 +258,7 @@ public sealed class MidiChannel: ISf2Channel
         ResetGeneratorOverrides();
         ResetGeneratorOffsets();
         
-        DrumParams.AsSpan().Fill(DrumParameters.Default);
+        DrumParams.AsSpan().Fill(DrumParameter.Default);
         
         ResetDrumParams();
     }
@@ -700,7 +700,7 @@ public sealed class MidiChannel: ISf2Channel
         foreach (ref var p in DrumParams.AsSpan())
         {
             var rcGain = Engine.Channel.Reset.DefaultDrumReverb[i++];
-            p = new DrumParameters
+            p = new DrumParameter
             {
                 PitchCoarse     = 0,
                 PitchFine       = 0,

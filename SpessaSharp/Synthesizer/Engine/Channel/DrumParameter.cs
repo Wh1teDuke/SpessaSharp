@@ -4,16 +4,16 @@ using SpessaSharp.Utils;
 namespace SpessaSharp.Synthesizer.Engine.Channel;
 
 /// <summary>Represents a single drum instrument's XG/GS parameters.</summary>
-public record struct DrumParameters
+public record struct DrumParameter
 {
     public enum Type
     {
         /// <summary>
-        /// Pitch offset in semitones.
+        /// Pitch offset in semitones. Relative value
         /// May be floating point! (GS half-semitone coarse tune resolution)
         /// </summary>
         PitchCoarse,
-        /// <summary>Pitch offset in cents.</summary>
+        /// <summary>Pitch offset in cents. Relative value.</summary>
         PitchFine,
         /// <summary>Level in 0 - 127 range.</summary>
         Level,
@@ -44,7 +44,7 @@ public record struct DrumParameters
         set => _buffer[(int)value.Type] = value.Data.Value;
     }
     
-    /// <summary>Pitch offset in cents.</summary>
+    /// <summary>Pitch offset in semitones. Relative value.</summary>
     public float PitchCoarse
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
@@ -53,7 +53,7 @@ public record struct DrumParameters
             Set(Type.PitchCoarse, value);
     }
     
-    /// <summary>Pitch offset in cents.</summary>
+    /// <summary>Pitch offset in cents. Relative value.</summary>
     public int PitchFine
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
@@ -176,7 +176,7 @@ public record struct DrumParameters
         _buffer[(int)type] = BitConverter.Int32BitsToSingle(value ? 1 : 0);
     }
 
-    public static readonly DrumParameters Default = new()
+    public static readonly DrumParameter Default = new()
     {
         PitchCoarse     = 0,
         PitchFine       = 0,
@@ -245,6 +245,22 @@ public record struct DrumParameters
                 return Data.AsFloat();
             }
         }
+
+        public int ToInt() =>
+            TypeOf(Type) switch
+            {
+                Params.Type.Int => Data.AsInt(),
+                Params.Type.Float => (int)Data.AsFloat(),
+                Params.Type.Bool => Data.AsBool() ? 1 : 0,
+                Params.Type.InterpolationType or
+                Params.Type.MidiSystem or
+                Params.Type.CC or
+                Params.Type.AssignMode or
+                Params.Type.OptBool or
+                Params.Type.OptInterpolationType or
+                Params.Type.DrumParameters or
+                _ => throw new ArgumentOutOfRangeException()
+            };
 
         private static Entry Of(Type type, float data) => 
             new(type, Params.Of(data));

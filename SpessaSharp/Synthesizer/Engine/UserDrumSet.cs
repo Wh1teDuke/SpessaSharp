@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Voice;
+using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine;
 
@@ -20,7 +22,7 @@ public sealed class UserDrumSet: SynthPatch
         new(0, 0, 0, true);
     
     public readonly record struct KeyBinding(
-        DrumParameters Params,
+        DrumParameter Params,
         MidiPatch Patch, 
         int Key);
 
@@ -36,7 +38,9 @@ public sealed class UserDrumSet: SynthPatch
     /// </summary>
     private readonly ResolvePatch _resolvePatch;
 
-    internal void CopyInto(Span<DrumParameters> dParams)
+    private readonly string _defaultName;
+
+    internal void CopyInto(Span<DrumParameter> dParams)
     {
         foreach (var i in _keyBindings.Keys)
         {
@@ -80,6 +84,7 @@ public sealed class UserDrumSet: SynthPatch
             true
         );
         
+        _defaultName = name;
         _resolvePatch = resolvePatch;
         _keyBindings.Clear();
     }
@@ -179,12 +184,15 @@ public sealed class UserDrumSet: SynthPatch
     }
 
     /// <summary>
-    /// Resets all key bindings to the default GM/GS drum patch.
+    /// Resets the drum set.
     /// </summary>
     public void Reset()
     {
+        Debug.WriteLine("RESET " + _defaultName);
+        
         // Initialize all 128 keys to the default drum patch
         _keyBindings.Clear();
+        Patch = Patch with { Name = _defaultName };
     }
 
     /// <summary>Returns the voice synthesis data for this preset.</summary>
@@ -218,7 +226,7 @@ public sealed class UserDrumSet: SynthPatch
         return vParams;
     }
 
-    private static DrumParameters DefaultFor(int key) =>
+    private static DrumParameter DefaultFor(int key) =>
         new()
         {
             PitchCoarse     = 0,

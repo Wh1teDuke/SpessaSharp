@@ -44,6 +44,9 @@ internal static class ProgramChange
                 Program: Synthesizer.GS_USER_DRUM_1 or Synthesizer.GS_USER_DRUM_2
             } && !chan.SynthCore.SystemParameters.UserDrumLock)
         {
+            SpessaLog.Info(
+                $"Committing changes to User Drum Set {preset.Program - 63}!");
+            
             // Purge cache for this preset to cache the new drum voice data
             chan.SynthCore.PurgeCachedPatch(preset.Patch);
             // Copy drum param data

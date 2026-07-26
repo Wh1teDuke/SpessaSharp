@@ -21,7 +21,7 @@ public sealed class ChannelSnapshot(
     
     bool perNotePitch,
     
-    DrumParameters[] drumParams,
+    DrumParameter[] drumParams,
     bool drumChannel,
     int channel)
 {
@@ -52,7 +52,7 @@ public sealed class ChannelSnapshot(
     public readonly bool PerNotePitch = perNotePitch;
     
     /// <summary>Parameters for each drum instrument.</summary>
-    public readonly DrumParameters[] DrumParams = drumParams;
+    public readonly DrumParameter[] DrumParams = drumParams;
 
     /// <summary>Indicates whether the channel is a drum channel.</summary>
     public readonly bool DrumChannel = drumChannel;

@@ -5,7 +5,7 @@ using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;
 
-public record struct UserDrumParameters
+public record struct UserDrumParameter
 {
     public const int Count = 4 + 1;
     
@@ -15,20 +15,20 @@ public record struct UserDrumParameters
 
     public enum Type 
     {
-        ///<summary>.</summary>
+        ///<summary>Rest of parameters of the User Drum Parameter</summary>
         DrumParameters,// DrumParameters.Entry
-        ///<summary>.</summary>
+        ///<summary>The source drum set bank LSB number.</summary>
         SourceDrumSet,// int
-        ///<summary>.</summary>
+        ///<summary>The source drum set bank LSB number.</summary>
         Program,// int
-        ///<summary>.</summary>
+        ///<summary>The MIDI key number from the source drum set to bind.</summary>
         SourceNoteNumber,// int
     }
     
     // Set Get
 
     ///<summary>.</summary>
-    public DrumParameters.Entry DrumParameters
+    public DrumParameter.Entry DrumParameters
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
             GetDrumParameters_Entry(Type.DrumParameters);
@@ -122,14 +122,30 @@ public record struct UserDrumParameters
             }
         }
         
-        public DrumParameters.Entry AsDrumParameter
+        public DrumParameter.Entry AsDrumParameter
         {
             get
             {
                 Assert(Type, Params.Type.DrumParameters);
-                return new DrumParameters.Entry((DrumParameters.Type)_extra, Data);
+                return new DrumParameter.Entry((DrumParameter.Type)_extra, Data);
             }
         }
+        
+        public int ToInt() =>
+            TypeOf(Type) switch
+            {
+                Params.Type.Int => Data.AsInt(),
+                Params.Type.Float => (int)Data.AsFloat(),
+                Params.Type.Bool => Data.AsBool() ? 1 : 0,
+                Params.Type.DrumParameters => AsDrumParameter.ToInt(),
+                Params.Type.InterpolationType or
+                Params.Type.MidiSystem or
+                Params.Type.CC or
+                Params.Type.AssignMode or
+                Params.Type.OptBool or
+                Params.Type.OptInterpolationType or
+                _ => throw new ArgumentOutOfRangeException()
+            };
 
         private static Entry Of(Type type, float data) => 
             new(type, Params.Of(data));
@@ -140,7 +156,7 @@ public record struct UserDrumParameters
         private static Entry Of(Type type, bool data) =>
             new(type, Params.Of(data));
         
-        private static Entry Of(DrumParameters.Entry drumParam) => 
+        private static Entry Of(DrumParameter.Entry drumParam) => 
             new(Type.DrumParameters, drumParam.Data, (byte)drumParam.Type);
 
         public static implicit operator Entry((Type Type, float Data) entry) =>
@@ -152,15 +168,15 @@ public record struct UserDrumParameters
         public static implicit operator Entry((Type Type, bool Data) entry) =>
             Of(entry.Type, entry.Data);
         
-        public static implicit operator Entry(DrumParameters.Entry entry) =>
+        public static implicit operator Entry(DrumParameter.Entry entry) =>
             Of(entry);
     }
     
     // Private
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private DrumParameters.Entry GetDrumParameters_Entry(Type type) =>
+    private DrumParameter.Entry GetDrumParameters_Entry(Type type) =>
         new (
-            (DrumParameters.Type)BitConverter.SingleToInt32Bits(_buffer[(int)type]), 
+            (DrumParameter.Type)BitConverter.SingleToInt32Bits(_buffer[(int)type]), 
             Params.Of(_buffer[^1]));
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -188,7 +204,7 @@ public record struct UserDrumParameters
         _buffer[(int)type] = BitConverter.Int32BitsToSingle(value ? 1 : 0);
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Set(DrumParameters.Entry entry)
+    private void Set(DrumParameter.Entry entry)
     {
         _buffer[(int)Type.DrumParameters] =
             BitConverter.Int32BitsToSingle((int)entry.Type);
