@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using SpessaSharp.Utils;
 
@@ -262,6 +263,16 @@ public record struct DrumParameter
                 Params.Type.OptBool or
                 Params.Type.OptInterpolationType or
                 Params.Type.DrumParameters or
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        
+        public string ValueToString() =>
+            // ReSharper disable once SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
+            TypeOf(Type) switch
+            {
+                Params.Type.Int => Data.AsInt().ToString(),
+                Params.Type.Float => $"{Data.AsFloat():F2}",
+                Params.Type.Bool => Data.AsBool().ToString(),
                 _ => throw new ArgumentOutOfRangeException()
             };
 

@@ -1282,9 +1282,8 @@ internal static class Roland
     {
         if (synth.SystemParameters.UserDrumLock) return;
 
-        var drumSetNumber = a2 >> 4;
-        var drumSet = synth.SoundBankManager.UserDrumSets[drumSetNumber];
-        var drumKey = a3;
+        var drumSet = a2 >> 4;
+        var midiNote = a3;
         var command = a2 & 0xf;
 
         switch (command)
@@ -1298,11 +1297,12 @@ internal static class Roland
             // User drum set name
             case 0:
             {
-                var newName = Util.ToString(
-                    Util.ReadBinaryString(
-                        syx.Slice(12, 7))).Trim();
-                drumSet.Name = newName;
-                SpessaLog.GSInfo($"User Drum Set {drumSetNumber} Name", newName);
+                var newName = Util.ReadBinaryString(
+                        syx.Slice(12, 7)).ToArray();
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSet} Name", 
+                    Util.ToString(newName).Trim());
+                synth.CallEvent(new Event.CbDisplayMessage(newName));
                 return;
             }
 
@@ -1312,114 +1312,111 @@ internal static class Roland
                 var pitch = data - 60;
 
                 // Use the full 100 cents here as we choose the correct pitch (50 or 100 cents) when committing changes
-                drumSet.SetPitchCoarse(drumKey, pitch);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Pitch, key {drumKey}", pitch);
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.PitchCoarse, (float)pitch); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x2:
             {
                 // Drum Level
-                drumSet.SetLevel(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber}Level, key {drumKey}", data);
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.Level, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x3:
             {
                 // Drum Assign Group (exclusive class)
-                drumSet.SetAssignGroup(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Assign Group, key {drumKey}", data);
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.AssignGroup, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x4:
             {
                 // Pan
-                drumSet.SetPan(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Pan, key {drumKey}", data);
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.Pan, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x5:
             {
                 // Reverb
-                drumSet.SetReverb(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Reverb, key {drumKey}", data);
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.ReverbSend, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x6:
             {
                 // Chorus
-                drumSet.SetChorus(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Chorus, key {drumKey}",
-                    data);
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.ChorusSend, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x7:
             {
                 // Receive Note Off
-                drumSet.SetNoteOff(drumKey, data == 1);
-
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Note Off, key {drumKey}",
-                    data == 1 ? "ON" : "OFF");
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.RxNoteOff, data == 1); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x8:
             {
                 // Receive Note On
-                drumSet.SetNoteOn(drumKey, true); // Data === 1;
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Note On, key {drumKey}",
-                    data == 1 ? "ON" : "OFF");
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.RxNoteOn, data == 1); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             case 0x9:
             {
                 // Delay
-                drumSet.SetVariationSend(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} Delay, key {drumKey}", data);
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.VariationSend, data);
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
                 return;
             }
 
             // Source drum set
             case 0xa:
             {
-                drumSet.SetSourceDrumSet(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} source drum set for {drumKey}", data);
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.SourceDrumSet, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
                 return;
             }
 
             // Program number
             case 0xb:
             {
-                drumSet.SetProgram(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} source program for {drumKey}",
-                    data);
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.Program, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
                 return;
             }
 
             // Source note number
             case 0xc:
             {
-                drumSet.SetSourceNote(drumKey, data);
-                SpessaLog.GSInfo(
-                    $"User Drum Set {drumSetNumber} source note for {drumKey}",
-                    data);
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.SourceNoteNumber, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
                 return;
             }
         }

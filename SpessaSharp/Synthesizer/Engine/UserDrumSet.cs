@@ -29,8 +29,6 @@ public sealed class UserDrumSet: SynthPatch
     /// </summary>
     private readonly ResolvePatch _resolvePatch;
 
-    private readonly string _defaultName;
-
     internal void CopyInto(Span<DrumParameter> dParams)
     {
         foreach (var i in _keyParams.Keys)
@@ -74,7 +72,6 @@ public sealed class UserDrumSet: SynthPatch
             true
         );
         
-        _defaultName = name;
         _resolvePatch = resolvePatch;
         _keyParams.Clear();
     }
@@ -240,7 +237,6 @@ public sealed class UserDrumSet: SynthPatch
     {
         // Initialize all 128 keys to the default drum patch
         _keyParams.Clear();
-        Patch = Patch with { Name = _defaultName };
     }
 
     /// <summary>Gets a snapshot of this User Drum Set instance.</summary>

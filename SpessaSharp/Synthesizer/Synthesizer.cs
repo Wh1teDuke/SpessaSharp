@@ -970,7 +970,7 @@ public sealed class Synthesizer
         _cvbCache.Clear();
     }
 
-    public Effect.InsertionProcessorSnapshot GetInsertionSnapshot() =>
+    internal Effect.InsertionProcessorSnapshot GetInsertionSnapshot() =>
         new()
         {
             Type = InsertionProcessor.Type,
@@ -987,6 +987,20 @@ public sealed class Synthesizer
         for (byte midiNote = 0; midiNote < 128; midiNote++)
             for (byte velocity = 0; velocity < 128; velocity++)
                 _cachedVoices.Remove((patch, midiNote, velocity));
+    }
+    
+    internal void SetUserDrumSetParam(
+        int drumSet,
+        int midiNote,
+        UserDrumSetParameter.Entry entry)
+    {
+        var set = SoundBankManager.UserDrumSets[drumSet];
+        set.Apply(midiNote, entry);
+        CallEvent(new Event.CbUserDrumSetChange(
+            midiNote, drumSet, entry));
+        SpessaLog.GSInfo(
+            $"User Drum Set {drumSet} {entry.Type}, key {midiNote}",
+            entry.ValueToString());
     }
     
     internal void ResetInsertionParams() 
