@@ -5,6 +5,7 @@ using System.Text;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer;
 using SpessaSharp.Synthesizer.Engine;
+using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
@@ -45,7 +46,8 @@ public readonly struct PresetsWithKeyCombinations(
 
         private (SynthPatch, HashSet<(int Key, int Velocity)>)? _current = null;
         
-        public (SynthPatch, HashSet<(int Key, int Velocity)>) Current => _current!.Value;
+        public (SynthPatch, HashSet<(int Key, int Velocity)>) Current =>
+            _current!.Value;
 
         public bool MoveNext()
         {
@@ -76,12 +78,16 @@ internal static class UsedProgramsAndKeys
 {
     public sealed class Cache
     {
-        private readonly List<HashSet<(int Key, int Velocity)>> _keysCache = new(32);
+        private readonly List<HashSet<(int Key, int Velocity)>> _keysCache =
+            new(32);
         private bool _inUse;
         
         public readonly Dictionary<
             SynthPatch, HashSet<(int Key, int Velocity)>>
             ProgramsAndKeys = new(32);
+        
+        public readonly UserDrumSetState[] UserDrumSetState = 
+            [new(),new()];
 
         public void Done()
         {
@@ -100,6 +106,8 @@ internal static class UsedProgramsAndKeys
             
             _keysCache.AddRange(ProgramsAndKeys.Values);
             ProgramsAndKeys.Clear();
+            foreach (var userDrumSetState in UserDrumSetState) 
+                userDrumSetState.ClearAll();
         }
 
         public void Clear()
@@ -135,7 +143,24 @@ internal static class UsedProgramsAndKeys
         int BankLSB,
         ParamTracker Param,
         bool IsDrum,
-        int KeyShift) where T: SynthPatch;
+        int KeyShift,
+        // 0 - set 1, 1 - set 2
+        int? UserDrumSetActive
+    ) where T: SynthPatch;
+    
+    public sealed class UserDrumSetState
+    {
+        // Currently active params
+        public readonly Dictionary<int, UserDrumSetParameter> ActiveParams = [];
+        // In memory, will be active on program change
+        public readonly Dictionary<int, UserDrumSetParameter> MemoryParams = [];
+
+        public void ClearAll()
+        {
+            ActiveParams.Clear();
+            MemoryParams.Clear();
+        }
+    }
     
     /// <summary>
     /// Gets the used programs and keys for this MIDI file with a given sound bank.
@@ -160,7 +185,7 @@ internal static class UsedProgramsAndKeys
     public static PresetsWithKeyCombinations Get<T>(
         Midi mid, BasePreset.IGetter<T> getPreset, Cache cache) where T : SynthPatch
     {
-        Debug.WriteLine(
+        SpessaLog.Info(
             "Searching for all used programs and keys ...");
 
         cache.Init();
@@ -169,6 +194,8 @@ internal static class UsedProgramsAndKeys
         // Make sure to care about ports and drums.
         var channelsAmount = Math.Min(
             256, 16 + mid.PortChannelOffsetMap.Max());
+
+        var userDrumSets = cache.UserDrumSetState;
         
         // Track channels and systems
         var channels =
@@ -180,13 +207,14 @@ internal static class UsedProgramsAndKeys
         {
             var isDrum = i % 16 == Synthesizer.Synthesizer.DEFAULT_PERCUSSION;
             channels[i] = new InternalChannelType<T>(
-                Preset: getPreset.GetPreset(
+                Preset:             getPreset.GetPreset(
                     new MidiPatch { IsGMGSDrum = isDrum, }, system),
-                BankMSB: 0, 
-                BankLSB: 0,
-                Param: new ParamTracker(i),
-                IsDrum: isDrum,
-                KeyShift: 0);
+                BankMSB:            0, 
+                BankLSB:            0,
+                Param:              new ParamTracker(i),
+                IsDrum:             isDrum,
+                KeyShift:           0,
+                UserDrumSetActive:  null);
         }
 
         /*
@@ -241,14 +269,27 @@ internal static class UsedProgramsAndKeys
             {
                 var channel = e.StatusByte.Channel + channelOffset;
                 ref var ch = ref channels.AsSpan()[channel];
-                
-                ch.Preset = getPreset.GetPreset(new MidiPatch
+
+                var target = new MidiPatch(
+                    e.Data[0], ch.BankMSB, ch.BankLSB, ch.IsDrum);
+                if (target is { 
+                        IsGMGSDrum: true, 
+                        Program:    Synthesizer.Synthesizer.GS_USER_DRUM_1 or
+                                    Synthesizer.Synthesizer.GS_USER_DRUM_2
+                    })
                 {
-                    BankMSB = ch.BankMSB,
-                    BankLSB = ch.BankLSB,
-                    Program = e.Data[0],
-                    IsGMGSDrum = ch.IsDrum,
-                }, system);
+                    // Commit changes made to user drums
+                    SpessaLog.Info(
+                        $"GS User Drum Set detected on {channel}!");
+                    ch.UserDrumSetActive =
+                        target.Program - 
+                        Synthesizer.Synthesizer.GS_USER_DRUM_1;
+                }
+                else
+                {
+                    ch.UserDrumSetActive = null;
+                    ch.Preset = getPreset.GetPreset(target, system);
+                }
             }
             else if (status == MidiMessage.Type.ControllerChange.ID())
             {
@@ -304,18 +345,53 @@ internal static class UsedProgramsAndKeys
                 // That's a note off
                 if (e.Data[1] == 0) continue;
                 
+                var midiNote =
+                    e.Data[0] + (ch.IsDrum ? 0 : masterKeyShift) + ch.KeyShift;
+                var preset = ch.Preset;
+                
+                // User drum set
+                if (ch.UserDrumSetActive is { } udActive)
+                {
+                    var set = userDrumSets[udActive];
+                    if (set.ActiveParams.TryGetValue(midiNote, out var key))
+                    {
+                        preset = getPreset.GetPreset(
+                            new MidiPatch
+                            {
+                                Program = key.Program,
+                                BankLSB = key.SourceDrumSet,
+                                BankMSB = 0,
+                                IsGMGSDrum = true,
+                            },
+                            system);
+                        midiNote = key.SourceNoteNumber;
+                    }
+                    else
+                    {
+                        // No binding, default to any gs drum
+                        preset = getPreset.GetPreset(
+                            new MidiPatch
+                            {
+                                Program = 0,
+                                BankLSB = 0,
+                                BankMSB = 0,
+                                IsGMGSDrum = true,
+                            },
+                            system);
+
+                    }
+                }
+                
                 // If there's no preset, ignore
-                if (ch.Preset == null) continue;
+                if (preset == null) continue;
 
                 // Add the preset to the used list if it does not exist
                 ref var keysForPreset = ref CollectionsMarshal
                     .GetValueRefOrAddDefault(
-                        usedProgramsAndKeys, ch.Preset, out var exists);
+                        usedProgramsAndKeys, preset, out var exists);
                 if (!exists) keysForPreset = cache.NextKeySet();
                 
                 // Add the key-velocity pair to the preset
-                var midiNote =
-                    e.Data[0] + (ch.IsDrum ? 0 : masterKeyShift) + ch.KeyShift;
                 keysForPreset!.Add((midiNote, e.Data[1]));
             }
             else if (status == MidiMessage.Type.SystemExclusive.ID())
@@ -402,6 +478,22 @@ internal static class UsedProgramsAndKeys
                             ch.BankMSB = cc.Value;
                         break;
                     }
+                    case MidiUtils.AnalyzedMessage.Type.UserDrumSetup:
+                    {
+                        var usd = syx.AsUserDrumSetup!.Value;
+                        var set = userDrumSets[usd.DrumSet];
+
+                        ref var param = ref CollectionsMarshal
+                            .GetValueRefOrAddDefault(
+                            set.MemoryParams, usd.MidiNote, out var exists);
+
+                        if (!exists)
+                            param = UserDrumSetParameter.Default with
+                            { SourceNoteNumber = usd.MidiNote, };
+
+                        param[usd.Parameter.Type] = usd.Parameter;
+                        break;
+                    }
                 }
             }
         }
@@ -428,12 +520,17 @@ internal static class UsedProgramsAndKeys
                 ch.Param.Reset();
                 ch = ch with
                 {
-                    IsDrum = i % 16 == Synthesizer.Synthesizer.DEFAULT_PERCUSSION,
-                    BankMSB = BankSelectHacks.GetDefaultBank(sys),
-                    BankLSB = 0,
-                    KeyShift = 0,
+                    IsDrum              = i % 16 ==
+                             Synthesizer.Synthesizer.DEFAULT_PERCUSSION,
+                    BankMSB             = BankSelectHacks.GetDefaultBank(sys),
+                    BankLSB             = 0,
+                    KeyShift            = 0,
+                    UserDrumSetActive   = null,
                 };
-            }   
+            }
+
+            foreach (var set in userDrumSets)
+                set.ClearAll();
         }
     }
 }

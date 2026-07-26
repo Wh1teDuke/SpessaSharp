@@ -100,7 +100,9 @@ public static class MidiUtils
             [FieldOffset(0)] public (int Channel, bool IsDrum) _drumsOn;
             [FieldOffset(0)] public (int Channel, int Value) _programChange;
             [FieldOffset(0)] public GlobalMidiParameter _globalMidiParam;
-            [FieldOffset(0)] public (int MidiNote, int DrumSet, UserDrumSetParameter.Entry Parameter) _userDrumSetup;
+            [FieldOffset(0)] public (int MidiNote,
+                // 0-based
+                int DrumSet, UserDrumSetParameter.Entry Parameter) _userDrumSetup;
         }
 
         public Type MType { get; private init; }
@@ -1530,7 +1532,7 @@ public static class MidiUtils
     private static AnalyzedMessage HandleSingleUserDrum(
         int a2, int a3, int data)
     {
-        var drumSet = 64 + (a2 >> 4);
+        var drumSet = a2 >> 4;
         return (a2 & 0xf) switch
         {
             // Play Note

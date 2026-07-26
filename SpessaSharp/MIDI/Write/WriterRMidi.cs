@@ -307,6 +307,19 @@ public static class WriterRMidi
                     IsGMGSDrum: ch.IsDrum
                 );
 
+                if (patch is
+                    {
+                        IsGMGSDrum: true, 
+                        Program: Synthesizer.Synthesizer.GS_USER_DRUM_1 or
+                                Synthesizer.Synthesizer.GS_USER_DRUM_2,
+                    })
+                {
+                    SpessaLog.Info(
+                        $"GS User Drum Set detected on {chNum
+                        }. Leaving as is!");
+                    goto Continue;
+                }
+
                 var targetPreset = soundBank.GetPreset(patch, system);
                 SpessaLog.Info(
                     $"Input patch: {patch.ToMidiString()
