@@ -995,7 +995,10 @@ public sealed class Synthesizer
         UserDrumSetParameter.Entry entry)
     {
         var set = SoundBankManager.UserDrumSets[drumSet];
-        set.Apply(midiNote, entry);
+        if (set.IsSet(midiNote, entry)) return;
+        // Optimization for bulk dump
+        // Testcase FADED88.mid
+        set.Set(midiNote, entry);
         CallEvent(new Event.CbUserDrumSetChange(
             midiNote, drumSet, entry));
         SpessaLog.GSInfo(

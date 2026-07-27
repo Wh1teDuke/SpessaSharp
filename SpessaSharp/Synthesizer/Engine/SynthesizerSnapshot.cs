@@ -123,11 +123,11 @@ public sealed class SynthesizerSnapshot(
         // Restore user drum sets
         var ud1 = UserDrumSet1;
         for (var midiNote = 0; midiNote < ud1.Length; midiNote++) 
-            synth.SoundBankManager.UserDrumSets[0].Apply(
+            synth.SoundBankManager.UserDrumSets[0].Set(
                 midiNote, ud1[midiNote]);
         var ud2 = UserDrumSet2;
         for (var midiNote = 0; midiNote < ud2.Length; midiNote++) 
-            synth.SoundBankManager.UserDrumSets[1].Apply(
+            synth.SoundBankManager.UserDrumSets[1].Set(
                 midiNote, ud2[midiNote]);
         
         // Restore MIDI parameters

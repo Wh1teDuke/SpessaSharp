@@ -189,8 +189,8 @@ public record struct DrumParameter
             AssignGroup     = 0,
             Pan             = 64,
             ReverbSend      = Reset.DefaultDrumReverb[i],
-            ChorusSend      = 127,
-            VariationSend   = 127,
+            ChorusSend      = 0,
+            VariationSend   = 0,
             RxNoteOn        = true,
             RxNoteOff       = false,
         };

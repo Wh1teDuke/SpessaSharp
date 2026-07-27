@@ -697,25 +697,8 @@ public sealed class MidiChannel: ISf2Channel
             return;
 
         var i = 0;
-        var isXG = ChannelSystem == Midi.System.XG;
-
-        foreach (ref var p in DrumParams.AsSpan())
-        {
-            var rcGain = Engine.Channel.Reset.DefaultDrumReverb[i++];
-            p = new DrumParameter
-            {
-                PitchCoarse     = 0,
-                PitchFine       = 0,
-                Level           = 120,
-                AssignGroup     = 0,
-                Pan             = 64,
-                ReverbSend      = rcGain,
-                ChorusSend      = isXG ? rcGain : 0, // Mirror reverb on XG only, GS has no chorus by default
-                RxNoteOn        = true,
-                RxNoteOff       = false,
-                VariationSend   = isXG ? rcGain : 0,
-            };
-        }
+        foreach (ref var p in DrumParams.AsSpan()) 
+            p = DrumParameter.GetDefault(i++);
     }
     
     internal void ComputeModulatorsAll(int sourceUsesCC, int sourceIndex)

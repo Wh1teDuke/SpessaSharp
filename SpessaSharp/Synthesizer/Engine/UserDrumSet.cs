@@ -169,8 +169,7 @@ public sealed class UserDrumSet: SynthPatch
         ref var kb = ref GetOrAdd(midiNote);
         kb = kb with { SourceDrumSet = sourceMap };
     }
-
-    public void Apply(int midiNote, UserDrumSetParameter.Entry entry)
+    public void Set(int midiNote, UserDrumSetParameter.Entry entry)
     {
         switch (entry.Type)
         {
@@ -224,6 +223,10 @@ public sealed class UserDrumSet: SynthPatch
                 throw new ArgumentOutOfRangeException();
         }
     }
+
+    public bool IsSet(int midiNote, UserDrumSetParameter.Entry entry) => 
+        _keyParams.TryGetValue(midiNote, out var param) &&
+        entry == param[entry.Type];
 
     private ref UserDrumSetParameter GetOrAdd(int midiNote)
     {
