@@ -569,6 +569,15 @@ public static class MidiUtils
         int ticks, int drumSet, int midiNote, 
         UserDrumSetParameter.Entry parameter)
     {
+        // PLAY NOTE is relative to 60 and not 0, but pitchCoarse is relative to 0
+        var midiValue = (byte)parameter.ToInt();
+        if (parameter is
+            {
+                Type: UserDrumSetParameter.Type.DrumParameters,
+                AsDrumParameter.Type: DrumParameter.Type.PitchCoarse,
+            })
+            midiValue += 60;
+        
         drumSet %= 2;
         var a2Param = parameter.Type switch
         {
@@ -599,7 +608,7 @@ public static class MidiUtils
         
         var a2 = (drumSet << 4) | a2Param;
         return GsMessage(
-            ticks, 0x21, a2, midiNote, [(byte)parameter.ToInt(),]);
+            ticks, 0x21, a2, midiNote, [midiValue,]);
     }
 
     /// <summary>
