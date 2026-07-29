@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using Gaiden.SFML.Audio;
 using Gaiden.SFML.System;
 using SpessaSharp.MIDI;
+using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Sequencer;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer;
@@ -200,6 +201,14 @@ public sealed class Player: IDisposable
         Add(Cmd.CKind.NoteOff,
             ((long)(chan & 0xFF) << 8) |
             ((long)(key  & 0xFF)));
+    
+    public void Note(int chan, int key, int vel, TimeSpan duration) =>
+        Add(new Cmd(
+            Cmd.CKind.NoteOn, 
+            Arg1: ((long)(chan & 0xFF) << 16) |
+                  ((long)(key  & 0xFF) << 8)  |
+                  ((long)(vel  & 0xFF)),
+            Arg2: duration));
 
     public void Program(int chan, MidiPatch patch) =>
         Add(Cmd.CKind.Program,
@@ -436,6 +445,14 @@ public sealed class Player: IDisposable
                     var (chan, key, vel) = (
                         (byte)(a >> 16), (byte)(a >> 8), (byte)a);
                     Sequencer.Synth.NoteOn(chan, key, vel);
+
+                    if (cmd.Arg2 is TimeSpan dur)
+                    {
+                        var status = (byte)(chan << 4 | MidiMessage.Type.NoteOff.ID());
+                        Sequencer.Synth.ProcessMessage(
+                            [status, key], null, dur.TotalSeconds);
+                    }
+                    
                     goto case Cmd.CKind.Play;
                 }
                 case Cmd.CKind.NoteOff:

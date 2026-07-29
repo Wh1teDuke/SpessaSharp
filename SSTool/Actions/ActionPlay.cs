@@ -360,14 +360,6 @@ public static class ActionPlay
             return (vals, names, upper);
         }
 
-        static void TriggerGC()
-        {
-            GCSettings.LargeObjectHeapCompactionMode =
-                GCLargeObjectHeapCompactionMode.CompactOnce;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-        }
-
         void LoadPlugin(FileSystemInfo pathPlugin)
         {
             var plugin = new ThreadedVst3Wrapper();
@@ -396,5 +388,13 @@ public static class ActionPlay
                 }
             });
         }
+    }
+
+    public static void TriggerGC()
+    {
+        GCSettings.LargeObjectHeapCompactionMode =
+            GCLargeObjectHeapCompactionMode.CompactOnce;
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
     }
 }
