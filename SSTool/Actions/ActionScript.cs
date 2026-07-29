@@ -1,6 +1,7 @@
 using CSLua;
 using CSLua.Extensions;
 using CSLua.Util;
+using SpessaSharp.MIDI;
 using SpessaSharp.Sequencer;
 using SpessaSharp.Synthesizer;
 using SSTool.Util;
@@ -30,9 +31,6 @@ public static class ActionScript
         L.OpenLibs();
         L.Open(SpessaSharpLib.NameFuncPair);
         SpessaSharpLib.Player = player;
-        
-        L.PushLightUserData(player);
-        L.SetGlobal("player");
         
         L.SetGlobal("quit", Quit);
         
@@ -91,11 +89,40 @@ public static class ActionScript
         {
             ReadOnlySpan<NameFuncPair> define =
             [
-                new("noteon",   SS_PlayNoteOn),
-                new("note",     SS_PlayNote),
+                new("noteon",       SS_PlayNoteOn),
+                new("note",         SS_PlayNote),
+                new("loadmidi",     SS_LoadMidi),
+                new("play",         SS_Play),
+                new("pause",        SS_Pause),
+                new("stop",         SS_Stop),
             ];
 
             lua.NewLib(define);
+            
+            var mt = new LuaTable(lua);
+            
+            // Getter
+            mt.Set("__index", L =>
+            {
+                var self = L.CheckTable(1);
+                var key = L.CheckString(2);
+
+                return key switch
+                {
+                    "volume" => SS_GetVolume(L),
+                    _ => 0
+                };
+            });
+            
+            // lua.PushTable(mt);
+            // TODO Expose lua.SetMetaTable(-2);
+            
+            return 1;
+        }
+
+        private static int SS_GetVolume(LuaState lua)
+        {
+            lua.PushNumber(Player.Volume);
             return 1;
         }
 
@@ -139,7 +166,7 @@ public static class ActionScript
                         time + TimeSpan.FromSeconds(lua.CheckNumber(2)));
                     break;
                 // Note, vel, dur
-                case 4:
+                case 3:
                     Player.Note(
                         0, 
                         lua.CheckInteger(1), 
@@ -147,7 +174,7 @@ public static class ActionScript
                         time + TimeSpan.FromSeconds(lua.ToNumber(3)));
                     break;
                 // Chan, note, vel, dur
-                case 3:
+                case 4:
                     Player.Note(
                         lua.CheckInteger(1), 
                         lua.CheckInteger(3),
@@ -159,6 +186,48 @@ public static class ActionScript
                     break;
             }
 
+            return 0;
+        }
+        
+        private static int SS_LoadMidi(LuaState lua)
+        {
+            var path = lua.CheckString(1);
+            var midi = Midi.From(new FileInfo(path));
+            lua.PushLightUserData(midi);
+            return 1;
+        }
+
+        private static int SS_Play(LuaState lua)
+        {
+            if (lua.GetTop() == 0)
+            {
+                Player.Play();
+                return 0;
+            }
+            
+            var what = lua.CheckLightUserData(1);
+
+            if (what is not Midi midi)
+            {
+                lua.Error("expected a midi object");
+                return 0;
+            }
+                
+            Player.Stop();
+            Player.Midi = midi;
+            Player.Play();
+            return 0;
+        }
+        
+        private static int SS_Pause(LuaState lua)
+        {
+            Player.Pause();
+            return 0;
+        }
+
+        private static int SS_Stop(LuaState lua)
+        {
+            Player.Stop();
             return 0;
         }
     }
