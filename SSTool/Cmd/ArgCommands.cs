@@ -19,7 +19,7 @@ public static class ArgCommands
     public static void Eval(string[] args)
     {
         ReadOnlySpan<Func<Command>> cmdList = 
-            [Play, Convert, Dump, Info, Tour,];
+            [Play, Convert, Dump, Info, Tour, Script];
 
         var root = Root();
         foreach (var cmd in cmdList)
@@ -186,10 +186,35 @@ public static class ArgCommands
         // Return
         return cmd;
     }
+
+    private static Command Script()
+    {
+        // Script
+        var cmd = new Command(
+            "script",
+            "Runs application on scripting mode:\n>ss script --exec 'spessa.note(70,1.0)'")
+        {
+            Aliases = { "s" },
+        };
+        
+        var oExec = new Option<string?>("--exec", "-e")
+            { Description = "Executes argument then quits", };
+        var oSb = new Option<FileInfo?>("--soundbank")
+            { Description = "SoundFont or DLS file", };
+        
+        cmd.Options.Add(oExec);
+        cmd.Options.Add(oSb);
+
+        cmd.SetAction(pr => 
+            ActionScript.Run(
+                pr.GetValue(oSb), pr.GetValue(oExec)));
+
+        return cmd;
+    }
     
     private static Command Tour()
     {
-        // Play
+        // Tour
         var cmd = new Command(
             "tour",
             "Gives a tour through the instruments of the provided sound bank")

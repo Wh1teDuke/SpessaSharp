@@ -15,7 +15,7 @@ public static class Etc
         Console.ResetColor();
         Environment.Exit(1);   
     }
-    
+
     public static void Warn(string message)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -50,6 +50,17 @@ public static class Etc
         }
         
         return soundBank;
+    }
+    
+    public static (SoundBank, FileInfo?) GetSoundBank(FileInfo? fileSoundBank)
+    {
+        if (fileSoundBank == null) 
+            return (SoundBank.From(DefaultSoundBank.Get()), null);
+
+        if (!fileSoundBank.Exists)
+            Error($"Sound bank '{fileSoundBank.FullName}' does not exist");
+
+        return (SoundBank.From(fileSoundBank), fileSoundBank);
     }
 
     public static (SoundBank, FileInfo?) GetSoundBank(
