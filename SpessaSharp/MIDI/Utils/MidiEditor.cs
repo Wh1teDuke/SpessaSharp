@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
@@ -20,18 +19,19 @@ public static class MidiEditor
     ///   - <b>Clear</b> - all MIDI messages for this channel, such as Note On are removed.<br/>
     ///   - <b>ChannelModification</b> - modifies the channel.
     /// </param>
-    /// <param name="UserDrumSet1Params">
-    /// The User Drum Set 1 changes. (MIDI program 64).
+    /// <param name="UserDrumSetParams">
+    /// The User Drum Set changes. (MIDI program 64).
     /// <list type="bullet">
-    /// <item><description>Clear: all existing User Drum Set 1 changes are removed.</description></item>
-    /// <item><description>UserDrumModification: modifies the drum set.</description></item>
+    /// <item><description>
+    /// <b>Key:</b> the User Drum Set number, 0 based.
+    /// 0 is the User Drum Set 1 located at MIDI program 64, and 1 is User Drum Set 2 located at MIDI program 65.
+    /// </description></item>
+    /// <item><description><b>Value:</b>
+    /// <list type="bullet">
+    /// <item><description><b>Clear:</b> all existing User Drum Set 1 changes are removed.</description></item>
+    /// <item><description><b>UserDrumModification:</b> modifies the drum set.</description></item>
     /// </list>
-    /// </param>
-    /// <param name="UserDrumSet2Params">
-    /// The User Drum Set 2 changes. (MIDI program 64).
-    /// <list type="bullet">
-    /// <item><description>Clear: all existing User Drum Set 2 changes are removed.</description></item>
-    /// <item><description>UserDrumModification: modifies the drum set.</description></item>
+    /// </description></item>
     /// </list>
     /// </param>
     /// <param name="DrumSetupParams">
@@ -75,8 +75,7 @@ public static class MidiEditor
     /// </param>
     public readonly record struct Options(
         Dictionary<int, Parameter<ChannelModification>>? Channels = null,
-        Parameter<UserDrumModification>? UserDrumSet1Params = null,
-        Parameter<UserDrumModification>? UserDrumSet2Params = null,
+        Dictionary<int, Parameter<UserDrumModification>>? UserDrumSetParams = null,
         Parameter<object>? DrumSetupParams = null,
         Dictionary<
             GlobalMidiParameter.Type,
@@ -212,9 +211,13 @@ public static class MidiEditor
         return result;
     }
 
-    public static Parameter<ChannelModification> Replace(
-        ChannelModification value) =>
-        Parameter<ChannelModification>.OfReplace(value);
+    public static Parameter<T> Replace<T>(T value) =>
+        Parameter<T>.OfReplace(value);
+    
+    public static Parameter<T> Clear<T>() => Parameter<T>.OfClear();
+    
+    public static void Replace<T>(out Parameter<T> param, T value)
+        => param = Parameter<T>.OfReplace(value);
 
     private static readonly Effect.ReverbProcessorSnapshot ReverbAddressMap = new()
     {
@@ -298,10 +301,12 @@ public static class MidiEditor
             SpessaLog.Info($"Desired delay parameters: {opts.DelayParams}");
         if (opts.InsertionParams != null)
             SpessaLog.Info($"Desired insertion parameters: {opts.InsertionParams}");
-        if (opts.UserDrumSet1Params != null)
-            SpessaLog.Info($"Desired User Drum Set 1 parameters: {opts.UserDrumSet1Params}");
-        if (opts.UserDrumSet2Params != null)
-            SpessaLog.Info($"Desired User Drum Set 1 parameters: {opts.UserDrumSet2Params}");
+        if (opts.UserDrumSetParams != null)
+        {
+            foreach (var (id, udsParams) in opts.UserDrumSetParams)
+                SpessaLog.Info(
+                    $"Desired User Drum Set {id + 1} parameters: {udsParams}");
+        }
         
         // Optimizations
         var clearDrumParams = opts.DrumSetupParams?.IsClear() is true;
@@ -946,10 +951,8 @@ public static class MidiEditor
                             {
                                 var uds = syx.AsUserDrumSetup!.Value;
 
-                                var udsParams =
-                                    uds.DrumSet == 0
-                                    ? opts.UserDrumSet1Params
-                                    : opts.UserDrumSet2Params;
+                                var udsParams = opts.UserDrumSetParams?
+                                    .GetValueOrDefault(uds.DrumSet);
                                 if (udsParams == null) goto Continue;
 
                                 // Clear whole drum set?
@@ -1239,13 +1242,20 @@ public static class MidiEditor
         }
         
         // User Drum parameters
-        ApplyUserDrumSetChanges(opts.UserDrumSet1Params);
-        ApplyUserDrumSetChanges(opts.UserDrumSet2Params);
+        if (opts.UserDrumSetParams is not null)
+        {
+            foreach (var (drumSet, udsParams) in
+                     opts.UserDrumSetParams)
+            {
+                ApplyUserDrumSetChanges(drumSet, udsParams);        
+            }
+        }
 
         midi.Flush();
         return;
 
         void ApplyUserDrumSetChanges(
+            int drumSet,
             Parameter<UserDrumModification>? udsParams)
         {
             if (udsParams?.AsReplace() is not
@@ -1267,7 +1277,7 @@ public static class MidiEditor
                     
                     targetTrack.Add(
                         MidiUtils.SetUserDrumParameter(
-                            targetTicks, 0, midiNote, pRepl.Value),
+                            targetTicks, drumSet, midiNote, pRepl.Value),
                         targetIndex);
                 }
             }

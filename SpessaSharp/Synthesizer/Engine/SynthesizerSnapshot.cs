@@ -17,8 +17,7 @@ public sealed class SynthesizerSnapshot(
     Effect.ChorusProcessorSnapshot chorusProcessor,
     Effect.DelayProcessorSnapshot delayProcessor,
     Effect.InsertionProcessorSnapshot insertionProcessorProcessor,
-    UserDrumSetParameter.Entry[] userDrumSet1,
-    UserDrumSetParameter.Entry[] userDrumSet2)
+    UserDrumSetParameter.Entry[][] userDrumSets)
 {
     /// <summary>The individual channel snapshots.</summary>
     public readonly ChannelSnapshot[] MidiChannels = midiChannels;
@@ -35,8 +34,7 @@ public sealed class SynthesizerSnapshot(
     public readonly Effect.DelayProcessorSnapshot DelayProcessor = delayProcessor;
     public Effect.InsertionProcessorSnapshot InsertionProcessor = insertionProcessorProcessor;
 
-    public readonly UserDrumSetParameter.Entry[] UserDrumSet1 = userDrumSet1;
-    public readonly UserDrumSetParameter.Entry[] UserDrumSet2 = userDrumSet2;
+    public readonly UserDrumSetParameter.Entry[][] UserDrumSets = userDrumSets;
 
     /// <summary>
     /// Creates a new synthesizer snapshot from the given SpessaSynthProcessor.
@@ -54,8 +52,8 @@ public sealed class SynthesizerSnapshot(
             synth.ChorusProcessor.GetSnapshot(),
             synth.DelayProcessor.GetSnapshot(),
             synth.GetInsertionSnapshot(),
-            synth.SoundBankManager.UserDrumSets[0].GetSnapshot(),
-            synth.SoundBankManager.UserDrumSets[1].GetSnapshot());
+            [.. synth.SoundBankManager.UserDrumSets
+                .Select(d => d.GetSnapshot())]);
 
     /// <summary>Applies the snapshot to the synthesizer.</summary>
     /// <param name="synth">The processor to apply the snapshot to.</param>
@@ -121,14 +119,13 @@ public sealed class SynthesizerSnapshot(
                     MidiUtils.Gs(0x40, 0x03, 3 + i, ins.Params[i]));
         
         // Restore user drum sets
-        var ud1 = UserDrumSet1;
-        for (var midiNote = 0; midiNote < ud1.Length; midiNote++) 
-            synth.SoundBankManager.UserDrumSets[0].Set(
-                midiNote, ud1[midiNote]);
-        var ud2 = UserDrumSet2;
-        for (var midiNote = 0; midiNote < ud2.Length; midiNote++) 
-            synth.SoundBankManager.UserDrumSets[1].Set(
-                midiNote, ud2[midiNote]);
+        for (var drumSet = 0; drumSet < UserDrumSets.Length; drumSet++)
+        {
+            var userDrumSet = UserDrumSets[drumSet];
+            for (var midiNote = 0; midiNote < userDrumSet.Length; midiNote++) 
+                synth.SoundBankManager.UserDrumSets[drumSet].Set(
+                    midiNote, userDrumSet[midiNote]);
+        }
         
         // Restore MIDI parameters
         foreach (var param in MidiParameters)

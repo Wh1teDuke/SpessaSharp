@@ -1,6 +1,5 @@
 using System.Runtime.CompilerServices;
 using System.Text;
-using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer;
 using SpessaSharp.Utils;
 

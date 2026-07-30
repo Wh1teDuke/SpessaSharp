@@ -2,7 +2,6 @@
 
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;

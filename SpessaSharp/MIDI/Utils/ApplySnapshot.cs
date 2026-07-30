@@ -1,7 +1,6 @@
 using SpessaSharp.Synthesizer.Engine;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
-using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.MIDI.Utils;
@@ -32,8 +31,8 @@ internal static class ApplySnapshot
             
             if (channelSnapshot.SystemParameters.IsMuted)
             {
-                channels[channelNumber] = MidiEditor.Parameter
-                    <MidiEditor.ChannelModification>.OfClear();
+                channels[channelNumber] = 
+                    MidiEditor.Clear<MidiEditor.ChannelModification>();
                 continue;
             }
 
@@ -47,8 +46,7 @@ internal static class ApplySnapshot
             MidiEditor.Parameter<MidiPatch>? patch = null; 
             if (channelSnapshot.SystemParameters.PresetLock &&
                 channelSnapshot.Patch != null)
-                patch = MidiEditor.Parameter<MidiPatch>.OfReplace(
-                    channelSnapshot.Patch.Value);
+                patch = MidiEditor.Replace(channelSnapshot.Patch.Value.Data);
 
             var controllers = 
                 new Dictionary<Midi.CC, MidiEditor.Parameter<int>>();
@@ -63,24 +61,22 @@ internal static class ApplySnapshot
                     continue;
 
                 var targetValue = channelSnapshot.MidiControllers[ccNumber] >> 7; // Channel controllers are stored as 14 bit values
-                controllers[(Midi.CC)ccNumber] = MidiEditor.Parameter<int>.
-                    OfReplace(targetValue);
+                controllers[(Midi.CC)ccNumber] = MidiEditor.Replace(targetValue);
             }
 
             var midiParameters = new Dictionary<
-                ChannelMidiParameter.Type, MidiEditor.Parameter<
-                    ChannelMidiParameter>>();
+                ChannelMidiParameter.Type, 
+                MidiEditor.Parameter<ChannelMidiParameter>>();
 
             foreach (var parameter in channelSnapshot.MidiParameters)
             {
                 if (!channelSnapshot.LockedParameters[(int)parameter.PType])
                     continue;
-                midiParameters[parameter.PType] = MidiEditor.Parameter<
-                    ChannelMidiParameter>.OfReplace(parameter);
+                midiParameters[parameter.PType] = 
+                    MidiEditor.Replace(parameter);
             }
 
-            channels[channelNumber] = MidiEditor.Parameter<
-                MidiEditor.ChannelModification>.OfReplace(
+            channels[channelNumber] = MidiEditor.Replace(
                 new MidiEditor.ChannelModification
                 {
                     Controllers = controllers,
@@ -100,70 +96,75 @@ internal static class ApplySnapshot
             if (!snapshot.LockedParameters[(int)parameter.PType])
                 continue;
             gMidiParameters[parameter.PType] = 
-                MidiEditor.Parameter<
-                    GlobalMidiParameter>.OfReplace(parameter);
+                MidiEditor.Replace(parameter);
         }
         
         // User Drum Set
-        var userDrumSet1Params = GetUserDrumMod(snapshot.UserDrumSet1);
-        var userDrumSet2Params = GetUserDrumMod(snapshot.UserDrumSet2);
+        Dictionary<
+            int, 
+            MidiEditor.Parameter<MidiEditor.UserDrumModification>>? 
+            userDrumSetParams = null;
+
+        if (snapshot.SystemParameters.DrumLock &&
+            snapshot.UserDrumSets.Length > 0)
+        {
+            userDrumSetParams ??= [];
+
+            for (var drumSetNumber = 0; 
+                 drumSetNumber < snapshot.UserDrumSets.Length;
+                 drumSetNumber++)
+            {
+                userDrumSetParams[drumSetNumber] = 
+                    GetUserDrumMod(snapshot.UserDrumSets[drumSetNumber]);
+            }
+        }
 
         midi.Modify(new MidiEditor.Options
         {
             Channels = channels,
             DrumSetupParams =
                 snapshot.SystemParameters.DrumLock 
-                    ? MidiEditor.Parameter<object>.OfClear() 
+                    ? MidiEditor.Clear<object>()
                     : null,
             MidiParams = gMidiParameters,
             ReverbParams = snapshot.SystemParameters.ReverbLock
-                ? MidiEditor.Parameter<Effect.ReverbProcessorSnapshot>
-                    .OfReplace(snapshot.ReverbProcessor)
+                ? MidiEditor.Replace(snapshot.ReverbProcessor)
                 : null,
             ChorusParams = snapshot.SystemParameters.ChorusLock
-                ? MidiEditor.Parameter<Effect.ChorusProcessorSnapshot>
-                    .OfReplace(snapshot.ChorusProcessor)
+                ? MidiEditor.Replace(snapshot.ChorusProcessor)
                 : null,
             DelayParams = snapshot.SystemParameters.DelayLock
-                ? MidiEditor.Parameter<Effect.DelayProcessorSnapshot>
-                    .OfReplace(snapshot.DelayProcessor)
+                ? MidiEditor.Replace(snapshot.DelayProcessor)
                 : null,
             InsertionParams = snapshot.SystemParameters.InsertionEffectLock
-                ? MidiEditor.Parameter<Effect.InsertionProcessorSnapshot>
-                    .OfReplace(snapshot.InsertionProcessor)
+                ? MidiEditor.Replace(snapshot.InsertionProcessor)
                 : null,
-            UserDrumSet1Params = userDrumSet1Params,
-            UserDrumSet2Params = userDrumSet2Params,
+            UserDrumSetParams = userDrumSetParams,
         });
 
         return;
 
-        MidiEditor.Parameter<MidiEditor.UserDrumModification>? GetUserDrumMod(
-            UserDrumSetParameter.Entry[] snapshotUserDrumSet)
+        MidiEditor.Parameter<MidiEditor.UserDrumModification> GetUserDrumMod(
+            UserDrumSetParameter.Entry[] userDrumSet)
         {
-            if (!snapshot.SystemParameters.UserDrumLock) return null;
-            
             // Only set the ones that were changed
             var userDrumSetParams = 
                 new MidiEditor.UserDrumModification([]);
 
             for (
                 var midiNote = 0;
-                midiNote < snapshotUserDrumSet.Length;
+                midiNote < userDrumSet.Length;
                 midiNote++)
             {
-                var param = snapshotUserDrumSet[midiNote];
+                var param = userDrumSet[midiNote];
                 if (param == UserDrumSetParameter
                         .GetDefault(midiNote)[param.Type])
                     continue;
 
                 if (!userDrumSetParams.Mods.TryGetValue(
-                        midiNote, out var value))
+                    midiNote, out var value))
                 {
-                    value = MidiEditor.Parameter<Dictionary<
-                            UserDrumSetParameter.Type,
-                            MidiEditor.Parameter<
-                                UserDrumSetParameter.Entry>>>.OfReplace([]);
+                    MidiEditor.Replace(out value, []);
                     userDrumSetParams.Mods[midiNote] = value;
                 }
 

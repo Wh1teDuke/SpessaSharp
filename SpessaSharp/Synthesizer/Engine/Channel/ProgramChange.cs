@@ -1,5 +1,3 @@
-using System.ComponentModel.Design.Serialization;
-using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
