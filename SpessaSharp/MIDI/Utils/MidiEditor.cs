@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Parameters;

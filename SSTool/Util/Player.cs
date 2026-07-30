@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 using Gaiden.SFML.Audio;
 using Gaiden.SFML.System;
 using SpessaSharp.MIDI;
-using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Sequencer;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer;

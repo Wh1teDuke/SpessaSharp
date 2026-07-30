@@ -1,9 +1,12 @@
+using System.Runtime.InteropServices.Marshalling;
 using CSLua;
 using CSLua.Extensions;
+using CSLua.Parse;
 using CSLua.Util;
 using SpessaSharp.MIDI;
 using SpessaSharp.Sequencer;
 using SpessaSharp.Synthesizer;
+using SpessaSharp.Utils;
 using SSTool.Util;
 
 namespace SSTool.Actions;
@@ -15,7 +18,6 @@ public static class ActionScript
         string? arg = null)
     {
         // Spessa
-        var loop = true;
         var (sb, _) = Etc.GetSoundBank(fileSoundBank);
         
         var processor = new SpessaSharpProcessor(44_100);
@@ -27,38 +29,82 @@ public static class ActionScript
         player.Volume = 2;
         
         // Lua
+        var loop = true;
         var L = Lua.New();
         L.OpenLibs();
         L.Open(SpessaSharpLib.NameFuncPair);
         SpessaSharpLib.Player = player;
         
-        L.SetGlobal("quit", Quit);
-        
-        ActionPlay.TriggerGC();
+        L.SetGlobal("quit", _ =>
+        {
+            loop = false;
+            return 0;
+        });
 
+        // Prompt
+        var prompt = new Prompt();
+        if (arg == null)
+        {
+            Console.WriteLine("Call 'quit()' or press Esc to stop.");
+            prompt.PrintSymbol();
+        }
+        
+        prompt.Position = Console.GetCursorPosition();
+
+        // Loop
+        ActionPlay.TriggerGC();
+        
         while (loop)
         {
             // Prompt
-            if (arg == null) Console.Write(">");
+            var input = arg;
             
-            var input = arg ?? Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(input)) continue;
-            if (input is "exit" or "quit" or "e" or "q") break;
-            
-            input = input.Replace("\\n", Environment.NewLine);
+            if (input == null)
+            {
+                var k = Console.ReadKey(true);
+                if (k.Key == ConsoleKey.Escape) break;
+                
+                Console.CursorVisible = false;
+                input = prompt.ProcessInput(k)?.Trim();
+                Console.CursorVisible = true;
 
-            if (arg != null)
-                loop = false;
+                if (string.IsNullOrWhiteSpace(input)) continue;
+            }
+
+            if (arg != null) loop = false;
 
             try
             {
+                Console.WriteLine();
                 L.Eval(input);
             }
             catch (LuaRuntimeException e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(e.Message);
-                Console.ResetColor();
+                LuaRuntimeException? err = null;
+
+                if (!input.Any(char.IsWhiteSpace) && e.Message.EndsWith(
+                    "Syntax error: Expected VCALL, got VINDEXED"))
+                {
+                    try { L.Eval($"print({input})"); }
+                    catch (LuaRuntimeException e2) { err = e2; }
+                }
+                else err = e;
+
+                if (err != null)
+                {
+                    Console.CursorLeft = 0;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(err.Message);
+                    Console.ResetColor();                    
+                }
+            }
+            finally
+            {
+                if (loop)
+                {
+                    prompt.PrintSymbol();
+                    prompt.Position = Console.GetCursorPosition();                    
+                }
             }
         }
         
@@ -67,14 +113,140 @@ public static class ActionScript
             Thread.Sleep(50);
             if (player.VoiceCount == 0) break;
         }
-        
-        return;
+    }
 
-        int Quit(LuaState lua)
+    private sealed class Prompt
+    {
+        private string _buffer = "";
+        private readonly List<string> _history = [];
+        private int _historyIndex;
+        
+        public (int L, int T) Position;
+        public string Symbol = "> ";
+        
+        public string? ProcessInput(ConsoleKeyInfo key)
         {
-            loop = false;
-            return 0;
+            // Modify Buffer
+            var doClear = false;
+            if (!char.IsControl(key.KeyChar))
+            {
+                _buffer += key.KeyChar;
+            }
+            else if (key.Key == ConsoleKey.Backspace && _buffer.Length > 0)
+            {
+                _buffer = _buffer[..^1];
+                doClear = true;
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                _buffer += '\n';
+            }
+            // - History
+            else if (key.Key is ConsoleKey.UpArrow or ConsoleKey.DownArrow)
+            {
+                _historyIndex += key.Key == ConsoleKey.UpArrow ? -1 : +1;
+                if (_historyIndex < _history.Count && _historyIndex >= 0)
+                {
+                    // TODO: clear
+                    _buffer = _history[_historyIndex];
+                }
+            }
+            
+            // Restart cursor
+            Console.SetCursorPosition(Position.L, Position.T);
+            
+            // Print
+            var block = 0;
+            var span = _buffer.AsSpan();
+            var printNewLine = false;
+            Range? last = null;
+            foreach (var r in span.SplitAny(' ', '\n'))
+            {
+                var token = span[r];
+                block += BlockCounter(token);
+
+                // in between
+                if (last is not null)
+                {
+                    var itoken = span[last.Value.End .. r.Start];
+                    if (itoken.Contains('\n'))
+                        printNewLine = true;
+                    else if (!itoken.IsEmpty)
+                        Console.Write(itoken);
+                }
+
+                if (!token.IsEmpty)
+                {
+                    if (printNewLine)
+                    {
+                        printNewLine = false;
+                        PrintNewLine(block);
+                    }
+                    
+                    ConsoleColor? color = null;
+                    if (IsReservedWord(token))
+                        color = ConsoleColor.Green;
+
+                    if (color != null)
+                        Console.ForegroundColor = color.Value;
+
+                    Console.Write(token);
+
+                    if (color != null)
+                        Console.ResetColor();    
+                }
+
+                last = r;
+            }
+
+            if (doClear)
+            {
+                Console.Write(' ');
+                Console.CursorLeft--;
+            }
+
+            // On new line, if block == 0, return current buffer
+            // otherwise, keep buffering the input
+            if (key.Key != ConsoleKey.Enter || block != 0)
+            {
+                if (printNewLine) PrintNewLine(block);
+                return null;
+            }
+
+            var result = _buffer;
+            _buffer = "";
+
+            // Update history
+            var histItem = result.Trim();
+            _history.RemoveAll(p => p == histItem);
+            _history.Add(histItem);
+            _historyIndex = _history.Count;
+
+            // Get out of here stalker
+            return result;
         }
+
+        public void PrintNewLine(int block)
+        {
+            Console.WriteLine();
+            PrintSymbol();
+            Span<char> empty = stackalloc char[block * 2];
+            empty.Fill(' ');
+            Console.Write(empty);
+        }
+        
+        public void PrintSymbol() => Console.Write(Symbol);
+
+        // TODO: LLex.IsReservedWord should accept ReadOnlySpan<char>
+        public static bool IsReservedWord(ReadOnlySpan<char> word) =>
+            LLex.IsReservedWord(word.ToString());
+
+        public static int BlockCounter(ReadOnlySpan<char> word) => word switch
+        {
+            "end" or "until" => -1,
+            "do" or "repeat" or "function" or "then" => +1,
+            _ => 0,
+        };
     }
 
     private static class SpessaSharpLib
@@ -104,19 +276,40 @@ public static class ActionScript
             // Getter
             mt.Set("__index", L =>
             {
-                var self = L.CheckTable(1);
+                _ = L.CheckTable(1);
                 var key = L.CheckString(2);
 
                 return key switch
                 {
+                    "version" => SS_GetVersion(L),
                     "volume" => SS_GetVolume(L),
                     _ => 0
                 };
             });
             
-            // lua.PushTable(mt);
-            // TODO Expose lua.SetMetaTable(-2);
+            // Setter
+            mt.Set("__newindex", L =>
+            {
+                _ = L.CheckTable(1);
+                var key = L.CheckString(2);
+
+                return key switch
+                {
+                    "volume" => SS_SetVolume(L),
+                    _ => 0
+                };
+            });
             
+            lua.PushTable(mt);
+            lua.SetMetaTable(-2);
+            
+            return 1;
+        }
+        
+        private static int SS_GetVersion(LuaState lua)
+        {
+            lua.PushString(
+                typeof(SpessaUtil).Assembly.GetName().Version!.ToString(3));
             return 1;
         }
 
@@ -124,6 +317,13 @@ public static class ActionScript
         {
             lua.PushNumber(Player.Volume);
             return 1;
+        }
+        
+        private static int SS_SetVolume(LuaState lua)
+        {
+            var v = (float)lua.CheckNumber(3);
+            Player.Volume = v;
+            return 0;
         }
 
         private static int SS_PlayNoteOn(LuaState lua)
