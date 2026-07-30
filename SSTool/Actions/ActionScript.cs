@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.Marshalling;
 using CSLua;
 using CSLua.Extensions;
 using CSLua.Parse;
@@ -35,11 +34,8 @@ public static class ActionScript
         L.Open(SpessaSharpLib.NameFuncPair);
         SpessaSharpLib.Player = player;
         
-        L.SetGlobal("quit", _ =>
-        {
-            loop = false;
-            return 0;
-        });
+        foreach (var q in (ReadOnlySpan<string>)["quit", "exit"])
+            L.SetGlobal(q, Quit);
 
         // Prompt
         var prompt = new Prompt();
@@ -113,6 +109,10 @@ public static class ActionScript
             Thread.Sleep(50);
             if (player.VoiceCount == 0) break;
         }
+
+        return;
+        
+        void Quit() => loop = false;
     }
 
     private sealed class Prompt
@@ -126,6 +126,8 @@ public static class ActionScript
         
         public string? ProcessInput(ConsoleKeyInfo key)
         {
+            var w = Console.BufferWidth;
+
             // Modify Buffer
             var doClear = false;
             if (!char.IsControl(key.KeyChar))
@@ -142,19 +144,25 @@ public static class ActionScript
                 _buffer += '\n';
             }
             // - History
-            else if (key.Key is ConsoleKey.UpArrow or ConsoleKey.DownArrow)
+            else if (
+                key.Key is ConsoleKey.UpArrow or ConsoleKey.DownArrow &&
+                _history.Count > 0)
             {
                 _historyIndex += key.Key == ConsoleKey.UpArrow ? -1 : +1;
                 if (_historyIndex < _history.Count && _historyIndex >= 0)
                 {
-                    // TODO: clear
+                    ClearLine();
                     _buffer = _history[_historyIndex];
                 }
+                else if (key.Key == ConsoleKey.DownArrow)
+                    _historyIndex = _history.Count - 1;
+                else 
+                    _historyIndex = 0;
             }
-            
+
             // Restart cursor
             Console.SetCursorPosition(Position.L, Position.T);
-            
+
             // Print
             var block = 0;
             var span = _buffer.AsSpan();
@@ -203,11 +211,13 @@ public static class ActionScript
             {
                 Console.Write(' ');
                 Console.CursorLeft--;
+                if (Console.CursorLeft == 0 && _buffer.Length > 0)
+                    Console.CursorTop++;
             }
 
             // On new line, if block == 0, return current buffer
             // otherwise, keep buffering the input
-            if (key.Key != ConsoleKey.Enter || block != 0)
+            if (key.Key != ConsoleKey.Enter || block > 0)
             {
                 if (printNewLine) PrintNewLine(block);
                 return null;
@@ -224,22 +234,34 @@ public static class ActionScript
 
             // Get out of here stalker
             return result;
-        }
-
-        public void PrintNewLine(int block)
-        {
-            Console.WriteLine();
-            PrintSymbol();
-            Span<char> empty = stackalloc char[block * 2];
-            empty.Fill(' ');
-            Console.Write(empty);
+            
+            void ClearLine()
+            {
+                var l = Console.CursorLeft;
+                Console.CursorLeft = 1;
+                Span<char> empty = stackalloc char[w - l - 2];
+                empty.Fill(' ');
+                Console.Write(empty);
+                Console.CursorLeft = l;
+            }
+            
+            void PrintNewLine(int block)
+            {
+                block = Math.Max(block, 0);
+                Console.WriteLine();
+                ClearLine();
+                PrintSymbol();
+                Span<char> empty = stackalloc char[block * 2];
+                empty.Fill(' ');
+                Console.Write(empty);
+            }
         }
         
         public void PrintSymbol() => Console.Write(Symbol);
 
         // TODO: LLex.IsReservedWord should accept ReadOnlySpan<char>
         public static bool IsReservedWord(ReadOnlySpan<char> word) =>
-            LLex.IsReservedWord(word.ToString());
+            LLex.IsReservedWord(word);
 
         public static int BlockCounter(ReadOnlySpan<char> word) => word switch
         {
