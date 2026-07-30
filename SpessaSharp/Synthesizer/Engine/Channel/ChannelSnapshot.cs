@@ -21,7 +21,7 @@ public sealed class ChannelSnapshot(
     
     bool perNotePitch,
     
-    DrumParameters[] drumParams,
+    DrumParameter[] drumParams,
     bool drumChannel,
     int channel)
 {
@@ -52,7 +52,7 @@ public sealed class ChannelSnapshot(
     public readonly bool PerNotePitch = perNotePitch;
     
     /// <summary>Parameters for each drum instrument.</summary>
-    public readonly DrumParameters[] DrumParams = drumParams;
+    public readonly DrumParameter[] DrumParams = drumParams;
 
     /// <summary>Indicates whether the channel is a drum channel.</summary>
     public readonly bool DrumChannel = drumChannel;
@@ -78,16 +78,16 @@ public sealed class ChannelSnapshot(
         return new ChannelSnapshot(
             patch: chan.Preset?.Patch,
             lockedSystem: chan.LockedSystem,
-            midiControllers: chan.MidiControllers.ToArray(),
+            midiControllers: [.. chan.MidiControllers],
             lockedControllers: new BitArray(chan.LockedControllers),
-            pitchWheels: chan.PitchWheels.ToArray(),
+            pitchWheels: [.. chan.PitchWheels],
             generators: gens,
-            midiParameters: chan.MidiParameters.ToArray(),
+            midiParameters: [.. chan.MidiParameters],
             lockedParameters: new BitArray(chan.LockedParameters),
-            systemParameters: chan.SystemParameters.ToArray(),
-            octaveTuning: chan.OctaveTuning.ToArray(),
+            systemParameters: [.. chan.SystemParameters],
+            octaveTuning: [.. chan.OctaveTuning],
             perNotePitch: chan.PerNotePitch,
-            drumParams: chan.DrumParams.ToArray(),
+            drumParams: [.. chan.DrumParams],
             drumChannel: chan.DrumChannel,
             channel: chan.Channel);
     }

@@ -24,6 +24,10 @@ public sealed class Synthesizer
     public const int VOICE_CAP = 350;
     public const Midi.System DefaultMode = Midi.System.GS;
     public const short GENERATOR_OVERRIDE_NO_CHANGE_VALUE = short.MaxValue;
+    /// <summary>The program number of GS User Drum Set 1.</summary>
+    public const int GS_USER_DRUM_1 = 64;
+    /// <summary>The program number of GS User Drum Set 2.</summary>
+    public const int GS_USER_DRUM_2 = 65;
     
     /// <summary>This sounds way nicer for an instant hi-hat cutoff</summary>
     public const float MIN_EXCLUSIVE_LENGTH = .07f;
@@ -50,9 +54,9 @@ public sealed class Synthesizer
     /// This is needed because effects (regular ones) are send straight from the mono signal, whereas
     /// insertion effects receive the panned audio (twice), which reduces gain by a factor of cos(pi/4) * cos(pi/4) (master pan + voice pan).
     /// This reverses it.
+    /// 1 / Math.cos(Math.PI / 4) ** 2 == 2
     /// </summary>
-    public static readonly float EFX_SENDS_GAIN_CORRECTION = 
-        1f / float.Pow(float.Cos(MathF.PI / 4), 2);
+    public const float EFX_SENDS_GAIN_CORRECTION = 2;
 
     /// <summary>Initialization options of the Synthesizer</summary>
     /// <param name="MaxBufferSize">
@@ -172,10 +176,10 @@ public sealed class Synthesizer
     public double CurrentTime;
     
     /// <summary> Synth's default (reset) preset. </summary>
-    public BasicPreset? DefaultPreset;
+    public SynthPatch? DefaultPreset;
     
     /// <summary> Synth's default (reset) drum preset. </summary>
-    public BasicPreset? DrumPreset;
+    public SynthPatch? DrumPreset;
     
     /// <summary> Gain smoothing factor, adjusted to the sample rate. </summary>
     public readonly float GainSmoothingFactor;
@@ -198,7 +202,7 @@ public sealed class Synthesizer
     /// Cached voices for all presets for this synthesizer.
     /// Nesting is calculated in getCachedVoiceIndex, returns a list of voices for this note.
     /// </summary>
-    private readonly Dictionary<(MidiPatch Patch, int Key, int Vel),
+    private readonly Dictionary<(MidiPatch Patch, byte Key, byte Vel),
         CachedVoiceList> _cachedVoices = new (200);
     
     private readonly CachedVoice.Base.Cache _cvbCache;
@@ -321,6 +325,9 @@ public sealed class Synthesizer
             GlobalSystemParameter.Type.EventsEnabled,
             options.EventsEnabled));
         MaxBufferSize = options.MaxBufferSize;
+        
+        // For GS user drum set
+        SoundBankManager.SystemGetter = () => MidiParameters.System;
         // These smoothing factors were tested on 44,100 Hz, adjust them to target sample rate here
         // Volume  smoothing factor
         GainSmoothingFactor = GAIN_SMOOTHING_FACTOR * (44_100f / sampleRate);
@@ -576,13 +583,13 @@ public sealed class Synthesizer
         {
             var patch = KeyModifierManager.GetPatch(channel, midiNote);
             preset = SoundBankManager.GetPreset(
-                patch, MidiParameters.MidiSystem);
+                patch, MidiParameters.System);
         }
 
         // Warning is handled in program change
         return preset == null
             ? new CachedVoiceList(null, ArraySegment<CachedVoice>.Empty) 
-            : GetVoicesForPreset(preset, midiNote, velocity);
+            : GetVoicesForPreset(preset, (byte)midiNote, (byte)velocity);
     }
     
     public void CreateMIDIChannel(bool sendEvent) 
@@ -624,6 +631,11 @@ public sealed class Synthesizer
 
         // Avoid crashing
         if (DrumPreset == null || DefaultPreset == null) return;
+
+        // Reset GS user drums
+        if (!SystemParameters.UserDrumLock)
+            foreach (var userDrum in SoundBankManager.UserDrumSets)
+                userDrum.Reset();
         
         // Reset channels
         // Do not send CC changes as we call reset
@@ -833,7 +845,7 @@ public sealed class Synthesizer
 
             // CC#94 in XG is variation, not delay
             if (DelayActive && 
-                MidiParameters.MidiSystem != Midi.System.XG)
+                MidiParameters.System != Midi.System.XG)
             {
                 // Process delay
                 DelayProcessor.Process(
@@ -884,7 +896,7 @@ public sealed class Synthesizer
     /// <param name="velocity">The velocity to use.</param>
     /// <returns>Output is an array of voices.</returns>
     internal CachedVoiceList GetVoicesForPreset(
-        BasicPreset preset, int midiNote, int velocity)
+        SynthPatch preset, byte midiNote, byte velocity)
     {
         // If cached, return it!
         if (_cachedVoices.TryGetValue(
@@ -958,7 +970,7 @@ public sealed class Synthesizer
         _cvbCache.Clear();
     }
 
-    public Effect.InsertionProcessorSnapshot GetInsertionSnapshot() =>
+    internal Effect.InsertionProcessorSnapshot GetInsertionSnapshot() =>
         new()
         {
             Type = InsertionProcessor.Type,
@@ -968,6 +980,31 @@ public sealed class Synthesizer
     /// <summary>Copied callback so MIDI channels can call it.</summary>
     /// <param name="ev"></param>
     public void CallEvent(Event ev) => EventCallbackHandler(ev);
+
+    /// <summary>Bad code... make sure to call only when necessary!!!</summary>
+    public void PurgeCachedPatch(MidiPatch patch)
+    {
+        for (byte midiNote = 0; midiNote < 128; midiNote++)
+            for (byte velocity = 0; velocity < 128; velocity++)
+                _cachedVoices.Remove((patch, midiNote, velocity));
+    }
+    
+    internal void SetUserDrumSetParam(
+        int drumSet,
+        int midiNote,
+        UserDrumSetParameter.Entry entry)
+    {
+        var set = SoundBankManager.UserDrumSets[drumSet];
+        if (set.IsSet(midiNote, entry)) return;
+        // Optimization for bulk dump
+        // Testcase FADED88.mid
+        set.Set(midiNote, entry);
+        CallEvent(new Event.CbUserDrumSetChange(
+            midiNote, drumSet, entry));
+        SpessaLog.GSInfo(
+            $"User Drum Set {drumSet} {entry.Type}, key {midiNote}",
+            entry.ValueToString());
+    }
     
     internal void ResetInsertionParams() 
     {

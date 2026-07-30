@@ -73,7 +73,7 @@ public sealed class MidiChannel: ISf2Channel
     public readonly byte[] OctaveTuning = new byte[128];
     
     /// <summary>Parameters for each drum instrument.</summary>
-    public readonly DrumParameters[] DrumParams = new DrumParameters[128];
+    public readonly DrumParameter[] DrumParams = new DrumParameter[128];
     
     /// <summary>A system for dynamic modulator assignment for advanced system exclusives.</summary>
     public readonly DynamicModulatorManager DynamicModulators;
@@ -94,7 +94,7 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary>
     /// The preset currently assigned to the channel. Note that this may be undefined in some cases.<br/> https://github.com/spessasus/spessasynth_core/issues/48
     /// </summary>
-    public BasicPreset? Preset { get; internal set; }
+    public SynthPatch? Preset { get; internal set; }
 
     /// <summary> Indicates the MIDI system when the preset was locked. </summary>
     internal Midi.System LockedSystem = Midi.System.GS;
@@ -245,7 +245,7 @@ public sealed class MidiChannel: ISf2Channel
     /// <param name="channelNumber"></param>
     internal MidiChannel(
         Synthesizer synthCore,
-        BasicPreset? preset,
+        SynthPatch? preset,
         int channelNumber)
     {
         PitchWheels.AsSpan().Fill(8_192);
@@ -255,11 +255,12 @@ public sealed class MidiChannel: ISf2Channel
         Channel = channelNumber;
         MidiParamArray.RxChannel = channelNumber;
         DynamicModulators = new DynamicModulatorManager(channelNumber);
-        
+        // Init
         ResetGeneratorOverrides();
         ResetGeneratorOffsets();
-        
-        DrumParams.AsSpan().Fill(DrumParameters.Default);
+
+        for (var i = 0; i < DrumParams.Length; i++)
+            DrumParams[i] = DrumParameter.GetDefault(i);
         
         ResetDrumParams();
     }
@@ -292,7 +293,7 @@ public sealed class MidiChannel: ISf2Channel
     internal Midi.System ChannelSystem =>
         SystemParamArray.PresetLock
             ? LockedSystem
-            : SynthCore.MidiParameters.MidiSystem;
+            : SynthCore.MidiParameters.System;
     
     /*
     ==========
@@ -696,23 +697,8 @@ public sealed class MidiChannel: ISf2Channel
             return;
 
         var i = 0;
-        var isXG = ChannelSystem == Midi.System.XG;
-
-        foreach (ref var p in DrumParams.AsSpan())
-        {
-            var rcGain = Engine.Channel.Reset.DefaultDrumReverb[i++] / 127f;
-            p = new DrumParameters(
-                Pitch: 0,
-                Gain: 1,
-                ExclusiveClass: 0,
-                Pan: 64,
-                ReverbGain: rcGain,
-                ChorusGain: isXG ? rcGain : 0, // Mirror reverb on XG only, GS has no chorus by default
-                DelayGain: 0, // No drums have delay
-                RxNoteOn: true,
-                RxNoteOff: false
-            );
-        }
+        foreach (ref var p in DrumParams.AsSpan()) 
+            p = DrumParameter.GetDefault(i++);
     }
     
     internal void ComputeModulatorsAll(int sourceUsesCC, int sourceIndex)

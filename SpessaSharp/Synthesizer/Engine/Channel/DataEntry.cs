@@ -129,7 +129,7 @@ internal static class DataEntry
         // Skip drums early
         if (chan.SynthCore.SystemParameters.DrumLock &&
             paramCoarse >= ExtendedParameters.NRPN.MSB.DrumPitch &&
-            paramCoarse <= ExtendedParameters.NRPN.MSB.DrumDelay)
+            paramCoarse <= ExtendedParameters.NRPN.MSB.DrumVariation)
             return;
 
         switch (paramCoarse)
@@ -253,34 +253,32 @@ internal static class DataEntry
                 var pitch =
                     chan.ChannelSystem == Midi.System.XG ||
                     chan.Patch.BankLSB == 1
-                        ? (dataCoarse - 64) * 100
-                        : (dataCoarse - 64) * 50;
+                        ? (dataCoarse - 64)
+                        : (int)((dataCoarse - 64) * .5);
                 ref var param = ref chan.DrumParams[paramFine];
-                param = param with { Pitch = pitch, };
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} pitch",
+                param = param with { PitchCoarse = pitch, };
+                SpessaLog.CoolInfo(
+                    $"Drum ${paramFine} pitch for {chan.Channel}",
                     pitch,
-                    "cents");
+                    "semitones");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumPitchFine:
             {
                 var pitch = dataCoarse - 64;
                 ref var param = ref chan.DrumParams[paramFine];
-                param = param with { Pitch = param.Pitch + pitch, };
+                param = param with { PitchFine = param.PitchFine + pitch, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} pitch fine",
-                    chan.DrumParams[paramFine].Pitch,
+                SpessaLog.CoolInfo(
+                    $"Drum ${paramFine} pitch fine for {chan.Channel}",
+                   pitch,
                     "cents");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumLevel:
             {
                 ref var param = ref chan.DrumParams[paramFine];
-                param = param with { Gain = dataCoarse / 120f, };
+                param = param with { Level = dataCoarse, };
                 SpessaLog.CoolInfo(
                     $"Drum {paramFine} level for {chan.Channel}",
                     dataCoarse,
@@ -293,18 +291,17 @@ internal static class DataEntry
                 param = param with { Pan = dataCoarse, };
 
                 SpessaLog.CoolInfo(
-                    $"Drum {paramFine} pan for {chan.Channel}",
+                    $"Drum {paramFine} Pan for {chan.Channel}",
                     dataCoarse, "");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumReverb:
             {
                 ref var param = ref chan.DrumParams[paramFine];
-                param = param with { ReverbGain = dataCoarse / 127f, };
+                param = param with { ReverbSend = dataCoarse, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} reverb level",
+                SpessaLog.CoolInfo(
+                    $"Drum ${paramFine} Reverb Send for {chan.Channel}",
                     dataCoarse,
                     "");
                 break;
@@ -312,23 +309,21 @@ internal static class DataEntry
             case ExtendedParameters.NRPN.MSB.DrumChorus:
             {
                 ref var param = ref chan.DrumParams[paramFine];
-                param = param with { ChorusGain = dataCoarse / 127f, };
+                param = param with { ChorusSend = dataCoarse, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} chorus level",
+                SpessaLog.CoolInfo(
+                    $"Drum ${paramFine} Chorus Send for {chan.Channel}",
                     dataCoarse,
                     "");
                 break;
             }
-            case ExtendedParameters.NRPN.MSB.DrumDelay:
+            case ExtendedParameters.NRPN.MSB.DrumVariation:
             {
                 ref var param = ref chan.DrumParams[paramFine];
-                param = param with { DelayGain = dataCoarse / 127f, };
+                param = param with { VariationSend = dataCoarse, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} delay level",
+                SpessaLog.CoolInfo(
+                    $"Drum ${paramFine} Variation Send for {chan.Channel}",
                     dataValue,
                     "");
                 break;

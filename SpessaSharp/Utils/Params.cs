@@ -12,6 +12,9 @@ public static class Params
         
         OptBool,
         OptInterpolationType,
+        
+        // Not actually handled by Params
+        DrumParameters,
     }
     
     internal readonly record struct Data(float Value, bool HasValue)

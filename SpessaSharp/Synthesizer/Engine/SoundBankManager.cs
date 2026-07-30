@@ -7,29 +7,49 @@ using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine;
 
-public sealed class SoundBankManager: IPresetGetter
+public sealed class SoundBankManager: BasePreset.IGetter<SynthPatch>
 {
     /// <summary> </summary>
     /// <param name="ID">The unique string identifier of the sound bank.</param>
     /// <param name="SoundBank">The sound bank itself.</param>
     /// <param name="BankOffset">The bank MSB offset for this sound bank.</param>
     internal readonly record struct ListEntry(
-        string ID, SoundBank.SoundBank SoundBank, int BankOffset);
+        string ID,
+        SoundBank.SoundBank SoundBank,
+        int BankOffset);
 
     internal readonly UsedProgramsAndKeys.Cache Cache = new();
     
     /// <summary> All the sound banks, ordered from the most important to the least. </summary>
     internal readonly List<ListEntry> SoundBankList = new(8);
+
+    /// <summary>
+    /// The two GS user drum sets, available on programs 65 and 66.
+    /// These override any sound bank presets at those program numbers.
+    /// Note that these are not selectable in XG mode (implied by the bank selection system)
+    /// </summary>
+    internal readonly UserDrumSet[] UserDrumSets;
     private readonly Action _presetListChangeCallbank;
     
-    private readonly List<BasicPreset> _selectablePresetList = new(400);
+    private readonly List<SynthPatch> _selectablePresetList = new(400);
     private readonly List<MidiPatch.Full> _presetList = new(400);
 
     /// <summary> </summary>
     /// <param name="presetListChangeCallbank">Supplied by the parent synthesizer class, this is called whenever the preset list changes.</param>
-    public SoundBankManager(Action presetListChangeCallbank) => 
+    public SoundBankManager(Action presetListChangeCallbank)
+    {
         _presetListChangeCallbank = presetListChangeCallbank;
-    
+        
+        // Patch resolver for GS user drum
+        UserDrumSet.ResolvePatch resolvePatch = patch =>
+            GetPreset(patch, SystemGetter());
+
+        UserDrumSets = [
+            new UserDrumSet(Synthesizer.GS_USER_DRUM_1, "User Drum Set 1", resolvePatch),
+            new UserDrumSet(Synthesizer.GS_USER_DRUM_2, "User Drum Set 2", resolvePatch),
+        ];
+    }
+
     public void ClearUsedKeysCache() => Cache.Clear();
 
     /// <summary>The list of all presets in the sound bank stack.</summary>
@@ -46,6 +66,12 @@ public sealed class SoundBankManager: IPresetGetter
             GeneratePresetList();
         }
     }
+
+    /// <summary>
+    /// A getter that returns the current MIDI system.
+    /// Used by the custom drum sets to resolve patches.
+    /// </summary>
+    public Func<Midi.System> SystemGetter = () => Midi.System.GS;
 
     /// <summary>Deletes a given sound bank by its ID.</summary>
     /// <param name="id">The ID of the sound bank to delete.</param>
@@ -102,7 +128,7 @@ public sealed class SoundBankManager: IPresetGetter
     /// <param name="patch">The MIDI patch to search for.</param>
     /// <param name="system">The MIDI system to select the preset for.</param>
     /// <returns>An object containing the preset and its bank offset.</returns>
-    public BasicPreset? GetPreset(
+    public SynthPatch? GetPreset(
         MidiPatch patch, Midi.System system) =>
         SoundBankList.Count == 0 || _selectablePresetList.Count == 0
             ? null
@@ -114,12 +140,28 @@ public sealed class SoundBankManager: IPresetGetter
         foreach (var s in SoundBankList)
             s.SoundBank.Destroy();
         SoundBankList.Clear();
+        _selectablePresetList.Clear();
+        _presetList.Clear();
+        Cache.Clear();
     }
 
     private void GeneratePresetList()
     {
-        var presetList      = new List<BasicPreset>();
+        var presetList      = new List<SynthPatch>();
         var addedPresets    = new HashSet<MidiPatch.Full>();
+        var totalPresets    = SoundBankList.Sum(
+            e => e.SoundBank.Presets.Count);
+
+        // If there are no presets, don't report as having GS user drums
+        if (totalPresets > 0)
+        {
+            // Add custom drum sets first so they take priority
+            foreach (var drumSet in UserDrumSets)
+            {
+                if (!addedPresets.Add(drumSet)) continue;
+                presetList.Add(drumSet);
+            }
+        }
 
         foreach (var (_, bank, bankOffset) in SoundBankList)
         foreach (var p in bank.Presets)
@@ -157,16 +199,13 @@ public sealed class SoundBankManager: IPresetGetter
         return result;
     }
 
-    private static MidiPatch.Full PatchOf(BasicPreset p, int offset)
-    {
-        var patch = p.Patch;
-        return patch with
+    private static MidiPatch.Full PatchOf(MidiPatch.Full patch, int offset) =>
+        patch with
         {
             Data = patch.Data with
             {
                 BankMSB = BankSelectHacks.AddBankOffset(
-                    p.BankMSB, offset, true),
+                    patch.BankMSB, offset, true),
             }
         };
-    }
 }

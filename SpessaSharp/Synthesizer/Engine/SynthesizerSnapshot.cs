@@ -16,7 +16,8 @@ public sealed class SynthesizerSnapshot(
     Effect.ReverbProcessorSnapshot reverbProcessor,
     Effect.ChorusProcessorSnapshot chorusProcessor,
     Effect.DelayProcessorSnapshot delayProcessor,
-    Effect.InsertionProcessorSnapshot insertionProcessorProcessor)
+    Effect.InsertionProcessorSnapshot insertionProcessorProcessor,
+    UserDrumSetParameter.Entry[][] userDrumSets)
 {
     /// <summary>The individual channel snapshots.</summary>
     public readonly ChannelSnapshot[] MidiChannels = midiChannels;
@@ -33,6 +34,8 @@ public sealed class SynthesizerSnapshot(
     public readonly Effect.DelayProcessorSnapshot DelayProcessor = delayProcessor;
     public Effect.InsertionProcessorSnapshot InsertionProcessor = insertionProcessorProcessor;
 
+    public readonly UserDrumSetParameter.Entry[][] UserDrumSets = userDrumSets;
+
     /// <summary>
     /// Creates a new synthesizer snapshot from the given SpessaSynthProcessor.
     /// </summary>
@@ -40,15 +43,17 @@ public sealed class SynthesizerSnapshot(
     /// <returns>The snapshot.</returns>
     public static SynthesizerSnapshot Get(Synthesizer synth) =>
         new(
-            synth.MidiChannels.Select(c => c.GetSnapshot()).ToArray(),
+            [.. synth.MidiChannels.Select(c => c.GetSnapshot())],
             synth.KeyModifierManager.GetMappings(),
-            synth.MidiParameters.ToArray(),
+            [.. synth.MidiParameters],
             new BitArray(synth.LockedParameters),
-            synth.SystemParameters.ToArray(),
+            [.. synth.SystemParameters],
             synth.ReverbProcessor.GetSnapshot(),
             synth.ChorusProcessor.GetSnapshot(),
             synth.DelayProcessor.GetSnapshot(),
-            synth.GetInsertionSnapshot());
+            synth.GetInsertionSnapshot(),
+            [.. synth.SoundBankManager.UserDrumSets
+                .Select(d => d.GetSnapshot())]);
 
     /// <summary>Applies the snapshot to the synthesizer.</summary>
     /// <param name="synth">The processor to apply the snapshot to.</param>
@@ -112,6 +117,15 @@ public sealed class SynthesizerSnapshot(
             if (ins.Params[i] != 255)
                 synth.SystemExclusive(
                     MidiUtils.Gs(0x40, 0x03, 3 + i, ins.Params[i]));
+        
+        // Restore user drum sets
+        for (var drumSet = 0; drumSet < UserDrumSets.Length; drumSet++)
+        {
+            var userDrumSet = UserDrumSets[drumSet];
+            for (var midiNote = 0; midiNote < userDrumSet.Length; midiNote++) 
+                synth.SoundBankManager.UserDrumSets[drumSet].Set(
+                    midiNote, userDrumSet[midiNote]);
+        }
         
         // Restore MIDI parameters
         foreach (var param in MidiParameters)

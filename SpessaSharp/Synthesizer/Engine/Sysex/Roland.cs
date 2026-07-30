@@ -885,7 +885,7 @@ internal static class Roland
                                     ch.DynamicModulators.SetupReceiver(
                                         a3,
                                         data,
-                                        (int)ch.MidiParamArray.CC1,
+                                        (int)ch.MidiParameters.CC1,
                                         true,
                                         "CC1");
                                     break;
@@ -895,7 +895,7 @@ internal static class Roland
                                     ch.DynamicModulators.SetupReceiver(
                                         a3,
                                         data,
-                                        (int)ch.MidiParamArray.CC2,
+                                        (int)ch.MidiParameters.CC2,
                                         true,
                                         "CC2");
                                     break;
@@ -951,7 +951,7 @@ internal static class Roland
                         SpessaLog.GSFail("Patch Parameter", syx);
                         return;
                     }
-                    // Drum setup
+                    // Drum Setup
                     if (a1 is 0x41 or 0x51) 
                     {
                         // 51 means BLOCK B (+16 channels)
@@ -988,12 +988,12 @@ internal static class Roland
                                 var pitch = data - 60;
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     // Apply same thing: SC-55 uses 100 cents, SC-88 and above is 50
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { Pitch = pitch *
-                                                           (ch.Patch.BankLSB == 1 ? 100 : 50) };
+                                    dp = dp with { PitchCoarse = pitch *
+                                                           (ch.Patch.BankLSB == 1 ? 1 : 0.5f) };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Pitch for MAP{map}, key {drumKey}",
@@ -1005,10 +1005,10 @@ internal static class Roland
                                 // Drum Level
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { Gain = data / 120f };
+                                    dp = dp with { Level = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Level for MAP{map}, key {drumKey}",
@@ -1019,10 +1019,10 @@ internal static class Roland
                                 // Drum Assign Group (exclusive class)
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ExclusiveClass = data };
+                                    dp = dp with { AssignGroup = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Assign Group for MAP{map}, key {drumKey}",
@@ -1033,7 +1033,7 @@ internal static class Roland
                                 // Pan
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { Pan = data };
@@ -1047,10 +1047,10 @@ internal static class Roland
                                 // Reverb
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ReverbGain = data / 127f };
+                                    dp = dp with { ReverbSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Reverb for MAP{map}, key {drumKey}",
@@ -1061,10 +1061,10 @@ internal static class Roland
                                 // Chorus
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ChorusGain = data / 127f };
+                                    dp = dp with { ChorusSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Chorus for MAP{map}, key {drumKey}",
@@ -1075,7 +1075,7 @@ internal static class Roland
                                 // Receive Note Off
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { RxNoteOff = data == 1 };
@@ -1089,7 +1089,7 @@ internal static class Roland
                                 // Receive Note On
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { RxNoteOn = data == 1 };
@@ -1103,10 +1103,10 @@ internal static class Roland
                                 // Delay
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { DelayGain = data / 127f };
+                                    dp = dp with { VariationSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Delay for MAP{map}, key {drumKey}",
@@ -1116,6 +1116,121 @@ internal static class Roland
                         }
                         return;
                     }
+                    // User Drum Set
+                    if (a1 == 0x21)
+                    {
+                        HandleUserDrum(synth, a2, a3, data, syx);
+                        return;
+                    }
+                    
+                    // User Drum Set Bulk Dump
+                    if (a1 == 0x29)
+                    {
+                        var dataLength = syx.Length - 9;
+                        SpessaLog.Info(
+                            $"User Drum Set Bulk Dump detected! Keys: {dataLength}");
+
+                        // Top half of a2 stays the same (indicates which user drum)
+                        // While the bottom param is something else
+                        // Guessed by analyzing 95043-2.KYC.mid
+
+                        var actualDrumParam = 0;
+                        switch (a2 & 0x0f)
+                        {
+                            default:
+                                SpessaLog.GSFail(
+                                    "User Drum Bulk Dump System Exclusive",
+                                    syx);
+                                return;
+                            
+                            case 0x0:
+                                // Most at 60 = play note?
+                                actualDrumParam = 1;
+                                break;
+                            case 0x1:
+                                // Level?
+                                actualDrumParam = 2;
+                                break;
+                            case 0x2:
+                                // Matches gm.dls exclusive class pretty well, assign group?
+                                actualDrumParam = 3;
+                                break;
+                            case 0x3:
+                                // Most at 64, so pan?
+                                actualDrumParam = 4;
+                                break;
+                            case 0x4:
+                                // 0 on bass, so reverb?
+                                actualDrumParam = 5;
+                                break;
+                            case 0x5:
+                                // 0 on all, so chorus?
+                                actualDrumParam = 6;
+                                break;
+                            case 0x6:
+                                // 16 on all
+                                // In the order, rx notes should be here, it's 0x10, so maybe
+                                // It's both? on << 4 | off?
+                                // Special handling is needed
+                                var address2Off = (a2 & 0xf0) | 7;
+                                var address2On = (a2 & 0xf0) | 8;
+                                for (
+                                    var midiNote = 0;
+                                    midiNote < dataLength;
+                                    midiNote++
+                                ) {
+                                    HandleUserDrum(
+                                        synth,
+                                        address2Off,
+                                        midiNote,
+                                        syx[midiNote + 7] & 0xf,
+                                        syx
+                                    );
+                                    HandleUserDrum(
+                                        synth,
+                                        address2On,
+                                        midiNote,
+                                        syx[midiNote + 7] >> 4,
+                                        syx
+                                    );
+                                }
+                                return;
+                            case 0x7:
+                                // All 0, so delay
+                                actualDrumParam = 9;
+                                break;
+                            case 0x8:
+                                // All 2 and this is a 88pro midi, so the map is 2
+                                actualDrumParam = 0xa;
+                                break;
+                            case 0x9:
+                                // 0xA matches note number so the only one left is the program
+                                actualDrumParam = 0xb;
+                                break;
+                            case 0xa:
+                                // Drum numbers increase so source note
+                                actualDrumParam = 0xc;
+                                break;
+                            case 0xb:
+                                // 16 chars, seems to be a name (spec is wrong? says 12)
+                                actualDrumParam = 0;
+                                break;
+                        }
+                        
+                        var address2 = (a2 & 0xf0) | actualDrumParam;
+                        for (var midiNote = 0; midiNote < dataLength; midiNote++) 
+                        {
+                            HandleUserDrum(
+                                synth,
+                                address2,
+                                midiNote,
+                                syx[midiNote + 7],
+                                syx
+                            );
+                        }
+                        return;
+                    }
+                    
                     // This is some other GS sysex...
                     SpessaLog.GSFail("System Exclusive", syx);
                     return;
@@ -1159,6 +1274,151 @@ internal static class Roland
             // This is something else...
             SpessaLog.Unsupported("Roland", syx);
             return;
+        }
+    }
+
+    private static void HandleUserDrum(
+        Synthesizer synth, int a2, int a3, int data, ReadOnlySpan<byte> syx)
+    {
+        if (synth.SystemParameters.UserDrumLock) return;
+
+        var drumSet = a2 >> 4;
+        var midiNote = a3;
+        var command = a2 & 0xf;
+
+        switch (command)
+        {
+            default:
+            {
+                SpessaLog.GSFail("User Drum set", syx);
+                return;
+            }
+
+            // User drum set name
+            case 0:
+            {
+                var newName = Util.ReadBinaryString(
+                        syx.Slice(12, 7)).ToArray();
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSet} Name", 
+                    Util.ToString(newName).Trim());
+                synth.CallEvent(new Event.CbDisplayMessage(newName));
+                return;
+            }
+
+            case 0x1:
+            {
+                // Here it's relative to 60, not 64 like NRPN. For some reason...
+                var pitch = data - 60;
+
+                // Use the full 100 cents here as we choose the correct pitch (50 or 100 cents) when committing changes
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.PitchCoarse, (float)pitch); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x2:
+            {
+                // Drum Level
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.Level, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x3:
+            {
+                // Drum Assign Group (exclusive class)
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.AssignGroup, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x4:
+            {
+                // Pan
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.Pan, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x5:
+            {
+                // Reverb
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.ReverbSend, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x6:
+            {
+                // Chorus
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.ChorusSend, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x7:
+            {
+                // Receive Note Off
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.RxNoteOff, data == 1); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x8:
+            {
+                // Receive Note On
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.RxNoteOn, data == 1); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x9:
+            {
+                // Delay
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.VariationSend, data);
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            // Source drum set
+            case 0xa:
+            {
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.SourceDrumSet, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
+                return;
+            }
+
+            // Program number
+            case 0xb:
+            {
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.Program, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
+                return;
+            }
+
+            // Source note number
+            case 0xc:
+            {
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.SourceNoteNumber, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
+                return;
+            }
         }
     }
 }

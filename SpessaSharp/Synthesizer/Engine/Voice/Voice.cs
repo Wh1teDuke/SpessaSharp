@@ -202,14 +202,14 @@ public sealed class Voice
     /// <summary> In cents.</summary>
     public int PitchOffset;
     
-    /// <summary> Reverb send of the voice, used for drum parts, otherwise 1.</summary>
-    public float ReverbSend = 1;
+    /// <summary> Reverb gain of the voice, used for drum parts, otherwise 1.</summary>
+    public float ReverbGain = 1;
     
-    /// <summary> Chorus send of the voice, used for drum parts, otherwise 1.</summary>
-    public float ChorusSend = 1;
+    /// <summary> Chorus gain of the voice, used for drum parts, otherwise 1.</summary>
+    public float ChorusGain = 1;
     
-    /// <summary> Delay send of the voice, used for drum parts, otherwise 1.</summary>
-    public float DelaySend = 1;
+    /// <summary> Delay/variation gain of the voice, used for drum parts, otherwise 1.</summary>
+    public float VariationSend = 1;
     
     /// <summary> Exclusive class number for hi-hats etc.</summary>
     public int ExclusiveClass;
