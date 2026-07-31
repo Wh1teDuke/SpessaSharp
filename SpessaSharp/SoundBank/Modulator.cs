@@ -160,7 +160,9 @@ public readonly record struct Modulator(
                 else if (SIndex.AsInt == ID(ControllerSource.NoteOnKeyNum))
                     rawValue = (short)(voice.TargetKey << 7);
                 else if (SIndex.AsInt == ID(ControllerSource.PolyPressure))
-                    rawValue = (short)(voice.Pressure << 7);
+                    // Use MIDI Note here as key shift is internal
+                    rawValue = (short)(channel.GetMidiParameters
+                        .PolyPressures[voice.MidiNote] << 7);
                 else if (SIndex.AsInt == ID(ControllerSource.ChannelPressure))
                     rawValue = (short)(channel.GetMidiParameters.Pressure << 7);
                 else if (SIndex.AsInt == ID(ControllerSource.PitchWheel))

@@ -337,6 +337,25 @@ public readonly record struct MidiBuilder
             DataOf(pitch & 0x7f, (pitch >> 7) & 0x7f));
     }
 
+    /// <summary>
+    /// Adds a new Poly Pressure event.
+    /// </summary>
+    /// <param name="track">The tick time of the event.</param>
+    /// <param name="ticks">The track to use.</param>
+    /// <param name="channel">The channel to use.</param>
+    /// <param name="midiNote">The MIDI note number to apply the pressure to.</param>
+    /// <param name="pressure">The pressure (0 - 127)</param>
+    public void PolyPressure(
+        Track track, int ticks, int channel, int midiNote, int pressure)
+    {
+        channel %= 16;
+        AddEvent(
+            track,
+            ticks,
+            SB(MidiMessage.Type.PolyPressure, channel),
+            DataOf(midiNote & 0x7f, pressure & 0x7f));
+    }
+
     /// <summary>Selects a new Registered Parameter Number.</summary>
     /// <param name="ticks">Ticks the tick time of the events.</param>
     /// <param name="track">The track to use.</param>

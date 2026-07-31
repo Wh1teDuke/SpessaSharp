@@ -166,9 +166,6 @@ public sealed class Voice
     /// <summary>The root key of the voice.</summary>
     public int RootKey;
     
-    /// <summary> The pressure of the voice </summary>
-    public int Pressure;
-    
     /// <summary> Linear gain of the voice. Used with Key Modifiers. </summary>
     public float GainModifier = 1;
 
@@ -275,7 +272,6 @@ public sealed class Voice
         HasRendered = false;
         IsHeld = false;
         ReleaseStartTime = float.PositiveInfinity;
-        Pressure = 0;
         OverrideReleaseVolEnv = 0;
         PortamentoDuration = 0;
         PortamentoFromKey = -1;

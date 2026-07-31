@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
@@ -47,6 +48,20 @@ public sealed class MidiChannel: ISf2Channel
     /// </remarks>
     public readonly short[] MidiControllers = new short[
         Engine.Channel.Reset.CONTROLLER_TABLE_SIZE];
+
+    public short this[Midi.CC cc]
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => MidiControllers[(int)cc];
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        set => MidiControllers[(int)cc] = value;
+    }
+
+    /// <summary>
+    /// An array of poly pressure values for the channel.
+    /// Poly pressure persists across notes and is set like
+    /// </summary>
+    internal readonly byte[] PolyPressures = new byte[128];
     
     /// <summary>
     /// An array indicating if a controller, at the equivalent index in the midiControllers array, is locked (i.e., not allowed changing). A locked controller cannot be modified.
@@ -210,12 +225,12 @@ public sealed class MidiChannel: ISf2Channel
 
     internal readonly Awe32NRPN.ChannelGenerators Generators = new();
 
-    internal readonly ChannelMidiParameter[] MidiParamArray = 
-        ChannelMidiParameters.Default.ToArray();
+    internal readonly ChannelMidiParameter[] MidiParamArray =
+        [.. ChannelMidiParameters.Default];
 
     /// <summary> All master parameters of this channel. </summary>
     internal readonly ChannelSystemParameter[] SystemParamArray =
-        ChannelSystemParameters.Default.ToArray();// Copy, not set!
+        [.. ChannelSystemParameters.Default];// Copy, not set!
     
     /// <summary>
     /// Note On message tracking, for grouping voices for specific Note On messages.
@@ -486,18 +501,9 @@ public sealed class MidiChannel: ISf2Channel
     internal void PolyPressure(int midiNote, int pressure)
     {
         // Note to self: don't use computeModulatorsAll here as we're setting the pressure!
-        foreach (var v in Voices)
-        {
-            if (v.MidiNote != midiNote) continue;
-
-            v.Pressure = pressure;
-            ComputeModulators(
-                v, 
-                0, 
-                Modulator.Source.ID(
-                    Modulator.Source.ControllerSource.PolyPressure));
-        }
-
+        PolyPressures[midiNote] = (byte)pressure;
+        ComputeModulatorsAll(
+            0, (int)Modulator.Source.ControllerSource.PolyPressure);
         SynthCore.CallEvent(
             new Event.CbPolyPressure(Channel, midiNote, pressure));
     }
@@ -701,6 +707,11 @@ public sealed class MidiChannel: ISf2Channel
             p = DrumParameter.GetDefault(i++);
     }
     
+    /// <summary></summary>
+    /// <param name="sourceUsesCC">
+    /// what modulators should be computed, -1 means all, 0 means modulator source enum 1 means midi controller.
+    /// </param>
+    /// <param name="sourceIndex"></param>
     internal void ComputeModulatorsAll(int sourceUsesCC, int sourceIndex)
     {
         Debug.Assert(sourceUsesCC is >= -1 and <= 1);
@@ -750,8 +761,10 @@ public sealed class MidiChannel: ISf2Channel
 
     public ReadOnlySpan<short> GetMidiControllers => MidiControllers;
 
-    public (int Pressure, int PitchWheel, float PitchWheelRange) GetMidiParameters => (
+    public (int Pressure, int PitchWheel, float PitchWheelRange,
+        byte[] PolyPressures) GetMidiParameters => (
         MidiParamArray.Pressure,
         MidiParamArray.PitchWheel,
-        MidiParamArray.PitchWheelRange);
+        MidiParamArray.PitchWheelRange,
+        PolyPressures);
 }

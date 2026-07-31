@@ -1,6 +1,7 @@
 using System.Collections.Frozen;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;
@@ -55,6 +56,9 @@ internal static class Reset
                     sendCCEvents);
             }
         }
+        
+        // Reset Poly pressure
+        chan.PolyPressures.AsSpan().Clear();
         
         // Reset MIDI parameters (locked will remain in place)
         chan.Set((ChannelMidiParameter.Type.Pressure, 0));
@@ -124,13 +128,41 @@ internal static class Reset
         Midi.CC.PortamentoOnOff,
         Midi.CC.SostenutoPedal,
         Midi.CC.SoftPedal,
-        Midi.CC.RegisteredParameterMSB,
-        Midi.CC.RegisteredParameterLSB,
+        Midi.CC.NonRegisteredParameterMSB,
+        Midi.CC.NonRegisteredParameterLSB,
     ];
     
     /// <summary>
     /// https://amei.or.jp/midistandardcommittee/Recommended_Practice/e/rp15.pdf<br/>
     /// Reset controllers according to RP-15 Recommended Practice.
+    /// From the PDF:
+    /// <code>
+    /// Upon receipt of Reset All Controllers message (Controller #121) the following actions are taken
+    /// for the specified MIDI channel:
+    /// Set Expression (#11) to 127. 
+    /// Set Modulation (#1) to 0.
+    /// Set Pedals (#64, #65, #66, #67) to 0.
+    /// Set Registered and Non-registered parameter number LSB and MSB
+    /// (#98-#101) to null value (127)
+    /// Set pitch bender to center (64/0)
+    /// Reset channel pressure to 0
+    /// Reset polyphonic pressure for all notes to 0.
+    /// Do NOT reset Bank Select (#0/#32)
+    /// Do NOT reset Volume (#7)
+    /// Do NOT reset Pan (#10)
+    /// Do NOT reset Program Change.
+    /// Do NOT reset Effect Controllers (#91-#95)
+    /// Do NOT reset Sound Controllers
+    /// (#70-#79)
+    /// Do NOT reset other channel mode messages (#120-#127).
+    /// Do NOT reset registered or non-registered parameters.
+    /// Any other controllers that a device can respond to should be set to 0, or the behavior should
+    /// be specified and/or documented. If the manufacturer does not want the Reset All Controllers
+    /// message to affect a particular controller, that is also permissible, as long as the behavior is
+    /// documented.
+    /// </code>
+    /// Note:
+    /// GS/XG only reset the specified CCs above.
     /// </summary>
     /// <param name="chan"></param>
     public static void RP15(MidiChannel chan) 
@@ -146,6 +178,12 @@ internal static class Reset
             if (resetValue != chan.MidiControllers[(int)resetCC])
                 chan.ControllerChange(resetCC, resetValue >> 7);
         }
+        
+        // Reset polyphonic pressure for all notes to 0
+        chan.PolyPressures.AsSpan().Clear();
+        chan.ComputeModulatorsAll(
+            -1, 
+            (int)Modulator.Source.ControllerSource.PolyPressure);
     }
 
     static Reset()

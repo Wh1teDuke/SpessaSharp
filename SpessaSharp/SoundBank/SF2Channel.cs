@@ -6,5 +6,6 @@ public interface ISf2Channel
     public ReadOnlySpan<short> GetMidiControllers { get; }
     
     /// <summary> Other MIDI parameters. </summary>
-    public (int Pressure, int PitchWheel, float PitchWheelRange) GetMidiParameters { get; }
+    public (int Pressure, int PitchWheel, float PitchWheelRange,
+        byte[] PolyPressures) GetMidiParameters { get; }
 }
