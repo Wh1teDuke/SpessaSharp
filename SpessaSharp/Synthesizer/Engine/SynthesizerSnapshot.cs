@@ -114,14 +114,23 @@ public sealed class SynthesizerSnapshot(
                     MidiUtils.Gs(0x40, 0x03, 3 + i, ins.Params[i]));
         
         // Restore MIDI parameters
+
+        // Unlock them first
+        synth.LockedParameters.SetAll(false);
+        
+        // Then set
         foreach (var param in MidiParameters)
             synth.Set(param);
         
+        // Then re-lock!
         synth.LockedParameters.SetAll(false);
         synth.LockedParameters.Or(LockedParameters);
 
         // Restore system parameters last
         foreach (var param in SystemParameters)
             synth.Set(param);
+        
+        // Then update active effects
+        synth.UpdateActiveEffects();
     }
 }

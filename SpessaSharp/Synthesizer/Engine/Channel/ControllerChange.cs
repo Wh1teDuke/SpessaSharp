@@ -101,7 +101,7 @@ internal static class ControllerChange
                 break;
 
             case Midi.CC.VariationDepth: 
-                synth.DelayActive = true;
+                synth.UpdateActiveEffects();
                 break;
             
             case Midi.CC.RegisteredParameterLSB:

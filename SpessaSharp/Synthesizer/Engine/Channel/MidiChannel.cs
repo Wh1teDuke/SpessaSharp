@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
@@ -47,6 +48,14 @@ public sealed class MidiChannel: ISf2Channel
     /// </remarks>
     public readonly short[] MidiControllers = new short[
         Engine.Channel.Reset.CONTROLLER_TABLE_SIZE];
+
+    public short this[Midi.CC cc]
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => MidiControllers[(int)cc];
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        set => MidiControllers[(int)cc] = value;
+    }
     
     /// <summary>
     /// An array indicating if a controller, at the equivalent index in the midiControllers array, is locked (i.e., not allowed changing). A locked controller cannot be modified.
@@ -210,12 +219,12 @@ public sealed class MidiChannel: ISf2Channel
 
     internal readonly Awe32NRPN.ChannelGenerators Generators = new();
 
-    internal readonly ChannelMidiParameter[] MidiParamArray = 
-        ChannelMidiParameters.Default.ToArray();
+    internal readonly ChannelMidiParameter[] MidiParamArray =
+        [.. ChannelMidiParameters.Default];
 
     /// <summary> All master parameters of this channel. </summary>
     internal readonly ChannelSystemParameter[] SystemParamArray =
-        ChannelSystemParameters.Default.ToArray();// Copy, not set!
+        [.. ChannelSystemParameters.Default];// Copy, not set!
     
     /// <summary>
     /// Note On message tracking, for grouping voices for specific Note On messages.

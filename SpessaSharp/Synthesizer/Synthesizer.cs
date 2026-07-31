@@ -630,11 +630,8 @@ public sealed class Synthesizer
         foreach (var ch in MidiChannels)
             ch.Reset(false);
         
-        // Delay may only be disabled if variations are all set to 0,
-        // They can still be set after a reset due to locking.
-        if (!SystemParameters.DelayLock)
-            DelayActive = MidiChannels.Any(
-                c => c.MidiControllers[(int)Midi.CC.VariationDepth] > 0);
+        // Update if the effects should still be active.
+        UpdateActiveEffects();
     }
 
     public void Process(
@@ -968,6 +965,25 @@ public sealed class Synthesizer
     /// <summary>Copied callback so MIDI channels can call it.</summary>
     /// <param name="ev"></param>
     public void CallEvent(Event ev) => EventCallbackHandler(ev);
+
+    /// <summary>
+    /// Checks if we can disable insertion and delay effects.
+    /// </summary>
+    internal void UpdateActiveEffects()
+    {
+        if (!SystemParameters.InsertionEffectLock) 
+            InsertionActive = MidiChannels.Any(
+                c => c.MidiParameters.EfxAssign);
+
+        if (!SystemParameters.DelayLock)
+        {
+            DelayActive = 
+                MidiParameters.MidiSystem != Midi.System.XG && 
+                (ChorusProcessor.SendLevelToDelay > 0 ||
+                InsertionProcessor.SendLevelToDelay > 0 ||
+                MidiChannels.Any(c => c[Midi.CC.VariationDepth] > 0));
+        }
+    }
     
     internal void ResetInsertionParams() 
     {
@@ -982,8 +998,7 @@ public sealed class Synthesizer
     {
         if (SystemParameters.InsertionEffectLock) 
             return;
-
-        InsertionActive = false;
+        
         InsertionProcessor = InsertionFallback;
         InsertionProcessor.Reset();
         ResetInsertionParams();
