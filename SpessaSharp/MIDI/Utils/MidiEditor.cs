@@ -857,13 +857,14 @@ public sealed class MidiEditor
     private void HandleControllerChange(
         Midi.CC ccNum, int value, int channel)
     {
+        // Change may be undefined but don't check, because we may encounter a "clear Drum param" request while the channel is not changed
+        // This still involves removing the drum NRPN
+        // Also param tracking
         var channelChange = _channelChanges.GetValueOrDefault(channel);
-        // Make sure that we want to modify this channel at all
-        if (channelChange == null) return;
         var channelStatus = _channelStatuses[channel];
 
         var index = _eventIndexes[_trackNum];
-        var change = channelChange.Controllers
+        var change = channelChange?.Controllers
             ?.GetValueOrDefault(ccNum);
         if (change != null) 
         {
@@ -876,7 +877,7 @@ public sealed class MidiEditor
         {
             case Midi.CC.BankSelect:
             case Midi.CC.BankSelectLSB:
-                if (channelChange.Patch is not null)
+                if (channelChange?.Patch is not null)
                 {
                     // BEGONE!
                     DeleteCurrentEvent();
@@ -965,54 +966,11 @@ public sealed class MidiEditor
         {
             channelStatus.IsFirstNoteOn = false;
             // All right, so this is the first note on for this channel
-            // Order is effectively reversed since we're adding events before
-
-            // First: controllers
-            // Because FSMP does not like program changes after cc changes in embedded midis
-            // And since we use splice,
-            // Controllers get added first, then programs before them.
-            // Now add controllers
-            if (channelChange.Controllers is { } controllers)
-            {
-                foreach (var (cc, v) in controllers)
-                {
-                    if (v is not Parameter<int>.Replace(var value))
-                        continue;
-
-                    var ccChange = MidiMessage.ControllerChange(
-                        e.Ticks, midiChannel, cc, value);
-                    AddEventsBefore(ccChange);
-                }
-            }
-
-            float newTune;
-            
-            // Apply relative tuning (`fineTune`)
-            if (channelChange.MidiParameters?.GetValueOrDefault(
-                ChannelMidiParameter.Type.FineTune) is
-                Parameter<ChannelMidiParameter>.Replace(
-                { AsFloat: var ft }))
-            {
-                // Add the relative tuning to the absolute MIDI param
-                newTune = channelStatus.FineTune + ft;
-            } 
-            else 
-            {
-                // Make the relative tuning be set in MIDI parameters
-                newTune =
-                    channelStatus.FineTune +
-                    channelStatus.CurrentFineTune;
-                channelChange.MidiParameters ??= [];
-            }
-            
-            channelStatus.CurrentKeyShift = (int)Math.Truncate(
-                newTune / 100);
-
-            channelChange.MidiParameters[
-                    ChannelMidiParameter.Type.FineTune] = 
-                ChannelMidiParameter.Of(
-                    ChannelMidiParameter.Type.FineTune, 
-                    newTune % 100);
+            // The order is:
+            // - patch selection
+            // - relative fine tune
+            // - controllers
+            // - parameters
 
             // Program change
             if (channelChange.Patch is
@@ -1077,6 +1035,55 @@ public sealed class MidiEditor
                     AddEventsBefore(bankChange);
                 }
             }
+            
+            // Order is effectively reversed since we're adding events before
+
+            // First: controllers
+            // Because FSMP does not like program changes after cc changes in embedded midis
+            // And since we use splice,
+            // Controllers get added first, then programs before them.
+            // Now add controllers
+            if (channelChange.Controllers is { } controllers)
+            {
+                foreach (var (cc, v) in controllers)
+                {
+                    if (v is not Parameter<int>.Replace(var value))
+                        continue;
+
+                    var ccChange = MidiMessage.ControllerChange(
+                        e.Ticks, midiChannel, cc, value);
+                    AddEventsBefore(ccChange);
+                }
+            }
+
+            // Apply relative tuning (`fineTune`)
+            float newTune;
+
+            if (channelChange.MidiParameters?.GetValueOrDefault(
+                    ChannelMidiParameter.Type.FineTune) is
+                Parameter<ChannelMidiParameter>.Replace(
+                { AsFloat: var ft }))
+            {
+                // Add the relative tuning to the absolute MIDI param
+                newTune = channelStatus.FineTune + ft;
+            } 
+            else 
+            {
+                // Make the relative tuning be set in MIDI parameters
+                newTune =
+                    channelStatus.FineTune +
+                    channelStatus.CurrentFineTune;
+                channelChange.MidiParameters ??= [];
+            }
+            
+            channelStatus.CurrentKeyShift = (int)Math.Truncate(
+                newTune / 100);
+
+            channelChange.MidiParameters[
+                    ChannelMidiParameter.Type.FineTune] = 
+                ChannelMidiParameter.Of(
+                    ChannelMidiParameter.Type.FineTune, 
+                    newTune % 100);
             
             // Add MIDI parameters
             if (channelChange.MidiParameters is {} midiParams)
