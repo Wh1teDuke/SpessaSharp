@@ -301,7 +301,7 @@ public static class MidiUtils
     /// <param name="parameter">The parameter and value to set.</param>
     /// <returns>The list of <b>MIDIMessage</b>s that set the parameter.</returns>
     public static MidiMessage[] Set(
-        int ticks, Midi.System system, GlobalMidiParameter parameter)
+        int ticks, Midi.System? system, GlobalMidiParameter parameter)
     {
         switch (parameter.PType)
         {
@@ -460,7 +460,7 @@ public static class MidiUtils
     public static MidiMessage[] Set(
         int ticks, 
         int channel, 
-        Midi.System system, 
+        Midi.System? system, 
         ChannelMidiParameter parameter)
     {
         channel %= 16;

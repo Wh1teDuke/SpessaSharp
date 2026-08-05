@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using SpessaSharp.MIDI.Read;
@@ -601,8 +602,11 @@ public sealed class Midi
     /// <remarks>This modifies the MIDI sequence <b>in-place</b>.</remarks>
     /// </summary>
     /// <param name="opts">Options to modify the midi</param>
-    public void Modify(MidiEditor.Options opts) =>
-        MidiEditor.Modify(this, opts);
+    public void Modify(MidiEditor.Options opts)
+    {
+        var editor = new MidiEditor(this, opts);
+        editor.Apply();
+    }
 
     /// <summary>
     /// Modifies the sequence *in-place* according to the locked presets and controllers in the given snapshot.
@@ -747,6 +751,45 @@ public sealed class Midi
         {
             SpessaLog.Warn($"Failed to decode {infoType} name: {error}");
             return null;
+        }
+    }
+
+    public delegate void IterateDel(
+        MidiMessage ev, int trackNumber, ArraySegment<int> eventIndexes);
+
+    public void Iterate(IterateDel callback)
+    {
+        // Indexes for tracks
+        var eventIndexes = new int[Tracks.Count];
+        var remainingTracks = Tracks.Count;
+
+        while (remainingTracks > 0)
+        {
+            var trackNum = 0;
+            var ticks = int.MaxValue;
+
+            for (var i = 0; i < Tracks.Count; i++)
+            {
+                var track = Tracks[i].Events;
+                if (eventIndexes[i] >= track.Length) continue;
+                if (track[eventIndexes[i]].Ticks >= ticks) continue;
+                trackNum = i;
+                ticks = track[eventIndexes[i]].Ticks;
+            }
+
+            {
+                var track =
+                    CollectionsMarshal.AsSpan(Tracks[trackNum].EventList);
+                if (eventIndexes[trackNum] >= track.Length)
+                {
+                    remainingTracks--;
+                    continue;
+                }
+                
+                var idx = eventIndexes[trackNum];
+                callback(track[idx], trackNum, eventIndexes);
+                eventIndexes[trackNum]++;
+            }
         }
     }
 
