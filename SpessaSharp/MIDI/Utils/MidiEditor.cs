@@ -166,8 +166,8 @@ public sealed class MidiEditor
         /// </summary>
         public float? FineTune;
 
-        public Parameter<ChannelModification> Replace() =>
-            MidiEditor.Replace(this);
+        public void Set(ChannelMidiParameter param) =>
+            MidiParameters?[param.PType] = param;
     }
 
     /// <summary>
@@ -465,8 +465,8 @@ public sealed class MidiEditor
     /// <summary>Deletes this event, or parameter.</summary>
     private void DeleteThisEvent()
     {
-        _midi.Tracks[_trackNum].DeleteEvent(_eventIndexes[_trackNum]);
-        _eventIndexes[_trackNum]--;
+        _midi.Tracks[_trackNum].DeleteEvent(
+            _eventIndexes[_trackNum]--);
     }
     
     private void DeleteCurrentEvent() 
@@ -495,12 +495,6 @@ public sealed class MidiEditor
         var p = ch.Param;
         var msb = p.ParamMSB;
         var lsb = p.ParamLSB;
-        
-        SpessaLog.Info(
-            $"Clearing Non/Registered Parameter on {ch.Channel}." +
-            $"\n Clear MSB:  {ch.ClearedParams.MSB}," +
-            $"\n Clear LSB:  {ch.ClearedParams.LSB}," +
-            $"\n Clear data: {ch.ClearedParams.Data}.");
 
         // Delete the current data entry event first.
         // This is safe because it's the event currently being processed in the loop,
@@ -509,6 +503,9 @@ public sealed class MidiEditor
         if (!ch.ClearedParams.Data)
         {
             DeleteThisEvent();
+            SpessaLog.Info(
+                $"Clearing Non/Registered Parameter on {ch.Channel
+                }. (Current data entry + params)");
             
             // Shift the events down if they are on the same track (very likely)
             if (_trackNum == msb.Track && index < msb.Event) msb.Event--;
@@ -519,6 +516,9 @@ public sealed class MidiEditor
         {
             // Delete data MSB
             DeleteEvent(msb.Event, msb.Track);
+            SpessaLog.Info(
+                $"Clearing Non/Registered Parameter on {ch.Channel
+                }. (Data entry MSB)");
 
             // Shift the LSB down if they are on the same track (very likely)
             if (msb.Track == lsb.Track && msb.Event < lsb.Event)
@@ -529,6 +529,10 @@ public sealed class MidiEditor
         {
             // Delete data LSB
             DeleteEvent(lsb.Event, lsb.Track);
+            
+            SpessaLog.Info(
+                $"Clearing Non/Registered Parameter on {ch.Channel
+                }. (Data entry LSB)");
         }
 
         p.ParamMSB = msb;
@@ -548,7 +552,7 @@ public sealed class MidiEditor
     private void HandleEvent(
         MidiMessage e, int trackNum, ArraySegment<int> eventIndexes)
     {
-        this._trackNum = trackNum;
+        _trackNum = trackNum;
         _eventIndexes = eventIndexes;
         _currentParameterChannel = null;
         
@@ -836,6 +840,11 @@ public sealed class MidiEditor
             var e = _midi.Tracks[_trackNum].Events[index];
 
             DeleteCurrentEvent();
+            
+            // Don't update tuning if no notes have played.
+            if (channelStatus.IsFirstNoteOn) return;
+
+            // And update this tuning
             AddEventsBefore(
                     MidiUtils.Set(
                     e.Ticks,
@@ -980,7 +989,7 @@ public sealed class MidiEditor
                     $"Setting {channel} to {patch.ToMidiString()}. Track num: {_trackNum}");
 
                 // Note: this is in reverse.
-                // The output event order is: drums -> lsb -> msb -> program change
+                // The output event order is: drums -> msb -> lsb -> program change
                 var desiredBankMSB = patch.BankMSB;
                 var desiredBankLSB = patch.BankLSB;
                 var desiredProgram = patch.Program;
@@ -1003,7 +1012,7 @@ public sealed class MidiEditor
                     desiredBankLSB = 0;
                 }
 
-                // Add bank change
+                // Add bank change (MSB first)
                 var eTicks = e.Ticks;
                 AddBank(false, desiredBankMSB);
                 AddBank(true, desiredBankLSB);
@@ -1057,33 +1066,24 @@ public sealed class MidiEditor
             }
 
             // Apply relative tuning (`fineTune`)
-            float newTune;
-
             if (channelChange.MidiParameters?.GetValueOrDefault(
                     ChannelMidiParameter.Type.FineTune) is
                 Parameter<ChannelMidiParameter>.Replace(
                 { AsFloat: var ft }))
             {
                 // Add the relative tuning to the absolute MIDI param
-                newTune = channelStatus.FineTune + ft;
+                var newTune = channelStatus.FineTune + ft;
+                SetParamFineTune(newTune);
             } 
-            else 
+            else if (channelStatus.FineTune != 0)
             {
                 // Make the relative tuning be set in MIDI parameters
-                newTune =
+                var newTune =
                     channelStatus.FineTune +
                     channelStatus.CurrentFineTune;
                 channelChange.MidiParameters ??= [];
+                SetParamFineTune(newTune);
             }
-            
-            channelStatus.CurrentKeyShift = (int)Math.Truncate(
-                newTune / 100);
-
-            channelChange.MidiParameters[
-                    ChannelMidiParameter.Type.FineTune] = 
-                ChannelMidiParameter.Of(
-                    ChannelMidiParameter.Type.FineTune, 
-                    newTune % 100);
             
             // Add MIDI parameters
             if (channelChange.MidiParameters is {} midiParams)
@@ -1095,6 +1095,13 @@ public sealed class MidiEditor
                     AddEventsBefore(MidiUtils.Set(
                         e.Ticks, midiChannel, _system, value));
                 }
+            }
+
+            void SetParamFineTune(float newTune)
+            {
+                channelStatus.CurrentKeyShift = (int)(newTune / 100);
+                channelChange.Set(
+                    ChannelMidiParameter.FineTune(newTune % 100));
             }
         }
 

@@ -206,6 +206,9 @@ public readonly record struct ChannelMidiParameter
 {
     private readonly Params.Data _data;
     public readonly Type PType;
+
+    public static ChannelMidiParameter FineTune(float value) =>
+        Of(Type.FineTune, value);
     
     public static ChannelMidiParameter Of(Type type, float value)
     {
