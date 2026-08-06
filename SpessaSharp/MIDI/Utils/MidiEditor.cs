@@ -468,6 +468,31 @@ public sealed class MidiEditor
         _midi.Tracks[_trackNum].DeleteEvent(
             _eventIndexes[_trackNum]--);
     }
+
+    /// <summary>
+    /// Deletes an event from a track and keeps every cached RPN/NRPN parameter
+    /// event index valid.
+    /// The parameter trackers cache absolute event indexes so a whole N/RPN group can be removed later. Whenever
+    /// an event is deleted, the loop position and every cached index that comes
+    /// after the deleted event must shift down by one, otherwise a later cleanup
+    /// would delete the wrong events.
+    /// Testcase: midi_editor_nrpn_test.ts (Case: interleaved NRPN between channels)
+    /// </summary>
+    /// <param name="track">The track to delete the event from.</param>
+    /// <param name="index">The index of the event to delete.</param>
+    private void DeleteTrackEvent(int track, int index)
+    {
+        _midi.Tracks[track].DeleteEvent(index);
+
+        // Move the loop back if we deleted the current (or a previous) event.
+        // This prevents it from skipping over the shifted events.
+        if (index <= _eventIndexes[track])
+            _eventIndexes[track]--;
+
+        // Update all trackers accordingly
+        foreach (var channelStatus in _channelStatuses)
+            channelStatus.Param.DeleteEvent(track, index);
+    }
     
     private void DeleteCurrentEvent() 
     {
@@ -481,7 +506,6 @@ public sealed class MidiEditor
 
     private void DeleteCurrentParameter()
     {
-        var index = _eventIndexes[_trackNum];
         var ch = _channelStatuses[_currentParameterChannel!.Value];
         // Delete the parameter selection pair + the data entry that we're currently processing.
         // We don't wait for lsb as it's not required to arrive :-(
@@ -505,34 +529,30 @@ public sealed class MidiEditor
             DeleteThisEvent();
             SpessaLog.Info(
                 $"Clearing Non/Registered Parameter on {ch.Channel
-                }. (Current data entry + params)");
-            
-            // Shift the events down if they are on the same track (very likely)
-            if (_trackNum == msb.Track && index < msb.Event) msb.Event--;
-            if (_trackNum == lsb.Track && index < lsb.Event) lsb.Event--;
+                }. (Current data entry)");
         }
         
+        // Delete params
+        
+        // The cached MSB/LSB indexes are kept valid by `deleteTrackEvent`.
+        // It shifts all cached indexes whenever an event is deleted.
         if (!ch.ClearedParams.MSB) 
         {
-            // Delete data MSB
-            DeleteEvent(msb.Event, msb.Track);
+            // Delete param MSB
+            DeleteTrackEvent(msb.Track, msb.Event);
             SpessaLog.Info(
                 $"Clearing Non/Registered Parameter on {ch.Channel
-                }. (Data entry MSB)");
-
-            // Shift the LSB down if they are on the same track (very likely)
-            if (msb.Track == lsb.Track && msb.Event < lsb.Event)
-                lsb.Event--;
+                }. (Param MSB)");
         }
         
         if (!ch.ClearedParams.LSB) 
         {
-            // Delete data LSB
-            DeleteEvent(lsb.Event, lsb.Track);
+            // Delete param LSB
+            DeleteTrackEvent(lsb.Track, lsb.Event);
             
             SpessaLog.Info(
                 $"Clearing Non/Registered Parameter on {ch.Channel
-                }. (Data entry LSB)");
+                }. (Param LSB)");
         }
 
         p.ParamMSB = msb;
@@ -540,13 +560,6 @@ public sealed class MidiEditor
         ch.Param = p;
         // Flag params as deleted
         ch.ClearedParams = (true, true, true);
-        return;
-
-        void DeleteEvent(int eventNum, int track)
-        {
-            _midi.Tracks[track].DeleteEvent(eventNum);
-            _eventIndexes[track]--;
-        }
     }
 
     private void HandleEvent(
