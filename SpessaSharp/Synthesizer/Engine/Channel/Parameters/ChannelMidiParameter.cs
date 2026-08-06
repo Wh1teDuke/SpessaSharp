@@ -210,6 +210,9 @@ public readonly record struct ChannelMidiParameter
     public static ChannelMidiParameter FineTune(float value) =>
         Of(Type.FineTune, value);
     
+    public static ChannelMidiParameter DrumMap(int value) =>
+        Of(Type.DrumMap, value);
+    
     public static ChannelMidiParameter Of(Type type, float value)
     {
         Assert(type, Params.Type.Float);

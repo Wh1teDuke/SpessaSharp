@@ -592,7 +592,16 @@ public sealed class MidiEditor
         switch (MidiMessage.TypeOf(status))
         {
             case MidiMessage.Type.NoteOn:
-                HandleNoteOn(e, channel);
+                // Is it first?
+                if (channelStatus.IsFirstNoteOn) 
+                {
+                    FirstNoteOn(e.Ticks, channel);
+                    channelStatus.IsFirstNoteOn = false;
+                }
+                // Transpose key (for zero it won't change anyway)
+                e.Data.AsSpan()[0] +=
+                    (byte)(channelStatus.KeyShift +
+                           channelStatus.CurrentKeyShift);
                 break;
             case MidiMessage.Type.NoteOff:
                 if (channelChange == null) break;
@@ -960,7 +969,7 @@ public sealed class MidiEditor
         }
     }
 
-    private void HandleNoteOn(MidiMessage e, int channel)
+    private void FirstNoteOn(int ticks, int channel)
     {
         var channelChange = _channelChanges.GetValueOrDefault(channel);
         
@@ -969,145 +978,119 @@ public sealed class MidiEditor
         
         var channelStatus = _channelStatuses[channel];
         var midiChannel = channel % 16;
-
-        // Is it first?
-        if (channelStatus.IsFirstNoteOn)
+        
+        // All right, so this is the first note on for this channel
+        // The order is:
+        // - patch selection
+        // - relative fine tune
+        // - controllers
+        // - parameters
+        
+        // Program change
+        if (channelChange.Patch?.AsReplace() is { Value: var patch })
         {
-            channelStatus.IsFirstNoteOn = false;
-            // All right, so this is the first note on for this channel
-            // The order is:
-            // - patch selection
-            // - relative fine tune
-            // - controllers
-            // - parameters
+            SpessaLog.Info(
+                $"Setting {channel} to {
+                    patch.ToMidiString()}. Track num: {_trackNum}");
 
-            // Program change
-            if (channelChange.Patch is
-                Parameter<MidiPatch>.Replace { Value: var patch })
+            var desiredBankMSB = patch.BankMSB;
+            var desiredBankLSB = patch.BankLSB;
+            var desiredProgram = patch.Program;
+            
+            // The output event order is: drums -> msb -> lsb -> program change
+            if (
+                patch.IsGMGSDrum &&
+                (_system is null || 
+                 !BankSelectHacks.IsSystemXG(_system.Value)) &&
+                midiChannel != Synthesizer.Synthesizer.DEFAULT_PERCUSSION)
             {
+                // Add gs drum change first
                 SpessaLog.Info(
-                    $"Setting {channel} to {patch.ToMidiString()}. Track num: {_trackNum}");
-
-                // Note: this is in reverse.
-                // The output event order is: drums -> msb -> lsb -> program change
-                var desiredBankMSB = patch.BankMSB;
-                var desiredBankLSB = patch.BankLSB;
-                var desiredProgram = patch.Program;
-
-                // Add program change
-                var programChange = MidiMessage.ProgramChange(
-                    e.Ticks, midiChannel, desiredProgram);
-
-                AddEventsBefore(programChange);
-
-                if (_system is not null &&
-                    BankSelectHacks.IsSystemXG(_system.Value) &&
-                    patch.IsGMGSDrum)
-                {
-                    // Best I can do is XG drums
-                    SpessaLog.Info(
-                        $"Adding XG Drum change on track {_trackNum}");
-                    desiredBankMSB =
-                        BankSelectHacks.GetDrumBank(_system.Value);
-                    desiredBankLSB = 0;
-                }
-
-                // Add bank change (MSB first)
-                var eTicks = e.Ticks;
-                AddBank(false, desiredBankMSB);
-                AddBank(true, desiredBankLSB);
-
-                if (
-                    patch.IsGMGSDrum &&
-                    (_system is null || 
-                     !BankSelectHacks.IsSystemXG(_system.Value)) &&
-                    midiChannel != Synthesizer.Synthesizer.DEFAULT_PERCUSSION)
-                {
-                    // Add gs drum change
-                    SpessaLog.Info(
-                        $"Adding GS Drum change on track {_trackNum}");
-                    var chanAddress =
-                        0x10 | MidiUtils.ChannelToSyx(midiChannel);
-                    AddEventsBefore(MidiUtils.GsMessage(
-                        eTicks, 40, chanAddress, 0x15, [1]));
-                }
-
-                void AddBank(bool isLSB, int v)
-                {
-                    var bankChange = MidiMessage.ControllerChange(
-                        eTicks,
-                        midiChannel,
-                        isLSB
-                            ? Midi.CC.BankSelectLSB
-                            : Midi.CC.BankSelect,
-                        v);
-                    AddEventsBefore(bankChange);
-                }
+                    $"Adding GS Drum change on track {_trackNum}");
+                AddEventsBefore(MidiUtils.Set(
+                    ticks, midiChannel, Midi.System.GS,
+                    ChannelMidiParameter.DrumMap(1)));
             }
             
-            // Order is effectively reversed since we're adding events before
-
-            // First: controllers
-            // Because FSMP does not like program changes after cc changes in embedded midis
-            // And since we use splice,
-            // Controllers get added first, then programs before them.
-            // Now add controllers
-            if (channelChange.Controllers is { } controllers)
+            if (_system is {} system &&
+                BankSelectHacks.IsSystemXG(system) &&
+                patch.IsGMGSDrum)
             {
-                foreach (var (cc, v) in controllers)
-                {
-                    if (v is not Parameter<int>.Replace(var value))
-                        continue;
-
-                    var ccChange = MidiMessage.ControllerChange(
-                        e.Ticks, midiChannel, cc, value);
-                    AddEventsBefore(ccChange);
-                }
-            }
-
-            // Apply relative tuning (`fineTune`)
-            if (channelChange.MidiParameters?.GetValueOrDefault(
-                    ChannelMidiParameter.Type.FineTune) is
-                Parameter<ChannelMidiParameter>.Replace(
-                { AsFloat: var ft }))
-            {
-                // Add the relative tuning to the absolute MIDI param
-                var newTune = channelStatus.FineTune + ft;
-                SetParamFineTune(newTune);
-            } 
-            else if (channelStatus.FineTune != 0)
-            {
-                // Make the relative tuning be set in MIDI parameters
-                var newTune =
-                    channelStatus.FineTune +
-                    channelStatus.CurrentFineTune;
-                channelChange.MidiParameters ??= [];
-                SetParamFineTune(newTune);
+                // Best I can do is XG drums
+                SpessaLog.Info(
+                    $"Adding XG Drum change on track {_trackNum}");
+                desiredBankMSB =
+                    BankSelectHacks.GetDrumBank(system);
+                desiredBankLSB = 0;
             }
             
-            // Add MIDI parameters
-            if (channelChange.MidiParameters is {} midiParams)
+            // Add bank change (MSB first)
+            AddBank(false, desiredBankMSB);
+            AddBank(true, desiredBankLSB);
+            
+            // Add program change
+            var programChange = MidiMessage.ProgramChange(
+                ticks, midiChannel, desiredProgram);
+            AddEventsBefore(programChange);
+            
+            void AddBank(bool isLSB, int v)
             {
-                foreach (var mpEntry in midiParams)
-                {
-                    if (mpEntry.Value.AsReplace() is not {Value: var value})
-                        continue;
-                    AddEventsBefore(MidiUtils.Set(
-                        e.Ticks, midiChannel, _system, value));
-                }
-            }
-
-            void SetParamFineTune(float newTune)
-            {
-                channelStatus.CurrentKeyShift = (int)(newTune / 100);
-                channelChange.Set(
-                    ChannelMidiParameter.FineTune(newTune % 100));
+                var bankChange = MidiMessage.ControllerChange(
+                    ticks,
+                    midiChannel,
+                    isLSB
+                        ? Midi.CC.BankSelectLSB
+                        : Midi.CC.BankSelect,
+                    v);
+                AddEventsBefore(bankChange);
             }
         }
+        
+        // Apply relative tuning (`fineTune`)
+        if (channelChange.MidiParameters?.GetValueOrDefault(
+                ChannelMidiParameter.Type.FineTune)?.AsReplace() is
+            ({ AsFloat: var ft }) _)
+        {
+            // Add the relative tuning to the absolute MIDI param
+            var newTune = channelStatus.FineTune + ft;
+            SetParamFineTune(newTune);
+        } 
+        else if (channelStatus.FineTune != 0)
+        {
+            // Make the relative tuning be set in MIDI parameters
+            var newTune =
+                channelStatus.FineTune +
+                channelStatus.CurrentFineTune;
+            channelChange.MidiParameters ??= [];
+            SetParamFineTune(newTune);
+        }
+        
+        // Add controllers
+        foreach (var (cc, v) in channelChange.Controllers ?? []) 
+        {
+            if (v.AsReplace() is not {Value: var value}) continue;
+            var ccChange = MidiMessage.ControllerChange(
+                ticks, midiChannel, cc, value);
+            AddEventsBefore(ccChange);
+        }
+            
+        // Add MIDI parameters
+        foreach (var mpEntry in channelChange.MidiParameters ?? [])
+        {
+            if (mpEntry.Value.AsReplace() is not {Value: var value})
+                continue;
+            AddEventsBefore(MidiUtils.Set(
+                ticks, midiChannel, _system, value));
+        }
 
-        // Transpose key (for zero it won't change anyway)
-        e.Data.AsSpan()[0] += (byte)(
-            channelStatus.KeyShift + channelStatus.CurrentKeyShift);
+        return;
+
+        void SetParamFineTune(float newTune)
+        {
+            channelStatus.CurrentKeyShift = (int)(newTune / 100);
+            channelChange.Set(
+                ChannelMidiParameter.FineTune(newTune % 100));
+        }
     }
 
     private void HandleReset(Midi.System system)
