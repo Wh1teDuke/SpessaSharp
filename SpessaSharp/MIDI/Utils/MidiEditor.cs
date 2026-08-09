@@ -462,6 +462,20 @@ public sealed class MidiEditor
         }
     }
 
+    /// <summary>
+    /// This function adds the events after the current one IN ORDER they are in the array,
+    /// So the first event in the array will end up as the first one after the current event.
+    /// </summary>
+    /// <param name="events"></param>
+    private void AddEventsAfter(params ReadOnlySpan<MidiMessage> events)
+    {
+        foreach (var item in events) 
+        {
+            _midi.Tracks[_trackNum].Add(item, _eventIndexes[_trackNum] + 1);
+            _eventIndexes[_trackNum]++;
+        }
+    }
+
     /// <summary>Deletes this event, or parameter.</summary>
     private void DeleteThisEvent()
     {
@@ -977,8 +991,80 @@ public sealed class MidiEditor
                 channelStatus.ClearedParams.MSB = true;
                 return;
             }
+            
+            case Midi.CC.ResetAllControllers:
+                HandleResetAllControllers(channel);
+                return;
 
             default: return;
+        }
+    }
+
+    /// <summary>
+    /// https://amei.or.jp/midistandardcommittee/Recommended_Practice/e/rp15.pdf<br/>
+    /// Reset controllers according to RP-15 Recommended Practice.<br/>
+    ///
+    /// From the PDF:
+    /// <code>
+    /// Upon receipt of Reset All Controllers message (Controller #121) the following actions are taken
+    ///  for the specified MIDI channel:
+    ///  Set Expression (#11) to 127.
+    ///  Set Modulation (#1) to 0.
+    ///  Set Pedals (#64, #65, #66, #67) to 0.
+    ///  Set Registered and Non-registered parameter number LSB and MSB
+    ///  (#98-#101) to null value (127)
+    ///  Set pitch bender to center (64/0)
+    ///  Reset channel pressure to 0
+    ///  Reset polyphonic pressure for all notes to 0.
+    ///  Do NOT reset Bank Select (#0/#32)
+    ///  Do NOT reset Volume (#7)
+    ///  Do NOT reset Pan (#10)
+    ///  Do NOT reset Program Change.
+    ///  Do NOT reset Effect Controllers (#91-#95)
+    ///  Do NOT reset Sound Controllers
+    ///  (#70-#79)
+    /// Do NOT reset other channel mode messages (#120-#127).
+    /// Do NOT reset registered or non-registered parameters.
+    /// Any other controllers that a device can respond to should be set to 0, or the behavior should
+    ///  be specified and/or documented. If the manufacturer does not want the Reset All Controllers
+    /// message to affect a particular controller, that is also permissible, as long as the behavior is
+    /// documented.
+    /// </code>
+    ///
+    ///  Note:<br/>
+    /// GS/XG only reset the specified CCs above.
+    /// </summary>
+    /// <param name="channel"></param>
+    private void HandleResetAllControllers(int channel)
+    {
+        var track = _midi.Tracks[_trackNum];
+        // Add after
+        var index = _eventIndexes[_trackNum] + 1;
+        var ticks = track.Events[index].Ticks;
+        var channelChange = _channelChanges.GetValueOrDefault(channel);
+        if (channelChange == null) return;
+
+        // Restore MIDI parameters
+        if (channelChange.MidiParameters?.GetValueOrDefault(
+                ChannelMidiParameter.Type.PitchWheel)?.AsReplace() is
+            { Value: var pw }) 
+        {
+            AddEventsAfter(MidiUtils.Set(ticks, channel, _system, pw));
+        }
+        if (channelChange.MidiParameters?.GetValueOrDefault(
+                ChannelMidiParameter.Type.Pressure)?.AsReplace() is
+            { Value: var pr }) 
+        {
+            AddEventsAfter(MidiUtils.Set(ticks, channel, _system, pr));
+        }
+
+        foreach (var cc in Reset.Rp15ResetCCNums)
+        {
+            var value = channelChange.Controllers?.GetValueOrDefault(cc);
+            if (value?.AsReplace() is { Value: var v }) 
+            {
+                AddEventsAfter(MidiMessage.ControllerChange(ticks, channel, cc, v));
+            }
         }
     }
 
