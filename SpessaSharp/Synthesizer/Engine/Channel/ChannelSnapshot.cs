@@ -117,9 +117,14 @@ public sealed class ChannelSnapshot(
         chan.LockedSystem = LockedSystem;
         
         // Restore MIDI parameters
+        // Unlock them first
+        chan.LockedParameters.SetAll(false);
+
+        // Then set
         foreach (var param in MidiParameters)
             chan.Set(param);
         
+        // Then re-lock
         chan.LockedParameters.SetAll(false);
         chan.LockedParameters.Or(LockedParameters);
         

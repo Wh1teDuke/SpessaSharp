@@ -237,6 +237,9 @@ public sealed class Synthesizer
     
     /// <summary> The synthesizer's delay processor. </summary>
     public readonly Effect.DelayProcessor DelayProcessor;
+        
+    /// <summary> Insertion is not used outside SC-88Pro+ MIDIs, this is an optimization. </summary>
+    public bool InsertionActive;
     
     /// <summary>
     /// A sysEx may set a "Part" (channel) to receive on a different channel number.
@@ -261,9 +264,6 @@ public sealed class Synthesizer
     /// </summary>
     internal readonly FrozenDictionary<int, Effect.InsertionProcessor> 
         InsertionEffects;
-    
-    /// <summary> Insertion is not used outside SC-88Pro+ MIDIs, this is an optimization. </summary>
-    internal bool InsertionActive;
     
     /// <summary> For F5 system exclusive </summary>
     internal int PortSelectChannelOffset;

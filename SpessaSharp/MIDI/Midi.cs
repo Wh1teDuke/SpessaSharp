@@ -979,23 +979,27 @@ public sealed class Midi
                     if (s == MidiMessage.Type.ControllerChange.ID())
                     {
                         // Cc change: loop points
-                        switch (e.Data[0])
+                        switch ((CC)e.Data[0])
                         {
                             // Touhou
-                            case (int)CC.BreathController:
+                            case CC.BreathController:
                             // RPG Maker
-                            case (int)CC.UndefinedCC111LSB:
+                            case CC.UndefinedCC111LSB:
                                 // For Touhou and RPG Maker, the data value must be 0.
                                 if (e.Data[1] == 0) loopStart = e.Ticks;
                                 break;
                             // EMIDI/XMI
-                            case (int)CC.UndefinedCC116LSB:
+                            case CC.UndefinedCC116LSB:
+                            // EMIDI global loop
+                            case CC.UndefinedCC118LSB:
                                 loopStart = e.Ticks;
                                 break;
                             // Touhou
-                            case (int)CC.FootController:
+                            case CC.FootController:
                             // EMIDI/XMI
-                            case (int)CC.UndefinedCC117LSB:
+                            case CC.UndefinedCC117LSB:
+                            // EMIDI global loop
+                            case CC.UndefinedCC119LSB:
                                 // For Touhou loops, the data value must be 0.
                                 if (loopEnd == null &&
                                     (e.Data[0] != 4 ||
@@ -1015,7 +1019,7 @@ public sealed class Midi
                                 }
                                 break;
 
-                            case (int)CC.BankSelect:
+                            case CC.BankSelect:
                                 // Check RMID
                                 if (IsDLSRMIDI && e.Data[1] != 0 && e.Data[1] != 127)
                                 {

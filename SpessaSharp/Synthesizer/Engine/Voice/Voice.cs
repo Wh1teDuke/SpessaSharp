@@ -275,6 +275,12 @@ public sealed class Voice
         OverrideReleaseVolEnv = 0;
         PortamentoDuration = 0;
         PortamentoFromKey = -1;
+        /* The tuning ratio is only recomputed when the rounded cents change,
+         * so a stale pair left by the previous note on this voice would be
+         * reused as-is whenever the new note rounds to the same cents.
+         */
+        TuningCents = 0;
+        TuningRatio = 1;
         // Important, these start at 1/4 way there!
         VibLFOPhase = 0.25f;
         ModLFOPhase = 0.25f;

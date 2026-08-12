@@ -186,6 +186,13 @@ public struct VolumeEnvelope
         State = VEState.Delay;
         _sampleTime = 0;
         OutputGain = 0;
+        /* Voices are recycled, so the envelope has to start from its initial
+         * values rather than from wherever the previous note left it.
+         */
+        AttenuationCb = CB_SILENCE;
+        _releaseStartCb = CB_SILENCE;
+        _releaseStartTimeSamples = 0;
+        _releaseDuration = 0;
         _canEndOnSilentSustain =
             voice.GetModulatedGenerator(Generator.Type.SustainVolEnv) >=
             PERCEIVED_CB_SILENCE;

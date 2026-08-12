@@ -323,6 +323,8 @@ internal static class Roland
                                     // Chorus send level to delay
                                     synth.ChorusProcessor.SendLevelToDelay =
                                         data;
+                                    synth.UpdateActiveEffects();
+                                    
                                     SpessaLog.GSInfo(
                                         "Chorus Send Level To Delay", data);
                                     synth.CallEvent(
@@ -520,7 +522,7 @@ internal static class Roland
                                     synth.InsertionProcessor.SendLevelToDelay =
                                         (data / 127f) *
                                         Synthesizer.EFX_SENDS_GAIN_CORRECTION;
-                                    synth.DelayActive = true;
+                                    synth.UpdateActiveEffects();
                                     SpessaLog.GSInfo("EFX Send Level to Delay", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfInsertion(
@@ -938,10 +940,10 @@ internal static class Roland
                                     ch.Set((
                                         ChannelMidiParameter.Type.EfxAssign, 
                                         efx));
-                                    synth.InsertionActive |= efx;
                                     SpessaLog.GSInfo(
                                         $"EFX assign for {channel}",
                                         efx ? "EFX" : "BYPASS");
+                                    synth.UpdateActiveEffects();
                                     break;
                                 }
                             }
