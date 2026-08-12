@@ -388,9 +388,11 @@ internal static class RenderVoice
         var gainLeft = PanTableLeft[index] * outputGain;
         var gainRight = PanTableRight[index] * outputGain;
 
-        if (chan.MidiParameters.EfxAssign) 
+        // Straight into the insertion EFX, but only if it is active
+        if (chan.MidiParameters.EfxAssign &&
+            systemParameters.EffectsEnabled &&
+            core.InsertionActive)
         {
-            // Straight into the insertion EFX!
             var left = core.InsertionInputL.AsSpan();
             var right = core.InsertionInputR.AsSpan();
             
