@@ -39,17 +39,11 @@ internal static class RenderVoice
     /// <param name="chan"></param>
     /// <param name="voice">The voice to render</param>
     /// <param name="timeNow">Current time in seconds</param>
-    /// <param name="outputL">The left output buffer</param>
-    /// <param name="outputR">The right output buffer</param>
-    /// <param name="startIndex"></param>
-    /// <param name="sampleCount"></param>
+    /// <param name="sampleCount">The only thing needed as it's 0-based</param>
     public static void Execute(
         MidiChannel chan,
         Voice.Voice voice,
         float timeNow,
-        Span<float> outputL,
-        Span<float> outputR,
-        int startIndex,
         int sampleCount)
     {
         var released = false;
@@ -388,35 +382,24 @@ internal static class RenderVoice
         // Get voice's gain levels for each channel
         var gainLeft = PanTableLeft[index] * outputGain;
         var gainRight = PanTableRight[index] * outputGain;
-
-        // Straight into the insertion EFX, but only if it is active
-        if (chan.MidiParameters.EfxAssign &&
-            systemParameters.EffectsEnabled &&
-            core.InsertionActive)
-        {
-            var left = core.InsertionInputL.AsSpan();
-            var right = core.InsertionInputR.AsSpan();
-            
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], gainLeft, left, left);
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], gainRight, right, right);
-            return;
-        }
         
-        // Mix down the audio data
+        // Mix down the audio data, always 0-based
+        var outputL = chan.OutputLeft.AsSpan(0, sampleCount);
+        var outputR = chan.OutputRight.AsSpan(0, sampleCount);
         TensorPrimitives.MultiplyAdd(
-            buffer[..sampleCount], 
-            gainLeft, 
-            outputL.Slice(startIndex, sampleCount),
-            outputL.Slice(startIndex, sampleCount));
+            buffer[..sampleCount], gainLeft, outputL, outputL);
         TensorPrimitives.MultiplyAdd(
-            buffer[..sampleCount], 
-            gainRight, 
-            outputR.Slice(startIndex, sampleCount), 
-            outputR.Slice(startIndex, sampleCount));
+            buffer[..sampleCount], gainRight, outputR, outputR);
 
-        if (!systemParameters.EffectsEnabled) return;
+        /*
+         * Do not send to effects if:
+         * - Either effects are disabled
+         * - Or insertion is active on this channel (Insertion takes over the voice data)
+         */
+        if ((chan.MidiParameters.EfxAssign &&
+             systemParameters.EffectsEnabled &&
+             core.InsertionActive) ||
+            !systemParameters.EffectsEnabled) return;
         
         // Disable reverb and chorus if necessary
         var reverbSend =

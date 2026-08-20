@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Frozen;
 using System.Diagnostics;
+using System.Numerics.Tensors;
 using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
@@ -670,18 +671,6 @@ public sealed class Synthesizer
         }
     }
     
-    public void Process(
-        ArraySegment<float> left,
-        ArraySegment<float> right,
-        int startIndex = 0,
-        int? sampleCount = null) =>
-        ProcessSplit(
-            [(left, right)],
-            left,
-            right,
-            startIndex,
-            sampleCount);
-    
     /// <summary>
     /// The main rendering pipeline, renders all voices and processes the effects
     /// </summary>
@@ -718,27 +707,26 @@ public sealed class Synthesizer
     ///              │              │          │                   │
     ///              │              │          │                   │
     ///              v              v          v                   v
-    ///    ┌─────────┴──────────┐ ┌─┴──────────┴───────────────────┴────┐
-    ///    │  Dry Output Pairs  │ │        Stereo Effects Output        │
-    ///    └────────────────────┘ └─────────────────────────────────────┘
+    ///    ┌─────────┴──────────────┴──────────┴───────────────────┴────┐
+    ///    │                        Stereo Output                       │
+    ///    └────────────────────────────────────────────────────────────┘
     /// ]]>
     /// </code>
+    /// Each channel's dry signal is also copied to the optional channelOutputs pairs for visualization only.
     /// The pipeline is quite similar to the one on SC-8850 manual page 78.
     /// All output arrays must be the same length, the method will crash otherwise.
     /// </remarks>
-    /// <param name="outputs">The stereo pairs for each MIDI channel's dry output, will be wrapped if less.</param>
-    /// <param name="effectsLeft">The left stereo effect output buffer.</param>
-    /// <param name="effectsRight">The right stereo effect output buffer.</param>
+    /// <param name="left">The left output channel.</param>
+    /// <param name="right">The right output channel.</param>
     /// <param name="startIndex">The index to start writing at into the output buffer.</param>
     /// <param name="samples">The amount of samples to write.</param>
-    public void ProcessSplit(
-        ReadOnlySpan<(
-            ArraySegment<float> Left,
-            ArraySegment<float> Right)> outputs,
-        Span<float> effectsLeft,
-        Span<float> effectsRight,
+    /// <param name="channelOutputs">Optional stereo channel outputs for visualization _only_. These shouldn't be added to the direct outputs.</param>
+    public void Process(
+        ArraySegment<float> left,
+        ArraySegment<float> right,
         int startIndex = 0,
-        int? samples = null) 
+        int? samples = null,
+        ArraySegment<ArraySegment<ArraySegment<float>>>? channelOutputs = null)
     {
         // Process event queue
         if (_eventQueue.Count > 0) 
@@ -770,7 +758,7 @@ public sealed class Synthesizer
 
         // Validate
         startIndex = Math.Max(startIndex, 0);
-        var sampleCount = samples ?? outputs[0].Left.Count - startIndex;
+        var sampleCount = samples ?? left.Count - startIndex;
 
         if (sampleCount > MaxBufferSize)
             throw SpessaException.Invalid(
@@ -787,9 +775,15 @@ public sealed class Synthesizer
             InsertionInputL.AsSpan().Clear();
             InsertionInputR.AsSpan().Clear();
         }
+
+        foreach (var c in MidiChannels)
+        {
+            c.OutputLeft.AsSpan().Clear();
+            c.OutputRight.AsSpan().Clear();
+        }
         
         // Process voices
-        var outputCount = outputs.Length;
+        var outputCount = channelOutputs?.Count ?? 0;
         var cTime = (float)CurrentTime;
         
         for (var i = Voices.Count - 1; i >= 0; i--) 
@@ -800,16 +794,50 @@ public sealed class Synthesizer
             Debug.Assert(v.Channel != null);
             
             var ch = v.Channel!;
+            ch.RenderVoice(v, cTime, sampleCount);
+        }
+        
+        // Mix channel data
+        for (var channel = 0; channel < MidiChannels.Count; channel++)
+        {
+            var chan = MidiChannels[channel];
+            var outputLeft = chan.OutputLeft.AsSpan();
+            var outputRight = chan.OutputRight.AsSpan();
+            var midiParams = chan.MidiParameters;
+            
+            // Mix visualization first
+            if (outputCount > 0)
+            {
+                var vOut = channelOutputs!.Value[channel % outputCount];
+                var outL = vOut[0].AsSpan(startIndex, sampleCount);
+                var outR = vOut[1].AsSpan(startIndex, sampleCount);
 
-            // Send the voice to appropriate output
-            var outputIndex = ch.Channel % outputCount;
-            ch.RenderVoice(
-                v,
-                cTime,
-                outputs[outputIndex].Left,
-                outputs[outputIndex].Right,
-                startIndex,
-                sampleCount);
+                TensorPrimitives.Add(outL, outputLeft[..sampleCount], outL);
+                TensorPrimitives.Add(outR, outputRight[..sampleCount], outR);
+            }
+            
+            // Straight into the insertion EFX, but only if it is active
+            if (midiParams.EfxAssign &&
+                SystemParameters.EffectsEnabled &&
+                InsertionActive)
+            {
+                var insertionL = InsertionInputL.AsSpan(0, sampleCount);
+                var insertionR = InsertionInputR.AsSpan(0, sampleCount);
+                // Index is 0-based here as it's internal
+                TensorPrimitives.Add
+                    (insertionL, outputLeft[..sampleCount], insertionL);
+                TensorPrimitives.Add(
+                    insertionR, outputRight[..sampleCount], insertionR);
+                continue;
+            }
+            
+            // Mix down normally
+            {
+                var outL = left.AsSpan(startIndex, sampleCount);
+                var outR = right.AsSpan(startIndex, sampleCount);
+                TensorPrimitives.Add(outL, outputLeft[..sampleCount], outL);
+                TensorPrimitives.Add(outR, outputRight[..sampleCount], outR);                
+            }
         }
         
         // Process effects
@@ -821,8 +849,8 @@ public sealed class Synthesizer
                 InsertionProcessor.Process(
                     InsertionInputL,
                     InsertionInputR,
-                    effectsLeft,
-                    effectsRight,
+                    left,
+                    right,
                     ReverbInput,
                     ChorusInput,
                     DelayInput,
@@ -833,8 +861,8 @@ public sealed class Synthesizer
             // Chorus first, it feeds to reverb and delay
             ChorusProcessor.Process(
                 ChorusInput,
-                effectsLeft,
-                effectsRight,
+                left,
+                right,
                 ReverbInput,
                 DelayInput,
                 startIndex,
@@ -847,8 +875,8 @@ public sealed class Synthesizer
                 // Process delay
                 DelayProcessor.Process(
                     DelayInput,
-                    effectsLeft,
-                    effectsRight,
+                    left,
+                    right,
                     ReverbInput,
                     startIndex,
                     sampleCount);
@@ -857,8 +885,8 @@ public sealed class Synthesizer
             // Finally process the reverb processor (it goes directly into the output buffer)
             ReverbProcessor.Process(
                 ReverbInput,
-                effectsLeft,
-                effectsRight,
+                left,
+                right,
                 startIndex,
                 sampleCount);
         }

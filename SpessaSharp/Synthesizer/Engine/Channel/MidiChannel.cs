@@ -35,7 +35,7 @@ public sealed class MidiChannel: ISf2Channel
         /// Refer to [SC-8850 Owner's Manual](https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf), page 238 for more description.
         /// Note that <b>SAME NOTE NUMBER KEY ON ASSIGN</b> in XG is also recognized as assign mode.
         /// </summary>
-        FullMulti
+        FullMulti,
     }
     
     /// <summary>
@@ -123,6 +123,18 @@ public sealed class MidiChannel: ISf2Channel
     
     /// <summary> Core synthesis engine. </summary>
     internal readonly Synthesizer SynthCore;
+
+    /// <summary>
+    ///  Current left PCM output of this channel. Will be routed to either EFX or EQ if needed, and extracted for visualization.
+    /// Always 0-based index.
+    /// </summary>
+    internal readonly float[] OutputLeft;
+
+    /// <summary>
+    /// Current right PCM output of this channel. Will be routed to either EFX or EQ if needed, and extracted for visualization.
+    /// Always 0-based index.
+    /// </summary>
+    internal readonly float[] OutputRight;
     
     /*
     ==========
@@ -269,6 +281,8 @@ public sealed class MidiChannel: ISf2Channel
         SynthCore = synthCore;
         Preset = preset;
         Channel = channelNumber;
+        OutputLeft = new float[synthCore.MaxBufferSize];
+        OutputRight = new float[synthCore.MaxBufferSize];
         MidiParamArray.RxChannel = channelNumber;
         DynamicModulators = new DynamicModulatorManager(channelNumber);
         // Init
@@ -440,18 +454,10 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary> Renders a voice to the stereo output buffer </summary>
     /// <param name="voice">The voice to render</param>
     /// <param name="timeNow">Current time in seconds</param>
-    /// <param name="outputL">The left output buffer</param>
-    /// <param name="outputR">The right output buffer</param>
-    /// <param name="startIndex"></param>
-    /// <param name="sampleCount"></param>
+    /// <param name="sampleCount">The only thing needed as it's 0-based</param>
     internal void RenderVoice(
-        Voice.Voice voice,
-        float timeNow,
-        Span<float> outputL,
-        Span<float> outputR,
-        int startIndex,
-        int sampleCount) => Engine.Channel.RenderVoice.Execute(
-        this, voice, timeNow, outputL, outputR, startIndex, sampleCount);
+        Voice.Voice voice, float timeNow, int sampleCount) =>
+        Engine.Channel.RenderVoice.Execute(this, voice, timeNow, sampleCount);
 
     /// <summary>Sets the octave tuning for a given channel.</summary>
     /// <remarks>Cent tunings are relative.</remarks>

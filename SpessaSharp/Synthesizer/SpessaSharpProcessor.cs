@@ -57,31 +57,14 @@ public sealed class SpessaSharpProcessor
     /// <param name="right">The right output channel.</param>
     /// <param name="startIndex">Start offset of the passed arrays, rendering starts at this index, defaults to 0.</param>
     /// <param name="sampleCount">The length of the rendered buffer, defaults to float32array length - startOffset.</param>
+    /// <param name="channelOutputs">Optional stereo channel outputs for visualization _only_. These shouldn't be added to the direct outputs.</param>
     public void Process(
         ArraySegment<float> left, 
         ArraySegment<float> right, 
         int? startIndex = 0, 
-        int? sampleCount = null)
-        => _synthCore.Process(left, right, startIndex ?? 0, sampleCount);
-
-    /// <summary>
-    /// Renders float32 audio data to stereo outputs; buffer size must be equal or smaller than <b>maxBufferSize</b>. All float arrays must have the same length.
-    /// </summary>
-    /// <param name="outputs">Any number stereo pairs (L, R) to render channels separately into.</param>
-    /// <param name="effectsLeft">The left stereo effect output buffer.</param>
-    /// <param name="effectsRight">The right stereo effect output buffer.</param>
-    /// <param name="startIndex">Start offset of the passed arrays, rendering starts at this index, defaults to 0.</param>
-    /// <param name="samples">The length of the rendered buffer, defaults to float32array length - startOffset.</param>
-    public void ProcessSplit(
-        ReadOnlySpan<(
-            ArraySegment<float> Left,
-            ArraySegment<float> Right)> outputs,
-        Span<float> effectsLeft,
-        Span<float> effectsRight,
-        int? startIndex,
-        int? samples = null) 
-        => _synthCore.ProcessSplit(
-            outputs, effectsLeft, effectsRight, startIndex ?? 0, samples);
+        int? sampleCount = null,
+        ArraySegment<ArraySegment<ArraySegment<float>>>? channelOutputs = null)
+        => _synthCore.Process(left, right, startIndex ?? 0, sampleCount, channelOutputs);
     
     public void SendAddress(
         int a1, int a2, int a3, ReadOnlySpan<byte> data, int offset = 0) 
