@@ -471,7 +471,7 @@ public static class MidiEditor
                                 var chanAddress =
                                     0x10 | MidiUtils.ChannelToSyx(midiChannel);
                                 AddEventBefore(MidiUtils.GsMessage(
-                                    eTicks, 40, chanAddress, 0x15, [1]));
+                                    eTicks, 0x40, chanAddress, 0x15, [1]));
                             }
 
                             void AddBank(bool isLSB, int v)
