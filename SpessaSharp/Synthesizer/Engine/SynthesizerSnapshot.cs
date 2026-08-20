@@ -9,7 +9,6 @@ namespace SpessaSharp.Synthesizer.Engine;
 /// <summary>Represents a snapshot of the synthesizer's state.</summary>
 public sealed class SynthesizerSnapshot(
     ChannelSnapshot[] midiChannels,
-    KeyModifier?[]?[] keyMappings,
     GlobalMidiParameter[] midiParameters,
     BitArray lockedParameters,
     GlobalSystemParameter[] systemParameters,
@@ -21,9 +20,6 @@ public sealed class SynthesizerSnapshot(
 {
     /// <summary>The individual channel snapshots.</summary>
     public readonly ChannelSnapshot[] MidiChannels = midiChannels;
-    
-    /// <summary>Key modifiers.</summary>
-    public readonly KeyModifier?[]?[] KeyMappings = keyMappings;
     
     public readonly GlobalMidiParameter[] MidiParameters = midiParameters;
     public readonly BitArray LockedParameters = lockedParameters;
@@ -44,7 +40,6 @@ public sealed class SynthesizerSnapshot(
     public static SynthesizerSnapshot Get(Synthesizer synth) =>
         new(
             [.. synth.MidiChannels.Select(c => c.GetSnapshot())],
-            synth.KeyModifierManager.GetMappings(),
             [.. synth.MidiParameters],
             new BitArray(synth.LockedParameters),
             [.. synth.SystemParameters],
@@ -59,9 +54,6 @@ public sealed class SynthesizerSnapshot(
     /// <param name="synth">The processor to apply the snapshot to.</param>
     public void Apply(Synthesizer synth) 
     {
-        // Restore key modifiers
-        synth.KeyModifierManager.SetMappings(KeyMappings);
-
         // Add channels if more needed
         while (synth.MidiChannels.Count < MidiChannels.Length) 
             synth.CreateMIDIChannel(true);

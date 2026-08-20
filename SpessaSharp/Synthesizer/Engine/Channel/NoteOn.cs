@@ -61,15 +61,9 @@ internal static class NoteOn
              synth.SystemParameters.MonophonicRetrigger) ||
             chan.MidiParamArray.AssignMode == MidiChannel.Assign.Single)
             chan.KillNote(midiNote);
-
-        // Key velocity override
-        if (synth.KeyModifierManager.GetVelocity(
-            chan.Channel, midiNote) is {} keyVel)
-            realVelocity = keyVel;
         
         // Gain
-        var voiceGain = synth.KeyModifierManager.GetGain(
-            chan.Channel, midiNote);
+        var voiceGain = 1f;
 
         // Portamento
         var previousNote = chan.LastPortamentoNote;

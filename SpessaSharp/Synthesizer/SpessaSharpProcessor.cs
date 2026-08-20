@@ -205,10 +205,6 @@ public sealed class SpessaSharpProcessor
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public SoundBankManager SoundBankManager => _synthCore.SoundBankManager;
     
-    /// <summary>Handles the custom key overrides: velocity and preset</summary>
-    public KeyModifier.Manager KeyModifierManager =>
-        _synthCore.KeyModifierManager;
-    
     /// <summary>A handler for missing presets during program change. By default, it warns to console.</summary>
     /// <param name="patch">The MIDI patch that was requested.</param>
     /// <param name="system">The MIDI System for the request.</param>

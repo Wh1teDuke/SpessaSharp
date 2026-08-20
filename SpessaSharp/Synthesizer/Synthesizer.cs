@@ -145,9 +145,6 @@ public sealed class Synthesizer
     
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public readonly SoundBankManager SoundBankManager;
-    
-    /// <summary>Handles the custom key overrides: velocity and preset </summary>
-    public readonly KeyModifier.Manager KeyModifierManager = new();
 
     public readonly int SampleRate;
 
@@ -575,17 +572,7 @@ public sealed class Synthesizer
     {
         var channelObject = MidiChannels[channel];
 
-        // Override patch
-        var overridePatch = KeyModifierManager.HasOverridePatch(
-            channel, midiNote);
-
         var preset = channelObject.Preset;
-        if (overridePatch) 
-        {
-            var patch = KeyModifierManager.GetPatch(channel, midiNote);
-            preset = SoundBankManager.GetPreset(
-                patch, MidiParameters.System);
-        }
 
         // Warning is handled in program change
         return preset == null
