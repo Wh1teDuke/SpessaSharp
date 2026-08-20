@@ -14,6 +14,7 @@
         <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
         <ApplicationIcon>assets/spessasharp_logo_rounded.ico</ApplicationIcon>
         <RootNamespace>SSTool</RootNamespace>
+        <AssemblyName>SSTool</AssemblyName>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
