@@ -153,8 +153,8 @@ internal static class RenderVoice
                     (int)(lowpassExcursion + vibLfoValue * vibFilterDepth);
 
                 // Amplitude depth
-                voiceGain *= 1 - ((vibLfoValue + 1) / 2) *
-                    (vibAmplitudeDepth / 1_000f);
+                // Like SCVA: double gain at peak, 0 at lowest (times depth)
+                voiceGain *= 1 + vibLfoValue * (vibAmplitudeDepth / 1000f);
             }
         }
         
@@ -195,8 +195,8 @@ internal static class RenderVoice
                     (int)(lowpassExcursion + modLfoValue * modFilterDepth);
 
                 // Amplitude depth
-                voiceGain *=
-                    1 - ((modLfoValue + 1) / 2) * (modAmplitudeDepth / 1_000f);
+                // Like SCVA: double gain at peak, 0 at lowest (times depth)
+                voiceGain *= 1 + modLfoValue * (modAmplitudeDepth / 1000f);
             }
         }
         
