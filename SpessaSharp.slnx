@@ -1,23 +1,23 @@
 <Solution>
+  <Project Path="SpessaSharp.Tool\SpessaSharp.Tool.csproj" />
   <Project Path="SpessaSharp/SpessaSharp.csproj" />
-  <Project Path="SSTool/SSTool.csproj" />
 
-  <Folder Name="/Root/Examples/">
-    <File Path="Examples\AnalyzeMidiFile.cs" />
-    <File Path="Examples\assets\Fleetwood Mac - Little Lies.mid" />
-    <File Path="Examples\assets\SuperSmallFont.md" />
-    <File Path="Examples\assets\SuperSmallFont.sf2" />
-    <File Path="Examples\DlsToSf2.cs" />
-    <File Path="Examples\ExtractFirstSampleAsWav.cs" />
-    <File Path="Examples\GenerateDrumPattern.cs" />
-    <File Path="Examples\MidiToWavNode.cs" />
-    <File Path="Examples\OwnAudioPlayer.cs" />
-    <File Path="Examples\PrintBankInfo.cs" />
-    <File Path="Examples\RealtimeMidiSynth.cs" />
-    <File Path="Examples\RMidiConverter.cs" />
-    <File Path="Examples\RMidWriter.cs" />
-    <File Path="Examples\Sf2ToDls.cs" />
-    <File Path="Examples\SfmlPlayer.cs" />
+  <Folder Name="/Root/SpessaSharp.Examples/">
+    <File Path="SpessaSharp.Examples\AnalyzeMidiFile.cs" />
+    <File Path="SpessaSharp.Examples\assets\Fleetwood Mac - Little Lies.mid" />
+    <File Path="SpessaSharp.Examples\assets\SuperSmallFont.md" />
+    <File Path="SpessaSharp.Examples\assets\SuperSmallFont.sf2" />
+    <File Path="SpessaSharp.Examples\DlsToSf2.cs" />
+    <File Path="SpessaSharp.Examples\ExtractFirstSampleAsWav.cs" />
+    <File Path="SpessaSharp.Examples\GenerateDrumPattern.cs" />
+    <File Path="SpessaSharp.Examples\MidiToWavNode.cs" />
+    <File Path="SpessaSharp.Examples\OwnAudioPlayer.cs" />
+    <File Path="SpessaSharp.Examples\PrintBankInfo.cs" />
+    <File Path="SpessaSharp.Examples\RealtimeMidiSynth.cs" />
+    <File Path="SpessaSharp.Examples\RMidiConverter.cs" />
+    <File Path="SpessaSharp.Examples\RMidWriter.cs" />
+    <File Path="SpessaSharp.Examples\Sf2ToDls.cs" />
+    <File Path="SpessaSharp.Examples\SfmlPlayer.cs" />
   </Folder>
   <Folder Name="/Root/">
     <File Path="clean.sh" />
@@ -37,33 +37,33 @@
     <File Path=".github\ISSUE_TEMPLATE\feature_request.yml" />
   </Folder>
   <!-- Tests -->
-  <Folder Name="/Root/Tests/">
-    <File Path="Tests\midi\MidiTestMaker.cs" />
-    <File Path="Tests\test.sh" />
+  <Folder Name="/Root/SpessaSharp.Tests/">
+    <File Path="SpessaSharp.Tests\midi\MidiTestMaker.cs" />
+    <File Path="SpessaSharp.Tests\test.sh" />
   </Folder>
-  <Folder Name="/Root/Tests/MidiEditor/">
-    <File Path="Tests\midi\midi_editor\MidiEditorMidiParams.cs" />
+  <Folder Name="/Root/SpessaSharp.Tests/MidiEditor/">
+    <File Path="SpessaSharp.Tests\midi\midi_editor\MidiEditorMidiParams.cs" />
   </Folder>
-  <Folder Name="/Root/Tests/cc/">
-    <File Path="Tests\midi\cc\SoftPedal.cs" />
-    <File Path="Tests\midi\cc\RPNFineTuning.cs" />
-    <File Path="Tests\midi\cc\RealtimeRPNTuning.cs" />
+  <Folder Name="/Root/SpessaSharp.Tests/cc/">
+    <File Path="SpessaSharp.Tests\midi\cc\SoftPedal.cs" />
+    <File Path="SpessaSharp.Tests\midi\cc\RPNFineTuning.cs" />
+    <File Path="SpessaSharp.Tests\midi\cc\RealtimeRPNTuning.cs" />
   </Folder>
-  <Folder Name="/Root/Tests/other/">
-    <File Path="Tests\midi\other\AssignMode.cs" />
-    <File Path="Tests\midi\other\DrumSpam.cs" />
-    <File Path="Tests\midi\other\MonoMode.cs" />
-    <File Path="Tests\midi\other\OverlappingNotesTest.cs" />
-    <File Path="Tests\midi\other\VelocitySense.cs" />
-    <File Path="Tests\midi\other\VelocitySenseBug.cs" />
+  <Folder Name="/Root/SpessaSharp.Tests/other/">
+    <File Path="SpessaSharp.Tests\midi\other\AssignMode.cs" />
+    <File Path="SpessaSharp.Tests\midi\other\DrumSpam.cs" />
+    <File Path="SpessaSharp.Tests\midi\other\MonoMode.cs" />
+    <File Path="SpessaSharp.Tests\midi\other\OverlappingNotesTest.cs" />
+    <File Path="SpessaSharp.Tests\midi\other\VelocitySense.cs" />
+    <File Path="SpessaSharp.Tests\midi\other\VelocitySenseBug.cs" />
   </Folder>
-  <Folder Name="/Root/Tests/gs/">
-    <File Path="Tests\midi\gs\Filter.cs" />
-    <File Path="Tests\midi\gs\PatchCommonParameters.cs" />
-    <File Path="Tests\midi\gs\ControllerMatrix.cs" />
+  <Folder Name="/Root/SpessaSharp.Tests/gs/">
+    <File Path="SpessaSharp.Tests\midi\gs\Filter.cs" />
+    <File Path="SpessaSharp.Tests\midi\gs\PatchCommonParameters.cs" />
+    <File Path="SpessaSharp.Tests\midi\gs\ControllerMatrix.cs" />
   </Folder>
-  <Folder Name="/Root/Tests/efx/">
-    <File Path="Tests\midi\efx\Tremolo.cs" />
-    <File Path="Tests\midi\efx\StereoEQ.cs" />
+  <Folder Name="/Root/SpessaSharp.Tests/efx/">
+    <File Path="SpessaSharp.Tests\midi\efx\Tremolo.cs" />
+    <File Path="SpessaSharp.Tests\midi\efx\StereoEQ.cs" />
   </Folder>
 </Solution>
