@@ -104,13 +104,13 @@ internal static class Yamaha
             if (a1 == 0x08/* A2 is the channel number*/) 
             {
                 var channel = a2 + channelOffset;
-                if (channel >= synth.MidiChannels.Count)
+                if (!Util.InRange(synth.MidiChannels, channel))
                 {
                     // Invalid channel
                     SpessaLog.XGFail(
-                        "Part Setup",
+                        $"Part Setup for {channel}",
                         syx,
-                        $"Invalid part number: {channel}");
+                        $"Invalid part number.");
                     return;
                 }
 

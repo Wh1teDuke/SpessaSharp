@@ -544,10 +544,11 @@ internal static class Roland
 
                             if (!Util.InRange(synth.MidiChannels, channel))
                             {
+                                // Testcase: Sarah Geronimo - Maybe This Time
                                 SpessaLog.GSFail(
                                     $"Patch Parameter for {channel}", 
                                     syx,
-                                    "Invalid channel number");
+                                    "Invalid part number.");
                                 return;
                             }
                                 
