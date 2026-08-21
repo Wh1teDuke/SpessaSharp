@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
     paths:
       - 'SpessaSharp/**'
-      - 'SSTool/**'
+      - 'SpessaSharp.Tool/**'
 
   workflow_dispatch:
 
@@ -37,7 +37,7 @@ jobs:
         run: chmod +x ${{ matrix.script }}
 
       - name: Run Build Script
-        working-directory: ./SSTool
+        working-directory: ./SpessaSharp.Tool
         # Use the absolute workspace path so it always finds the script
         run: |
           if [ "${{ runner.os }}" == "Linux" ]; then

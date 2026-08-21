@@ -4,6 +4,6 @@
 rm -rf SpessaSharp/bin
 rm -rf SpessaSharp/obj
 
-# SSTool
-rm -rf SSTool/bin
-rm -rf SSTool/obj
+# SpessaSharp.Tool
+rm -rf SpessaSharp.Tool/bin
+rm -rf SpessaSharp.Tool/obj
