@@ -22,7 +22,7 @@ public static class ExtendedParameters
             public const int DrumPan        = 0x1c;
             public const int DrumReverb     = 0x1d;
             public const int DrumChorus     = 0x1e;
-            public const int DrumDelay      = 0x1f;
+            public const int DrumVariation  = 0x1f;
             
             public const int awe32          = 0x7f;
             public const int SF2            = 120;

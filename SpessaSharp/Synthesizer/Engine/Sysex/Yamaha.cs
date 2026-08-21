@@ -320,12 +320,12 @@ internal static class Yamaha
                     case 0x00: 
                     {
                         // Drum pitch coarse
-                        var pitch = (data - 64) * 100;
+                        var pitch = (data - 64);
                         foreach (var ch in synth.MidiChannels) 
                         {
                             if (!ch.DrumChannel) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { Pitch = pitch };
+                            param = param with { PitchCoarse = pitch };
                         }
                         SpessaLog.XGInfo(
                             $"Drum Pitch for key {drumKey}",
@@ -342,11 +342,11 @@ internal static class Yamaha
                         {
                             if (!ch.DrumChannel) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            var newPitch = param.Pitch + pitch;
-                            param = param with { Pitch = newPitch };
+                            var newPitch = param.PitchFine + pitch;
+                            param = param with { PitchFine = newPitch };
                             SpessaLog.XGInfo(
-                                $"Drum Pitch for key {drumKey}",
-                                ch.DrumParams[drumKey].Pitch,
+                                $"Drum Pitch Fine for key {drumKey}",
+                                ch.DrumParams[drumKey].PitchFine,
                             "semitones");
                         }
                         break;
@@ -358,7 +358,7 @@ internal static class Yamaha
                         {
                             if (!ch.DrumChannel) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { Gain = data / 120f };
+                            param = param with { Level = data };
                         }
                         SpessaLog.XGInfo($"Drum Level for key {drumKey}", data);
                         break;
@@ -369,7 +369,7 @@ internal static class Yamaha
                         {
                             if (!ch.DrumChannel) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { ExclusiveClass = data };
+                            param = param with { AssignGroup = data };
                         }
                         SpessaLog.XGInfo($"Drum Alternate Group for key {drumKey}", data);
                         break;
@@ -391,7 +391,7 @@ internal static class Yamaha
                         {
                             if (!ch.DrumChannel) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { ReverbGain = data / 127f };
+                            param = param with { ReverbSend = data };
                         }
                         SpessaLog.XGInfo($"Drum Reverb for key {drumKey}", data);
                         break;
@@ -402,9 +402,20 @@ internal static class Yamaha
                         {
                             if (!ch.DrumChannel) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { ChorusGain = data / 127f };
+                            param = param with { ChorusSend = data };
                         }
                         SpessaLog.XGInfo($"Drum Chorus for key {drumKey}", data);
+                        break;
+                    
+                    case 0x07: 
+                        // Drum Variation
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (!ch.DrumChannel) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { VariationSend = data };
+                        }
+                        SpessaLog.XGInfo($"Drum Variation for key {drumKey}", data);
                         break;
 
                     case 0x09: 

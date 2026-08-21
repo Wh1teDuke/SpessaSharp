@@ -134,43 +134,45 @@ internal static class SetTime
 
                 case MidiMessage.Type.SystemExclusive:
                 {
-                    var analyzed = MidiUtils.AnalyzeSysEx(ev.Data);
                     // Sysex may change controllers
                     // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
-                    switch (analyzed.MType) 
+                    foreach (var analyzed in MidiUtils.AnalyzeSysEx(ev.Data))
                     {
-                        default:
-                            seq.ProcessEvent(ev, trackIndex);
-                            break;
+                        switch (analyzed.MType) 
+                        {
+                            default:
+                                seq.ProcessEvent(ev, trackIndex);
+                                break;
 
-                        /*
-                        Program change cannot be skipped.
-                        Some MIDIs edit drums via sysEx and skipping program changes causes them to be sent after, resetting the params.
-                        Testcase: (GS88Pro)Th19_1S(KR.Palto47)
-                         */
-                        case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
-                            when analyzed.AsAnalyzedParameter is
+                            /*
+                            Program change cannot be skipped.
+                            Some MIDIs edit drums via sysEx and skipping program changes causes them to be sent after, resetting the params.
+                            Testcase: (GS88Pro)Th19_1S(KR.Palto47)
+                             */
+                            case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                                when analyzed.AsAnalyzedParameter is
                                 { AsControllerChange: var
                                     (controller, value, chan) }:
-                        {
-                            // Channel number may be above 15
-                            if (chan >= channelsToSave) break;
-                            
-                            // Empty tracks cannot controller change
-                            if (seq.Midi.IsMultiPort &&
-                                track.Channels.Count == 0)
-                                break;
-
-                            if (controller == Midi.CC.ResetAllControllers) 
                             {
-                                ResetAllControllers(chan);
+                                // Channel number may be above 15
+                                if (chan >= channelsToSave) break;
+                            
+                                // Empty tracks cannot controller change
+                                if (seq.Midi.IsMultiPort &&
+                                    track.Channels.Count == 0)
+                                    break;
+
+                                if (controller == Midi.CC.ResetAllControllers) 
+                                {
+                                    ResetAllControllers(chan);
+                                    break;
+                                }
+                                if (NonSkippableCCs.Contains(controller))
+                                    seq.SendCC(chan, controller, value);
+                                else channels[chan]?.Controllers.AsSpan()
+                                    [(int)controller] = (short)(value << 7);
                                 break;
                             }
-                            if (NonSkippableCCs.Contains(controller))
-                                seq.SendCC(chan, controller, value);
-                            else channels[chan]?.Controllers.AsSpan()
-                                [(int)controller] = (short)(value << 7);
-                            break;
                         }
                     }
                     break;

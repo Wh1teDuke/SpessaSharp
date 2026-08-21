@@ -13,7 +13,8 @@ public static class MidiUtils
     {
         public enum Type : byte
         {
-            Other, ControllerChange, ChannelMidiParameter, DrumSetup,
+            Other, ControllerChange, ChannelMidiParameter, 
+            DrumSetup,
         }
 
         [StructLayout(LayoutKind.Explicit)]
@@ -23,6 +24,8 @@ public static class MidiUtils
             
             /// <summary>Channel number may be above 15</summary>
             [FieldOffset(0)] public (ChannelMidiParameter Param, int Channel) _channelMidiParam;
+
+            [FieldOffset(0)] public (int Key, DrumParameter.Entry Parameter) _drumSetup;
         }
         
         public Type MType { get; private init; }
@@ -33,10 +36,14 @@ public static class MidiUtils
         public (ChannelMidiParameter Param, int Channel)? AsChannelMidiParameter =>
             MType == Type.ChannelMidiParameter ? Data._channelMidiParam : null;
         
+        public (int Key, DrumParameter.Entry Parameter)? AsDrumSetup =>
+            MType == Type.DrumSetup ? Data._drumSetup : null;
+        
         public static AnalyzedParameter Of(Type type)
         {
             ReadOnlySpan<Type> notAllowed = [
-                Type.ControllerChange, Type.ChannelMidiParameter];
+                Type.ControllerChange, Type.ChannelMidiParameter,
+                Type.DrumSetup];
             return notAllowed.Contains(type) 
                 ? throw new ArgumentException("Invalid argument: " + type) 
                 : new AnalyzedParameter { MType = type };
@@ -60,6 +67,15 @@ public static class MidiUtils
                     { _channelMidiParam = (parameter, channel) },
             };
         
+        public static AnalyzedParameter Of(
+            int key, DrumParameter.Entry param) =>
+            new()
+            {
+                MType = Type.DrumSetup, 
+                Data = new InternalData
+                    { _drumSetup = (key, param) },
+            };
+        
         public static implicit operator AnalyzedParameter(Type type) =>
             Of(type);
     }
@@ -73,7 +89,8 @@ public static class MidiUtils
             InsertionParam,
             DrumsOn, ProgramChange,
             DisplayData,
-            GlobalMidiParameter,
+            GlobalMidiParameter, 
+            UserDrumSetup,
         }
 
         [StructLayout(LayoutKind.Explicit)]
@@ -83,6 +100,9 @@ public static class MidiUtils
             [FieldOffset(0)] public (int Channel, bool IsDrum) _drumsOn;
             [FieldOffset(0)] public (int Channel, int Value) _programChange;
             [FieldOffset(0)] public GlobalMidiParameter _globalMidiParam;
+            [FieldOffset(0)] public (int MidiNote,
+                // 0-based
+                int DrumSet, UserDrumSetParameter.Entry Parameter) _userDrumSetup;
         }
 
         public Type MType { get; private init; }
@@ -96,12 +116,14 @@ public static class MidiUtils
             MType == Type.ProgramChange ? Data._programChange : null;
         public GlobalMidiParameter? AsGlobalMidiParameter =>
             MType == Type.GlobalMidiParameter ? Data._globalMidiParam : null;
+        public (int MidiNote, int DrumSet, UserDrumSetParameter.Entry Parameter)? AsUserDrumSetup =>
+            MType == Type.UserDrumSetup ? Data._userDrumSetup : null;
 
         public static AnalyzedMessage Of(Type type)
         {
             ReadOnlySpan<Type> notAllowed = [
                 Type.DrumsOn, Type.ProgramChange, Type.AnalyzedParameter,
-                Type.GlobalMidiParameter,];
+                Type.GlobalMidiParameter, Type.UserDrumSetup,];
             return notAllowed.Contains(type) 
                 ? throw new ArgumentException("Invalid argument: " + type) 
                 : new AnalyzedMessage { MType = type };
@@ -137,6 +159,24 @@ public static class MidiUtils
                 MType = Type.GlobalMidiParameter, 
                 Data = new InternalData { _globalMidiParam = parameter },
             };
+                
+        public static AnalyzedMessage Of(
+            int midiNote, int drumSet, UserDrumSetParameter.Entry param) =>
+            new()
+            {
+                MType = Type.UserDrumSetup, 
+                Data = new InternalData
+                    { _userDrumSetup = (midiNote, drumSet, param) },
+            };
+
+        public static AnalyzedMessage Of(
+            int midiNote, int drumSet, DrumParameter.Entry param) =>
+            new()
+            {
+                MType = Type.UserDrumSetup, 
+                Data = new InternalData
+                    { _userDrumSetup = (midiNote, drumSet, param) },
+            };
 
         public static implicit operator AnalyzedMessage(
             Type type) => Of(type);
@@ -146,38 +186,6 @@ public static class MidiUtils
         
         public static implicit operator AnalyzedMessage(
             AnalyzedParameter.Type type) => Of(AnalyzedParameter.Of(type));
-    }
-
-    /// <summary>
-    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
-    /// </summary>
-    /// <param name="e">The message to analyze</param>
-    /// <returns></returns>
-    public static AnalyzedMessage AnalyzeSysEx(MidiMessage e) =>
-        AnalyzeSysEx(e.Data);
-
-    /// <summary>
-    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
-    /// </summary>
-    /// <param name="syx">The System Exclusive message, WITHOUT the first 0xF0 System Exclusive byte!</param>
-    /// <returns></returns>
-    public static AnalyzedMessage AnalyzeSysEx(ReadOnlySpan<byte> syx)
-    {
-        // At least Manufacturer ID, Device ID and XG/GS model ID
-        if (syx.Length < 3) return 
-            AnalyzedParameter.Type.Other;
-
-        return syx[0] switch
-        {
-            // Non realtime GM
-            // Realtime GM
-            0x7e or 0x7f => AnalyzeGM(syx),
-            // Roland
-            0x41 => AnalyzeGS(syx),
-            // Yamaha
-            0x43 => AnalyzeXG(syx),
-            _ => AnalyzedParameter.Type.Other
-        };
     }
     
     /// <summary>
@@ -264,13 +272,24 @@ public static class MidiUtils
             }
 
             case ExtendedParameters.NRPN.MSB.DrumPitch:
+                return DrumSetup2(DrumParameter.Type.PitchCoarse, value - 64);
             case ExtendedParameters.NRPN.MSB.DrumPitchFine:
+                return DrumSetup1(DrumParameter.Type.PitchFine, value - 64);
             case ExtendedParameters.NRPN.MSB.DrumLevel:
+                return DrumSetup1(DrumParameter.Type.Level, value);
             case ExtendedParameters.NRPN.MSB.DrumPan:
+                return DrumSetup1(DrumParameter.Type.Pan, value);
             case ExtendedParameters.NRPN.MSB.DrumReverb:
+                return DrumSetup1(DrumParameter.Type.ReverbSend, value);
             case ExtendedParameters.NRPN.MSB.DrumChorus:
-            case ExtendedParameters.NRPN.MSB.DrumDelay:
-                return AnalyzedParameter.Type.DrumSetup;
+                return DrumSetup1(DrumParameter.Type.ChorusSend, value);
+            case ExtendedParameters.NRPN.MSB.DrumVariation:
+                return DrumSetup1(DrumParameter.Type.VariationSend, value);
+            
+            AnalyzedParameter DrumSetup1(DrumParameter.Type type, int val) =>
+                AnalyzedParameter.Of(lsb, (type, val));
+            AnalyzedParameter DrumSetup2(DrumParameter.Type type, float val) =>
+                AnalyzedParameter.Of(lsb, (type, val));
         }
     }
 
@@ -282,11 +301,11 @@ public static class MidiUtils
     /// <param name="parameter">The parameter and value to set.</param>
     /// <returns>The list of <b>MIDIMessage</b>s that set the parameter.</returns>
     public static MidiMessage[] Set(
-        int ticks, Midi.System system, GlobalMidiParameter parameter)
+        int ticks, Midi.System? system, GlobalMidiParameter parameter)
     {
         switch (parameter.PType)
         {
-            case GlobalMidiParameter.Type.MidiSystem:
+            case GlobalMidiParameter.Type.System:
                 // Well, we set the system so we don't care about the current one
                 return [Reset(ticks, parameter.AsMidiSystem)];
 
@@ -441,7 +460,7 @@ public static class MidiUtils
     public static MidiMessage[] Set(
         int ticks, 
         int channel, 
-        Midi.System system, 
+        Midi.System? system, 
         ChannelMidiParameter parameter)
     {
         channel %= 16;
@@ -532,8 +551,64 @@ public static class MidiUtils
                         [(byte)parameter.AsInt])]
                     : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1b, 
                         [(byte)parameter.AsInt])],
+            
+            // That's it!
             _ => throw new ArgumentOutOfRangeException()
         };
+    }
+
+    /// <summary>
+    /// Returns a  MIDI event needed to set the given GS User Drum Set parameter.
+    /// </summary>
+    /// <param name="ticks">The ticks for all events.</param>
+    /// <param name="drumSet">The drum set to modify, either 0 or 1.</param>
+    /// <param name="midiNote">The MIDI note number of the drum key to modify.</param>
+    /// <param name="parameter">The parameter to set and value to set it to.</param>
+    /// <returns>The <see cref="MidiMessage"/> that sets the parameter.</returns>
+    public static MidiMessage SetUserDrumParameter(
+        int ticks, int drumSet, int midiNote, 
+        UserDrumSetParameter.Entry parameter)
+    {
+        // PLAY NOTE is relative to 60 and not 0, but pitchCoarse is relative to 0
+        var midiValue = (byte)parameter.ToInt();
+        if (parameter is
+            {
+                Type: UserDrumSetParameter.Type.DrumParameters,
+                AsDrumParameter.Type: DrumParameter.Type.PitchCoarse,
+            })
+            midiValue += 60;
+        
+        drumSet %= 2;
+        var a2Param = parameter.Type switch
+        {
+            UserDrumSetParameter.Type.DrumParameters => 
+                parameter.AsDrumParameter.Type switch
+            {
+                DrumParameter.Type.PitchCoarse => 1,
+                // Should never be used
+                DrumParameter.Type.PitchFine => 127,
+                DrumParameter.Type.Level => 2,
+                DrumParameter.Type.AssignGroup => 3,
+                DrumParameter.Type.Pan => 4,
+                DrumParameter.Type.ReverbSend => 5,
+                DrumParameter.Type.ChorusSend => 6,
+                DrumParameter.Type.RxNoteOff => 7,
+                DrumParameter.Type.RxNoteOn => 8,
+                DrumParameter.Type.VariationSend => 9,
+                _ => throw new Exception(
+                    $"Invalid parameter {parameter.Type}")
+            },
+            //
+            UserDrumSetParameter.Type.SourceDrumSet => 0xa,
+            UserDrumSetParameter.Type.Program => 0xb,
+            UserDrumSetParameter.Type.SourceNoteNumber => 0xc,
+            _ => throw new Exception(
+                $"Invalid parameter {parameter.Type}")
+        };
+        
+        var a2 = (drumSet << 4) | a2Param;
+        return GsMessage(
+            ticks, 0x21, a2, midiNote, [midiValue,]);
     }
 
     /// <summary>
@@ -762,7 +837,90 @@ public static class MidiUtils
             _ => throw new ArgumentOutOfRangeException(nameof(system), system, null)
         };
 
-    private static AnalyzedMessage AnalyzeGM(ReadOnlySpan<byte> syx)
+    public readonly ref struct AnalyzedMessageEnumerable(
+        ArraySegment<AnalyzedMessage>? messages,
+        AnalyzedMessage? single)
+    {
+        public AnalyzedMessageEnumerator GetEnumerator() =>
+            new(messages, single);
+
+        public static AnalyzedMessageEnumerable Of(AnalyzedMessage single) =>
+            new (null, single);
+        
+        public static AnalyzedMessageEnumerable Of(
+                ArraySegment<AnalyzedMessage> messages) =>
+            new (messages, null);
+
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedMessage msg) => Of(msg);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
+            ArraySegment<AnalyzedMessage> messages) => Of(messages);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedParameter msg) => Of(msg);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedParameter.Type msg) => Of(msg);
+        
+        public static implicit operator AnalyzedMessageEnumerable(
+            AnalyzedMessage.Type msg) => Of(msg);
+    }
+    
+    public ref struct AnalyzedMessageEnumerator(
+        ArraySegment<AnalyzedMessage>? messages,
+        AnalyzedMessage? single): IDisposable
+    {
+        private int _index = -1;
+        public AnalyzedMessage Current =>
+            single
+            ?? messages?[_index]
+            ?? throw new InvalidOperationException();
+
+        public bool MoveNext() => 
+            ++_index < (single != null ? 1 : messages?.Count);
+
+        public void Dispose()
+        {
+            if (messages is {} msgs)
+                Util.Return(msgs);
+        }
+    }
+    
+    /// <summary>
+    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
+    /// Note that bulk dump and other sysExes are supported so this method may return more than one result.
+    /// </summary>
+    /// <param name="e">The message to analyze</param>
+    /// <returns></returns>
+    public static AnalyzedMessageEnumerable AnalyzeSysEx(MidiMessage e) =>
+        AnalyzeSysEx(e.Data);
+
+    /// <summary>
+    /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
+    /// Note that bulk dump and other sysExes are supported so this method may return more than one result.
+    /// </summary>
+    /// <param name="syx">The System Exclusive message, WITHOUT the first 0xF0 System Exclusive byte!</param>
+    /// <returns></returns>
+    public static AnalyzedMessageEnumerable AnalyzeSysEx(ReadOnlySpan<byte> syx)
+    {
+        // At least Manufacturer ID, Device ID and XG/GS model ID
+        if (syx.Length < 3) return AnalyzedParameter.Type.Other;
+
+        return syx[0] switch
+        {
+            // Non realtime GM
+            // Realtime GM
+            0x7e or 0x7f => AnalyzeGM(syx),
+            // Roland
+            0x41 => AnalyzeGS(syx),
+            // Yamaha
+            0x43 => AnalyzeXG(syx),
+            _ => AnalyzedParameter.Type.Other
+        };
+    }
+
+    private static AnalyzedMessageEnumerable AnalyzeGM(ReadOnlySpan<byte> syx)
     {
         if (syx.Length < 4) 
             return AnalyzedParameter.Type.Other;
@@ -856,7 +1014,7 @@ public static class MidiUtils
         };
     }
     
-    private static AnalyzedMessage AnalyzeXG(ReadOnlySpan<byte> syx)
+    private static AnalyzedMessageEnumerable AnalyzeXG(ReadOnlySpan<byte> syx)
     {
         // Ensure XG
         if (syx[2] != 0x4c || syx.Length < 7)
@@ -1003,12 +1161,45 @@ public static class MidiUtils
 
         // Drum part setup
         if (a1 >> 4 == 3)
-            return AnalyzedParameter.Type.DrumSetup;
+        {
+            return a3 switch
+            {
+                // Pitch coarse
+                0x00 => DrumSetup2(DrumParameter.Type.PitchCoarse, data - 64),
+                // Pitch fine
+                0x01 => DrumSetup1(DrumParameter.Type.PitchFine, data - 64),
+                // Level
+                0x02 => DrumSetup1(DrumParameter.Type.Level, data),
+                // Assign Group
+                0x03 => DrumSetup1(DrumParameter.Type.AssignGroup, data),
+                // Pan
+                0x04 => DrumSetup1(DrumParameter.Type.Pan, data),
+                // Reverb Send
+                0x05 => DrumSetup1(DrumParameter.Type.ReverbSend, data),
+                // Chorus Send
+                0x06 => DrumSetup1(DrumParameter.Type.ChorusSend, data),
+                // Variation Send
+                0x07 => DrumSetup1(DrumParameter.Type.VariationSend, data),
+                // Rev Note Off
+                0x09 => DrumSetup3(DrumParameter.Type.RxNoteOff, data == 1),
+                // Rev Note On
+                0x0a => DrumSetup3(DrumParameter.Type.RxNoteOn, data == 1),
+
+                _ => AnalyzedParameter.Type.Other,
+            };
+
+            AnalyzedParameter DrumSetup1(DrumParameter.Type type, int val) =>
+                AnalyzedParameter.Of(a2, (type, val));
+            AnalyzedParameter DrumSetup2(DrumParameter.Type type, float val) =>
+                AnalyzedParameter.Of(a2, (type, val));
+            AnalyzedParameter DrumSetup3(DrumParameter.Type type, bool val) =>
+                AnalyzedParameter.Of(a2, (type, val));
+        }
 
         return AnalyzedParameter.Type.Other;
     }
     
-    private static AnalyzedMessage AnalyzeGS(ReadOnlySpan<byte> syx)
+    private static AnalyzedMessageEnumerable AnalyzeGS(ReadOnlySpan<byte> syx)
     {
         if (syx.Length < 10 ||
             // 0x12: DT1 (Device Transmit)
@@ -1030,11 +1221,27 @@ public static class MidiUtils
         var a3 = syx[6];
         var data = syx[7];
 
-        // GS reset check
-        if (
-            // Address 1 is 0x00 for SC-88 SYSTEM MODE SET and 0x40 for SC-55 MODE SET
-            a1 is 0x00 or 0x40 &&
-            a2 == 0x00) // System Parameter
+        // System Parameters
+        // MODE SET
+        // This has been separated from 40 00 because 00 00 05 was erroneously
+        // Decoded as "master key shift" even though it means "SC-88 output assign"
+        // Testcase: FADED88.mid
+        if (a1 == 0x00 && a2 == 0x00 && a3 == 0x7f)
+        {
+            return data switch
+            {
+                // GS Reset/Mode-1 (Single Module Mode)
+                // GS Reset/Mode-2 (Double Module Mode)
+                0x00 or 0x01 => AnalyzedMessage.Of(Midi.System.GS),
+                0x7f =>
+                    // GS Off, default to gm
+                    AnalyzedMessage.Of(Midi.System.GM),
+                _ => AnalyzedParameter.Type.Other
+            };
+        }
+        
+        // Patch common parameters
+        if (a1 == 0x40 && a2 == 0x00)// System Parameter
         {
             switch (a3)
             {
@@ -1081,7 +1288,129 @@ public static class MidiUtils
             }
         }
 
-        if (a1 == 0x41) return AnalyzedParameter.Type.DrumSetup;
+        if (a1 == 0x41)
+        {
+            // Drum Setup
+            return (a2 & 0xf) switch
+            {
+                // Play Note Number (Pitch Coarse)
+                0x1 => DrumSetup2(DrumParameter.Type.PitchCoarse, data - 60),
+                // Level
+                0x2 => DrumSetup1(DrumParameter.Type.Level, data),
+                // Assign Group
+                0x3 => DrumSetup1(DrumParameter.Type.AssignGroup, data),
+                // Pan
+                0x4 => DrumSetup1(DrumParameter.Type.Pan, data),
+                // Reverb Send
+                0x5 => DrumSetup1(DrumParameter.Type.ReverbSend, data),
+                // Chorus Send
+                0x6 => DrumSetup1(DrumParameter.Type.ChorusSend, data),
+                // Rx. Note Off
+                0x7 => DrumSetup3(DrumParameter.Type.RxNoteOff, data == 1),
+                // Rx. Note On
+                0x8 => DrumSetup3(DrumParameter.Type.RxNoteOn, data == 1),
+                // Delay Send Level
+                0x9 => DrumSetup1(DrumParameter.Type.VariationSend, data),
+
+                _ => AnalyzedParameter.Type.Other,
+            };
+            
+            AnalyzedParameter DrumSetup1(DrumParameter.Type type, int val) =>
+                AnalyzedParameter.Of(a3, (type, val));
+            AnalyzedParameter DrumSetup2(DrumParameter.Type type, float val) =>
+                AnalyzedParameter.Of(a3, (type, val));
+            AnalyzedParameter DrumSetup3(DrumParameter.Type type, bool val) =>
+                AnalyzedParameter.Of(a3, (type, val));
+        }
+        
+        // User Drum Set
+        if (a1 == 0x21)
+            return HandleSingleUserDrum(a2, a3, data);
+        
+        // User Drum Set Bulk Dump
+        if (a1 == 0x29)
+        {
+            var dataLength = syx.Length - 9;
+            // See the corresponding code in synth sysEx handler for comments
+
+            var actualDrumParam = 0;
+            switch (a2 & 0x0f)
+            {
+                default:
+                    return AnalyzedParameter.Type.Other;
+                
+                case 0x0:
+                    actualDrumParam = 1;
+                    break;
+                case 0x1:
+                    actualDrumParam = 2;
+                    break;
+                case 0x2:
+                    actualDrumParam = 3;
+                    break;
+                case 0x3:
+                    actualDrumParam = 4;
+                    break;
+                case 0x4:
+                    actualDrumParam = 5;
+                    break;
+                case 0x5:
+                    actualDrumParam = 6;
+                    break;
+                case 0x6:
+                {
+                    var address2Off = (a2 & 0xf0) | 7;
+                    var address2On = (a2 & 0xf0) | 8;
+                    var analyzed = Util.Rent<AnalyzedMessage>(
+                        dataLength * 2);
+                    for (var midiNote = 0; midiNote < dataLength; midiNote++) 
+                    {
+                        analyzed[midiNote * 2 + 0] =
+                            HandleSingleUserDrum(
+                                address2Off,
+                                midiNote,
+                                syx[midiNote + 7] & 0xf);
+                        analyzed[midiNote * 2 + 1] =
+                            HandleSingleUserDrum(
+                                address2On,
+                                midiNote,
+                                syx[midiNote + 7] >> 4);
+                    }
+                    return analyzed;
+                }
+                case 0x7:
+                    actualDrumParam = 9;
+                    break;
+                case 0x8:
+                    actualDrumParam = 0xa;
+                    break;
+                case 0x9:
+                    actualDrumParam = 0xb;
+                    break;
+                case 0xa:
+                    actualDrumParam = 0xc;
+                    break;
+                case 0xb:
+                    actualDrumParam = 0;
+                    break;
+            }
+            {
+                var address2 = (a2 & 0xf0) | actualDrumParam;
+                var analyzed = Util.Rent<AnalyzedMessage>(
+                    dataLength);
+                for (var midiNote = 0; midiNote < dataLength; midiNote++) 
+                {
+                    analyzed[midiNote * 2 + 0] =
+                        HandleSingleUserDrum(
+                            address2,
+                            midiNote,
+                            syx[midiNote + 7]);
+                }
+
+                return analyzed;
+            }
+        }
+
         // 0x40 -> Part Parameters, 0x50 -> Part Parameters (BLOCK B) Testcase: 95043-2.KYC.mid
         if (a1 is not 0x40 and not 0x50) return AnalyzedParameter.Type.Other;
 
@@ -1108,7 +1437,11 @@ public static class MidiUtils
             {
                 0x00 =>
                     // Tone number
-                    AnalyzedMessage.OfProgramChange(channel, data),
+                    Util.Rent([
+                        AnalyzedParameter.OfControllerChange(
+                            Midi.CC.BankSelect, data, channel),
+                        AnalyzedMessage.OfProgramChange(channel, syx[8]),
+                    ]),
                 0x13 =>
                     // Mono/poly
                     AnalyzedParameter.Of(
@@ -1219,5 +1552,49 @@ public static class MidiUtils
         }
 
         return AnalyzedParameter.Type.Other;
+    }
+
+    private static AnalyzedMessage HandleSingleUserDrum(
+        int a2, int a3, int data)
+    {
+        var drumSet = a2 >> 4;
+        return (a2 & 0xf) switch
+        {
+            // Play Note
+            0x1 => DrumSetup2(DrumParameter.Type.PitchCoarse, data - 60),
+            // Level
+            0x2 => DrumSetup1(DrumParameter.Type.Level, data),
+            // Assign group
+            0x3 => DrumSetup1(DrumParameter.Type.AssignGroup, data),
+            // Pan
+            0x4 => DrumSetup1(DrumParameter.Type.Pan, data),
+            // Reverb Send
+            0x5 => DrumSetup1(DrumParameter.Type.ReverbSend, data),
+            // Chorus Send
+            0x6 => DrumSetup1(DrumParameter.Type.ChorusSend, data),
+            // Rx. Note Off
+            0x7 => DrumSetup3(DrumParameter.Type.RxNoteOff, data == 1),
+            // Rx. Note On
+            0x8 => DrumSetup3(DrumParameter.Type.RxNoteOn, data == 1),
+            // Delay Send Level
+            0x9 => DrumSetup1(DrumParameter.Type.VariationSend, data),
+            // Source Drum Set Map
+            0xa => DrumSetup4(UserDrumSetParameter.Type.SourceDrumSet, data),
+            // Program Number
+            0xb => DrumSetup4(UserDrumSetParameter.Type.Program, data),
+            // Source Note Number
+            0xc => DrumSetup4(UserDrumSetParameter.Type.SourceNoteNumber, data),
+
+            _ => AnalyzedParameter.Type.Other,
+        };
+        
+        AnalyzedMessage DrumSetup1(DrumParameter.Type type, int val) =>
+            AnalyzedMessage.Of(a3, drumSet, (type, val));
+        AnalyzedMessage DrumSetup2(DrumParameter.Type type, float val) =>
+            AnalyzedMessage.Of(a3, drumSet, (type, val));
+        AnalyzedMessage DrumSetup3(DrumParameter.Type type, bool val) =>
+            AnalyzedMessage.Of(a3, drumSet, (type, val));
+        AnalyzedMessage DrumSetup4(UserDrumSetParameter.Type type, int val) =>
+            AnalyzedMessage.Of(a3, drumSet, (type, val));
     }
 }

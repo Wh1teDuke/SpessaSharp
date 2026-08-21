@@ -50,7 +50,7 @@ internal static class NoteOn
         if (midiNote is > 127 or < 0) return;
         
         // MIDI Tuning Standard
-        var program = chan.Preset.Program;
+        var program = chan.Preset.Patch.Program;
         var tune = synth.Tunings[program * 128 + midiNote];
         if (tune >= 0)
             // Overwrite the note with MIDI tuning standard!
@@ -61,15 +61,9 @@ internal static class NoteOn
              synth.SystemParameters.MonophonicRetrigger) ||
             chan.MidiParamArray.AssignMode == MidiChannel.Assign.Single)
             chan.KillNote(midiNote);
-
-        // Key velocity override
-        if (synth.KeyModifierManager.GetVelocity(
-            chan.Channel, midiNote) is {} keyVel)
-            realVelocity = keyVel;
         
         // Gain
-        var voiceGain = synth.KeyModifierManager.GetGain(
-            chan.Channel, midiNote);
+        var voiceGain = 1f;
 
         // Portamento
         var previousNote = chan.LastPortamentoNote;
@@ -131,9 +125,9 @@ internal static class NoteOn
         var panOverride = 0;
         var exclusiveOverride = 0;
         var pitchOffset = 0;
-        var reverbSend = 1f;
-        var chorusSend = 1f;
-        var delaySend = 1f;
+        var reverbGain = 1f;
+        var chorusGain = 1f;
+        var variationGain = 1f;
 
         if (chan.MidiParameters.RandomPan)
             // The range is -500 to 500
@@ -168,13 +162,14 @@ internal static class NoteOn
                 }
             }
 
-            pitchOffset = p.Pitch;
-            exclusiveOverride = p.ExclusiveClass;
-            reverbSend = p.ReverbGain;
-            chorusSend = p.ChorusGain;
-            delaySend = p.DelayGain;
+            pitchOffset = (int)(p.PitchFine + p.PitchCoarse * 100);
+            exclusiveOverride = p.AssignGroup;
+            reverbGain = p.ReverbSend / 127f;
+            chorusGain = p.ChorusSend / 127f;
+            variationGain = p.VariationSend / 127f;
+            synth.DelayActive = synth.DelayActive || variationGain > 0;
             // 1 is no override
-            if (voiceGain >= 1) voiceGain = p.Gain;
+            if (voiceGain >= 1) voiceGain = float.Pow(p.Level / 120f, 2);
         }
         
         var noteID = emit 
@@ -367,9 +362,9 @@ internal static class NoteOn
             voice.OverridePan = panOverride;
             voice.GainModifier = voiceGain;
             voice.PitchOffset = pitchOffset;
-            voice.ReverbSend = reverbSend;
-            voice.ChorusSend = chorusSend;
-            voice.DelaySend = delaySend;
+            voice.ReverbGain = reverbGain;
+            voice.ChorusGain = chorusGain;
+            voice.VariationSend = variationGain;
 
             // Set initial pan to avoid split second changing from middle to the correct value
             var pOverride = panOverride;

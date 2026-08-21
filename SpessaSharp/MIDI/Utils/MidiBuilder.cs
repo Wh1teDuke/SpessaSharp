@@ -105,6 +105,12 @@ public readonly record struct MidiBuilder
                 MidiUtils.Set(ticks, Channel, system, param), 
                 Base.Track.Events.Length);
         }
+        
+        public void PolyPressure(int ticks, int midiNote, int pressure) =>
+            Base.Base.PolyPressure(Base.Track, ticks, Channel, midiNote, pressure);
+        
+        public void Pressure(int ticks, int pressure) =>
+            Base.Base.ChannelPressure(Base.Track, ticks, Channel, pressure);
     }
 
     public readonly record struct DrumBuilder(TrackBuilder Base, int Channel = 9)
@@ -335,6 +341,43 @@ public readonly record struct MidiBuilder
             track, ticks,
             SB(MidiMessage.Type.PitchWheel, channel),
             DataOf(pitch & 0x7f, (pitch >> 7) & 0x7f));
+    }
+
+    /// <summary>
+    /// Adds a new Poly Pressure event.
+    /// </summary>
+    /// <param name="track">The track to use.</param>
+    /// <param name="ticks">The tick time of the event.</param>
+    /// <param name="channel">The channel to use.</param>
+    /// <param name="midiNote">The MIDI note number to apply the pressure to.</param>
+    /// <param name="pressure">The pressure (0 - 127)</param>
+    public void PolyPressure(
+        Track track, int ticks, int channel, int midiNote, int pressure)
+    {
+        channel %= 16;
+        AddEvent(
+            track,
+            ticks,
+            SB(MidiMessage.Type.PolyPressure, channel),
+            DataOf(midiNote & 0x7f, pressure & 0x7f));
+    }
+
+    /// <summary>
+    /// Adds a new Channel Pressure event.
+    /// </summary>
+    /// <param name="track"></param>
+    /// <param name="ticks">The tick time of the event.</param>
+    /// <param name="channel">The track to use.</param>
+    /// <param name="pressure">The pressure (0 - 127)</param>
+    public void ChannelPressure(
+        Track track, int ticks, int channel, int pressure)
+    {
+        channel %= 16;
+        AddEvent(
+            track,
+            ticks,
+            SB(MidiMessage.Type.ChannelPressure, channel),
+            DataOf(pressure & 0x7f));
     }
 
     /// <summary>Selects a new Registered Parameter Number.</summary>

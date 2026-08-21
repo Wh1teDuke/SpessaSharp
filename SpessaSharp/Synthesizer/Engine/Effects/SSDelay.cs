@@ -27,7 +27,11 @@ public sealed class SSDelay: Effect.DelayProcessor
         public int Time
         {
             get => _time;
-            set => _time = Math.Min(value, _bufferLen);
+            set
+            {
+                _time = Math.Min(value, _bufferLen);
+                Clear();
+            }
         }
 
         public void Clear() => _buffer.AsSpan().Clear();

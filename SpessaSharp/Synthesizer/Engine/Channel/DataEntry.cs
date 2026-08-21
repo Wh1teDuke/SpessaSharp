@@ -12,8 +12,8 @@ internal static class DataEntry
 {
     /// <summary>RPN NULL per MIDI spec.</summary>
     public const int DEFAULT_RPN = 0x7f;
-    /// <summary>No NRPN is bound to 0 0, while 0x7f MSB is AWE32!</summary>
-    public const int DEFAULT_NRPN = 0;
+    /// <summary>Per MIDI spec, avoids handling AWE32 in data entry code.</summary>
+    public const int DEFAULT_NRPN = 127;
     
     [Conditional("DEBUG")]
     private static void CoolInfo(
@@ -120,19 +120,23 @@ internal static class DataEntry
         }
         
         // NRPN Handling
-        var paramCoarse = chan.MidiControllers[
-            (int)Midi.CC.NonRegisteredParameterMSB] >> 7;
-        var paramFine = chan.MidiControllers[
-            (int)Midi.CC.NonRegisteredParameterLSB] >> 7;
+        var parameterCoarse = chan[Midi.CC.NonRegisteredParameterMSB] >> 7;
+        var parameterFine = chan[Midi.CC.NonRegisteredParameterLSB] >> 7;
+        if (parameterCoarse == 0x7f && parameterFine == 0x7f) 
+        {
+            // Hardcoded NRPN NULL to avoid AWE32 errors
+            return;
+        }
+        
         var dataCoarse = dataValue >> 7;
 
         // Skip drums early
         if (chan.SynthCore.SystemParameters.DrumLock &&
-            paramCoarse >= ExtendedParameters.NRPN.MSB.DrumPitch &&
-            paramCoarse <= ExtendedParameters.NRPN.MSB.DrumDelay)
+            parameterCoarse >= ExtendedParameters.NRPN.MSB.DrumPitch &&
+            parameterCoarse <= ExtendedParameters.NRPN.MSB.DrumVariation)
             return;
 
-        switch (paramCoarse)
+        switch (parameterCoarse)
         {
             // Part parameters
             case ExtendedParameters.NRPN.MSB.PartParameter:
@@ -141,7 +145,7 @@ internal static class DataEntry
                     chan.SystemParameters.NprnParamLock ??
                     chan.SynthCore.SystemParameters.NprnParamLock;
 
-                switch (paramFine)
+                switch (parameterFine)
                 {
                     // Vibrato rate
                     case ExtendedParameters.NRPN.LSB.VibratoRate:
@@ -235,8 +239,8 @@ internal static class DataEntry
                     default:
                     {
                         Debug.WriteLine($"[WARN] Unrecognized NRPN for {chan.Channel
-                        }: (0x{paramCoarse:X} 0x{
-                            paramFine:X}) data value: {dataCoarse}");
+                        }: (0x{parameterCoarse:X} 0x{
+                            parameterFine:X}) data value: {dataCoarse}");
                         break;
                     }
                 }
@@ -253,95 +257,90 @@ internal static class DataEntry
                 var pitch =
                     chan.ChannelSystem == Midi.System.XG ||
                     chan.Patch.BankLSB == 1
-                        ? (dataCoarse - 64) * 100
-                        : (dataCoarse - 64) * 50;
-                ref var param = ref chan.DrumParams[paramFine];
-                param = param with { Pitch = pitch, };
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} pitch",
+                        ? (dataCoarse - 64)
+                        : (int)((dataCoarse - 64) * .5);
+                ref var param = ref chan.DrumParams[parameterFine];
+                param = param with { PitchCoarse = pitch, };
+                SpessaLog.CoolInfo(
+                    $"Drum ${parameterFine} pitch for {chan.Channel}",
                     pitch,
-                    "cents");
+                    "semitones");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumPitchFine:
             {
                 var pitch = dataCoarse - 64;
-                ref var param = ref chan.DrumParams[paramFine];
-                param = param with { Pitch = param.Pitch + pitch, };
+                ref var param = ref chan.DrumParams[parameterFine];
+                param = param with { PitchFine = param.PitchFine + pitch, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} pitch fine",
-                    chan.DrumParams[paramFine].Pitch,
+                SpessaLog.CoolInfo(
+                    $"Drum ${parameterFine} pitch fine for {chan.Channel}",
+                   pitch,
                     "cents");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumLevel:
             {
-                ref var param = ref chan.DrumParams[paramFine];
-                param = param with { Gain = dataCoarse / 120f, };
+                ref var param = ref chan.DrumParams[parameterFine];
+                param = param with { Level = dataCoarse, };
                 SpessaLog.CoolInfo(
-                    $"Drum {paramFine} level for {chan.Channel}",
+                    $"Drum {parameterFine} level for {chan.Channel}",
                     dataCoarse,
                     "");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumPan:
             {
-                ref var param = ref chan.DrumParams[paramFine];
+                ref var param = ref chan.DrumParams[parameterFine];
                 param = param with { Pan = dataCoarse, };
 
                 SpessaLog.CoolInfo(
-                    $"Drum {paramFine} pan for {chan.Channel}",
+                    $"Drum {parameterFine} Pan for {chan.Channel}",
                     dataCoarse, "");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumReverb:
             {
-                ref var param = ref chan.DrumParams[paramFine];
-                param = param with { ReverbGain = dataCoarse / 127f, };
+                ref var param = ref chan.DrumParams[parameterFine];
+                param = param with { ReverbSend = dataCoarse, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} reverb level",
+                SpessaLog.CoolInfo(
+                    $"Drum ${parameterFine} Reverb Send for {chan.Channel}",
                     dataCoarse,
                     "");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.DrumChorus:
             {
-                ref var param = ref chan.DrumParams[paramFine];
-                param = param with { ChorusGain = dataCoarse / 127f, };
+                ref var param = ref chan.DrumParams[parameterFine];
+                param = param with { ChorusSend = dataCoarse, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} chorus level",
+                SpessaLog.CoolInfo(
+                    $"Drum ${parameterFine} Chorus Send for {chan.Channel}",
                     dataCoarse,
                     "");
                 break;
             }
-            case ExtendedParameters.NRPN.MSB.DrumDelay:
+            case ExtendedParameters.NRPN.MSB.DrumVariation:
             {
-                ref var param = ref chan.DrumParams[paramFine];
-                param = param with { DelayGain = dataCoarse / 127f, };
+                ref var param = ref chan.DrumParams[parameterFine];
+                param = param with { VariationSend = dataCoarse, };
 
-                CoolInfo(
-                    chan.Channel,
-                    $"Drum ${paramFine} delay level",
+                SpessaLog.CoolInfo(
+                    $"Drum ${parameterFine} Variation Send for {chan.Channel}",
                     dataValue,
                     "");
                 break;
             }
             case ExtendedParameters.NRPN.MSB.awe32:
             {
-                Awe32NRPN.Handle(chan, paramFine, dataValue);
+                Awe32NRPN.Handle(chan, parameterFine, dataValue);
                 break;
             }
             // SF2 NRPN
             case ExtendedParameters.NRPN.MSB.SF2:
             {
-                if (paramFine > 100)
+                if (parameterFine > 100)
                 {
                     // Sf spec:
                     // Note that NRPN Select LSB greater than 100 are for setup only, and should not be used on their own to select a

@@ -39,17 +39,11 @@ internal static class RenderVoice
     /// <param name="chan"></param>
     /// <param name="voice">The voice to render</param>
     /// <param name="timeNow">Current time in seconds</param>
-    /// <param name="outputL">The left output buffer</param>
-    /// <param name="outputR">The right output buffer</param>
-    /// <param name="startIndex"></param>
-    /// <param name="sampleCount"></param>
+    /// <param name="sampleCount">The only thing needed as it's 0-based</param>
     public static void Execute(
         MidiChannel chan,
         Voice.Voice voice,
         float timeNow,
-        Span<float> outputL,
-        Span<float> outputR,
-        int startIndex,
         int sampleCount)
     {
         var released = false;
@@ -97,7 +91,8 @@ internal static class RenderVoice
         
         // MIDI Tuning Standard
         // Use `midiNote` here since it was used for selecting the preset if tuning was active
-        var tuning = core.Tunings[chan.Preset!.Program * 128 + voice.MidiNote];
+        var tuning = core.Tunings[
+            chan.Preset!.Patch.Program * 128 + voice.MidiNote];
         if ((int)tuning != -1) 
         {
             // Tuning is encoded as float
@@ -158,8 +153,8 @@ internal static class RenderVoice
                     (int)(lowpassExcursion + vibLfoValue * vibFilterDepth);
 
                 // Amplitude depth
-                voiceGain *= 1 - ((vibLfoValue + 1) / 2) *
-                    (vibAmplitudeDepth / 1_000f);
+                // Like SCVA: double gain at peak, 0 at lowest (times depth)
+                voiceGain *= 1 + vibLfoValue * (vibAmplitudeDepth / 1000f);
             }
         }
         
@@ -200,8 +195,8 @@ internal static class RenderVoice
                     (int)(lowpassExcursion + modLfoValue * modFilterDepth);
 
                 // Amplitude depth
-                voiceGain *=
-                    1 - ((modLfoValue + 1) / 2) * (modAmplitudeDepth / 1_000f);
+                // Like SCVA: double gain at peak, 0 at lowest (times depth)
+                voiceGain *= 1 + modLfoValue * (modAmplitudeDepth / 1000f);
             }
         }
         
@@ -387,39 +382,28 @@ internal static class RenderVoice
         // Get voice's gain levels for each channel
         var gainLeft = PanTableLeft[index] * outputGain;
         var gainRight = PanTableRight[index] * outputGain;
-
-        // Straight into the insertion EFX, but only if it is active
-        if (chan.MidiParameters.EfxAssign &&
-            systemParameters.EffectsEnabled &&
-            core.InsertionActive)
-        {
-            var left = core.InsertionInputL.AsSpan();
-            var right = core.InsertionInputR.AsSpan();
-            
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], gainLeft, left, left);
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], gainRight, right, right);
-            return;
-        }
         
-        // Mix down the audio data
+        // Mix down the audio data, always 0-based
+        var outputL = chan.OutputLeft.AsSpan(0, sampleCount);
+        var outputR = chan.OutputRight.AsSpan(0, sampleCount);
         TensorPrimitives.MultiplyAdd(
-            buffer[..sampleCount], 
-            gainLeft, 
-            outputL.Slice(startIndex, sampleCount),
-            outputL.Slice(startIndex, sampleCount));
+            buffer[..sampleCount], gainLeft, outputL, outputL);
         TensorPrimitives.MultiplyAdd(
-            buffer[..sampleCount], 
-            gainRight, 
-            outputR.Slice(startIndex, sampleCount), 
-            outputR.Slice(startIndex, sampleCount));
+            buffer[..sampleCount], gainRight, outputR, outputR);
 
-        if (!systemParameters.EffectsEnabled) return;
+        /*
+         * Do not send to effects if:
+         * - Either effects are disabled
+         * - Or insertion is active on this channel (Insertion takes over the voice data)
+         */
+        if ((chan.MidiParameters.EfxAssign &&
+             systemParameters.EffectsEnabled &&
+             core.InsertionActive) ||
+            !systemParameters.EffectsEnabled) return;
         
         // Disable reverb and chorus if necessary
         var reverbSend =
-            modulated[(int)Generator.Type.ReverbEffectsSend] * voice.ReverbSend;
+            modulated[(int)Generator.Type.ReverbEffectsSend] * voice.ReverbGain;
         if (reverbSend > 0) 
         {
             var reverbGain =
@@ -431,7 +415,7 @@ internal static class RenderVoice
         }
 
         var chorusSend = modulated[
-            (int)Generator.Type.ChorusEffectsSend] * voice.ChorusSend;
+            (int)Generator.Type.ChorusEffectsSend] * voice.ChorusGain;
 
         if (chorusSend > 0) 
         {
@@ -443,7 +427,7 @@ internal static class RenderVoice
         }
 
         var delaySend = chan.MidiControllers[
-            (int)Midi.CC.VariationDepth] * voice.DelaySend;
+            (int)Midi.CC.VariationDepth] * voice.VariationSend;
         
         if (core.DelayActive && delaySend > 0) 
         {

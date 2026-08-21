@@ -79,6 +79,12 @@ public static class GlobalSystemParameters
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.DrumLock].AsBool;
         }
+        
+        public bool UserDrumLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.UserDrumLock].AsBool;
+        }
 
         public bool DelayLock
         {
@@ -115,7 +121,6 @@ public static class GlobalSystemParameters
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.EventsEnabled].AsBool;
         }
-        
 
         public bool BlackMIDIMode
         {
@@ -200,6 +205,7 @@ public static class GlobalSystemParameters
             (GlobalSystemParameter.Type.DelayLock, false),
             (GlobalSystemParameter.Type.InsertionEffectLock, false),
             (GlobalSystemParameter.Type.DrumLock, false),
+            (GlobalSystemParameter.Type.UserDrumLock, false),
             (GlobalSystemParameter.Type.BlackMIDIMode, false),
             (GlobalSystemParameter.Type.DeviceID, -1),
             
@@ -357,6 +363,13 @@ public readonly record struct GlobalSystemParameter
         /// the drum parameters then locking it to prevent changes by MIDI files.
         /// </summary>
         DrumLock,
+        /// <summary>
+        /// If the synthesizer should prevent editing of the User Drum Set (GS only) parameters.
+        /// These params are modified using MIDI system exclusive messages or NRPN, so
+        /// the recommended use case would be setting
+        /// the User Drum Set parameters then locking it to prevent changes by MIDI files.
+        /// </summary>
+        UserDrumLock,
         /// <summary> Forces note killing instead of releasing. Improves performance in black MIDIs. </summary>
         BlackMIDIMode,
         /// <summary> Synthesizer's device ID for system exclusive messages. Set to -1 to accept all. </summary>
@@ -405,6 +418,7 @@ public readonly record struct GlobalSystemParameter
         Type.DelayLock => Params.Type.Bool,
         Type.InsertionEffectLock => Params.Type.Bool,
         Type.DrumLock => Params.Type.Bool,
+        Type.UserDrumLock => Params.Type.Bool,
         Type.NprnParamLock => Params.Type.Bool,
         Type.BlackMIDIMode => Params.Type.Bool,
         Type.KeyShift => Params.Type.Int,
@@ -425,6 +439,7 @@ public readonly record struct GlobalSystemParameter
         "The reverb gain. From 0 to any number. 1 is 100% reverb",
         "If the synthesizer should prevent editing of the reverb parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the reverb parameters then locking it to prevent changes by MIDI files.",
         "The chorus gain. From 0 to any number. 1 is 100% chorus",
+        "If the synthesizer should prevent editing of the User Drum Set (GS only) parameters. These params are modified using MIDI system exclusive messages or NRPN, so the recommended use case would be setting the User Drum Set parameters then locking it to prevent changes by MIDI files.",
         "If the synthesizer should prevent editing of the chorus parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the chorus parameters then locking it to prevent changes by MIDI files.",
         "The delay gain. From 0 to any number. 1 is 100% delay",
         "If the synthesizer should prevent editing of the delay parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the delay parameters then locking it to prevent changes by MIDI files.",

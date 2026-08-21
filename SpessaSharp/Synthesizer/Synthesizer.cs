@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Frozen;
 using System.Diagnostics;
+using System.Numerics.Tensors;
 using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
@@ -24,6 +25,10 @@ public sealed class Synthesizer
     public const int VOICE_CAP = 350;
     public const Midi.System DefaultMode = Midi.System.GS;
     public const short GENERATOR_OVERRIDE_NO_CHANGE_VALUE = short.MaxValue;
+    /// <summary>The program number of GS User Drum Set 1.</summary>
+    public const int GS_USER_DRUM_1 = 64;
+    /// <summary>The program number of GS User Drum Set 2.</summary>
+    public const int GS_USER_DRUM_2 = 65;
     
     /// <summary>This sounds way nicer for an instant hi-hat cutoff</summary>
     public const float MIN_EXCLUSIVE_LENGTH = .07f;
@@ -50,9 +55,9 @@ public sealed class Synthesizer
     /// This is needed because effects (regular ones) are send straight from the mono signal, whereas
     /// insertion effects receive the panned audio (twice), which reduces gain by a factor of cos(pi/4) * cos(pi/4) (master pan + voice pan).
     /// This reverses it.
+    /// 1 / Math.cos(Math.PI / 4) ** 2 == 2
     /// </summary>
-    public static readonly float EFX_SENDS_GAIN_CORRECTION = 
-        1f / float.Pow(float.Cos(MathF.PI / 4), 2);
+    public const float EFX_SENDS_GAIN_CORRECTION = 2;
 
     /// <summary>Initialization options of the Synthesizer</summary>
     /// <param name="MaxBufferSize">
@@ -140,9 +145,6 @@ public sealed class Synthesizer
     
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public readonly SoundBankManager SoundBankManager;
-    
-    /// <summary>Handles the custom key overrides: velocity and preset </summary>
-    public readonly KeyModifier.Manager KeyModifierManager = new();
 
     public readonly int SampleRate;
 
@@ -172,10 +174,10 @@ public sealed class Synthesizer
     public double CurrentTime;
     
     /// <summary> Synth's default (reset) preset. </summary>
-    public BasicPreset? DefaultPreset;
+    public SynthPatch? DefaultPreset;
     
     /// <summary> Synth's default (reset) drum preset. </summary>
-    public BasicPreset? DrumPreset;
+    public SynthPatch? DrumPreset;
     
     /// <summary> Gain smoothing factor, adjusted to the sample rate. </summary>
     public readonly float GainSmoothingFactor;
@@ -198,7 +200,7 @@ public sealed class Synthesizer
     /// Cached voices for all presets for this synthesizer.
     /// Nesting is calculated in getCachedVoiceIndex, returns a list of voices for this note.
     /// </summary>
-    private readonly Dictionary<(MidiPatch Patch, int Key, int Vel),
+    private readonly Dictionary<(MidiPatch Patch, byte Key, byte Vel),
         CachedVoiceList> _cachedVoices = new (200);
     
     private readonly CachedVoice.Base.Cache _cvbCache;
@@ -321,6 +323,9 @@ public sealed class Synthesizer
             GlobalSystemParameter.Type.EventsEnabled,
             options.EventsEnabled));
         MaxBufferSize = options.MaxBufferSize;
+        
+        // For GS user drum set
+        SoundBankManager.SystemGetter = () => MidiParameters.System;
         // These smoothing factors were tested on 44,100 Hz, adjust them to target sample rate here
         // Volume  smoothing factor
         GainSmoothingFactor = GAIN_SMOOTHING_FACTOR * (44_100f / sampleRate);
@@ -567,22 +572,12 @@ public sealed class Synthesizer
     {
         var channelObject = MidiChannels[channel];
 
-        // Override patch
-        var overridePatch = KeyModifierManager.HasOverridePatch(
-            channel, midiNote);
-
         var preset = channelObject.Preset;
-        if (overridePatch) 
-        {
-            var patch = KeyModifierManager.GetPatch(channel, midiNote);
-            preset = SoundBankManager.GetPreset(
-                patch, MidiParameters.MidiSystem);
-        }
 
         // Warning is handled in program change
         return preset == null
             ? new CachedVoiceList(null, ArraySegment<CachedVoice>.Empty) 
-            : GetVoicesForPreset(preset, midiNote, velocity);
+            : GetVoicesForPreset(preset, (byte)midiNote, (byte)velocity);
     }
     
     public void CreateMIDIChannel(bool sendEvent) 
@@ -624,6 +619,11 @@ public sealed class Synthesizer
 
         // Avoid crashing
         if (DrumPreset == null || DefaultPreset == null) return;
+
+        // Reset GS user drums
+        if (!SystemParameters.UserDrumLock)
+            foreach (var userDrum in SoundBankManager.UserDrumSets)
+                userDrum.Reset();
         
         // Reset channels
         // Do not send CC changes as we call reset
@@ -657,18 +657,6 @@ public sealed class Synthesizer
             Util.Return(buffer);
         }
     }
-    
-    public void Process(
-        ArraySegment<float> left,
-        ArraySegment<float> right,
-        int startIndex = 0,
-        int? sampleCount = null) =>
-        ProcessSplit(
-            [(left, right)],
-            left,
-            right,
-            startIndex,
-            sampleCount);
     
     /// <summary>
     /// The main rendering pipeline, renders all voices and processes the effects
@@ -706,27 +694,26 @@ public sealed class Synthesizer
     ///              │              │          │                   │
     ///              │              │          │                   │
     ///              v              v          v                   v
-    ///    ┌─────────┴──────────┐ ┌─┴──────────┴───────────────────┴────┐
-    ///    │  Dry Output Pairs  │ │        Stereo Effects Output        │
-    ///    └────────────────────┘ └─────────────────────────────────────┘
+    ///    ┌─────────┴──────────────┴──────────┴───────────────────┴────┐
+    ///    │                        Stereo Output                       │
+    ///    └────────────────────────────────────────────────────────────┘
     /// ]]>
     /// </code>
+    /// Each channel's dry signal is also copied to the optional channelOutputs pairs for visualization only.
     /// The pipeline is quite similar to the one on SC-8850 manual page 78.
     /// All output arrays must be the same length, the method will crash otherwise.
     /// </remarks>
-    /// <param name="outputs">The stereo pairs for each MIDI channel's dry output, will be wrapped if less.</param>
-    /// <param name="effectsLeft">The left stereo effect output buffer.</param>
-    /// <param name="effectsRight">The right stereo effect output buffer.</param>
+    /// <param name="left">The left output channel.</param>
+    /// <param name="right">The right output channel.</param>
     /// <param name="startIndex">The index to start writing at into the output buffer.</param>
     /// <param name="samples">The amount of samples to write.</param>
-    public void ProcessSplit(
-        ReadOnlySpan<(
-            ArraySegment<float> Left,
-            ArraySegment<float> Right)> outputs,
-        Span<float> effectsLeft,
-        Span<float> effectsRight,
+    /// <param name="channelOutputs">Optional stereo channel outputs for visualization _only_. These shouldn't be added to the direct outputs.</param>
+    public void Process(
+        ArraySegment<float> left,
+        ArraySegment<float> right,
         int startIndex = 0,
-        int? samples = null) 
+        int? samples = null,
+        ArraySegment<ArraySegment<ArraySegment<float>>>? channelOutputs = null)
     {
         // Process event queue
         if (_eventQueue.Count > 0) 
@@ -758,7 +745,7 @@ public sealed class Synthesizer
 
         // Validate
         startIndex = Math.Max(startIndex, 0);
-        var sampleCount = samples ?? outputs[0].Left.Count - startIndex;
+        var sampleCount = samples ?? left.Count - startIndex;
 
         if (sampleCount > MaxBufferSize)
             throw SpessaException.Invalid(
@@ -775,9 +762,15 @@ public sealed class Synthesizer
             InsertionInputL.AsSpan().Clear();
             InsertionInputR.AsSpan().Clear();
         }
+
+        foreach (var c in MidiChannels)
+        {
+            c.OutputLeft.AsSpan().Clear();
+            c.OutputRight.AsSpan().Clear();
+        }
         
         // Process voices
-        var outputCount = outputs.Length;
+        var outputCount = channelOutputs?.Count ?? 0;
         var cTime = (float)CurrentTime;
         
         for (var i = Voices.Count - 1; i >= 0; i--) 
@@ -788,16 +781,50 @@ public sealed class Synthesizer
             Debug.Assert(v.Channel != null);
             
             var ch = v.Channel!;
+            ch.RenderVoice(v, cTime, sampleCount);
+        }
+        
+        // Mix channel data
+        for (var channel = 0; channel < MidiChannels.Count; channel++)
+        {
+            var chan = MidiChannels[channel];
+            var outputLeft = chan.OutputLeft.AsSpan();
+            var outputRight = chan.OutputRight.AsSpan();
+            var midiParams = chan.MidiParameters;
+            
+            // Mix visualization first
+            if (outputCount > 0)
+            {
+                var vOut = channelOutputs!.Value[channel % outputCount];
+                var outL = vOut[0].AsSpan(startIndex, sampleCount);
+                var outR = vOut[1].AsSpan(startIndex, sampleCount);
 
-            // Send the voice to appropriate output
-            var outputIndex = ch.Channel % outputCount;
-            ch.RenderVoice(
-                v,
-                cTime,
-                outputs[outputIndex].Left,
-                outputs[outputIndex].Right,
-                startIndex,
-                sampleCount);
+                TensorPrimitives.Add(outL, outputLeft[..sampleCount], outL);
+                TensorPrimitives.Add(outR, outputRight[..sampleCount], outR);
+            }
+            
+            // Straight into the insertion EFX, but only if it is active
+            if (midiParams.EfxAssign &&
+                SystemParameters.EffectsEnabled &&
+                InsertionActive)
+            {
+                var insertionL = InsertionInputL.AsSpan(0, sampleCount);
+                var insertionR = InsertionInputR.AsSpan(0, sampleCount);
+                // Index is 0-based here as it's internal
+                TensorPrimitives.Add
+                    (insertionL, outputLeft[..sampleCount], insertionL);
+                TensorPrimitives.Add(
+                    insertionR, outputRight[..sampleCount], insertionR);
+                continue;
+            }
+            
+            // Mix down normally
+            {
+                var outL = left.AsSpan(startIndex, sampleCount);
+                var outR = right.AsSpan(startIndex, sampleCount);
+                TensorPrimitives.Add(outL, outputLeft[..sampleCount], outL);
+                TensorPrimitives.Add(outR, outputRight[..sampleCount], outR);                
+            }
         }
         
         // Process effects
@@ -809,8 +836,8 @@ public sealed class Synthesizer
                 InsertionProcessor.Process(
                     InsertionInputL,
                     InsertionInputR,
-                    effectsLeft,
-                    effectsRight,
+                    left,
+                    right,
                     ReverbInput,
                     ChorusInput,
                     DelayInput,
@@ -821,8 +848,8 @@ public sealed class Synthesizer
             // Chorus first, it feeds to reverb and delay
             ChorusProcessor.Process(
                 ChorusInput,
-                effectsLeft,
-                effectsRight,
+                left,
+                right,
                 ReverbInput,
                 DelayInput,
                 startIndex,
@@ -830,13 +857,13 @@ public sealed class Synthesizer
 
             // CC#94 in XG is variation, not delay
             if (DelayActive && 
-                MidiParameters.MidiSystem != Midi.System.XG)
+                MidiParameters.System != Midi.System.XG)
             {
                 // Process delay
                 DelayProcessor.Process(
                     DelayInput,
-                    effectsLeft,
-                    effectsRight,
+                    left,
+                    right,
                     ReverbInput,
                     startIndex,
                     sampleCount);
@@ -845,8 +872,8 @@ public sealed class Synthesizer
             // Finally process the reverb processor (it goes directly into the output buffer)
             ReverbProcessor.Process(
                 ReverbInput,
-                effectsLeft,
-                effectsRight,
+                left,
+                right,
                 startIndex,
                 sampleCount);
         }
@@ -881,7 +908,7 @@ public sealed class Synthesizer
     /// <param name="velocity">The velocity to use.</param>
     /// <returns>Output is an array of voices.</returns>
     internal CachedVoiceList GetVoicesForPreset(
-        BasicPreset preset, int midiNote, int velocity)
+        SynthPatch preset, byte midiNote, byte velocity)
     {
         // If cached, return it!
         if (_cachedVoices.TryGetValue(
@@ -955,7 +982,7 @@ public sealed class Synthesizer
         _cvbCache.Clear();
     }
 
-    public Effect.InsertionProcessorSnapshot GetInsertionSnapshot() =>
+    internal Effect.InsertionProcessorSnapshot GetInsertionSnapshot() =>
         new()
         {
             Type = InsertionProcessor.Type,
@@ -965,7 +992,7 @@ public sealed class Synthesizer
     /// <summary>Copied callback so MIDI channels can call it.</summary>
     /// <param name="ev"></param>
     public void CallEvent(Event ev) => EventCallbackHandler(ev);
-
+    
     /// <summary>
     /// Checks if we can disable insertion and delay effects.
     /// </summary>
@@ -978,11 +1005,36 @@ public sealed class Synthesizer
         if (!SystemParameters.DelayLock)
         {
             DelayActive = 
-                MidiParameters.MidiSystem != Midi.System.XG && 
+                MidiParameters.System != Midi.System.XG && 
                 (ChorusProcessor.SendLevelToDelay > 0 ||
-                InsertionProcessor.SendLevelToDelay > 0 ||
-                MidiChannels.Any(c => c[Midi.CC.VariationDepth] > 0));
+                 InsertionProcessor.SendLevelToDelay > 0 ||
+                 MidiChannels.Any(c => c[Midi.CC.VariationDepth] > 0));
         }
+    }
+
+    /// <summary>Bad code... make sure to call only when necessary!!!</summary>
+    public void PurgeCachedPatch(MidiPatch patch)
+    {
+        for (byte midiNote = 0; midiNote < 128; midiNote++)
+            for (byte velocity = 0; velocity < 128; velocity++)
+                _cachedVoices.Remove((patch, midiNote, velocity));
+    }
+    
+    internal void SetUserDrumSetParam(
+        int drumSet,
+        int midiNote,
+        UserDrumSetParameter.Entry entry)
+    {
+        var set = SoundBankManager.UserDrumSets[drumSet];
+        if (set.IsSet(midiNote, entry)) return;
+        // Optimization for bulk dump
+        // Testcase FADED88.mid
+        set.Set(midiNote, entry);
+        CallEvent(new Event.CbUserDrumSetChange(
+            midiNote, drumSet, entry));
+        SpessaLog.GSInfo(
+            $"User Drum Set {drumSet} {entry.Type}, key {midiNote}",
+            entry.ValueToString());
     }
     
     internal void ResetInsertionParams() 
@@ -998,7 +1050,8 @@ public sealed class Synthesizer
     {
         if (SystemParameters.InsertionEffectLock) 
             return;
-        
+
+        InsertionActive = false;
         InsertionProcessor = InsertionFallback;
         InsertionProcessor.Reset();
         ResetInsertionParams();
