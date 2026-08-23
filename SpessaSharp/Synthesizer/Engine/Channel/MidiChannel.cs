@@ -770,8 +770,8 @@ public sealed class MidiChannel: ISf2Channel
 
     public (int Pressure, int PitchWheel, float PitchWheelRange,
         byte[] PolyPressures) GetMidiParameters => (
-        MidiParamArray.Pressure,
-        MidiParamArray.PitchWheel,
-        MidiParamArray.PitchWheelRange,
+        MidiParameters.Pressure,
+        MidiParameters.PitchWheel,
+        MidiParameters.PitchWheelRange,
         PolyPressures);
 }

@@ -15,6 +15,27 @@ public static class ChannelMidiParameters
             set => parameters.Set(
                 (ChannelMidiParameter.Type.RxChannel, value));
         }
+        
+        public Midi.CC CC1
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(
+                new ChannelMidiParameter(ChannelMidiParameter.Type.CC1, value));
+        }
+        
+        public Midi.CC CC2
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(
+                new ChannelMidiParameter(ChannelMidiParameter.Type.CC2, value));
+        }
+
+        public float PitchWheelRange
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(ChannelMidiParameter.Of(
+                ChannelMidiParameter.Type.PitchWheelRange, value));
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Set(

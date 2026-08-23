@@ -294,14 +294,34 @@ internal static class Yamaha
                     {
                         // Bend pitch control (pitch wheel range)
                         var centeredValue = data - 64;
-                        ch.Set((ChannelMidiParameter.Type.PitchWheelRange, centeredValue));
+                        ch.MidiParamArray.PitchWheelRange = centeredValue;
                         SpessaLog.XGInfo(
                             $"Pitch Wheel Range for {channel}",
                             centeredValue,
                         "semitones");
                         break;
                     }
+
+                    // TODO: Implement setupReceivers, tests have been added
+                    // AC1 Controller number
+                    case 0x59:
+                    {
+                        ch.MidiParamArray.CC1 = (Midi.CC)data;
+                        SpessaLog.XGInfo(
+                            $"AC1 controller number for {channel}", data);
+                        break;
+                    }
+
+                    // AC2 Controller number
+                    case 0x60:
+                    {
+                        ch.MidiParamArray.CC2 = (Midi.CC)data;
+                        SpessaLog.XGInfo(
+                            $"AC2 controller number for {channel}", data);
+                        break;
+                    }
                 }
+
                 return;
             }
 

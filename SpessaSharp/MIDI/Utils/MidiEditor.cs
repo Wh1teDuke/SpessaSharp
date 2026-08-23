@@ -918,6 +918,7 @@ public sealed class MidiEditor
             return;
         }
 
+        // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
         switch (ccNum)
         {
             case Midi.CC.BankSelect:
