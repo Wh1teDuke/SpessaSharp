@@ -280,12 +280,12 @@ public sealed class UserDrumSet: SynthPatch
             binding.Program, 0, binding.SourceDrumSet, true);
         var resolvedPatch = _resolvePatch(tempPatch);
         // Protect from binding to self as well
-        if (resolvedPatch == null || resolvedPatch == this)
+        if (resolvedPatch is null or UserDrumSet)
         {
             resolvedPatch = _resolvePatch(new MidiPatch(0, 0, 0, true));
             
-            if (resolvedPatch == null)
-                // No match, no sound
+            if (resolvedPatch is null or UserDrumSet)
+                // No drums at all (only user drum sets are present)
                 return [];
         }
 
