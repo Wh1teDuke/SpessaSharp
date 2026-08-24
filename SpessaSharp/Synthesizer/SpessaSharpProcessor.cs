@@ -162,6 +162,36 @@ public sealed class SpessaSharpProcessor
         int? channelOffset = null,
         double? time = null)
         => _synthCore.ProcessMessage(message, channelOffset ?? 0, time);
+    
+    /// <summary>Processes a raw MIDI message and allows scheduling it at a specific time.</summary>
+    /// <param name="message">The MIDI message to process.</param>
+    /// <param name="channelOffset">The channel offset for the message. It will be added to message's channel number if applicable</param>
+    /// <param name="time">The audio context time when the event should execute, in seconds.</param>
+    public void ProcessMessage(
+        MidiMessage message,
+        int? channelOffset = null,
+        double? time = null)
+        => _synthCore.ProcessMessage(message, channelOffset ?? 0, time);
+    
+    /// <summary>Processes multiple MIDI messages.</summary>
+    /// <param name="messages">The messages to process.</param>
+    /// <param name="channelOffset">The channel offset for the messages</param>
+    /// <param name="time">The audio context time when the event should execute, in seconds.</param>
+    public void ProcessMessages(
+        ReadOnlySpan<ArraySegment<byte>> messages, 
+        int channelOffset = 0, 
+        double? time = null) =>
+        _synthCore.ProcessMessages(messages, channelOffset, time);
+    
+    /// <summary>Processes multiple MIDI messages.</summary>
+    /// <param name="messages">The messages to process.</param>
+    /// <param name="channelOffset">The channel offset for the messages</param>
+    /// <param name="time">The audio context time when the event should execute, in seconds.</param>
+    public void ProcessMessages(
+        ReadOnlySpan<MidiMessage> messages,
+        int channelOffset = 0,
+        double? time = null) =>
+        _synthCore.ProcessMessages(messages, channelOffset, time);
 
     /// <summary>Creates a new synthesizer engine.</summary>
     /// <param name="sampleRate">sample rate, in Hertz.</param>
