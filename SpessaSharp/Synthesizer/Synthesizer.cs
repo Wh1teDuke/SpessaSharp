@@ -22,6 +22,7 @@ public sealed class Synthesizer
 {
     /// <summary>Buffer size is recommended to be very small, as this is the interval between modulator updates and LFO updates</summary>
     public const int SPESSA_BUFSIZE = 128;
+
     public const int VOICE_CAP = 350;
     public const Midi.System DefaultMode = Midi.System.GS;
     public const short GENERATOR_OVERRIDE_NO_CHANGE_VALUE = short.MaxValue;
@@ -32,25 +33,26 @@ public sealed class Synthesizer
     
     /// <summary>This sounds way nicer for an instant hi-hat cutoff</summary>
     public const float MIN_EXCLUSIVE_LENGTH = .07f;
-    
+
     /// <summary>
     /// This gain factor ensures that spessasynth doesn't stay too loud.
     /// You can set the `gain` system parameter to an inverse of it to negate the effect.
     /// </summary>
     public const float SPESSASYNTH_GAIN_FACTOR = .6f;
-    
+
     /// <summary>
     /// If the note is released faster than that, it forced to last that long
     /// This is used mostly for drum channels, where a lot of midis like to send instant note off after a note on
     /// </summary>
     public const float MIN_NOTE_LENGTH = .03f;
+
     public const int MIDI_CHANNEL_COUNT = 16;
     public const int DEFAULT_PERCUSSION = 9;
 
     /// <summary>Used globally to identify the embedded sound bank. This is used to prevent the embedded bank from being deleted.</summary>
     internal static readonly string EMBEDDED_SOUND_BANK_ID =
         $"SPESSASHARP_EMBEDDED_BANK_{Guid.NewGuid()}_DO_NOT_DELETE";
-    
+
     /// <summary>
     /// This is needed because effects (regular ones) are send straight from the mono signal, whereas
     /// insertion effects receive the panned audio (twice), which reduces gain by a factor of cos(pi/4) * cos(pi/4) (master pan + voice pan).
@@ -81,10 +83,10 @@ public sealed class Synthesizer
     {
         public static readonly Options Default = new()
         {
-            EventsEnabled   = true,
-            EffectsEnabled  = true,
-            InitialTime     = 0,
-            MaxBufferSize   = SPESSA_BUFSIZE,
+            EventsEnabled = true,
+            EffectsEnabled = true,
+            InitialTime = 0,
+            MaxBufferSize = SPESSA_BUFSIZE,
         };
     }
 
@@ -92,18 +94,26 @@ public sealed class Synthesizer
     public enum SampleLoopingMode
     {
         /// <summary>No loop.</summary>
-        m0, 
+        m0,
+
         /// <summary>Loop.</summary>
-        m1, 
+        m1,
+
         /// <summary>UNOFFICIAL: polyphone 2.4 added start on release.</summary>
         m2,
+
         /// <summary> Loop then play when released. </summary>
         m3,
     }
 
     ///<summary>The available interpolation types of the synthesizer.</summary>
-    public enum InterpolationType { Linear, NearestNeighbor, Hermite, }
-    
+    public enum InterpolationType
+    {
+        Linear,
+        NearestNeighbor,
+        Hermite,
+    }
+
     /// <summary>Gain smoothing for rapid volume changes. Must be run EVERY SAMPLE</summary>
     private const float GAIN_SMOOTHING_FACTOR = 0.01f;
 
@@ -112,37 +122,37 @@ public sealed class Synthesizer
 
     /// <summary>Unused voices of this synthesizer</summary>
     public readonly List<Voice> FreeVoices;
-    
+
     /// <summary>Active Voices of this synthesizer</summary>
     public readonly List<Voice> Voices;
-    
+
     /// <summary>All MIDI channels of the synthesizer.</summary>
     public readonly List<MidiChannel> MidiChannels = new(64);
-    
+
     /// <summary>The maximum allowed buffer size to render.</summary>
     public readonly int MaxBufferSize;
-    
+
     /// <summary>The buffer to use when rendering a voice.</summary>
     public readonly float[] VoiceBuffer;
-    
+
     /// <summary>The insertion processor's left input buffer.</summary>
     public readonly float[] InsertionInputL;
 
     /// <summary>The insertion processor's right input buffer.</summary>
     public readonly float[] InsertionInputR;
-    
+
     /// <summary>The reverb processor's input buffer.</summary>
     public readonly float[] ReverbInput;
-    
+
     /// <summary>The chorus processor's input buffer.</summary>
     public readonly float[] ChorusInput;
-    
+
     /// <summary>The reverb processor's input buffer.</summary>
     public readonly float[] DelayInput;
-    
+
     /// <summary>Delay is not used outside SC-88+ MIDIs, this is an optimization.</summary>
     public bool DelayActive;
-    
+
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public readonly SoundBankManager SoundBankManager;
 
@@ -161,18 +171,18 @@ public sealed class Synthesizer
     /// A locked parameter cannot be modified.
     /// </summary>
     internal readonly BitArray LockedParameters = new(GlobalMidiParameter.Len);
-    
+
     /// <summary>The global MIDI parameters of the synthesizer.</summary>
-    public readonly GlobalMidiParameter[] MidiParameters = 
+    public readonly GlobalMidiParameter[] MidiParameters =
         GlobalMidiParameters.Default.ToArray(); // Copy, not set!
-    
+
     /// <summary>The system parameters of the synthesizer.</summary>
     public readonly GlobalSystemParameter[] SystemParameters =
-        GlobalSystemParameters.Default.ToArray();// Copy, not set!
-    
+        GlobalSystemParameters.Default.ToArray(); // Copy, not set!
+
     /// <summary>The current time of the synthesizer, in seconds.</summary>
     public double CurrentTime;
-    
+
     /// <summary> Synth's default (reset) preset. </summary>
     public SynthPatch? DefaultPreset;
     
@@ -181,7 +191,7 @@ public sealed class Synthesizer
     
     /// <summary> Gain smoothing factor, adjusted to the sample rate. </summary>
     public readonly float GainSmoothingFactor;
-    
+
     /// <summary> Pan smoothing factor, adjusted to the sample rate. </summary>
     public readonly float PanSmoothingFactor;
 
@@ -189,13 +199,14 @@ public sealed class Synthesizer
     public readonly Action<Event> EventCallbackHandler;
 
     public delegate BasicPreset? MissingPresetHandler(
-        MidiPatch path, Midi.System system); 
-    
+        MidiPatch path, Midi.System system);
+
     public readonly MissingPresetHandler MissingPreset;
 
     internal readonly record struct CachedVoiceList(
-        CachedVoice? Single, ArraySegment<CachedVoice>? Multi);
-    
+        CachedVoice? Single,
+        ArraySegment<CachedVoice>? Multi);
+
     /// <summary>
     /// Cached voices for all presets for this synthesizer.
     /// Nesting is calculated in getCachedVoiceIndex, returns a list of voices for this note.
@@ -213,7 +224,7 @@ public sealed class Synthesizer
     /// <param name="isLocked">If the parameter should be locked.</param>
     public void LockParameter(
         GlobalMidiParameter.Type parameter, bool isLocked) =>
-            LockedParameters[(int)parameter] = isLocked;
+        LockedParameters[(int)parameter] = isLocked;
 
     /// <summary>Sets a system parameter of the synthesizer. </summary>
     /// <param name="param">The type and value of the system parameter to set.</param>
@@ -222,47 +233,47 @@ public sealed class Synthesizer
 
     public void SystemExclusive(
         ReadOnlySpan<byte> syx, int channelOffset = 0) =>
-            Engine.SystemExclusive.Execute(this, syx, channelOffset);
+        Engine.SystemExclusive.Execute(this, syx, channelOffset);
 
     /// <summary> Current total amount of voices that are currently playing. </summary>
     public int VoiceCount => Voices.Count;
-    
+
     /// <summary> The synthesizer's reverb processor. </summary>
     public readonly Effect.ReverbProcessor ReverbProcessor;
-    
+
     /// <summary> The synthesizer's chorus processor. </summary>
     public readonly Effect.ChorusProcessor ChorusProcessor;
-    
+
     /// <summary> The synthesizer's delay processor. </summary>
     public readonly Effect.DelayProcessor DelayProcessor;
-        
+
     /// <summary> Insertion is not used outside SC-88Pro+ MIDIs, this is an optimization. </summary>
     public bool InsertionActive;
-    
+
     /// <summary>
     /// A sysEx may set a "Part" (channel) to receive on a different channel number.
     /// This slows down the access, so this toggle tracks if it's enabled or not.
     /// </summary>
     public bool CustomChannelNumbers { get; internal set; }
-    
+
     /// <summary>Sets a global MIDI parameter of the synthesizer.</summary>
     /// <param name="param">The type and value of the global MIDI parameter to set.</param>
     internal void Set(GlobalMidiParameter param) =>
         GlobalMidiParameters.Set(this, param);
-    
+
     /// <summary> The fallback processor when the requested insertion is not available. </summary>
     internal readonly ThruFX InsertionFallback = new();
-    
+
     /// <summary> The current insertion processor. </summary>
     internal Effect.InsertionProcessor InsertionProcessor;
-    
+
     /// <summary>
     /// All the insertion effects available to the processor.<br/>
     /// The key is the EFX type stored as MSB lshift 8 | LSB
     /// </summary>
-    internal readonly FrozenDictionary<int, Effect.InsertionProcessor> 
+    internal readonly FrozenDictionary<int, Effect.InsertionProcessor>
         InsertionEffects;
-    
+
     /// <summary> For F5 system exclusive </summary>
     internal int PortSelectChannelOffset;
 
@@ -274,21 +285,22 @@ public sealed class Synthesizer
 
     /// <summary>For smoothing the filter cutoff frequency.</summary>
     internal readonly float SmoothingConstant;
-    
+
     /// <summary>Last time the priorities were assigned. Used to prevent assigning priorities multiple times when more than one voice is triggered during a quantum. </summary>
     private double _lastPriorityAssignmentTime;
 
     private readonly record struct EventQueueData(
-        ArraySegment<byte>? AsSegment, (byte A, byte? B, byte? C)? AsInline);
-    
+        ArraySegment<byte>? AsSegment,
+        (byte A, byte? B, byte? C)? AsInline);
+
     /// <summary>Synth's event queue from the main thread</summary>
     private readonly PriorityQueue<
             (EventQueueData Message, int ChannelOffset), double>
-        _eventQueue = new (64);
-    
+        _eventQueue = new(64);
+
     /// <summary>The time of a single sample, in seconds.</summary>
     private readonly double _sampleTime;
-    
+
     internal Synthesizer(
         Action<Event> eventCallback,
         MissingPresetHandler missingPreset,
@@ -299,16 +311,16 @@ public sealed class Synthesizer
         RuntimeHelpers.RunClassConstructor(typeof(UnitConverter).TypeHandle);
         RuntimeHelpers.RunClassConstructor(typeof(RenderVoice).TypeHandle);
         RuntimeHelpers.RunClassConstructor(typeof(ModulationEnvelope).TypeHandle);
-        
+
         // 
-        SmoothingConstant = 
+        SmoothingConstant =
             LowpassFilter.FILTER_SMOOTHING_FACTOR * (44_100f / sampleRate);
         SoundBankManager = new SoundBankManager(UpdatePresetList);
         _cvbCache = new CachedVoice.Base.Cache(sampleRate);
-        
+
         Tunings.AsSpan().Fill(-1);
         InsertionParams.AsSpan().Fill(255);
-        
+
         InsertionProcessor = InsertionFallback;
 
         EventCallbackHandler = eventCallback;
@@ -317,7 +329,7 @@ public sealed class Synthesizer
         _sampleTime = 1d / sampleRate;
         CurrentTime = options.InitialTime;
         Set((
-            GlobalSystemParameter.Type.EffectsEnabled, 
+            GlobalSystemParameter.Type.EffectsEnabled,
             options.EffectsEnabled));
         Set((
             GlobalSystemParameter.Type.EventsEnabled,
@@ -331,16 +343,16 @@ public sealed class Synthesizer
         GainSmoothingFactor = GAIN_SMOOTHING_FACTOR * (44_100f / sampleRate);
         // Pan smoothing factor
         PanSmoothingFactor = PAN_SMOOTHING_FACTOR * (44_100f / sampleRate);
-        
+
         var bufSize = MaxBufferSize;
         // Initialize effects
         ReverbProcessor =
             options.ReverbProcessor ?? new SSReverb(sampleRate, bufSize);
         ChorusProcessor =
             options.ChorusProcessor ?? new SSChorus(sampleRate, bufSize);
-        DelayProcessor = 
+        DelayProcessor =
             options.DelayProcessor ?? new SSDelay(sampleRate, bufSize);
-        
+
         // Initialize buffers
         VoiceBuffer = new float[bufSize];
         InsertionInputL = new float[bufSize];
@@ -348,7 +360,7 @@ public sealed class Synthesizer
         ReverbInput = new float[bufSize];
         ChorusInput = new float[bufSize];
         DelayInput = new float[bufSize];
-        
+
         // Register insertion
         var insertions = new Dictionary<int, Effect.InsertionProcessor>();
         foreach (var proc in Effect.InsertionProcessor.List)
@@ -356,21 +368,22 @@ public sealed class Synthesizer
             var p = proc(SampleRate, MaxBufferSize);
             insertions[p.Type] = p;
         }
+
         InsertionEffects = insertions.ToFrozenDictionary();
 
         ResetInsertionParams(); // Initial setup
-        
+
         // Initialize voices
         var voiceCap = SystemParameters.VoiceCap;
         FreeVoices = new List<Voice>(voiceCap);
         Voices = new List<Voice>(voiceCap);
         AllocateNewVoices(voiceCap);
     }
-    
+
     public void ControllerChange(
-        int channel, Midi.CC controller, int value) 
+        int channel, Midi.CC controller, int value)
     {
-        if (CustomChannelNumbers) 
+        if (CustomChannelNumbers)
         {
             foreach (var ch in MidiChannels)
                 if (ch.MidiParameters.RxChannel == channel)
@@ -381,13 +394,13 @@ public sealed class Synthesizer
         MidiChannels[channel + PortSelectChannelOffset]
             .ControllerChange(controller, value);
     }
-    
-    public void NoteOn(int channel, int midiNote, int velocity) 
+
+    public void NoteOn(int channel, int midiNote, int velocity)
     {
-        if (CustomChannelNumbers) 
+        if (CustomChannelNumbers)
         {
             foreach (var ch in MidiChannels)
-                if (ch.MidiParameters.RxChannel == channel) 
+                if (ch.MidiParameters.RxChannel == channel)
                     ch.NoteOn(midiNote, velocity);
             return;
         }
@@ -395,13 +408,13 @@ public sealed class Synthesizer
         MidiChannels[channel + PortSelectChannelOffset]
             .NoteOn(midiNote, velocity);
     }
-    
-    public void NoteOff(int channel, int midiNote) 
+
+    public void NoteOff(int channel, int midiNote)
     {
-        if (CustomChannelNumbers) 
+        if (CustomChannelNumbers)
         {
             foreach (var ch in MidiChannels)
-                if (ch.MidiParameters.RxChannel == channel) 
+                if (ch.MidiParameters.RxChannel == channel)
                     ch.NoteOff(midiNote);
             return;
         }
@@ -410,9 +423,9 @@ public sealed class Synthesizer
             .NoteOff(midiNote);
     }
 
-    public void PolyPressure(int channel, int midiNote, int pressure) 
+    public void PolyPressure(int channel, int midiNote, int pressure)
     {
-        if (CustomChannelNumbers) 
+        if (CustomChannelNumbers)
         {
             foreach (var ch in MidiChannels)
                 if (ch.MidiParameters.RxChannel == channel)
@@ -423,28 +436,28 @@ public sealed class Synthesizer
         MidiChannels[channel + PortSelectChannelOffset]
             .PolyPressure(midiNote, pressure);
     }
-    
+
     public void ChannelPressure(int channel, int pressure)
     {
         var param = (ChannelMidiParameter.Type.Pressure, pressure);
-        
+
         if (CustomChannelNumbers)
         {
             foreach (var ch in MidiChannels)
-                if (ch.MidiParameters.RxChannel == channel) 
+                if (ch.MidiParameters.RxChannel == channel)
                     ch.Set(param);
             return;
         }
 
         MidiChannels[channel + PortSelectChannelOffset].Set(param);
     }
-    
-    public void PitchWheel(int channel, short pitch, int? midiNote = null) 
+
+    public void PitchWheel(int channel, short pitch, int? midiNote = null)
     {
-        if (CustomChannelNumbers) 
+        if (CustomChannelNumbers)
         {
             foreach (var ch in MidiChannels)
-                if (ch.MidiParameters.RxChannel == channel) 
+                if (ch.MidiParameters.RxChannel == channel)
                     ch.PitchWheel(pitch, midiNote);
             return;
         }
@@ -453,23 +466,23 @@ public sealed class Synthesizer
             .PitchWheel(pitch, midiNote);
     }
 
-    public void ProgramChange(int channel, int programNumber) 
+    public void ProgramChange(int channel, int programNumber)
     {
-        if (CustomChannelNumbers) 
+        if (CustomChannelNumbers)
         {
             foreach (var ch in MidiChannels)
-                if (ch.MidiParameters.RxChannel == channel) 
+                if (ch.MidiParameters.RxChannel == channel)
                     ch.ProgramChange(programNumber);
             return;
         }
-        
+
         MidiChannels[channel + PortSelectChannelOffset]
             .ProgramChange(programNumber);
     }
-    
+
     /// <summary>Assigns the first available voice for use. If none available, will assign priorities.</summary>
     /// <returns></returns>
-    public Voice AssignVoice() 
+    public Voice AssignVoice()
     {
         if (FreeVoices.Count > 0)
         {
@@ -477,7 +490,7 @@ public sealed class Synthesizer
             Debug.Assert(v.GlobalIndex == -1);
             Debug.Assert(v.LocalIndex == -1);
             Debug.Assert(v.Channel == null);
-            
+
             FreeVoices.RemoveAt(FreeVoices.Count - 1);
             Voices.Add(v);
             // Prevent this voice from being stolen
@@ -485,14 +498,14 @@ public sealed class Synthesizer
             v.GlobalIndex = Voices.Count - 1;
             return v;
         }
-        
+
         // No match, assign priorities
         if (SystemParameters.AutoAllocateVoices)
         {
             var newVoiceCap = SystemParameters.VoiceCap + 1;
             SpessaLog.Info(
                 $"Allocating a new voice, total count {newVoiceCap}.");
-            
+
             // Allocate a new voice and return it
             AllocateNewVoices(1);
             Set((GlobalSystemParameter.Type.VoiceCap, newVoiceCap));
@@ -508,16 +521,16 @@ public sealed class Synthesizer
         lowest.Priority = int.MaxValue;
         return lowest;
     }
-    
+
     /// <summary>Stops all notes on all channels.</summary>
     /// <param name="force">If true, all notes are stopped immediately, otherwise they are stopped gracefully.</param>
-    public void StopAllChannels(bool force) 
+    public void StopAllChannels(bool force)
     {
         SpessaLog.Info("Stop all received!");
         foreach (var channel in MidiChannels)
             channel.StopAllNotes(force);
     }
-    
+
     /// <summary>Processes a raw MIDI message.</summary>
     /// <param name="message">The message to process.</param>
     /// <param name="channelOffset">The channel offset for the message.</param>
@@ -548,6 +561,49 @@ public sealed class Synthesizer
         }
 
         _eventQueue.Enqueue((data, channelOffset), time.Value);
+    }
+
+    /// <summary>Processes a raw MIDI message.</summary>
+    /// <param name="message">The message to process.</param>
+    /// <param name="channelOffset">The channel offset for the message.</param>
+    /// <param name="time">The audio context time when the event should execute, in seconds.</param>
+    public void ProcessMessage(
+        MidiMessage message, int channelOffset = 0, double? time = null)
+    {
+        var len = 1 + message.Data.Count;
+        var data = len >= 256
+            ? new byte[len]
+            : stackalloc byte[len];
+
+        data[0] = message.StatusByte.Byte;
+        message.Data.AsSpan().CopyTo(data[1..]);
+        ProcessMessage(data, channelOffset, time);
+    }
+
+    /// <summary>Processes multiple MIDI messages.</summary>
+    /// <param name="messages">The messages to process.</param>
+    /// <param name="channelOffset">The channel offset for the messages</param>
+    /// <param name="time">The audio context time when the event should execute, in seconds.</param>
+    public void ProcessMessages(
+        ReadOnlySpan<ArraySegment<byte>> messages, 
+        int channelOffset = 0, 
+        double? time = null)
+    {
+        foreach (var msg in messages)
+            ProcessMessage(msg, channelOffset, time);
+    }
+    
+    /// <summary>Processes multiple MIDI messages.</summary>
+    /// <param name="messages">The messages to process.</param>
+    /// <param name="channelOffset">The channel offset for the messages</param>
+    /// <param name="time">The audio context time when the event should execute, in seconds.</param>
+    public void ProcessMessages(
+        ReadOnlySpan<MidiMessage> messages, 
+        int channelOffset = 0, 
+        double? time = null)
+    {
+        foreach (var msg in messages)
+            ProcessMessage(msg, channelOffset, time);
     }
 
     public void Destroy() 
