@@ -130,11 +130,14 @@ internal static class RenderVoice
         {
             var vibPitchDepth = modulated[
                 (int)Generator.Type.VibLFOToPitch];
+            var vibVolDepth = modulated[
+                (int)Generator.Type.VibLFOToVolume];
             var vibFilterDepth = modulated[
                 (int)Generator.Type.VibLFOToFilterFc];
             var vibAmplitudeDepth = modulated[
                 (int)Generator.Type.VibLFOAmplitudeDepth];
             if (vibPitchDepth != 0 ||
+                vibVolDepth != 0 ||
                 vibFilterDepth != 0 ||
                 vibAmplitudeDepth != 0) 
             {
@@ -151,6 +154,10 @@ internal static class RenderVoice
                 // Low pass frequency
                 lowpassExcursion =
                     (int)(lowpassExcursion + vibLfoValue * vibFilterDepth);
+                
+                // Vol env volume offset
+                // Negate the lfo value because audigy starts with increase rather than decrease
+                volumeExcursionCentibels += -vibLfoValue * vibVolDepth;
 
                 // Amplitude depth
                 // Like SCVA: double gain at peak, 0 at lowest (times depth)

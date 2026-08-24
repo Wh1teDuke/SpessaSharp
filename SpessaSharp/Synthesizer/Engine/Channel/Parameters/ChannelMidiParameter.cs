@@ -36,6 +36,13 @@ public static class ChannelMidiParameters
             set => parameters.Set(ChannelMidiParameter.Of(
                 ChannelMidiParameter.Type.PitchWheelRange, value));
         }
+        
+        public float ModulationDepth
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(ChannelMidiParameter.Of(
+                ChannelMidiParameter.Type.ModulationDepth, value));
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Set(

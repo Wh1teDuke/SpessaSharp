@@ -827,7 +827,7 @@ internal static class Roland
                                             "cents");
                                         break;
                                     }
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         (int)Midi.CC.ModulationWheel,
@@ -854,7 +854,7 @@ internal static class Roland
                                             "semitones");
                                         break;
                                     }
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         Modulator.Source.ID(Modulator.Source.ControllerSource.PitchWheel),
@@ -865,7 +865,7 @@ internal static class Roland
 
                                 case 0x20: 
                                     // Channel pressure
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         Modulator.Source.ID(Modulator.Source.ControllerSource.ChannelPressure),
@@ -875,7 +875,7 @@ internal static class Roland
 
                                 case 0x30: 
                                     // Poly pressure
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         Modulator.Source.ID(Modulator.Source.ControllerSource.PolyPressure),
@@ -885,7 +885,7 @@ internal static class Roland
 
                                 case 0x40: 
                                     // CC1
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         (int)ch.MidiParameters.CC1,
@@ -895,7 +895,7 @@ internal static class Roland
 
                                 case 0x50: 
                                     // CC2
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         (int)ch.MidiParameters.CC2,

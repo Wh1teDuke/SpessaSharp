@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.SoundBank;
@@ -49,7 +50,164 @@ public sealed class DynamicModulatorManager(int channel)
         Active = false;
     }
 
-    public void SetupReceiver(
+    public void SetupReceiverXG(
+        int addr3,
+        int data,
+        int source,
+        bool isCC,
+        string sourceName,
+        bool bipolar = false)
+    {
+        Active = true;
+        var centeredValue = data - 64;
+        var centeredNormalized = centeredValue / 64f;
+        var normalizedNotCentered = data / 127f;
+
+        // Value is tested in xg_controller_matrix
+        // Ensure the test matches s-yxg50 before changing
+        switch (addr3 & 0x0f)
+        {
+            case 0x00:
+                var v = Math.Clamp(centeredValue, -24, +24);
+                // Pitch Control
+                SetModulator(
+                    source,
+                    isCC,
+                    Generator.Type.FineTune,
+                    (short)(v * 100),
+                    bipolar);
+
+                SpessaLog.XGInfo(
+                    $"Channel {channel} {sourceName} pitch control",
+                    v,
+                    "semitones");
+                break;
+
+            case 0x01:
+                // Cutoff
+                SetModulator(
+                    source,
+                    isCC,
+                    Generator.Type.InitialFilterFc,
+                    (short)(centeredNormalized * 9_600),
+                    bipolar);
+
+                SpessaLog.XGInfo(
+                    $"Channel {channel} {sourceName} filter control",
+                    centeredNormalized * 9_600,
+                    "cents");
+                break;
+            case 0x02:
+            {
+                // Amplitude
+                // In XG it behaves like CC volume (exponential) but we can't have positive attenuation
+                if (centeredNormalized > 0)
+                {
+                    SetModulator(
+                        source,
+                        isCC,
+                        Generator.Type.Amplitude,
+                        (short)(centeredNormalized * 1_000), // Generator is 1/10%
+                        bipolar);
+                    SetModulator(
+                        source,
+                        isCC,
+                        Generator.Type.InitialAttenuation,
+                        0,
+                        bipolar,
+                        false,
+                        true);
+                }
+                else
+                {
+                    SetModulator(
+                        source,
+                        isCC,
+                        Generator.Type.InitialAttenuation,
+                        (short)(centeredNormalized * -960),
+                        bipolar,
+                        false,
+                        true);
+                    SetModulator(
+                        source,
+                        isCC,
+                        Generator.Type.Amplitude,
+                        0,
+                        bipolar
+                    );
+                }
+                
+                SpessaLog.XGInfo(
+                    $"Channel {channel} {sourceName} amplitude control",
+                    centeredNormalized * 100,
+                "%");
+                break;
+            }
+
+            case 0x03:
+            {
+                // LFO pitch depth
+                SetModulator(
+                    source,
+                    isCC,
+                    Generator.Type.VibLFOToPitch,
+                    (short)(normalizedNotCentered * 600),
+                    bipolar);
+                SpessaLog.XGInfo(
+                    $"Channel {channel} {sourceName} LFO pitch depth control",
+                    normalizedNotCentered * 600,
+                "cents");
+                break;
+            }
+            
+            case 0x04: 
+            {
+                // LFO filter depth
+                SetModulator(
+                    source,
+                    isCC,
+                    Generator.Type.VibLFOToFilterFc,
+                    (short)(normalizedNotCentered * 9600),
+                    bipolar);
+                SpessaLog.XGInfo(
+                    $"Channel {channel} {sourceName} LFO filter depth control",
+                    normalizedNotCentered * 9600,
+                "cents");
+                break;
+            }
+            
+            case 0x05: 
+            {
+                // LFO amplitude depth
+                // Value is tested in xg_controller_matrix
+                SetModulator(
+                    source,
+                    isCC,
+                    Generator.Type.VibLFOToVolume,
+                    (short)(normalizedNotCentered * 200),
+                    bipolar,
+                    false,
+                    true);
+                // In XG the LFO is only negative (only attenuates), emulate that here
+                SetModulator(
+                    source,
+                    isCC,
+                    Generator.Type.InitialAttenuation,
+                    (short)(normalizedNotCentered * 200),
+                    bipolar,
+                    false,
+                    true
+                );
+                SpessaLog.XGInfo(
+                    $"Channel {channel} {sourceName} LFO amplitude depth control",
+                    normalizedNotCentered * 200,
+                "dB");
+                break;
+            }
+        }
+    }
+
+    public void SetupReceiverGS(
         int addr3, 
         int data, 
         int source,
@@ -74,7 +232,7 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(v * 100),
                     bipolar);
 
-                SpessaLog.CoolInfo(
+                SpessaLog.GSInfo(
                     $"Channel {channel} {sourceName} pitch control",
                     v,
                     "semitones");
@@ -89,11 +247,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(centeredNormalized * 9_600),
                     bipolar);
 
-                Logging(
-                    channel,
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} filter control",
                     (short)(centeredNormalized * 9_600),
-                    sourceName,
-                    " filter control",
                     "cents");
                 break;
             
@@ -106,11 +262,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(centeredNormalized * 1_000), // Generator is 1/10%
                     bipolar);
 
-                Logging(
-                    channel,
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} amplitude control",
                     (short)(centeredNormalized * 100),
-                    sourceName,
-                    "amplitude",
                     "%");
                 break;
             
@@ -123,11 +277,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(centeredNormalized * 1_000), // Generator is 1/100Hz
                     bipolar);
 
-                Logging(
-                    channel,
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO1 rate control",
                     (short)(centeredNormalized * 10),
-                    sourceName,
-                    " LFO1 rate",
                     "Hz");
                 break;
             
@@ -140,11 +292,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(normalizedNotCentered * 600),
                     bipolar);
 
-                Logging(
-                    channel,
-                    (short)(normalizedNotCentered * 600),
-                    sourceName,
-                    " LFO1 pitch depth",
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO1 pitch depth control",
+                    (short)(centeredNormalized * 600),
                     "cents");
                 break;
             
@@ -157,11 +307,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(normalizedNotCentered * 2_400),
                     bipolar);
 
-                Logging(
-                    channel,
-                    (short)(normalizedNotCentered * 2_400),
-                    sourceName,
-                    " LFO1 filter depth",
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO1 filter depth control",
+                    (short)(centeredNormalized * 2_400),
                     "cents");
                 break;
 
@@ -174,16 +322,14 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(normalizedNotCentered * 1_000), // Generator is 1/10%
                     bipolar);
 
-                Logging(
-                    channel,
-                    (short)(normalizedNotCentered * 100),
-                    sourceName,
-                    " LFO1 amplitude depth",
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO1 amplitude depth control",
+                    (short)(centeredNormalized * 100),
                     "%");
                 break;
 
             case 0x07: 
-                // LFO1 Rate
+                // LFO2 Rate
                 SetModulator(
                     source,
                     isCC,
@@ -191,11 +337,9 @@ public sealed class DynamicModulatorManager(int channel)
                    (short)(centeredNormalized * 1_000), // Generator is 1/100Hz
                     bipolar);
 
-                Logging(
-                    channel,
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO2 rate control",
                     (short)(centeredNormalized * 10),
-                    sourceName,
-                    " LFO2 rate",
                     "Hz");
                 break;
 
@@ -208,11 +352,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(normalizedNotCentered * 600),
                     bipolar);
 
-                Logging(
-                    channel,
-                    (short)(normalizedNotCentered * 600),
-                    sourceName,
-                    " LFO2 pitch depth",
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO2 pitch depth control",
+                    (short)(centeredNormalized * 600),
                     "cents");
                 break;
 
@@ -225,11 +367,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(normalizedNotCentered * 2_400),
                     bipolar);
 
-                Logging(
-                    channel,
-                    (short)(normalizedNotCentered * 2_400),
-                    sourceName,
-                    " LFO2 filter depth",
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO2 filter depth control",
+                    (short)(centeredNormalized * 2_400),
                     "cents");
                 break;
 
@@ -242,11 +382,9 @@ public sealed class DynamicModulatorManager(int channel)
                     (short)(normalizedNotCentered * 1_000), // Generator is 1/10%
                     bipolar);
 
-                Logging(
-                    channel,
-                    (short)(normalizedNotCentered * 100),
-                    sourceName,
-                    " LFO2 amplitude depth",
+                SpessaLog.GSInfo(
+                    $"Channel {channel} {sourceName} LFO2 amplitude depth control",
+                    (short)(centeredNormalized * 100),
                     "%");
                 break;
         }
@@ -260,13 +398,15 @@ public sealed class DynamicModulatorManager(int channel)
     /// <param name="amount">The amount of modulation to apply.</param>
     /// <param name="isBipolar">If true, the modulation is bipolar (ranges from -1 to 1 instead of from 0 to 1).</param>
     /// <param name="isNegative">If true, the modulation is negative (goes from 1 to 0 instead of from 0 to 1).</param>
+    /// <param name="isConcave">If true, the modulation is concave (exponential).</param>
     private void SetModulator(
         int source,
         bool isCC,
         Generator.Type destination,
         short amount,
         bool isBipolar = false,
-        bool isNegative = false)
+        bool isNegative = false,
+        bool isConcave = false)
     {
         var id = new Voice.Voice.Modulator.ID(
             source, destination, isBipolar, isNegative);
@@ -289,7 +429,9 @@ public sealed class DynamicModulatorManager(int channel)
                 isNegative,
                 new Modulator.Source.Index((byte)source),
                 isCC,
-                ModulatorCurve.Type.Linear),
+                isConcave
+                    ? ModulatorCurve.Type.Concave
+                    : ModulatorCurve.Type.Linear),
             new Modulator.Source(),
             destination,
             amount,
@@ -310,10 +452,4 @@ public sealed class DynamicModulatorManager(int channel)
         
         if (index is {} idx) ModulatorList.RemoveAt(idx);
     }
-
-    [Conditional("DEBUG")]
-    private static void Logging(
-        int channel, float value, string whatName, string what, string units) =>
-        Debug.WriteLine(
-            $"Channel {channel} {whatName}{what} is now set to {value} {units}.");
 }

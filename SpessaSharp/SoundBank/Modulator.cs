@@ -110,6 +110,9 @@ public readonly record struct Modulator(
                 left.Equals(right);
             public static bool operator !=(Index left, Index right) => 
                 !left.Equals(right);
+
+            public static implicit operator Index(ControllerSource e) => new(e);
+            public static implicit operator Index(Midi.CC cc) => new(cc);
         }
         
         public string Name => SIndex.Name(IsCC);

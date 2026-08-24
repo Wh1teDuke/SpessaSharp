@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using SpessaSharp.MIDI;
+using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
@@ -289,7 +290,25 @@ internal static class Yamaha
                         ch.ControllerChange(
                             Midi.CC.ReleaseTime, data);
                         break;
+                    
+                    // ---
+                    // XG Controller matrix starts here
+                    // ---
+                    // 2 Special cases which are aliases:
 
+                    // MW LFO PMOD Depth (alias to modulation wheel range)
+                    case 0x20: 
+                    {
+                        var centeredValue = data - 64;
+                        ch.MidiParamArray.ModulationDepth = (data / 127f) * 600;
+                        SpessaLog.XGInfo(
+                            $"Modulation Wheel Range for {channel}",
+                            centeredValue,
+                            "cents");
+                        break;
+                    }
+                    
+                    // Bend pitch control (alias to pitch wheel range)
                     case 0x23:
                     {
                         // Bend pitch control (pitch wheel range)
@@ -302,7 +321,7 @@ internal static class Yamaha
                         break;
                     }
 
-                    // TODO: Implement setupReceivers, tests have been added
+                    // Auxiliary controllers
                     // AC1 Controller number
                     case 0x59:
                     {
@@ -318,6 +337,139 @@ internal static class Yamaha
                         ch.MidiParamArray.CC2 = (Midi.CC)data;
                         SpessaLog.XGInfo(
                             $"AC2 controller number for {channel}", data);
+                        break;
+                    }
+                    
+                    // The receivers themselves:
+                    // Modulation Wheel
+                    case 0x1d:
+                    case 0x1e:
+                    case 0x1f:
+                    // 0x20 is aliased to modulation depth range
+                    case 0x21:
+                    case 0x22:
+
+                    // Pitch Bend
+                    // 0x23 is aliased to pitch bend range
+                    case 0x24:
+                    case 0x25:
+                    case 0x26:
+                    case 0x27:
+                    case 0x28:
+
+                    // Channel Aftertouch
+                    case 0x4d:
+                    case 0x4e:
+                    case 0x4f:
+                    case 0x50:
+                    case 0x51:
+                    case 0x52:
+
+                    // Poly Aftertouch
+                    case 0x53:
+                    case 0x54:
+                    case 0x55:
+                    case 0x56:
+                    case 0x57:
+                    case 0x58:
+
+                    // AC1
+                    // 0x59 is number, handled above
+                    case 0x5a:
+                    case 0x5b:
+                    case 0x5c:
+                    case 0x5d:
+                    case 0x5e:
+                    case 0x5f:
+
+                    // AC2
+                    // 0x60 is number, handled above
+                    case 0x61:
+                    case 0x62:
+                    case 0x63:
+                    case 0x64:
+                    case 0x65:
+                    case 0x66:
+                    {
+                        int startAddr;
+                        Modulator.Source.Index source;
+                        var isCC = false;
+                        string sourceName;
+                        var bipolar = false;
+
+                        if (a3 <= 0x22) 
+                        {
+                            startAddr = 0x1d;
+                            source = Midi.CC.ModulationWheel;
+                            isCC = true;
+                            sourceName = "mod wheel";
+                        } 
+                        else if (a3 <= 0x28) 
+                        {
+                            startAddr = 0x23;
+                            source = Modulator.Source.ControllerSource
+                                .PitchWheel;
+                            sourceName = "pitch wheel";
+                            bipolar = true;
+                        } 
+                        else if (a3 <= 0x52) 
+                        {
+                            startAddr = 0x4d;
+                            source = Modulator.Source.ControllerSource
+                                .ChannelPressure;
+                            sourceName = "channel pressure";
+                        } 
+                        else if (a3 <= 0x58) 
+                        {
+                            startAddr = 0x53;
+                            source = Modulator.Source.ControllerSource
+                                .PolyPressure;
+                            sourceName = "poly pressure";
+                        } 
+                        else if (a3 <= 0x5f) 
+                        {
+                            startAddr = 0x5a;
+                            source = ch.MidiParameters.CC1;
+                            isCC = true;
+                            sourceName = "AC1";
+                        } 
+                        else 
+                        {
+                            startAddr = 0x61;
+                            source = ch.MidiParameters.CC2;
+                            isCC = true;
+                            sourceName = "AC2";
+                        }
+
+                        // Map to GS
+                        ch.DynamicModulators.SetupReceiverXG(
+                            a3 - startAddr,
+                            data,
+                            source.AsInt,
+                            isCC,
+                            sourceName,
+                            bipolar
+                        );
+                        break;
+                    }
+
+                    // ---
+                    // XG Controller Matrix ends here
+                    // ---
+
+                    // Portamento switch
+                    case 0x67: 
+                    {
+                        ch.ControllerChange(
+                            Midi.CC.PortamentoOnOff,
+                            data == 1 ? 127 : 0);
+                        break;
+                    }
+
+                    // Portamento time
+                    case 0x68: 
+                    {
+                        ch.ControllerChange(Midi.CC.PortamentoTime, data);
                         break;
                     }
                 }
