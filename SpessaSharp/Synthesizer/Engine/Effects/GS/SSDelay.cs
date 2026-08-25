@@ -1,74 +1,11 @@
 using System.Runtime.CompilerServices;
+using SpessaSharp.Synthesizer.Engine.Effects.Implementation;
 using SpessaSharp.Utils;
 
-namespace SpessaSharp.Synthesizer.Engine.Effects;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
 public sealed class SSDelay: Effect.DelayProcessor
 {
-    public sealed class Line
-    {
-        public float Feedback = 0;
-        public float Gain = 1;
-
-        private readonly float[] _buffer;
-        private readonly int _bufferLen;
-        private int _writeIndex = 0;
-        
-        // Samples
-        private int _time;
-
-        public Line(int maxDelay)
-        {
-            _buffer = new float[maxDelay];
-            _bufferLen = _buffer.Length;
-            _time = maxDelay - 5;
-        }
-
-        public int Time
-        {
-            get => _time;
-            set
-            {
-                _time = Math.Min(value, _bufferLen);
-                Clear();
-            }
-        }
-
-        public void Clear() => _buffer.AsSpan().Clear();
-        
-        /// <summary> OVERWRITES the output </summary>
-        /// <param name="input"></param>
-        /// <param name="output"></param>
-        /// <param name="sampleCount"></param>
-        public void Process(
-            ReadOnlySpan<float> input, Span<float> output, int sampleCount) 
-        {
-            var writeIndex = _writeIndex;
-            var delay = _time;
-            var buffer = _buffer.AsSpan();
-            var bufferLength = _bufferLen;
-            var feedback = Feedback;
-            var gain = Gain;
-
-            for (var i = 0; i < sampleCount; i++) 
-            {
-                // Read
-                var readIndex = writeIndex - delay;
-                if (readIndex < 0) readIndex += bufferLength;
-                var delayed = buffer[readIndex];
-                output[i] = delayed * gain;
-
-                // Write
-                buffer[writeIndex] = input[i] + delayed * feedback;
-
-                // Then wrap!
-                if (++writeIndex >= bufferLength) writeIndex = 0;
-            }
-
-            _writeIndex = writeIndex;
-        }
-    }
-    
     /// <summary>
     /// SC-8850 manual p.236<br/>
     /// How nice of Roland to provide the conversion values to ms!
@@ -98,9 +35,9 @@ public sealed class SSDelay: Effect.DelayProcessor
     private float _preLPFa = 0f;
     /// <summary> Previous value </summary>
     private float _preLPFz = 0f;
-    private readonly Line _delayLeft;
-    private readonly Line _delayRight;
-    private readonly Line _delayCenter;
+    private readonly DelayLine _delayLeft;
+    private readonly DelayLine _delayRight;
+    private readonly DelayLine _delayCenter;
     private readonly int _sampleRate;
     private readonly float[] _delayCenterOutput;
     private readonly float[] _delayPreLPF;
@@ -129,9 +66,9 @@ public sealed class SSDelay: Effect.DelayProcessor
         _delayCenterTime = .34f * sampleRate;
 
         // All delays are capped at 1s
-        _delayCenter = new Line(sampleRate);
-        _delayLeft = new Line(sampleRate);
-        _delayRight = new Line(sampleRate);
+        _delayCenter = new DelayLine(sampleRate);
+        _delayLeft = new DelayLine(sampleRate);
+        _delayRight = new DelayLine(sampleRate);
     }
 
     public override int SendLevelToReverb

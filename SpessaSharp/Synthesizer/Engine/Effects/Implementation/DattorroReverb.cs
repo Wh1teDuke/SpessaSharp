@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using SpessaSharp.Utils;
 
-namespace SpessaSharp.Synthesizer.Engine.Effects;
+namespace SpessaSharp.Synthesizer.Engine.Effects.Implementation;
 
 /// <summary>
 /// Dattorro Reverb Node by khoin on GitHub, public domain.<br/>

@@ -1,4 +1,6 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.Implementation;
+
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
 public sealed class SSReverb: Effect.ReverbProcessor
 {
@@ -6,10 +8,10 @@ public sealed class SSReverb: Effect.ReverbProcessor
     private readonly DattorroReverb _dattorro;
     
     /// <summary>  Left delay line, also used for the mono delay. (character 6) </summary>
-    private readonly SSDelay.Line _delayLeft;
+    private readonly DelayLine _delayLeft;
     
     /// <summary>  Right delay line. </summary>
-    private readonly SSDelay.Line _delayRight;
+    private readonly DelayLine _delayRight;
     
     /// <summary>  Output of the left (and mono) delay. </summary>
     private readonly float[] _delayLeftOutput;
@@ -67,8 +69,8 @@ public sealed class SSReverb: Effect.ReverbProcessor
         
         _dattorro = new DattorroReverb(sampleRate);
 
-        _delayLeft = new SSDelay.Line(sampleRate);
-        _delayRight = new SSDelay.Line(sampleRate);
+        _delayLeft = new DelayLine(sampleRate);
+        _delayRight = new DelayLine(sampleRate);
 
         return;
         

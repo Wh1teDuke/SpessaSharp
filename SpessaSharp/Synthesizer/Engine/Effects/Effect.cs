@@ -1,4 +1,4 @@
-using SpessaSharp.Synthesizer.Engine.Effects.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
 namespace SpessaSharp.Synthesizer.Engine.Effects;
 
