@@ -11,6 +11,7 @@ namespace SpessaSharp.Synthesizer.Engine.Channel;
 
 internal static class RenderVoice
 {
+    private const float TWO_PI = MathF.PI * 2;
     private const float HALF_PI = MathF.PI / 2;
     private const int MIN_PAN = -500;
     private const int MAX_PAN = 500;
@@ -207,7 +208,24 @@ internal static class RenderVoice
             }
         }
         
-        // Implement proper GS vibrato. Custom vibrato used to be here.
+        // Channel vibrato (custom vibrato)
+        if (
+            core.SystemParameters.CustomVibrato &&
+            chan[Midi.CC.ModulationWheel] == 0 &&
+            chan.CustomVibrato.Depth > 0) 
+        {
+            // Inlined LFO from 4.2.0
+            var vibStart = voice.StartTime + chan.CustomVibrato.Delay;
+            if (timeNow >= vibStart) 
+            {
+                var elapsed = timeNow - vibStart;
+
+                // 2pif t gives a full sine cycle at the specified frequency
+                cents +=
+                    float.Sin(TWO_PI * chan.CustomVibrato.Rate * elapsed) *
+                    chan.CustomVibrato.Depth;
+            }
+        }
 
         // Mod env
         var modEnvPitchDepth = modulated[
@@ -433,8 +451,7 @@ internal static class RenderVoice
                 buffer[..sampleCount], chorusGain, chorusInput, chorusInput);
         }
 
-        var delaySend = chan.MidiControllers[
-            (int)Midi.CC.VariationDepth] * voice.VariationSend;
+        var delaySend = chan[Midi.CC.VariationDepth] * voice.VariationSend;
         
         if (core.DelayActive && delaySend > 0) 
         {

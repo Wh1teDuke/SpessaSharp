@@ -20,6 +20,7 @@ public sealed class ChannelSnapshot(
     byte[] octaveTuning,
     
     bool perNotePitch,
+    CustomChannelVibrato customVibrato,
     
     DrumParameter[] drumParams,
     bool drumChannel,
@@ -50,6 +51,7 @@ public sealed class ChannelSnapshot(
     public readonly byte[] OctaveTuning = octaveTuning;
     
     public readonly bool PerNotePitch = perNotePitch;
+    public readonly CustomChannelVibrato CustomVibrato = customVibrato;
     
     /// <summary>Parameters for each drum instrument.</summary>
     public readonly DrumParameter[] DrumParams = drumParams;
@@ -87,6 +89,7 @@ public sealed class ChannelSnapshot(
             systemParameters: [.. chan.SystemParameters],
             octaveTuning: [.. chan.OctaveTuning],
             perNotePitch: chan.PerNotePitch,
+            customVibrato: chan.CustomVibrato,
             drumParams: [.. chan.DrumParams],
             drumChannel: chan.DrumChannel,
             channel: chan.Channel);
@@ -105,6 +108,7 @@ public sealed class ChannelSnapshot(
         OctaveTuning.CopyTo(chan.OctaveTuning);
         
         chan.PerNotePitch = PerNotePitch;
+        chan.CustomVibrato = customVibrato;
 
         Generators.Offsets.CopyTo(chan.Generators.Offsets);
         Generators.Overrides.CopyTo(chan.Generators.Overrides);

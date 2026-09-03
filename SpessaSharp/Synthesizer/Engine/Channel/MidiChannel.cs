@@ -119,6 +119,9 @@ public sealed class MidiChannel: ISf2Channel
     
     /// <summary> The channel's number (0-based index) </summary>
     public readonly int Channel;
+
+    /// <summary>The vibrato settings for the channel.</summary>
+    internal CustomChannelVibrato CustomVibrato;
     
     /// <summary> Core synthesis engine. </summary>
     internal readonly Synthesizer SynthCore;
@@ -287,11 +290,8 @@ public sealed class MidiChannel: ISf2Channel
         // Init
         ResetGeneratorOverrides();
         ResetGeneratorOffsets();
-
-        for (var i = 0; i < DrumParams.Length; i++)
-            DrumParams[i] = DrumParameter.GetDefault(i);
-        
         ResetDrumParams();
+        ResetVibratoParams();
     }
 
     /*
@@ -711,6 +711,18 @@ public sealed class MidiChannel: ISf2Channel
         var i = 0;
         foreach (ref var p in DrumParams.AsSpan()) 
             p = DrumParameter.GetDefault(i++);
+    }
+
+    internal void ResetVibratoParams()
+    {
+        if (!SynthCore.SystemParameters.CustomVibrato) return;
+        CustomVibrato = new CustomChannelVibrato();
+    }
+
+    internal void AddDefaultVibrato()
+    {
+        if (CustomVibrato == new CustomChannelVibrato())
+            CustomVibrato = new CustomChannelVibrato(50, 8, .6f);
     }
     
     /// <summary></summary>

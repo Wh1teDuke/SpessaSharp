@@ -34,8 +34,7 @@ internal static class DataEntry
     public static void Execute(MidiChannel chan)
     {
         // Stored in cc tabled as 14-bit
-        var dataValue = chan.MidiControllers[
-            (int)Midi.CC.DataEntryMSB];
+        var dataValue = chan[Midi.CC.DataEntryMSB];
 
         /*
         A note on this vibrato.
@@ -51,8 +50,8 @@ internal static class DataEntry
         if (chan.LastParameterIsRegistered)
         {
             var rpnValue  =
-                (ushort)chan.MidiControllers[(int)Midi.CC.RegisteredParameterMSB] |
-                (chan.MidiControllers[(int)Midi.CC.RegisteredParameterLSB] >> 7);
+                (ushort)chan[Midi.CC.RegisteredParameterMSB] |
+                (chan[Midi.CC.RegisteredParameterLSB] >> 7);
 
             // Pitch wheel range
             switch (rpnValue)
@@ -150,19 +149,74 @@ internal static class DataEntry
                     // Vibrato rate
                     case ExtendedParameters.NRPN.LSB.VibratoRate:
                     {
-                        chan.ControllerChange(Midi.CC.VibratoRate, dataCoarse);
+                        /*
+                        A note on this vibrato.
+                        This is a completely custom vibrato, with its own oscillator and parameters.
+                        It is disabled by default via a system parameter, and when enabled,
+                        it only activates when one of the NPRN messages changing it is received
+                        and stays on until the next system-reset.
+
+                        It was implemented very early in SpessaSynth's development,
+                        because I wanted support for Touhou MIDIs :-)
+                        */
+                        if (
+                            chan.SynthCore.SystemParameters.CustomVibrato &&
+                            !chan.DynamicModulators.Active) 
+                        {
+                            if (paramLock || dataCoarse == 64) return;
+                            chan.AddDefaultVibrato();
+                            chan.CustomVibrato.Rate = (dataCoarse / 64f) * 8;
+                            SpessaLog.CoolInfo(
+                                $"Vibrato rate for {chan.Channel}",
+                                $"{dataCoarse} = {chan.CustomVibrato.Rate}",
+                            "Hz");
+                        } 
+                        else 
+                        {
+                            chan.ControllerChange(Midi.CC.VibratoRate, dataCoarse);
+                        }
                         break;
                     }
                     // Vibrato depth
                     case ExtendedParameters.NRPN.LSB.VibratoDepth:
                     {
-                        chan.ControllerChange(Midi.CC.VibratoDepth, dataCoarse);
+                        if (
+                            chan.SynthCore.SystemParameters.CustomVibrato &&
+                            !chan.DynamicModulators.Active) 
+                        {
+                            if (paramLock || dataCoarse == 64) return;
+                            chan.AddDefaultVibrato();
+                            chan.CustomVibrato.Depth = dataCoarse / 2f;
+                            SpessaLog.CoolInfo(
+                                $"Vibrato depth for {chan.Channel}",
+                                $"{dataCoarse} = {chan.CustomVibrato.Depth}",
+                            "cents");
+                        } 
+                        else 
+                        {
+                            chan.ControllerChange(Midi.CC.VibratoDepth, dataCoarse);
+                        }
                         break;
                     }
                     // Vibrato delay
                     case ExtendedParameters.NRPN.LSB.VibratoDelay:
                     {
-                        chan.ControllerChange(Midi.CC.VibratoDelay, dataCoarse);
+                        if (
+                            chan.SynthCore.SystemParameters.CustomVibrato &&
+                            !chan.DynamicModulators.Active) 
+                        {
+                            if (paramLock || dataCoarse == 64) return;
+                            chan.AddDefaultVibrato();
+                            chan.CustomVibrato.Delay = dataCoarse / 64f / 3f;
+                            SpessaLog.CoolInfo(
+                                $"Vibrato delay for {chan.Channel}",
+                                $"{dataCoarse} = {chan.CustomVibrato.Delay}",
+                            "seconds");
+                        } 
+                        else 
+                        {
+                            chan.ControllerChange(Midi.CC.VibratoDelay, dataCoarse);
+                        }
                         break;
                     }
                     // Filter cutoff
