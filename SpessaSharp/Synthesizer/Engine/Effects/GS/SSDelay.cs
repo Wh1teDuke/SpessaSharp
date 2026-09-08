@@ -35,17 +35,27 @@ public sealed class SSDelay: Effect.DelayProcessor
     private float _preLPFa = 0f;
     /// <summary> Previous value </summary>
     private float _preLPFz = 0f;
-    private readonly DelayLine _delayLeft;
-    private readonly DelayLine _delayRight;
-    private readonly DelayLine _delayCenter;
+
+    private readonly float[] _buffer;
     private readonly int _sampleRate;
-    private readonly float[] _delayCenterOutput;
     private readonly float[] _delayPreLPF;
-    private float _delayCenterTime;
     private float _delayLeftMultiplier = .04f;
     private float _delayRightMultiplier = .04f;
     private float _gain = 0;
     private float _reverbGain = 0;
+    private float _feedbackGain = 0;
+
+    /// <summary>Samples</summary>
+    private int _delayCenter;
+    /// <summary>Samples</summary>
+    private int _delayLeft;
+    /// <summary>Samples</summary>
+    private int _delayRight;
+
+    private float _gainCenter = 1;
+    private float _gainLeft = 0;
+    private float _gainRight = 0;
+    private int _writeIndex = 0;
 
     private int _sendLevelToReverb = 0;
     private int _preLowPass = 0;
@@ -61,14 +71,13 @@ public sealed class SSDelay: Effect.DelayProcessor
     public SSDelay(int sampleRate, int maxBufferSize)
     {
         _sampleRate = sampleRate;
-        _delayCenterOutput = new float[maxBufferSize];
+        _buffer = new float[sampleRate];
         _delayPreLPF = new float[maxBufferSize];
-        _delayCenterTime = .34f * sampleRate;
 
         // All delays are capped at 1s
-        _delayCenter = new DelayLine(sampleRate);
-        _delayLeft = new DelayLine(sampleRate);
-        _delayRight = new DelayLine(sampleRate);
+        _delayCenter = (int)float.Floor(.34f * sampleRate);
+        _delayLeft = (int)float.Floor(_delayCenter * .04f);
+        _delayRight = (int)float.Floor(_delayCenter * .04f);
     }
 
     public override int SendLevelToReverb
@@ -141,12 +150,10 @@ public sealed class SSDelay: Effect.DelayProcessor
         get => _feedback;
         set
         {
+            // -64 means max at inverted phase
+            // Use 66 for it to not be infinite (-1)
+            _feedbackGain = (value - 64) / 66f;
             _feedback = value;
-            // Only the center delay has feedback
-            _delayLeft.Feedback = _delayRight.Feedback = 0;
-            // -64 means max at inverted phase, so feedback of -1 it is!
-            // Use 66 for it to not be infinite
-            _delayCenter.Feedback = (value - 64f) / 66f;
         }
     }
 
@@ -160,7 +167,6 @@ public sealed class SSDelay: Effect.DelayProcessor
             // The resolution is 100/24(%).
             // Turn that into multiplier
             _delayRightMultiplier = value * (100f / 2_400f);
-            _delayRight.Time = Util.Round(_delayCenterTime * _delayRightMultiplier);
         }
     }
     
@@ -174,7 +180,6 @@ public sealed class SSDelay: Effect.DelayProcessor
             // The resolution is 100/24(%).
             // Turn that into multiplier
             _delayLeftMultiplier = value * (100f / 2_400f);
-            _delayLeft.Time = Util.Round(_delayCenterTime * _delayLeftMultiplier);
         }
     }
     
@@ -195,13 +200,23 @@ public sealed class SSDelay: Effect.DelayProcessor
                 break;
             }
 
-            _delayCenterTime = float.Max(2, _sampleRate * (delayMs / 1_000f));
-            _delayCenter.Time = Util.Round(_delayCenterTime);
-            _delayLeft.Time = Util.Round(_delayCenterTime * _delayLeftMultiplier);
-            _delayRight.Time = Util.Round(_delayCenterTime * _delayRightMultiplier);
+            _delayCenter = (int)float.Floor(
+                Math.Max(2, _sampleRate * (delayMs / 1_000f)));
+            _delayLeft = (int)float.Floor(
+                _delayCenter * _delayLeftMultiplier);
+            _delayRight = (int)float.Floor(
+                _delayCenter * _delayRightMultiplier);
+            _buffer.AsSpan().Clear();
         }
     }
     
+    /// <summary>Process the effect and ADDS it to the output.</summary>
+    /// <param name="input">The input buffer to process. It always starts at index 0.</param>
+    /// <param name="outputLeft">The left output buffer.</param>
+    /// <param name="outputRight">The right output buffer.</param>
+    /// <param name="outputReverb">The mono input for reverb. It always starts at index 0.</param>
+    /// <param name="startIndex">The index to start mixing at into the output buffers.</param>
+    /// <param name="sampleCount">The amount of samples to mix.</param>
     public override void Process(
         ReadOnlySpan<float> input,
         Span<float> outputLeft,
@@ -211,7 +226,7 @@ public sealed class SSDelay: Effect.DelayProcessor
         int sampleCount)
     {
         // Process pre-lowpass
-        ReadOnlySpan<float> delayIn = null;
+        ReadOnlySpan<float> delayIn;
         if (_preLowPass > 0) 
         {
             var preLPF = _delayPreLPF;
@@ -236,45 +251,63 @@ public sealed class SSDelay: Effect.DelayProcessor
         stereo delays only connect to the output.
         Also level is separate from reverb send level,
         i.e. level = 0 and reverb send level = 127 will still send sound to reverb.
-         */
-        var (gain, reverbGain) = (_gain, _reverbGain);
+        
+        Center always sends to stereo, regardless of level center in hardware and latest SCVA, older revisions incorrectly don't send it,
+        So level center = 0, level left = 127 will still have feedback.
+        Also feedback time is always time center, even if only left delay is playing.
+        */
+        var (gain, reverbGain,
+            delayCenter, delayLeft, delayRight, feedbackGain) =
+            (_gain, _reverbGain,
+            _delayCenter, _delayLeft, _delayRight, _feedback);
+        var buffer = _buffer.AsSpan();
 
-        // Process center first
-        _delayCenter.Process(delayIn, _delayCenterOutput, sampleCount);
+        var writeIndex = _writeIndex;
+        var bufferLength = buffer.Length;
+        var centerGain = _gainCenter * gain;
+        var leftGain = _gainLeft * gain;
+        var rightGain = _gainRight * gain;
 
-        // Mix into output
-        var center = _delayCenterOutput.AsSpan();
-        for (int i = 0, o = startIndex; i < sampleCount; i++, o++) 
+        for (var i = 0; i < sampleCount; i++)
         {
-            var sample = center[i];
-            outputReverb[i] += sample * reverbGain;
-            var outSample = sample * gain;
-            outputLeft[o] += outSample;
-            outputRight[o] += outSample;
+            // Read center
+            var centerReadIndex = writeIndex - delayCenter;
+            if (centerReadIndex < 0) centerReadIndex += bufferLength;
+
+            // Read left
+            var leftReadIndex = (writeIndex - delayLeft) % bufferLength;
+            if (leftReadIndex < 0) leftReadIndex += bufferLength;
+
+            // Read right
+            var rightReadIndex = (writeIndex - delayRight) % bufferLength;
+            if (rightReadIndex < 0) rightReadIndex += bufferLength;
+
+            // Write center
+            var o = startIndex + i;
+            var delayed = buffer[centerReadIndex];
+            var c = delayed * centerGain;
+            outputLeft[o] += c;
+            outputRight[o] += c;
+            outputReverb[o] += c * reverbGain;
+
+            // Write left
+            var l = buffer[leftReadIndex] * leftGain;
+            outputLeft[o] += l;
+            outputReverb[o] += l * reverbGain;
+
+            // Write right
+            var r = buffer[rightReadIndex] * rightGain;
+            outputRight[o] += r;
+            outputReverb[o] += r * reverbGain;
+
+            // Center feedback
+            buffer[writeIndex] = delayIn[i] + delayed * feedbackGain;
+
+            // Advance and wrap
+            if (++writeIndex >= bufferLength) writeIndex = 0;
         }
         
-        // Add input into delay (stereo delays take input from both)
-        for (var i = 0; i < sampleCount; i++)
-            center[i] += input[i];
-
-        // Process stereo delays (reuse preLPF array as delays overwrite samples)
-        var stereoOut = _delayPreLPF.AsSpan();
-        // Left
-        _delayLeft.Process(center, stereoOut, sampleCount);
-        for (int i = 0, o = startIndex; i < sampleCount; i++, o++) 
-        {
-            var sample = stereoOut[i];
-            outputLeft[o] += sample * gain;
-            outputReverb[i] += sample * reverbGain;
-        }
-        // Right
-        _delayRight.Process(center, stereoOut, sampleCount);
-        for (int i = 0, o = startIndex; i < sampleCount; i++, o++) 
-        {
-            var sample = stereoOut[i];
-            outputRight[o] += sample * gain;
-            outputReverb[i] += sample * reverbGain;
-        }
+        _writeIndex = writeIndex;
     }
 
     public override Effect.DelayProcessorSnapshot GetSnapshot() =>
@@ -295,8 +328,9 @@ public sealed class SSDelay: Effect.DelayProcessor
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void UpdateGain()
     {
-        _delayCenter.Gain = _levelCenter / 127f;
-        _delayLeft.Gain = _levelLeft / 127f;
-        _delayRight.Gain = _levelRight / 127f;
+        // Center gain is applied in post
+        _gainCenter = _levelCenter / 127f;
+        _gainLeft = _levelLeft / 127f;
+        _gainRight = _levelRight / 127f;
     }
 }
