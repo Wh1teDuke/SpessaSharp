@@ -1232,6 +1232,42 @@ public sealed class Midi
             }
         }
         
+        // Attempt to determine ports from track names:
+        // A<num> or PartA<num>
+        // B<num> or PartB<num>
+        // C<num> or PartC<num>
+        // D<num> or PartD<num>
+        if (portOffset == 0) 
+        {
+            foreach (var track in Tracks) 
+            {
+                var n = track.Name;
+                if (n.Contains("PartA") || RegexExt.MidiPortA().IsMatch(n))
+                {
+                    track.Port = 0;
+                    PortChannelOffsetMap[0] = 0;
+                    continue;
+                }
+                if (n.Contains("PartB") || RegexExt.MidiPortB().IsMatch(n)) 
+                {
+                    track.Port = 1;
+                    PortChannelOffsetMap[1] = 16;
+                    continue;
+                }
+                if (n.Contains("PartC") || RegexExt.MidiPortC().IsMatch(n)) 
+                {
+                    track.Port = 2;
+                    PortChannelOffsetMap[2] = 32;
+                    continue;
+                }
+                if (n.Contains("PartD") || RegexExt.MidiPortD().IsMatch(n)) 
+                {
+                    track.Port = 3;
+                    PortChannelOffsetMap[3] = 48;
+                }
+            }
+        }
+        
         // Fix empty port channel offsets (do a copy to turn empty slots into undefined so the map goes over them)
         CollectionsMarshal.AsSpan(PortChannelOffsetMap).Replace(-1, 0);
         

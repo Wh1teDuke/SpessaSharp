@@ -596,6 +596,15 @@ internal static class Util
 
 internal static partial class RegexExt
 {
+    [GeneratedRegex(@"/^A\d/")]
+    public static partial Regex MidiPortA();
+    [GeneratedRegex(@"/^B\d/")]
+    public static partial Regex MidiPortB();
+    [GeneratedRegex(@"/^C\d/")]
+    public static partial Regex MidiPortC();
+    [GeneratedRegex(@"/^D\d/")]
+    public static partial Regex MidiPortD();
+    
     // Regex to match DD.MM.YYYY format
     [GeneratedRegex(@"^(\d{2})\.(\d{2})\.(\d{4})$")]
     public static partial Regex CleanDD_MM_YYYY();
