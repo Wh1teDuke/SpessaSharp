@@ -1,6 +1,4 @@
 using System.Runtime.CompilerServices;
-using SpessaSharp.Synthesizer.Engine.Effects.Implementation;
-using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
@@ -289,6 +287,10 @@ public sealed class SSDelay: Effect.DelayProcessor
             outputLeft[o] += c;
             outputRight[o] += c;
             outputReverb[o] += c * reverbGain;
+            
+            // Center feedback, do it first so left and right delay of 0 work fine
+            // Testcase: gs_effect_send_level_test
+            buffer[writeIndex] = delayIn[i] + delayed * feedbackGain;
 
             // Write left
             var l = buffer[leftReadIndex] * leftGain;
@@ -299,9 +301,6 @@ public sealed class SSDelay: Effect.DelayProcessor
             var r = buffer[rightReadIndex] * rightGain;
             outputRight[o] += r;
             outputReverb[o] += r * reverbGain;
-
-            // Center feedback
-            buffer[writeIndex] = delayIn[i] + delayed * feedbackGain;
 
             // Advance and wrap
             if (++writeIndex >= bufferLength) writeIndex = 0;

@@ -1,6 +1,4 @@
 using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Effects.Implementation;
