@@ -508,6 +508,10 @@ internal static class Util
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool InRange<T>(List<T> list, int index) => 
         index >= 0 && index < list.Count;
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool InRange<T>(T[] array, int index) => 
+        index >= 0 && index < array.Length;
 
     public static int Sum<T>(ReadOnlySpan<T> span, Func<T, int> sum)
     {
@@ -542,6 +546,13 @@ internal static class Util
     
     public static ArraySegment<T> Rent<T>(int s) =>
         new(ArrayPool<T>.Shared.Rent(s), 0, s);
+
+    public static ArraySegment<T> Rent<T>(ReadOnlySpan<T> args)
+    {
+        var res = Rent<T>(args.Length);
+        args.CopyTo(res);
+        return res;
+    }
 
     public static void Grow<T>(ref ArraySegment<T> seg, int s)
     {
@@ -589,6 +600,15 @@ internal static class Util
 
 internal static partial class RegexExt
 {
+    [GeneratedRegex(@"/^A\d/")]
+    public static partial Regex MidiPortA();
+    [GeneratedRegex(@"/^B\d/")]
+    public static partial Regex MidiPortB();
+    [GeneratedRegex(@"/^C\d/")]
+    public static partial Regex MidiPortC();
+    [GeneratedRegex(@"/^D\d/")]
+    public static partial Regex MidiPortD();
+    
     // Regex to match DD.MM.YYYY format
     [GeneratedRegex(@"^(\d{2})\.(\d{2})\.(\d{4})$")]
     public static partial Regex CleanDD_MM_YYYY();

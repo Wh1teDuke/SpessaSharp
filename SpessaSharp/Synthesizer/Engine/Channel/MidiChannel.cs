@@ -34,7 +34,7 @@ public sealed class MidiChannel: ISf2Channel
         /// Refer to [SC-8850 Owner's Manual](https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf), page 238 for more description.
         /// Note that <b>SAME NOTE NUMBER KEY ON ASSIGN</b> in XG is also recognized as assign mode.
         /// </summary>
-        FullMulti
+        FullMulti,
     }
     
     /// <summary>
@@ -56,6 +56,12 @@ public sealed class MidiChannel: ISf2Channel
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         set => MidiControllers[(int)cc] = value;
     }
+
+    /// <summary>
+    /// An array of poly pressure values for the channel.
+    /// Poly pressure persists across notes and is set like
+    /// </summary>
+    internal readonly byte[] PolyPressures = new byte[128];
     
     /// <summary>
     /// An array indicating if a controller, at the equivalent index in the midiControllers array, is locked (i.e., not allowed changing). A locked controller cannot be modified.
@@ -82,7 +88,7 @@ public sealed class MidiChannel: ISf2Channel
     public readonly byte[] OctaveTuning = new byte[128];
     
     /// <summary>Parameters for each drum instrument.</summary>
-    public readonly DrumParameters[] DrumParams = new DrumParameters[128];
+    public readonly DrumParameter[] DrumParams = new DrumParameter[128];
     
     /// <summary>A system for dynamic modulator assignment for advanced system exclusives.</summary>
     public readonly DynamicModulatorManager DynamicModulators;
@@ -103,7 +109,7 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary>
     /// The preset currently assigned to the channel. Note that this may be undefined in some cases.<br/> https://github.com/spessasus/spessasynth_core/issues/48
     /// </summary>
-    public BasicPreset? Preset { get; internal set; }
+    public SynthPatch? Preset { get; internal set; }
 
     /// <summary> Indicates the MIDI system when the preset was locked. </summary>
     internal Midi.System LockedSystem = Midi.System.GS;
@@ -113,9 +119,24 @@ public sealed class MidiChannel: ISf2Channel
     
     /// <summary> The channel's number (0-based index) </summary>
     public readonly int Channel;
+
+    /// <summary>The vibrato settings for the channel.</summary>
+    internal CustomChannelVibrato CustomVibrato;
     
     /// <summary> Core synthesis engine. </summary>
     internal readonly Synthesizer SynthCore;
+
+    /// <summary>
+    ///  Current left PCM output of this channel. Will be routed to either EFX or EQ if needed, and extracted for visualization.
+    /// Always 0-based index.
+    /// </summary>
+    internal readonly float[] OutputLeft;
+
+    /// <summary>
+    /// Current right PCM output of this channel. Will be routed to either EFX or EQ if needed, and extracted for visualization.
+    /// Always 0-based index.
+    /// </summary>
+    internal readonly float[] OutputRight;
     
     /*
     ==========
@@ -254,7 +275,7 @@ public sealed class MidiChannel: ISf2Channel
     /// <param name="channelNumber"></param>
     internal MidiChannel(
         Synthesizer synthCore,
-        BasicPreset? preset,
+        SynthPatch? preset,
         int channelNumber)
     {
         PitchWheels.AsSpan().Fill(8_192);
@@ -262,15 +283,15 @@ public sealed class MidiChannel: ISf2Channel
         SynthCore = synthCore;
         Preset = preset;
         Channel = channelNumber;
+        OutputLeft = new float[synthCore.MaxBufferSize];
+        OutputRight = new float[synthCore.MaxBufferSize];
         MidiParamArray.RxChannel = channelNumber;
         DynamicModulators = new DynamicModulatorManager(channelNumber);
-        
+        // Init
         ResetGeneratorOverrides();
         ResetGeneratorOffsets();
-        
-        DrumParams.AsSpan().Fill(DrumParameters.Default);
-        
         ResetDrumParams();
+        ResetVibratoParams();
     }
 
     /*
@@ -301,7 +322,7 @@ public sealed class MidiChannel: ISf2Channel
     internal Midi.System ChannelSystem =>
         SystemParamArray.PresetLock
             ? LockedSystem
-            : SynthCore.MidiParameters.MidiSystem;
+            : SynthCore.MidiParameters.System;
     
     /*
     ==========
@@ -432,18 +453,10 @@ public sealed class MidiChannel: ISf2Channel
     /// <summary> Renders a voice to the stereo output buffer </summary>
     /// <param name="voice">The voice to render</param>
     /// <param name="timeNow">Current time in seconds</param>
-    /// <param name="outputL">The left output buffer</param>
-    /// <param name="outputR">The right output buffer</param>
-    /// <param name="startIndex"></param>
-    /// <param name="sampleCount"></param>
+    /// <param name="sampleCount">The only thing needed as it's 0-based</param>
     internal void RenderVoice(
-        Voice.Voice voice,
-        float timeNow,
-        Span<float> outputL,
-        Span<float> outputR,
-        int startIndex,
-        int sampleCount) => Engine.Channel.RenderVoice.Execute(
-        this, voice, timeNow, outputL, outputR, startIndex, sampleCount);
+        Voice.Voice voice, float timeNow, int sampleCount) =>
+        Engine.Channel.RenderVoice.Execute(this, voice, timeNow, sampleCount);
 
     /// <summary>Sets the octave tuning for a given channel.</summary>
     /// <remarks>Cent tunings are relative.</remarks>
@@ -494,18 +507,9 @@ public sealed class MidiChannel: ISf2Channel
     internal void PolyPressure(int midiNote, int pressure)
     {
         // Note to self: don't use computeModulatorsAll here as we're setting the pressure!
-        foreach (var v in Voices)
-        {
-            if (v.MidiNote != midiNote) continue;
-
-            v.Pressure = pressure;
-            ComputeModulators(
-                v, 
-                0, 
-                Modulator.Source.ID(
-                    Modulator.Source.ControllerSource.PolyPressure));
-        }
-
+        PolyPressures[midiNote] = (byte)pressure;
+        ComputeModulatorsAll(
+            0, (int)Modulator.Source.ControllerSource.PolyPressure);
         SynthCore.CallEvent(
             new Event.CbPolyPressure(Channel, midiNote, pressure));
     }
@@ -705,25 +709,27 @@ public sealed class MidiChannel: ISf2Channel
             return;
 
         var i = 0;
-        var isXG = ChannelSystem == Midi.System.XG;
+        foreach (ref var p in DrumParams.AsSpan()) 
+            p = DrumParameter.GetDefault(i++);
+    }
 
-        foreach (ref var p in DrumParams.AsSpan())
-        {
-            var rcGain = Engine.Channel.Reset.DefaultDrumReverb[i++] / 127f;
-            p = new DrumParameters(
-                Pitch: 0,
-                Gain: 1,
-                ExclusiveClass: 0,
-                Pan: 64,
-                ReverbGain: rcGain,
-                ChorusGain: isXG ? rcGain : 0, // Mirror reverb on XG only, GS has no chorus by default
-                DelayGain: 0, // No drums have delay
-                RxNoteOn: true,
-                RxNoteOff: false
-            );
-        }
+    internal void ResetVibratoParams()
+    {
+        if (!SynthCore.SystemParameters.CustomVibrato) return;
+        CustomVibrato = new CustomChannelVibrato();
+    }
+
+    internal void AddDefaultVibrato()
+    {
+        if (CustomVibrato == new CustomChannelVibrato())
+            CustomVibrato = new CustomChannelVibrato(50, 8, .6f);
     }
     
+    /// <summary></summary>
+    /// <param name="sourceUsesCC">
+    /// what modulators should be computed, -1 means all, 0 means modulator source enum 1 means midi controller.
+    /// </param>
+    /// <param name="sourceIndex"></param>
     internal void ComputeModulatorsAll(int sourceUsesCC, int sourceIndex)
     {
         Debug.Assert(sourceUsesCC is >= -1 and <= 1);
@@ -773,8 +779,10 @@ public sealed class MidiChannel: ISf2Channel
 
     public ReadOnlySpan<short> GetMidiControllers => MidiControllers;
 
-    public (int Pressure, int PitchWheel, float PitchWheelRange) GetMidiParameters => (
-        MidiParamArray.Pressure,
-        MidiParamArray.PitchWheel,
-        MidiParamArray.PitchWheelRange);
+    public (int Pressure, int PitchWheel, float PitchWheelRange,
+        byte[] PolyPressures) GetMidiParameters => (
+        MidiParameters.Pressure,
+        MidiParameters.PitchWheel,
+        MidiParameters.PitchWheelRange,
+        PolyPressures);
 }

@@ -1,4 +1,4 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.Insertion;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
 public sealed class PhAutoWahFX: Effect.InsertionProcessor
 {

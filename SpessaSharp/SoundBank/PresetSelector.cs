@@ -1,15 +1,16 @@
 using System.Diagnostics;
 using SpessaSharp.MIDI;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer;
 
 namespace SpessaSharp.SoundBank;
 
 internal static class PresetSelector
 {
-    private static BasicPreset GetAnyDrums(
-        List<BasicPreset> presets, bool preferXG)
+    private static T GetAnyDrums<T>(
+        List<T> presets, bool preferXG) where T: SynthPatch
     {
-        BasicPreset? any = null;
+        T? any = null;
         if (preferXG) // Get any XG drums
         {
             foreach (var preset in presets)
@@ -40,10 +41,10 @@ internal static class PresetSelector
     /// <param name="system">The MIDI system to select for.</param>
     /// <returns>The selected patch.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Empty presets list</exception>
-    public static BasicPreset Of(
-        List<BasicPreset> presets,
+    public static T Of<T>(
+        List<T> presets,
         MidiPatch patch,
-        Midi.System system)
+        Midi.System system) where T: SynthPatch
     {
         ArgumentOutOfRangeException.ThrowIfZero(presets.Count, "No Presets!");
 
@@ -93,8 +94,8 @@ internal static class PresetSelector
         }
         
         // Melodic preset
-        BasicPreset? specialXGCase = null;
-        BasicPreset? firstMatch = null;
+        T? specialXGCase = null;
+        T? firstMatch = null;
         foreach (var preset in presets)
         {
             if (!(preset.Program == patch.Program && !preset.IsDrum))
@@ -125,7 +126,7 @@ internal static class PresetSelector
             specialXGCase ?? firstMatch ?? presets[0]);
         
         // Helper to log failed exact matches
-        BasicPreset ReturnReplacement(BasicPreset preset)
+        T ReturnReplacement(T preset)
         {
             Debug.WriteLine($"[WARN] Preset {
                 patch.ToMidiString()} not found. ({
@@ -133,10 +134,10 @@ internal static class PresetSelector
             return preset;
         }
 
-        BasicPreset SelectDrum(
-            Func<BasicPreset, bool> matches, bool preferXG)
+        T SelectDrum(
+            Func<T, bool> matches, bool preferXG)
         {
-            BasicPreset? any = null;
+            T? any = null;
             foreach (var preset in presets)
             {
                 if (preset.Program != program)

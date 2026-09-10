@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
+using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Parameters;
@@ -21,6 +22,7 @@ public readonly struct Event
         EffectChange,
         ChannelMidiParameterChange,
         GlobalMidiParameterChange,
+        UserDrumSetParameter,
     }
     
     /// <summary>This event fires when a note is played.</summary>
@@ -182,6 +184,13 @@ public readonly struct Event
     public readonly record struct CbChannelMidiParameterChange(
         int Channel, ChannelMidiParameter Parameter);
 
+    /// <summary>This event fires when a GS User Drum Set is modified.</summary>
+    /// <param name="DrumSet">The drum set that was changed. 0 means User Drum Set 1, and 1 means User Drum Set 2.</param>
+    /// <param name="MidiNote">The MIDI note number that has been changed in the drum set.</param>
+    /// <param name="Entry">The parameter that was changed and its new value.</param>
+    public readonly record struct CbUserDrumSetChange(
+        int DrumSet, int MidiNote, UserDrumSetParameter.Entry Entry);
+
     [StructLayout(LayoutKind.Explicit)]
     private struct EventsWithoutPointers
     {
@@ -205,6 +214,8 @@ public readonly struct Event
         [FieldOffset(0)] public CbEffectChange EffectChange;
         // This event fires when the synthesizer is reset
         [FieldOffset(0)] public CbReset Reset;
+        // This event fires when a GS User Drum Set is modified.
+        [FieldOffset(0)] public CbUserDrumSetChange UserDrumSetChange;
 
         [FieldOffset(0)] public CbChannelMidiParameterChange ChannelParamChange;
         [FieldOffset(0)] public CbGlobalMidiParameterChange GlobalParamChange;
@@ -305,6 +316,12 @@ public readonly struct Event
         EventType = Type.ChannelMidiParameterChange,
         _e1 = new EventsWithoutPointers { ChannelParamChange = channelParamChange },
     };
+    
+    public static Event Of(CbUserDrumSetChange userDrumSetChange) => new()
+    {
+        EventType = Type.UserDrumSetParameter,
+        _e1 = new EventsWithoutPointers {UserDrumSetChange = userDrumSetChange},
+    };
 
     public static Event Of(CbPresetListChange presetListChange) => new()
     {
@@ -345,6 +362,8 @@ public readonly struct Event
         EventType == Type.GlobalMidiParameterChange ? _e1.GlobalParamChange : null;
     public CbChannelMidiParameterChange? AsChannelParameterChange => 
         EventType == Type.ChannelMidiParameterChange ? _e1.ChannelParamChange : null;
+    public CbUserDrumSetChange? AsUserDrumSetChange => 
+        EventType == Type.UserDrumSetParameter ? _e1.UserDrumSetChange : null;
     public CbPresetListChange? AsPresetListChange => 
         EventType == Type.PresetListChange ? _e2.PresetListChange : null;
     public CbDisplayMessage? AsDisplayMessage => 
@@ -363,6 +382,7 @@ public readonly struct Event
     public static implicit operator Event(CbEffectChange ev) => Of(ev);
     public static implicit operator Event(CbGlobalMidiParameterChange ev) => Of(ev);
     public static implicit operator Event(CbChannelMidiParameterChange ev) => Of(ev);
+    public static implicit operator Event(CbUserDrumSetChange ev) => Of(ev);
     public static implicit operator Event(CbPresetListChange ev) => Of(ev);
     public static implicit operator Event(CbDisplayMessage ev) => Of(ev);
 }

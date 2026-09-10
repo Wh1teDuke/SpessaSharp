@@ -1,4 +1,4 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
 public sealed class SSChorus: Effect.ChorusProcessor
 {
