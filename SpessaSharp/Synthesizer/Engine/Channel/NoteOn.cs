@@ -168,8 +168,7 @@ internal static class NoteOn
             chorusGain = p.ChorusSend / 127f;
             variationGain = p.VariationSend / 127f;
             synth.DelayActive = synth.DelayActive || variationGain > 0;
-            // 1 is no override
-            if (voiceGain >= 1) voiceGain = float.Pow(p.Level / 120f, 2);
+            voiceGain = float.Pow(p.Level / 120f, 2);
         }
         
         var noteID = emit 

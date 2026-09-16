@@ -31,7 +31,7 @@ internal static class ControllerChange
         // Excluding bank select as it's handled separately
         if (controller is 
             >= Midi.CC.ModulationWheelLSB and
-            <= Midi.CC.EffectControl2LSB)
+            <= Midi.CC.UndefinedCC31LSB)
         {
             var actualCCNum = controller - 32;
             if (chan.LockedControllers[(int)actualCCNum])
