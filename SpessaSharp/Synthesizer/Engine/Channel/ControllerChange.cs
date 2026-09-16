@@ -88,7 +88,7 @@ internal static class ControllerChange
                 // Ensure that for XG, drum channels always are 127
                 // Testcase
                 // Dave-Rodgers-D-j-Vu-Anonymous-20200419154845-nonstop2k.com.mid
-                if (chan.Channel % 16 == Synthesizer.DEFAULT_PERCUSSION &&
+                if (chan.Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL &&
                     BankSelectHacks.IsSystemXG(chan.ChannelSystem)) 
                 {
                     chan.SetBankMSB(127);

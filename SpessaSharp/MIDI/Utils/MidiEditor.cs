@@ -1102,7 +1102,7 @@ public sealed class MidiEditor
                 patch.IsGMGSDrum &&
                 (_system is null || 
                  !BankSelectHacks.IsSystemXG(_system.Value)) &&
-                midiChannel != Synthesizer.Synthesizer.DEFAULT_PERCUSSION)
+                midiChannel != Synthesizer.Synthesizer.MIDI_DRUM_CHANNEL)
             {
                 // Add gs drum change first
                 SpessaLog.Info(

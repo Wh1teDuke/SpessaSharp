@@ -48,7 +48,7 @@ public sealed class Synthesizer
     public const float MIN_NOTE_LENGTH = .03f;
 
     public const int MIDI_CHANNEL_COUNT = 16;
-    public const int DEFAULT_PERCUSSION = 9;
+    public const int MIDI_DRUM_CHANNEL = 9;
 
     /// <summary>Used globally to identify the embedded sound bank. This is used to prevent the embedded bank from being deleted.</summary>
     internal static readonly string EMBEDDED_SOUND_BANK_ID =
@@ -640,14 +640,9 @@ public sealed class Synthesizer
     public void CreateMIDIChannel(bool sendEvent) 
     {
         var channel = new MidiChannel(
-            this, DefaultPreset, MidiChannels.Count);
-
+            this, DefaultPreset, DrumPreset, MidiChannels.Count);
         MidiChannels.Add(channel);
-        if (sendEvent) 
-        {
-            CallEvent(Event.OfChannelAdded());
-            channel.SetDrums(true);
-        }
+        if (sendEvent) CallEvent(Event.OfChannelAdded());
     }
     
     /// <summary>Executes a full system reset of the synthesizer. This will reset all controllers to their default values, except for the locked controllers.</summary>

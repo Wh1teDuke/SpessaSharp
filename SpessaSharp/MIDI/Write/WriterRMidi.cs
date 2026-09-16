@@ -191,7 +191,7 @@ public static class WriterRMidi
             channels[i] = new ChannelStatus(
                 Program:        0,
                 // Drums appear on 9 every 16 channels,
-                IsDrum:         i % 16 == Synthesizer.Synthesizer.DEFAULT_PERCUSSION,
+                IsDrum:         i % 16 == Synthesizer.Synthesizer.MIDI_DRUM_CHANNEL,
                 LastBank:       null,
                 LastBankLSB:    null,
                 HasBankSelect:  false,

@@ -276,6 +276,7 @@ public sealed class MidiChannel: ISf2Channel
     internal MidiChannel(
         Synthesizer synthCore,
         SynthPatch? preset,
+        SynthPatch? drumPreset,
         int channelNumber)
     {
         PitchWheels.AsSpan().Fill(8_192);
@@ -292,6 +293,16 @@ public sealed class MidiChannel: ISf2Channel
         ResetGeneratorOffsets();
         ResetDrumParams();
         ResetVibratoParams();
+        // Drum preset
+        if (Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL) 
+        {
+            if (drumPreset != null) 
+            {
+                Preset = drumPreset;
+                Patch = drumPreset.Patch.Data;
+            }
+            SetDrumFlag(true);
+        }
     }
 
     /*
@@ -313,50 +324,53 @@ public sealed class MidiChannel: ISf2Channel
     /// </summary>
     public ReadOnlySpan<ChannelMidiParameter> MidiParameters => MidiParamArray;
     
-    /*
-    =================
-    END OF PUBLIC API
-    =================
-    */
-    
-    internal Midi.System ChannelSystem =>
-        SystemParamArray.PresetLock
+    public Midi.System ChannelSystem =>
+        SystemParameters.PresetLock
             ? LockedSystem
             : SynthCore.MidiParameters.System;
-    
-    /*
-    ==========
-    PUBLIC API
-    ==========
-     */
 
     /// <summary>
-    /// Changes the preset to, or from drums. Note that this executes a program change.
-    /// </summary>
-    /// <param name="isDrum">If the channel should be a drum preset or not.</param>
+    /// Toggles drums on the channel and keeps the current program number.
+    /// Executes a program change so the change is immediately audible.
+    /// <param name="isDrum">If the channel should be a drum channel or not.</param>
     /// <exception cref="Exception"></exception>
+    /// <remarks>
+    /// This does <b>not</b> bypass <see cref="ChannelSystemParameter.Type.PresetLock">PresetLock</see>
+    /// </remarks>
+    /// </summary>
     public void SetDrums(bool isDrum) 
     {
+        if (SystemParameters.PresetLock) return;
+        
         if (BankSelectHacks.IsSystemXG(ChannelSystem)) 
         {
             if (isDrum) 
             {
+                if (BankSelectHacks.IsXGDrum(Patch.BankMSB)) return;
                 SetBankMSB(BankSelectHacks.GetDrumBank(ChannelSystem));
-                SetBankLSB(0);
             } 
             else 
             {
-                if (Channel % 16 == Synthesizer.DEFAULT_PERCUSSION)
-                    throw SpessaException.Invalid(
+                if (Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL)
+                {
+                    SpessaLog.Warn(
                         $"Cannot disable drums on channel {Channel} for XG.");
-                SetBankMSB(0);
-                SetBankLSB(0);
+                    return;
+                }
+                SetBankMSB(BankSelectHacks.GetDefaultBank(ChannelSystem));
             }
+            
+            // Commit the changes and return
+            ProgramChange(Patch.Program);
+            return;
         } 
-        else SetGSDrums(isDrum);
 
-        SetDrumFlag(isDrum);
+        if (isDrum == DrumChannel) return;
+        // Flip the drums for GS
+        SetIsGMGSDrum(isDrum);
         ProgramChange(Patch.Program);
+        // Fallback if no preset matched and the flag didn't sync
+        SetDrumFlag(isDrum);
     }
         
     /// <summary> Stops all notes on the channel. </summary>
@@ -577,28 +591,6 @@ public sealed class MidiChannel: ISf2Channel
         // Channel MIDI are the volume/expression controllers
     }
     
-    /// <summary>
-    /// Sets the channel to a given MIDI patch. Note that this executes a program change.
-    /// </summary>
-    /// <param name="patch">The MIDI patch to set the channel to.</param>
-    internal void SetPatch(MidiPatch patch) 
-    {
-        SetBankMSB(patch.BankMSB);
-        SetBankLSB(patch.BankLSB);
-        SetGSDrums(patch.IsGMGSDrum);
-        ProgramChange(patch.Program);
-    }
-    
-    /// <summary> Sets the GM/GS drum flag. </summary>
-    /// <param name="drums"></param>
-    internal void SetGSDrums(bool drums) 
-    {
-        if (drums == Patch.IsGMGSDrum) return;
-        SetBankLSB(0);
-        SetBankMSB(0);
-        Patch = Patch with { IsGMGSDrum = drums };
-    }
-    
     /// <summary>Stops a note nearly instantly.</summary>
     /// <param name="midiNote">The note to stop.</param>
     /// <param name="releaseTime">In timecents, defaults to -12_000 (very short release).</param>
@@ -651,6 +643,24 @@ public sealed class MidiChannel: ISf2Channel
         SystemParamArray.AsSpan().Clear();
         MidiParamArray.AsSpan().Clear();
         MidiControllers.AsSpan().Clear();
+    }
+
+    internal void SetBankMSB(int bankMSB)
+    {
+        if (SystemParameters.PresetLock) return;
+        Patch = Patch with { BankMSB = bankMSB };
+    }
+    
+    internal void SetBankLSB(int bankLSB) 
+    {
+        if (SystemParameters.PresetLock) return;
+        Patch = Patch with { BankLSB = bankLSB };
+    }
+
+    internal void SetIsGMGSDrum(bool isGMGSDrum)
+    {
+        if (SystemParameters.PresetLock) return;
+        Patch = Patch with { IsGMGSDrum = isGMGSDrum };
     }
     
     internal void ResetGeneratorOverrides() 
@@ -738,26 +748,12 @@ public sealed class MidiChannel: ISf2Channel
             ComputeModulators(v, sourceUsesCC, sourceIndex);
     }
     
-    internal void SetBankMSB(int bankMSB)
-    {
-        if (SystemParameters.PresetLock) return;
-        Patch = Patch with { BankMSB = bankMSB };
-    }
-
-    internal void SetBankLSB(int bankLSB) 
-    {
-        if (SystemParameters.PresetLock) return;
-        Patch = Patch with { BankLSB = bankLSB };
-    }
-    
     /// <summary> Sets drums on channel. </summary>
     /// <param name="isDrum"></param>
     internal void SetDrumFlag(bool isDrum) 
     {
-        if (
-            DrumChannel == isDrum ||
-            Preset == null ||
-            SystemParameters.PresetLock) return;
+        if (SystemParameters.PresetLock || DrumChannel == isDrum)
+            return;
 
         DrumChannel = isDrum;
         UpdateInternalParams();

@@ -77,7 +77,7 @@ internal static class Reset
             ChannelMidiParameter.Type.CC2, (Midi.CC)0x11));
         chan.Set((
             ChannelMidiParameter.Type.DrumMap, 
-            chan.Channel % 16 == Synthesizer.DEFAULT_PERCUSSION ? 1 : 0));
+            chan.Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL ? 1 : 0));
         chan.Set((ChannelMidiParameter.Type.VelocitySenseOffset, 64));
         chan.Set((ChannelMidiParameter.Type.VelocitySenseDepth, 64));
         // This one has a wrapper, for per-note pitch wheel
@@ -113,13 +113,12 @@ internal static class Reset
         chan.MidiControllers[(int)Midi.CC.DataEntryMSB] = 0;
         chan.MidiControllers[(int)Midi.CC.DataEntryLSB] = 0;
         
-        // Reset program
+        // Reset program: default bank, program 0,
+        // Drums only on every 16th channel 10.
         chan.SetBankMSB(BankSelectHacks.GetDefaultBank(chan.ChannelSystem));
         chan.SetBankLSB(0);
-        chan.SetGSDrums(false);
-        
-        chan.SetDrums(chan.Channel % 16 == Synthesizer.DEFAULT_PERCUSSION);
-        chan.ProgramChange(0);
+        chan.Patch = chan.Patch with { Program = 0 };
+        chan.SetDrums(chan.Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL);
     }
 
     public static readonly FrozenSet<Midi.CC> Rp15ResetCCNums = [

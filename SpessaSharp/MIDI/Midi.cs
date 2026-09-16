@@ -567,7 +567,7 @@ public sealed class Midi
             var time = elapsedTime - note.Start;
             note = note with
             {
-                Length = channel == Synthesizer.Synthesizer.DEFAULT_PERCUSSION
+                Length = channel == Synthesizer.Synthesizer.MIDI_DRUM_CHANNEL
                     ? Math.Max(time, minDrumLength)
                     : time,
             };

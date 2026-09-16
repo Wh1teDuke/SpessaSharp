@@ -600,13 +600,30 @@ internal static class Roland
                                     SpessaLog.GSInfo($"MidiChannel.Assign mode on {channel}", data);
                                     break;
 
-                                case 0x15: 
-                                    // This is the Use for Drum Part sysex (multiple drums)
+                                case 0x15:
+                                    // This is the Use for Rhythm Part sysex (multiple drums)
+                                    var prevMap = ch.MidiParameters.DrumMap;
                                     ch.Set((
                                         ChannelMidiParameter.Type.DrumMap, 
                                         data));
-                                    var isDrums = data > 0; // If set to other than 0, is a drum channel
-                                    ch.SetGSDrums(isDrums);
+                                    var newMap = ch.MidiParameters.DrumMap;
+                                    var isDrums = data > 0; // Non-zero means a drum channel
+                                    // Testcase: gs_drum_change_test
+                                    // GS resets to the default kit not only when toggling drums,
+                                    // But on any map change too.
+                                    if (
+                                        !ch.SystemParameters.PresetLock &&
+                                        (isDrums != ch.Patch.IsGMGSDrum ||
+                                                     newMap != prevMap)) 
+                                    {
+                                        ch.Patch = ch.Patch with
+                                        {
+                                            BankMSB = 0,
+                                            BankLSB = 0,
+                                            IsGMGSDrum = isDrums,
+                                        };
+                                        ch.ProgramChange(0);
+                                    }
                                     SpessaLog.GSInfo($"Drums on {channel}", isDrums);
                                     return;
 

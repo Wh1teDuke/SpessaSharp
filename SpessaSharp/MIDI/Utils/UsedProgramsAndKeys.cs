@@ -205,7 +205,7 @@ internal static class UsedProgramsAndKeys
         
         for (var i = 0; i < channelsAmount; i++)
         {
-            var isDrum = i % 16 == Synthesizer.Synthesizer.DEFAULT_PERCUSSION;
+            var isDrum = i % 16 == Synthesizer.Synthesizer.MIDI_DRUM_CHANNEL;
             channels[i] = new InternalChannelType<T>(
                 Preset:             getPreset.GetPreset(
                     new MidiPatch { IsGMGSDrum = isDrum, }, system),
@@ -526,7 +526,7 @@ internal static class UsedProgramsAndKeys
                 ch = ch with
                 {
                     IsDrum              = i % 16 ==
-                             Synthesizer.Synthesizer.DEFAULT_PERCUSSION,
+                             Synthesizer.Synthesizer.MIDI_DRUM_CHANNEL,
                     BankMSB             = BankSelectHacks.GetDefaultBank(sys),
                     BankLSB             = 0,
                     KeyShift            = 0,

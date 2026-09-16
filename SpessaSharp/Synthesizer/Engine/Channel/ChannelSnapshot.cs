@@ -117,7 +117,19 @@ public sealed class ChannelSnapshot(
 
         DrumParams.CopyTo(chan.DrumParams);
         chan.Set((ChannelSystemParameter.Type.PresetLock, false)); // Restored in master params
-        if (Patch.HasValue) chan.SetPatch(Patch.Value);
+        if (Patch is {} patch) 
+        {
+            chan.SetBankMSB(patch.BankMSB);
+            chan.SetBankLSB(patch.BankLSB);
+            chan.SetIsGMGSDrum(patch.IsGMGSDrum);
+            chan.ProgramChange(patch.Program);
+            // Fallback if no preset matched and the flag didn't sync
+            chan.SetDrumFlag(DrumChannel);
+        } 
+        else 
+        {
+            chan.SetDrumFlag(DrumChannel);
+        }
         chan.LockedSystem = LockedSystem;
         
         // Restore MIDI parameters
