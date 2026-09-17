@@ -123,7 +123,7 @@ public static class Macro
         }
 
         synth.CallEvent(Event.CbEffectChange.OfReverb(
-            Effect.FxReverbType.Macro, macro));
+            Effect.GSReverbType.Macro, macro));
     }
 
     public static void SetChorus(Synthesizer synth, Chorus macro) =>
@@ -234,7 +234,7 @@ public static class Macro
         }
         
         synth.CallEvent(Event.CbEffectChange.OfChorus(
-            Effect.FxChorusType.Macro, macro));
+            Effect.GSChorusType.Macro, macro));
     }
 
     public static void SetDelay(Synthesizer synth, Delay macro) =>
@@ -382,6 +382,6 @@ public static class Macro
         }
         
         synth.CallEvent(Event.CbEffectChange.OfDelay(
-            Effect.FxDelayType.Macro, macro));
+            Effect.GSDelayType.Macro, macro));
     }
 }

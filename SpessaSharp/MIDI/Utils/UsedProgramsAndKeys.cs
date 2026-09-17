@@ -403,7 +403,7 @@ internal static class UsedProgramsAndKeys
                 {
                     default: break;
 
-                    case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                    case AnalyzedMessage.Type.GlobalMidiParameter:
                     {
                         var gmp = syx.AsGlobalMidiParameter!.Value;
                         if (gmp.PType == GlobalMidiParameter.Type.KeyShift)
@@ -421,7 +421,7 @@ internal static class UsedProgramsAndKeys
                         break;
                     }
 
-                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter when
+                    case AnalyzedMessage.Type.AnalyzedParameter when
                         syx.AsAnalyzedParameter is 
                             { AsChannelMidiParameter: {} cmp }:
                     {
@@ -439,7 +439,7 @@ internal static class UsedProgramsAndKeys
                         break;
                     }
 
-                    case MidiUtils.AnalyzedMessage.Type.DrumsOn:
+                    case AnalyzedMessage.Type.DrumsOn:
                     {
                         var dO = syx.AsDrumsOn!.Value;
                         var sysexChannel = dO.Channel + channelOffset;
@@ -451,7 +451,7 @@ internal static class UsedProgramsAndKeys
                         ch.IsDrum = dO.IsDrum;
                         break;
                     }
-                    case MidiUtils.AnalyzedMessage.Type.ProgramChange:
+                    case AnalyzedMessage.Type.ProgramChange:
                     {
                         var pc = syx.AsProgramChange!.Value;
                         var sysexChannel = pc.Channel + channelOffset;
@@ -467,7 +467,7 @@ internal static class UsedProgramsAndKeys
                             IsGMGSDrum: ch.IsDrum), system);
                         break;
                     }
-                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter when
+                    case AnalyzedMessage.Type.AnalyzedParameter when
                         syx.AsAnalyzedParameter is {AsControllerChange: {} cc}:
                     {
                         var sysexChannel = cc.Channel + channelOffset;
@@ -483,7 +483,7 @@ internal static class UsedProgramsAndKeys
                             ch.BankMSB = cc.Value;
                         break;
                     }
-                    case MidiUtils.AnalyzedMessage.Type.UserDrumSetup:
+                    case AnalyzedMessage.Type.UserDrumSetup:
                     {
                         var usd = syx.AsUserDrumSetup!.Value;
                         var set = userDrumSets[usd.DrumSet];

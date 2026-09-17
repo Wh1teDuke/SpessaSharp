@@ -74,7 +74,7 @@ public struct ParamTracker(int channel)
         dataMSB = dataMSB with { V = 0 };
     }
 
-    public MidiUtils.AnalyzedParameter? ControllerChange(
+    public AnalyzedParameter? ControllerChange(
         Midi.CC cc, int v, int track, int ev)
     {
         // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
@@ -140,7 +140,7 @@ public struct ParamTracker(int channel)
         dataMSB.V = 0;
     }
     
-    private MidiUtils.AnalyzedParameter Analyze() 
+    private AnalyzedParameter Analyze() 
     {
         var v = (dataMSB.V << 7) | dataLSB.V;
         return _isRegistered

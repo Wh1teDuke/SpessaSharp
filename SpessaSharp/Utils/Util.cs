@@ -510,7 +510,7 @@ internal static class Util
         index >= 0 && index < list.Count;
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool InRange<T>(T[] array, int index) => 
+    public static bool InRange<T>(ReadOnlySpan<T> array, int index) => 
         index >= 0 && index < array.Length;
 
     public static int Sum<T>(ReadOnlySpan<T> span, Func<T, int> sum)

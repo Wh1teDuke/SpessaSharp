@@ -101,49 +101,49 @@ public readonly struct Event
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
         public readonly record struct Reverb(
-            Effect.FxReverbType Type, int Value);
+            Effect.GSReverbType Type, int Value);
         
         public static CbEffectChange OfReverb(
-            Effect.FxReverbType type, int value) =>
+            Effect.GSReverbType type, int value) =>
             new (Type.Reverb, (int)type, value);
 
         public Reverb AsReverb =>
             EffectType != Type.Chorus
                 ? throw SpessaException.Invalid(
                     $"Expected type Reverb, got {EffectType}")
-                : new Reverb((Effect.FxReverbType)Parameter, Value);
+                : new Reverb((Effect.GSReverbType)Parameter, Value);
 
         /// <summary> </summary>
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
         public readonly record struct Chorus(
-            Effect.FxChorusType Type, int Value);
+            Effect.GSChorusType Type, int Value);
 
         public static CbEffectChange OfChorus(
-            Effect.FxChorusType type, int value) =>
+            Effect.GSChorusType type, int value) =>
             new (Type.Chorus, (int)type, value);
 
         public Chorus AsChorus =>
             EffectType != Type.Chorus
                 ? throw SpessaException.Invalid(
                     $"Expected type Chorus, got {EffectType}")
-                : new Chorus((Effect.FxChorusType)Parameter, Value);
+                : new Chorus((Effect.GSChorusType)Parameter, Value);
         
         /// <summary> </summary>
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
         public readonly record struct Delay(
-            Effect.FxDelayType Type, int Value);
+            Effect.GSDelayType Type, int Value);
         
         public static CbEffectChange OfDelay(
-            Effect.FxDelayType type, int value) =>
+            Effect.GSDelayType type, int value) =>
             new (Type.Delay, (int)type, value);
 
         public Delay AsDelay =>
             EffectType != Type.Delay
                 ? throw SpessaException.Invalid(
                     $"Expected type Delay, got {EffectType}")
-                : new Delay((Effect.FxDelayType)Parameter, Value);
+                : new Delay((Effect.GSDelayType)Parameter, Value);
         
         /// <summary> </summary>
         /// <param name="Parameter">

@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
@@ -219,42 +220,6 @@ public sealed class MidiEditor
     
     public static void Replace<T>(out Parameter<T> param, T value)
         => param = Parameter<T>.OfReplace(value);
-
-    private static readonly Effect.GSReverbParameter ReverbAddressMap = new()
-    {
-        Character = 0x31,
-        PreLowPass = 0x32,
-        Level = 0x33,
-        Time = 0x34,
-        DelayFeedback = 0x35,
-        PreDelayTime = 0x37,
-    };
-
-    private static readonly Effect.GSChorusParameter ChorusAddressMap = new()
-    {
-        PreLowPass = 0x39,
-        Level = 0x3a,
-        Feedback = 0x3b,
-        Delay = 0x3c,
-        Rate = 0x3d,
-        Depth = 0x3e,
-        SendLevelToReverb = 0x3f,
-        SendLevelToDelay = 0x40,
-    };
-
-    private static readonly Effect.GSDelayParameter DelayAddressMap = new()
-    {
-        PreLowPass = 0x51,
-        TimeCenter = 0x52,
-        TimeRatioLeft = 0x53,
-        TimeRatioRight = 0x54,
-        LevelCenter = 0x55,
-        LevelLeft = 0x56,
-        LevelRight = 0x57,
-        Level = 0x58,
-        Feedback = 0x59,
-        SendLevelToReverb = 0x5a,
-    };
 
     /// <summary>Internal tracking interface</summary>
     private sealed class ChannelStatus
@@ -684,9 +649,9 @@ public sealed class MidiEditor
                     // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
                     switch (syx.MType)
                     {
-                        case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                        case AnalyzedMessage.Type.AnalyzedParameter
                             when syx.AsAnalyzedParameter?.MType ==
-                                 MidiUtils.AnalyzedParameter.Type.DrumSetup:
+                                 AnalyzedParameter.Type.DrumSetup:
                             // Drum setup
                             if (_clearDrumParams)
                             {
@@ -696,7 +661,7 @@ public sealed class MidiEditor
 
                             break;
 
-                        case MidiUtils.AnalyzedMessage.Type.ReverbParam:
+                        case AnalyzedMessage.Type.GSReverbParameter:
                             // Delete all reverb params since we're setting new ones
                             if (_reverbParams != null)
                             {
@@ -707,7 +672,7 @@ public sealed class MidiEditor
 
                             break;
 
-                        case MidiUtils.AnalyzedMessage.Type.ChorusParam:
+                        case AnalyzedMessage.Type.GSChorusParameter:
                             // Delete all chorus params since we're setting new ones
                             if (_chorusParams != null)
                             {
@@ -717,7 +682,7 @@ public sealed class MidiEditor
 
                             break;
 
-                        case MidiUtils.AnalyzedMessage.Type.DelayParam:
+                        case AnalyzedMessage.Type.GSDelayParameter:
                             // Delete all delay params since we're setting new ones
                             if (_delayParams != null)
                             {
@@ -727,7 +692,7 @@ public sealed class MidiEditor
 
                             break;
 
-                        case MidiUtils.AnalyzedMessage.Type.InsertionParam:
+                        case AnalyzedMessage.Type.GSInsertionParameter:
                             // Delete all insertion params since we're setting new ones
                             if (_insertionParams != null)
                             {
@@ -737,7 +702,7 @@ public sealed class MidiEditor
 
                             break;
 
-                        case MidiUtils.AnalyzedMessage.Type.ProgramChange:
+                        case AnalyzedMessage.Type.ProgramChange:
                         {
                             // SysEx can change programs
                             // Do we delete it?
@@ -753,7 +718,7 @@ public sealed class MidiEditor
                             break;
                         }
 
-                        case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                        case AnalyzedMessage.Type.GlobalMidiParameter:
                         {
                             var gmp = syx.AsGlobalMidiParameter!.Value;
 
@@ -773,9 +738,9 @@ public sealed class MidiEditor
                             break;
                         }
 
-                        case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                        case AnalyzedMessage.Type.AnalyzedParameter
                             when syx.AsAnalyzedParameter?.MType ==
-                                 MidiUtils.AnalyzedParameter.Type.ChannelMidiParameter:
+                                 AnalyzedParameter.Type.ChannelMidiParameter:
                         {
                             var cmp = syx
                                 .AsAnalyzedParameter!.Value
@@ -786,9 +751,9 @@ public sealed class MidiEditor
                             break;
                         }
 
-                        case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                        case AnalyzedMessage.Type.AnalyzedParameter
                             when syx.AsAnalyzedParameter?.MType ==
-                                 MidiUtils.AnalyzedParameter.Type.ControllerChange:
+                                 AnalyzedParameter.Type.ControllerChange:
                         {
                             // SysEx can change controllers too!
                             var cc = syx
@@ -799,7 +764,7 @@ public sealed class MidiEditor
                             break;
                         }
                         
-                        case MidiUtils.AnalyzedMessage.Type.UserDrumSetup:
+                        case AnalyzedMessage.Type.UserDrumSetup:
                         {
                             var uds = syx.AsUserDrumSetup!.Value;
 
@@ -959,7 +924,7 @@ public sealed class MidiEditor
                 // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
                 switch (data.MType)
                 {
-                    case MidiUtils.AnalyzedParameter.Type.DrumSetup:
+                    case AnalyzedParameter.Type.DrumSetup:
                         if (_clearDrumParams)
                         {
                             // Drum param, BEGONE!
@@ -967,7 +932,7 @@ public sealed class MidiEditor
                         }
                         return;
 
-                    case MidiUtils.AnalyzedParameter.Type.ControllerChange:
+                    case AnalyzedParameter.Type.ControllerChange:
                     {
                         // NRPN can change controllers too!
                         var (cc, val, chan) = 
@@ -976,7 +941,7 @@ public sealed class MidiEditor
                         return;
                     }
 
-                    case MidiUtils.AnalyzedParameter.Type.ChannelMidiParameter
+                    case AnalyzedParameter.Type.ChannelMidiParameter
                         when data.AsChannelMidiParameter is var (param, _):
 
                         HandleChannelMIDIParam(channel, param);
@@ -1280,85 +1245,87 @@ public sealed class MidiEditor
             Parameter<Effect.GSReverbParameter>.Replace
                 { Value: {} r })
         {
-            var m = ReverbAddressMap;
             targetTrack.Add([
-                GsMessage(m.Level, r.Level),
-                GsMessage(m.PreLowPass, r.PreLowPass),
-                GsMessage(m.Character, r.Character),
-                GsMessage(m.Time, r.Time),
-                GsMessage(m.DelayFeedback, r.DelayFeedback),
-                GsMessage(m.PreDelayTime, r.PreDelayTime),
+                Set(Effect.GSReverbType.Level),
+                Set(Effect.GSReverbType.PreLowPass),
+                Set(Effect.GSReverbType.Character),
+                Set(Effect.GSReverbType.Time),
+                Set(Effect.GSReverbType.DelayFeedback),
+                Set(Effect.GSReverbType.PreDelayTime),
             ], targetIndex);
             
-            MidiMessage GsMessage(int a3, int data) =>
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, a3, [(byte)data]);
+            MidiMessage Set(Effect.GSReverbType type) =>
+                MidiUtils.SetGSReverbParameter(targetTicks, type, r[type]);
         }
         
         if (_chorusParams is 
             Parameter<Effect.GSChorusParameter>.Replace
                 { Value: {} c }) 
         {
-            var m = ChorusAddressMap;
             targetTrack.Add([
-                GsMessage(m.Level, c.Level),
-                GsMessage(m.PreLowPass, c.PreLowPass),
-                GsMessage(m.Feedback, c.Feedback),
-                GsMessage(m.Delay, c.Delay),
-                GsMessage(m.Rate, c.Rate),
-                GsMessage(m.Depth, c.Depth),
-                GsMessage(m.SendLevelToReverb, c.SendLevelToReverb),
-                GsMessage(m.SendLevelToDelay, c.SendLevelToDelay),
+                Set(Effect.GSChorusType.Level),
+                Set(Effect.GSChorusType.PreLowPass),
+                Set(Effect.GSChorusType.Feedback),
+                Set(Effect.GSChorusType.Delay),
+                Set(Effect.GSChorusType.Rate),
+                Set(Effect.GSChorusType.Depth),
+                Set(Effect.GSChorusType.SendLevelToReverb),
+                Set(Effect.GSChorusType.SendLevelToDelay),
             ], targetIndex);
             
-            MidiMessage GsMessage(int a3, int data) =>
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, a3, [(byte)data]);
+            MidiMessage Set(Effect.GSChorusType type) =>
+                MidiUtils.SetGSChorusParameter(targetTicks, type, c[type]);
         }
         
         if (_delayParams is 
             Parameter<Effect.GSDelayParameter>.Replace
                 { Value: {} d }) 
         {
-            var m = DelayAddressMap;
             targetTrack.Add([
-                GsMessage(m.Level, d.Level),
-                GsMessage(m.PreLowPass, d.PreLowPass),
-                GsMessage(m.TimeCenter, d.TimeCenter),
-                GsMessage(m.TimeRatioLeft, d.TimeRatioLeft),
-                GsMessage(m.TimeRatioRight, d.TimeRatioRight),
-                GsMessage(m.LevelCenter, d.LevelCenter),
-                GsMessage(m.LevelLeft, d.LevelLeft),
-                GsMessage(m.LevelRight, d.LevelRight),
-                GsMessage(m.Feedback, d.Feedback),
-                GsMessage(m.SendLevelToReverb, d.SendLevelToReverb),
+                Set(Effect.GSDelayType.Level),
+                Set(Effect.GSDelayType.PreLowPass),
+                Set(Effect.GSDelayType.TimeCenter),
+                Set(Effect.GSDelayType.TimeRatioLeft),
+                Set(Effect.GSDelayType.TimeRatioRight),
+                Set(Effect.GSDelayType.LevelCenter),
+                Set(Effect.GSDelayType.LevelLeft),
+                Set(Effect.GSDelayType.LevelRight),
+                Set(Effect.GSDelayType.Feedback),
+                Set(Effect.GSDelayType.SendLevelToReverb),
             ], targetIndex);
 
-            MidiMessage GsMessage(int a3, int data) =>
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x01, a3, [(byte)data]);
+            MidiMessage Set(Effect.GSDelayType type) =>
+                MidiUtils.SetGSDelayParameter(targetTicks, type, d[type]);
         }
 
         if (_insertionParams is 
             Parameter<Effect.InsertionProcessorSnapshot>.Replace
                 { Value: var ins }) 
         {
-            // Params and sends
+            // Params and sends are stored in one table (0-19: params, 20-22: sends)
+            var evs = new List<MidiMessage>();
             for (var param = 0; param < ins.Params.Count; param++)
             {
                 var value = ins.Params[param];
                 if (value == 255) continue;
                 
-                targetTrack.Add(
-                    MidiUtils.GsMessage(targetTicks, 0x40, 0x03, param + 3, [value]),
-                    targetIndex);
+                if (param < 20) evs.Add(MidiUtils.SetInsertionParameter(
+                    targetTicks, param, value));
+                else evs.Add(MidiUtils.SetInsertionParameter(
+                    targetTicks, (Effect.InsertionType)(param - 20 + 1), value));
             }
+            
+            // This adds them in order
+            targetTrack.Add(CollectionsMarshal.AsSpan(evs), targetIndex);
 
             // Last means that it will be first, so the order is:
             // Type
             // Params and sends
             // Channels
-            targetTrack.Add([
-                MidiUtils.GsMessage(targetTicks, 0x40, 0x03, 0x00,
-                    [(byte)(ins.Type >> 8), (byte)(ins.Type & 0x7f)]),
-            ], targetIndex);
+            targetTrack.Add(
+                MidiUtils.SetInsertionParameter(
+                    targetTicks, Effect.InsertionType.Type, ins.Type),
+                targetIndex);
         }
         
         // User Drum parameters

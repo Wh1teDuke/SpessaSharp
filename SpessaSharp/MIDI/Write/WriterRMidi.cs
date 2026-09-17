@@ -226,7 +226,7 @@ public static class WriterRMidi
                         default: goto Continue;
                         
                         // Check for drum sysex
-                        case MidiUtils.AnalyzedMessage.Type.DrumsOn:
+                        case AnalyzedMessage.Type.DrumsOn:
                         {
                             var dO = syx.AsDrumsOn!.Value;
                             var sysexChannel = dO.Channel + portOffset;
@@ -239,7 +239,7 @@ public static class WriterRMidi
                             goto Continue;
                         }
 
-                        case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
+                        case AnalyzedMessage.Type.GlobalMidiParameter:
                         {
                             var gmp = syx.AsGlobalMidiParameter!.Value;
                             if (gmp.PType == GlobalMidiParameter.Type.System)
@@ -255,7 +255,7 @@ public static class WriterRMidi
                             break;
                         }
 
-                        case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                        case AnalyzedMessage.Type.AnalyzedParameter
                             when syx.AsAnalyzedParameter is
                                 { AsControllerChange: {} cc }:
                         {
@@ -270,7 +270,7 @@ public static class WriterRMidi
                             break; // Do not return, keep parsing
                         }
 
-                        case MidiUtils.AnalyzedMessage.Type.ProgramChange:
+                        case AnalyzedMessage.Type.ProgramChange:
                         {
                             // Replace the system exclusive with a regular program
                             var pc = syx.AsProgramChange!.Value;

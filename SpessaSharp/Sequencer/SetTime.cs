@@ -149,7 +149,7 @@ internal static class SetTime
                             Some MIDIs edit drums via sysEx and skipping program changes causes them to be sent after, resetting the params.
                             Testcase: (GS88Pro)Th19_1S(KR.Palto47)
                              */
-                            case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
+                            case AnalyzedMessage.Type.AnalyzedParameter
                                 when analyzed.AsAnalyzedParameter is
                                 { AsControllerChange: var
                                     (controller, value, chan) }:
@@ -230,7 +230,7 @@ internal static class SetTime
                                 default:
                                     break;
 
-                                case MidiUtils.AnalyzedParameter.Type.ControllerChange:
+                                case AnalyzedParameter.Type.ControllerChange:
                                 {
                                     var cc =
                                         analyzed.AsControllerChange!.Value;
