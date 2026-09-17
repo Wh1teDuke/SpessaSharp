@@ -79,6 +79,12 @@ public static class GlobalSystemParameters
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.DrumLock].AsBool;
         }
+        
+        public bool UserDrumLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.UserDrumLock].AsBool;
+        }
 
         public bool DelayLock
         {
@@ -115,7 +121,6 @@ public static class GlobalSystemParameters
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.EventsEnabled].AsBool;
         }
-        
 
         public bool BlackMIDIMode
         {
@@ -133,6 +138,12 @@ public static class GlobalSystemParameters
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.MonophonicRetrigger].AsBool;
+        }
+        
+        public bool CustomVibrato
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.CustomVibrato].AsBool;
         }
         
         public GlobalSystemParameter Get(GlobalSystemParameter.Type type) =>
@@ -200,6 +211,7 @@ public static class GlobalSystemParameters
             (GlobalSystemParameter.Type.DelayLock, false),
             (GlobalSystemParameter.Type.InsertionEffectLock, false),
             (GlobalSystemParameter.Type.DrumLock, false),
+            (GlobalSystemParameter.Type.UserDrumLock, false),
             (GlobalSystemParameter.Type.BlackMIDIMode, false),
             (GlobalSystemParameter.Type.DeviceID, -1),
             
@@ -211,6 +223,7 @@ public static class GlobalSystemParameters
             (Synthesizer.InterpolationType.Hermite),
             (GlobalSystemParameter.Type.NprnParamLock, false),
             (GlobalSystemParameter.Type.MonophonicRetrigger, false),
+            (GlobalSystemParameter.Type.CustomVibrato, false),
         ];
         
         DefaultParameters = new GlobalSystemParameter[list.Length];
@@ -357,6 +370,13 @@ public readonly record struct GlobalSystemParameter
         /// the drum parameters then locking it to prevent changes by MIDI files.
         /// </summary>
         DrumLock,
+        /// <summary>
+        /// If the synthesizer should prevent editing of the User Drum Set (GS only) parameters.
+        /// These params are modified using MIDI system exclusive messages or NRPN, so
+        /// the recommended use case would be setting
+        /// the User Drum Set parameters then locking it to prevent changes by MIDI files.
+        /// </summary>
+        UserDrumLock,
         /// <summary> Forces note killing instead of releasing. Improves performance in black MIDIs. </summary>
         BlackMIDIMode,
         /// <summary> Synthesizer's device ID for system exclusive messages. Set to -1 to accept all. </summary>
@@ -385,6 +405,15 @@ public readonly record struct GlobalSystemParameter
         /// Where a new note will kill the previous one if it is still playing.
         /// </summary>
         MonophonicRetrigger,
+        /// <summary>
+        /// If the synthesizer should use the custom vibrato implementation.
+        ///
+        /// This effect is modified using NRPN, so
+        /// the recommended use case would be setting
+        /// the custom vibrato then locking it to prevent changes by MIDI files.
+        /// Disabled by default to avoid altering songs that don't expect it.
+        /// </summary>
+        CustomVibrato,
     }
 
     public static Params.Type TypeOf(Type type) => type switch
@@ -405,11 +434,13 @@ public readonly record struct GlobalSystemParameter
         Type.DelayLock => Params.Type.Bool,
         Type.InsertionEffectLock => Params.Type.Bool,
         Type.DrumLock => Params.Type.Bool,
+        Type.UserDrumLock => Params.Type.Bool,
         Type.NprnParamLock => Params.Type.Bool,
         Type.BlackMIDIMode => Params.Type.Bool,
         Type.KeyShift => Params.Type.Int,
         Type.FineTune => Params.Type.Float,
         Type.DeviceID => Params.Type.Int,
+        Type.CustomVibrato => Params.Type.Bool,
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
 
@@ -425,6 +456,7 @@ public readonly record struct GlobalSystemParameter
         "The reverb gain. From 0 to any number. 1 is 100% reverb",
         "If the synthesizer should prevent editing of the reverb parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the reverb parameters then locking it to prevent changes by MIDI files.",
         "The chorus gain. From 0 to any number. 1 is 100% chorus",
+        "If the synthesizer should prevent editing of the User Drum Set (GS only) parameters. These params are modified using MIDI system exclusive messages or NRPN, so the recommended use case would be setting the User Drum Set parameters then locking it to prevent changes by MIDI files.",
         "If the synthesizer should prevent editing of the chorus parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the chorus parameters then locking it to prevent changes by MIDI files.",
         "The delay gain. From 0 to any number. 1 is 100% delay",
         "If the synthesizer should prevent editing of the delay parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the delay parameters then locking it to prevent changes by MIDI files.",
@@ -439,6 +471,7 @@ public readonly record struct GlobalSystemParameter
         "The interpolation type used for sample playback",
         "If the synthesizer should prevent changing any parameters via NRPN.",
         "Indicates whether the synthesizer is in monophonic retrigger mode. This emulates the behavior of Microsoft GS Wavetable Synth, where a new note will kill the previous one if it is still playing.",
+        "If the synthesizer should use the custom vibrato implementation. This effect is modified using NRPN, so the recommended use case would be setting the custom vibrato then locking it to prevent changes by MIDI files. Disabled by default to avoid altering songs that don't expect it."
     ];
     
     private static void Assert(Type type, Params.Type value) =>

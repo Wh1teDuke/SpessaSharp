@@ -1,4 +1,4 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
 public sealed class SSChorus: Effect.ChorusProcessor
 {
@@ -221,7 +221,7 @@ public sealed class SSChorus: Effect.ChorusProcessor
         _preLPFz = z;
     }
 
-    public override Effect.ChorusProcessorSnapshot GetSnapshot() =>
+    public override Effect.GSChorusParameter GetSnapshot() =>
         new()
         {
             PreLowPass          = _preLowPass,

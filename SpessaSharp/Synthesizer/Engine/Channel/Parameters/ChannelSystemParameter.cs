@@ -85,7 +85,7 @@ public static class ChannelSystemParameters
         {
             case ChannelSystemParameter.Type.PresetLock:
                 if (param.AsBool)
-                    chan.LockedSystem = chan.SynthCore.MidiParameters.MidiSystem;
+                    chan.LockedSystem = chan.SynthCore.MidiParameters.System;
                 break;
             case ChannelSystemParameter.Type.IsMuted:
                 if (param.AsBool)

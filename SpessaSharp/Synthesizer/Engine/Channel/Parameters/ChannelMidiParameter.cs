@@ -15,6 +15,34 @@ public static class ChannelMidiParameters
             set => parameters.Set(
                 (ChannelMidiParameter.Type.RxChannel, value));
         }
+        
+        public Midi.CC CC1
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(
+                new ChannelMidiParameter(ChannelMidiParameter.Type.CC1, value));
+        }
+        
+        public Midi.CC CC2
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(
+                new ChannelMidiParameter(ChannelMidiParameter.Type.CC2, value));
+        }
+
+        public float PitchWheelRange
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(ChannelMidiParameter.Of(
+                ChannelMidiParameter.Type.PitchWheelRange, value));
+        }
+        
+        public float ModulationDepth
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(ChannelMidiParameter.Of(
+                ChannelMidiParameter.Type.ModulationDepth, value));
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Set(
@@ -206,6 +234,12 @@ public readonly record struct ChannelMidiParameter
 {
     private readonly Params.Data _data;
     public readonly Type PType;
+
+    public static ChannelMidiParameter FineTune(float value) =>
+        Of(Type.FineTune, value);
+    
+    public static ChannelMidiParameter DrumMap(int value) =>
+        Of(Type.DrumMap, value);
     
     public static ChannelMidiParameter Of(Type type, float value)
     {

@@ -1,4 +1,4 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.Insertion;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
 /// <summary>
 /// The Auto Wah cyclically controls a filter to create cyclic change in timbre.<br/>
