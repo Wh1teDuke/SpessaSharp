@@ -309,7 +309,7 @@ public sealed class SSDelay: Effect.DelayProcessor
         _writeIndex = writeIndex;
     }
 
-    public override Effect.DelayProcessorSnapshot GetSnapshot() =>
+    public override Effect.GSDelayParameter GetSnapshot() =>
         new()
         {
             Level =  _level,

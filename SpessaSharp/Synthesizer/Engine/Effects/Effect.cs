@@ -62,7 +62,7 @@ public static class Effect
         internal int Macro;
     }
 
-    public class ReverbProcessorSnapshot : BaseEffect
+    public class GSReverbParameter : BaseEffect
     {
         /// <summary>
         /// 0-7.<br/>
@@ -95,7 +95,7 @@ public static class Effect
         public virtual int PreDelayTime { get; set; }
     }
 
-    public abstract class ReverbProcessor: ReverbProcessorSnapshot
+    public abstract class ReverbProcessor: GSReverbParameter
     {
         /// <summary> Process the effect and ADDS it to the output. </summary>
         /// <param name="input">The input buffer to process. It always starts at index 0.</param>
@@ -112,10 +112,10 @@ public static class Effect
         
         /// <summary> Gets a synthesizer from this effect processor instance. </summary>
         /// <returns></returns>
-        public abstract ReverbProcessorSnapshot GetSnapshot();
+        public abstract GSReverbParameter GetSnapshot();
     }
 
-    public class ChorusProcessorSnapshot : BaseEffect
+    public class GSChorusParameter : BaseEffect
     {
         /// <summary>
         /// 0-127<br/>
@@ -160,7 +160,7 @@ public static class Effect
         public virtual int SendLevelToDelay { get; set; }
     }
     
-    public abstract class ChorusProcessor: ChorusProcessorSnapshot
+    public abstract class ChorusProcessor: GSChorusParameter
     {
         /// <summary> Process the effect and ADDS it to the output. </summary>
         /// <param name="input">The input buffer to process. It always starts at index 0.</param>
@@ -181,10 +181,10 @@ public static class Effect
         
         /// <summary> Gets a synthesizer from this effect processor instance. </summary>
         /// <returns></returns>
-        public abstract ChorusProcessorSnapshot GetSnapshot();
+        public abstract GSChorusParameter GetSnapshot();
     }
 
-    public class DelayProcessorSnapshot : BaseEffect
+    public class GSDelayParameter : BaseEffect
     {
         /// <summary>
         /// 0-115<br/>
@@ -252,7 +252,7 @@ public static class Effect
         public virtual int SendLevelToReverb { get; set; }
     }
     
-    public abstract class DelayProcessor: DelayProcessorSnapshot
+    public abstract class DelayProcessor: GSDelayParameter
     {
         /// <summary> Process the effect and ADDS it to the output. </summary>
         /// <param name="input">The input buffer to process. It always starts at index 0.</param>
@@ -271,7 +271,7 @@ public static class Effect
         
         /// <summary> Gets a synthesizer from this effect processor instance. </summary>
         /// <returns></returns>
-        public abstract DelayProcessorSnapshot GetSnapshot();
+        public abstract GSDelayParameter GetSnapshot();
     }
 
     public abstract class InsertionProcessor
@@ -291,7 +291,8 @@ public static class Effect
         ];
         
         /// <summary>
-        /// The EFX type of this processor, stored as MSB shl | LSB. For example 0x30, 0x10 is 0x3010
+        /// The EFX type of this processor, stored as <c>MSB &lt;&lt; | LSB</c>.
+        /// For example 0x30, 0x10 is 0x3010
         /// </summary>
         public abstract int Type { get; }
 
@@ -353,8 +354,14 @@ public static class Effect
     }
 
     /// <summary> </summary>
-    /// <param name="Type"></param>
+    /// <param name="Type">
+    /// The EFX type of this processor, stored as <c>MSB &lt;&lt; 8 | LSB</c>.
+    /// For example <c>0x30</c>, <c>0x10</c> is <c>0x3010</c>.
+    /// </param>
     /// <param name="Params">20 parameters for the effect, 255 means "no change" + 3 effect sends (index 20, 21, 22)</param>
+    /// <remarks>
+    /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see> (p.88, 237) for more information.
+    /// </remarks>
     public readonly record struct InsertionProcessorSnapshot(
         int Type, 
         ArraySegment<byte> Params);

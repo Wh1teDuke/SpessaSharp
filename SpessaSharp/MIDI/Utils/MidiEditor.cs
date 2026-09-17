@@ -81,9 +81,9 @@ public sealed class MidiEditor
         Dictionary<
             GlobalMidiParameter.Type,
             Parameter<GlobalMidiParameter>>? MidiParams = null,
-        Parameter<Effect.ReverbProcessorSnapshot>? ReverbParams = null,
-        Parameter<Effect.ChorusProcessorSnapshot>? ChorusParams = null,
-        Parameter<Effect.DelayProcessorSnapshot>? DelayParams = null,
+        Parameter<Effect.GSReverbParameter>? ReverbParams = null,
+        Parameter<Effect.GSChorusParameter>? ChorusParams = null,
+        Parameter<Effect.GSDelayParameter>? DelayParams = null,
         Parameter<Effect.InsertionProcessorSnapshot>? InsertionParams = null);
 
     /// <summary>
@@ -220,7 +220,7 @@ public sealed class MidiEditor
     public static void Replace<T>(out Parameter<T> param, T value)
         => param = Parameter<T>.OfReplace(value);
 
-    private static readonly Effect.ReverbProcessorSnapshot ReverbAddressMap = new()
+    private static readonly Effect.GSReverbParameter ReverbAddressMap = new()
     {
         Character = 0x31,
         PreLowPass = 0x32,
@@ -230,7 +230,7 @@ public sealed class MidiEditor
         PreDelayTime = 0x37,
     };
 
-    private static readonly Effect.ChorusProcessorSnapshot ChorusAddressMap = new()
+    private static readonly Effect.GSChorusParameter ChorusAddressMap = new()
     {
         PreLowPass = 0x39,
         Level = 0x3a,
@@ -242,7 +242,7 @@ public sealed class MidiEditor
         SendLevelToDelay = 0x40,
     };
 
-    private static readonly Effect.DelayProcessorSnapshot DelayAddressMap = new()
+    private static readonly Effect.GSDelayParameter DelayAddressMap = new()
     {
         PreLowPass = 0x51,
         TimeCenter = 0x52,
@@ -312,9 +312,9 @@ public sealed class MidiEditor
     private int _resetTrack = 0;
     private int _resetIndex = 0;
 
-    private readonly Parameter<Effect.ReverbProcessorSnapshot>? _reverbParams;
-    private readonly Parameter<Effect.ChorusProcessorSnapshot>? _chorusParams;
-    private readonly Parameter<Effect.DelayProcessorSnapshot>? _delayParams;
+    private readonly Parameter<Effect.GSReverbParameter>? _reverbParams;
+    private readonly Parameter<Effect.GSChorusParameter>? _chorusParams;
+    private readonly Parameter<Effect.GSDelayParameter>? _delayParams;
     private readonly Parameter<Effect.InsertionProcessorSnapshot>? _insertionParams;
     private readonly Dictionary<int, Parameter<UserDrumModification>>? _userDrumSetParams;
     private readonly Dictionary<
@@ -1277,7 +1277,7 @@ public sealed class MidiEditor
         
         // Add effects
         if (_reverbParams is
-            Parameter<Effect.ReverbProcessorSnapshot>.Replace
+            Parameter<Effect.GSReverbParameter>.Replace
                 { Value: {} r })
         {
             var m = ReverbAddressMap;
@@ -1295,7 +1295,7 @@ public sealed class MidiEditor
         }
         
         if (_chorusParams is 
-            Parameter<Effect.ChorusProcessorSnapshot>.Replace
+            Parameter<Effect.GSChorusParameter>.Replace
                 { Value: {} c }) 
         {
             var m = ChorusAddressMap;
@@ -1315,7 +1315,7 @@ public sealed class MidiEditor
         }
         
         if (_delayParams is 
-            Parameter<Effect.DelayProcessorSnapshot>.Replace
+            Parameter<Effect.GSDelayParameter>.Replace
                 { Value: {} d }) 
         {
             var m = DelayAddressMap;

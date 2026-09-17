@@ -12,9 +12,9 @@ public sealed class SynthesizerSnapshot(
     GlobalMidiParameter[] midiParameters,
     BitArray lockedParameters,
     GlobalSystemParameter[] systemParameters,
-    Effect.ReverbProcessorSnapshot reverbProcessor,
-    Effect.ChorusProcessorSnapshot chorusProcessor,
-    Effect.DelayProcessorSnapshot delayProcessor,
+    Effect.GSReverbParameter reverbProcessor,
+    Effect.GSChorusParameter chorusProcessor,
+    Effect.GSDelayParameter delayProcessor,
     Effect.InsertionProcessorSnapshot insertionProcessorProcessor,
     UserDrumSetParameter.Entry[][] userDrumSets)
 {
@@ -25,9 +25,9 @@ public sealed class SynthesizerSnapshot(
     public readonly BitArray LockedParameters = lockedParameters;
     public readonly GlobalSystemParameter[] SystemParameters = systemParameters;
     
-    public readonly Effect.ReverbProcessorSnapshot ReverbProcessor = reverbProcessor;
-    public readonly Effect.ChorusProcessorSnapshot ChorusProcessor = chorusProcessor;
-    public readonly Effect.DelayProcessorSnapshot DelayProcessor = delayProcessor;
+    public readonly Effect.GSReverbParameter ReverbProcessor = reverbProcessor;
+    public readonly Effect.GSChorusParameter ChorusProcessor = chorusProcessor;
+    public readonly Effect.GSDelayParameter DelayProcessor = delayProcessor;
     public Effect.InsertionProcessorSnapshot InsertionProcessor = insertionProcessorProcessor;
 
     public readonly UserDrumSetParameter.Entry[][] UserDrumSets = userDrumSets;

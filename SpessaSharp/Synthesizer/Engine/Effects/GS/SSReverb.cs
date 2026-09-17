@@ -342,7 +342,7 @@ public sealed class SSReverb: Effect.ReverbProcessor
         }
     }
 
-    public override Effect.ReverbProcessorSnapshot GetSnapshot() =>
+    public override Effect.GSReverbParameter GetSnapshot() =>
         new()
         {
             Level           = _level,
