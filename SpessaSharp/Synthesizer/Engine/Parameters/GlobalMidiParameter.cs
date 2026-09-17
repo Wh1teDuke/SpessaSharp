@@ -154,15 +154,20 @@ public readonly record struct GlobalMidiParameter
     { 
         /// <summary>The currently enabled MIDI system used by the synthesizer for bank selects and system exclusives. (GM, GM2, GS, XG)</summary>
         System, 
-        /// <summary>The global key shift in semitones. Drum channels ignore this value. Set by MIDI SysEx.</summary>
+        /// <summary>
+        /// The global key shift in semitones.
+        /// <remarks> Drum channels ignore this value. Set by MIDI SysEx. </remarks>
+        /// </summary>
         KeyShift, 
-        /// <summary>The global tuning in cents. Drum channels ignore this value. Set by MIDI SysEx.</summary>
+        /// <summary>The global tuning in cents.
+        /// <remarks> Drum channels ignore this value. Set by MIDI SysEx. </remarks>
+        /// </summary>
         FineTune,
         /// <summary>
         /// The master volume.
         /// From 0 (silent) to 1 (full volume).
         ///
-        /// This differs from the <b>gain</b> system parameter in that it is squared internally.
+        /// This differs from the <see cref="GlobalSystemParameter.Type.Gain"/> system parameter in that it is squared internally.
         /// </summary>
         Volume, 
         /// <summary>The master pan. From -1 (left) to 1 (right). 0 is center.</summary>
