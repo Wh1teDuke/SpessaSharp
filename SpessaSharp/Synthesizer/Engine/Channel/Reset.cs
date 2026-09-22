@@ -124,7 +124,7 @@ internal static class Reset
         // Drums only on every 16th channel 10.
         chan.SetBankMSB(BankSelectHacks.GetDefaultBank(chan.ChannelSystem));
         chan.SetBankLSB(0);
-        chan.Patch = chan.Patch with { Program = 0 };
+        chan.ProgramChange(0);
         chan.SetDrums(chan.Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL);
     }
 
