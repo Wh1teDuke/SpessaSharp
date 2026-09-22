@@ -607,7 +607,8 @@ internal static class Roland
                                         ChannelMidiParameter.Type.DrumMap, 
                                         data));
                                     var newMap = ch.MidiParameters.DrumMap;
-                                    var isDrums = data > 0; // Non-zero means a drum channel
+                                    // Non-melodic means a drum channel
+                                    var isDrums = data > SysexData.MELODIC_MAP;
                                     // Testcase: gs_drum_change_test
                                     // GS resets to the default kit not only when toggling drums,
                                     // But on any map change too.
@@ -979,7 +980,9 @@ internal static class Roland
                         if (synth.SystemParameters.DrumLock) 
                             return;
 
-                        var map = (a2 >> 4) + 1;
+                        // In gs, the map is offset by the default (e.g. 1)
+                        // So 0 means drum map 1, 1 means drum map 1, etc.
+                        var map = (a2 >> 4) + SysexData.DEFAULT_GS_DRUM_MAP;
                         var drumKey = a3;
                         var param = (byte)(a2 & 0xf);
                         switch (param) 

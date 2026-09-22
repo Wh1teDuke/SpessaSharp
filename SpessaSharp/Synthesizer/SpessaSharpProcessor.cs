@@ -266,7 +266,9 @@ public sealed class SpessaSharpProcessor
     /// Executes a full synthesizer reset.
     /// This will reset all controllers to their default values, except for the locked controllers.
     /// </summary>
-    public void Reset() => _synthCore.Reset();
+    /// <param name="system">The MIDI system to reset the synthesizer to. Defaults to <c>gs</c>.</param>
+    public void Reset(Midi.System system = Synthesizer.DefaultMode) => 
+        _synthCore.Reset(system);
     
     /// <summary>Applies the snapshot to the synth.</summary>
     /// <param name="snapshot">The snapshot to apply.</param>

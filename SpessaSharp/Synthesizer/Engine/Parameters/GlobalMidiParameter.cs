@@ -196,5 +196,4 @@ public readonly record struct GlobalMidiParameter
         pType = PType;
         data = _data;
     }
-
 }

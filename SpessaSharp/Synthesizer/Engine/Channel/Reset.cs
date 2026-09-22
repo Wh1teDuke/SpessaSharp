@@ -75,9 +75,16 @@ internal static class Reset
             ChannelMidiParameter.Type.CC1, (Midi.CC)0x10));
         chan.Set(new ChannelMidiParameter(
             ChannelMidiParameter.Type.CC2, (Midi.CC)0x11));
+        // Set the correct default map
+        var defaultMap =
+            chan.ChannelSystem == Midi.System.XG 
+                ? SysexData.DEFAULT_XG_DRUM_MAP 
+                : SysexData.DEFAULT_GS_DRUM_MAP;
         chan.Set((
             ChannelMidiParameter.Type.DrumMap, 
-            chan.Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL ? 1 : 0));
+            chan.Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL 
+                ? defaultMap 
+                : SysexData.MELODIC_MAP));
         chan.Set((ChannelMidiParameter.Type.VelocitySenseOffset, 64));
         chan.Set((ChannelMidiParameter.Type.VelocitySenseDepth, 64));
         // This one has a wrapper, for per-note pitch wheel

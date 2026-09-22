@@ -595,27 +595,6 @@ public sealed class Midi
             WriterRMidi.Save(
                 this, soundBank, options ?? WriterRMidi.Options.Default);
 
-    /// <summary>
-    /// Allows easily modifying the sequence's programs and controllers.
-    /// This is a very sophisticated method that supports various MIDI systems and inserts/deletes messages appropriately.
-    /// <remarks>This modifies the MIDI sequence <b>in-place</b>.</remarks>
-    /// </summary>
-    /// <param name="opts">Options to modify the midi</param>
-    public void Modify(MidiEditor.Options opts)
-    {
-        var editor = new MidiEditor(this, opts);
-        editor.Apply();
-    }
-
-    /// <summary>
-    /// Modifies the sequence *in-place* according to the locked presets and controllers in the given snapshot.
-    /// Note that System Parameters <b>fineTune</b> and <b>keyShift</b> are passed to the relative tuning parameters of the channels.
-    /// Only locked MIDI parameters and controllers are applied.
-    /// </summary>
-    /// <param name="snapshot">The snapshot to apply.</param>
-    public void Apply(SynthesizerSnapshot snapshot) =>
-        ApplySnapshot.To(this, snapshot);
-
     /// <summary>Gets the MIDI's decoded name.</summary>
     /// <param name="encoding">The encoding to use if the MIDI uses an extended code page.</param>
     /// <remarks>RMIDI encoding overrides the provided encoding.</remarks>

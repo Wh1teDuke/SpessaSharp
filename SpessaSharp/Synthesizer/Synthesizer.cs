@@ -647,7 +647,7 @@ public sealed class Synthesizer
     
     /// <summary>Executes a full system reset of the synthesizer. This will reset all controllers to their default values, except for the locked controllers.</summary>
     /// <param name="system">The MIDI system to reset the synthesizer to. Defaults to <b>gs</b>.</param>
-    public void Reset(Midi.System system = DefaultMode) 
+    public void Reset(Midi.System system = DefaultMode)
     {
         // Call here because there are returns in this function.
         CallEvent(new Event.CbReset(system));

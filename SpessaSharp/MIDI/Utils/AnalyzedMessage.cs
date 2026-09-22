@@ -7,7 +7,25 @@ using SpessaSharp.Synthesizer.Engine.Parameters;
 namespace SpessaSharp.MIDI.Utils;
 
 
+/// <summary>
+/// Represents an analyzed channel drum setup parameter change, set via NRPN.
+/// <remarks> Channel number may be above 15 for multi-port MIDI setups. </remarks>
+/// </summary>
+/// <param name="Channel">The MIDI channel number (it may be above 15).</param>
+/// <param name="Key">The MIDI drum note number being modified.</param>
+/// <param name="Parameter">The drum parameter name.</param>
+/// <param name="Value">The value for the drum parameter.</param>
+public readonly record struct ChannelDrumSetupMessage(
+    int Channel, int Key, DrumParameter.Type Parameter, float Value);
 
+/// <summary>
+/// Represents an analyzed map drum setup parameter change, set via System Exclusive.
+/// </summary>
+/// <param name="DrumMap">The drum map (or drum setup in XG) number, specifying which drum set to edit.</param>
+/// <param name="Key">The MIDI drum note number being modified.</param>
+/// <param name="Parameter">The drum parameter name and value.</param>
+public readonly record struct MapDrumSetupMessage(
+    int DrumMap, int Key, DrumParameter.Entry Parameter);
 
 /// <summary>
 /// The analysis result of an RPN (Registered Parameter Number) or NRPN (Non-Registered Parameter Number) MIDI message.
@@ -30,8 +48,8 @@ public readonly struct AnalyzedParameter
         /// </remarks>
         /// </summary>
         ChannelMidiParameter, 
-        /// <summary> A drum setup parameter message. </summary>
-        DrumSetup,
+        /// <summary> Represents an analyzed channel drum setup parameter change, set via NRPN. </summary>
+        ChannelDrumSetupMessage,
     }
 
     [StructLayout(LayoutKind.Explicit)]
@@ -42,7 +60,7 @@ public readonly struct AnalyzedParameter
         /// <summary>Channel number may be above 15</summary>
         [FieldOffset(0)] public (ChannelMidiParameter Param, int Channel) _channelMidiParam;
 
-        [FieldOffset(0)] public (int Key, DrumParameter.Entry Parameter) _drumSetup;
+        [FieldOffset(0)] public ChannelDrumSetupMessage _drumSetup;
     }
     
     public Type MType { get; private init; }
@@ -54,14 +72,17 @@ public readonly struct AnalyzedParameter
     public (ChannelMidiParameter Param, int Channel)? AsChannelMidiParameter =>
         MType == Type.ChannelMidiParameter ? Data._channelMidiParam : null;
     
-    public (int Key, DrumParameter.Entry Parameter)? AsDrumSetup =>
-        MType == Type.DrumSetup ? Data._drumSetup : null;
+    /// <summary>
+    /// Represents an analyzed channel drum setup parameter change, set via NRPN.
+    /// </summary>
+    public ChannelDrumSetupMessage? AsDrumSetup =>
+        MType == Type.ChannelDrumSetupMessage ? Data._drumSetup : null;
     
     public static AnalyzedParameter Of(Type type)
     {
         ReadOnlySpan<Type> notAllowed = [
             Type.ControllerChange, Type.ChannelMidiParameter,
-            Type.DrumSetup,];
+            Type.ChannelDrumSetupMessage,];
         return notAllowed.Contains(type) 
             ? throw new ArgumentException("Invalid argument: " + type) 
             : new AnalyzedParameter { MType = type };
@@ -85,17 +106,19 @@ public readonly struct AnalyzedParameter
                 { _channelMidiParam = (parameter, channel) },
         };
     
-    public static AnalyzedParameter Of(
-        int key, DrumParameter.Entry param) =>
+    public static AnalyzedParameter Of(ChannelDrumSetupMessage drumSetup) =>
         new()
         {
-            MType = Type.DrumSetup, 
-            Data = new InternalData
-                { _drumSetup = (key, param) },
+            MType = Type.ChannelDrumSetupMessage, 
+            Data = new InternalData { _drumSetup = drumSetup },
         };
     
     public static implicit operator AnalyzedParameter(Type type) =>
         Of(type);
+    
+    public static implicit operator AnalyzedParameter(
+        ChannelDrumSetupMessage drumSetup) =>
+        Of(drumSetup);
 }
 
 /// <summary>
@@ -109,8 +132,6 @@ public readonly struct AnalyzedMessage
     {
         /// <summary> The analysis result of an RPN (Registered Parameter Number) or NRPN (Non-Registered Parameter Number) MIDI message. </summary>
         AnalyzedParameter,
-        /// <summary> A message configuring whether a channel is set as a drum channel or melodic channel. </summary>
-        DrumsOn,
         /// <summary> A MIDI program change message configured via System Exclusive. </summary>
         ProgramChange,
         /// <summary> A System Exclusive display data message (e.g., Roland GS or Yamaha XG LCD text or graphic display data). </summary>
@@ -135,13 +156,16 @@ public readonly struct AnalyzedMessage
         XGChorusParam,
         /// <summary> A variation effect processor parameter message (Yamaha XG). </summary>
         XGVariationParam,
+        
+        /// <summary> Represents an analyzed map drum setup parameter change, set via System Exclusive. </summary>
+        MapDrumSetupMessage,
     }
 
     [StructLayout(LayoutKind.Explicit)]
     private struct InternalData
     {
         [FieldOffset(0)] public AnalyzedParameter _analyzedParameter;
-        [FieldOffset(0)] public (int Channel, bool IsDrum) _drumsOn;
+        [FieldOffset(0)] public MapDrumSetupMessage _drumSetup;
         [FieldOffset(0)] public (int Channel, int Value) _programChange;
         [FieldOffset(0)] public GlobalMidiParameter _globalMidiParam;
         [FieldOffset(0)] public (int MidiNote,
@@ -157,9 +181,9 @@ public readonly struct AnalyzedMessage
     public Type MType { get; private init; }
     private InternalData Data { get; init; }
 
-    /// <summary> A message configuring whether a channel is set as a drum channel or melodic channel. </summary>
-    public (int Channel, bool IsDrum)? AsDrumsOn =>
-        MType == Type.DrumsOn ? Data._drumsOn : null;
+    /// <summary> Represents an analyzed map drum setup parameter change, set via System Exclusive. </summary>
+    public MapDrumSetupMessage? AsMapDrumSetup =>
+        MType == Type.MapDrumSetupMessage ? Data._drumSetup : null;
     public AnalyzedParameter? AsAnalyzedParameter =>
         MType == Type.AnalyzedParameter ? Data._analyzedParameter : null;
     /// <summary> A MIDI program change message configured via System Exclusive. </summary>
@@ -175,7 +199,7 @@ public readonly struct AnalyzedMessage
     public static AnalyzedMessage Of(Type type)
     {
         ReadOnlySpan<Type> notAllowed = [
-            Type.DrumsOn, Type.ProgramChange, Type.AnalyzedParameter,
+            Type.MapDrumSetupMessage, Type.ProgramChange, Type.AnalyzedParameter,
             Type.GlobalMidiParameter, Type.UserDrumSetup,
             Type.GSReverbParameter, Type.GSChorusParameter, Type.GSDelayParameter, 
             Type.GSInsertionParameter, ];
@@ -184,12 +208,11 @@ public readonly struct AnalyzedMessage
             : new AnalyzedMessage { MType = type };
     }
 
-    public static AnalyzedMessage OfDrumsOn(
-        int channel, bool isDrum) =>
+    public static AnalyzedMessage Of(MapDrumSetupMessage drumSetup) =>
         new()
         {
-            MType = Type.DrumsOn, 
-            Data = new InternalData { _drumsOn = (channel, isDrum) },
+            MType = Type.MapDrumSetupMessage, 
+            Data = new InternalData { _drumSetup = drumSetup, },
         };
     
     public static AnalyzedMessage Of(
@@ -308,4 +331,7 @@ public readonly struct AnalyzedMessage
     
     public static implicit operator AnalyzedMessage(
         AnalyzedParameter.Type type) => Of(AnalyzedParameter.Of(type));
+    
+    public static implicit operator AnalyzedMessage(
+        MapDrumSetupMessage drumSetup) => Of(drumSetup);
 }

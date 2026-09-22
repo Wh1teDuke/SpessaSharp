@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using SpessaSharp.MIDI;
+using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
@@ -173,7 +174,7 @@ internal static class Yamaha
 
                     // Part mode
                     case 0x07:
-                        var drums = data != 0;
+                        var drums = data != SysexData.MELODIC_MAP;
                         // Testcase: xg part_mode_drum
                         // Verified with s-yxg50
                         // SetDrums switches the bank and keeps the program,
@@ -181,6 +182,7 @@ internal static class Yamaha
                         // To program 0 instead!
                         ch.SetDrums(drums);
                         if (drums) ch.ProgramChange(0);
+                        ch.Set(ChannelMidiParameter.DrumMap(data));
                         SpessaLog.XGInfo(
                             $"Part Mode on {channel}",
                             drums ? "DRUM" : "MELODIC");
@@ -487,6 +489,10 @@ internal static class Yamaha
             {
                 // Drum part setup
                 if (synth.SystemParameters.DrumLock) return;
+                
+                // In xg, the map is offset by the default (e.g. 2)
+                // So 0 means drum setup 2, 1 means drum setup 3, etc.
+                var setupNumber = (a1 & 0xf) + SysexData.DEFAULT_XG_DRUM_MAP;
                 var drumKey = a2;
                 switch (a3) 
                 {
@@ -499,9 +505,9 @@ internal static class Yamaha
                     {
                         // Drum pitch coarse
                         var pitch = (data - 64);
-                        foreach (var ch in synth.MidiChannels) 
+                        foreach (var ch in synth.MidiChannels)
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { PitchCoarse = pitch };
                         }
@@ -518,7 +524,7 @@ internal static class Yamaha
                         var pitch = data - 64;
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             var newPitch = param.PitchFine + pitch;
                             param = param with { PitchFine = newPitch };
@@ -534,7 +540,7 @@ internal static class Yamaha
                         // Drum Level
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { Level = data };
                         }
@@ -545,7 +551,7 @@ internal static class Yamaha
                         // Drum Alternate Group (exclusive class)
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { AssignGroup = data };
                         }
@@ -556,7 +562,7 @@ internal static class Yamaha
                         // Drum Pan
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { Pan = data };
                         }
@@ -567,7 +573,7 @@ internal static class Yamaha
                         // Drum Reverb
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { ReverbSend = data };
                         }
@@ -578,7 +584,7 @@ internal static class Yamaha
                         // Drum Chorus
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { ChorusSend = data };
                         }
@@ -589,7 +595,7 @@ internal static class Yamaha
                         // Drum Variation
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { VariationSend = data };
                         }
@@ -600,7 +606,7 @@ internal static class Yamaha
                         // Receive note off
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { RxNoteOff = data == 1 };
                         }
@@ -611,7 +617,7 @@ internal static class Yamaha
                         // Receive note on
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { RxNoteOn = data == 1 };
                         }

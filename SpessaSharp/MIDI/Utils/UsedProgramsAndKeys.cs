@@ -436,19 +436,17 @@ internal static class UsedProgramsAndKeys
                             // Testcase: th07_19_user_gm.mid
                             chan.KeyShift = chan.IsDrum ? 0 : cmp.Param.AsInt;                            
                         }
-                        break;
-                    }
+                        else if (cmp.Param.PType == ChannelMidiParameter.Type.DrumMap)
+                        {
+                            var sysexChannel = cmp.Channel + channelOffset;
+                            // Channel may be above 15
+                            if (!Util.InRange(channels.AsSpan(), sysexChannel))
+                                break;
 
-                    case AnalyzedMessage.Type.DrumsOn:
-                    {
-                        var dO = syx.AsDrumsOn!.Value;
-                        var sysexChannel = dO.Channel + channelOffset;
-                        // Channel may be above 15
-                        if (sysexChannel < 0 || sysexChannel >= channels.Count)
-                            break;
-
-                        ref var ch = ref channels.AsSpan()[sysexChannel];
-                        ch.IsDrum = dO.IsDrum;
+                            ref var ch = 
+                                ref channels.AsSpan()[sysexChannel];
+                            ch.IsDrum = cmp.Param.AsInt > 0;
+                        }
                         break;
                     }
                     case AnalyzedMessage.Type.ProgramChange:

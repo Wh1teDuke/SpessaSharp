@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -226,16 +227,22 @@ public static class WriterRMidi
                         default: goto Continue;
                         
                         // Check for drum sysex
-                        case AnalyzedMessage.Type.DrumsOn:
+                        case AnalyzedMessage.Type.AnalyzedParameter when 
+                            syx.AsAnalyzedParameter?.AsChannelMidiParameter is 
+                                {} chanMidParam:
                         {
-                            var dO = syx.AsDrumsOn!.Value;
-                            var sysexChannel = dO.Channel + portOffset;
-                            // Ensure check as syx.channel may be above 15
-                            if (sysexChannel < 0 ||
-                                sysexChannel >= channels.Length)
-                                break;
-                            ref var chan = ref channels[sysexChannel];
-                            chan = chan with { IsDrum = dO.IsDrum };
+                            if (chanMidParam.Param.PType == 
+                                ChannelMidiParameter.Type.DrumMap)
+                            {
+                                // Check for drum sysex
+                                var sysexChannel = chanMidParam.Channel + portOffset;
+                                if (sysexChannel < 0 ||
+                                    sysexChannel >= channels.Length)
+                                    break;
+                                ref var chan = ref channels[sysexChannel];
+                                chan = chan with { IsDrum = chanMidParam.Param.AsInt > 0 };
+                            }
+
                             goto Continue;
                         }
 

@@ -92,25 +92,25 @@ public static class MidiUtils
                 }
             }
 
+            // Drum data entries are analyzed as 7-bit coarse values
             case ExtendedParameters.NRPN.MSB.DrumPitch:
-                return DrumSetup2(DrumParameter.Type.PitchCoarse, value - 64);
+                return DrumSetup(DrumParameter.Type.PitchCoarse, (value >> 7) - 64);
             case ExtendedParameters.NRPN.MSB.DrumPitchFine:
-                return DrumSetup1(DrumParameter.Type.PitchFine, value - 64);
+                return DrumSetup(DrumParameter.Type.PitchFine, (value >> 7) - 64);
             case ExtendedParameters.NRPN.MSB.DrumLevel:
-                return DrumSetup1(DrumParameter.Type.Level, value);
+                return DrumSetup(DrumParameter.Type.Level, value >> 7);
             case ExtendedParameters.NRPN.MSB.DrumPan:
-                return DrumSetup1(DrumParameter.Type.Pan, value);
+                return DrumSetup(DrumParameter.Type.Pan, value >> 7);
             case ExtendedParameters.NRPN.MSB.DrumReverb:
-                return DrumSetup1(DrumParameter.Type.ReverbSend, value);
+                return DrumSetup(DrumParameter.Type.ReverbSend, value >> 7);
             case ExtendedParameters.NRPN.MSB.DrumChorus:
-                return DrumSetup1(DrumParameter.Type.ChorusSend, value);
+                return DrumSetup(DrumParameter.Type.ChorusSend, value >> 7);
             case ExtendedParameters.NRPN.MSB.DrumVariation:
-                return DrumSetup1(DrumParameter.Type.VariationSend, value);
-            
-            AnalyzedParameter DrumSetup1(DrumParameter.Type type, int val) =>
-                AnalyzedParameter.Of(lsb, (type, val));
-            AnalyzedParameter DrumSetup2(DrumParameter.Type type, float val) =>
-                AnalyzedParameter.Of(lsb, (type, val));
+                return DrumSetup(DrumParameter.Type.VariationSend, value >> 7);
+
+            AnalyzedParameter DrumSetup(DrumParameter.Type type, float val) =>
+                AnalyzedParameter.Of(
+                    new ChannelDrumSetupMessage(channel, lsb, type, val));
         }
     }
 
@@ -468,6 +468,119 @@ public static class MidiUtils
     }
 
     /// <summary>
+    /// Returns a MIDI event needed to set the given drum map parameter.
+    /// </summary>
+    /// <param name="ticks">The MIDI tick time for the output event.</param>
+    /// <param name="map">The GS drum map/XG drum setup number.</param>
+    /// <param name="system">ystem The system to prepare the message for. Any value other than <c>xg</c> will result in a GS-style message.</param>
+    /// <param name="key">The MIDI drum key/note number to modify.</param>
+    /// <param name="param">The parameter and value to set it to.</param>
+    /// <returns>The <see cref="MidiMessage"/> needed to set this drum map parameter.</returns>
+    public static MidiMessage SetDrumMapParameter(
+        int ticks,
+        int map,
+        Midi.System? system,
+        int key,
+        DrumParameter.Entry param)
+    {
+        if (system == Midi.System.XG)
+        {
+            if (SysexData.XGDrumParamMap(param.Type) is not {} a3Param)
+                throw new Exception($"Invalid XG drum parameter {param.Type}");
+
+            var midiValue = param.Type switch
+            {
+                DrumParameter.Type.RxNoteOff or 
+                DrumParameter.Type.RxNoteOn => param.ToInt(),
+                DrumParameter.Type.PitchFine or 
+                DrumParameter.Type.PitchCoarse => param.AsInt + 64,
+                _ => param.AsInt
+            };
+            
+            var a1 = 0x30 | (map - SysexData.DEFAULT_XG_DRUM_MAP);
+            return XgMessage(ticks, a1, key, a3Param, [(byte)midiValue]);
+        }
+        
+        if (param.Type == DrumParameter.Type.PitchFine ||
+            SysexData.GSDrumParamMap(param.Type) is not {} a2Param)
+            throw new Exception($"Invalid XG drum parameter {param.Type}");
+        
+        // PLAY NOTE is relative to 60, while pitchCoarse is relative to 0
+        {
+            var midiValue =
+                param.Type == DrumParameter.Type.PitchCoarse
+                    ? 60 + param.ToInt()
+                    : param.ToInt();
+
+            // 0 = MAP1
+            var a2 = ((map - SysexData.DEFAULT_GS_DRUM_MAP) << 4) | a2Param;
+            return GsMessage(ticks, 0x41, a2, key, [(byte)midiValue]);            
+        }
+    }
+
+    /// <summary>
+    /// Returns a list of MIDI events needed to set the given channel drum parameter via NRPN.
+    /// </summary>
+    /// <param name="ticks">The MIDI tick time of the events.</param>
+    /// <param name="channel">The MIDI channel number.</param>
+    /// <param name="key">The MIDI drum key/note number to modify.</param>
+    /// <param name="param">The parameter and value to set it to.</param>
+    /// <returns>The list of <see cref="MidiMessage"/>s needed to set this channel drum parameter.</returns>
+    public static MidiMessage[] SetDrumChannelParameter(
+        int ticks,
+        int channel,
+        int key,
+        DrumParameter.Entry param)
+    {
+        if (key is > 127 or < 0)
+            throw new Exception("Key must be between 0 and 127.");
+
+        var msb = 0;
+        var coarse = 0;
+
+        switch (param.Type)
+        {
+            case DrumParameter.Type.PitchCoarse:
+                msb = ExtendedParameters.NRPN.MSB.DrumPitch;
+                coarse = param.AsInt + 64;
+                break;
+            case DrumParameter.Type.PitchFine:
+                msb = ExtendedParameters.NRPN.MSB.DrumPitchFine;
+                coarse = param.AsInt + 64;
+                break;
+            case DrumParameter.Type.Level:
+                msb = ExtendedParameters.NRPN.MSB.DrumLevel;
+                coarse = param.AsInt;
+                break;
+            case DrumParameter.Type.Pan:
+                msb = ExtendedParameters.NRPN.MSB.DrumPan;
+                coarse = param.AsInt;
+                break;
+            case DrumParameter.Type.ReverbSend:
+                msb = ExtendedParameters.NRPN.MSB.DrumReverb;
+                coarse = param.AsInt;
+                break;
+            case DrumParameter.Type.ChorusSend:
+                msb = ExtendedParameters.NRPN.MSB.DrumChorus;
+                coarse = param.AsInt;
+                break;
+            case DrumParameter.Type.VariationSend:
+                msb = ExtendedParameters.NRPN.MSB.DrumVariation;
+                coarse = param.AsInt;
+                break;
+
+            case DrumParameter.Type.AssignGroup:
+            case DrumParameter.Type.RxNoteOn:
+            case DrumParameter.Type.RxNoteOff:
+            default:
+                throw new Exception($"Invalid NRPN drum parameter {param.Type}");
+        }
+        
+        return MidiMessage.NonRegisteredParameter(
+            ticks, channel, (msb << 7) | key, coarse << 7);
+    }
+
+    /// <summary>
     /// Returns a  MIDI event needed to set the given GS User Drum Set parameter.
     /// </summary>
     /// <param name="ticks">The MIDI tick time for output events.</param>
@@ -489,33 +602,7 @@ public static class MidiUtils
             midiValue += 60;
         
         drumSet %= 2;
-        var a2Param = parameter.Type switch
-        {
-            UserDrumSetParameter.Type.DrumParameters => 
-                parameter.AsDrumParameter.Type switch
-            {
-                DrumParameter.Type.PitchCoarse => 1,
-                // Should never be used
-                DrumParameter.Type.PitchFine => 127,
-                DrumParameter.Type.Level => 2,
-                DrumParameter.Type.AssignGroup => 3,
-                DrumParameter.Type.Pan => 4,
-                DrumParameter.Type.ReverbSend => 5,
-                DrumParameter.Type.ChorusSend => 6,
-                DrumParameter.Type.RxNoteOff => 7,
-                DrumParameter.Type.RxNoteOn => 8,
-                DrumParameter.Type.VariationSend => 9,
-                _ => throw new Exception(
-                    $"Invalid parameter {parameter.Type}")
-            },
-            //
-            UserDrumSetParameter.Type.SourceDrumSet => 0xa,
-            UserDrumSetParameter.Type.Program => 0xb,
-            UserDrumSetParameter.Type.SourceNoteNumber => 0xc,
-            _ => throw new Exception(
-                $"Invalid parameter {parameter.Type}")
-        };
-        
+        var a2Param = SysexData.GsuSerDrumParamMap(parameter);
         var a2 = (drumSet << 4) | a2Param;
         return GsMessage(
             ticks, 0x21, a2, midiNote, [midiValue,]);
@@ -801,6 +888,7 @@ public static class MidiUtils
     /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
     /// Note that bulk dump and other sysExes are supported so this method may return more than one result.
     /// </summary>
+    /// <remarks>The messages returned exclude <c>ChannelDrumSetupMessage</c></remarks>
     /// <param name="e">The message to analyze</param>
     /// <returns></returns>
     public static AnalyzedMessageEnumerable AnalyzeSysEx(MidiMessage e) =>
@@ -810,6 +898,7 @@ public static class MidiUtils
     /// Analyzes a MIDI System Exclusive message and returns an identification and data for it.
     /// Note that bulk dump and other sysExes are supported so this method may return more than one result.
     /// </summary>
+    /// <remarks>The messages returned exclude <c>ChannelDrumSetupMessage</c></remarks>
     /// <param name="syx">The System Exclusive message, WITHOUT the first 0xF0 System Exclusive byte!</param>
     /// <returns></returns>
     public static AnalyzedMessageEnumerable AnalyzeSysEx(ReadOnlySpan<byte> syx)
@@ -1045,7 +1134,8 @@ public static class MidiUtils
                             : MidiChannel.Assign.FullMulti, channel)),
                 0x07 =>
                     // Part mode
-                    AnalyzedMessage.OfDrumsOn(channel, data > 0),
+                    AnalyzedParameter.Of(
+                        ChannelMidiParameter.DrumMap(data), channel),
                 0x08 =>
                     // Note shift
                     AnalyzedParameter.Of(
@@ -1092,6 +1182,17 @@ public static class MidiUtils
                 0x0c =>
                     // Release time
                     OfControllerChange(Midi.CC.ReleaseTime),
+                
+                0x20 =>
+                    // MW LFO PMOD Depth (alias to modulation wheel range)
+                    AnalyzedParameter.Of(ChannelMidiParameter.ModulationDepth(
+                        ((data - 63) / 127f) * 600), channel),
+                
+                0x23 =>
+                    // Bend pitch control (alias to pitch wheel range)
+                    AnalyzedParameter.Of(ChannelMidiParameter.PitchWheelRange(
+                        /*centeredValue =*/data - 64), channel),
+                
                 _ => AnalyzedParameter.Type.Other
             };
 
@@ -1102,38 +1203,35 @@ public static class MidiUtils
         // Drum part setup
         if (a1 >> 4 == 3)
         {
+            var drumMap = (a1 & 0xf) + SysexData.DEFAULT_XG_DRUM_MAP;
             return a3 switch
             {
                 // Pitch coarse
-                0x00 => DrumSetup2(DrumParameter.Type.PitchCoarse, data - 64),
+                0x00 => DrumSetup((DrumParameter.Type.PitchCoarse, data - 64)),
                 // Pitch fine
-                0x01 => DrumSetup1(DrumParameter.Type.PitchFine, data - 64),
+                0x01 => DrumSetup((DrumParameter.Type.PitchFine, data - 64)),
                 // Level
-                0x02 => DrumSetup1(DrumParameter.Type.Level, data),
+                0x02 => DrumSetup((DrumParameter.Type.Level, data)),
                 // Assign Group
-                0x03 => DrumSetup1(DrumParameter.Type.AssignGroup, data),
+                0x03 => DrumSetup((DrumParameter.Type.AssignGroup, data)),
                 // Pan
-                0x04 => DrumSetup1(DrumParameter.Type.Pan, data),
+                0x04 => DrumSetup((DrumParameter.Type.Pan, data)),
                 // Reverb Send
-                0x05 => DrumSetup1(DrumParameter.Type.ReverbSend, data),
+                0x05 => DrumSetup((DrumParameter.Type.ReverbSend, data)),
                 // Chorus Send
-                0x06 => DrumSetup1(DrumParameter.Type.ChorusSend, data),
+                0x06 => DrumSetup((DrumParameter.Type.ChorusSend, data)),
                 // Variation Send
-                0x07 => DrumSetup1(DrumParameter.Type.VariationSend, data),
+                0x07 => DrumSetup((DrumParameter.Type.VariationSend, data)),
                 // Rev Note Off
-                0x09 => DrumSetup3(DrumParameter.Type.RxNoteOff, data == 1),
+                0x09 => DrumSetup((DrumParameter.Type.RxNoteOff, data == 1)),
                 // Rev Note On
-                0x0a => DrumSetup3(DrumParameter.Type.RxNoteOn, data == 1),
+                0x0a => DrumSetup((DrumParameter.Type.RxNoteOn, data == 1)),
 
                 _ => AnalyzedParameter.Type.Other,
             };
 
-            AnalyzedParameter DrumSetup1(DrumParameter.Type type, int val) =>
-                AnalyzedParameter.Of(a2, (type, val));
-            AnalyzedParameter DrumSetup2(DrumParameter.Type type, float val) =>
-                AnalyzedParameter.Of(a2, (type, val));
-            AnalyzedParameter DrumSetup3(DrumParameter.Type type, bool val) =>
-                AnalyzedParameter.Of(a2, (type, val));
+            AnalyzedMessage DrumSetup(DrumParameter.Entry param) =>
+                new MapDrumSetupMessage(drumMap, a2, param);
         }
 
         return AnalyzedParameter.Type.Other;
@@ -1229,39 +1327,36 @@ public static class MidiUtils
             }
         }
 
-        if (a1 == 0x41)
+        // Drum Setup
+        if (a1 is 0x41 or 0x51)
         {
-            // Drum Setup
+            var drumMap = (a2 >> 4) + SysexData.DEFAULT_GS_DRUM_MAP;
             return (a2 & 0xf) switch
             {
                 // Play Note Number (Pitch Coarse)
-                0x1 => DrumSetup2(DrumParameter.Type.PitchCoarse, value - 60),
+                0x1 => DrumSetup((DrumParameter.Type.PitchCoarse, value - 60)),
                 // Level
-                0x2 => DrumSetup1(DrumParameter.Type.Level, value),
+                0x2 => DrumSetup((DrumParameter.Type.Level, value)),
                 // Assign Group
-                0x3 => DrumSetup1(DrumParameter.Type.AssignGroup, value),
+                0x3 => DrumSetup((DrumParameter.Type.AssignGroup, value)),
                 // Pan
-                0x4 => DrumSetup1(DrumParameter.Type.Pan, value),
+                0x4 => DrumSetup((DrumParameter.Type.Pan, value)),
                 // Reverb Send
-                0x5 => DrumSetup1(DrumParameter.Type.ReverbSend, value),
+                0x5 => DrumSetup((DrumParameter.Type.ReverbSend, value)),
                 // Chorus Send
-                0x6 => DrumSetup1(DrumParameter.Type.ChorusSend, value),
+                0x6 => DrumSetup((DrumParameter.Type.ChorusSend, value)),
                 // Rx. Note Off
-                0x7 => DrumSetup3(DrumParameter.Type.RxNoteOff, value == 1),
+                0x7 => DrumSetup((DrumParameter.Type.RxNoteOff, value == 1)),
                 // Rx. Note On
-                0x8 => DrumSetup3(DrumParameter.Type.RxNoteOn, value == 1),
+                0x8 => DrumSetup((DrumParameter.Type.RxNoteOn, value == 1)),
                 // Delay Send Level
-                0x9 => DrumSetup1(DrumParameter.Type.VariationSend, value),
+                0x9 => DrumSetup((DrumParameter.Type.VariationSend, value)),
 
                 _ => AnalyzedParameter.Type.Other,
             };
             
-            AnalyzedParameter DrumSetup1(DrumParameter.Type type, int val) =>
-                AnalyzedParameter.Of(a3, (type, val));
-            AnalyzedParameter DrumSetup2(DrumParameter.Type type, float val) =>
-                AnalyzedParameter.Of(a3, (type, val));
-            AnalyzedParameter DrumSetup3(DrumParameter.Type type, bool val) =>
-                AnalyzedParameter.Of(a3, (type, val));
+            AnalyzedMessage DrumSetup(DrumParameter.Entry param) =>
+                new MapDrumSetupMessage(drumMap, a3, param);
         }
         
         // User Drum Set
@@ -1420,126 +1515,156 @@ public static class MidiUtils
             return AnalyzedParameter.Type.Other;
         }
 
-        // Patch parameter
-        if (a2 >> 4 == 1)
+        switch (a2 >> 4)
         {
-            var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
-            return a3 switch
+            // Patch part parameter
+            case 1:
             {
-                0x00 =>
-                    // Tone number
-                    Util.Rent([
+                var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
+                return a3 switch
+                {
+                    0x00 =>
+                        // Tone number
+                        Util.Rent([
+                            AnalyzedParameter.OfControllerChange(
+                                Midi.CC.BankSelect, value, channel),
+                            AnalyzedMessage.OfProgramChange(channel, syx[8]),
+                        ]),
+                    0x13 =>
+                        // Mono/poly
+                        AnalyzedParameter.Of(
+                            (ChannelMidiParameter.Type.PolyMode, value == 1), channel),
+                    0x14 =>
+                        // Assign mode
+                        AnalyzedParameter.Of((MidiChannel.Assign)value, channel),
+                    0x15 => AnalyzedParameter.Of(
+                        ChannelMidiParameter.DrumMap(value), channel),
+                    0x16 => AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.KeyShift, value - 64), channel),
+                    0x19 =>
+                        // Part level (cc#7)
+                        OfControllerChange(Midi.CC.MainVolume),
+                    0x1a =>
+                        // Velocity Sense Depth
+                        AnalyzedParameter.Of(
+                            (ChannelMidiParameter.Type.VelocitySenseDepth,
+                                value), channel),
+                    0x1b =>
+                        // Velocity Sense Offset
+                        AnalyzedParameter.Of(
+                            (ChannelMidiParameter.Type.VelocitySenseOffset,
+                                value), channel),
+                    0x1c =>
+                        // Pan position, except for random,
+                        // Which is a different parameter
+                        value == 0
+                            ? AnalyzedParameter.Of(
+                                (ChannelMidiParameter.Type.RandomPan,
+                                    true), channel)
+                            : OfControllerChange(Midi.CC.Pan),
+                    0x1f =>
+                        // CC1 Controller number
+                        AnalyzedParameter.Of(
+                            new ChannelMidiParameter(
+                                ChannelMidiParameter.Type.CC1, (Midi.CC)value),
+                            channel),
+                    0x20 =>
+                        // CC2 Controller number
+                        AnalyzedParameter.Of(
+                            new ChannelMidiParameter(
+                                ChannelMidiParameter.Type.CC2, (Midi.CC)value),
+                            channel),
+                    0x21 =>
+                        // Chorus send
+                        OfControllerChange(Midi.CC.ChorusDepth),
+                    0x22 =>
+                        // Reverb send
+                        OfControllerChange(Midi.CC.ReverbDepth),
+                    0x2a =>
+                        // Fine tune
+                        AnalyzedParameter.Of(
+                            // 0-16384
+                            (ChannelMidiParameter.Type.FineTune,
+                                /*tuneCents =*/(/*tune =*/((value << 7) | syx[8]) - 8_192) / 81.92f),
+                            channel),
+                    0x2c =>
+                        // Delay send
+                        OfControllerChange(Midi.CC.VariationDepth),
+                    0x30 =>
+                        // Vibrato rate
+                        OfControllerChange(Midi.CC.VibratoRate),
+                    0x31 =>
+                        // Vibrato depth
+                        OfControllerChange(Midi.CC.VibratoDepth),
+                    0x32 =>
+                        // Filter cutoff
+                        OfControllerChange(Midi.CC.Brightness),
+                    0x33 =>
+                        // Filter resonance
+                        OfControllerChange(Midi.CC.FilterResonance),
+                    0x34 =>
+                        // Attack time
+                        OfControllerChange(Midi.CC.AttackTime),
+                    0x35 =>
+                        // Decay time
+                        OfControllerChange(Midi.CC.DecayTime),
+                    0x36 =>
+                        // Release time
+                        OfControllerChange(Midi.CC.ReleaseTime),
+                    0x37 =>
+                        // Vibrato delay
+                        OfControllerChange(Midi.CC.VibratoDelay),
+                    _ => AnalyzedParameter.Type.Other
+                };
+                AnalyzedMessage OfControllerChange(Midi.CC cc) =>
+                    AnalyzedParameter.OfControllerChange(cc, value, channel);
+            }
+
+            // Patch Part Parameters (Controllers)
+            case 2:
+            {
+                var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
+
+                return a3 switch
+                {
+                    // LFO1 Pitch depth
+                    // Special case:
+                    // If the source is a mod wheel, it's a strange way of setting the modulation depth
+                    // Testcase: J-Cycle.mid (it affects gm.dls which uses LFO1 for modulation)
+                    0x04 => AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.ModulationDepth,
+                            /*cents = */(value / 127f) * 600), channel),
+                    // See https://github.com/spessasus/SpessaSynth/issues/154
+                    // Pitch control
+                    // Special case:
+                    // If the source is a pitch wheel, it's a strange way of setting the pitch wheel range
+                    // Testcase: th07_03.mid
+                    0x10 => AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.PitchWheelRange,
+                            /*centeredValue = */value - 64), channel),
+
+                    _ => AnalyzedParameter.Type.Other,
+                };
+            }
+
+            // Patch Parameter Tone Map
+            case 4:
+            {
+                var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
+                return a3 switch
+                {
+                    0x00 or
+                    0x01 =>
+                        // Tone map number (cc#32)
                         AnalyzedParameter.OfControllerChange(
-                            Midi.CC.BankSelect, value, channel),
-                        AnalyzedMessage.OfProgramChange(channel, syx[8]),
-                    ]),
-                0x13 =>
-                    // Mono/poly
-                    AnalyzedParameter.Of(
-                        (ChannelMidiParameter.Type.PolyMode, value == 1), channel),
-                0x14 =>
-                    // Assign mode
-                    AnalyzedParameter.Of((MidiChannel.Assign)value, channel),
-                0x15 => AnalyzedMessage.OfDrumsOn(channel, value > 0),
-                0x16 => AnalyzedParameter.Of(
-                    (ChannelMidiParameter.Type.KeyShift, value - 64), channel),
-                0x19 =>
-                    // Part level (cc#7)
-                    OfControllerChange(Midi.CC.MainVolume),
-                0x1a =>
-                    // Velocity Sense Depth
-                    AnalyzedParameter.Of(
-                        (ChannelMidiParameter.Type.VelocitySenseDepth, 
-                            value), channel),
-                0x1b =>
-                    // Velocity Sense Offset
-                    AnalyzedParameter.Of(
-                        (ChannelMidiParameter.Type.VelocitySenseOffset, 
-                            value), channel),
-                0x1c =>
-                    // Pan position, except for random,
-                    // Which is a different parameter
-                    value == 0
-                    ? AnalyzedParameter.Of(
-                        (ChannelMidiParameter.Type.RandomPan, 
-                            true), channel)
-                    : OfControllerChange(Midi.CC.Pan),
-                0x1f =>
-                    // CC1 Controller number
-                    AnalyzedParameter.Of(
-                        new ChannelMidiParameter(
-                        ChannelMidiParameter.Type.CC1, (Midi.CC)value), 
-                        channel),
-                0x20 =>
-                    // CC2 Controller number
-                    AnalyzedParameter.Of(
-                        new ChannelMidiParameter(
-                        ChannelMidiParameter.Type.CC2, (Midi.CC)value), 
-                        channel),
-                0x21 =>
-                    // Chorus send
-                    OfControllerChange(Midi.CC.ChorusDepth),
-                0x22 =>
-                    // Reverb send
-                    OfControllerChange(Midi.CC.ReverbDepth),
-                0x2a =>
-                    // Fine tune
-                    AnalyzedParameter.Of(
-                        // 0-16384
-                        (ChannelMidiParameter.Type.FineTune,
-                        (((value << 7) | syx[8]) - 8_192) / 81.92f),
-                        channel),
-                0x2c =>
-                    // Delay send
-                    OfControllerChange(Midi.CC.VariationDepth),
-                0x30 =>
-                    // Vibrato rate
-                    OfControllerChange(Midi.CC.VibratoRate),
-                0x31 =>
-                    // Vibrato depth
-                    OfControllerChange(Midi.CC.VibratoDepth),
-                0x32 =>
-                    // Filter cutoff
-                    OfControllerChange(Midi.CC.Brightness),
-                0x33 =>
-                    // Filter resonance
-                    OfControllerChange(Midi.CC.FilterResonance),
-                0x34 =>
-                    // Attack time
-                    OfControllerChange(Midi.CC.AttackTime),
-                0x35 =>
-                    // Decay time
-                    OfControllerChange(Midi.CC.DecayTime),
-                0x36 =>
-                    // Release time
-                    OfControllerChange(Midi.CC.ReleaseTime),
-                0x37 =>
-                    // Vibrato delay
-                    OfControllerChange(Midi.CC.VibratoDelay),
-                _ => AnalyzedParameter.Type.Other
-            };
-
-            AnalyzedMessage OfControllerChange(Midi.CC cc) =>
-                AnalyzedParameter.OfControllerChange(cc, value, channel);
-        }
-
-        // Patch Parameter Tone Map
-        if (a2 >> 4 == 4)
-        {
-            var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
-            return a3 switch
-            {
-                0x00 or
-                0x01 =>
-                    // Tone map number (cc#32)
-                    AnalyzedParameter.OfControllerChange(
-                        Midi.CC.BankSelectLSB, value, channel),
-                0x22 => 
-                    AnalyzedParameter.Of(
-                        (ChannelMidiParameter.Type.EfxAssign, value == 1),
-                        channel),
-                _ => AnalyzedParameter.Type.Other
-            };
+                            Midi.CC.BankSelectLSB, value, channel),
+                    0x22 => 
+                        AnalyzedParameter.Of(
+                            (ChannelMidiParameter.Type.EfxAssign, value == 1),
+                            channel),
+                    _ => AnalyzedParameter.Type.Other
+                };
+            }
         }
 
         return AnalyzedParameter.Type.Other;
