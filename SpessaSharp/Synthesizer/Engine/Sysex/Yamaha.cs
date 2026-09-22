@@ -180,8 +180,11 @@ internal static class Yamaha
                         // SetDrums switches the bank and keeps the program,
                         // But switching *to* drums re-initializes the kit
                         // To program 0 instead!
+                        // But not if it's already drum
+                        // Testcase: 15. U.N. Owen was her (yoimutu).mid
+                        var drumsBefore = ch.DrumChannel;
                         ch.SetDrums(drums);
-                        if (drums) ch.ProgramChange(0);
+                        if (drums && !drumsBefore) ch.ProgramChange(0);
                         ch.Set(ChannelMidiParameter.DrumMap(data));
                         SpessaLog.XGInfo(
                             $"Part Mode on {channel}",
