@@ -55,3 +55,9 @@ while (filledSamples < sampleCount)
 var wave = AudioUtil.ToWav([outLeft, outRight], sampleRate);
 File.WriteAllBytes(pathWav, wave);
 ```
+
+## Differences with SpessaSynth
+
+- [ModifyMidi](https://github.com/spessasus/spessasynth_core/blob/master/src/midi/midi_tools/modify_midi.ts) is not included in the translation. It used to be, but I didn't need it and I wanted to minimize the time spent maintaining the project.
+- SpessaSynth, being programmed in JavaScript, uses by default 64-bit floating point numbers with the occasional integer conversion, whereas SpessaSharp uses 32-bit integer by default (except for the code dealing with audio processing where single precision float is used).
+- SpessaSharp introduces additional object caches to minimize triggering the garbage collector.
