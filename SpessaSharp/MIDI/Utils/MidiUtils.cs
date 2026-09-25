@@ -374,7 +374,7 @@ public static class MidiUtils
         ChannelMidiParameter parameter)
     {
         channel %= 16;
-        var gsChannel = ChannelToSyx(channel);
+        var gsChannel = ChannelToGSPart(channel);
 
         return parameter.PType switch
         {
@@ -612,7 +612,7 @@ public static class MidiUtils
     /// GS/XG "part number" to channel number.
     /// </summary>
     /// <param name="part"></param>
-    public static int SyxToChannel(int part) =>
+    public static int GsPartToChannel(int part) =>
         ((ReadOnlySpan<int>)[
             9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15])[part % 16];
 
@@ -620,7 +620,7 @@ public static class MidiUtils
     /// Channel number to GS/XG "part number"
     /// </summary>
     /// <param name="chan"></param>
-    public static int ChannelToSyx(int chan) =>
+    public static int ChannelToGSPart(int chan) =>
         ((ReadOnlySpan<int>)[
             1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15])[chan % 16];
 
@@ -1520,7 +1520,7 @@ public static class MidiUtils
             // Patch part parameter
             case 1:
             {
-                var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
+                var channel = GsPartToChannel(a2 & 0x0f) + channelOffset;
                 return a3 switch
                 {
                     0x00 =>
@@ -1623,7 +1623,7 @@ public static class MidiUtils
             // Patch Part Parameters (Controllers)
             case 2:
             {
-                var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
+                var channel = GsPartToChannel(a2 & 0x0f) + channelOffset;
 
                 return a3 switch
                 {
@@ -1650,7 +1650,7 @@ public static class MidiUtils
             // Patch Parameter Tone Map
             case 4:
             {
-                var channel = SyxToChannel(a2 & 0x0f) + channelOffset;
+                var channel = GsPartToChannel(a2 & 0x0f) + channelOffset;
                 return a3 switch
                 {
                     0x00 or
