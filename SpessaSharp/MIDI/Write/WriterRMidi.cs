@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI.Utils;
+using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -191,7 +192,7 @@ public static class WriterRMidi
             channels[i] = new ChannelStatus(
                 Program:        0,
                 // Drums appear on 9 every 16 channels,
-                IsDrum:         i % 16 == Synthesizer.Synthesizer.DEFAULT_PERCUSSION,
+                IsDrum:         i % 16 == Synthesizer.Synthesizer.MIDI_DRUM_CHANNEL,
                 LastBank:       null,
                 LastBankLSB:    null,
                 HasBankSelect:  false,
@@ -218,70 +219,78 @@ public static class WriterRMidi
             
             if (Is(status, MidiMessage.Type.SystemExclusive))
             {
-                var syx = MidiUtils.AnalyzeSysEx(e);
-                // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
-                switch (syx.MType)
+                foreach (var syx in MidiUtils.AnalyzeSysEx(e))
                 {
-                    default: goto Continue;
+                    // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+                    switch (syx.MType)
+                    {
+                        default: goto Continue;
                         
-                    // Check for drum sysex
-                    case MidiUtils.AnalyzedMessage.Type.DrumsOn:
-                    {
-                        var dO = syx.AsDrumsOn!.Value;
-                        var sysexChannel = dO.Channel + portOffset;
-                        // Ensure check as syx.channel may be above 15
-                        if (sysexChannel < 0 ||
-                            sysexChannel >= channels.Length)
-                            break;
-                        ref var chan = ref channels[sysexChannel];
-                        chan = chan with { IsDrum = dO.IsDrum };
-                        goto Continue;
-                    }
-
-                    case MidiUtils.AnalyzedMessage.Type.GlobalMidiParameter:
-                    {
-                        var gmp = syx.AsGlobalMidiParameter!.Value;
-                        if (gmp.PType == GlobalMidiParameter.Type.MidiSystem)
+                        // Check for drum sysex
+                        case AnalyzedMessage.Type.AnalyzedParameter when 
+                            syx.AsAnalyzedParameter?.AsChannelMidiParameter is 
+                                {} chanMidParam:
                         {
-                            system = gmp.AsMidiSystem;
-                            if (system == Midi.System.GM)
+                            if (chanMidParam.Param.PType == 
+                                ChannelMidiParameter.Type.DrumMap)
                             {
-                                // We do not want gm1
-                                unwantedSystems.Add((tNum: trackNum, e: e));
+                                // Check for drum sysex
+                                var sysexChannel = chanMidParam.Channel + portOffset;
+                                if (sysexChannel < 0 ||
+                                    sysexChannel >= channels.Length)
+                                    break;
+                                ref var chan = ref channels[sysexChannel];
+                                chan = chan with { IsDrum = chanMidParam.Param.AsInt > 0 };
                             }
+
+                            goto Continue;
                         }
 
-                        break;
-                    }
+                        case AnalyzedMessage.Type.GlobalMidiParameter:
+                        {
+                            var gmp = syx.AsGlobalMidiParameter!.Value;
+                            if (gmp.PType == GlobalMidiParameter.Type.System)
+                            {
+                                system = gmp.AsMidiSystem;
+                                if (system == Midi.System.GM)
+                                {
+                                    // We do not want gm1
+                                    unwantedSystems.Add((tNum: trackNum, e: e));
+                                }
+                            }
 
-                    case MidiUtils.AnalyzedMessage.Type.AnalyzedParameter
-                        when syx.AsAnalyzedParameter is
-                            { AsControllerChange: {} cc }:
-                    {
-                        // Replace the system exclusive with a regular controller change
-                        // Channel number may be above 15
-                        if (cc.Channel >= 16) goto Continue;
+                            break;
+                        }
+
+                        case AnalyzedMessage.Type.AnalyzedParameter
+                            when syx.AsAnalyzedParameter is
+                                { AsControllerChange: {} cc }:
+                        {
+                            // Replace the system exclusive with a regular controller change
+                            // Channel number may be above 15
+                            if (cc.Channel >= 16) goto Continue;
                         
-                        e = MidiMessage.ControllerChange(
-                            e.Ticks, cc.Channel, cc.Controller, cc.Value);
-                        SpessaLog.Info("Replaced a system exclusive with controller change!");
+                            e = MidiMessage.ControllerChange(
+                                e.Ticks, cc.Channel, cc.Controller, cc.Value);
+                            SpessaLog.Info("Replaced a system exclusive with controller change!");
 
-                        break; // Do not return, keep parsing
-                    }
+                            break; // Do not return, keep parsing
+                        }
 
-                    case MidiUtils.AnalyzedMessage.Type.ProgramChange:
-                    {
-                        // Replace the system exclusive with a regular program
-                        var pc = syx.AsProgramChange!.Value;
-                        // Channel number may be above 15
-                        if (pc.Channel >= 16) goto Continue;
+                        case AnalyzedMessage.Type.ProgramChange:
+                        {
+                            // Replace the system exclusive with a regular program
+                            var pc = syx.AsProgramChange!.Value;
+                            // Channel number may be above 15
+                            if (pc.Channel >= 16) goto Continue;
                         
-                        e = MidiMessage.ProgramChange(
-                            e.Ticks, pc.Channel, pc.Value );
-                        SpessaLog.Info("Replaced a system exclusive with program change!");
+                            e = MidiMessage.ProgramChange(
+                                e.Ticks, pc.Channel, pc.Value );
+                            SpessaLog.Info("Replaced a system exclusive with program change!");
 
-                        break; // Do not return, keep parsing
-                    }
+                            break; // Do not return, keep parsing
+                        }
+                    }   
                 }
             }
             
@@ -304,6 +313,19 @@ public static class WriterRMidi
                         system == Midi.System.XG),
                     IsGMGSDrum: ch.IsDrum
                 );
+
+                if (patch is
+                    {
+                        IsGMGSDrum: true, 
+                        Program: Synthesizer.Synthesizer.GS_USER_DRUM_1 or
+                                Synthesizer.Synthesizer.GS_USER_DRUM_2,
+                    })
+                {
+                    SpessaLog.Info(
+                        $"GS User Drum Set detected on {chNum
+                        }. Leaving as is!");
+                    goto Continue;
+                }
 
                 var targetPreset = soundBank.GetPreset(patch, system);
                 SpessaLog.Info(

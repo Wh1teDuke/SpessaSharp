@@ -170,6 +170,35 @@ public readonly record struct MidiMessage(
         ];
     }
 
+    /// <summary>
+    /// Returns a new MIDI Non-Registered Parameter message. Sends both data MSB and LSB.
+    /// </summary>
+    /// <param name="ticks">The MIDI tick time of the events.</param>
+    /// <param name="channel">The channel to use (0-16).</param>
+    /// <param name="parameter">The 14-bit non-registered parameter number.</param>
+    /// <param name="value">The 14-bit value for this parameter.</param>
+    /// <returns></returns>
+    public static MidiMessage[] NonRegisteredParameter(
+        int ticks, int channel, int parameter, int value)
+    {
+        if (parameter is > 16_383 or < 0) 
+            throw new ArgumentOutOfRangeException(nameof(parameter), "Parameter must be between 0 and 16383.");
+        if (value is > 16_383 or < 0) 
+            throw new ArgumentOutOfRangeException(nameof(value), "Value must be between 0 and 16383.");
+        
+        return 
+        [
+            ControllerChange(
+                ticks, channel, Midi.CC.NonRegisteredParameterMSB, parameter >> 7),
+            ControllerChange(
+                ticks, channel, Midi.CC.NonRegisteredParameterLSB, parameter & 0x7f),
+            ControllerChange(
+                ticks, channel, Midi.CC.DataEntryMSB, value >> 7),
+            ControllerChange(
+                ticks, channel, Midi.CC.DataEntryLSB, value & 0x7f),
+        ];
+    }
+
     private static ArraySegment<byte> DataOf(params ReadOnlySpan<int> args)
     {
         var bytes = new byte[args.Length];

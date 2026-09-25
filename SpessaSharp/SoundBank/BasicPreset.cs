@@ -8,7 +8,7 @@ using SpessaSharp.Utils;
 
 namespace SpessaSharp.SoundBank;
 
-public sealed class BasicPreset
+public sealed class BasicPreset: BasePreset
 {
     public readonly record struct Zone
     {
@@ -65,7 +65,6 @@ public sealed class BasicPreset
         }
     }
     
-    public MidiPatch.Full Patch;
     /// <summary>The parent soundbank instance. Currently used for determining default modulators and XG status.</summary>
     public readonly SoundBank Parent;
     
@@ -80,38 +79,6 @@ public sealed class BasicPreset
     public uint Genre;
     /// <summary>Unused metadata</summary>
     public uint Morphology;
-
-    public string Name
-    {
-        get => Patch.Name;
-        set => Patch = Patch with { Name = value };
-    }
-
-    public int BankMSB
-    {
-        get => Patch.BankMSB;
-        set => Patch = Patch with { Data = Patch.Data with { BankMSB = value }};
-    }
-
-    public int BankLSB
-    {
-        get => Patch.BankLSB;
-        set => Patch = Patch with { Data = Patch.Data with { BankLSB = value }};
-    }
-
-    public int Program
-    {
-        get => Patch.Program;
-        set => Patch = Patch with { Data = Patch.Data with { Program = value }};
-    }
-
-    public bool IsGMGSDrum
-    {
-        get => Patch.IsGMGSDrum;
-        set => Patch = Patch with { Data = Patch.Data with { IsGMGSDrum = value }};
-    }
-    
-    public bool IsXGDrum => Patch.IsXGDrum;
 
     /// <summary>Creates a new preset representation.</summary>
     /// <param name="parent">The sound bank this preset belongs to.</param>
@@ -128,7 +95,7 @@ public sealed class BasicPreset
     }
     
     /// <summary>Checks if this preset is a drum preset</summary>
-    public bool IsDrum =>
+    public override bool IsDrum =>
         IsGMGSDrum || (Parent.IsXGBank && BankSelectHacks.IsXGDrum(BankMSB));
     
     /// <summary>Unlinks everything from this preset.</summary>
@@ -170,11 +137,6 @@ public sealed class BasicPreset
             }
         }
     }
-
-    /// <summary>Checks if the bank and program numbers are the same for the given preset as this one.</summary>
-    /// <param name="preset">The preset to check.</param>
-    /// <returns></returns>
-    public bool Matches(MidiPatch preset) => Patch.Data.Matches(preset);
 
     public readonly ref struct InstrumentZoneEnumerable(
         BasicPreset preset, int note, int velocity)
@@ -264,7 +226,7 @@ public sealed class BasicPreset
     /// <param name="note">The MIDI note number.</param>
     /// <param name="velocity">The MIDI velocity.</param>
     /// <returns>The returned sound data.</returns>
-    internal ArraySegment<((BasicZone, BasicZone), Voice.Parameters)> 
+    internal override ArraySegment<((BasicZone, BasicZone), Voice.Parameters)>
         GetVoiceParameters(
             CachedVoice.Base.Cache cCache, int note, int velocity)
     {

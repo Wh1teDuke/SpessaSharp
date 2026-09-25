@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using SpessaSharp.MIDI;
+using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Utils;
 
@@ -14,6 +15,34 @@ public static class ChannelMidiParameters
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => parameters.Set(
                 (ChannelMidiParameter.Type.RxChannel, value));
+        }
+        
+        public Midi.CC CC1
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(
+                new ChannelMidiParameter(ChannelMidiParameter.Type.CC1, value));
+        }
+        
+        public Midi.CC CC2
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(
+                new ChannelMidiParameter(ChannelMidiParameter.Type.CC2, value));
+        }
+
+        public float PitchWheelRange
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(ChannelMidiParameter.Of(
+                ChannelMidiParameter.Type.PitchWheelRange, value));
+        }
+        
+        public float ModulationDepth
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(ChannelMidiParameter.Of(
+                ChannelMidiParameter.Type.ModulationDepth, value));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -159,7 +188,7 @@ public static class ChannelMidiParameters
             (ChannelMidiParameter.Type.EfxAssign, false),
             new (ChannelMidiParameter.Type.CC1, (Midi.CC)0x10),
             new (ChannelMidiParameter.Type.CC2, (Midi.CC)0x11),
-            (ChannelMidiParameter.Type.DrumMap, 0),
+            (ChannelMidiParameter.Type.DrumMap, SysexData.MELODIC_MAP),
             (ChannelMidiParameter.Type.VelocitySenseDepth, 64),
             (ChannelMidiParameter.Type.VelocitySenseOffset, 64),
         ];
@@ -206,6 +235,18 @@ public readonly record struct ChannelMidiParameter
 {
     private readonly Params.Data _data;
     public readonly Type PType;
+
+    public static ChannelMidiParameter FineTune(float value) =>
+        Of(Type.FineTune, value);
+    
+    public static ChannelMidiParameter DrumMap(int value) =>
+        Of(Type.DrumMap, value);
+    
+    public static ChannelMidiParameter ModulationDepth(float value) =>
+        Of(Type.ModulationDepth, value);
+    
+    public static ChannelMidiParameter PitchWheelRange(float value) =>
+        Of(Type.PitchWheelRange, value);
     
     public static ChannelMidiParameter Of(Type type, float value)
     {
@@ -342,10 +383,12 @@ public readonly record struct ChannelMidiParameter
         /// </summary>
         CC2,
         /// <summary>
-        /// Drum map for GS system exclusive tracking.
+        /// Drum map for system exclusive tracking.
         /// Only used for selecting the correct channel when setting drum parameters through sysEx,
         /// as those don't specify the channel, but the drum number.
-        /// The only values that are allowed are 0 (melodic) 1 or 2.
+        /// For GS, default is 1 for channel 9 and 0 for all others.
+        /// For XG, default is 2 for channel 9 and 0 for all others.
+        /// Setting this to any value other than 0 turns the channel into a drum channel.
         /// </summary>
         DrumMap,
         /// <summary>

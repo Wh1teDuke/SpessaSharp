@@ -134,7 +134,9 @@ public readonly struct Generator
         /// <summary>[0;1000] -> 1/10%</summary>
         VibLFOAmplitudeDepth,        
         /// <summary>Like modLfoToFilterFc</summary>
-        VibLFOToFilterFc,            
+        VibLFOToFilterFc,
+        /// <summary>Like modLfoToVolume</summary>
+        VibLFOToVolume,
         /// <summary>[-1000;1000] -> Hz/100</summary>
         ModLFORate,                 
         /// <summary> [0;1000] -> 1/10%</summary>
@@ -249,6 +251,7 @@ public readonly struct Generator
             {Type.Amplitude,                    (-1_000,    1_000,  0,          1)},
             {Type.VibLFORate,                   (-1_000,    1_000,  0,          1)},
             {Type.VibLFOToFilterFc,             (-12_000,   12_000, 0,          2)},
+            {Type.VibLFOToVolume,               (-960,      960,    0,          1)},
             {Type.VibLFOAmplitudeDepth,         (0,         1_000,  0,          1)},
             {Type.ModLFORate,                   (-1_000,    1_000,  0,          1)},
             {Type.ModLFOAmplitudeDepth,         (0,         1_000,  0,          1)},

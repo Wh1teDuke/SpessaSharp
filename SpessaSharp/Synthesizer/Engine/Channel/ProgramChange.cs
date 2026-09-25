@@ -1,4 +1,6 @@
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Parameters;
+using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Channel;
 
@@ -30,6 +32,29 @@ internal static class ProgramChange
             chan.SetDrumFlag(preset.IsDrum);
 
         chan.ResetDrumParams();
+        
+        // Commit changes made to user drums
+        // SCVA does not play drum sounds until the change is sent, even if this patch was selected before then.
+        // See the corresponding test in MIDI tests.
+        if (preset is
+            {
+                IsGMGSDrum: true,
+                Program: Synthesizer.GS_USER_DRUM_1 or Synthesizer.GS_USER_DRUM_2
+            } && !chan.SynthCore.SystemParameters.UserDrumLock)
+        {
+            SpessaLog.Info(
+                $"Committing changes to User Drum Set {preset.Program - 63}!");
+            
+            // Purge cache for this preset to cache the new drum voice data
+            chan.SynthCore.PurgeCachedPatch(preset.Patch);
+            // Copy drum param data
+            if (preset is UserDrumSet uds)
+                uds.CopyInto(chan.DrumParams);
+            else
+                SpessaLog.Warn(
+                    $"Current patch should be GS User Drum! Instead found {preset.Name}.");
+        }
+
         // Do not spread the preset as we don't want to copy it entirely.
         chan.SynthCore.CallEvent(
             new Event.CbProgramChange(preset.Patch, chan.Channel));

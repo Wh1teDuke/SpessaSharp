@@ -1,24 +1,24 @@
-using SpessaSharp.Synthesizer.Engine.Effects.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
 namespace SpessaSharp.Synthesizer.Engine.Effects;
 
 public static class Effect
 {
-    public enum FxReverbType
+    public enum GSReverbType
     {
-        Level,//int
-        PreLowPass,//int
         Character,//int
+        PreLowPass,//int
+        Level,//int
         Time,//int
         DelayFeedback,//int
         PreDelayTime,//int
         Macro,//int
     }
 
-    public enum FxChorusType
+    public enum GSChorusType
     {
-        Level,//int
         PreLowPass,//int
+        Level,//int
         Feedback,//int
         Delay,//int
         Rate,//int
@@ -28,9 +28,8 @@ public static class Effect
         Macro,//int
     }
 
-    public enum FxDelayType
+    public enum GSDelayType
     {
-        Level,//int
         PreLowPass,//int
         TimeCenter,//int
         TimeRatioLeft,//int
@@ -38,9 +37,18 @@ public static class Effect
         LevelCenter,//int
         LevelLeft,//int
         LevelRight,//int
+        Level,//int
         Feedback,//int
         SendLevelToReverb,//int
         Macro,//int
+    }
+
+    public enum InsertionType
+    {
+        Type,
+        SendLevelToReverb,
+        SendLevelToChorus,
+        SendLevelToDelay,
     }
     
     public abstract class BaseEffect
@@ -62,7 +70,7 @@ public static class Effect
         internal int Macro;
     }
 
-    public class ReverbProcessorSnapshot : BaseEffect
+    public class GSReverbParameter : BaseEffect
     {
         /// <summary>
         /// 0-7.<br/>
@@ -93,9 +101,56 @@ public static class Effect
         /// Higher values result in a longer pre-delay time, simulating a larger reverberant space.
         /// </summary>
         public virtual int PreDelayTime { get; set; }
+
+        public int this[GSReverbType type]
+        {
+            get
+            {
+                return type switch
+                {
+                    GSReverbType.Character => Character,
+                    GSReverbType.PreLowPass => PreLowPass,
+                    GSReverbType.Level => Level,
+                    GSReverbType.Time => Time,
+                    GSReverbType.DelayFeedback => DelayFeedback,
+                    GSReverbType.PreDelayTime => PreDelayTime,
+                    GSReverbType.Macro => Macro,
+                    _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+                };
+            }
+            set
+            {
+                switch (type)
+                {
+                    case GSReverbType.Character:
+                        Character = value;
+                        break;
+                    case GSReverbType.PreLowPass:
+                        PreLowPass = value;
+                        break;
+                    case GSReverbType.Level:
+                        Level = value;
+                        break;
+                    case GSReverbType.Time:
+                        Time = value;
+                        break;
+                    case GSReverbType.DelayFeedback:
+                        DelayFeedback = value;
+                        break;
+                    case GSReverbType.PreDelayTime:
+                        PreDelayTime = value;
+                        break;
+                    case GSReverbType.Macro:
+                        Macro = value;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                }
+            }
+        }
     }
 
-    public abstract class ReverbProcessor: ReverbProcessorSnapshot
+    public abstract class ReverbProcessor: GSReverbParameter
     {
         /// <summary> Process the effect and ADDS it to the output. </summary>
         /// <param name="input">The input buffer to process. It always starts at index 0.</param>
@@ -112,10 +167,10 @@ public static class Effect
         
         /// <summary> Gets a synthesizer from this effect processor instance. </summary>
         /// <returns></returns>
-        public abstract ReverbProcessorSnapshot GetSnapshot();
+        public abstract GSReverbParameter GetSnapshot();
     }
 
-    public class ChorusProcessorSnapshot : BaseEffect
+    public class GSChorusParameter : BaseEffect
     {
         /// <summary>
         /// 0-127<br/>
@@ -158,9 +213,61 @@ public static class Effect
         /// Higher values result in more sound being sent.
         /// </summary>
         public virtual int SendLevelToDelay { get; set; }
+
+        public int this[GSChorusType type]
+        {
+            get => type switch
+            {
+                GSChorusType.PreLowPass => PreLowPass,
+                GSChorusType.Level => Level,
+                GSChorusType.Feedback => Feedback,
+                GSChorusType.Delay => Delay,
+                GSChorusType.Rate => Rate,
+                GSChorusType.Depth => Depth,
+                GSChorusType.SendLevelToReverb => SendLevelToReverb,
+                GSChorusType.SendLevelToDelay => SendLevelToDelay,
+                GSChorusType.Macro => Macro,
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+            set
+            {
+                switch (type)
+                {
+                    case GSChorusType.PreLowPass:
+                        PreLowPass = value;
+                        break;
+                    case GSChorusType.Level:
+                        Level = value;
+                        break;
+                    case GSChorusType.Feedback:
+                        Feedback = value;
+                        break;
+                    case GSChorusType.Delay:
+                        Delay = value;
+                        break;
+                    case GSChorusType.Rate:
+                        Rate = value;
+                        break;
+                    case GSChorusType.Depth:
+                        Depth = value;
+                        break;
+                    case GSChorusType.SendLevelToReverb:
+                        SendLevelToReverb = value;
+                        break;
+                    case GSChorusType.SendLevelToDelay:
+                        SendLevelToDelay = value;
+                        break;
+                    case GSChorusType.Macro:
+                        Macro = value;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                }
+            }
+        }
     }
     
-    public abstract class ChorusProcessor: ChorusProcessorSnapshot
+    public abstract class ChorusProcessor: GSChorusParameter
     {
         /// <summary> Process the effect and ADDS it to the output. </summary>
         /// <param name="input">The input buffer to process. It always starts at index 0.</param>
@@ -181,10 +288,10 @@ public static class Effect
         
         /// <summary> Gets a synthesizer from this effect processor instance. </summary>
         /// <returns></returns>
-        public abstract ChorusProcessorSnapshot GetSnapshot();
+        public abstract GSChorusParameter GetSnapshot();
     }
 
-    public class DelayProcessorSnapshot : BaseEffect
+    public class GSDelayParameter : BaseEffect
     {
         /// <summary>
         /// 0-115<br/>
@@ -250,9 +357,69 @@ public static class Effect
         /// Higher values result in more sound being sent.
         /// </summary>
         public virtual int SendLevelToReverb { get; set; }
+        
+        public int this[GSDelayType type]
+        {
+            get => type switch
+            {
+                GSDelayType.PreLowPass => PreLowPass,
+                GSDelayType.TimeCenter => TimeCenter,
+                GSDelayType.TimeRatioLeft => TimeRatioLeft,
+                GSDelayType.TimeRatioRight => TimeRatioRight,
+                GSDelayType.LevelCenter => LevelCenter,
+                GSDelayType.LevelLeft => LevelLeft,
+                GSDelayType.LevelRight => LevelRight,
+                GSDelayType.Level => Level,
+                GSDelayType.Feedback => Feedback,
+                GSDelayType.SendLevelToReverb => SendLevelToReverb,
+                GSDelayType.Macro => Macro,
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+            set
+            {
+                switch (type)
+                {
+                    case GSDelayType.PreLowPass:
+                        PreLowPass = value;
+                        break;
+                    case GSDelayType.TimeCenter:
+                        TimeCenter = value;
+                        break;
+                    case GSDelayType.TimeRatioLeft:
+                        TimeRatioLeft = value;
+                        break;
+                    case GSDelayType.TimeRatioRight:
+                        TimeRatioRight = value;
+                        break;
+                    case GSDelayType.LevelCenter:
+                        LevelCenter = value;
+                        break;
+                    case GSDelayType.LevelLeft:
+                        LevelLeft = value;
+                        break;
+                    case GSDelayType.LevelRight:
+                        LevelRight = value;
+                        break;
+                    case GSDelayType.Level:
+                        Level = value;
+                        break;
+                    case GSDelayType.Feedback:
+                        Feedback = value;
+                        break;
+                    case GSDelayType.SendLevelToReverb:
+                        SendLevelToReverb = value;
+                        break;
+                    case GSDelayType.Macro:
+                        Macro = value;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                }
+            }
+        }
     }
     
-    public abstract class DelayProcessor: DelayProcessorSnapshot
+    public abstract class DelayProcessor: GSDelayParameter
     {
         /// <summary> Process the effect and ADDS it to the output. </summary>
         /// <param name="input">The input buffer to process. It always starts at index 0.</param>
@@ -271,7 +438,7 @@ public static class Effect
         
         /// <summary> Gets a synthesizer from this effect processor instance. </summary>
         /// <returns></returns>
-        public abstract DelayProcessorSnapshot GetSnapshot();
+        public abstract GSDelayParameter GetSnapshot();
     }
 
     public abstract class InsertionProcessor
@@ -291,7 +458,8 @@ public static class Effect
         ];
         
         /// <summary>
-        /// The EFX type of this processor, stored as MSB shl | LSB. For example 0x30, 0x10 is 0x3010
+        /// The EFX type of this processor, stored as <c>MSB &lt;&lt; | LSB</c>.
+        /// For example 0x30, 0x10 is 0x3010
         /// </summary>
         public abstract int Type { get; }
 
@@ -353,8 +521,14 @@ public static class Effect
     }
 
     /// <summary> </summary>
-    /// <param name="Type"></param>
+    /// <param name="Type">
+    /// The EFX type of this processor, stored as <c>MSB &lt;&lt; 8 | LSB</c>.
+    /// For example <c>0x30</c>, <c>0x10</c> is <c>0x3010</c>.
+    /// </param>
     /// <param name="Params">20 parameters for the effect, 255 means "no change" + 3 effect sends (index 20, 21, 22)</param>
+    /// <remarks>
+    /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see> (p.88, 237) for more information.
+    /// </remarks>
     public readonly record struct InsertionProcessorSnapshot(
         int Type, 
         ArraySegment<byte> Params);

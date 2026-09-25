@@ -407,8 +407,9 @@ public sealed class Midi
     /// </summary>
     /// <param name="getPreset">The Preset provider.</param>
     /// <returns>The output data is a key-value pair: Preset -> (Key-Velocity)</returns>
-    public PresetsWithKeyCombinations GetUsedProgramsAndKeys(
-        IPresetGetter getPreset) => UsedProgramsAndKeys.Get(this, getPreset);
+    public PresetsWithKeyCombinations GetUsedProgramsAndKeys<T>(
+            BasePreset.IGetter<T> getPreset) where T : SynthPatch =>
+        UsedProgramsAndKeys.Get(this, getPreset);
 
     /// <summary>
     /// Preloads all voices for this sequence in a given synth.
@@ -427,7 +428,7 @@ public sealed class Midi
 
         foreach (var (preset, combos) in used)
         {
-            SpessaLog.Info($"Preloading used samples on {preset.Name} ...");
+            SpessaLog.Info($"Preloading used samples on {preset.Patch.Name} ...");
             foreach (var (midiNote, velocity) in combos) 
                 synth.GetVoicesForPreset(preset, midiNote, velocity);
         }
@@ -566,7 +567,7 @@ public sealed class Midi
             var time = elapsedTime - note.Start;
             note = note with
             {
-                Length = channel == Synthesizer.Synthesizer.DEFAULT_PERCUSSION
+                Length = channel == Synthesizer.Synthesizer.MIDI_DRUM_CHANNEL
                     ? Math.Max(time, minDrumLength)
                     : time,
             };
@@ -593,24 +594,6 @@ public sealed class Midi
         ArraySegment<byte> soundBank, WriterRMidi.Options? options = null) =>
             WriterRMidi.Save(
                 this, soundBank, options ?? WriterRMidi.Options.Default);
-
-    /// <summary>
-    /// Allows easily modifying the sequence's programs and controllers.
-    /// This is a very sophisticated method that supports various MIDI systems and inserts/deletes messages appropriately.
-    /// <remarks>This modifies the MIDI sequence <b>in-place</b>.</remarks>
-    /// </summary>
-    /// <param name="opts">Options to modify the midi</param>
-    public void Modify(MidiEditor.Options opts) =>
-        MidiEditor.Modify(this, opts);
-
-    /// <summary>
-    /// Modifies the sequence *in-place* according to the locked presets and controllers in the given snapshot.
-    /// Note that System Parameters <b>fineTune</b> and <b>keyShift</b> are passed to the relative tuning parameters of the channels.
-    /// Only locked MIDI parameters and controllers are applied.
-    /// </summary>
-    /// <param name="snapshot">The snapshot to apply.</param>
-    public void Apply(SynthesizerSnapshot snapshot) =>
-        ApplySnapshot.To(this, snapshot);
 
     /// <summary>Gets the MIDI's decoded name.</summary>
     /// <param name="encoding">The encoding to use if the MIDI uses an extended code page.</param>
@@ -746,6 +729,45 @@ public sealed class Midi
         {
             SpessaLog.Warn($"Failed to decode {infoType} name: {error}");
             return null;
+        }
+    }
+
+    public delegate void IterateDel(
+        MidiMessage ev, int trackNumber, ArraySegment<int> eventIndexes);
+
+    public void Iterate(IterateDel callback)
+    {
+        // Indexes for tracks
+        var eventIndexes = new int[Tracks.Count];
+        var remainingTracks = Tracks.Count;
+
+        while (remainingTracks > 0)
+        {
+            var trackNum = 0;
+            var ticks = int.MaxValue;
+
+            for (var i = 0; i < Tracks.Count; i++)
+            {
+                var track = Tracks[i].Events;
+                if (eventIndexes[i] >= track.Length) continue;
+                if (track[eventIndexes[i]].Ticks >= ticks) continue;
+                trackNum = i;
+                ticks = track[eventIndexes[i]].Ticks;
+            }
+
+            {
+                var track =
+                    CollectionsMarshal.AsSpan(Tracks[trackNum].EventList);
+                if (eventIndexes[trackNum] >= track.Length)
+                {
+                    remainingTracks--;
+                    continue;
+                }
+                
+                var idx = eventIndexes[trackNum];
+                callback(track[idx], trackNum, eventIndexes);
+                eventIndexes[trackNum]++;
+            }
         }
     }
 
@@ -1185,6 +1207,42 @@ public sealed class Midi
                         PortChannelOffsetMap.Add(-1);
                     PortChannelOffsetMap[port] = portOffset;
                     portOffset += 16;
+                }
+            }
+        }
+        
+        // Attempt to determine ports from track names:
+        // A<num> or PartA<num>
+        // B<num> or PartB<num>
+        // C<num> or PartC<num>
+        // D<num> or PartD<num>
+        if (portOffset == 0) 
+        {
+            foreach (var track in Tracks) 
+            {
+                var n = track.Name;
+                if (n.Contains("PartA") || RegexExt.MidiPortA().IsMatch(n))
+                {
+                    track.Port = 0;
+                    PortChannelOffsetMap[0] = 0;
+                    continue;
+                }
+                if (n.Contains("PartB") || RegexExt.MidiPortB().IsMatch(n)) 
+                {
+                    track.Port = 1;
+                    PortChannelOffsetMap[1] = 16;
+                    continue;
+                }
+                if (n.Contains("PartC") || RegexExt.MidiPortC().IsMatch(n)) 
+                {
+                    track.Port = 2;
+                    PortChannelOffsetMap[2] = 32;
+                    continue;
+                }
+                if (n.Contains("PartD") || RegexExt.MidiPortD().IsMatch(n)) 
+                {
+                    track.Port = 3;
+                    PortChannelOffsetMap[3] = 48;
                 }
             }
         }

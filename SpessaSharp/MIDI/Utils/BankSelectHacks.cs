@@ -50,13 +50,13 @@ internal static class BankSelectHacks
         int bankMSB, int bankOffset, bool isXG) =>
         // Do not change XG drums (120, 126 or 127)
         IsXGDrum(bankMSB) && isXG
-            ? bankMSB 
+            ? bankMSB
             : Math.Min(bankMSB + bankOffset, 127);
 
     public static int SubtractBankOffset(
         int bankMSB, int bankOffset, bool isXG) =>
         // Do not change XG drums (120, 126 or 127)
         IsXGDrum(bankMSB) && isXG
-            ? bankMSB 
+            ? bankMSB
             : Math.Max(0, bankMSB - bankOffset);
 }
