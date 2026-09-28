@@ -211,7 +211,7 @@ internal static class Yamaha
                             data));
                         SpessaLog.XGInfo(
                             $"Velocity Sense Depth on {channel}", data);
-                        return;
+                        break;
 
                     // Velocity Sense Offset
                     case 0x0d:
@@ -220,7 +220,7 @@ internal static class Yamaha
                             data));
                         SpessaLog.XGInfo(
                             $"Velocity Sense Offset on {channel}", data);
-                        return;
+                        break;
 
                     // Pan position
                     case 0x0e: 
