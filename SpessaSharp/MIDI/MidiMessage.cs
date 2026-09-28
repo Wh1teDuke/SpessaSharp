@@ -100,7 +100,7 @@ public readonly record struct MidiMessage(
     
     /// <summary>Returns a new MIDI Channel Pressure message.</summary>
     /// <param name="ticks">Time of this message in absolute MIDI ticks.</param>
-    /// <param name="channel">The channel number of this message.</param>
+    /// <param name="channel">The channel number of this message (0-15).</param>
     /// <param name="value">The new value, between 0 and 127.</param>
     /// <returns></returns>
     public static MidiMessage ChannelPressure(
@@ -111,7 +111,7 @@ public readonly record struct MidiMessage(
     
     /// <summary>Returns a new MIDI Program Change message.</summary>
     /// <param name="ticks">Time of this message in absolute MIDI ticks.</param>
-    /// <param name="channel">The channel number of this message.</param>
+    /// <param name="channel">The channel number of this message (0-15).</param>
     /// <param name="program">The new MIDI program number, between 0 and 127.</param>
     /// <returns></returns>
     public static MidiMessage ProgramChange(
@@ -122,7 +122,7 @@ public readonly record struct MidiMessage(
     
     /// <summary>Returns a new MIDI Controller Change message.</summary>
     /// <param name="ticks">Time of this message in absolute MIDI ticks.</param>
-    /// <param name="channel">The channel number of this message.</param>
+    /// <param name="channel">The channel number of this message (0-15).</param>
     /// <param name="controller">The MIDI controller.</param>
     /// <param name="value">The new value.</param>
     /// <returns></returns>
@@ -145,7 +145,7 @@ public readonly record struct MidiMessage(
     /// Returns a new MIDI Registered Parameter message. Sends both data MSB and LSB.
     /// </summary>
     /// <param name="ticks">Time of this message in absolute MIDI ticks.</param>
-    /// <param name="channel">The channel number of this message.</param>
+    /// <param name="channel">The channel to use (0-15).</param>
     /// <param name="parameter">The 14-bit MIDI registered parameter number.</param>
     /// <param name="value">The 14-bit new value.</param>
     /// <returns></returns>
@@ -174,7 +174,7 @@ public readonly record struct MidiMessage(
     /// Returns a new MIDI Non-Registered Parameter message. Sends both data MSB and LSB.
     /// </summary>
     /// <param name="ticks">The MIDI tick time of the events.</param>
-    /// <param name="channel">The channel to use (0-16).</param>
+    /// <param name="channel">The channel to use (0-15).</param>
     /// <param name="parameter">The 14-bit non-registered parameter number.</param>
     /// <param name="value">The 14-bit value for this parameter.</param>
     /// <returns></returns>

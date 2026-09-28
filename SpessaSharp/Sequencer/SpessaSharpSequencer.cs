@@ -22,6 +22,7 @@ public sealed class SpessaSharpSequencer
     /// <summary>
     /// If the MIDI messages should be sent to an event instead of the synth.
     /// This is used by spessasynth_lib to pass them over to Web MIDI API.
+    /// If true, <see cref="Event.Type.MidiMessage"/> will be emitted.
     /// </summary>
     public bool ExternalPlayback = false;
     

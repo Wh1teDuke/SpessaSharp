@@ -14,7 +14,6 @@ internal static class ControllerChange
     /// midiControllers table and handling special cases like bank select,
     /// data entry, and sustain pedal. It also computes modulators for all voices
     /// in the channel based on the controller change.
-    /// to allow changes.
     /// </remarks>
     /// <param name="chan"></param>
     /// <param name="controller">The MIDI controller number (0-127).</param>

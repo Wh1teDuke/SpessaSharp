@@ -598,6 +598,7 @@ public sealed class Midi
     /// <summary>Gets the MIDI's decoded name.</summary>
     /// <param name="encoding">The encoding to use if the MIDI uses an extended code page.</param>
     /// <remarks>RMIDI encoding overrides the provided encoding.</remarks>
+    /// <returns>The name of the song or the file name if it's not specified. Empty otherwise.</returns>
     public string? GetName(string encoding = "Shift_JIS") 
     {
         string? rawName = null;
@@ -735,6 +736,16 @@ public sealed class Midi
     public delegate void IterateDel(
         MidiMessage ev, int trackNumber, ArraySegment<int> eventIndexes);
 
+    /// <summary>
+    /// Iterates over the MIDI file, ordered by the time the events happen.
+    /// </summary>
+    /// <remarks>
+    /// Consider iterating over the <see cref="Timeline"/> property
+    /// if you are not editing the MIDI file in your loop.
+    /// It is usually a faster solution and allows custom loops.
+    /// If the track data is being edited, remember to call <see cref="Flush"/> it after editing!
+    /// </remarks>
+    /// <param name="callback">The callback function to process each event.</param>
     public void Iterate(IterateDel callback)
     {
         // Indexes for tracks

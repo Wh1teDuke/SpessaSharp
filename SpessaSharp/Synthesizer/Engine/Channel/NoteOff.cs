@@ -6,6 +6,14 @@ namespace SpessaSharp.Synthesizer.Engine.Channel;
 
 internal static class NoteOff
 {
+    /// <summary>
+    /// Releases a note by its MIDI note number.
+    /// If the note is in high performance mode and the channel is not a drum channel,
+    /// or the drum channel has an rxNoteOff enabled,
+    /// it kills the note instead of releasing it.
+    /// </summary>
+    /// <param name="chan"></param>
+    /// <param name="midiNote">The MIDI note number to release (0-127).</param>
     public static void Send(MidiChannel chan, int midiNote)
     {
         if (midiNote is > 127 or < 0) return;

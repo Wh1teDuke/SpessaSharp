@@ -87,6 +87,12 @@ public sealed class Voice
         }
     }
 
+    /// <summary>
+    /// Parameters for rendering a single voice in the SoundFont2 format.
+    /// </summary>
+    /// <param name="Generators">The summed generators.</param>
+    /// <param name="Modulators">The summed modulators.</param>
+    /// <param name="Sample">The sample used for this voice.</param>
     internal readonly record struct Parameters(
         ArraySegment<short> Generators,
         ArraySegment<SoundBank.Modulator> Modulators,

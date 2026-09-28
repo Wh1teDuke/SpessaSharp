@@ -238,6 +238,7 @@ public sealed class MidiChannel: ISf2Channel
     /// </summary>
     internal readonly BitArray PlayingNotes = new(128);
 
+    /// <summary> Used for handling SF2/AWE32 NRPN generator adjustments. </summary>
     internal readonly Awe32NRPN.ChannelGenerators Generators = new();
 
     internal readonly ChannelMidiParameter[] MidiParamArray =
@@ -415,7 +416,10 @@ public sealed class MidiChannel: ISf2Channel
         Engine.Channel.NoteOn.Send(this, midiNote, velocity);
 
     /// <summary>
-    /// Releases a note by its MIDI note number. If the note is in high performance mode and the channel is not a drum channel, it kills the note instead of releasing it.
+    /// Releases a note by its MIDI note number.
+    /// If the note is in high performance mode and the channel is not a drum channel,
+    /// or the drum channel has an rxNoteOff enabled,
+    /// it kills the note instead of releasing it.
     /// </summary>
     /// <param name="midiNote">The MIDI note number to release (0-127).</param>
     internal void NoteOff(int midiNote) => 

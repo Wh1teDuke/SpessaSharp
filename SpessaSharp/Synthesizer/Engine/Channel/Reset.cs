@@ -14,6 +14,9 @@ internal static class Reset
     public static readonly short[] DefaultMidiControllers =
         new short[CONTROLLER_TABLE_SIZE];
 
+    /// <summary>
+    /// Default reverb level for each drum instrument.
+    /// </summary>
     public static readonly byte[] DefaultDrumReverb = new byte[128];
 
     /// <summary>

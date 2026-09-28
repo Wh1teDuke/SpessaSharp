@@ -76,7 +76,10 @@ public sealed class SpessaSharpProcessor
 
     /// <summary>Executes a system exclusive message for the synthesizer. </summary>
     /// <param name="syx">The system exclusive message as an array of bytes.</param>
-    /// <param name="channelOffset">The channel offset to apply (default is 0).</param>
+    /// <param name="channelOffset">
+    /// channelOffset The channel offset for the message as they usually can only address the first 16 channels.
+    /// For example, to send a system exclusive on channel 16,
+    /// send a system exclusive for channel 0 and set an offset of 16.</param>
     public void SystemExclusive(
         ReadOnlySpan<byte> syx, int? channelOffset = null)
         => _synthCore.SystemExclusive(syx, channelOffset ?? 0);
@@ -84,7 +87,10 @@ public sealed class SpessaSharpProcessor
     /// <summary>
     /// Executes a MIDI controller change message on the specified channel.
     /// </summary>
-    /// <param name="channel">The MIDI channel to change the controller on.</param>
+    /// <param name="channel">
+    /// The MIDI channel to change the controller on.
+    /// It usually ranges from 0 to 15, but it depends on the channel count.
+    /// </param>
     /// <param name="controller">The MIDI controller number (0-127).</param>
     /// <param name="value">The value of the controller (0-127).</param>
     public void ControllerChange(int channel, Midi.CC controller, int value) 

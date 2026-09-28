@@ -277,7 +277,7 @@ public readonly struct Generator
             : Math.Clamp(value, limit.Min, limit.Max));
     }
 
-    public void Write(ref Span<byte> genData)
+    internal void Write(ref Span<byte> genData)
     {
         Util.WriteWord(ref genData, (short)GType);
         Util.WriteWord(ref genData, Value);

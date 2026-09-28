@@ -75,15 +75,9 @@ public sealed class SoundBankManager: BasePreset.IGetter<SynthPatch>
 
     /// <summary>Deletes a given sound bank by its ID.</summary>
     /// <param name="id">The ID of the sound bank to delete.</param>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="Exception">Error An error if there's no sound bank with the given ID.</exception>
     public void DeleteSoundBank(string id)
     {
-        if (SoundBankList.Count == 0)
-        {
-            Debug.WriteLine("[WARN] 1 soundbank left. Aborting!");
-            return;
-        }
-
         if (Util.IndexOf(
                 CollectionsMarshal.AsSpan(SoundBankList), 
                 id, 
@@ -127,7 +121,7 @@ public sealed class SoundBankManager: BasePreset.IGetter<SynthPatch>
     /// <summary>Gets a given preset from the sound bank stack.</summary>
     /// <param name="patch">The MIDI patch to search for.</param>
     /// <param name="system">The MIDI system to select the preset for.</param>
-    /// <returns>An object containing the preset and its bank offset.</returns>
+    /// <returns>The preset with the added bank offset or undefined if no sound banks are present.</returns>
     public SynthPatch? GetPreset(
         MidiPatch patch, Midi.System system) =>
         SoundBankList.Count == 0 || _selectablePresetList.Count == 0

@@ -1,5 +1,9 @@
 namespace SpessaSharp.SoundBank;
 
+/// <summary>
+///  Represents a channel in an SF2-compatible synthesizer.
+/// Its data is used for computing  <see cref="Modulator"/>s.
+/// </summary>
 public interface ISf2Channel
 {
     /// <summary>All MIDI controller values for modulation.</summary>

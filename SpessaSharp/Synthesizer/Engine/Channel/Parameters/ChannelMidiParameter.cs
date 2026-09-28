@@ -169,6 +169,13 @@ public static class ChannelMidiParameters
     }
     
     private static readonly ChannelMidiParameter[] DefaultParams;
+    
+    /// <summary>
+    /// The default values for <see cref="ChannelMidiParameter"/>
+    /// <remarks>
+    /// <see cref="ChannelMidiParameter.Type.RxChannel"/> and <see cref="ChannelMidiParameter.Type.DrumMap"/> have defaults which depend on the channel number. Please check their descriptions for more details.
+    /// </remarks>
+    /// </summary>
     public static ReadOnlySpan<ChannelMidiParameter> Default => DefaultParams;
 
     static ChannelMidiParameters()
@@ -356,7 +363,9 @@ public readonly record struct ChannelMidiParameter
         /// The channel's receiving number (0-based index).
         /// This allows triggering multiple parts (channels) with a single note message.
         /// </summary>
-        /// <remarks>Only used when customChannelNumbers is enabled.</remarks>
+        /// <remarks>
+        /// <see cref="ChannelMidiParameters.Default"/> reports the default as 0, but each channel is initialized depending on the channel number. See above for details.
+        /// </remarks>
         RxChannel,
         /// <summary>
         /// If the channel is in the poly mode.<br/>
@@ -386,9 +395,12 @@ public readonly record struct ChannelMidiParameter
         /// Drum map for system exclusive tracking.
         /// Only used for selecting the correct channel when setting drum parameters through sysEx,
         /// as those don't specify the channel, but the drum number.
-        /// For GS, default is 1 for channel 9 and 0 for all others.
-        /// For XG, default is 2 for channel 9 and 0 for all others.
-        /// Setting this to any value other than 0 turns the channel into a drum channel.
+        /// For <c>GS</c>, default is <c>1</c> for channel <c>9</c> and <c>0</c> for all others.
+        /// For <c>XG</c>, default is <c>2</c> for channel <c>9</c> and <c>0</c> for all others.
+        /// Setting this to any value other than <c>0</c> turns the channel into a drum channel.
+        /// <remarks>
+        /// <see cref="ChannelMidiParameters.Default"/> reports the default as 0, but each channel is initialized depending on the channel number. See above for details.
+        /// </remarks>
         /// </summary>
         DrumMap,
         /// <summary>

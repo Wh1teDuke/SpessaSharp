@@ -102,7 +102,7 @@ public sealed class BasicPreset: BasePreset
     public void Delete() => 
         Zones.ForEach(z => z.Instrument.UnlinkFrom(this));
     
-    /// <summary>Deletes an instrument zone from this preset.</summary>
+    /// <summary>Deletes a preset zone from this preset.</summary>
     /// <param name="index">The zone's index to delete.</param>
     public void DeleteZone(int index) 
     {

@@ -197,7 +197,7 @@ public readonly record struct ChannelSystemParameter
         KeyShift,
         /// <summary>The channel tuning in cents. Drum channels DO NOT ignore this value.</summary>
         FineTune,
-        /// <summary> The interpolation type used for sample playback. Overrides the global parameter if set. </summary>
+        /// <summary> The interpolation type used for sample playback. </summary>
         InterpolationType,
         /// <summary>
         /// If the channel should prevent changing any parameters via NRPN.

@@ -126,7 +126,7 @@ public readonly record struct MidiBuilder
     
     /// <summary>
     /// </summary>
-    /// <param name="TimeDivision">The MIDI file's tick precision (how many ticks fit in a quarter note).</param>
+    /// <param name="TimeDivision">The MIDI file's tick precision (how many ticks fit in a quarter note). Defaults to 480. See <see cref="Midi.TimeDivision"/></param>
     /// <param name="InitialTempo">The MIDI file's initial tempo in BPM.</param>
     /// <param name="Format">The MIDI file's MIDI track format.</param>
     /// <param name="Name">The MIDI file's name. Will be appended to the conductor track.</param>
@@ -230,10 +230,10 @@ public readonly record struct MidiBuilder
     
     /// <summary>Adds a new Note On event.</summary>
     /// <param name="ticks">The tick time of the event.</param>
-    /// <param name="track">The track number to use.</param>
-    /// <param name="channel">The channel to use.</param>
-    /// <param name="midiNote">The midi note of the keypress.</param>
-    /// <param name="velocity">The velocity of the keypress.</param>
+    /// <param name="track">The MIDI track number to put this event on.</param>
+    /// <param name="channel">The channel to use (0-15).</param>
+    /// <param name="midiNote">The MIDI note number (0-127).</param>
+    /// <param name="velocity">The velocity of the note (0-127). The higher, the louder the note is. Velocity of 0 is interpreted as note-off.</param>
     public void NoteOn(
         int ticks, int track, int channel, int midiNote, int velocity) =>
             NoteOn(Midi.Tracks[track], ticks, channel, midiNote, velocity);
@@ -253,7 +253,7 @@ public readonly record struct MidiBuilder
     /// <summary>Adds a new Note Off event.</summary>
     /// <param name="ticks">The tick time of the event.</param>
     /// <param name="track">The track number to use.</param>
-    /// <param name="channel">The channel to use.</param>
+    /// <param name="channel">The channel to use (0-15).</param>
     /// <param name="midiNote">The midi note of the key release.</param>
     /// <param name="velocity">Optional and unsupported by SpessaSynth.</param>
     public void NoteOff(
