@@ -499,9 +499,8 @@ internal static class Yamaha
                 var drumKey = a2;
                 switch (a3) 
                 {
-                    default: 
-                        Engine.SystemExclusive.NotRecognized(
-                            [a3], "Yamaha XG Drum Setup");
+                    default:
+                        SpessaLog.XGFail("Drum Setup", [a3]);
                         return;
 
                     case 0x00: 

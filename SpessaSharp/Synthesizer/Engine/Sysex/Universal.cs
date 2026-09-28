@@ -102,14 +102,14 @@ internal static class Universal
                             syx[7] != 0x01 // Slot Path MSB
                         )
                         {
-                            Unsupported("General MIDI Global Parameter Control", syx);
+                            SpessaLog.GMFail("Global Parameter Control", syx);
                             break;
                         }
                         // Slot Path LSB
                         switch (syx[8]) {
                             default: 
                             {
-                                Unsupported("General MIDI Global Parameter Control", syx);
+                                SpessaLog.GMFail("Global Parameter Control", syx);
                                 break;
                             }
 
@@ -122,8 +122,7 @@ internal static class Universal
                                 {
                                     default: 
                                     {
-                                        Unsupported(
-                                            "General MIDI Reverb Parameter Control", syx);
+                                        SpessaLog.GMFail("Reverb Parameter Control", syx);
                                         break;
                                     }
 
@@ -158,8 +157,7 @@ internal static class Universal
                                 {
                                     default: 
                                     {
-                                        Unsupported(
-                                            "General MIDI Chorus Parameter Control", syx);
+                                        SpessaLog.GMFail("Chorus Parameter Control", syx);
                                         break;
                                     }
 
@@ -378,23 +376,15 @@ internal static class Universal
                         break;
                     }
 
-                    default: 
-                        Engine.SystemExclusive.NotRecognized(syx, "MIDI Tuning Standard");
+                    default:
+                        SpessaLog.GMFail("MIDI Tuning Standard", syx);
                         break;
                 }
                 break;
 
             default: 
-                Engine.SystemExclusive.NotRecognized(syx, "Universal System Exclusive");
+                SpessaLog.GMFail("Universal System Exclusive", syx);
                 break;
         }
-    }
-
-    [Conditional("DEBUG")]
-    private static void Unsupported(
-        string what, ReadOnlySpan<byte> syx, string reason = "")
-    {
-        Debug.WriteLine(
-            $"Unsupported {what} message: {Util.ToHexString(syx)}. {reason}");
     }
 }
