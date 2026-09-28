@@ -4,7 +4,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 /// <summary>
 /// Tremolo cyclically modulates the volume to add tremolo effect to the sound. Type: Stereo
 /// </summary>
-public sealed class TremoloFX: Effect.InsertionProcessor
+public sealed class TremoloFX: Effect.GSInsertionProcessor
 {
     private const float DEFAULT_LEVEL = 127;
     

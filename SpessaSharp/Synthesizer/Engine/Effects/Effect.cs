@@ -441,9 +441,9 @@ public static class Effect
         public abstract GSDelayParameter GetSnapshot();
     }
 
-    public abstract class InsertionProcessor
+    public abstract class GSInsertionProcessor
     {
-        public delegate InsertionProcessor Constructor(
+        public delegate GSInsertionProcessor Constructor(
             int sampleRate, int maxBufferSize);
 
         internal static readonly Constructor[] List = 
@@ -525,11 +525,16 @@ public static class Effect
     /// The EFX type of this processor, stored as <c>MSB &lt;&lt; 8 | LSB</c>.
     /// For example <c>0x30</c>, <c>0x10</c> is <c>0x3010</c>.
     /// </param>
-    /// <param name="Params">20 parameters for the effect, 255 means "no change" + 3 effect sends (index 20, 21, 22)</param>
+    /// <param name="Params">
+    /// 20 parameters for the effect. These depend on effect type.
+    /// After that 3 effect sends follow (index 20, 21, 22),
+    /// the length totaling to 23.
+    /// Value <c>255</c> means "no change" for that parameter.
+    /// </param>
     /// <remarks>
     /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see> (p.88, 237) for more information.
     /// </remarks>
-    public readonly record struct InsertionProcessorSnapshot(
+    public readonly record struct GSInsertionProcessorSnapshot(
         int Type, 
         ArraySegment<byte> Params);
 }

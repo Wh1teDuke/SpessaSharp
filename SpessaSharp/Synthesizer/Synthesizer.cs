@@ -70,9 +70,9 @@ public sealed class Synthesizer
     /// <param name="EventsEnabled">Indicates if the event system is enabled. This can be changed later.</param>
     /// <param name="InitialTime">The initial time of the synth, in seconds.</param>
     /// <param name="EffectsEnabled">Indicates if the effects are enabled. This can be changed later.</param>
-    /// <param name="ReverbProcessor">Reverb processor for the synthesizer. Leave undefined to use the default.</param>
-    /// <param name="ChorusProcessor">Chorus processor for the synthesizer. Leave undefined to use the default.</param>
-    /// <param name="DelayProcessor">Delay processor for the synthesizer. Leave undefined to use the default.</param>
+    /// <param name="ReverbProcessor">Optional custom GS reverb processor for the synthesizer. Leave undefined to use the default.</param>
+    /// <param name="ChorusProcessor">Optional custom GS chorus processor for the synthesizer. Leave undefined to use the default.</param>
+    /// <param name="DelayProcessor">Optional Custom GS delay processor for the synthesizer. Leave undefined to use the default.</param>
     public readonly record struct Options(
         int MaxBufferSize,
         bool EventsEnabled,
@@ -239,13 +239,22 @@ public sealed class Synthesizer
     /// <summary> Current total amount of voices that are currently playing. </summary>
     public int VoiceCount => Voices.Count;
 
-    /// <summary> The synthesizer's reverb processor. </summary>
+    /// <summary>
+    /// The synthesizer's GS reverb processor.
+    /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
+    /// </summary>
     public readonly Effect.ReverbProcessor ReverbProcessor;
 
-    /// <summary> The synthesizer's chorus processor. </summary>
+    /// <summary>
+    /// The synthesizer's GS chorus processor.
+    /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
+    /// </summary>
     public readonly Effect.ChorusProcessor ChorusProcessor;
 
-    /// <summary> The synthesizer's delay processor. </summary>
+    /// <summary>
+    /// The synthesizer's GS delay processor.
+    /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
+    /// </summary>
     public readonly Effect.DelayProcessor DelayProcessor;
 
     /// <summary> Insertion is not used outside SC-88Pro+ MIDIs, this is an optimization. </summary>
@@ -266,13 +275,13 @@ public sealed class Synthesizer
     internal readonly ThruFX InsertionFallback = new();
 
     /// <summary> The current insertion processor. </summary>
-    internal Effect.InsertionProcessor InsertionProcessor;
+    internal Effect.GSInsertionProcessor InsertionProcessor;
 
     /// <summary>
     /// All the insertion effects available to the processor.<br/>
     /// The key is the EFX type stored as MSB lshift 8 | LSB
     /// </summary>
-    internal readonly FrozenDictionary<int, Effect.InsertionProcessor>
+    internal readonly FrozenDictionary<int, Effect.GSInsertionProcessor>
         InsertionEffects;
 
     /// <summary> For F5 system exclusive </summary>
@@ -348,11 +357,11 @@ public sealed class Synthesizer
         var bufSize = MaxBufferSize;
         // Initialize effects
         ReverbProcessor =
-            options.ReverbProcessor ?? new SSReverb(sampleRate, bufSize);
+            options.ReverbProcessor ?? new GSReverb(sampleRate, bufSize);
         ChorusProcessor =
-            options.ChorusProcessor ?? new SSChorus(sampleRate, bufSize);
+            options.ChorusProcessor ?? new GSChorus(sampleRate, bufSize);
         DelayProcessor =
-            options.DelayProcessor ?? new SSDelay(sampleRate, bufSize);
+            options.DelayProcessor ?? new GSDelay(sampleRate, bufSize);
 
         // Initialize buffers
         VoiceBuffer = new float[bufSize];
@@ -363,8 +372,8 @@ public sealed class Synthesizer
         DelayInput = new float[bufSize];
 
         // Register insertion
-        var insertions = new Dictionary<int, Effect.InsertionProcessor>();
-        foreach (var proc in Effect.InsertionProcessor.List)
+        var insertions = new Dictionary<int, Effect.GSInsertionProcessor>();
+        foreach (var proc in Effect.GSInsertionProcessor.List)
         {
             var p = proc(SampleRate, MaxBufferSize);
             insertions[p.Type] = p;
@@ -1034,7 +1043,7 @@ public sealed class Synthesizer
         _cvbCache.Clear();
     }
 
-    internal Effect.InsertionProcessorSnapshot GetInsertionSnapshot() =>
+    internal Effect.GSInsertionProcessorSnapshot GetInsertionSnapshot() =>
         new()
         {
             Type = InsertionProcessor.Type,

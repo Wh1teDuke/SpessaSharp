@@ -5,7 +5,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 /// This is a four-band stereo equalizer (low, mid x 2, high).
 /// Type: Stereo
 /// </summary>
-public sealed class StereoEQFX: Effect.InsertionProcessor
+public sealed class StereoEQFX: Effect.GSInsertionProcessor
 {
     public override int Type => 0x01_00;
 

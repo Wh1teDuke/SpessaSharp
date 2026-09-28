@@ -4,7 +4,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 /// A phaser adds a phase-shifted sound to the original sound, producing a twisting modulation that creates spaciousness and depth. Type: Stereo
 /// </summary>
 /// <remarks>seems to use a triangle LFO for modulation</remarks>
-public sealed class PhaserFX: Effect.InsertionProcessor
+public sealed class PhaserFX: Effect.GSInsertionProcessor
 {
     public static class Param
     {

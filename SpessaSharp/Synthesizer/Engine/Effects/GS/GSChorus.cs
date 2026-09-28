@@ -1,6 +1,9 @@
 namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
-public sealed class SSChorus: Effect.ChorusProcessor
+/// <summary>
+/// The default GS Chorus implementation for <see cref="SpessaSharpProcessor"/>.
+/// </summary>
+public sealed class GSChorus: Effect.ChorusProcessor
 {
     /// <summary> Cutoff frequency </summary>
     private float _preLPFfc = 8_000;
@@ -33,7 +36,15 @@ public sealed class SSChorus: Effect.ChorusProcessor
     private int _rate = 0;
     private int _level = 64;
     
-    public SSChorus(int sampleRate, int maxBufferSize) 
+    /// <summary>
+    /// Constructs a new default GS chorus processor.
+    /// </summary>
+    /// <param name="sampleRate">The sample rate, in Hertz.</param>
+    /// <param name="maxBufferSize">
+    /// The maximum buffer size the synthesizer can render at once.
+    /// Attempting to <see cref="Process"/> more samples than this will result in an error.
+    /// </param>
+    public GSChorus(int sampleRate, int maxBufferSize) 
     {
         _sampleRate         = sampleRate;
         _leftDelayBuffer    = new float[sampleRate];

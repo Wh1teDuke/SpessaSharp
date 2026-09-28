@@ -1,6 +1,6 @@
 namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
-public sealed class PhAutoWahFX: Effect.InsertionProcessor
+public sealed class PhAutoWahFX: Effect.GSInsertionProcessor
 {
     private const int DEFAULT_LEVEL = 127;
     

@@ -88,7 +88,10 @@ public readonly struct Event
     public readonly record struct CbSystemParameterChange(
         GlobalSystemParameter Parameter);
 
-    /// <summary>The effect that was changed, "reverb", "chorus", "delay" or "insertion"</summary>
+    /// <summary>
+    /// The effect that was changed, "reverb", "chorus" or "delay"
+    /// Insertion has a special treatment.
+    /// </summary>
     /// <param name="EffectType"></param>
     /// <param name="Parameter"></param>
     /// <param name="Value"></param>

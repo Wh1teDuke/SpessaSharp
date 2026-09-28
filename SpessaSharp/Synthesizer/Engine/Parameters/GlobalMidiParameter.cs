@@ -152,7 +152,13 @@ public readonly record struct GlobalMidiParameter
     
     public enum Type
     { 
-        /// <summary>The currently enabled MIDI system used by the synthesizer for bank selects and system exclusives. (GM, GM2, GS, XG)</summary>
+        /// <summary>
+        /// The currently enabled MIDI system used by the synthesizer.
+        /// It changes how the synthesizer behaves,
+        /// including things such as effects or bank selection.
+        /// It can be changed with a System Exclusive reset message.
+        /// (GM, GM2, GS, XG)
+        /// </summary>
         System, 
         /// <summary>
         /// The global key shift in semitones.

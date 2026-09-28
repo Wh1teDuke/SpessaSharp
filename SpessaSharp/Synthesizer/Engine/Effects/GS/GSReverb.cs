@@ -2,7 +2,10 @@ using SpessaSharp.Synthesizer.Engine.Effects.Implementation;
 
 namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
-public sealed class SSReverb: Effect.ReverbProcessor
+/// <summary>
+/// The default GS Reverb implementation for <see cref="SpessaSharpProcessor"/>
+/// </summary>
+public sealed class GSReverb: Effect.ReverbProcessor
 {
     /// <summary> Dattorro reverb processor. </summary>
     private readonly DattorroReverb _dattorro;
@@ -59,7 +62,15 @@ public sealed class SSReverb: Effect.ReverbProcessor
     private int _level = 0;
     private int _preLowPass = 0;
 
-    public SSReverb(int sampleRate, int maxBufferSize)
+    /// <summary>
+    /// Constructs a new default GS reverb processor.
+    /// </summary>
+    /// <param name="sampleRate">The sample rate, in Hertz.</param>
+    /// <param name="maxBufferSize">
+    /// The maximum buffer size the synthesizer can render at once.
+    /// Attempting to <see cref="Process"/> more samples than this will result in an error.
+    /// </param>
+    public GSReverb(int sampleRate, int maxBufferSize)
     {
         _sampleRate = sampleRate;
         _delayLeftOutput = NewFloatArray();

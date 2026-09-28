@@ -2,7 +2,10 @@ using System.Runtime.CompilerServices;
 
 namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
-public sealed class SSDelay: Effect.DelayProcessor
+/// <summary>
+/// The default GS Delay implementation for <see cref="SpessaSharpProcessor"/>
+/// </summary>
+public sealed class GSDelay: Effect.DelayProcessor
 {
     /// <summary>
     /// SC-8850 manual p.236<br/>
@@ -66,7 +69,15 @@ public sealed class SSDelay: Effect.DelayProcessor
     private int _timeRatioLeft = 0;
     private int _timeCenter = 12;
 
-    public SSDelay(int sampleRate, int maxBufferSize)
+    /// <summary>
+    /// Constructs a new default GS delay processor.
+    /// </summary>
+    /// <param name="sampleRate">The sample rate, in Hertz.</param>
+    /// <param name="maxBufferSize">
+    /// The maximum buffer size the synthesizer can render at once.
+    /// Attempting to <see cref="Process"/> more samples than this will result in an error.
+    /// </param>
+    public GSDelay(int sampleRate, int maxBufferSize)
     {
         _sampleRate = sampleRate;
         _buffer = new float[sampleRate];

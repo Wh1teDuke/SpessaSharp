@@ -227,17 +227,6 @@ public sealed class SpessaSharpProcessor
     /// <summary>The current time of the synthesizer, in seconds. You probably should not modify this directly.</summary>
     public double CurrentTime => _synthCore.CurrentTime;
     
-    /// <summary>Synthesizer's reverb processor.</summary>
-    public Effect.ReverbProcessor ReverbProcessor =>
-        _synthCore.ReverbProcessor;
-    
-    /// <summary>Synthesizer's Chorus processor.</summary>
-    public Effect.ChorusProcessor ChorusProcessor =>
-        _synthCore.ChorusProcessor;
-    
-    /// <summary>Synthesizer's Delay processor.</summary>
-    public Effect.DelayProcessor DelayProcessor => _synthCore.DelayProcessor;
-    
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public SoundBankManager SoundBankManager => _synthCore.SoundBankManager;
     

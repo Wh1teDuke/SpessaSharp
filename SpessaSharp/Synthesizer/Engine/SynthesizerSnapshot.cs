@@ -12,10 +12,10 @@ public sealed class SynthesizerSnapshot(
     GlobalMidiParameter[] midiParameters,
     BitArray lockedParameters,
     GlobalSystemParameter[] systemParameters,
-    Effect.GSReverbParameter reverbProcessor,
-    Effect.GSChorusParameter chorusProcessor,
-    Effect.GSDelayParameter delayProcessor,
-    Effect.InsertionProcessorSnapshot insertionProcessorProcessor,
+    Effect.GSReverbParameter gsReverbProcessor,
+    Effect.GSChorusParameter gsChorusProcessor,
+    Effect.GSDelayParameter gsDelayProcessor,
+    Effect.GSInsertionProcessorSnapshot gsInsertionProcessorProcessor,
     UserDrumSetParameter.Entry[][] userDrumSets)
 {
     /// <summary>The individual channel snapshots.</summary>
@@ -25,10 +25,10 @@ public sealed class SynthesizerSnapshot(
     public readonly BitArray LockedParameters = lockedParameters;
     public readonly GlobalSystemParameter[] SystemParameters = systemParameters;
     
-    public readonly Effect.GSReverbParameter ReverbProcessor = reverbProcessor;
-    public readonly Effect.GSChorusParameter ChorusProcessor = chorusProcessor;
-    public readonly Effect.GSDelayParameter DelayProcessor = delayProcessor;
-    public Effect.InsertionProcessorSnapshot InsertionProcessor = insertionProcessorProcessor;
+    public readonly Effect.GSReverbParameter GSReverbProcessor = gsReverbProcessor;
+    public readonly Effect.GSChorusParameter GSChorusProcessor = gsChorusProcessor;
+    public readonly Effect.GSDelayParameter GSDelayProcessor = gsDelayProcessor;
+    public Effect.GSInsertionProcessorSnapshot InsertionProcessor = gsInsertionProcessorProcessor;
 
     public readonly UserDrumSetParameter.Entry[][] UserDrumSets = userDrumSets;
 
@@ -64,7 +64,7 @@ public sealed class SynthesizerSnapshot(
 
         // Restore effect processors
         var rp = synth.ReverbProcessor;
-        var rs = ReverbProcessor;
+        var rs = GSReverbProcessor;
         
         rp.Level = rs.Level;
         rp.PreLowPass = rs.PreLowPass;
@@ -74,7 +74,7 @@ public sealed class SynthesizerSnapshot(
         rp.PreDelayTime = rs.PreDelayTime;
         
         var cp = synth.ChorusProcessor;
-        var cs = ChorusProcessor;
+        var cs = GSChorusProcessor;
         
         cp.Level = cs.Level;
         cp.PreLowPass = cs.PreLowPass;
@@ -86,7 +86,7 @@ public sealed class SynthesizerSnapshot(
         cp.SendLevelToReverb = cs.SendLevelToReverb;
 
         var dp = synth.DelayProcessor;
-        var ds = DelayProcessor;
+        var ds = GSDelayProcessor;
         
         dp.Feedback = ds.Feedback;
         dp.Level = ds.Level;
