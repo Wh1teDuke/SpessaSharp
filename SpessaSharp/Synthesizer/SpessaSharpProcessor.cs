@@ -20,9 +20,9 @@ public sealed class SpessaSharpProcessor
     
     /// <summary>For applying the snapshot after an override sound bank too.</summary>
     private SynthesizerSnapshot? _savedSnapshot;
-    
+
     /// <summary>Sample rate in Hertz.</summary>
-    public readonly int SampleRate;
+    public int SampleRate => _synthCore.SampleRate;
 
     public Action<Event>? OnEvent;
 
@@ -188,13 +188,11 @@ public sealed class SpessaSharpProcessor
     public SpessaSharpProcessor(
         int sampleRate, Synthesizer.Options? opts = null)
     {
-        SampleRate = sampleRate;
-        
         // Initialize the protected synth values
         var options = opts ?? Synthesizer.Options.Default;
         
         _synthCore = new Synthesizer(
-            CallEvent, MissingPreset, SampleRate, options);
+            CallEvent, MissingPreset, sampleRate, options);
         
         for (var i = 0; i < Synthesizer.MIDI_CHANNEL_COUNT; i++)
             // Don't send events as we're creating the initial channels
@@ -229,18 +227,22 @@ public sealed class SpessaSharpProcessor
     
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public SoundBankManager SoundBankManager => _synthCore.SoundBankManager;
-    
+
     /// <summary>A handler for missing presets during program change. By default, it warns to console.</summary>
     /// <param name="patch">The MIDI patch that was requested.</param>
     /// <param name="system">The MIDI System for the request.</param>
     /// <returns>If a BasicPreset instance is returned, it will be used by the channel.</returns>
-    public BasicPreset? OnMissingPreset(MidiPatch patch, Midi.System system)
+    public delegate BasicPreset? OnMissingPresetCallBack(
+        MidiPatch patch, Midi.System system);
+
+    /// <summary>A handler for missing presets during program change. By default, it warns to console.</summary>
+    public OnMissingPresetCallBack OnMissingPreset = (patch, _) =>
     {
         SpessaLog.Warn(
             $"[WARN] No preset found for ${patch.ToMidiString()
             }! Did you forget to add a sound bank?");
         return null;
-    }
+    };
     
     /// <summary>
     /// Locks or unlocks a given Global MIDI Parameter.
