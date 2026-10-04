@@ -1270,6 +1270,13 @@ internal static class Roland
                         synth.CallEvent(new Event.CbDisplayMessage(
                             syx.ToArray()));
                     }
+                    // 0x20: SC-8850 160x64 display
+                    // Thanks to midi-movie-player for details on this message
+                    else if (syx[4] == 0x20) 
+                    {
+                        synth.CallEvent(new Event.CbDisplayMessage(
+                            syx.ToArray()));
+                    }
                     return;
 
                 // Some Roland
