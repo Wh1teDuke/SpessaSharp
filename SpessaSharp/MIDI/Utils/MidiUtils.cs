@@ -176,7 +176,7 @@ public static class MidiUtils
     /// <param name="parameter">The parameter to set: <c>type</c> or a send level name</param>
     /// <param name="value">The value to set it to.</param>
     /// <returns>The <see cref="MidiMessage"/> needed to set this GS Insertion Parameter.</returns>
-    public static MidiMessage SetInsertionParameter(
+    public static MidiMessage SetGSInsertionParameter(
         int ticks, Effect.InsertionType parameter, int value)
     {
         return parameter switch
@@ -197,11 +197,163 @@ public static class MidiUtils
     /// <param name="parameter">The parameter to set: a 0-based effect-specific parameter number (0-19).</param>
     /// <param name="value">The value to set it to.</param>
     /// <returns>The <see cref="MidiMessage"/> needed to set this GS Insertion Parameter.</returns>
-    public static MidiMessage SetInsertionParameter(
+    public static MidiMessage SetGSInsertionParameter(
         int ticks, int parameter, int value) =>
         parameter is < 0 or > 19
             ? throw new Exception($"Invalid insertion parameter: {parameter}")
             : GsMessage(ticks, 0x40, 0x03, parameter + 3, [(byte)value]);
+
+    /// <summary>
+    /// Returns a MIDI event needed to set the given XG Reverb Parameter.
+    /// </summary>
+    /// <param name="ticks">The MIDI tick time for the output event.</param>
+    /// <param name="type">The parameter's <see cref="XGReverbType">type</see> to set</param>
+    /// <param name="value">The value to set it to.</param>
+    /// <returns>The <see cref="MidiMessage"/> needed to set this XG Reverb Parameter.</returns>
+    public static MidiMessage SetXGReverbParameter(
+        int ticks, XGReverbType type, int value) =>
+        type switch
+        {
+            XGReverbType.Type => XgMessage(
+                ticks, 0x02, 0x01, 0x00,
+                [(byte)((value >> 8) & 0x7f), (byte)(value & 0x7f)]),
+            XGReverbType.Return => XgMessage(
+                ticks, 0x02, 0x01, 0x0c, [(byte)value]),
+            XGReverbType.Pan => XgMessage(
+                ticks, 0x02, 0x01, 0x0d, [(byte)value]),
+            _ => XgMessage(ticks, 0x02, 0x01,
+                (int)type + (type < XGReverbType.T10 ? 0x02 : 0x06),
+                [(byte)value]),
+        };
+
+    /// <summary>
+    /// Returns a MIDI event needed to set the given XG Chorus Parameter.
+    /// </summary>
+    /// <param name="ticks">The MIDI tick time for the output event.</param>
+    /// <param name="type">The parameter's <see cref="XGChorusType">type</see> to set</param>
+    /// <param name="value">The value to set it to.</param>
+    /// <returns>The <see cref="MidiMessage"/> needed to set this XG Chorus Parameter.</returns>
+    public static MidiMessage SetXGChorusParamter(
+        int ticks, XGChorusType type, int value) =>
+        type switch
+        {
+            XGChorusType.Type => XgMessage(
+                ticks, 0x02, 0x01, 0x20,
+                [(byte)((value >> 8) & 0x7f), (byte)(value & 0x7f)]),
+            XGChorusType.Return => XgMessage(
+                ticks, 0x02, 0x01, 0x2c, [(byte)value]),
+            XGChorusType.Pan => XgMessage(
+                ticks, 0x02, 0x01, 0x2d, [(byte)value]),
+            XGChorusType.SendToReverb => XgMessage(
+                ticks, 0x02, 0x01, 0x2e, [(byte)value]),
+            _ => XgMessage(ticks, 0x02, 0x01,
+                (int)type + (type < XGChorusType.T10 ? 0x22 : 0x26),
+                [(byte)value]),
+        };
+    
+    /// <summary>
+    /// Returns a MIDI event needed to set the given XG Variation Parameter.
+    /// </summary>
+    /// <param name="ticks">The MIDI tick time for the output event.</param>
+    /// <param name="type">The parameter's <see cref="XGVariationType">type</see> to set</param>
+    /// <param name="value">The value to set it to.</param>
+    /// <returns>The <see cref="MidiMessage"/> needed to set this XG Variation Parameter.</returns>
+    public static MidiMessage SetXGVariationParameter(
+        int ticks, XGVariationType type, int value) =>
+        type switch
+        {
+            XGVariationType.Type => XgMessage(
+                ticks, 0x02, 0x01, 0x40,
+                [(byte)((value >> 8) & 0x7f), (byte)(value & 0x7f)]),
+            XGVariationType.Return => XgMessage(
+                ticks, 0x02, 0x01, 0x56, [(byte)value]),
+            XGVariationType.Pan => XgMessage(
+                ticks, 0x02, 0x01, 0x57, [(byte)value]),
+            XGVariationType.SendToReverb => XgMessage(
+                ticks, 0x02, 0x01, 0x58, [(byte)value]),
+            XGVariationType.SendToChorus => XgMessage(
+                ticks, 0x02, 0x01, 0x59, [(byte)value]),
+            XGVariationType.Connection => XgMessage(
+                ticks, 0x02, 0x01, 0x5a, [(byte)value]),
+            XGVariationType.PartNumber => XgMessage(
+                ticks, 0x02, 0x01, 0x5b, [(byte)value]),
+            _ =>
+                type < XGVariationType.T10
+                ? XgMessage(ticks, 0x02, 0x01,
+                0x42 + (int)type * 2,
+                [(byte)((value >> 7) & 0x7f), (byte)(value & 0x7f)])
+                : XgMessage(ticks, 0x02, 0x01,
+                    0x70 + (int)type - 10,
+                    [(byte)((value >> 7) & 0x7f)]) 
+        };
+    
+    public static MidiMessage SetXGVariationParameter(
+        int ticks, XGVariationConnection connection) =>
+        SetXGVariationParameter(ticks, XGVariationType.Connection, (int)connection);
+
+    
+    /// <summary>
+    /// Returns a MIDI event needed to set the given XG Insertion Parameter (EFFECT 2).
+    /// </summary>
+    /// <param name="ticks">The MIDI tick time for the output event.</param>
+    /// <param name="insertionNumber">The insertion effect number (second address byte).</param>
+    /// <param name="type">The parameter's <see cref="XGInsertionType">type</see> to set</param>
+    /// <param name="value">The value to set it to. If the 14-bit parameter has LSB of zero, the MSB-only version will be used.</param>
+    /// <returns></returns>
+    public static MidiMessage SetXGInsertionParameter(
+        int ticks, int insertionNumber, XGInsertionType type, int value)
+    {
+        // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+        switch (type)
+        {
+            case XGInsertionType.Type:
+                return XgMessage(ticks, 0x03, insertionNumber, 0x00,
+                    [(byte)((value >> 8) & 0x7f), (byte)(value & 0x7f)]);
+            case XGInsertionType.PartNumber:
+                return XgMessage(ticks, 0x03, insertionNumber, 0x0c, [(byte)(value)]);
+            default:
+            {
+                if ((int)type < 10) 
+                {
+                    if ((value & 0x7f) == 0) 
+                    {
+                        // Fits in the MSB alone: MSB-only address
+                        return XgMessage(
+                            ticks,
+                            0x03,
+                            insertionNumber,
+                            0x02 + (int)type,
+                            [(byte)((value >> 7) & 0x7f)]
+                        );
+                    }
+                    // Needs the LSB: two-byte [Ext.2] address
+                    // Yamaha XG spec v1.32, page 41.
+                    return XgMessage(
+                        ticks,
+                        0x03,
+                        insertionNumber,
+                        0x30 + (int)type * 2,
+                        [(byte)((value >> 7) & 0x7f), (byte)(value & 0x7f)]
+                    );
+                }
+
+                // Parameters 10-15 only have MSB versions, use that
+                if ((value & 0x7f) != 0) 
+                {
+                    SpessaLog.Warn(
+                        "Attempting to set 14-bit value for XG insertion parameter 10-15 (11-16 in the spec). It will be truncated to MSB!");
+                }
+
+                return XgMessage(
+                    ticks,
+                    0x03,
+                    insertionNumber,
+                    0x20 + (int)type - 10,
+                    [(byte)((value >> 7) & 0x7f)]
+                );
+            }
+        }
+    }
 
     /// <summary>
     /// Returns a list of MIDI events needed to set the given parameter.
@@ -1052,7 +1204,8 @@ public static class MidiUtils
         var a1 = syx[3]; // Address 1
         var a2 = syx[4]; // Address 2
         var a3 = syx[5]; // Address 3
-        var data = syx[6];
+        // Value = syx[6]
+        var value = syx[6];
         
         if (a1 == 0x06 ||   // Display letters
             a1 == 0x07)     // Display bitmap
@@ -1069,7 +1222,7 @@ public static class MidiUtils
                 0x06 =>
                     // TRANSPOSE
                     AnalyzedMessage.Of(
-                        (GlobalMidiParameter.Type.KeyShift, data - 64)),
+                        (GlobalMidiParameter.Type.KeyShift, value - 64)),
                 // XG SYSTEM ON
                 0x7e or
                 // ALL PARAMETER RESET
@@ -1094,14 +1247,123 @@ public static class MidiUtils
         if (a1 == 0x02 && a2 == 0x01)
             return a3 switch
             {
-                <= 0x15 => AnalyzedMessage.Type.XGReverbParam,
-                <= 0x35 => AnalyzedMessage.Type.XGChorusParam,
-                _ => AnalyzedMessage.Type.XGVariationParam
+                // Reverb type: 2 bytes MSB, LSB
+                0x00 => syx.Length < 9 
+                    ? AnalyzedParameter.Type.Other
+                    : AnalyzedMessage.Of(XGReverbType.Type, (value << 8) | syx[7]),
+                0x02 or 0x03 or 0x04 or 0x05 or 0x06 or 0x07 or 0x08 or 0x09 or 0x0a or
+                0x0b =>
+                    AnalyzedMessage.Of((XGReverbType)(a3 - 0x02), value),
+                0x0c => AnalyzedMessage.Of(XGReverbType.Return, value),
+                0x0d => AnalyzedMessage.Of(XGReverbType.Pan, value),
+                
+                0x10 or 0x11 or 0x12 or 0x13 or 0x14 or 
+                0x15 =>
+                    AnalyzedMessage.Of(
+                        (XGReverbType)(a3 - 0x06), // 0x10 -> 10 ... 0x15 -> 15
+                        value),
+                
+                0x20 =>
+                    // Chorus type: 2 bytes MSB, LSB
+                    syx.Length < 9
+                    ? AnalyzedParameter.Type.Other
+                    : AnalyzedMessage.Of(XGChorusType.Type, (value << 8) | syx[7]),
+                
+                0x22 or 0x23 or 0x24 or 0x25 or 0x26 or 0x27 or 0x28 or 0x29 or 0x2a or 
+                0x2b => AnalyzedMessage.Of((XGChorusType)(a3 - 0x22), value),
+
+                0x2c => AnalyzedMessage.Of(XGChorusType.Return, value),
+
+                0x2d => AnalyzedMessage.Of(XGChorusType.Pan, value),
+
+                0x2e => AnalyzedMessage.Of(XGChorusType.SendToReverb, value),
+                
+                0x30 or 0x31 or 0x32 or 0x33 or 0x34 or
+                0x35 => 
+                    AnalyzedMessage.Of(
+                        (XGChorusType)(a3 - 0x26), // 0x30 -> 10 ... 0x35 -> 15
+                        value),
+                
+                0x40 =>
+                    // Variation type: 2 bytes MSB, LSB
+                    syx.Length < 9
+                        ? AnalyzedParameter.Type.Other
+                        : AnalyzedMessage.Of(XGVariationType.Type, (value << 8) | syx[7]),
+                
+                0x42 or 0x44 or 0x46 or 0x48 or 0x4a or 0x4e or 0x50 or 0x52 or
+                0x54 =>
+                    // Variation params 1-10: 14-bit! Not 16-bit!
+                    syx.Length < 9
+                        ? AnalyzedParameter.Type.Other
+                        : AnalyzedMessage.Of(
+                            (XGVariationType)((a3 - 0x42) >> 1), // 0x42 -> 0 ... 0x54 -> 9
+                            (value << 7) | syx[7]),
+                
+                0x56 => AnalyzedMessage.Of(XGVariationType.Return, value),
+
+                0x57 => AnalyzedMessage.Of(XGVariationType.Pan, value),
+                    
+                0x58 => AnalyzedMessage.Of(XGVariationType.SendToReverb, value),
+
+                0x59 => AnalyzedMessage.Of(XGVariationType.SendToChorus, value),
+                
+                0x5a =>
+                    // 0 = insertion, 1 = system
+                    value switch
+                    {
+                        0 => AnalyzedMessage.Of(XGVariationConnection.Insertion),
+                        1 => AnalyzedMessage.Of(XGVariationConnection.System),
+                        _ => AnalyzedParameter.Type.Other,
+                    },
+                
+                0x5b => AnalyzedMessage.Of(XGVariationType.PartNumber, value),
+                
+                0x70 or 0x71 or 0x72 or 0x73 or 0x74 or 
+                0x74 => 
+                    AnalyzedMessage.Of(
+                        (XGVariationType)((a3 - 0x66) >> 1), // 0x70 -> 10 ... 0x75 -> 15
+                        (value << 7) | syx[7]),
+                
+                _ => AnalyzedParameter.Type.Other,
             };
         
-        // XG EFFECT 2
-        if (a1 == 0x03 && a2 == 0x00)
-            return AnalyzedMessage.Type.XGVariationParam;
+        // XG EFFECT 2 (insertion, a2 = insertion effect number)
+        if (a1 == 0x03)
+        {
+            var insertionNumber = a2;
+            return a3 switch
+            {
+                // Insertion type: 2 bytes MSB, LSB
+                0x00 => syx.Length < 9 
+                    ? AnalyzedParameter.Type.Other
+                    : Of(XGInsertionType.Type, (value << 8) | syx[7]),
+                
+                0x02 or 0x03 or 0x04 or 0x05 or 0x06 or 0x07 or 0x08 or 0x09 or 0x0a or
+                0x0b => Of((XGInsertionType)(a3 - 0x02), value << 7),
+                0x0c => Of(XGInsertionType.PartNumber, value),
+                
+                0x20 or 0x21 or 0x22 or 0x23 or 0x24 or 
+                0x25 => Of(
+                    (XGInsertionType)(a3 - 0x16), // 0x20 -> 10 ... 0x25 -> 15 
+                    value << 7),
+                
+                0x30 or 0x32 or 0x34 or 0x36 or 0x38 or 0x3a or 0x3c or 0x3e or 0x40 or
+                0x42 => 
+                    // Insertion params 1-10, full MSB/LSB form (14-bit)
+                    syx.Length < 9 
+                        ? AnalyzedParameter.Type.Other
+                        : Of(
+                            (XGInsertionType)((a3 - 0x30) >> 1), // 0x30 -> 0 ... 0x42 -> 9
+                            (value << 7) | syx[7]),
+                
+                // 0x0d-0x11 control depths (not modeled, like variation
+                // 0x5c-0x60) and gaps
+                _ => AnalyzedParameter.Type.Other,
+            };
+
+            AnalyzedMessage Of(XGInsertionType type, int value) =>
+                AnalyzedMessage.Of(type, insertionNumber, value);
+        }
 
         // XG MULTI PART
         if (a1 == 0x08 /* A2 is the channel number*/) 
@@ -1121,25 +1383,25 @@ public static class MidiUtils
                     OfControllerChange(Midi.CC.BankSelectLSB),
                 0x03 =>
                     // Program change
-                    AnalyzedMessage.OfProgramChange(channel, data),
+                    AnalyzedMessage.OfProgramChange(channel, value),
                 0x05 =>
                     // Poly/mono
                     AnalyzedMessage.Of(AnalyzedParameter.OfControllerChange(
-                        data == 1 ? Midi.CC.PolyModeOn : Midi.CC.MonoModeOn, 0, channel)),
+                        value == 1 ? Midi.CC.PolyModeOn : Midi.CC.MonoModeOn, 0, channel)),
                 0x06 =>
                     // Same Note Number Key On Assign
                     AnalyzedMessage.Of(AnalyzedParameter.Of(
-                        data == 0 
+                        value == 0 
                             ? MidiChannel.Assign.Single 
                             : MidiChannel.Assign.FullMulti, channel)),
                 0x07 =>
                     // Part mode
                     AnalyzedParameter.Of(
-                        ChannelMidiParameter.DrumMap(data), channel),
+                        ChannelMidiParameter.DrumMap(value), channel),
                 0x08 =>
                     // Note shift
                     AnalyzedParameter.Of(
-                        (ChannelMidiParameter.Type.KeyShift, data - 64),
+                        (ChannelMidiParameter.Type.KeyShift, value - 64),
                         channel),
                 0x0b =>
                     // Volume
@@ -1147,7 +1409,7 @@ public static class MidiUtils
                 0x0e =>
                     // Pan, except for random,
                     // Which is a different parameter
-                    data == 0
+                    value == 0
                         ? AnalyzedParameter.Of(
                             (ChannelMidiParameter.Type.RandomPan, true),
                             channel)
@@ -1186,18 +1448,18 @@ public static class MidiUtils
                 0x20 =>
                     // MW LFO PMOD Depth (alias to modulation wheel range)
                     AnalyzedParameter.Of(ChannelMidiParameter.ModulationDepth(
-                        ((data - 63) / 127f) * 600), channel),
+                        ((value - 63) / 127f) * 600), channel),
                 
                 0x23 =>
                     // Bend pitch control (alias to pitch wheel range)
                     AnalyzedParameter.Of(ChannelMidiParameter.PitchWheelRange(
-                        /*centeredValue =*/data - 64), channel),
+                        /*centeredValue =*/value - 64), channel),
                 
                 _ => AnalyzedParameter.Type.Other
             };
 
             AnalyzedMessage OfControllerChange(Midi.CC cc) =>
-                AnalyzedParameter.OfControllerChange(cc, data, channel);
+                AnalyzedParameter.OfControllerChange(cc, value, channel);
         }
 
         // Drum part setup
@@ -1207,25 +1469,25 @@ public static class MidiUtils
             return a3 switch
             {
                 // Pitch coarse
-                0x00 => DrumSetup((DrumParameter.Type.PitchCoarse, data - 64)),
+                0x00 => DrumSetup((DrumParameter.Type.PitchCoarse, value - 64)),
                 // Pitch fine
-                0x01 => DrumSetup((DrumParameter.Type.PitchFine, data - 64)),
+                0x01 => DrumSetup((DrumParameter.Type.PitchFine, value - 64)),
                 // Level
-                0x02 => DrumSetup((DrumParameter.Type.Level, data)),
+                0x02 => DrumSetup((DrumParameter.Type.Level, value)),
                 // Assign Group
-                0x03 => DrumSetup((DrumParameter.Type.AssignGroup, data)),
+                0x03 => DrumSetup((DrumParameter.Type.AssignGroup, value)),
                 // Pan
-                0x04 => DrumSetup((DrumParameter.Type.Pan, data)),
+                0x04 => DrumSetup((DrumParameter.Type.Pan, value)),
                 // Reverb Send
-                0x05 => DrumSetup((DrumParameter.Type.ReverbSend, data)),
+                0x05 => DrumSetup((DrumParameter.Type.ReverbSend, value)),
                 // Chorus Send
-                0x06 => DrumSetup((DrumParameter.Type.ChorusSend, data)),
+                0x06 => DrumSetup((DrumParameter.Type.ChorusSend, value)),
                 // Variation Send
-                0x07 => DrumSetup((DrumParameter.Type.VariationSend, data)),
+                0x07 => DrumSetup((DrumParameter.Type.VariationSend, value)),
                 // Rev Note Off
-                0x09 => DrumSetup((DrumParameter.Type.RxNoteOff, data == 1)),
+                0x09 => DrumSetup((DrumParameter.Type.RxNoteOff, value == 1)),
                 // Rev Note On
-                0x0a => DrumSetup((DrumParameter.Type.RxNoteOn, data == 1)),
+                0x0a => DrumSetup((DrumParameter.Type.RxNoteOn, value == 1)),
 
                 _ => AnalyzedParameter.Type.Other,
             };

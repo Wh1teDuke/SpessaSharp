@@ -7,6 +7,41 @@ using SpessaSharp.Synthesizer.Engine.Parameters;
 namespace SpessaSharp.MIDI.Utils;
 
 
+// Temp place
+public enum XGReverbType
+{
+    T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15,
+    Type, Return, Pan,
+}
+
+public enum XGChorusType
+{
+    T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15,
+    Type, Return, Pan, SendToReverb
+}
+
+/// <summary> Variation connection mode </summary>
+public enum XGVariationConnection
+{
+    /// <summary> Routes all channels via sends (like reverb and chorus). </summary>
+    System,
+    /// <summary> Routes a single <c>partNumber</c> channel straight through. </summary>
+    Insertion,
+}
+
+public enum XGVariationType
+{
+    T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15,
+    Type, Return, Pan, SendToReverb, SendToChorus, PartNumber, Connection,
+}
+
+
+public enum XGInsertionType
+{
+    T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15,
+    Type, PartNumber,
+}
+
 /// <summary>
 /// Represents an analyzed channel drum setup parameter change, set via NRPN.
 /// <remarks> Channel number may be above 15 for multi-port MIDI setups. </remarks>
@@ -156,6 +191,8 @@ public readonly struct AnalyzedMessage
         XGChorusParam,
         /// <summary> A variation effect processor parameter message (Yamaha XG). </summary>
         XGVariationParam,
+        /// <summary> An insertion effect processor parameter message (Yamaha XG). </summary>
+        XGInsertionParam,
         
         /// <summary> Represents an analyzed map drum setup parameter change, set via System Exclusive. </summary>
         MapDrumSetupMessage,
@@ -174,7 +211,12 @@ public readonly struct AnalyzedMessage
         [FieldOffset(0)] public (Effect.GSReverbType Type, int Value) _gsReverb;
         [FieldOffset(0)] public (Effect.GSChorusType Type, int Value) _gsChorus;
         [FieldOffset(0)] public (Effect.GSDelayType Type, int Value) _gsDelay;
-        [FieldOffset(0)] public (int Type, int Value, bool intType) _insertion;
+        [FieldOffset(0)] public (int Type, int Value, bool intType) _gsInsertion;
+        
+        [FieldOffset(0)] public (XGReverbType Type, int Value) _xgReverb;
+        [FieldOffset(0)] public (XGChorusType Type, int Value) _xgChorus;
+        [FieldOffset(0)] public (XGVariationType Type, int Value) _xgVariation;
+        [FieldOffset(0)] public (XGInsertionType Type, int Number, int Value) _xgInsertion;
     }
 
     /// <summary> The message type identifier. </summary>
@@ -202,7 +244,10 @@ public readonly struct AnalyzedMessage
             Type.MapDrumSetupMessage, Type.ProgramChange, Type.AnalyzedParameter,
             Type.GlobalMidiParameter, Type.UserDrumSetup,
             Type.GSReverbParameter, Type.GSChorusParameter, Type.GSDelayParameter, 
-            Type.GSInsertionParameter, ];
+            Type.GSInsertionParameter,
+            Type.XGReverbParam, Type.XGChorusParam, Type.XGInsertionParam,
+            Type.XGVariationParam,
+        ];
         return notAllowed.Contains(type) 
             ? throw new ArgumentException("Invalid argument: " + type) 
             : new AnalyzedMessage { MType = type };
@@ -287,7 +332,7 @@ public readonly struct AnalyzedMessage
         {
             MType = Type.GSInsertionParameter, 
             Data = new InternalData 
-                { _insertion = ((int)insertionType, value, false) },
+                { _gsInsertion = ((int)insertionType, value, false) },
         };
     
     public static AnalyzedMessage OfInsertionParameter(
@@ -296,7 +341,43 @@ public readonly struct AnalyzedMessage
         {
             MType = Type.GSInsertionParameter, 
             Data = new InternalData 
-                { _insertion = (parameter, value, true) },
+                { _gsInsertion = (parameter, value, true) },
+        };
+    
+    public static AnalyzedMessage Of(XGReverbType type, int value) =>
+        new()
+        {
+            MType = Type.XGReverbParam, 
+            Data = new InternalData { _xgReverb = (type, value) },
+        };
+    
+    public static AnalyzedMessage Of(XGChorusType type, int value) =>
+        new()
+        {
+            MType = Type.XGChorusParam, 
+            Data = new InternalData { _xgChorus = (type, value) },
+        };
+    
+    public static AnalyzedMessage Of(
+        XGInsertionType type, int number, int value) =>
+        new()
+        {
+            MType = Type.XGInsertionParam,
+            Data = new InternalData { _xgInsertion = (type, number, value) },
+        };
+    
+    public static AnalyzedMessage Of(XGVariationType type, int value) =>
+        new()
+        {
+            MType = Type.XGVariationParam, 
+            Data = new InternalData { _xgVariation = (type, value) },
+        };
+    
+    public static AnalyzedMessage Of(XGVariationConnection type) =>
+        new()
+        {
+            MType = Type.XGVariationParam, 
+            Data = new InternalData { _xgVariation = (XGVariationType.Connection, (int)type) },
         };
         
     /// <summary> Represents an analyzed channel GS Reverb Processor change. </summary>
@@ -309,13 +390,29 @@ public readonly struct AnalyzedMessage
     public (Effect.GSDelayType Type, int Value)? AsGSDelayParameter =>
         MType == Type.GSDelayParameter ? Data._gsDelay : null;
 
+    /// <summary> A reverb effect processor parameter message (Yamaha XG). </summary>
+    public (XGReverbType, int Value)? AsXGReverbParameter =>
+        MType == Type.XGReverbParam ? Data._xgReverb : null;
+    
+    /// <summary> A chorus effect processor parameter message (Yamaha XG). </summary>
+    public (XGChorusType, int Value)? AsXGChorusParameter =>
+        MType == Type.XGChorusParam ? Data._xgChorus : null;
+    
+    /// <summary> A variation effect processor parameter message (Yamaha XG). </summary>
+    public (XGVariationType, int Value)? AsXGVariationParameter =>
+        MType == Type.XGVariationParam ? Data._xgVariation : null;
+    
+    /// <summary> An insertion effect processor parameter message (Yamaha XG). </summary>
+    public (XGInsertionType, int Number, int Value)? AsXGInsertionParameter =>
+        MType == Type.XGInsertionParam ? Data._xgInsertion : null;
+
     /// <summary> Represents an analyzed channel GS Insertion Processor change. </summary>
     public (Effect.InsertionType? Type, int? Parameter, int Value)? AsGSInsertionParameter
     {
         get
         {
             if (MType != Type.GSDelayParameter) return null;
-            var i = Data._insertion;
+            var i = Data._gsInsertion;
             return (
                 i.intType ? null : (Effect.InsertionType)i.Type,
                 !i.intType ? null : i.Type,
