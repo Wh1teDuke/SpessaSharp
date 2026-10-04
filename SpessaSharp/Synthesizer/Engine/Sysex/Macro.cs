@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine.Sysex;
@@ -123,7 +124,7 @@ public static class Macro
         }
 
         synth.CallEvent(Event.CbEffectChange.OfReverb(
-            Effect.GSReverbType.Macro, macro));
+            GSEffect.GSReverbType.Macro, macro));
     }
 
     public static void SetChorus(Synthesizer synth, Chorus macro) =>
@@ -234,7 +235,7 @@ public static class Macro
         }
         
         synth.CallEvent(Event.CbEffectChange.OfChorus(
-            Effect.GSChorusType.Macro, macro));
+            GSEffect.GSChorusType.Macro, macro));
     }
 
     public static void SetDelay(Synthesizer synth, Delay macro) =>
@@ -382,6 +383,6 @@ public static class Macro
         }
         
         synth.CallEvent(Event.CbEffectChange.OfDelay(
-            Effect.GSDelayType.Macro, macro));
+            GSEffect.GSDelayType.Macro, macro));
     }
 }

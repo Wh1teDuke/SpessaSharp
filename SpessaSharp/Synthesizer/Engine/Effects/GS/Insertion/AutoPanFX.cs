@@ -1,6 +1,6 @@
 namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
-public sealed class AutoPanFX: Effect.GSInsertionProcessor
+public sealed class AutoPanFX: GSEffect.GSInsertionProcessor
 {
     public override int Type => 0x01_26;
     

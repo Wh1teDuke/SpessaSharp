@@ -1,8 +1,8 @@
 using SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
-namespace SpessaSharp.Synthesizer.Engine.Effects;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 
-public static class Effect
+public static class GSEffect
 {
     public enum GSReverbType
     {

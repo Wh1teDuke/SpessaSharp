@@ -3,7 +3,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 /// <summary>
 /// The default GS Chorus implementation for <see cref="SpessaSharpProcessor"/>.
 /// </summary>
-public sealed class GSChorus: Effect.ChorusProcessor
+public sealed class GSChorus: GSEffect.ChorusProcessor
 {
     /// <summary> Cutoff frequency </summary>
     private float _preLPFfc = 8_000;
@@ -232,7 +232,7 @@ public sealed class GSChorus: Effect.ChorusProcessor
         _preLPFz = z;
     }
 
-    public override Effect.GSChorusParameter GetSnapshot() =>
+    public override GSEffect.GSChorusParameter GetSnapshot() =>
         new()
         {
             PreLowPass          = _preLowPass,

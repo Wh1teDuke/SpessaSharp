@@ -1,6 +1,7 @@
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -122,7 +123,7 @@ public static class MidiUtils
     /// <param name="value">The value to set it to.</param>
     /// <returns>The <see cref="MidiMessage"/> needed to set this GS Reverb Parameter.</returns>
     public static MidiMessage SetGSReverbParameter(
-        int ticks, Effect.GSReverbType parameter, int value)
+        int ticks, GSEffect.GSReverbType parameter, int value)
     {
         ReadOnlySpan<byte> gsReverbAddressMap = 
             [0x31, 0x32, 0x33, 0x34, 0x35, 0x37,];
@@ -140,7 +141,7 @@ public static class MidiUtils
     /// <param name="value">The value to set it to.</param>
     /// <returns>The <see cref="MidiMessage"/> needed to set this GS Chorus Parameter.</returns>
     public static MidiMessage SetGSChorusParameter(
-        int ticks, Effect.GSChorusType parameter, int value)
+        int ticks, GSEffect.GSChorusType parameter, int value)
     {
         ReadOnlySpan<byte> gsChorusAddressMap = 
             [0x39, 0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f, 0x40];
@@ -159,7 +160,7 @@ public static class MidiUtils
     /// <returns>The <see cref="MidiMessage"/> needed to set this GS Delay Parameter.</returns>
     /// <exception cref="Exception"></exception>
     public static MidiMessage SetGSDelayParameter(
-        int ticks, Effect.GSDelayType parameter, int value)
+        int ticks, GSEffect.GSDelayType parameter, int value)
     {
         ReadOnlySpan<byte> gsDelayParameter = 
             [0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5a];
@@ -177,15 +178,15 @@ public static class MidiUtils
     /// <param name="value">The value to set it to.</param>
     /// <returns>The <see cref="MidiMessage"/> needed to set this GS Insertion Parameter.</returns>
     public static MidiMessage SetGSInsertionParameter(
-        int ticks, Effect.InsertionType parameter, int value)
+        int ticks, GSEffect.InsertionType parameter, int value)
     {
         return parameter switch
         {
-            Effect.InsertionType.Type => GsMessage(ticks, 0x40, 0x03, 0x00,
+            GSEffect.InsertionType.Type => GsMessage(ticks, 0x40, 0x03, 0x00,
                 [(byte)((value >> 8) & 0x7f), (byte)(value & 0x7f)]),
-            Effect.InsertionType.SendLevelToReverb => GsMessage(ticks, 0x40, 0x03, 0x17, [(byte)value]),
-            Effect.InsertionType.SendLevelToChorus => GsMessage(ticks, 0x40, 0x03, 0x18, [(byte)value]),
-            Effect.InsertionType.SendLevelToDelay => GsMessage(ticks, 0x40, 0x03, 0x19, [(byte)value]),
+            GSEffect.InsertionType.SendLevelToReverb => GsMessage(ticks, 0x40, 0x03, 0x17, [(byte)value]),
+            GSEffect.InsertionType.SendLevelToChorus => GsMessage(ticks, 0x40, 0x03, 0x18, [(byte)value]),
+            GSEffect.InsertionType.SendLevelToDelay => GsMessage(ticks, 0x40, 0x03, 0x19, [(byte)value]),
             _ => throw new ArgumentOutOfRangeException(nameof(parameter), parameter, null)
         };
     }
@@ -1142,10 +1143,10 @@ public static class MidiUtils
                                 // Match 8850 manual, page 231
                                 // All match except for plate which is 8 in GM and 5 in GS
                                 0x00 => AnalyzedMessage.Of(
-                                    Effect.GSReverbType.Macro, value == 0x08 ? 0x05 : value!.Value),
+                                    GSEffect.GSReverbType.Macro, value == 0x08 ? 0x05 : value!.Value),
                                 // Reverb time
                                 0x01 => AnalyzedMessage.Of(
-                                    Effect.GSReverbType.Time, value!.Value),
+                                    GSEffect.GSReverbType.Time, value!.Value),
                                 _ => AnalyzedParameter.Type.Other
                             }),
                         0x02 =>
@@ -1158,23 +1159,23 @@ public static class MidiUtils
                                     // Match 8850 manual, page 231
                                     // All match
                                     AnalyzedMessage.Of(
-                                        Effect.GSChorusType.Macro, value!.Value),
+                                        GSEffect.GSChorusType.Macro, value!.Value),
                                 0x01 =>
                                     // Mod rate
                                     AnalyzedMessage.Of(
-                                        Effect.GSChorusType.Rate, value!.Value),
+                                        GSEffect.GSChorusType.Rate, value!.Value),
                                 0x02 =>
                                     // Mod depth
                                     AnalyzedMessage.Of(
-                                        Effect.GSChorusType.Depth, value!.Value),
+                                        GSEffect.GSChorusType.Depth, value!.Value),
                                 0x03 =>
                                     // Mod feedback
                                     AnalyzedMessage.Of(
-                                        Effect.GSChorusType.Feedback, value!.Value),
+                                        GSEffect.GSChorusType.Feedback, value!.Value),
                                 0x04 =>
                                     // Mod send to reverb
                                     AnalyzedMessage.Of(
-                                        Effect.GSChorusType.SendLevelToReverb, value!.Value),
+                                        GSEffect.GSChorusType.SendLevelToReverb, value!.Value),
                                 _ => AnalyzedParameter.Type.Other
                             }),
                         _ => AnalyzedParameter.Type.Other
@@ -1720,34 +1721,34 @@ public static class MidiUtils
         {
             return a3 switch
             {
-                0x30 => AnalyzedMessage.Of(Effect.GSReverbType.Macro, value),
-                0x31 => AnalyzedMessage.Of(Effect.GSReverbType.Character, value),
-                0x32 => AnalyzedMessage.Of(Effect.GSReverbType.PreLowPass, value),
-                0x33 => AnalyzedMessage.Of(Effect.GSReverbType.Level, value),
-                0x34 => AnalyzedMessage.Of(Effect.GSReverbType.Time, value),
-                0x35 => AnalyzedMessage.Of(Effect.GSReverbType.DelayFeedback, value),
+                0x30 => AnalyzedMessage.Of(GSEffect.GSReverbType.Macro, value),
+                0x31 => AnalyzedMessage.Of(GSEffect.GSReverbType.Character, value),
+                0x32 => AnalyzedMessage.Of(GSEffect.GSReverbType.PreLowPass, value),
+                0x33 => AnalyzedMessage.Of(GSEffect.GSReverbType.Level, value),
+                0x34 => AnalyzedMessage.Of(GSEffect.GSReverbType.Time, value),
+                0x35 => AnalyzedMessage.Of(GSEffect.GSReverbType.DelayFeedback, value),
                 // 0x36 is intentionally gone as it was reverb send to chorus in SC-55
-                0x37 => AnalyzedMessage.Of(Effect.GSReverbType.PreDelayTime, value),
-                0x38 => AnalyzedMessage.Of(Effect.GSChorusType.Macro, value),
-                0x39 => AnalyzedMessage.Of(Effect.GSChorusType.PreLowPass, value),
-                0x3a => AnalyzedMessage.Of(Effect.GSChorusType.Level, value),
-                0x3b => AnalyzedMessage.Of(Effect.GSChorusType.Feedback, value),
-                0x3c => AnalyzedMessage.Of(Effect.GSChorusType.Delay, value),
-                0x3d => AnalyzedMessage.Of(Effect.GSChorusType.Rate, value),
-                0x3e => AnalyzedMessage.Of(Effect.GSChorusType.Depth, value),
-                0x3f => AnalyzedMessage.Of(Effect.GSChorusType.SendLevelToReverb, value),
-                0x40 => AnalyzedMessage.Of(Effect.GSChorusType.SendLevelToDelay, value),
-                0x50 => AnalyzedMessage.Of(Effect.GSDelayType.Macro, value),
-                0x51 => AnalyzedMessage.Of(Effect.GSDelayType.PreLowPass, value),
-                0x52 => AnalyzedMessage.Of(Effect.GSDelayType.TimeCenter, value),
-                0x53 => AnalyzedMessage.Of(Effect.GSDelayType.TimeRatioLeft, value),
-                0x54 => AnalyzedMessage.Of(Effect.GSDelayType.TimeRatioRight, value),
-                0x55 => AnalyzedMessage.Of(Effect.GSDelayType.LevelCenter, value),
-                0x56 => AnalyzedMessage.Of(Effect.GSDelayType.LevelLeft, value),
-                0x57 => AnalyzedMessage.Of(Effect.GSDelayType.LevelRight, value),
-                0x58 => AnalyzedMessage.Of(Effect.GSDelayType.Level, value),
-                0x59 => AnalyzedMessage.Of(Effect.GSDelayType.Feedback, value),
-                0x5a => AnalyzedMessage.Of(Effect.GSDelayType.SendLevelToReverb, value),
+                0x37 => AnalyzedMessage.Of(GSEffect.GSReverbType.PreDelayTime, value),
+                0x38 => AnalyzedMessage.Of(GSEffect.GSChorusType.Macro, value),
+                0x39 => AnalyzedMessage.Of(GSEffect.GSChorusType.PreLowPass, value),
+                0x3a => AnalyzedMessage.Of(GSEffect.GSChorusType.Level, value),
+                0x3b => AnalyzedMessage.Of(GSEffect.GSChorusType.Feedback, value),
+                0x3c => AnalyzedMessage.Of(GSEffect.GSChorusType.Delay, value),
+                0x3d => AnalyzedMessage.Of(GSEffect.GSChorusType.Rate, value),
+                0x3e => AnalyzedMessage.Of(GSEffect.GSChorusType.Depth, value),
+                0x3f => AnalyzedMessage.Of(GSEffect.GSChorusType.SendLevelToReverb, value),
+                0x40 => AnalyzedMessage.Of(GSEffect.GSChorusType.SendLevelToDelay, value),
+                0x50 => AnalyzedMessage.Of(GSEffect.GSDelayType.Macro, value),
+                0x51 => AnalyzedMessage.Of(GSEffect.GSDelayType.PreLowPass, value),
+                0x52 => AnalyzedMessage.Of(GSEffect.GSDelayType.TimeCenter, value),
+                0x53 => AnalyzedMessage.Of(GSEffect.GSDelayType.TimeRatioLeft, value),
+                0x54 => AnalyzedMessage.Of(GSEffect.GSDelayType.TimeRatioRight, value),
+                0x55 => AnalyzedMessage.Of(GSEffect.GSDelayType.LevelCenter, value),
+                0x56 => AnalyzedMessage.Of(GSEffect.GSDelayType.LevelLeft, value),
+                0x57 => AnalyzedMessage.Of(GSEffect.GSDelayType.LevelRight, value),
+                0x58 => AnalyzedMessage.Of(GSEffect.GSDelayType.Level, value),
+                0x59 => AnalyzedMessage.Of(GSEffect.GSDelayType.Feedback, value),
+                0x5a => AnalyzedMessage.Of(GSEffect.GSDelayType.SendLevelToReverb, value),
                 _ => AnalyzedParameter.Type.Other
             };
         }
@@ -1759,16 +1760,16 @@ public static class MidiUtils
             {
                 case 0x00: 
                     return AnalyzedMessage.Of(
-                        Effect.InsertionType.Type, (value << 8) | syx[8]);
+                        GSEffect.InsertionType.Type, (value << 8) | syx[8]);
                 case 0x17:
                     return AnalyzedMessage.Of(
-                        Effect.InsertionType.SendLevelToReverb, value);
+                        GSEffect.InsertionType.SendLevelToReverb, value);
                 case 0x18:
                     return AnalyzedMessage.Of(
-                        Effect.InsertionType.SendLevelToChorus, value);
+                        GSEffect.InsertionType.SendLevelToChorus, value);
                 case 0x19:
                     return AnalyzedMessage.Of(
-                        Effect.InsertionType.SendLevelToDelay, value);
+                        GSEffect.InsertionType.SendLevelToDelay, value);
             }
             
             if (a3 is >= 0x03 and <= 0x16)

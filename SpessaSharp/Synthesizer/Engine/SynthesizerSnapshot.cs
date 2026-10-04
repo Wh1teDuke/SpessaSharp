@@ -2,6 +2,7 @@ using System.Collections;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine;
@@ -12,10 +13,10 @@ public sealed class SynthesizerSnapshot(
     GlobalMidiParameter[] midiParameters,
     BitArray lockedParameters,
     GlobalSystemParameter[] systemParameters,
-    Effect.GSReverbParameter gsReverbProcessor,
-    Effect.GSChorusParameter gsChorusProcessor,
-    Effect.GSDelayParameter gsDelayProcessor,
-    Effect.GSInsertionProcessorSnapshot gsInsertionProcessorProcessor,
+    GSEffect.GSReverbParameter gsReverbProcessor,
+    GSEffect.GSChorusParameter gsChorusProcessor,
+    GSEffect.GSDelayParameter gsDelayProcessor,
+    GSEffect.GSInsertionProcessorSnapshot gsInsertionProcessorProcessor,
     UserDrumSetParameter.Entry[][] userDrumSets)
 {
     /// <summary>The individual channel snapshots.</summary>
@@ -25,10 +26,10 @@ public sealed class SynthesizerSnapshot(
     public readonly BitArray LockedParameters = lockedParameters;
     public readonly GlobalSystemParameter[] SystemParameters = systemParameters;
     
-    public readonly Effect.GSReverbParameter GSReverbProcessor = gsReverbProcessor;
-    public readonly Effect.GSChorusParameter GSChorusProcessor = gsChorusProcessor;
-    public readonly Effect.GSDelayParameter GSDelayProcessor = gsDelayProcessor;
-    public Effect.GSInsertionProcessorSnapshot InsertionProcessor = gsInsertionProcessorProcessor;
+    public readonly GSEffect.GSReverbParameter GSReverbProcessor = gsReverbProcessor;
+    public readonly GSEffect.GSChorusParameter GSChorusProcessor = gsChorusProcessor;
+    public readonly GSEffect.GSDelayParameter GSDelayProcessor = gsDelayProcessor;
+    public GSEffect.GSInsertionProcessorSnapshot InsertionProcessor = gsInsertionProcessorProcessor;
 
     public readonly UserDrumSetParameter.Entry[][] UserDrumSets = userDrumSets;
 

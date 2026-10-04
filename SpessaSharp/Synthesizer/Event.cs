@@ -3,6 +3,7 @@ using SpessaSharp.MIDI;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -104,49 +105,49 @@ public readonly struct Event
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
         public readonly record struct Reverb(
-            Effect.GSReverbType Type, int Value);
+            GSEffect.GSReverbType Type, int Value);
         
         public static CbEffectChange OfReverb(
-            Effect.GSReverbType type, int value) =>
+            GSEffect.GSReverbType type, int value) =>
             new (Type.Reverb, (int)type, value);
 
         public Reverb AsReverb =>
             EffectType != Type.Chorus
                 ? throw SpessaException.Invalid(
                     $"Expected type Reverb, got {EffectType}")
-                : new Reverb((Effect.GSReverbType)Parameter, Value);
+                : new Reverb((GSEffect.GSReverbType)Parameter, Value);
 
         /// <summary> </summary>
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
         public readonly record struct Chorus(
-            Effect.GSChorusType Type, int Value);
+            GSEffect.GSChorusType Type, int Value);
 
         public static CbEffectChange OfChorus(
-            Effect.GSChorusType type, int value) =>
+            GSEffect.GSChorusType type, int value) =>
             new (Type.Chorus, (int)type, value);
 
         public Chorus AsChorus =>
             EffectType != Type.Chorus
                 ? throw SpessaException.Invalid(
                     $"Expected type Chorus, got {EffectType}")
-                : new Chorus((Effect.GSChorusType)Parameter, Value);
+                : new Chorus((GSEffect.GSChorusType)Parameter, Value);
         
         /// <summary> </summary>
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
         public readonly record struct Delay(
-            Effect.GSDelayType Type, int Value);
+            GSEffect.GSDelayType Type, int Value);
         
         public static CbEffectChange OfDelay(
-            Effect.GSDelayType type, int value) =>
+            GSEffect.GSDelayType type, int value) =>
             new (Type.Delay, (int)type, value);
 
         public Delay AsDelay =>
             EffectType != Type.Delay
                 ? throw SpessaException.Invalid(
                     $"Expected type Delay, got {EffectType}")
-                : new Delay((Effect.GSDelayType)Parameter, Value);
+                : new Delay((GSEffect.GSDelayType)Parameter, Value);
         
         /// <summary> </summary>
         /// <param name="Parameter">

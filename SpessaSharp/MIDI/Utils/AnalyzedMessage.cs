@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.MIDI.Utils;
@@ -208,9 +209,9 @@ public readonly struct AnalyzedMessage
         [FieldOffset(0)] public (int MidiNote,
             // 0-based
             int DrumSet, UserDrumSetParameter.Entry Parameter) _userDrumSetup;
-        [FieldOffset(0)] public (Effect.GSReverbType Type, int Value) _gsReverb;
-        [FieldOffset(0)] public (Effect.GSChorusType Type, int Value) _gsChorus;
-        [FieldOffset(0)] public (Effect.GSDelayType Type, int Value) _gsDelay;
+        [FieldOffset(0)] public (GSEffect.GSReverbType Type, int Value) _gsReverb;
+        [FieldOffset(0)] public (GSEffect.GSChorusType Type, int Value) _gsChorus;
+        [FieldOffset(0)] public (GSEffect.GSDelayType Type, int Value) _gsDelay;
         [FieldOffset(0)] public (int Type, int Value, bool intType) _gsInsertion;
         
         [FieldOffset(0)] public (XGReverbType Type, int Value) _xgReverb;
@@ -303,7 +304,7 @@ public readonly struct AnalyzedMessage
     
         
     public static AnalyzedMessage Of(
-        Effect.GSReverbType reverbType, int value) =>
+        GSEffect.GSReverbType reverbType, int value) =>
         new()
         {
             MType = Type.GSReverbParameter, 
@@ -311,7 +312,7 @@ public readonly struct AnalyzedMessage
         };
     
     public static AnalyzedMessage Of(
-        Effect.GSChorusType chorusType, int value) =>
+        GSEffect.GSChorusType chorusType, int value) =>
         new()
         {
             MType = Type.GSChorusParameter, 
@@ -319,7 +320,7 @@ public readonly struct AnalyzedMessage
         };
     
     public static AnalyzedMessage Of(
-        Effect.GSDelayType delayType, int value) =>
+        GSEffect.GSDelayType delayType, int value) =>
         new()
         {
             MType = Type.GSDelayParameter, 
@@ -327,7 +328,7 @@ public readonly struct AnalyzedMessage
         };
     
     public static AnalyzedMessage Of(
-        Effect.InsertionType insertionType, int value) =>
+        GSEffect.InsertionType insertionType, int value) =>
         new()
         {
             MType = Type.GSInsertionParameter, 
@@ -381,13 +382,13 @@ public readonly struct AnalyzedMessage
         };
         
     /// <summary> Represents an analyzed channel GS Reverb Processor change. </summary>
-    public (Effect.GSReverbType Type, int Value)? AsGSReverbParameter =>
+    public (GSEffect.GSReverbType Type, int Value)? AsGSReverbParameter =>
         MType == Type.GSReverbParameter ? Data._gsReverb : null;
     /// <summary> Represents an analyzed channel GS Chorus Processor change. </summary>
-    public (Effect.GSChorusType Type, int Value)? AsGSChorusParameter =>
+    public (GSEffect.GSChorusType Type, int Value)? AsGSChorusParameter =>
         MType == Type.GSChorusParameter ? Data._gsChorus : null;
     /// <summary> Represents an analyzed channel GS Delay Processor change. </summary>
-    public (Effect.GSDelayType Type, int Value)? AsGSDelayParameter =>
+    public (GSEffect.GSDelayType Type, int Value)? AsGSDelayParameter =>
         MType == Type.GSDelayParameter ? Data._gsDelay : null;
 
     /// <summary> A reverb effect processor parameter message (Yamaha XG). </summary>
@@ -407,14 +408,14 @@ public readonly struct AnalyzedMessage
         MType == Type.XGInsertionParam ? Data._xgInsertion : null;
 
     /// <summary> Represents an analyzed channel GS Insertion Processor change. </summary>
-    public (Effect.InsertionType? Type, int? Parameter, int Value)? AsGSInsertionParameter
+    public (GSEffect.InsertionType? Type, int? Parameter, int Value)? AsGSInsertionParameter
     {
         get
         {
             if (MType != Type.GSDelayParameter) return null;
             var i = Data._gsInsertion;
             return (
-                i.intType ? null : (Effect.InsertionType)i.Type,
+                i.intType ? null : (GSEffect.InsertionType)i.Type,
                 !i.intType ? null : i.Type,
                 i.Value);
         }

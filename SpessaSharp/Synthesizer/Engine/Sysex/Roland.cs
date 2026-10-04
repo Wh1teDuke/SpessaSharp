@@ -4,6 +4,7 @@ using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -192,7 +193,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Reverb Character", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.GSReverbType.Character,
+                                            GSEffect.GSReverbType.Character,
                                             data));
                                     break;
                                 case 0x32:
@@ -201,7 +202,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Reverb Pre-LPF", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.GSReverbType.PreLowPass,
+                                            GSEffect.GSReverbType.PreLowPass,
                                             data));
                                     break;
                                 case 0x33: 
@@ -210,7 +211,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Reverb Level", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.GSReverbType.Level,
+                                            GSEffect.GSReverbType.Level,
                                             data));
                                     break;
                                 case 0x34: 
@@ -219,7 +220,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Reverb Time", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.GSReverbType.Time,
+                                            GSEffect.GSReverbType.Time,
                                             data));
                                     break;
                                 case 0x35: 
@@ -228,7 +229,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Reverb Delay Feedback", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.GSReverbType.DelayFeedback,
+                                            GSEffect.GSReverbType.DelayFeedback,
                                             data));
                                     break;
 
@@ -242,7 +243,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Reverb Predelay Time", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.GSReverbType.PreDelayTime,
+                                            GSEffect.GSReverbType.PreDelayTime,
                                             data));
                                     break;
 
@@ -260,7 +261,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Pre-LPF", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.PreLowPass,
+                                            GSEffect.GSChorusType.PreLowPass,
                                             data));
                                     break;
                                 case 0x3a: 
@@ -269,7 +270,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Chorus Level", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.Level,
+                                            GSEffect.GSChorusType.Level,
                                             data));
                                     break;
                                 case 0x3b: 
@@ -278,7 +279,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Chorus Feedback", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.Feedback,
+                                            GSEffect.GSChorusType.Feedback,
                                             data));
                                     break;
                                 case 0x3c: 
@@ -287,7 +288,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Chorus Delay", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.Delay,
+                                            GSEffect.GSChorusType.Delay,
                                             data));
                                     break;
                                 case 0x3d: 
@@ -296,7 +297,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Chorus Rate", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.Rate,
+                                            GSEffect.GSChorusType.Rate,
                                             data));
                                     break;
                                 case 0x3e: 
@@ -305,7 +306,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Chorus Depth", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.Depth,
+                                            GSEffect.GSChorusType.Depth,
                                             data));
                                     break;
                                 case 0x3f: 
@@ -316,7 +317,7 @@ internal static class Roland
                                         "Chorus Send Level To Reverb", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.SendLevelToReverb,
+                                            GSEffect.GSChorusType.SendLevelToReverb,
                                             data));
                                     break;
                                 case 0x40: 
@@ -329,7 +330,7 @@ internal static class Roland
                                         "Chorus Send Level To Delay", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.GSChorusType.SendLevelToDelay,
+                                            GSEffect.GSChorusType.SendLevelToDelay,
                                             data));
                                     break;
 
@@ -347,7 +348,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Pre-LPF", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.PreLowPass,
+                                            GSEffect.GSDelayType.PreLowPass,
                                             data));
                                     break;
                                 case 0x52: 
@@ -356,7 +357,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Time Center", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.TimeCenter,
+                                            GSEffect.GSDelayType.TimeCenter,
                                             data));
                                     break;
                                 case 0x53: 
@@ -365,7 +366,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Time Ratio Left", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.TimeRatioLeft,
+                                            GSEffect.GSDelayType.TimeRatioLeft,
                                             data));
                                     break;
                                 case 0x54: 
@@ -374,7 +375,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Time Ratio Right", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.TimeRatioRight,
+                                            GSEffect.GSDelayType.TimeRatioRight,
                                             data));
                                     break;
                                 case 0x55: 
@@ -383,7 +384,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Level Center", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.LevelCenter,
+                                            GSEffect.GSDelayType.LevelCenter,
                                             data));
                                     break;
                                 case 0x56: 
@@ -392,7 +393,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Level Left", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.LevelLeft,
+                                            GSEffect.GSDelayType.LevelLeft,
                                             data));
                                     break;
                                 case 0x57: 
@@ -401,7 +402,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Level Right", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.LevelRight,
+                                            GSEffect.GSDelayType.LevelRight,
                                             data));
                                     break;
                                 case 0x58: 
@@ -410,7 +411,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Level", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.Level,
+                                            GSEffect.GSDelayType.Level,
                                             data));
                                     break;
                                 case 0x59: 
@@ -419,7 +420,7 @@ internal static class Roland
                                     SpessaLog.GSInfo("Delay Feedback", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.Feedback,
+                                            GSEffect.GSDelayType.Feedback,
                                             data));
                                     break;
                                 case 0x5a: 
@@ -430,7 +431,7 @@ internal static class Roland
                                         "Delay Send Level To Reverb", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.GSDelayType.SendLevelToReverb,
+                                            GSEffect.GSDelayType.SendLevelToReverb,
                                             data));
                                     break;
                             }

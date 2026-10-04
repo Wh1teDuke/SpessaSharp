@@ -4,7 +4,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 /// The Auto Wah cyclically controls a filter to create cyclic change in timbre.<br/>
 /// Type: Mono
 /// </summary>
-public sealed class AutoWahFX: Effect.GSInsertionProcessor
+public sealed class AutoWahFX: GSEffect.GSInsertionProcessor
 {
     public static class Param
     {

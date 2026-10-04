@@ -5,7 +5,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 /// <summary>
 /// The default GS Reverb implementation for <see cref="SpessaSharpProcessor"/>
 /// </summary>
-public sealed class GSReverb: Effect.ReverbProcessor
+public sealed class GSReverb: GSEffect.ReverbProcessor
 {
     /// <summary> Dattorro reverb processor. </summary>
     private readonly DattorroReverb _dattorro;
@@ -353,7 +353,7 @@ public sealed class GSReverb: Effect.ReverbProcessor
         }
     }
 
-    public override Effect.GSReverbParameter GetSnapshot() =>
+    public override GSEffect.GSReverbParameter GetSnapshot() =>
         new()
         {
             Level           = _level,

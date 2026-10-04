@@ -5,7 +5,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
 /// <summary>
 /// The default GS Delay implementation for <see cref="SpessaSharpProcessor"/>
 /// </summary>
-public sealed class GSDelay: Effect.DelayProcessor
+public sealed class GSDelay: GSEffect.DelayProcessor
 {
     /// <summary>
     /// SC-8850 manual p.236<br/>
@@ -320,7 +320,7 @@ public sealed class GSDelay: Effect.DelayProcessor
         _writeIndex = writeIndex;
     }
 
-    public override Effect.GSDelayParameter GetSnapshot() =>
+    public override GSEffect.GSDelayParameter GetSnapshot() =>
         new()
         {
             Level =  _level,
