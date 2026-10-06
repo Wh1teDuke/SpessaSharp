@@ -28,7 +28,7 @@ public static class Macro
     
     public static void SetReverb(Synthesizer synth, int macro)
     {
-        if (synth.SystemParameters.ReverbLock)
+        if (synth.SystemParameters.GSReverbLock)
             return;
 
         // SC-8850 manual page 81
@@ -132,7 +132,7 @@ public static class Macro
     
     public static void SetChorus(Synthesizer synth, int macro) 
     {
-        if (synth.SystemParameters.ChorusLock)
+        if (synth.SystemParameters.GSChorusLock)
             return;
 
         // SC-8850 manual page 83
@@ -243,7 +243,7 @@ public static class Macro
     
     public static void SetDelay(Synthesizer synth, int macro)
     {
-        if (synth.SystemParameters.DelayLock)
+        if (synth.SystemParameters.GSDelayLock)
             return;
 
         // SC-8850 manual page 85

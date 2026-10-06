@@ -38,7 +38,7 @@ public sealed class SynthesizerSnapshot(
     public readonly GSEffect.GSReverbParameter GSReverbProcessor = gsReverbProcessor;
     public readonly GSEffect.GSChorusParameter GSChorusProcessor = gsChorusProcessor;
     public readonly GSEffect.GSDelayParameter GSDelayProcessor = gsDelayProcessor;
-    public GSEffect.GSInsertionProcessorSnapshot InsertionProcessor = gsInsertionProcessorProcessor;
+    public GSEffect.GSInsertionProcessorSnapshot GSInsertionProcessor = gsInsertionProcessorProcessor;
 
     /// <summary> A snapshot of the XG reverb block. </summary>
     public readonly XGSystemEffectBlock.Snapshot XGReverbBlock = xgReverbBlock;
@@ -126,7 +126,7 @@ public sealed class SynthesizerSnapshot(
         dp.TimeRatioRight = ds.TimeRatioRight;
 
         // Restore insertion
-        var ins = InsertionProcessor;
+        var ins = GSInsertionProcessor;
         synth.SystemExclusive(
             MidiUtils.Gs(0x40, 0x03, 0x00,
             (byte)(ins.Type >> 8), (byte)(ins.Type & 0x7f)));
@@ -173,6 +173,6 @@ public sealed class SynthesizerSnapshot(
             synth.Set(param);
         
         // Then update active effects
-        synth.UpdateActiveEffects();
+        synth.UpdateActiveGSEffects();
     }
 }

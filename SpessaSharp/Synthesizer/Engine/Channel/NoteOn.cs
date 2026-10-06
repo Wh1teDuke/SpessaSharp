@@ -167,7 +167,7 @@ internal static class NoteOn
             reverbGain = p.ReverbSend / 127f;
             chorusGain = p.ChorusSend / 127f;
             variationGain = p.VariationSend / 127f;
-            synth.DelayActive = synth.DelayActive || variationGain > 0;
+            synth.GSDelayActive = synth.GSDelayActive || variationGain > 0;
             voiceGain = float.Pow(p.Level / 120f, 2);
         }
         

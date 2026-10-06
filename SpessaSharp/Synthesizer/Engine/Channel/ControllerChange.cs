@@ -100,7 +100,7 @@ internal static class ControllerChange
                 break;
 
             case Midi.CC.VariationDepth: 
-                synth.UpdateActiveEffects();
+                synth.UpdateActiveGSEffects();
                 break;
             
             case Midi.CC.RegisteredParameterLSB:

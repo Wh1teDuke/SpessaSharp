@@ -92,6 +92,16 @@ internal static class Yamaha
             // XG EFFECT 1 (reverb, chorus, variation)
             if (a1 == 0x02 && a2 == 0x01) 
             {
+                var isReverb =
+                    a3 is 0x00 or >= 0x02 and <= 0x0d or >= 0x10 and <= 0x15;
+                if (isReverb && synth.SystemParameters.XGReverbLock) return;
+                var isChorus =
+                    a3 is 0x20 or >= 0x22 and <= 0x2e or >= 0x30 and <= 0x35;
+                if (isChorus && synth.SystemParameters.XGChorusLock) return;
+                var isVariation =
+                    a3 is 0x40 or >= 0x42 and <= 0x5b or >= 0x70 and <= 0x75;
+                if (isVariation && synth.SystemParameters.XGVariationLock) return;
+                
                 switch (a3)
                 {
                     default:
@@ -297,6 +307,8 @@ internal static class Yamaha
             // XG EFFECT 2 (insertion)
             if (a1 == 0x03)
             {
+                if (synth.SystemParameters.XGInsertionLock) return;
+                
                 if (!Util.InRange(synth.XGInsertionBlocks, 2)) 
                 {
                     SpessaLog.XGFail("Insertion Effect Number", [a2]);

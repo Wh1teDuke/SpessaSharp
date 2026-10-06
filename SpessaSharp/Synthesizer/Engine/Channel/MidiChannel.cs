@@ -13,6 +13,7 @@ namespace SpessaSharp.Synthesizer.Engine.Channel;
 
 /// <summary>
 /// This class represents a single MIDI Channel within the synthesizer.
+/// In terms of old sound modules, it can also be considered a "Part", since the receiving MIDI channel number can be changed.
 /// </summary>
 public sealed class MidiChannel: ISf2Channel
 {

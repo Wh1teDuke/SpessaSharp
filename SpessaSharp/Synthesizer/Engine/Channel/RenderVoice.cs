@@ -424,7 +424,7 @@ internal static class RenderVoice
         * XG ignores per-drum sends when insertion is enabled, and only the post-insertion (global) audio is sent (so whole drum audio, even if send is 0 for a specific drum)
         */
         if (!systemParameters.EffectsEnabled ||
-            (chan.MidiParameters.EfxAssign && core.InsertionActive) ||
+            (chan.MidiParameters.EfxAssign && core.GSInsertionActive) ||
             chan.XGInsertionAssigned) return;
 
         var isXG = core.MidiParameters.System == Midi.System.XG;
@@ -453,7 +453,7 @@ internal static class RenderVoice
                 var reverbGain =
                     systemParameters.ReverbGain *
                     outputGain * (reverbSend / 1_000f);
-                var reverbInput = core.ReverbInput.AsSpan()[..sampleCount];
+                var reverbInput = core.GSReverbInput.AsSpan()[..sampleCount];
                 TensorPrimitives.MultiplyAdd(
                     buffer[..sampleCount], reverbGain, reverbInput, reverbInput);
             }
@@ -481,7 +481,7 @@ internal static class RenderVoice
             {
                 var chorusGain = systemParameters.ChorusGain * 
                                  (chorusSend / 1_000f) * outputGain;
-                var chorusInput = core.ChorusInput.AsSpan()[..sampleCount];
+                var chorusInput = core.GSChorusInput.AsSpan()[..sampleCount];
                 TensorPrimitives.MultiplyAdd(
                     buffer[..sampleCount], chorusGain, chorusInput, chorusInput);   
             }
@@ -496,7 +496,8 @@ internal static class RenderVoice
 
             if (variationSend > 0)
             {
-                var send = variationSend / 127;
+                var send =
+                    (((int)variationSend >> 7) / 127) * systemParameters.XGVariationGain;
                 var gainL = send * gainLeft;
                 var gainR = send * gainRight;
                 var outL = core.XGVariationInputL.AsSpan(0, sampleCount);
@@ -511,11 +512,11 @@ internal static class RenderVoice
 
         var delaySend = chan[Midi.CC.VariationDepth] * voice.VariationGain;
         
-        if (core.DelayActive && delaySend > 0) 
+        if (core.GSDelayActive && delaySend > 0) 
         {
-            var delayGain = outputGain * systemParameters.DelayGain *
+            var delayGain = outputGain * systemParameters.GSDelayGain *
                             (((int)delaySend >> 7) / 127f);
-            var delayInput = core.DelayInput.AsSpan()[..sampleCount];
+            var delayInput = core.GSDelayInput.AsSpan()[..sampleCount];
             TensorPrimitives.MultiplyAdd(
                 buffer[..sampleCount], delayGain, delayInput, delayInput);
         }

@@ -149,16 +149,16 @@ public sealed class Synthesizer
     public readonly float[] InsertionInputR;
 
     /// <summary>The GS reverb processor's input buffer.</summary>
-    public readonly float[] ReverbInput;
+    public readonly float[] GSReverbInput;
 
     /// <summary>The GS chorus processor's input buffer.</summary>
-    public readonly float[] ChorusInput;
+    public readonly float[] GSChorusInput;
 
     /// <summary>The GS delay processor's input buffer.</summary>
-    public readonly float[] DelayInput;
+    public readonly float[] GSDelayInput;
 
     /// <summary>Delay is not used outside SC-88+ MIDIs, this is an optimization.</summary>
-    public bool DelayActive;
+    public bool GSDelayActive;
 
     /// <summary>
     /// The XG reverb block's left input buffer.
@@ -343,7 +343,7 @@ public sealed class Synthesizer
     internal readonly GSEffect.DelayProcessor GSDelayProcessor;
 
     /// <summary> Insertion is not used outside SC-88Pro+ MIDIs, this is an optimization. </summary>
-    internal bool InsertionActive;
+    internal bool GSInsertionActive;
 
     /// <summary>
     /// The synthesizer's XG variation block.
@@ -379,11 +379,11 @@ public sealed class Synthesizer
     internal void Set(GlobalMidiParameter param) =>
         GlobalMidiParameters.Set(this, param);
 
-    /// <summary> The fallback processor when the requested insertion is not available. </summary>
-    internal readonly ThruFX InsertionFallback = new();
+    /// <summary> The fallback GS processor when the requested insertion is not available. </summary>
+    internal readonly ThruFX GSInsertionFallback = new();
 
-    /// <summary> The current insertion processor. </summary>
-    internal GSEffect.GSInsertionProcessor InsertionProcessor;
+    /// <summary> The GS current insertion processor. </summary>
+    internal GSEffect.GSInsertionProcessor GSInsertionProcessor;
 
     /// <summary>
     /// All the insertion effects available to the processor.<br/>
@@ -395,11 +395,11 @@ public sealed class Synthesizer
     /// <summary> For F5 system exclusive </summary>
     internal int PortSelectChannelOffset;
 
-    /// <summary>For insertion snapshot tracking<br/>
+    /// <summary>For GS insertion snapshot tracking<br/>
     /// 20 parameters (0-19) + 3 sends<br/>
     /// Index to gs is Addr3 - 3 (for example EFX PARAMETER 1 is 0x03 and here it's 0)<br/>
     /// Note: 255 means "no change"</summary>
-    internal readonly byte[] InsertionParams = new byte[23];
+    internal readonly byte[] GSInsertionParams = new byte[23];
 
     /// <summary>For smoothing the filter cutoff frequency.</summary>
     internal readonly float SmoothingConstant;
@@ -437,9 +437,9 @@ public sealed class Synthesizer
         _cvbCache = new CachedVoice.Base.Cache(sampleRate);
 
         Tunings.AsSpan().Fill(-1);
-        InsertionParams.AsSpan().Fill(255);
+        GSInsertionParams.AsSpan().Fill(255);
 
-        InsertionProcessor = InsertionFallback;
+        GSInsertionProcessor = GSInsertionFallback;
 
         EventCallbackHandler = eventCallback;
         MissingPreset = missingPreset;
@@ -482,9 +482,9 @@ public sealed class Synthesizer
         VoiceBuffer = new float[bufSize];
         InsertionInputL = new float[bufSize];
         InsertionInputR = new float[bufSize];
-        ReverbInput = new float[bufSize];
-        ChorusInput = new float[bufSize];
-        DelayInput = new float[bufSize];
+        GSReverbInput = new float[bufSize];
+        GSChorusInput = new float[bufSize];
+        GSDelayInput = new float[bufSize];
         
         XGReverbInputL = new float[bufSize];
         XGReverbInputR = new float[bufSize];
@@ -503,7 +503,7 @@ public sealed class Synthesizer
 
         InsertionEffects = insertions.ToFrozenDictionary();
 
-        ResetInsertionParams(); // Initial setup
+        ResetGSInsertionParams(); // Initial setup
 
         // Initialize voices
         var voiceCap = SystemParameters.VoiceCap;
@@ -820,7 +820,7 @@ public sealed class Synthesizer
             ch.Reset(false);
         
         // Update if the effects should still be active.
-        UpdateActiveEffects();
+        UpdateActiveGSEffects();
     }
 
     public void Process(
@@ -979,12 +979,12 @@ public sealed class Synthesizer
         }
         else
         {
-            ReverbInput.AsSpan().Clear();
-            ChorusInput.AsSpan().Clear();
-            if (DelayActive) DelayInput.AsSpan().Clear();
+            GSReverbInput.AsSpan().Clear();
+            GSChorusInput.AsSpan().Clear();
+            if (GSDelayActive) GSDelayInput.AsSpan().Clear();
         }
 
-        if (InsertionActive) 
+        if (GSInsertionActive) 
         {
             InsertionInputL.AsSpan().Clear();
             InsertionInputR.AsSpan().Clear();
@@ -1089,7 +1089,7 @@ public sealed class Synthesizer
             }
             
             // Straight into the insertion EFX, but only if it is active
-            if (midiParams.EfxAssign && fx && InsertionActive)
+            if (midiParams.EfxAssign && fx && GSInsertionActive)
             {
                 var insertionL = InsertionInputL.AsSpan(0, sampleCount);
                 var insertionR = InsertionInputR.AsSpan(0, sampleCount);
@@ -1145,45 +1145,45 @@ public sealed class Synthesizer
             else
             {
                 // Insertion first
-                if (InsertionActive) 
+                if (GSInsertionActive) 
                 {
-                    InsertionProcessor.Process(
+                    GSInsertionProcessor.Process(
                         InsertionInputL,
                         InsertionInputR,
                         left,
                         right,
-                        ReverbInput,
-                        ChorusInput,
-                        DelayInput,
+                        GSReverbInput,
+                        GSChorusInput,
+                        GSDelayInput,
                         startIndex,
                         sampleCount);
                 }
 
                 // Chorus first, it feeds to reverb and delay
                 GSChorusProcessor.Process(
-                    ChorusInput,
+                    GSChorusInput,
                     left,
                     right,
-                    ReverbInput,
-                    DelayInput,
+                    GSReverbInput,
+                    GSDelayInput,
                     startIndex,
                     sampleCount);
                 
-                if (DelayActive)
+                if (GSDelayActive)
                 {
                     // Process delay
                     GSDelayProcessor.Process(
-                        DelayInput,
+                        GSDelayInput,
                         left,
                         right,
-                        ReverbInput,
+                        GSReverbInput,
                         startIndex,
                         sampleCount);
                 }
 
                 // Finally process the reverb processor (it goes directly into the output buffer)
                 GSReverbProcessor.Process(
-                    ReverbInput,
+                    GSReverbInput,
                     left,
                     right,
                     startIndex,
@@ -1298,8 +1298,8 @@ public sealed class Synthesizer
     internal GSEffect.GSInsertionProcessorSnapshot GetInsertionSnapshot() =>
         new()
         {
-            Type = InsertionProcessor.Type,
-            Params = InsertionParams,
+            Type = GSInsertionProcessor.Type,
+            Params = GSInsertionParams,
         };
 
     /// <summary>Copied callback so MIDI channels can call it.</summary>
@@ -1309,18 +1309,18 @@ public sealed class Synthesizer
     /// <summary>
     /// Checks if we can disable insertion and delay effects.
     /// </summary>
-    internal void UpdateActiveEffects()
+    internal void UpdateActiveGSEffects()
     {
-        if (!SystemParameters.InsertionEffectLock) 
-            InsertionActive = MidiChannels.Any(
+        if (!SystemParameters.GSInsertionLock) 
+            GSInsertionActive = MidiChannels.Any(
                 c => c.MidiParameters.EfxAssign);
 
-        if (!SystemParameters.DelayLock)
+        if (!SystemParameters.GSDelayLock)
         {
-            DelayActive = 
+            GSDelayActive = 
                 MidiParameters.System != Midi.System.XG && 
                 (GSChorusProcessor.SendLevelToDelay > 0 ||
-                 InsertionProcessor.SendLevelToDelay > 0 ||
+                 GSInsertionProcessor.SendLevelToDelay > 0 ||
                  MidiChannels.Any(c => c[Midi.CC.VariationDepth] > 0));
         }
     }
@@ -1350,32 +1350,32 @@ public sealed class Synthesizer
             entry.ValueToString());
     }
     
-    internal void ResetInsertionParams() 
+    internal void ResetGSInsertionParams() 
     {
         // No change
-        InsertionParams.AsSpan().Fill(255);
-        InsertionParams[20] = 40; // Reverb
-        InsertionParams[21] = 0; // Chorus
-        InsertionParams[22] = 0; // Delay
+        GSInsertionParams.AsSpan().Fill(255);
+        GSInsertionParams[20] = 40; // Reverb
+        GSInsertionParams[21] = 0; // Chorus
+        GSInsertionParams[22] = 0; // Delay
     }
 
     internal void ResetInsertion() 
     {
-        if (SystemParameters.InsertionEffectLock) 
+        if (SystemParameters.GSInsertionLock) 
             return;
 
-        InsertionActive = false;
-        InsertionProcessor = InsertionFallback;
-        InsertionProcessor.Reset();
-        ResetInsertionParams();
-        InsertionProcessor.SendLevelToReverb =
+        GSInsertionActive = false;
+        GSInsertionProcessor = GSInsertionFallback;
+        GSInsertionProcessor.Reset();
+        ResetGSInsertionParams();
+        GSInsertionProcessor.SendLevelToReverb =
             (40 / 127f) * EFX_SENDS_GAIN_CORRECTION;
-        InsertionProcessor.SendLevelToChorus = 0;
-        InsertionProcessor.SendLevelToDelay = 0;
+        GSInsertionProcessor.SendLevelToChorus = 0;
+        GSInsertionProcessor.SendLevelToDelay = 0;
         
         CallEvent(Event.CbEffectChange.OfInsertion(
             parameter: 0, 
-            value: InsertionProcessor.Type));
+            value: GSInsertionProcessor.Type));
     }
 
     internal void SetReverbMacro(int macro) =>

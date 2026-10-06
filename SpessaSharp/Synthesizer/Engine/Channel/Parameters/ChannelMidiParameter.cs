@@ -381,7 +381,7 @@ public readonly record struct ChannelMidiParameter
         RandomPan,
         /// <summary> Assign mode for the channel. </summary>
         AssignMode,
-        /// <summary> Indicates whether this channel uses the insertion EFX processor. </summary>
+        /// <summary> Indicates whether this channel uses the GS insertion EFX processor. </summary>
         EfxAssign,
         /// <summary>
         /// CC1 for GS controller matrix. An arbitrary MIDI controller, which can be bound to any synthesis parameter. Default is 16.

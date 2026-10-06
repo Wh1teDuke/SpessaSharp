@@ -147,17 +147,17 @@ internal static class Roland
                             var isChorus = a3 is >= 0x38 and <= 0x40;
                             var isDelay = a3 is >= 0x50 and <= 0x5a;
                             // Disable effect editing if locked
-                            if (isReverb && synth.SystemParameters.ReverbLock)
+                            if (isReverb && synth.SystemParameters.GSReverbLock)
                                 return;
-                            if (isChorus && synth.SystemParameters.ChorusLock)
+                            if (isChorus && synth.SystemParameters.GSChorusLock)
                                 return;
-                            if (isDelay && synth.SystemParameters.DelayLock)
+                            if (isDelay && synth.SystemParameters.GSDelayLock)
                                 return;
                             /*
                             0x40 - chorus to delay
                             enable delay that way
                              */
-                            synth.DelayActive |= a3 == 0x40 || isDelay;
+                            synth.GSDelayActive |= a3 == 0x40 || isDelay;
 
                             switch (a3) 
                             {
@@ -324,7 +324,7 @@ internal static class Roland
                                     // Chorus send level to delay
                                     synth.GSChorusProcessor.SendLevelToDelay =
                                         data;
-                                    synth.UpdateActiveEffects();
+                                    synth.UpdateActiveGSEffects();
                                     
                                     SpessaLog.GSInfo(
                                         "Chorus Send Level To Delay", data);
@@ -441,16 +441,16 @@ internal static class Roland
                         // EFX Parameter
                         if (a2 == 0x03) 
                         {
-                            if (synth.SystemParameters.InsertionEffectLock)
+                            if (synth.SystemParameters.GSInsertionLock)
                                 return;
 
                             // Write parameters
                             if (a3 is >= 0x03 and <= 0x19)
-                                synth.InsertionParams[a3 - 3] = data;
+                                synth.GSInsertionParams[a3 - 3] = data;
 
                             if (a3 is >= 0x03 and <= 0x16) 
                             {
-                                synth.InsertionProcessor.SetParameter(a3, data);
+                                synth.GSInsertionProcessor.SetParameter(a3, data);
                                 SpessaLog.GSInfo($"EFX Parameter {a3 - 2}", data);
                                 synth.CallEvent(
                                     Event.CbEffectChange.OfInsertion(
@@ -473,19 +473,19 @@ internal static class Roland
                                     {
                                         SpessaLog.GSInfo("EFX Type", 
                                             type.ToString("X"));
-                                        synth.InsertionProcessor = proc;
+                                        synth.GSInsertionProcessor = proc;
                                     } 
                                     else 
                                     {
-                                        synth.InsertionProcessor =
-                                            synth.InsertionFallback;
+                                        synth.GSInsertionProcessor =
+                                            synth.GSInsertionFallback;
                                         SpessaLog.GSFail(
                                             "EFX Processor", 
                                             [data, syx[8]], 
                                             "Using Thru.");
                                     }
-                                    synth.ResetInsertionParams();
-                                    synth.InsertionProcessor.Reset();
+                                    synth.ResetGSInsertionParams();
+                                    synth.GSInsertionProcessor.Reset();
                                     // Special case: 16-bit value
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfInsertion(
@@ -496,7 +496,7 @@ internal static class Roland
                                 case 0x17: 
                                     // To reverb
                                     // Divide, insertions use 0-1
-                                    synth.InsertionProcessor.SendLevelToReverb =
+                                    synth.GSInsertionProcessor.SendLevelToReverb =
                                         (data / 127f) *
                                         Synthesizer.EFX_SENDS_GAIN_CORRECTION;
                                     SpessaLog.GSInfo("EFX Send Level to Reverb", data);
@@ -508,7 +508,7 @@ internal static class Roland
                                 case 0x18: 
                                     // To chorus
                                     // Divide, insertions use 0-1
-                                    synth.InsertionProcessor.SendLevelToChorus =
+                                    synth.GSInsertionProcessor.SendLevelToChorus =
                                         (data / 127f) *
                                         Synthesizer.EFX_SENDS_GAIN_CORRECTION;
                                     SpessaLog.GSInfo("EFX Send Level to Chorus", data);
@@ -520,10 +520,10 @@ internal static class Roland
                                 case 0x19: 
                                     // To delay
                                     // Divide, insertions use 0-1
-                                    synth.InsertionProcessor.SendLevelToDelay =
+                                    synth.GSInsertionProcessor.SendLevelToDelay =
                                         (data / 127f) *
                                         Synthesizer.EFX_SENDS_GAIN_CORRECTION;
-                                    synth.UpdateActiveEffects();
+                                    synth.UpdateActiveGSEffects();
                                     SpessaLog.GSInfo("EFX Send Level to Delay", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfInsertion(
@@ -963,7 +963,7 @@ internal static class Roland
                                     SpessaLog.GSInfo(
                                         $"EFX assign for {channel}",
                                         efx ? "EFX" : "BYPASS");
-                                    synth.UpdateActiveEffects();
+                                    synth.UpdateActiveGSEffects();
                                     break;
                                 }
                             }
