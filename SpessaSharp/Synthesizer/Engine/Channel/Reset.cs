@@ -64,34 +64,23 @@ internal static class Reset
         chan.PolyPressures.AsSpan().Clear();
         
         // Reset MIDI parameters (locked will remain in place)
-        chan.Set((ChannelMidiParameter.Type.Pressure, 0));
-        chan.Set((ChannelMidiParameter.Type.PitchWheelRange, 2f));
-        chan.Set((ChannelMidiParameter.Type.ModulationDepth, 50f));
-        chan.Set((ChannelMidiParameter.Type.RxChannel, chan.Channel));
-        chan.Set((ChannelMidiParameter.Type.EfxAssign, false));
-        chan.Set((ChannelMidiParameter.Type.PolyMode, true));
-        chan.Set((ChannelMidiParameter.Type.KeyShift, 0));
-        chan.Set((ChannelMidiParameter.Type.FineTune, 0f));
-        chan.Set(MidiChannel.Assign.FullMulti);
-        chan.Set((ChannelMidiParameter.Type.RandomPan, false));
-        chan.Set(new ChannelMidiParameter(
-            ChannelMidiParameter.Type.CC1, (Midi.CC)0x10));
-        chan.Set(new ChannelMidiParameter(
-            ChannelMidiParameter.Type.CC2, (Midi.CC)0x11));
-        // Set the correct default map
-        var defaultMap =
-            chan.ChannelSystem == Midi.System.XG 
-                ? SysexData.DEFAULT_XG_DRUM_MAP 
-                : SysexData.DEFAULT_GS_DRUM_MAP;
-        chan.Set((
-            ChannelMidiParameter.Type.DrumMap, 
-            chan.Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL 
-                ? defaultMap 
-                : SysexData.MELODIC_MAP));
-        chan.Set((ChannelMidiParameter.Type.VelocitySenseOffset, 64));
-        chan.Set((ChannelMidiParameter.Type.VelocitySenseDepth, 64));
-        // This one has a wrapper, for per-note pitch wheel
-        chan.PitchWheel(8_192);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.Pressure);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.PitchWheel);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.PitchWheelRange);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.ModulationDepth);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.RxChannel);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.EfxAssign);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.PolyMode);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.KeyShift);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.FineTune);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.AssignMode);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.RandomPan);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.CC1);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.CC2);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.DrumMap);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.VelocitySenseOffset);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.VelocitySenseDepth);
+        chan.ResetMidiParameter(ChannelMidiParameter.Type.DryLevel);
         
         // Reset various other things
         chan.OctaveTuning.AsSpan().Clear();

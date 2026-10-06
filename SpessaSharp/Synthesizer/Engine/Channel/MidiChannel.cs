@@ -656,6 +656,41 @@ public sealed class MidiChannel: ISf2Channel
         MidiControllers.AsSpan().Clear();
     }
 
+    /// <summary>
+    /// Resets the given Channel MIDI Parameter to the default value, taking special actions depending on the parameter.
+    /// </summary>
+    /// <param name="param"></param>
+    internal void ResetMidiParameter(ChannelMidiParameter.Type param)
+    {
+        // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+        switch (param)
+        {
+            default:
+                Set(ChannelMidiParameters.Default[(int)param]);
+                break;
+            case ChannelMidiParameter.Type.RxChannel:
+                Set((param, Channel));
+                break;
+            case ChannelMidiParameter.Type.DrumMap:
+            {
+                // Set the correct default map
+                var defaultMap =
+                    ChannelSystem == Midi.System.XG
+                        ? SysexData.DEFAULT_XG_DRUM_MAP
+                        : SysexData.DEFAULT_GS_DRUM_MAP;
+                Set((
+                    param, 
+                    Channel % 16 == Synthesizer.MIDI_DRUM_CHANNEL
+                            ? defaultMap : SysexData.MELODIC_MAP));
+                break;
+            }
+            case ChannelMidiParameter.Type.PitchWheel:
+                // This one has a wrapper, for per-note pitch wheel
+                PitchWheel(8_192);
+                break;
+        }
+    }
+
     internal void SetBankMSB(int bankMSB)
     {
         if (SystemParameters.PresetLock) return;

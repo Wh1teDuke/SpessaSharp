@@ -57,6 +57,9 @@ public static class GlobalMidiParameters
     private static readonly GlobalMidiParameter[] DefaultParameters;
     public static ReadOnlySpan<GlobalMidiParameter> Default => DefaultParameters;
 
+    public static GlobalMidiParameter DefaultOf(GlobalMidiParameter.Type type) =>
+        Default[(int)type];
+
     static GlobalMidiParameters()
     {
         // Avoid setting the param in the wrong position

@@ -784,10 +784,10 @@ public sealed class Synthesizer
         CallEvent(new Event.CbReset(system));
         // Reset MIDI parameters
         Set(system);
-        Set((GlobalMidiParameter.Type.Volume, 1f));
-        Set((GlobalMidiParameter.Type.Pan, 0f));
-        Set((GlobalMidiParameter.Type.KeyShift, 0));
-        Set((GlobalMidiParameter.Type.FineTune, 0f));
+        Set(GlobalMidiParameters.DefaultOf(GlobalMidiParameter.Type.Volume));
+        Set(GlobalMidiParameters.DefaultOf(GlobalMidiParameter.Type.Pan));
+        Set(GlobalMidiParameters.DefaultOf(GlobalMidiParameter.Type.KeyShift));
+        Set(GlobalMidiParameters.DefaultOf(GlobalMidiParameter.Type.FineTune));
         // Reset private props
         Tunings.AsSpan().Fill(-1); // Set all to no change
         PortSelectChannelOffset = 0;
@@ -942,6 +942,7 @@ public sealed class Synthesizer
                 } samples, but maxBufferSize is {MaxBufferSize}");
 
         var isXG = MidiParameters.System == Midi.System.XG;
+        var variationInsertion = XGVariationBlock.InsertionMode;
         var fx = SystemParameters.EffectsEnabled;
         
         // For XG, renderVoice always checks if insertion is assigned to bypass effect sends
@@ -959,7 +960,7 @@ public sealed class Synthesizer
                 }
             }
 
-            if (XGVariationBlock.InsertionMode && 
+            if (variationInsertion && 
                 Util.InRange(MidiChannels, XGVariationBlock.PartNumber))
             {
                 var channel = MidiChannels[XGVariationBlock.PartNumber];
@@ -1028,7 +1029,7 @@ public sealed class Synthesizer
             
             // Variation is processed last
             // See MU128 manual, page 154
-            if (XGVariationBlock.InsertionMode &&
+            if (variationInsertion &&
                 Util.InRange(MidiChannels, XGVariationBlock.PartNumber)) 
             {
                 var channel = MidiChannels[XGVariationBlock.PartNumber];
@@ -1100,13 +1101,26 @@ public sealed class Synthesizer
                     insertionR, outputRight[..sampleCount], insertionR);
                 continue;
             }
-            
-            // Mix down normally
             {
                 var outL = left.AsSpan(startIndex, sampleCount);
                 var outR = right.AsSpan(startIndex, sampleCount);
-                TensorPrimitives.Add(outL, outputLeft[..sampleCount], outL);
-                TensorPrimitives.Add(outR, outputRight[..sampleCount], outR);                
+            
+                // Dry level is only active in XG with variation connection set to SYSTEM.
+                if (isXG && !variationInsertion)
+                {
+                    // Mix down taking dry level into account
+                    var gain = midiParams.DryLevel / 127f;
+                    TensorPrimitives.MultiplyAdd(
+                        outL, gain, outputLeft[..sampleCount], outL);
+                    TensorPrimitives.MultiplyAdd(
+                        outR, gain, outputRight[..sampleCount], outR);
+                }
+                else
+                {
+                    // Mix down normally
+                    TensorPrimitives.Add(outL, outputLeft[..sampleCount], outL);
+                    TensorPrimitives.Add(outR, outputRight[..sampleCount], outR);                
+                }   
             }
         }
         
@@ -1116,7 +1130,7 @@ public sealed class Synthesizer
             if (isXG)
             {
                 // Variation system first, feeds the chorus and reverb
-                if (!XGVariationBlock.InsertionMode) 
+                if (!variationInsertion) 
                 {
                     XGVariationBlock.Process(
                         XGVariationInputL,

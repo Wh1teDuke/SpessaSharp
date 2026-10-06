@@ -617,6 +617,10 @@ public static class MidiUtils
                     : [GsMessage(ticks, 0x40, 0x10 | gsChannel, 0x1b, 
                         [(byte)parameter.AsInt])],
             
+            ChannelMidiParameter.Type.DryLevel =>
+                // XG only
+                [XgMessage(ticks, 0x08, channel, 0x11, [(byte)parameter.AsInt])],
+            
             // That's it!
             _ => throw new ArgumentOutOfRangeException()
         };
@@ -1417,6 +1421,12 @@ public static class MidiUtils
                             (ChannelMidiParameter.Type.RandomPan, true),
                             channel)
                         : OfControllerChange(Midi.CC.Pan),
+                0x11 =>
+                    // Dry level
+                    AnalyzedParameter.Of(
+                        (ChannelMidiParameter.Type.DryLevel, value),
+                        channel),
+
                 0x12 =>
                     // Chorus
                     OfControllerChange(Midi.CC.ChorusDepth),

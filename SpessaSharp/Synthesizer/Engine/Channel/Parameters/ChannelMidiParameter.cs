@@ -44,6 +44,13 @@ public static class ChannelMidiParameters
             set => parameters.Set(ChannelMidiParameter.Of(
                 ChannelMidiParameter.Type.ModulationDepth, value));
         }
+        
+        public int DryLevel
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => parameters.Set(ChannelMidiParameter.Of(
+                ChannelMidiParameter.Type.DryLevel, value));
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Set(
@@ -163,6 +170,13 @@ public static class ChannelMidiParameters
                 parameters.Get(ChannelMidiParameter.Type.VelocitySenseOffset).AsInt;
         }
         
+        public int DryLevel
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get =>
+                parameters.Get(ChannelMidiParameter.Type.DryLevel).AsInt;
+        }
+        
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ChannelMidiParameter Get(
             ChannelMidiParameter.Type type) => parameters[(int)type];
@@ -182,9 +196,9 @@ public static class ChannelMidiParameters
     {
         // Avoid setting the param in the wrong position
         var list = (ReadOnlySpan<ChannelMidiParameter>)[
+            (ChannelMidiParameter.Type.Pressure, 0),
             (ChannelMidiParameter.Type.PitchWheel, 8_192),
             (ChannelMidiParameter.Type.PitchWheelRange, 2f),
-            (ChannelMidiParameter.Type.Pressure, 0),
             (ChannelMidiParameter.Type.ModulationDepth, 50f),
             (ChannelMidiParameter.Type.RxChannel, 0),
             (ChannelMidiParameter.Type.PolyMode, true),
@@ -198,6 +212,7 @@ public static class ChannelMidiParameters
             (ChannelMidiParameter.Type.DrumMap, SysexData.MELODIC_MAP),
             (ChannelMidiParameter.Type.VelocitySenseDepth, 64),
             (ChannelMidiParameter.Type.VelocitySenseOffset, 64),
+            (ChannelMidiParameter.Type.DryLevel, 127),
         ];
         
         DefaultParams = new ChannelMidiParameter[list.Length];
@@ -441,6 +456,17 @@ public readonly record struct ChannelMidiParameter
         /// Refer to <see href="https://cdn.roland.com/assets/media/pdf/SC-8850_OM.pdf">SC-8850 Owner's Manual</see>, page 56.
         /// </remarks>
         VelocitySenseOffset,
+        
+        /// <summary>
+        /// The dry audio data amount being sent to the output.
+        /// 127 is full, 0 is none (only effect audio).
+        /// For example setting dry to 0 and reverb send to 127 results in only reverb.
+        /// Setting dry to 0 and all sends to 0 effectively mutes the channel.
+        /// </summary>
+        /// <remarks>
+        /// This parameter is only active when <see cref="Midi.System"/> is set to <c>xg</c> and variation connection is set to system.
+        /// </remarks>
+        DryLevel,
     }
 
     public static Params.Type TypeOf(Type type) => type switch
@@ -461,6 +487,7 @@ public readonly record struct ChannelMidiParameter
         Type.FineTune => Params.Type.Float,
         Type.VelocitySenseDepth => Params.Type.Int,
         Type.VelocitySenseOffset => Params.Type.Int,
+        Type.DryLevel => Params.Type.Int,
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
     
