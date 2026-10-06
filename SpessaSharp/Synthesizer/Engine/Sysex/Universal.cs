@@ -102,14 +102,14 @@ internal static class Universal
                             syx[7] != 0x01 // Slot Path MSB
                         )
                         {
-                            Unsupported("General MIDI Global Parameter Control", syx);
+                            SpessaLog.GMFail("Global Parameter Control", syx);
                             break;
                         }
                         // Slot Path LSB
                         switch (syx[8]) {
                             default: 
                             {
-                                Unsupported("General MIDI Global Parameter Control", syx);
+                                SpessaLog.GMFail("Global Parameter Control", syx);
                                 break;
                             }
 
@@ -122,8 +122,7 @@ internal static class Universal
                                 {
                                     default: 
                                     {
-                                        Unsupported(
-                                            "General MIDI Reverb Parameter Control", syx);
+                                        SpessaLog.GMFail("Reverb Parameter Control", syx);
                                         break;
                                     }
 
@@ -141,7 +140,7 @@ internal static class Universal
                                     case 0x01: 
                                     {
                                         // Reverb time
-                                        synth.ReverbProcessor.Time = value;
+                                        synth.GSReverbProcessor.Time = value;
                                         SpessaLog.GMInfo("Reverb Time", value);
                                         break;
                                     }
@@ -158,8 +157,7 @@ internal static class Universal
                                 {
                                     default: 
                                     {
-                                        Unsupported(
-                                            "General MIDI Chorus Parameter Control", syx);
+                                        SpessaLog.GMFail("Chorus Parameter Control", syx);
                                         break;
                                     }
 
@@ -176,7 +174,7 @@ internal static class Universal
                                     case 0x01: 
                                     {
                                         // Mod rate
-                                        synth.ChorusProcessor.Rate = value;
+                                        synth.GSChorusProcessor.Rate = value;
                                         SpessaLog.GMInfo("Chorus Mod Rate",value);
                                         break;
                                     }
@@ -184,21 +182,21 @@ internal static class Universal
                                     case 0x02: 
                                     {
                                         // Mod depth
-                                        synth.ChorusProcessor.Depth = value;
+                                        synth.GSChorusProcessor.Depth = value;
                                         SpessaLog.GMInfo("Chorus Mod Depth", value);
                                         break;
                                     }
 
                                     case 0x03: {
                                         // Mod feedback
-                                        synth.ChorusProcessor.Feedback = value;
+                                        synth.GSChorusProcessor.Feedback = value;
                                         SpessaLog.GMInfo("Chorus Mod Feedback", value);
                                         break;
                                     }
 
                                     case 0x04: {
                                         // Mod send to reverb
-                                        synth.ChorusProcessor.SendLevelToReverb =
+                                        synth.GSChorusProcessor.SendLevelToReverb =
                                             value;
                                         SpessaLog.GMInfo("Chorus Send to Reverb", value);
                                         break;
@@ -378,23 +376,15 @@ internal static class Universal
                         break;
                     }
 
-                    default: 
-                        Engine.SystemExclusive.NotRecognized(syx, "MIDI Tuning Standard");
+                    default:
+                        SpessaLog.GMFail("MIDI Tuning Standard", syx);
                         break;
                 }
                 break;
 
             default: 
-                Engine.SystemExclusive.NotRecognized(syx, "Universal System Exclusive");
+                SpessaLog.GMFail("Universal System Exclusive", syx);
                 break;
         }
-    }
-
-    [Conditional("DEBUG")]
-    private static void Unsupported(
-        string what, ReadOnlySpan<byte> syx, string reason = "")
-    {
-        Debug.WriteLine(
-            $"Unsupported {what} message: {Util.ToHexString(syx)}. {reason}");
     }
 }

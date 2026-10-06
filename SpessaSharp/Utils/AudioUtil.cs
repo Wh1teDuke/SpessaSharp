@@ -8,7 +8,7 @@ namespace SpessaSharp.Utils;
 
 public static class AudioUtil
 {
-    /// <summary> </summary>
+    /// <summary> Metadata to write into a WAVE file. </summary>
     /// <param name="Title">The song's title.</param>
     /// <param name="Artist">The song's artist.</param>
     /// <param name="Album">The song's album.</param>
@@ -37,11 +37,17 @@ public static class AudioUtil
             Metadata: null);
     }
     
-    /// <summary> Writes an audio into a valid WAV file. </summary>
+    /// <summary>
+    /// Converts PCM audio data into a fully valid wave file.
+    /// The metadata uses the <c>INFO</c> chunk to write the information. It is encoded with <c>utf-8</c>.
+    /// </summary>
     /// <param name="audioData">The audio data channels.</param>
     /// <param name="sampleRate">The sample rate, in Hertz.</param>
     /// <param name="options">Additional options for writing the file.</param>
     /// <returns>The binary file.</returns>
+    /// <remarks>
+    /// The audio is saved as PCM S16LE (signed 16-bit little-endian integers)
+    /// </remarks>
     public static byte[] ToWav(
         ReadOnlySpan<ArraySegment<float>> audioData,
         int sampleRate,

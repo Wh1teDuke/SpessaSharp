@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Text;
+using SpessaSharp.Synthesizer;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI;
@@ -19,8 +20,8 @@ public readonly record struct MidiPatch(
     /// <param name="IsDrum">
     /// Indicates if this patch is a drum patch.
     /// This is the recommended way of determining if this is a drum preset.<br/>
-    /// If <b>IsDrum</b> is true, then this is a GM/GS drum preset.<br/>
-    /// If <b>IsDrum</b> is false, then this is a GM2/XG drum preset.
+    /// If <c>IsDrum</c> is true, then this is a GM/GS drum preset.<br/>
+    /// If <c>IsDrum</c> is false, then this is a GM2/XG drum preset.
     /// </param>
     public readonly record struct Full(
         MidiPatch Data, string Name, bool IsDrum)
@@ -33,10 +34,10 @@ public readonly record struct MidiPatch(
         public bool IsXGDrum => IsDrum && !IsGMGSDrum;
 
         /// <summary>
-        /// Converts a given `MIDIPatchFull`to string.
+        /// Converts a given <see cref="MidiPatch.Full"/> to string.
         /// The format is:<br/>
-        /// - `[MIDIPatch string] D [name]` for `isDrum` set to `true`.<br/>
-        /// - `[MIDIPatch string] M [name]` for `isDrum` set to `false`.
+        /// - `[MIDIPatch string] D [name]` for <c>isDrum</c> set to <c>true</c>.<br/>
+        /// - `[MIDIPatch string] M [name]` for <c>isDrum</c> set to <c>false</c>.
         /// </summary>
         public string ToFullMidiString() =>
             $"{Data.ToMidiString()} {(IsDrum ? "D" : "M")} {Name}";
@@ -62,6 +63,10 @@ public readonly record struct MidiPatch(
                 SpessaException.ParsingMidi(
                     $"Invalid named MIDI string: {midiString}");
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Full(SynthPatch preset) =>
+            preset.Patch;
     }
     
     /// <summary>

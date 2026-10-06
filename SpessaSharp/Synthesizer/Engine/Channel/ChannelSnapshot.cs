@@ -20,39 +20,82 @@ public sealed class ChannelSnapshot(
     byte[] octaveTuning,
     
     bool perNotePitch,
+    CustomChannelVibrato customVibrato,
     
-    DrumParameters[] drumParams,
+    DrumParameter[] drumParams,
     bool drumChannel,
     int channel)
 {
-    /// <summary>The MIDI patch that the channel is using.</summary>
+    /// <summary>The currently selected MIDI patch of the channel.</summary>
     public readonly MidiPatch.Full? Patch = patch;
 
-    /// <summary>Indicates the MIDI system when the preset was locked</summary>
+    /// <summary>Indicates the MIDI system when the preset was locked.</summary>
     public readonly Midi.System LockedSystem = lockedSystem;
     
-    /// <summary>The array of all MIDI controllers (in 14-bit values) with the modulator sources at the end.</summary>
+    /// <summary>
+    /// An array of MIDI controllers for the channel.
+    /// This array is used to store the state of various MIDI controllers
+    /// such as volume, pan, modulation, etc.
+    /// <remarks>
+    /// A bit of an explanation:
+    /// The controller table is stored as an int16 array, it stores 14-bit values, allowing for full 14-bit LSB resolution.
+    /// The only exception from this are the Registered and Non-Registered Parameter Numbers.
+    /// Data entries do store it!
+    /// </remarks>
+    /// </summary>
     public readonly short[] MidiControllers = midiControllers;
 
-    /// <summary>An array of booleans, indicating if the controller with a current index is locked.</summary>
+    /// <summary>
+    /// An array indicating if a controller, at the equivalent index in the <see cref="MidiChannel.MidiControllers"/> array, is locked
+    /// (i.e., not allowed changing).
+    /// A locked controller cannot be modified.
+    /// </summary>
     public readonly BitArray LockedControllers = lockedControllers;
     
+    /// <summary> An array for the MIDI 2.0 Per-note pitch wheels. </summary>
     public readonly short[] PitchWheels = pitchWheels;
     
+    /// <summary> Used for handling SF2/AWE32 NRPN generator adjustments. </summary>
     public readonly Awe32NRPN.ChannelGenerators Generators = generators;
     
+    /// <summary>
+    /// The Channel MIDI Parameters of this channel. These are only editable via MIDI messages.
+    /// </summary>
     public readonly ChannelMidiParameter[] MidiParameters = midiParameters;
+    
+    /// <summary>
+    /// An object indicating if a Channel MIDI parameter, at the equivalent key, is locked
+    /// (i.e., not allowed changing).
+    /// A locked parameter cannot be modified.
+    /// </summary>
     public readonly BitArray LockedParameters = lockedParameters;
     
+    /// <summary>
+    /// The Channel System Parameters of this channel.
+    /// These are only editable via the API.
+    /// </summary>
     public readonly ChannelSystemParameter[] SystemParameters = systemParameters;
 
-    /// <summary>The channel's octave tuning in cents.</summary>
+    /// <summary>
+    /// An array of octave tuning values for each note on the channel.
+    /// Each index corresponds to a note (0 = C, 1 = C#, ..., 11 = B).
+    /// Note: Repeated every 12 notes.
+    /// </summary>
     public readonly byte[] OctaveTuning = octaveTuning;
     
+    /// <summary>
+    /// Per-note pitch wheel mode uses the pitchWheels table as source
+    /// instead of the regular entry in the midiControllers table.
+    /// </summary>
     public readonly bool PerNotePitch = perNotePitch;
+
+    /// <summary>
+    /// The vibrato settings for the channel.
+    /// </summary>
+    public readonly CustomChannelVibrato CustomVibrato = customVibrato;
     
     /// <summary>Parameters for each drum instrument.</summary>
-    public readonly DrumParameters[] DrumParams = drumParams;
+    public readonly DrumParameter[] DrumParams = drumParams;
 
     /// <summary>Indicates whether the channel is a drum channel.</summary>
     public readonly bool DrumChannel = drumChannel;
@@ -78,16 +121,17 @@ public sealed class ChannelSnapshot(
         return new ChannelSnapshot(
             patch: chan.Preset?.Patch,
             lockedSystem: chan.LockedSystem,
-            midiControllers: chan.MidiControllers.ToArray(),
+            midiControllers: [.. chan.MidiControllers],
             lockedControllers: new BitArray(chan.LockedControllers),
-            pitchWheels: chan.PitchWheels.ToArray(),
+            pitchWheels: [.. chan.PitchWheels],
             generators: gens,
-            midiParameters: chan.MidiParameters.ToArray(),
+            midiParameters: [.. chan.MidiParameters],
             lockedParameters: new BitArray(chan.LockedParameters),
-            systemParameters: chan.SystemParameters.ToArray(),
-            octaveTuning: chan.OctaveTuning.ToArray(),
+            systemParameters: [.. chan.SystemParameters],
+            octaveTuning: [.. chan.OctaveTuning],
             perNotePitch: chan.PerNotePitch,
-            drumParams: chan.DrumParams.ToArray(),
+            customVibrato: chan.CustomVibrato,
+            drumParams: [.. chan.DrumParams],
             drumChannel: chan.DrumChannel,
             channel: chan.Channel);
     }
@@ -105,6 +149,7 @@ public sealed class ChannelSnapshot(
         OctaveTuning.CopyTo(chan.OctaveTuning);
         
         chan.PerNotePitch = PerNotePitch;
+        chan.CustomVibrato = CustomVibrato;
 
         Generators.Offsets.CopyTo(chan.Generators.Offsets);
         Generators.Overrides.CopyTo(chan.Generators.Overrides);
@@ -113,7 +158,19 @@ public sealed class ChannelSnapshot(
 
         DrumParams.CopyTo(chan.DrumParams);
         chan.Set((ChannelSystemParameter.Type.PresetLock, false)); // Restored in master params
-        if (Patch.HasValue) chan.SetPatch(Patch.Value);
+        if (Patch is {} patch) 
+        {
+            chan.SetBankMSB(patch.BankMSB);
+            chan.SetBankLSB(patch.BankLSB);
+            chan.SetIsGMGSDrum(patch.IsGMGSDrum);
+            chan.ProgramChange(patch.Program);
+            // Fallback if no preset matched and the flag didn't sync
+            chan.SetDrumFlag(DrumChannel);
+        } 
+        else 
+        {
+            chan.SetDrumFlag(DrumChannel);
+        }
         chan.LockedSystem = LockedSystem;
         
         // Restore MIDI parameters

@@ -13,6 +13,8 @@ internal static class ProcessEvent
     public static void Execute(
         SpessaSharpSequencer seq, MidiMessage ev, int trackIndex)
     {
+        var offset = seq.TrackOffset(trackIndex);
+        
         if (seq.ExternalPlayback && // Do not send meta events
             ev.StatusByte.Byte >= 0x80)
         {
@@ -20,7 +22,7 @@ internal static class ProcessEvent
             data[0] = ev.StatusByte.Byte;
             ev.Data.CopyTo(data, 1);
             
-            seq.SendMidiMessage(data);
+            seq.SendMidiMessage(data, trackIndex);
             return;
         }
         
@@ -35,11 +37,6 @@ internal static class ProcessEvent
         } 
         else
             status = MidiMessage.TypeOf(ev.StatusByte.Byte);
-
-        var offset = 0;
-        var portChanOffset = seq.MidiPortChannelOffsets[
-            seq.CurrentPorts[trackIndex]]; 
-        if (portChanOffset >= 0) offset = portChanOffset;
         
         channel += offset;
         

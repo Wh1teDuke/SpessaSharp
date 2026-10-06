@@ -1,15 +1,20 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.Implementation;
 
-public sealed class SSReverb: Effect.ReverbProcessor
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
+
+/// <summary>
+/// The default GS Reverb implementation for <see cref="SpessaSharpProcessor"/>
+/// </summary>
+public sealed class GSReverb: GSEffect.ReverbProcessor
 {
     /// <summary> Dattorro reverb processor. </summary>
     private readonly DattorroReverb _dattorro;
     
     /// <summary>  Left delay line, also used for the mono delay. (character 6) </summary>
-    private readonly SSDelay.Line _delayLeft;
+    private readonly DelayLine _delayLeft;
     
     /// <summary>  Right delay line. </summary>
-    private readonly SSDelay.Line _delayRight;
+    private readonly DelayLine _delayRight;
     
     /// <summary>  Output of the left (and mono) delay. </summary>
     private readonly float[] _delayLeftOutput;
@@ -57,7 +62,15 @@ public sealed class SSReverb: Effect.ReverbProcessor
     private int _level = 0;
     private int _preLowPass = 0;
 
-    public SSReverb(int sampleRate, int maxBufferSize)
+    /// <summary>
+    /// Constructs a new default GS reverb processor.
+    /// </summary>
+    /// <param name="sampleRate">The sample rate, in Hertz.</param>
+    /// <param name="maxBufferSize">
+    /// The maximum buffer size the synthesizer can render at once.
+    /// Attempting to <see cref="Process"/> more samples than this will result in an error.
+    /// </param>
+    public GSReverb(int sampleRate, int maxBufferSize)
     {
         _sampleRate = sampleRate;
         _delayLeftOutput = NewFloatArray();
@@ -67,8 +80,8 @@ public sealed class SSReverb: Effect.ReverbProcessor
         
         _dattorro = new DattorroReverb(sampleRate);
 
-        _delayLeft = new SSDelay.Line(sampleRate);
-        _delayRight = new SSDelay.Line(sampleRate);
+        _delayLeft = new DelayLine(sampleRate);
+        _delayRight = new DelayLine(sampleRate);
 
         return;
         
@@ -340,7 +353,7 @@ public sealed class SSReverb: Effect.ReverbProcessor
         }
     }
 
-    public override Effect.ReverbProcessorSnapshot GetSnapshot() =>
+    public override GSEffect.GSReverbParameter GetSnapshot() =>
         new()
         {
             Level           = _level,

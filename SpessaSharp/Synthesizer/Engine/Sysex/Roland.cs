@@ -4,6 +4,7 @@ using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -146,17 +147,17 @@ internal static class Roland
                             var isChorus = a3 is >= 0x38 and <= 0x40;
                             var isDelay = a3 is >= 0x50 and <= 0x5a;
                             // Disable effect editing if locked
-                            if (isReverb && synth.SystemParameters.ReverbLock)
+                            if (isReverb && synth.SystemParameters.GSReverbLock)
                                 return;
-                            if (isChorus && synth.SystemParameters.ChorusLock)
+                            if (isChorus && synth.SystemParameters.GSChorusLock)
                                 return;
-                            if (isDelay && synth.SystemParameters.DelayLock)
+                            if (isDelay && synth.SystemParameters.GSDelayLock)
                                 return;
                             /*
                             0x40 - chorus to delay
                             enable delay that way
                              */
-                            synth.DelayActive |= a3 == 0x40 || isDelay;
+                            synth.GSDelayActive |= a3 == 0x40 || isDelay;
 
                             switch (a3) 
                             {
@@ -181,54 +182,54 @@ internal static class Roland
                                 // Reverb
                                 case 0x30: 
                                     // Reverb macro
-                                    synth.ReverbProcessor.Macro = data;
+                                    synth.GSReverbProcessor.Macro = data;
                                     synth.SetReverbMacro(data);
                                     SpessaLog.GSInfo("Reverb Macro", data);
                                     // Event called in setMacro
                                     break;
                                 case 0x31: 
                                     // Reverb character
-                                    synth.ReverbProcessor.Character = data;
+                                    synth.GSReverbProcessor.Character = data;
                                     SpessaLog.GSInfo("Reverb Character", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.FxReverbType.Character,
+                                            GSEffect.GSReverbType.Character,
                                             data));
                                     break;
                                 case 0x32:
                                     // Reverb pre-PLF
-                                    synth.ReverbProcessor.PreLowPass = data;
+                                    synth.GSReverbProcessor.PreLowPass = data;
                                     SpessaLog.GSInfo("Reverb Pre-LPF", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.FxReverbType.PreLowPass,
+                                            GSEffect.GSReverbType.PreLowPass,
                                             data));
                                     break;
                                 case 0x33: 
                                     // Reverb level
-                                    synth.ReverbProcessor.Level = data;
+                                    synth.GSReverbProcessor.Level = data;
                                     SpessaLog.GSInfo("Reverb Level", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.FxReverbType.Level,
+                                            GSEffect.GSReverbType.Level,
                                             data));
                                     break;
                                 case 0x34: 
                                     // Reverb time
-                                    synth.ReverbProcessor.Time = data;
+                                    synth.GSReverbProcessor.Time = data;
                                     SpessaLog.GSInfo("Reverb Time", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.FxReverbType.Time,
+                                            GSEffect.GSReverbType.Time,
                                             data));
                                     break;
                                 case 0x35: 
                                     // Reverb delay feedback
-                                    synth.ReverbProcessor.DelayFeedback = data;
+                                    synth.GSReverbProcessor.DelayFeedback = data;
                                     SpessaLog.GSInfo("Reverb Delay Feedback", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.FxReverbType.DelayFeedback,
+                                            GSEffect.GSReverbType.DelayFeedback,
                                             data));
                                     break;
 
@@ -238,199 +239,199 @@ internal static class Roland
 
                                 case 0x37:
                                     // Reverb predelay time
-                                    synth.ReverbProcessor.PreDelayTime = data;
+                                    synth.GSReverbProcessor.PreDelayTime = data;
                                     SpessaLog.GSInfo("Reverb Predelay Time", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfReverb(
-                                            Effect.FxReverbType.PreDelayTime,
+                                            GSEffect.GSReverbType.PreDelayTime,
                                             data));
                                     break;
 
                                 // Chorus
                                 case 0x38: 
                                     // Chorus macro
-                                    synth.ChorusProcessor.Macro = data;
+                                    synth.GSChorusProcessor.Macro = data;
                                     synth.SetChorusMacro(data);
                                     SpessaLog.GSInfo("Chorus Macro", data);
                                     // Event called in setMacro
                                     break;
                                 case 0x39: 
                                     // Chorus pre-LPF
-                                    synth.ChorusProcessor.PreLowPass = data;
+                                    synth.GSChorusProcessor.PreLowPass = data;
                                     SpessaLog.GSInfo("Pre-LPF", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.PreLowPass,
+                                            GSEffect.GSChorusType.PreLowPass,
                                             data));
                                     break;
                                 case 0x3a: 
                                     // Chorus level
-                                    synth.ChorusProcessor.Level = data;
+                                    synth.GSChorusProcessor.Level = data;
                                     SpessaLog.GSInfo("Chorus Level", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.Level,
+                                            GSEffect.GSChorusType.Level,
                                             data));
                                     break;
                                 case 0x3b: 
                                     // Chorus feedback
-                                    synth.ChorusProcessor.Feedback = data;
+                                    synth.GSChorusProcessor.Feedback = data;
                                     SpessaLog.GSInfo("Chorus Feedback", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.Feedback,
+                                            GSEffect.GSChorusType.Feedback,
                                             data));
                                     break;
                                 case 0x3c: 
                                     // Chorus delay
-                                    synth.ChorusProcessor.Delay = data;
+                                    synth.GSChorusProcessor.Delay = data;
                                     SpessaLog.GSInfo("Chorus Delay", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.Delay,
+                                            GSEffect.GSChorusType.Delay,
                                             data));
                                     break;
                                 case 0x3d: 
                                     // Chorus rate
-                                    synth.ChorusProcessor.Rate = data;
+                                    synth.GSChorusProcessor.Rate = data;
                                     SpessaLog.GSInfo("Chorus Rate", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.Rate,
+                                            GSEffect.GSChorusType.Rate,
                                             data));
                                     break;
                                 case 0x3e: 
                                     // Chorus depth
-                                    synth.ChorusProcessor.Depth = data;
+                                    synth.GSChorusProcessor.Depth = data;
                                     SpessaLog.GSInfo("Chorus Depth", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.Depth,
+                                            GSEffect.GSChorusType.Depth,
                                             data));
                                     break;
                                 case 0x3f: 
                                     // Chorus send level to reverb
-                                    synth.ChorusProcessor.SendLevelToReverb =
+                                    synth.GSChorusProcessor.SendLevelToReverb =
                                         data;
                                     SpessaLog.GSInfo(
                                         "Chorus Send Level To Reverb", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.SendLevelToReverb,
+                                            GSEffect.GSChorusType.SendLevelToReverb,
                                             data));
                                     break;
                                 case 0x40: 
                                     // Chorus send level to delay
-                                    synth.ChorusProcessor.SendLevelToDelay =
+                                    synth.GSChorusProcessor.SendLevelToDelay =
                                         data;
-                                    synth.UpdateActiveEffects();
+                                    synth.UpdateActiveGSEffects();
                                     
                                     SpessaLog.GSInfo(
                                         "Chorus Send Level To Delay", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfChorus(
-                                            Effect.FxChorusType.SendLevelToDelay,
+                                            GSEffect.GSChorusType.SendLevelToDelay,
                                             data));
                                     break;
 
                                 // Delay
                                 case 0x50: 
                                     // Delay macro
-                                    synth.DelayProcessor.Macro = data;
+                                    synth.GSDelayProcessor.Macro = data;
                                     synth.SetDelayMacro(data);
                                     SpessaLog.GSInfo("Delay Macro", data);
                                     // Event called in setMacro
                                     break;
                                 case 0x51: 
                                     // Delay pre-PLF
-                                    synth.DelayProcessor.PreLowPass = data;
+                                    synth.GSDelayProcessor.PreLowPass = data;
                                     SpessaLog.GSInfo("Delay Pre-LPF", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.PreLowPass,
+                                            GSEffect.GSDelayType.PreLowPass,
                                             data));
                                     break;
                                 case 0x52: 
                                     // Delay time center
-                                    synth.DelayProcessor.TimeCenter = data;
+                                    synth.GSDelayProcessor.TimeCenter = data;
                                     SpessaLog.GSInfo("Delay Time Center", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.TimeCenter,
+                                            GSEffect.GSDelayType.TimeCenter,
                                             data));
                                     break;
                                 case 0x53: 
                                     // Delay time ratio left
-                                    synth.DelayProcessor.TimeRatioLeft = data;
+                                    synth.GSDelayProcessor.TimeRatioLeft = data;
                                     SpessaLog.GSInfo("Delay Time Ratio Left", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.TimeRatioLeft,
+                                            GSEffect.GSDelayType.TimeRatioLeft,
                                             data));
                                     break;
                                 case 0x54: 
                                     // Delay time ratio right
-                                    synth.DelayProcessor.TimeRatioRight = data;
+                                    synth.GSDelayProcessor.TimeRatioRight = data;
                                     SpessaLog.GSInfo("Delay Time Ratio Right", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.TimeRatioRight,
+                                            GSEffect.GSDelayType.TimeRatioRight,
                                             data));
                                     break;
                                 case 0x55: 
                                     // Delay level center
-                                    synth.DelayProcessor.LevelCenter = data;
+                                    synth.GSDelayProcessor.LevelCenter = data;
                                     SpessaLog.GSInfo("Delay Level Center", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.LevelCenter,
+                                            GSEffect.GSDelayType.LevelCenter,
                                             data));
                                     break;
                                 case 0x56: 
                                     // Delay level left
-                                    synth.DelayProcessor.LevelLeft = data;
+                                    synth.GSDelayProcessor.LevelLeft = data;
                                     SpessaLog.GSInfo("Delay Level Left", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.LevelLeft,
+                                            GSEffect.GSDelayType.LevelLeft,
                                             data));
                                     break;
                                 case 0x57: 
                                     // Delay level right
-                                    synth.DelayProcessor.LevelRight = data;
+                                    synth.GSDelayProcessor.LevelRight = data;
                                     SpessaLog.GSInfo("Delay Level Right", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.LevelRight,
+                                            GSEffect.GSDelayType.LevelRight,
                                             data));
                                     break;
                                 case 0x58: 
                                     // Delay level
-                                    synth.DelayProcessor.Level = data;
+                                    synth.GSDelayProcessor.Level = data;
                                     SpessaLog.GSInfo("Delay Level", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.Level,
+                                            GSEffect.GSDelayType.Level,
                                             data));
                                     break;
                                 case 0x59: 
                                     // Delay feedback
-                                    synth.DelayProcessor.Feedback = data;
+                                    synth.GSDelayProcessor.Feedback = data;
                                     SpessaLog.GSInfo("Delay Feedback", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.Feedback,
+                                            GSEffect.GSDelayType.Feedback,
                                             data));
                                     break;
                                 case 0x5a: 
                                     // Delay send level to reverb
-                                    synth.DelayProcessor.SendLevelToReverb =
+                                    synth.GSDelayProcessor.SendLevelToReverb =
                                         data;
                                     SpessaLog.GSInfo(
                                         "Delay Send Level To Reverb", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfDelay(
-                                            Effect.FxDelayType.SendLevelToReverb,
+                                            GSEffect.GSDelayType.SendLevelToReverb,
                                             data));
                                     break;
                             }
@@ -440,16 +441,16 @@ internal static class Roland
                         // EFX Parameter
                         if (a2 == 0x03) 
                         {
-                            if (synth.SystemParameters.InsertionEffectLock)
+                            if (synth.SystemParameters.GSInsertionLock)
                                 return;
 
                             // Write parameters
                             if (a3 is >= 0x03 and <= 0x19)
-                                synth.InsertionParams[a3 - 3] = data;
+                                synth.GSInsertionParams[a3 - 3] = data;
 
                             if (a3 is >= 0x03 and <= 0x16) 
                             {
-                                synth.InsertionProcessor.SetParameter(a3, data);
+                                synth.GSInsertionProcessor.SetParameter(a3, data);
                                 SpessaLog.GSInfo($"EFX Parameter {a3 - 2}", data);
                                 synth.CallEvent(
                                     Event.CbEffectChange.OfInsertion(
@@ -472,19 +473,19 @@ internal static class Roland
                                     {
                                         SpessaLog.GSInfo("EFX Type", 
                                             type.ToString("X"));
-                                        synth.InsertionProcessor = proc;
+                                        synth.GSInsertionProcessor = proc;
                                     } 
                                     else 
                                     {
-                                        synth.InsertionProcessor =
-                                            synth.InsertionFallback;
+                                        synth.GSInsertionProcessor =
+                                            synth.GSInsertionFallback;
                                         SpessaLog.GSFail(
                                             "EFX Processor", 
                                             [data, syx[8]], 
                                             "Using Thru.");
                                     }
-                                    synth.ResetInsertionParams();
-                                    synth.InsertionProcessor.Reset();
+                                    synth.ResetGSInsertionParams();
+                                    synth.GSInsertionProcessor.Reset();
                                     // Special case: 16-bit value
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfInsertion(
@@ -495,7 +496,7 @@ internal static class Roland
                                 case 0x17: 
                                     // To reverb
                                     // Divide, insertions use 0-1
-                                    synth.InsertionProcessor.SendLevelToReverb =
+                                    synth.GSInsertionProcessor.SendLevelToReverb =
                                         (data / 127f) *
                                         Synthesizer.EFX_SENDS_GAIN_CORRECTION;
                                     SpessaLog.GSInfo("EFX Send Level to Reverb", data);
@@ -507,7 +508,7 @@ internal static class Roland
                                 case 0x18: 
                                     // To chorus
                                     // Divide, insertions use 0-1
-                                    synth.InsertionProcessor.SendLevelToChorus =
+                                    synth.GSInsertionProcessor.SendLevelToChorus =
                                         (data / 127f) *
                                         Synthesizer.EFX_SENDS_GAIN_CORRECTION;
                                     SpessaLog.GSInfo("EFX Send Level to Chorus", data);
@@ -519,10 +520,10 @@ internal static class Roland
                                 case 0x19: 
                                     // To delay
                                     // Divide, insertions use 0-1
-                                    synth.InsertionProcessor.SendLevelToDelay =
+                                    synth.GSInsertionProcessor.SendLevelToDelay =
                                         (data / 127f) *
                                         Synthesizer.EFX_SENDS_GAIN_CORRECTION;
-                                    synth.UpdateActiveEffects();
+                                    synth.UpdateActiveGSEffects();
                                     SpessaLog.GSInfo("EFX Send Level to Delay", data);
                                     synth.CallEvent(
                                         Event.CbEffectChange.OfInsertion(
@@ -539,7 +540,7 @@ internal static class Roland
                             // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                             // SC-8850 manual, page 237
                             var channel =
-                                MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
+                                MidiUtils.GsPartToChannel(a2 & 0x0f) + channelOffset;
                             // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
 
                             if (!Util.InRange(synth.MidiChannels, channel))
@@ -600,13 +601,31 @@ internal static class Roland
                                     SpessaLog.GSInfo($"MidiChannel.Assign mode on {channel}", data);
                                     break;
 
-                                case 0x15: 
-                                    // This is the Use for Drum Part sysex (multiple drums)
+                                case 0x15:
+                                    // This is the Use for Rhythm Part sysex (multiple drums)
+                                    var prevMap = ch.MidiParameters.DrumMap;
                                     ch.Set((
                                         ChannelMidiParameter.Type.DrumMap, 
                                         data));
-                                    var isDrums = data > 0; // If set to other than 0, is a drum channel
-                                    ch.SetGSDrums(isDrums);
+                                    var newMap = ch.MidiParameters.DrumMap;
+                                    // Non-melodic means a drum channel
+                                    var isDrums = data > SysexData.MELODIC_MAP;
+                                    // Testcase: gs_drum_change_test
+                                    // GS resets to the default kit not only when toggling drums,
+                                    // But on any map change too.
+                                    if (
+                                        !ch.SystemParameters.PresetLock &&
+                                        (isDrums != ch.Patch.IsGMGSDrum ||
+                                                     newMap != prevMap)) 
+                                    {
+                                        ch.Patch = ch.Patch with
+                                        {
+                                            BankMSB = 0,
+                                            BankLSB = 0,
+                                            IsGMGSDrum = isDrums,
+                                        };
+                                        ch.ProgramChange(0);
+                                    }
                                     SpessaLog.GSInfo($"Drums on {channel}", isDrums);
                                     return;
 
@@ -798,7 +817,7 @@ internal static class Roland
                             // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                             // SC-8850 manual, page 237
                             var channel =
-                                MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
+                                MidiUtils.GsPartToChannel(a2 & 0x0f) + channelOffset;
                             // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                             var ch = synth.MidiChannels[channel];
                             switch (a3 & 0xf0) 
@@ -827,7 +846,7 @@ internal static class Roland
                                             "cents");
                                         break;
                                     }
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         (int)Midi.CC.ModulationWheel,
@@ -854,7 +873,7 @@ internal static class Roland
                                             "semitones");
                                         break;
                                     }
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         Modulator.Source.ID(Modulator.Source.ControllerSource.PitchWheel),
@@ -865,7 +884,7 @@ internal static class Roland
 
                                 case 0x20: 
                                     // Channel pressure
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         Modulator.Source.ID(Modulator.Source.ControllerSource.ChannelPressure),
@@ -875,7 +894,7 @@ internal static class Roland
 
                                 case 0x30: 
                                     // Poly pressure
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
                                         Modulator.Source.ID(Modulator.Source.ControllerSource.PolyPressure),
@@ -885,20 +904,20 @@ internal static class Roland
 
                                 case 0x40: 
                                     // CC1
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
-                                        (int)ch.MidiParamArray.CC1,
+                                        (int)ch.MidiParameters.CC1,
                                         true,
                                         "CC1");
                                     break;
 
                                 case 0x50: 
                                     // CC2
-                                    ch.DynamicModulators.SetupReceiver(
+                                    ch.DynamicModulators.SetupReceiverGS(
                                         a3,
                                         data,
-                                        (int)ch.MidiParamArray.CC2,
+                                        (int)ch.MidiParameters.CC2,
                                         true,
                                         "CC2");
                                     break;
@@ -914,7 +933,7 @@ internal static class Roland
                             // Note that: 0 means channel 9 (drums), and only then 1 means channel 0, 2 channel 1, etc.
                             // SC-8850 manual, page 237
                             var channel =
-                                MidiUtils.SyxToChannel(a2 & 0x0f) + channelOffset;
+                                MidiUtils.GsPartToChannel(a2 & 0x0f) + channelOffset;
                             // For example, 0x1A means A = 11, which corresponds to channel 12 (counting from 1)
                             var ch = synth.MidiChannels[channel];
 
@@ -944,7 +963,7 @@ internal static class Roland
                                     SpessaLog.GSInfo(
                                         $"EFX assign for {channel}",
                                         efx ? "EFX" : "BYPASS");
-                                    synth.UpdateActiveEffects();
+                                    synth.UpdateActiveGSEffects();
                                     break;
                                 }
                             }
@@ -954,7 +973,7 @@ internal static class Roland
                         SpessaLog.GSFail("Patch Parameter", syx);
                         return;
                     }
-                    // Drum setup
+                    // Drum Setup
                     if (a1 is 0x41 or 0x51) 
                     {
                         // 51 means BLOCK B (+16 channels)
@@ -962,7 +981,9 @@ internal static class Roland
                         if (synth.SystemParameters.DrumLock) 
                             return;
 
-                        var map = (a2 >> 4) + 1;
+                        // In gs, the map is offset by the default (e.g. 1)
+                        // So 0 means drum map 1, 1 means drum map 1, etc.
+                        var map = (a2 >> 4) + SysexData.DEFAULT_GS_DRUM_MAP;
                         var drumKey = a3;
                         var param = (byte)(a2 & 0xf);
                         switch (param) 
@@ -991,12 +1012,12 @@ internal static class Roland
                                 var pitch = data - 60;
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     // Apply same thing: SC-55 uses 100 cents, SC-88 and above is 50
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { Pitch = pitch *
-                                                           (ch.Patch.BankLSB == 1 ? 100 : 50) };
+                                    dp = dp with { PitchCoarse = pitch *
+                                                           (ch.Patch.BankLSB == 1 ? 1 : 0.5f) };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Pitch for MAP{map}, key {drumKey}",
@@ -1008,10 +1029,10 @@ internal static class Roland
                                 // Drum Level
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { Gain = data / 120f };
+                                    dp = dp with { Level = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Level for MAP{map}, key {drumKey}",
@@ -1022,10 +1043,10 @@ internal static class Roland
                                 // Drum Assign Group (exclusive class)
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ExclusiveClass = data };
+                                    dp = dp with { AssignGroup = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Assign Group for MAP{map}, key {drumKey}",
@@ -1036,7 +1057,7 @@ internal static class Roland
                                 // Pan
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { Pan = data };
@@ -1050,10 +1071,10 @@ internal static class Roland
                                 // Reverb
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ReverbGain = data / 127f };
+                                    dp = dp with { ReverbSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Reverb for MAP{map}, key {drumKey}",
@@ -1064,10 +1085,10 @@ internal static class Roland
                                 // Chorus
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { ChorusGain = data / 127f };
+                                    dp = dp with { ChorusSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Chorus for MAP{map}, key {drumKey}",
@@ -1078,7 +1099,7 @@ internal static class Roland
                                 // Receive Note Off
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { RxNoteOff = data == 1 };
@@ -1092,7 +1113,7 @@ internal static class Roland
                                 // Receive Note On
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
                                     dp = dp with { RxNoteOn = data == 1 };
@@ -1106,10 +1127,10 @@ internal static class Roland
                                 // Delay
                                 foreach (var ch in synth.MidiChannels) 
                                 {
-                                    if (ch.MidiParamArray.DrumMap != map)
+                                    if (ch.MidiParameters.DrumMap != map)
                                         continue;
                                     ref var dp = ref ch.DrumParams[drumKey];
-                                    dp = dp with { DelayGain = data / 127f };
+                                    dp = dp with { VariationSend = data };
                                 }
                                 SpessaLog.GSInfo(
                                     $"Drum Delay for MAP{map}, key {drumKey}",
@@ -1119,6 +1140,121 @@ internal static class Roland
                         }
                         return;
                     }
+                    // User Drum Set
+                    if (a1 == 0x21)
+                    {
+                        HandleUserDrum(synth, a2, a3, data, syx);
+                        return;
+                    }
+                    
+                    // User Drum Set Bulk Dump
+                    if (a1 == 0x29)
+                    {
+                        var dataLength = syx.Length - 9;
+                        SpessaLog.Info(
+                            $"User Drum Set Bulk Dump detected! Keys: {dataLength}");
+
+                        // Top half of a2 stays the same (indicates which user drum)
+                        // While the bottom param is something else
+                        // Guessed by analyzing 95043-2.KYC.mid
+
+                        var actualDrumParam = 0;
+                        switch (a2 & 0x0f)
+                        {
+                            default:
+                                SpessaLog.GSFail(
+                                    "User Drum Bulk Dump System Exclusive",
+                                    syx);
+                                return;
+                            
+                            case 0x0:
+                                // Most at 60 = play note?
+                                actualDrumParam = 1;
+                                break;
+                            case 0x1:
+                                // Level?
+                                actualDrumParam = 2;
+                                break;
+                            case 0x2:
+                                // Matches gm.dls exclusive class pretty well, assign group?
+                                actualDrumParam = 3;
+                                break;
+                            case 0x3:
+                                // Most at 64, so pan?
+                                actualDrumParam = 4;
+                                break;
+                            case 0x4:
+                                // 0 on bass, so reverb?
+                                actualDrumParam = 5;
+                                break;
+                            case 0x5:
+                                // 0 on all, so chorus?
+                                actualDrumParam = 6;
+                                break;
+                            case 0x6:
+                                // 16 on all
+                                // In the order, rx notes should be here, it's 0x10, so maybe
+                                // It's both? on << 4 | off?
+                                // Special handling is needed
+                                var address2Off = (a2 & 0xf0) | 7;
+                                var address2On = (a2 & 0xf0) | 8;
+                                for (
+                                    var midiNote = 0;
+                                    midiNote < dataLength;
+                                    midiNote++
+                                ) {
+                                    HandleUserDrum(
+                                        synth,
+                                        address2Off,
+                                        midiNote,
+                                        syx[midiNote + 7] & 0xf,
+                                        syx
+                                    );
+                                    HandleUserDrum(
+                                        synth,
+                                        address2On,
+                                        midiNote,
+                                        syx[midiNote + 7] >> 4,
+                                        syx
+                                    );
+                                }
+                                return;
+                            case 0x7:
+                                // All 0, so delay
+                                actualDrumParam = 9;
+                                break;
+                            case 0x8:
+                                // All 2 and this is a 88pro midi, so the map is 2
+                                actualDrumParam = 0xa;
+                                break;
+                            case 0x9:
+                                // 0xA matches note number so the only one left is the program
+                                actualDrumParam = 0xb;
+                                break;
+                            case 0xa:
+                                // Drum numbers increase so source note
+                                actualDrumParam = 0xc;
+                                break;
+                            case 0xb:
+                                // 16 chars, seems to be a name (spec is wrong? says 12)
+                                actualDrumParam = 0;
+                                break;
+                        }
+                        
+                        var address2 = (a2 & 0xf0) | actualDrumParam;
+                        for (var midiNote = 0; midiNote < dataLength; midiNote++) 
+                        {
+                            HandleUserDrum(
+                                synth,
+                                address2,
+                                midiNote,
+                                syx[midiNote + 7],
+                                syx
+                            );
+                        }
+                        return;
+                    }
+                    
                     // This is some other GS sysex...
                     SpessaLog.GSFail("System Exclusive", syx);
                     return;
@@ -1131,6 +1267,13 @@ internal static class Roland
                     // (Roland SC display sysex) http://www.bandtrax.com.au/sysex.htm
                     // Sound Canvas Display
                     if (syx[4] == 0x10) // Sound Canvas Display
+                    {
+                        synth.CallEvent(new Event.CbDisplayMessage(
+                            syx.ToArray()));
+                    }
+                    // 0x20: SC-8850 160x64 display
+                    // Thanks to midi-movie-player for details on this message
+                    else if (syx[4] == 0x20) 
                     {
                         synth.CallEvent(new Event.CbDisplayMessage(
                             syx.ToArray()));
@@ -1162,6 +1305,151 @@ internal static class Roland
             // This is something else...
             SpessaLog.Unsupported("Roland", syx);
             return;
+        }
+    }
+
+    private static void HandleUserDrum(
+        Synthesizer synth, int a2, int a3, int data, ReadOnlySpan<byte> syx)
+    {
+        if (synth.SystemParameters.UserDrumLock) return;
+
+        var drumSet = a2 >> 4;
+        var midiNote = a3;
+        var command = a2 & 0xf;
+
+        switch (command)
+        {
+            default:
+            {
+                SpessaLog.GSFail("User Drum set", syx);
+                return;
+            }
+
+            // User drum set name
+            case 0:
+            {
+                var newName = Util.ReadBinaryString(
+                        syx.Slice(12, 7)).ToArray();
+                SpessaLog.GSInfo(
+                    $"User Drum Set {drumSet} Name", 
+                    Util.ToString(newName).Trim());
+                synth.CallEvent(new Event.CbDisplayMessage(newName));
+                return;
+            }
+
+            case 0x1:
+            {
+                // Here it's relative to 60, not 64 like NRPN. For some reason...
+                var pitch = data - 60;
+
+                // Use the full 100 cents here as we choose the correct pitch (50 or 100 cents) when committing changes
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.PitchCoarse, (float)pitch); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x2:
+            {
+                // Drum Level
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.Level, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x3:
+            {
+                // Drum Assign Group (exclusive class)
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.AssignGroup, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x4:
+            {
+                // Pan
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.Pan, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x5:
+            {
+                // Reverb
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.ReverbSend, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x6:
+            {
+                // Chorus
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.ChorusSend, data); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x7:
+            {
+                // Receive Note Off
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.RxNoteOff, data == 1); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x8:
+            {
+                // Receive Note On
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.RxNoteOn, data == 1); 
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            case 0x9:
+            {
+                // Delay
+                DrumParameter.Entry entry = 
+                    (DrumParameter.Type.VariationSend, data);
+                synth.SetUserDrumSetParam(drumSet, midiNote, entry);
+                return;
+            }
+
+            // Source drum set
+            case 0xa:
+            {
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.SourceDrumSet, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
+                return;
+            }
+
+            // Program number
+            case 0xb:
+            {
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.Program, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
+                return;
+            }
+
+            // Source note number
+            case 0xc:
+            {
+                UserDrumSetParameter.Entry entry = 
+                    (UserDrumSetParameter.Type.SourceNoteNumber, data); 
+                synth.SetUserDrumSetParam(
+                    drumSet, midiNote, entry);
+                return;
+            }
         }
     }
 }

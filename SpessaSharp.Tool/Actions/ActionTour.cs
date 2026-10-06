@@ -180,7 +180,7 @@ public static class ActionTour
                 if (oldNote != -1) 
                     player.NoteOff(oldChan, oldNote);
                 
-                if (!isDrums && chan % 16 == Synthesizer.DEFAULT_PERCUSSION)
+                if (!isDrums && chan % 16 == Synthesizer.MIDI_DRUM_CHANNEL)
                     chan = (chan + 1) % 16;
 
                 player.Program(chan, preset.Patch.Data);

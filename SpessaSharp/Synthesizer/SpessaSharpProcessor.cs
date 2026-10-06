@@ -20,27 +20,27 @@ public sealed class SpessaSharpProcessor
     
     /// <summary>For applying the snapshot after an override sound bank too.</summary>
     private SynthesizerSnapshot? _savedSnapshot;
-    
+
     /// <summary>Sample rate in Hertz.</summary>
-    public readonly int SampleRate;
+    public int SampleRate => _synthCore.SampleRate;
 
     public Action<Event>? OnEvent;
 
     public Macro.Reverb ReverbMacro
     {
-        get => (Macro.Reverb)_synthCore.ReverbProcessor.Macro;
+        get => (Macro.Reverb)_synthCore.GSReverbProcessor.Macro;
         set => Macro.SetReverb(_synthCore, value);
     }
     
     public Macro.Chorus ChorusMacro
     {
-        get => (Macro.Chorus)_synthCore.ChorusProcessor.Macro;
+        get => (Macro.Chorus)_synthCore.GSChorusProcessor.Macro;
         set => Macro.SetChorus(_synthCore, value);
     }
     
     public Macro.Delay DelayMacro
     {
-        get => (Macro.Delay)_synthCore.DelayProcessor.Macro;
+        get => (Macro.Delay)_synthCore.GSDelayProcessor.Macro;
         set => Macro.SetDelay(_synthCore, value);
     }
     
@@ -57,31 +57,14 @@ public sealed class SpessaSharpProcessor
     /// <param name="right">The right output channel.</param>
     /// <param name="startIndex">Start offset of the passed arrays, rendering starts at this index, defaults to 0.</param>
     /// <param name="sampleCount">The length of the rendered buffer, defaults to float32array length - startOffset.</param>
+    /// <param name="channelOutputs">Optional stereo channel outputs for visualization _only_. These shouldn't be added to the direct outputs.</param>
     public void Process(
         ArraySegment<float> left, 
         ArraySegment<float> right, 
         int? startIndex = 0, 
-        int? sampleCount = null)
-        => _synthCore.Process(left, right, startIndex ?? 0, sampleCount);
-
-    /// <summary>
-    /// Renders float32 audio data to stereo outputs; buffer size must be equal or smaller than <b>maxBufferSize</b>. All float arrays must have the same length.
-    /// </summary>
-    /// <param name="outputs">Any number stereo pairs (L, R) to render channels separately into.</param>
-    /// <param name="effectsLeft">The left stereo effect output buffer.</param>
-    /// <param name="effectsRight">The right stereo effect output buffer.</param>
-    /// <param name="startIndex">Start offset of the passed arrays, rendering starts at this index, defaults to 0.</param>
-    /// <param name="samples">The length of the rendered buffer, defaults to float32array length - startOffset.</param>
-    public void ProcessSplit(
-        ReadOnlySpan<(
-            ArraySegment<float> Left,
-            ArraySegment<float> Right)> outputs,
-        Span<float> effectsLeft,
-        Span<float> effectsRight,
-        int? startIndex,
-        int? samples = null) 
-        => _synthCore.ProcessSplit(
-            outputs, effectsLeft, effectsRight, startIndex ?? 0, samples);
+        int? sampleCount = null,
+        ArraySegment<ArraySegment<ArraySegment<float>>>? channelOutputs = null)
+        => _synthCore.Process(left, right, startIndex ?? 0, sampleCount, channelOutputs);
     
     public void SendAddress(
         int a1, int a2, int a3, ReadOnlySpan<byte> data, int offset = 0) 
@@ -93,7 +76,10 @@ public sealed class SpessaSharpProcessor
 
     /// <summary>Executes a system exclusive message for the synthesizer. </summary>
     /// <param name="syx">The system exclusive message as an array of bytes.</param>
-    /// <param name="channelOffset">The channel offset to apply (default is 0).</param>
+    /// <param name="channelOffset">
+    /// channelOffset The channel offset for the message as they usually can only address the first 16 channels.
+    /// For example, to send a system exclusive on channel 16,
+    /// send a system exclusive for channel 0 and set an offset of 16.</param>
     public void SystemExclusive(
         ReadOnlySpan<byte> syx, int? channelOffset = null)
         => _synthCore.SystemExclusive(syx, channelOffset ?? 0);
@@ -101,7 +87,10 @@ public sealed class SpessaSharpProcessor
     /// <summary>
     /// Executes a MIDI controller change message on the specified channel.
     /// </summary>
-    /// <param name="channel">The MIDI channel to change the controller on.</param>
+    /// <param name="channel">
+    /// The MIDI channel to change the controller on.
+    /// It usually ranges from 0 to 15, but it depends on the channel count.
+    /// </param>
     /// <param name="controller">The MIDI controller number (0-127).</param>
     /// <param name="value">The value of the controller (0-127).</param>
     public void ControllerChange(int channel, Midi.CC controller, int value) 
@@ -199,13 +188,11 @@ public sealed class SpessaSharpProcessor
     public SpessaSharpProcessor(
         int sampleRate, Synthesizer.Options? opts = null)
     {
-        SampleRate = sampleRate;
-        
         // Initialize the protected synth values
         var options = opts ?? Synthesizer.Options.Default;
         
         _synthCore = new Synthesizer(
-            CallEvent, MissingPreset, SampleRate, options);
+            CallEvent, MissingPreset, sampleRate, options);
         
         for (var i = 0; i < Synthesizer.MIDI_CHANNEL_COUNT; i++)
             // Don't send events as we're creating the initial channels
@@ -238,35 +225,24 @@ public sealed class SpessaSharpProcessor
     /// <summary>The current time of the synthesizer, in seconds. You probably should not modify this directly.</summary>
     public double CurrentTime => _synthCore.CurrentTime;
     
-    /// <summary>Synthesizer's reverb processor.</summary>
-    public Effect.ReverbProcessor ReverbProcessor =>
-        _synthCore.ReverbProcessor;
-    
-    /// <summary>Synthesizer's Chorus processor.</summary>
-    public Effect.ChorusProcessor ChorusProcessor =>
-        _synthCore.ChorusProcessor;
-    
-    /// <summary>Synthesizer's Delay processor.</summary>
-    public Effect.DelayProcessor DelayProcessor => _synthCore.DelayProcessor;
-    
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public SoundBankManager SoundBankManager => _synthCore.SoundBankManager;
-    
-    /// <summary>Handles the custom key overrides: velocity and preset</summary>
-    public KeyModifier.Manager KeyModifierManager =>
-        _synthCore.KeyModifierManager;
-    
+
     /// <summary>A handler for missing presets during program change. By default, it warns to console.</summary>
     /// <param name="patch">The MIDI patch that was requested.</param>
     /// <param name="system">The MIDI System for the request.</param>
     /// <returns>If a BasicPreset instance is returned, it will be used by the channel.</returns>
-    public BasicPreset? OnMissingPreset(MidiPatch patch, Midi.System system)
+    public delegate BasicPreset? OnMissingPresetCallBack(
+        MidiPatch patch, Midi.System system);
+
+    /// <summary>A handler for missing presets during program change. By default, it warns to console.</summary>
+    public OnMissingPresetCallBack OnMissingPreset = (patch, _) =>
     {
         SpessaLog.Warn(
             $"[WARN] No preset found for ${patch.ToMidiString()
             }! Did you forget to add a sound bank?");
         return null;
-    }
+    };
     
     /// <summary>
     /// Locks or unlocks a given Global MIDI Parameter.
@@ -287,7 +263,9 @@ public sealed class SpessaSharpProcessor
     /// Executes a full synthesizer reset.
     /// This will reset all controllers to their default values, except for the locked controllers.
     /// </summary>
-    public void Reset() => _synthCore.Reset();
+    /// <param name="system">The MIDI system to reset the synthesizer to. Defaults to <c>gs</c>.</param>
+    public void Reset(Midi.System system = Synthesizer.DefaultMode) => 
+        _synthCore.Reset(system);
     
     /// <summary>Applies the snapshot to the synth.</summary>
     /// <param name="snapshot">The snapshot to apply.</param>
@@ -360,8 +338,8 @@ public sealed class SpessaSharpProcessor
     /// <param name="velocity">The velocity to use.</param>
     /// <returns>is an array of voices.</returns>
     internal Synthesizer.CachedVoiceList GetVoicesForPreset(
-        BasicPreset preset, int midiNote, int velocity) =>
-        _synthCore.GetVoicesForPreset(preset, midiNote, velocity);
+        SynthPatch preset, int midiNote, int velocity) =>
+        _synthCore.GetVoicesForPreset(preset, (byte)midiNote, (byte)velocity);
 
     // Private methods
     

@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using SpessaSharp.MIDI;
+using SpessaSharp.MIDI.Utils;
+using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Parameters;
@@ -25,6 +27,7 @@ internal static class Yamaha
             var a1 = syx[3]; // Address 1
             var a2 = syx[4]; // Address 2
             var a3 = syx[5]; // Address 3
+            // Data = syx[6]
             var data = syx[6];
             // XG system parameter
             if (a1 == 0x00 && a2 == 0x00) 
@@ -86,19 +89,308 @@ internal static class Yamaha
                 return;
             }
         
+            // XG EFFECT 1 (reverb, chorus, variation)
             if (a1 == 0x02 && a2 == 0x01) 
             {
-                var effect = a3;
-                var effectType = effect switch
+                var isReverb =
+                    a3 is 0x00 or >= 0x02 and <= 0x0d or >= 0x10 and <= 0x15;
+                if (isReverb && synth.SystemParameters.XGReverbLock) return;
+                var isChorus =
+                    a3 is 0x20 or >= 0x22 and <= 0x2e or >= 0x30 and <= 0x35;
+                if (isChorus && synth.SystemParameters.XGChorusLock) return;
+                var isVariation =
+                    a3 is 0x40 or >= 0x42 and <= 0x5b or >= 0x70 and <= 0x75;
+                if (isVariation && synth.SystemParameters.XGVariationLock) return;
+                
+                switch (a3)
                 {
-                    <= 0x15 => "Reverb",
-                    <= 0x35 => "Chorus",
-                    _ => "Variation",
-                };
+                    default:
+                        SpessaLog.XGFail("EFFECT 1 Parameter", [a3]);
+                        break;
 
-                SpessaLog.XGFail(
-                    $"{effectType} Parameter", [effect]);
+                    case 0x00:
+                    {
+                        var type = (data << 8) | syx[7];
+                        synth.XGReverbBlock.SetType(type);
+                        SpessaLog.XGInfo("Reverb Type", type.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x02:
+                    case 0x03:
+                    case 0x04:
+                    case 0x05:
+                    case 0x06:
+                    case 0x07:
+                    case 0x08:
+                    case 0x09:
+                    case 0x0a:
+                    case 0x0b: 
+                    {
+                        synth.XGReverbBlock.SetParameter(a3 - 0x02, data);
+                        SpessaLog.XGInfo($"Reverb Parameter {a3 - 0x01}", data);
+                        return;
+                    }
+                    
+                    case 0x0c: 
+                    {
+                        synth.XGReverbBlock.ReturnLevel = data;
+                        SpessaLog.XGInfo($"Reverb Return", data);
+                        return;
+                    }
+
+                    case 0x0d: 
+                    {
+                        synth.XGReverbBlock.Pan = data;
+                        SpessaLog.XGInfo($"Reverb Pan", data);
+                        return;
+                    }
+                    
+                    case 0x10:
+                    case 0x11:
+                    case 0x12:
+                    case 0x13:
+                    case 0x14:
+                    case 0x15: 
+                    {
+                        synth.XGReverbBlock.SetParameter(a3 - 0x06, data);
+                        SpessaLog.XGInfo($"Reverb Parameter {a3 - 0x05}", data);
+                        return;
+                    }
+
+                    case 0x20: 
+                    {
+                        var type = (data << 8) | syx[7];
+                        synth.XGChorusBlock.SetType(type);
+                        SpessaLog.XGInfo("Chorus Type", type.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x22:
+                    case 0x23:
+                    case 0x24:
+                    case 0x25:
+                    case 0x26:
+                    case 0x27:
+                    case 0x28:
+                    case 0x29:
+                    case 0x2a:
+                    case 0x2b: 
+                    {
+                        synth.XGChorusBlock.SetParameter(a3 - 0x22, data);
+                        SpessaLog.XGInfo($"Chorus Parameter {a3 - 0x21}", data);
+                        return;
+                    }
+                    
+                    case 0x2c: 
+                    {
+                        synth.XGChorusBlock.ReturnLevel = data;
+                        SpessaLog.XGInfo("Chorus Return", data);
+                        return;
+                    }
+
+                    case 0x2d: 
+                    {
+                        synth.XGChorusBlock.Pan = data;
+                        SpessaLog.XGInfo("Chorus Pan", data);
+                        return;
+                    }
+
+                    case 0x2e: 
+                    {
+                        synth.XGChorusBlock.SendToReverb = data;
+                        SpessaLog.XGInfo("Chorus Send To Reverb", data);
+                        return;
+                    }
+                    
+                    case 0x30:
+                    case 0x31:
+                    case 0x32:
+                    case 0x33:
+                    case 0x34:
+                    case 0x35: 
+                    {
+                        synth.XGChorusBlock.SetParameter(a3 - 0x26, data);
+                        SpessaLog.XGInfo($"Chorus Parameter {a3 - 0x25}", data);
+                        return;
+                    }
+                    
+                    case 0x40: 
+                    {
+                        var type = (data << 8) | syx[7];
+                        synth.XGVariationBlock.SetType(type);
+                        SpessaLog.XGInfo("Variation Type", type.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x42:
+                    case 0x44:
+                    case 0x46:
+                    case 0x48:
+                    case 0x4a:
+                    case 0x4c:
+                    case 0x4e:
+                    case 0x50:
+                    case 0x52:
+                    case 0x54: 
+                    {
+                        // Params are 14-bit!
+                        var value = (data << 7) | syx[7];
+                        // Bit shift by 1 because address increases by two
+                        synth.XGVariationBlock.SetParameter((a3 - 0x42) >> 1, value);
+                        SpessaLog.XGInfo(
+                            $"Variation Parameter {a3 - 0x41} (14-bit)",
+                            value.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x56: 
+                    {
+                        synth.XGVariationBlock.ReturnLevel = data;
+                        SpessaLog.XGInfo("Variation Return", data);
+                        return;
+                    }
+
+                    case 0x57: 
+                    {
+                        synth.XGVariationBlock.Pan = data;
+                        SpessaLog.XGInfo("Variation Pan", data);
+                        return;
+                    }
+
+                    case 0x58: 
+                    {
+                        synth.XGVariationBlock.SendToReverb = data;
+                        SpessaLog.XGInfo("Variation Send To Reverb", data);
+                        return;
+                    }
+                    
+                    case 0x59: 
+                    {
+                        synth.XGVariationBlock.SendToChorus = data;
+                        SpessaLog.XGInfo("Variation Send To Chorus", data);
+                        return;
+                    }
+
+                    case 0x5a: 
+                    {
+                        synth.XGVariationBlock.InsertionMode = data == 0;
+                        SpessaLog.XGInfo(
+                            "Variation Connection",
+                            data == 0 ? "INSERTION" : "SYSTEM");
+                        return;
+                    }
+
+                    case 0x5b: 
+                    {
+                        synth.XGVariationBlock.PartNumber = data;
+                        SpessaLog.XGInfo("Variation Part Number", data);
+                        return;
+                    }
+                    
+                    case 0x70:
+                    case 0x71:
+                    case 0x72:
+                    case 0x73:
+                    case 0x74:
+                    case 0x75: 
+                    {
+                        // These are 7-bit only
+                        synth.XGVariationBlock.SetParameter(a3 - 0x66, data);
+                        SpessaLog.XGInfo($"Variation Parameter {a3 - 0x65}", data);
+                        return;
+                    }
+                }
                 return;
+            }
+            
+            // XG EFFECT 2 (insertion)
+            if (a1 == 0x03)
+            {
+                if (synth.SystemParameters.XGInsertionLock) return;
+                
+                if (!Util.InRange(synth.XGInsertionBlocks, 2)) 
+                {
+                    SpessaLog.XGFail("Insertion Effect Number", [a2]);
+                    return;
+                }
+                
+                var insertion = synth.XGInsertionBlocks[a2];
+
+                switch (a3) {
+                    default: 
+                    {
+                        SpessaLog.XGFail("EFFECT 2 Parameter", [a3]);
+                        break;
+                    }
+
+                    case 0x00: 
+                    {
+                        var type = (data << 8) | syx[7];
+                        insertion.SetType(type);
+                        SpessaLog.XGInfo($"Insertion {a2} Type", type.ToString("X"));
+                        return;
+                    }
+
+                    case 0x02:
+                    case 0x03:
+                    case 0x04:
+                    case 0x05:
+                    case 0x06:
+                    case 0x07:
+                    case 0x08:
+                    case 0x09:
+                    case 0x0a:
+                    case 0x0b: 
+                    {
+                        insertion.SetParameter(a3 - 0x02, data);
+                        SpessaLog.XGInfo(
+                            $"Insertion {a2} Parameter {a3 - 0x01}",
+                            data);
+                        return;
+                    }
+
+                    case 0x0c: 
+                    {
+                        insertion.PartNumber = data;
+                        SpessaLog.XGInfo($"Insertion {a2} Part Number", data);
+                        return;
+                    }
+
+                    case 0x20:
+                    case 0x21:
+                    case 0x22:
+                    case 0x23:
+                    case 0x24:
+                    case 0x25: 
+                    {
+                        insertion.SetParameter(a3 - 0x16, data);
+                        SpessaLog.XGInfo(
+                            $"Insertion {a2} Parameter {a3 - 0x15}",
+                            data);
+                        return;
+                    }
+
+                    case 0x30:
+                    case 0x32:
+                    case 0x34:
+                    case 0x36:
+                    case 0x38:
+                    case 0x3a:
+                    case 0x3c:
+                    case 0x3e:
+                    case 0x40:
+                    case 0x42: 
+                    {
+                        var value = (data << 7) | syx[7];
+                        // Bit shift by 1 because address increases by two
+                        insertion.SetParameter((a3 - 0x30) >> 1, value);
+                        SpessaLog.XGInfo(
+                            $"Insertion {a2} Parameter {a3 - 0x2f} (14-bit)",
+                            value);
+                        return;
+                    }
+                }
             }
 
             if (a1 == 0x08/* A2 is the channel number*/) 
@@ -172,8 +464,18 @@ internal static class Yamaha
 
                     // Part mode
                     case 0x07:
-                        var drums = data != 0;
+                        var drums = data != SysexData.MELODIC_MAP;
+                        // Testcase: xg part_mode_drum
+                        // Verified with s-yxg50
+                        // SetDrums switches the bank and keeps the program,
+                        // But switching *to* drums re-initializes the kit
+                        // To program 0 instead!
+                        // But not if it's already drum
+                        // Testcase: 15. U.N. Owen was her (yoimutu).mid
+                        var drumsBefore = ch.DrumChannel;
                         ch.SetDrums(drums);
+                        if (drums && !drumsBefore) ch.ProgramChange(0);
+                        ch.Set(ChannelMidiParameter.DrumMap(data));
                         SpessaLog.XGInfo(
                             $"Part Mode on {channel}",
                             drums ? "DRUM" : "MELODIC");
@@ -199,7 +501,7 @@ internal static class Yamaha
                             data));
                         SpessaLog.XGInfo(
                             $"Velocity Sense Depth on {channel}", data);
-                        return;
+                        break;
 
                     // Velocity Sense Offset
                     case 0x0d:
@@ -208,7 +510,7 @@ internal static class Yamaha
                             data));
                         SpessaLog.XGInfo(
                             $"Velocity Sense Offset on {channel}", data);
-                        return;
+                        break;
 
                     // Pan position
                     case 0x0e: 
@@ -289,19 +591,190 @@ internal static class Yamaha
                         ch.ControllerChange(
                             Midi.CC.ReleaseTime, data);
                         break;
+                    
+                    // ---
+                    // XG Controller matrix starts here
+                    // ---
+                    // 2 Special cases which are aliases:
 
+                    // MW LFO PMOD Depth (alias to modulation wheel range)
+                    case 0x20: 
+                    {
+                        var centeredValue = data - 64;
+                        ch.MidiParamArray.ModulationDepth = (data / 127f) * 600;
+                        SpessaLog.XGInfo(
+                            $"Modulation Wheel Range for {channel}",
+                            centeredValue,
+                            "cents");
+                        break;
+                    }
+                    
+                    // Bend pitch control (alias to pitch wheel range)
                     case 0x23:
                     {
                         // Bend pitch control (pitch wheel range)
                         var centeredValue = data - 64;
-                        ch.Set((ChannelMidiParameter.Type.PitchWheelRange, centeredValue));
+                        ch.MidiParamArray.PitchWheelRange = centeredValue;
                         SpessaLog.XGInfo(
                             $"Pitch Wheel Range for {channel}",
                             centeredValue,
                         "semitones");
                         break;
                     }
+
+                    // Auxiliary controllers
+                    // AC1 Controller number
+                    case 0x59:
+                    {
+                        ch.MidiParamArray.CC1 = (Midi.CC)data;
+                        SpessaLog.XGInfo(
+                            $"AC1 controller number for {channel}", data);
+                        break;
+                    }
+
+                    // AC2 Controller number
+                    case 0x60:
+                    {
+                        ch.MidiParamArray.CC2 = (Midi.CC)data;
+                        SpessaLog.XGInfo(
+                            $"AC2 controller number for {channel}", data);
+                        break;
+                    }
+                    
+                    // The receivers themselves:
+                    // Modulation Wheel
+                    case 0x1d:
+                    case 0x1e:
+                    case 0x1f:
+                    // 0x20 is aliased to modulation depth range
+                    case 0x21:
+                    case 0x22:
+
+                    // Pitch Bend
+                    // 0x23 is aliased to pitch bend range
+                    case 0x24:
+                    case 0x25:
+                    case 0x26:
+                    case 0x27:
+                    case 0x28:
+
+                    // Channel Aftertouch
+                    case 0x4d:
+                    case 0x4e:
+                    case 0x4f:
+                    case 0x50:
+                    case 0x51:
+                    case 0x52:
+
+                    // Poly Aftertouch
+                    case 0x53:
+                    case 0x54:
+                    case 0x55:
+                    case 0x56:
+                    case 0x57:
+                    case 0x58:
+
+                    // AC1
+                    // 0x59 is number, handled above
+                    case 0x5a:
+                    case 0x5b:
+                    case 0x5c:
+                    case 0x5d:
+                    case 0x5e:
+                    case 0x5f:
+
+                    // AC2
+                    // 0x60 is number, handled above
+                    case 0x61:
+                    case 0x62:
+                    case 0x63:
+                    case 0x64:
+                    case 0x65:
+                    case 0x66:
+                    {
+                        int startAddr;
+                        Modulator.Source.Index source;
+                        var isCC = false;
+                        string sourceName;
+                        var bipolar = false;
+
+                        if (a3 <= 0x22) 
+                        {
+                            startAddr = 0x1d;
+                            source = Midi.CC.ModulationWheel;
+                            isCC = true;
+                            sourceName = "mod wheel";
+                        } 
+                        else if (a3 <= 0x28) 
+                        {
+                            startAddr = 0x23;
+                            source = Modulator.Source.ControllerSource
+                                .PitchWheel;
+                            sourceName = "pitch wheel";
+                            bipolar = true;
+                        } 
+                        else if (a3 <= 0x52) 
+                        {
+                            startAddr = 0x4d;
+                            source = Modulator.Source.ControllerSource
+                                .ChannelPressure;
+                            sourceName = "channel pressure";
+                        } 
+                        else if (a3 <= 0x58) 
+                        {
+                            startAddr = 0x53;
+                            source = Modulator.Source.ControllerSource
+                                .PolyPressure;
+                            sourceName = "poly pressure";
+                        } 
+                        else if (a3 <= 0x5f) 
+                        {
+                            startAddr = 0x5a;
+                            source = ch.MidiParameters.CC1;
+                            isCC = true;
+                            sourceName = "AC1";
+                        } 
+                        else 
+                        {
+                            startAddr = 0x61;
+                            source = ch.MidiParameters.CC2;
+                            isCC = true;
+                            sourceName = "AC2";
+                        }
+
+                        // Map to GS
+                        ch.DynamicModulators.SetupReceiverXG(
+                            a3 - startAddr,
+                            data,
+                            source.AsInt,
+                            isCC,
+                            sourceName,
+                            bipolar
+                        );
+                        break;
+                    }
+
+                    // ---
+                    // XG Controller Matrix ends here
+                    // ---
+
+                    // Portamento switch
+                    case 0x67: 
+                    {
+                        ch.ControllerChange(
+                            Midi.CC.PortamentoOnOff,
+                            data == 1 ? 127 : 0);
+                        break;
+                    }
+
+                    // Portamento time
+                    case 0x68: 
+                    {
+                        ch.ControllerChange(Midi.CC.PortamentoTime, data);
+                        break;
+                    }
                 }
+
                 return;
             }
 
@@ -309,23 +782,26 @@ internal static class Yamaha
             {
                 // Drum part setup
                 if (synth.SystemParameters.DrumLock) return;
+                
+                // In xg, the map is offset by the default (e.g. 2)
+                // So 0 means drum setup 2, 1 means drum setup 3, etc.
+                var setupNumber = (a1 & 0xf) + SysexData.DEFAULT_XG_DRUM_MAP;
                 var drumKey = a2;
                 switch (a3) 
                 {
-                    default: 
-                        Engine.SystemExclusive.NotRecognized(
-                            [a3], "Yamaha XG Drum Setup");
+                    default:
+                        SpessaLog.XGFail("Drum Setup", [a3]);
                         return;
 
                     case 0x00: 
                     {
                         // Drum pitch coarse
-                        var pitch = (data - 64) * 100;
-                        foreach (var ch in synth.MidiChannels) 
+                        var pitch = (data - 64);
+                        foreach (var ch in synth.MidiChannels)
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { Pitch = pitch };
+                            param = param with { PitchCoarse = pitch };
                         }
                         SpessaLog.XGInfo(
                             $"Drum Pitch for key {drumKey}",
@@ -340,13 +816,13 @@ internal static class Yamaha
                         var pitch = data - 64;
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            var newPitch = param.Pitch + pitch;
-                            param = param with { Pitch = newPitch };
+                            var newPitch = param.PitchFine + pitch;
+                            param = param with { PitchFine = newPitch };
                             SpessaLog.XGInfo(
-                                $"Drum Pitch for key {drumKey}",
-                                ch.DrumParams[drumKey].Pitch,
+                                $"Drum Pitch Fine for key {drumKey}",
+                                ch.DrumParams[drumKey].PitchFine,
                             "semitones");
                         }
                         break;
@@ -356,9 +832,9 @@ internal static class Yamaha
                         // Drum Level
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { Gain = data / 120f };
+                            param = param with { Level = data };
                         }
                         SpessaLog.XGInfo($"Drum Level for key {drumKey}", data);
                         break;
@@ -367,9 +843,9 @@ internal static class Yamaha
                         // Drum Alternate Group (exclusive class)
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { ExclusiveClass = data };
+                            param = param with { AssignGroup = data };
                         }
                         SpessaLog.XGInfo($"Drum Alternate Group for key {drumKey}", data);
                         break;
@@ -378,7 +854,7 @@ internal static class Yamaha
                         // Drum Pan
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { Pan = data };
                         }
@@ -389,9 +865,9 @@ internal static class Yamaha
                         // Drum Reverb
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { ReverbGain = data / 127f };
+                            param = param with { ReverbSend = data };
                         }
                         SpessaLog.XGInfo($"Drum Reverb for key {drumKey}", data);
                         break;
@@ -400,18 +876,29 @@ internal static class Yamaha
                         // Drum Chorus
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
-                            param = param with { ChorusGain = data / 127f };
+                            param = param with { ChorusSend = data };
                         }
                         SpessaLog.XGInfo($"Drum Chorus for key {drumKey}", data);
+                        break;
+                    
+                    case 0x07: 
+                        // Drum Variation
+                        foreach (var ch in synth.MidiChannels) 
+                        {
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
+                            ref var param = ref ch.DrumParams[drumKey];
+                            param = param with { VariationSend = data };
+                        }
+                        SpessaLog.XGInfo($"Drum Variation for key {drumKey}", data);
                         break;
 
                     case 0x09: 
                         // Receive note off
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { RxNoteOff = data == 1 };
                         }
@@ -422,7 +909,7 @@ internal static class Yamaha
                         // Receive note on
                         foreach (var ch in synth.MidiChannels) 
                         {
-                            if (!ch.DrumChannel) continue;
+                            if (ch.MidiParameters.DrumMap != setupNumber) continue;
                             ref var param = ref ch.DrumParams[drumKey];
                             param = param with { RxNoteOn = data == 1 };
                         }

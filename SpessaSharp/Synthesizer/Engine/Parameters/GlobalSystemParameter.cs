@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer.Engine.Parameters;
@@ -68,10 +69,10 @@ public static class GlobalSystemParameters
                 parameters[(int)GlobalSystemParameter.Type.ChorusGain].AsFloat;
         }
 
-        public float DelayGain
+        public float GSDelayGain
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalSystemParameter.Type.DelayGain].AsFloat;
+                parameters[(int)GlobalSystemParameter.Type.GSDelayGain].AsFloat;
         }
 
         public bool DrumLock
@@ -79,29 +80,65 @@ public static class GlobalSystemParameters
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.DrumLock].AsBool;
         }
-
-        public bool DelayLock
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalSystemParameter.Type.DelayLock].AsBool;
-        }
-
-        public bool ReverbLock
+        
+        public bool UserDrumLock
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
-                parameters[(int)GlobalSystemParameter.Type.ReverbLock].AsBool;
+                parameters[(int)GlobalSystemParameter.Type.UserDrumLock].AsBool;
         }
 
-        public bool ChorusLock
+        public bool GSDelayLock
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalSystemParameter.Type.ChorusLock].AsBool;
+                parameters[(int)GlobalSystemParameter.Type.GSDelayLock].AsBool;
         }
 
-        public bool InsertionEffectLock
+        public bool GSReverbLock
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
-                parameters[(int)GlobalSystemParameter.Type.InsertionEffectLock].AsBool;
+                parameters[(int)GlobalSystemParameter.Type.GSReverbLock].AsBool;
+        }
+
+        public bool GSChorusLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
+                parameters[(int)GlobalSystemParameter.Type.GSChorusLock].AsBool;
+        }
+
+        public bool XGReverbLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.XGReverbLock].AsBool;
+        }
+        
+        public bool XGChorusLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.XGChorusLock].AsBool;
+        }
+        
+        public float XGVariationGain
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.XGVariationGain].AsFloat;
+        }
+        
+        public bool XGVariationLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.XGVariationLock].AsBool;
+        }
+
+        public bool GSInsertionLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.GSInsertionLock].AsBool;
+        }
+        
+        public bool XGInsertionLock
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.XGInsertionLock].AsBool;
         }
         
         public bool EffectsEnabled
@@ -115,7 +152,6 @@ public static class GlobalSystemParameters
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.EventsEnabled].AsBool;
         }
-        
 
         public bool BlackMIDIMode
         {
@@ -133,6 +169,12 @@ public static class GlobalSystemParameters
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
                 parameters[(int)GlobalSystemParameter.Type.MonophonicRetrigger].AsBool;
+        }
+        
+        public bool CustomVibrato
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => 
+                parameters[(int)GlobalSystemParameter.Type.CustomVibrato].AsBool;
         }
         
         public GlobalSystemParameter Get(GlobalSystemParameter.Type type) =>
@@ -193,13 +235,23 @@ public static class GlobalSystemParameters
             (GlobalSystemParameter.Type.VoiceCap, Synthesizer.VOICE_CAP),
             (GlobalSystemParameter.Type.AutoAllocateVoices, false),
             (GlobalSystemParameter.Type.ReverbGain, 1f),
-            (GlobalSystemParameter.Type.ReverbLock, false),
+            (GlobalSystemParameter.Type.GSReverbLock, false),
+            (GlobalSystemParameter.Type.XGReverbLock, false),
+
             (GlobalSystemParameter.Type.ChorusGain, 1f),
-            (GlobalSystemParameter.Type.ChorusLock, false),
-            (GlobalSystemParameter.Type.DelayGain, 1f),
-            (GlobalSystemParameter.Type.DelayLock, false),
-            (GlobalSystemParameter.Type.InsertionEffectLock, false),
+            (GlobalSystemParameter.Type.GSChorusLock, false),
+            (GlobalSystemParameter.Type.XGChorusLock, false),
+
+            (GlobalSystemParameter.Type.GSDelayGain, 1f),
+            (GlobalSystemParameter.Type.GSDelayLock, false),
+            
+            (GlobalSystemParameter.Type.XGVariationGain, 1f),
+            (GlobalSystemParameter.Type.XGVariationLock, false),
+
+            (GlobalSystemParameter.Type.GSInsertionLock, false),
+            (GlobalSystemParameter.Type.XGInsertionLock, false),
             (GlobalSystemParameter.Type.DrumLock, false),
+            (GlobalSystemParameter.Type.UserDrumLock, false),
             (GlobalSystemParameter.Type.BlackMIDIMode, false),
             (GlobalSystemParameter.Type.DeviceID, -1),
             
@@ -211,6 +263,7 @@ public static class GlobalSystemParameters
             (Synthesizer.InterpolationType.Hermite),
             (GlobalSystemParameter.Type.NprnParamLock, false),
             (GlobalSystemParameter.Type.MonophonicRetrigger, false),
+            (GlobalSystemParameter.Type.CustomVibrato, false),
         ];
         
         DefaultParameters = new GlobalSystemParameter[list.Length];
@@ -312,44 +365,82 @@ public readonly record struct GlobalSystemParameter
         /// Enabling this parameter will cause a new voice allocation when the voice cap is hit, rather than stealing existing voices.
         /// This is not recommended in real-time environments. </summary>
         AutoAllocateVoices,
-        /// <summary> The reverb gain. From 0 to any number. 1 is 100% reverb. </summary>
+        /// <summary> The reverb gain. From 0 to any number. 1 is 100% reverb. Applies to both GS and XG reverb.</summary>
         ReverbGain,
         /// <summary>
-        /// If the synthesizer should prevent editing of the reverb parameters.
+        /// If the synthesizer should prevent editing of the GS reverb parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the reverb parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        ReverbLock,
-        /// <summary> The chorus gain. From 0 to any number. 1 is 100% chorus. </summary>
+        GSReverbLock,
+        /// <summary>
+        /// If the synthesizer should prevent editing of the XG reverb block.
+        /// This effect is modified using MIDI system exclusive messages, so
+        /// the recommended use case would be setting
+        /// the reverb parameters then locking it to prevent changes by MIDI files.
+        /// </summary>
+        XGReverbLock,
+        /// <summary> The chorus gain. From 0 to any number. 1 is 100% chorus. Applies to both GS and XG chorus.</summary>
         ChorusGain,
         /// <summary>
-        /// If the synthesizer should prevent editing of the chorus parameters.
+        /// If the synthesizer should prevent editing of the GS chorus parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the chorus parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        ChorusLock,
+        GSChorusLock,
         /// <summary>
-        /// The delay gain. From 0 to any number. 1 is 100% delay.
+        /// If the synthesizer should prevent editing of the XG chorus block.
+        /// This effect is modified using MIDI system exclusive messages, so
+        /// the recommended use case would be setting
+        /// the chorus parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        DelayGain,
+        XGChorusLock,
         /// <summary>
-        /// If the synthesizer should prevent editing of the delay parameters.
+        /// The GS delay gain. From 0 to any number. 1 is 100% delay.
+        /// </summary>
+        GSDelayGain,
+        /// <summary>
+        /// If the synthesizer should prevent editing of the GS delay parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the delay parameters then locking it to prevent changes by MIDI files.
         /// </summary>
-        DelayLock,
+        GSDelayLock,
+        
         /// <summary>
-        /// If the synthesizer should prevent changing the insertion effect type and parameters.
+        /// The XG variation gain when in system mode. <see cref="XGVariationConnection"/>
+        /// From 0 to any number. 1 is 100% variation.
+        /// </summary>
+        XGVariationGain,
+        
+        /// <summary>
+        /// If the synthesizer should prevent editing of the XG variation block.
+        /// This effect is modified using MIDI system exclusive messages, so
+        /// the recommended use case would be setting
+        /// the variation parameters then locking it to prevent changes by MIDI files.
+        /// </summary>
+        XGVariationLock,
+        
+        /// <summary>
+        /// If the synthesizer should prevent changing the GS insertion effect type and parameters.
         /// This effect is modified using MIDI system exclusive messages, so
         /// the recommended use case would be setting
         /// the insertion effect type and parameters then locking it to prevent changes by MIDI files.
         ///
         /// To lock the channel insertion assign, lock the <b>EfxAssign</b> parameter instead.
         /// </summary>
-        InsertionEffectLock,
+        GSInsertionLock,
+        
+        /// <summary>
+        /// If the synthesizer should prevent editing of _ALL_ the XG insertion (EFFECT 2) blocks.
+        /// These effects are modified using MIDI system exclusive messages, so
+        /// the recommended use case would be setting
+        /// the insertion parameters then locking them to prevent changes by MIDI files.
+        /// </summary>
+        XGInsertionLock,
+        
         /// <summary>
         /// If the synthesizer should prevent editing of the drum parameters.
         /// These params are modified using MIDI system exclusive messages or NRPN, so
@@ -357,6 +448,13 @@ public readonly record struct GlobalSystemParameter
         /// the drum parameters then locking it to prevent changes by MIDI files.
         /// </summary>
         DrumLock,
+        /// <summary>
+        /// If the synthesizer should prevent editing of the User Drum Set (GS only) parameters.
+        /// These params are modified using MIDI system exclusive messages or NRPN, so
+        /// the recommended use case would be setting
+        /// the User Drum Set parameters then locking it to prevent changes by MIDI files.
+        /// </summary>
+        UserDrumLock,
         /// <summary> Forces note killing instead of releasing. Improves performance in black MIDIs. </summary>
         BlackMIDIMode,
         /// <summary> Synthesizer's device ID for system exclusive messages. Set to -1 to accept all. </summary>
@@ -385,6 +483,15 @@ public readonly record struct GlobalSystemParameter
         /// Where a new note will kill the previous one if it is still playing.
         /// </summary>
         MonophonicRetrigger,
+        /// <summary>
+        /// If the synthesizer should use the custom vibrato implementation.
+        ///
+        /// This effect is modified using NRPN, so
+        /// the recommended use case would be setting
+        /// the custom vibrato then locking it to prevent changes by MIDI files.
+        /// Disabled by default to avoid altering songs that don't expect it.
+        /// </summary>
+        CustomVibrato,
     }
 
     public static Params.Type TypeOf(Type type) => type switch
@@ -398,18 +505,25 @@ public readonly record struct GlobalSystemParameter
         Type.InterpolationType => Params.Type.InterpolationType,
         Type.MonophonicRetrigger => Params.Type.Bool,
         Type.ReverbGain => Params.Type.Float,
-        Type.ReverbLock => Params.Type.Bool,
+        Type.GSReverbLock => Params.Type.Bool,
+        Type.XGReverbLock => Params.Type.Bool,
         Type.ChorusGain => Params.Type.Float,
-        Type.ChorusLock => Params.Type.Bool,
-        Type.DelayGain => Params.Type.Float,
-        Type.DelayLock => Params.Type.Bool,
-        Type.InsertionEffectLock => Params.Type.Bool,
+        Type.GSChorusLock => Params.Type.Bool,
+        Type.XGChorusLock => Params.Type.Bool,
+        Type.GSDelayGain => Params.Type.Float,
+        Type.GSDelayLock => Params.Type.Bool,
+        Type.XGVariationGain => Params.Type.Float,
+        Type.XGVariationLock => Params.Type.Bool,
+        Type.GSInsertionLock => Params.Type.Bool,
+        Type.XGInsertionLock => Params.Type.Bool,
         Type.DrumLock => Params.Type.Bool,
+        Type.UserDrumLock => Params.Type.Bool,
         Type.NprnParamLock => Params.Type.Bool,
         Type.BlackMIDIMode => Params.Type.Bool,
         Type.KeyShift => Params.Type.Int,
         Type.FineTune => Params.Type.Float,
         Type.DeviceID => Params.Type.Int,
+        Type.CustomVibrato => Params.Type.Bool,
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
 
@@ -423,12 +537,18 @@ public readonly record struct GlobalSystemParameter
         "The maximum number of voices that can be played at once. Increasing this value causes memory allocation for more voices. It is recommended to set it at the beginning, before rendering audio to avoid GC. Decreasing it does not cause memory usage change, so it's fine to use.",
         "Enabling this parameter will cause a new voice allocation when the voice cap is hit, rather than stealing existing voices. This is not recommended in real-time environments.",
         "The reverb gain. From 0 to any number. 1 is 100% reverb",
-        "If the synthesizer should prevent editing of the reverb parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the reverb parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent editing of the GS reverb parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the reverb parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent editing of the XG reverb block. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the reverb parameters then locking it to prevent changes by MIDI files.",
         "The chorus gain. From 0 to any number. 1 is 100% chorus",
-        "If the synthesizer should prevent editing of the chorus parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the chorus parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent editing of the User Drum Set (GS only) parameters. These params are modified using MIDI system exclusive messages or NRPN, so the recommended use case would be setting the User Drum Set parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent editing of the GS chorus parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the chorus parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent editing of the XG chorus block. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the chorus parameters then locking it to prevent changes by MIDI files.",
         "The delay gain. From 0 to any number. 1 is 100% delay",
-        "If the synthesizer should prevent editing of the delay parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the delay parameters then locking it to prevent changes by MIDI files.",
-        "If the synthesizer should prevent changing the insertion effect type and parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the insertion effect type and parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent editing of the GS delay parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the delay parameters then locking it to prevent changes by MIDI files.",
+        "The XG variation gain when in system mode. From 0 to any number. 1 is 100% variation.",
+        "If the synthesizer should prevent editing of the XG variation block. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the variation parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent changing the GS insertion effect type and parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the insertion effect type and parameters then locking it to prevent changes by MIDI files.",
+        "If the synthesizer should prevent changing the GS insertion effect type and parameters. This effect is modified using MIDI system exclusive messages, so the recommended use case would be setting the insertion effect type and parameters then locking it to prevent changes by MIDI files.",
         "If the synthesizer should prevent editing of the drum parameters. These params are modified using MIDI system exclusive messages or NRPN, so the recommended use case would be setting the drum parameters then locking it to prevent changes by MIDI files.",
         "Forces note killing instead of releasing. Improves performance in black MIDIs",
         "Synthesizer's device ID for system exclusive messages. Set to -1 to accept all",
@@ -439,6 +559,7 @@ public readonly record struct GlobalSystemParameter
         "The interpolation type used for sample playback",
         "If the synthesizer should prevent changing any parameters via NRPN.",
         "Indicates whether the synthesizer is in monophonic retrigger mode. This emulates the behavior of Microsoft GS Wavetable Synth, where a new note will kill the previous one if it is still playing.",
+        "If the synthesizer should use the custom vibrato implementation. This effect is modified using NRPN, so the recommended use case would be setting the custom vibrato then locking it to prevent changes by MIDI files. Disabled by default to avoid altering songs that don't expect it."
     ];
     
     private static void Assert(Type type, Params.Type value) =>

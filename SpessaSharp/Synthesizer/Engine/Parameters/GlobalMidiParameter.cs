@@ -6,40 +6,40 @@ namespace SpessaSharp.Synthesizer.Engine.Parameters;
 
 public static class GlobalMidiParameters
 {
-    extension(ReadOnlySpan<GlobalMidiParameter> parameters)
+    extension(ReadOnlySpan<GlobalMidiParameter> self)
     {
         public float Volume
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.Volume].AsFloat;
+                self[(int)GlobalMidiParameter.Type.Volume].AsFloat;
         }
         
         public float Pan
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.Pan].AsFloat;
+                self[(int)GlobalMidiParameter.Type.Pan].AsFloat;
         }
         
         public int KeyShift
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.KeyShift].AsInt;
+                self[(int)GlobalMidiParameter.Type.KeyShift].AsInt;
         }
         
         public float FineTune
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.FineTune].AsFloat;
+                self[(int)GlobalMidiParameter.Type.FineTune].AsFloat;
         }
         
-        public Midi.System MidiSystem
+        public Midi.System System
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get =>
-                parameters[(int)GlobalMidiParameter.Type.MidiSystem].AsMidiSystem;
+                self[(int)GlobalMidiParameter.Type.System].AsMidiSystem;
         }
         
         public GlobalMidiParameter Get(
-            GlobalMidiParameter.Type type) => parameters[(int)type];
+            GlobalMidiParameter.Type type) => self[(int)type];
     }
     
     public static void Set(Synthesizer synth, GlobalMidiParameter param)
@@ -56,6 +56,9 @@ public static class GlobalMidiParameters
 
     private static readonly GlobalMidiParameter[] DefaultParameters;
     public static ReadOnlySpan<GlobalMidiParameter> Default => DefaultParameters;
+
+    public static GlobalMidiParameter DefaultOf(GlobalMidiParameter.Type type) =>
+        Default[(int)type];
 
     static GlobalMidiParameters()
     {
@@ -135,8 +138,8 @@ public readonly record struct GlobalMidiParameter
 
     public static GlobalMidiParameter Of(Midi.System system)
     {
-        Assert(Type.MidiSystem, Params.Type.MidiSystem);
-        return new GlobalMidiParameter(Type.MidiSystem, Params.Of(system));
+        Assert(Type.System, Params.Type.MidiSystem);
+        return new GlobalMidiParameter(Type.System, Params.Of(system));
     }
     
     private GlobalMidiParameter(Type type, Params.Data data)
@@ -152,17 +155,28 @@ public readonly record struct GlobalMidiParameter
     
     public enum Type
     { 
-        /// <summary>The currently enabled MIDI system used by the synthesizer for bank selects and system exclusives. (GM, GM2, GS, XG)</summary>
-        MidiSystem, 
-        /// <summary>The global key shift in semitones. Drum channels ignore this value. Set by MIDI SysEx.</summary>
+        /// <summary>
+        /// The currently enabled MIDI system used by the synthesizer.
+        /// It changes how the synthesizer behaves,
+        /// including things such as effects or bank selection.
+        /// It can be changed with a System Exclusive reset message.
+        /// (GM, GM2, GS, XG)
+        /// </summary>
+        System, 
+        /// <summary>
+        /// The global key shift in semitones.
+        /// <remarks> Drum channels ignore this value. Set by MIDI SysEx. </remarks>
+        /// </summary>
         KeyShift, 
-        /// <summary>The global tuning in cents. Drum channels ignore this value. Set by MIDI SysEx.</summary>
+        /// <summary>The global tuning in cents.
+        /// <remarks> Drum channels ignore this value. Set by MIDI SysEx. </remarks>
+        /// </summary>
         FineTune,
         /// <summary>
         /// The master volume.
         /// From 0 (silent) to 1 (full volume).
         ///
-        /// This differs from the <b>gain</b> system parameter in that it is squared internally.
+        /// This differs from the <see cref="GlobalSystemParameter.Type.Gain"/> system parameter in that it is squared internally.
         /// </summary>
         Volume, 
         /// <summary>The master pan. From -1 (left) to 1 (right). 0 is center.</summary>
@@ -171,7 +185,7 @@ public readonly record struct GlobalMidiParameter
     
     public static Params.Type TypeOf(Type type) => type switch
     {
-        Type.MidiSystem => Params.Type.MidiSystem,
+        Type.System => Params.Type.MidiSystem,
         Type.Volume => Params.Type.Float,
         Type.Pan => Params.Type.Float,
         Type.KeyShift => Params.Type.Int,
@@ -191,5 +205,4 @@ public readonly record struct GlobalMidiParameter
         pType = PType;
         data = _data;
     }
-
 }

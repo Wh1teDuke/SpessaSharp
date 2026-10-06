@@ -105,6 +105,12 @@ public readonly record struct MidiBuilder
                 MidiUtils.Set(ticks, Channel, system, param), 
                 Base.Track.Events.Length);
         }
+        
+        public void PolyPressure(int ticks, int midiNote, int pressure) =>
+            Base.Base.PolyPressure(Base.Track, ticks, Channel, midiNote, pressure);
+        
+        public void Pressure(int ticks, int pressure) =>
+            Base.Base.ChannelPressure(Base.Track, ticks, Channel, pressure);
     }
 
     public readonly record struct DrumBuilder(TrackBuilder Base, int Channel = 9)
@@ -120,7 +126,7 @@ public readonly record struct MidiBuilder
     
     /// <summary>
     /// </summary>
-    /// <param name="TimeDivision">The MIDI file's tick precision (how many ticks fit in a quarter note).</param>
+    /// <param name="TimeDivision">The MIDI file's tick precision (how many ticks fit in a quarter note). Defaults to 480. See <see cref="Midi.TimeDivision"/></param>
     /// <param name="InitialTempo">The MIDI file's initial tempo in BPM.</param>
     /// <param name="Format">The MIDI file's MIDI track format.</param>
     /// <param name="Name">The MIDI file's name. Will be appended to the conductor track.</param>
@@ -224,10 +230,10 @@ public readonly record struct MidiBuilder
     
     /// <summary>Adds a new Note On event.</summary>
     /// <param name="ticks">The tick time of the event.</param>
-    /// <param name="track">The track number to use.</param>
-    /// <param name="channel">The channel to use.</param>
-    /// <param name="midiNote">The midi note of the keypress.</param>
-    /// <param name="velocity">The velocity of the keypress.</param>
+    /// <param name="track">The MIDI track number to put this event on.</param>
+    /// <param name="channel">The channel to use (0-15).</param>
+    /// <param name="midiNote">The MIDI note number (0-127).</param>
+    /// <param name="velocity">The velocity of the note (0-127). The higher, the louder the note is. Velocity of 0 is interpreted as note-off.</param>
     public void NoteOn(
         int ticks, int track, int channel, int midiNote, int velocity) =>
             NoteOn(Midi.Tracks[track], ticks, channel, midiNote, velocity);
@@ -247,7 +253,7 @@ public readonly record struct MidiBuilder
     /// <summary>Adds a new Note Off event.</summary>
     /// <param name="ticks">The tick time of the event.</param>
     /// <param name="track">The track number to use.</param>
-    /// <param name="channel">The channel to use.</param>
+    /// <param name="channel">The channel to use (0-15).</param>
     /// <param name="midiNote">The midi note of the key release.</param>
     /// <param name="velocity">Optional and unsupported by SpessaSynth.</param>
     public void NoteOff(
@@ -335,6 +341,43 @@ public readonly record struct MidiBuilder
             track, ticks,
             SB(MidiMessage.Type.PitchWheel, channel),
             DataOf(pitch & 0x7f, (pitch >> 7) & 0x7f));
+    }
+
+    /// <summary>
+    /// Adds a new Poly Pressure event.
+    /// </summary>
+    /// <param name="track">The track to use.</param>
+    /// <param name="ticks">The tick time of the event.</param>
+    /// <param name="channel">The channel to use.</param>
+    /// <param name="midiNote">The MIDI note number to apply the pressure to.</param>
+    /// <param name="pressure">The pressure (0 - 127)</param>
+    public void PolyPressure(
+        Track track, int ticks, int channel, int midiNote, int pressure)
+    {
+        channel %= 16;
+        AddEvent(
+            track,
+            ticks,
+            SB(MidiMessage.Type.PolyPressure, channel),
+            DataOf(midiNote & 0x7f, pressure & 0x7f));
+    }
+
+    /// <summary>
+    /// Adds a new Channel Pressure event.
+    /// </summary>
+    /// <param name="track"></param>
+    /// <param name="ticks">The tick time of the event.</param>
+    /// <param name="channel">The track to use.</param>
+    /// <param name="pressure">The pressure (0 - 127)</param>
+    public void ChannelPressure(
+        Track track, int ticks, int channel, int pressure)
+    {
+        channel %= 16;
+        AddEvent(
+            track,
+            ticks,
+            SB(MidiMessage.Type.ChannelPressure, channel),
+            DataOf(pressure & 0x7f));
     }
 
     /// <summary>Selects a new Registered Parameter Number.</summary>

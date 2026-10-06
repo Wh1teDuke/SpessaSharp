@@ -1,6 +1,6 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.Insertion;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
 
-public sealed class ThruFX: Effect.InsertionProcessor
+public sealed class ThruFX: GSEffect.GSInsertionProcessor
 {
     public override int Type => 0x00_00;
 

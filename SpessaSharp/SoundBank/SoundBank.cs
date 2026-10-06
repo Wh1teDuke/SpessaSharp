@@ -11,7 +11,7 @@ namespace SpessaSharp.SoundBank;
 
 /// <summary>Represents a single sound bank, be it DLS or SF2.</summary>
 public sealed class SoundBank(
-    SoundBank.BankType type = SoundBank.BankType.SF2): IPresetGetter
+    SoundBank.BankType type = SoundBank.BankType.SF2): BasePreset.IGetter<BasicPreset>
 {
     /// <summary>
     /// 
@@ -485,8 +485,8 @@ public sealed class SoundBank(
     /// <param name="presetData">A Map: BasicPreset -> (key-velocity).</param>
     public void Trim(PresetsWithKeyCombinations presetData)
     {
-        Debug.WriteLine("Trimming sound bank ...");
-        Debug.WriteLine($"Combinations to trim for: {presetData}");
+        SpessaLog.Info("Trimming sound bank ...");
+        SpessaLog.Info($"Combinations to trim for: {presetData}");
         
         // Modify the sound bank to only include programs and samples that are used
         for (var i = 0; i < Presets.Count; i++) 
@@ -494,14 +494,14 @@ public sealed class SoundBank(
             var p = Presets[i];
             if (!presetData.TryGetValue(p, out var keyCombos))
             {
-                Debug.WriteLine($"Deleting preset {p.Name} and its zones");
+                SpessaLog.Info($"Deleting preset {p.Name} and its zones");
                 Delete(p);
                 i--;
                 continue;
             }
 
-            Debug.WriteLine($"Trimming {p.Name}");
-            Debug.WriteLine($"Keys for {p.Name}: {string.Join(',', keyCombos)}");
+            SpessaLog.Info($"Trimming {p.Name}");
+            SpessaLog.Info($"Keys for {p.Name}: {string.Join(',', keyCombos)}");
             var trimmedZones = 0;
 
             // Clean the preset to only use zones that are used
@@ -549,7 +549,7 @@ public sealed class SoundBank(
         
         RemoveUnusedElements();
 
-        Debug.WriteLine("Sound bank modified!");
+        SpessaLog.Info("Sound bank modified!");
         return;
 
         int TrimInstrumentZones(

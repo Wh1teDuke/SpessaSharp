@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine.Sysex;
@@ -27,11 +28,11 @@ public static class Macro
     
     public static void SetReverb(Synthesizer synth, int macro)
     {
-        if (synth.SystemParameters.ReverbLock)
+        if (synth.SystemParameters.GSReverbLock)
             return;
 
         // SC-8850 manual page 81
-        var rev = synth.ReverbProcessor;
+        var rev = synth.GSReverbProcessor;
         rev.Level = 64;
         rev.PreDelayTime = 0;
         rev.Character = macro;
@@ -123,7 +124,7 @@ public static class Macro
         }
 
         synth.CallEvent(Event.CbEffectChange.OfReverb(
-            Effect.FxReverbType.Macro, macro));
+            GSEffect.GSReverbType.Macro, macro));
     }
 
     public static void SetChorus(Synthesizer synth, Chorus macro) =>
@@ -131,11 +132,11 @@ public static class Macro
     
     public static void SetChorus(Synthesizer synth, int macro) 
     {
-        if (synth.SystemParameters.ChorusLock)
+        if (synth.SystemParameters.GSChorusLock)
             return;
 
         // SC-8850 manual page 83
-        var chr = synth.ChorusProcessor;
+        var chr = synth.GSChorusProcessor;
         chr.Level = 64;
         chr.PreLowPass = 0;
         chr.Delay = 127;
@@ -234,7 +235,7 @@ public static class Macro
         }
         
         synth.CallEvent(Event.CbEffectChange.OfChorus(
-            Effect.FxChorusType.Macro, macro));
+            GSEffect.GSChorusType.Macro, macro));
     }
 
     public static void SetDelay(Synthesizer synth, Delay macro) =>
@@ -242,11 +243,11 @@ public static class Macro
     
     public static void SetDelay(Synthesizer synth, int macro)
     {
-        if (synth.SystemParameters.DelayLock)
+        if (synth.SystemParameters.GSDelayLock)
             return;
 
         // SC-8850 manual page 85
-        var dly = synth.DelayProcessor;
+        var dly = synth.GSDelayProcessor;
         dly.Level = 64;
         dly.PreLowPass = 0;
         dly.SendLevelToReverb = 0;
@@ -382,6 +383,6 @@ public static class Macro
         }
         
         synth.CallEvent(Event.CbEffectChange.OfDelay(
-            Effect.FxDelayType.Macro, macro));
+            GSEffect.GSDelayType.Macro, macro));
     }
 }

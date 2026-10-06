@@ -30,6 +30,7 @@ public readonly record struct Modulator(
     public static int ID(TransformType t) => _tTids[(int)t];
 
     /// <summary>
+    /// Represents a single <see cref="Modulator"/> source.
     /// </summary>
     /// <param name="IsBipolar">
     /// If this field is set to false, the controller should be mapped with a minimum value of 0 and a maximum value of 1. This is also
@@ -78,6 +79,9 @@ public readonly record struct Modulator(
             return (ControllerSource)idx;
         }
 
+        /// <summary>
+        /// An index of the modulator source. Either an SF2 modulator source or a MIDI controller.
+        /// </summary>
         public readonly struct Index(byte v) : IEquatable<Index>
         {
             private readonly byte _v = v;
@@ -110,6 +114,9 @@ public readonly record struct Modulator(
                 left.Equals(right);
             public static bool operator !=(Index left, Index right) => 
                 !left.Equals(right);
+
+            public static implicit operator Index(ControllerSource e) => new(e);
+            public static implicit operator Index(Midi.CC cc) => new(cc);
         }
         
         public string Name => SIndex.Name(IsCC);
@@ -160,7 +167,9 @@ public readonly record struct Modulator(
                 else if (SIndex.AsInt == ID(ControllerSource.NoteOnKeyNum))
                     rawValue = (short)(voice.TargetKey << 7);
                 else if (SIndex.AsInt == ID(ControllerSource.PolyPressure))
-                    rawValue = (short)(voice.Pressure << 7);
+                    // Use MIDI Note here as key shift is internal
+                    rawValue = (short)(channel.GetMidiParameters
+                        .PolyPressures[voice.MidiNote] << 7);
                 else if (SIndex.AsInt == ID(ControllerSource.ChannelPressure))
                     rawValue = (short)(channel.GetMidiParameters.Pressure << 7);
                 else if (SIndex.AsInt == ID(ControllerSource.PitchWheel))
