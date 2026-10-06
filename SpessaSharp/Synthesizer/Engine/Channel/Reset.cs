@@ -107,6 +107,7 @@ internal static class Reset
         chan.DynamicModulators.ResetModulators();
         chan.Sf2NRPNGeneratorLSB = 0;
         chan.PlayingNotes.SetAll(false);
+        chan.XGInsertionAssigned = false;
         chan.ResetVibratoParams();
         
         // Reset Parameters (do not emit controller change)

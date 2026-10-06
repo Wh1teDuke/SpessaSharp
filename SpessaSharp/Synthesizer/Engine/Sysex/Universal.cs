@@ -140,7 +140,7 @@ internal static class Universal
                                     case 0x01: 
                                     {
                                         // Reverb time
-                                        synth.ReverbProcessor.Time = value;
+                                        synth.GSReverbProcessor.Time = value;
                                         SpessaLog.GMInfo("Reverb Time", value);
                                         break;
                                     }
@@ -174,7 +174,7 @@ internal static class Universal
                                     case 0x01: 
                                     {
                                         // Mod rate
-                                        synth.ChorusProcessor.Rate = value;
+                                        synth.GSChorusProcessor.Rate = value;
                                         SpessaLog.GMInfo("Chorus Mod Rate",value);
                                         break;
                                     }
@@ -182,21 +182,21 @@ internal static class Universal
                                     case 0x02: 
                                     {
                                         // Mod depth
-                                        synth.ChorusProcessor.Depth = value;
+                                        synth.GSChorusProcessor.Depth = value;
                                         SpessaLog.GMInfo("Chorus Mod Depth", value);
                                         break;
                                     }
 
                                     case 0x03: {
                                         // Mod feedback
-                                        synth.ChorusProcessor.Feedback = value;
+                                        synth.GSChorusProcessor.Feedback = value;
                                         SpessaLog.GMInfo("Chorus Mod Feedback", value);
                                         break;
                                     }
 
                                     case 0x04: {
                                         // Mod send to reverb
-                                        synth.ChorusProcessor.SendLevelToReverb =
+                                        synth.GSChorusProcessor.SendLevelToReverb =
                                             value;
                                         SpessaLog.GMInfo("Chorus Send to Reverb", value);
                                         break;

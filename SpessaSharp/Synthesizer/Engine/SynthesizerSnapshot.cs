@@ -3,6 +3,8 @@ using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Effects.GS;
+using SpessaSharp.Synthesizer.Engine.Effects.XG;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Framework;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine;
@@ -13,10 +15,17 @@ public sealed class SynthesizerSnapshot(
     GlobalMidiParameter[] midiParameters,
     BitArray lockedParameters,
     GlobalSystemParameter[] systemParameters,
+    
     GSEffect.GSReverbParameter gsReverbProcessor,
     GSEffect.GSChorusParameter gsChorusProcessor,
     GSEffect.GSDelayParameter gsDelayProcessor,
     GSEffect.GSInsertionProcessorSnapshot gsInsertionProcessorProcessor,
+    
+    XGSystemEffectBlock.Snapshot xgReverbBlock,
+    XGSystemEffectBlock.Snapshot xgChorusBlock,
+    XGSystemEffectBlock.Snapshot xgVariationBlock,
+    XGInsertionBlock.Snapshot[] xgInsertionBlocks,
+    
     UserDrumSetParameter.Entry[][] userDrumSets)
 {
     /// <summary>The individual channel snapshots.</summary>
@@ -31,6 +40,15 @@ public sealed class SynthesizerSnapshot(
     public readonly GSEffect.GSDelayParameter GSDelayProcessor = gsDelayProcessor;
     public GSEffect.GSInsertionProcessorSnapshot InsertionProcessor = gsInsertionProcessorProcessor;
 
+    /// <summary> A snapshot of the XG reverb block. </summary>
+    public readonly XGSystemEffectBlock.Snapshot XGReverbBlock = xgReverbBlock;
+    /// <summary> A snapshot of the XG chorus block. </summary>
+    public readonly XGSystemEffectBlock.Snapshot XGChorusBlock = xgChorusBlock;
+    /// <summary> A snapshot of the XG variation block. </summary>
+    public readonly XGSystemEffectBlock.Snapshot XGVariationBlock = xgVariationBlock;
+    /// <summary> Snapshots of the XG insertion blocks. </summary>
+    public readonly XGInsertionBlock.Snapshot[] XGInsertionBlocks = xgInsertionBlocks;
+
     public readonly UserDrumSetParameter.Entry[][] UserDrumSets = userDrumSets;
 
     /// <summary>
@@ -44,10 +62,17 @@ public sealed class SynthesizerSnapshot(
             [.. synth.MidiParameters],
             new BitArray(synth.LockedParameters),
             [.. synth.SystemParameters],
-            synth.ReverbProcessor.GetSnapshot(),
-            synth.ChorusProcessor.GetSnapshot(),
-            synth.DelayProcessor.GetSnapshot(),
+            
+            synth.GSReverbProcessor.GetSnapshot(),
+            synth.GSChorusProcessor.GetSnapshot(),
+            synth.GSDelayProcessor.GetSnapshot(),
             synth.GetInsertionSnapshot(),
+            
+            synth.XGReverbBlock.GetSnapshot(),
+            synth.XGChorusBlock.GetSnapshot(),
+            synth.XGVariationBlock.GetSnapshot(),
+            synth.XGInsertionBlocks.Select(b => b.GetSnapshot()).ToArray(),
+            
             [.. synth.SoundBankManager.UserDrumSets
                 .Select(d => d.GetSnapshot())]);
 
@@ -64,7 +89,7 @@ public sealed class SynthesizerSnapshot(
             synth.MidiChannels[i].Apply(MidiChannels[i]);
 
         // Restore effect processors
-        var rp = synth.ReverbProcessor;
+        var rp = synth.GSReverbProcessor;
         var rs = GSReverbProcessor;
         
         rp.Level = rs.Level;
@@ -74,7 +99,7 @@ public sealed class SynthesizerSnapshot(
         rp.Time = rs.Time;
         rp.PreDelayTime = rs.PreDelayTime;
         
-        var cp = synth.ChorusProcessor;
+        var cp = synth.GSChorusProcessor;
         var cs = GSChorusProcessor;
         
         cp.Level = cs.Level;
@@ -86,7 +111,7 @@ public sealed class SynthesizerSnapshot(
         cp.SendLevelToDelay = cs.SendLevelToDelay;
         cp.SendLevelToReverb = cs.SendLevelToReverb;
 
-        var dp = synth.DelayProcessor;
+        var dp = synth.GSDelayProcessor;
         var ds = GSDelayProcessor;
         
         dp.Feedback = ds.Feedback;
@@ -110,6 +135,16 @@ public sealed class SynthesizerSnapshot(
             if (ins.Params[i] != 255)
                 synth.SystemExclusive(
                     MidiUtils.Gs(0x40, 0x03, 3 + i, ins.Params[i]));
+        
+        // Restore XG effects
+        synth.XGReverbBlock.ApplySnapshot(XGReverbBlock);
+        synth.XGChorusBlock.ApplySnapshot(XGChorusBlock);
+        synth.XGVariationBlock.ApplySnapshot(XGVariationBlock);
+        for (var i = 0; i < XGInsertionBlocks.Length; i++)
+        {
+            var insertion = synth.XGInsertionBlocks[i];
+            insertion.ApplySnapshot(XGInsertionBlocks[i]);
+        }
         
         // Restore user drum sets
         for (var drumSet = 0; drumSet < UserDrumSets.Length; drumSet++)

@@ -363,7 +363,7 @@ internal static class NoteOn
             voice.PitchOffset = pitchOffset;
             voice.ReverbGain = reverbGain;
             voice.ChorusGain = chorusGain;
-            voice.VariationSend = variationGain;
+            voice.VariationGain = variationGain;
 
             // Set initial pan to avoid split second changing from middle to the correct value
             var pOverride = panOverride;

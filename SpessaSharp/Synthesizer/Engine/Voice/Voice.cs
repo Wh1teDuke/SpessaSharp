@@ -212,7 +212,7 @@ public sealed class Voice
     public float ChorusGain = 1;
     
     /// <summary> Delay/variation gain of the voice, used for drum parts, otherwise 1.</summary>
-    public float VariationSend = 1;
+    public float VariationGain = 1;
     
     /// <summary> Exclusive class number for hi-hats etc.</summary>
     public int ExclusiveClass;

@@ -32,7 +32,7 @@ public static class Macro
             return;
 
         // SC-8850 manual page 81
-        var rev = synth.ReverbProcessor;
+        var rev = synth.GSReverbProcessor;
         rev.Level = 64;
         rev.PreDelayTime = 0;
         rev.Character = macro;
@@ -136,7 +136,7 @@ public static class Macro
             return;
 
         // SC-8850 manual page 83
-        var chr = synth.ChorusProcessor;
+        var chr = synth.GSChorusProcessor;
         chr.Level = 64;
         chr.PreLowPass = 0;
         chr.Delay = 127;
@@ -247,7 +247,7 @@ public static class Macro
             return;
 
         // SC-8850 manual page 85
-        var dly = synth.DelayProcessor;
+        var dly = synth.GSDelayProcessor;
         dly.Level = 64;
         dly.PreLowPass = 0;
         dly.SendLevelToReverb = 0;

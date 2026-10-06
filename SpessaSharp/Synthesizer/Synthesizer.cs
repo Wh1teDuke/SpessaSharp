@@ -11,6 +11,7 @@ using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.XG;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Synthesizer.Engine.Sysex;
 using SpessaSharp.Synthesizer.Engine.Voice;
@@ -50,6 +51,11 @@ public sealed class Synthesizer
     public const int MIDI_CHANNEL_COUNT = 16;
     public const int MIDI_DRUM_CHANNEL = 9;
 
+    /// <summary>
+    /// MU2000 has 4 insertion effects. We can do more but leave it at 4 for now
+    /// </summary>
+    public const int XG_INSERTION_COUNT = 4;
+
     /// <summary>Used globally to identify the embedded sound bank. This is used to prevent the embedded bank from being deleted.</summary>
     internal static readonly string EMBEDDED_SOUND_BANK_ID =
         $"SPESSASHARP_EMBEDDED_BANK_{Guid.NewGuid()}_DO_NOT_DELETE";
@@ -70,17 +76,17 @@ public sealed class Synthesizer
     /// <param name="EventsEnabled">Indicates if the event system is enabled. This can be changed later.</param>
     /// <param name="InitialTime">The initial time of the synth, in seconds.</param>
     /// <param name="EffectsEnabled">Indicates if the effects are enabled. This can be changed later.</param>
-    /// <param name="ReverbProcessor">Optional custom GS reverb processor for the synthesizer. Leave undefined to use the default.</param>
-    /// <param name="ChorusProcessor">Optional custom GS chorus processor for the synthesizer. Leave undefined to use the default.</param>
-    /// <param name="DelayProcessor">Optional Custom GS delay processor for the synthesizer. Leave undefined to use the default.</param>
+    /// <param name="GSReverbProcessor">Optional custom GS reverb processor for the synthesizer. Leave undefined to use the default.</param>
+    /// <param name="GSChorusProcessor">Optional custom GS chorus processor for the synthesizer. Leave undefined to use the default.</param>
+    /// <param name="GSDelayProcessor">Optional Custom GS delay processor for the synthesizer. Leave undefined to use the default.</param>
     public readonly record struct Options(
         int MaxBufferSize,
         bool EventsEnabled,
         float InitialTime,
         bool EffectsEnabled,
-        GSEffect.ReverbProcessor? ReverbProcessor = null,
-        GSEffect.ChorusProcessor? ChorusProcessor = null,
-        GSEffect.DelayProcessor? DelayProcessor = null)
+        GSEffect.ReverbProcessor? GSReverbProcessor = null,
+        GSEffect.ChorusProcessor? GSChorusProcessor = null,
+        GSEffect.DelayProcessor? GSDelayProcessor = null)
     {
         public static readonly Options Default = new()
         {
@@ -139,20 +145,38 @@ public sealed class Synthesizer
     /// <summary>The insertion processor's left input buffer.</summary>
     public readonly float[] InsertionInputL;
 
-    /// <summary>The insertion processor's right input buffer.</summary>
+    /// <summary>The GS insertion processor's right input buffer.</summary>
     public readonly float[] InsertionInputR;
 
-    /// <summary>The reverb processor's input buffer.</summary>
+    /// <summary>The GS reverb processor's input buffer.</summary>
     public readonly float[] ReverbInput;
 
-    /// <summary>The chorus processor's input buffer.</summary>
+    /// <summary>The GS chorus processor's input buffer.</summary>
     public readonly float[] ChorusInput;
 
-    /// <summary>The reverb processor's input buffer.</summary>
+    /// <summary>The GS delay processor's input buffer.</summary>
     public readonly float[] DelayInput;
 
     /// <summary>Delay is not used outside SC-88+ MIDIs, this is an optimization.</summary>
     public bool DelayActive;
+
+    /// <summary>
+    /// The XG reverb block's left input buffer.
+    /// XG effects are stereo, unlike GS effects (except insertion).
+    /// </summary>
+    internal readonly float[] XGReverbInputL;
+    /// <summary> The XG reverb block's right input buffer. </summary>
+    internal readonly float[] XGReverbInputR;
+
+    /// <summary> The XG chorus block's left input buffer. </summary>
+    internal readonly float[] XGChorusInputL;
+    /// <summary> The XG chorus block's right input buffer. </summary>
+    internal readonly float[] XGChorusInputR;
+
+    /// <summary> The XG variation block's left input buffer (system mode). </summary>
+    internal readonly float[] XGVariationInputL;
+    /// <summary> The XG variation block's right input buffer (system mode). </summary>
+    internal readonly float[] XGVariationInputR;
 
     /// <summary>The sound bank manager, which manages all sound banks and presets.</summary>
     public readonly SoundBankManager SoundBankManager;
@@ -304,22 +328,45 @@ public sealed class Synthesizer
     /// The synthesizer's GS reverb processor.
     /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
     /// </summary>
-    public readonly GSEffect.ReverbProcessor ReverbProcessor;
+    internal readonly GSEffect.ReverbProcessor GSReverbProcessor;
 
     /// <summary>
     /// The synthesizer's GS chorus processor.
     /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
     /// </summary>
-    public readonly GSEffect.ChorusProcessor ChorusProcessor;
+    internal readonly GSEffect.ChorusProcessor GSChorusProcessor;
 
     /// <summary>
     /// The synthesizer's GS delay processor.
     /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
     /// </summary>
-    public readonly GSEffect.DelayProcessor DelayProcessor;
+    internal readonly GSEffect.DelayProcessor GSDelayProcessor;
 
     /// <summary> Insertion is not used outside SC-88Pro+ MIDIs, this is an optimization. </summary>
-    public bool InsertionActive;
+    internal bool InsertionActive;
+
+    /// <summary>
+    /// The synthesizer's XG variation block.
+    /// Variation is public so voice render can check if sends should be routed to it.
+    /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>xg</c>.
+    /// </summary>
+    internal readonly XGVariationBlock XGVariationBlock;
+
+    /// <summary>
+    /// The synthesizer's XG reverb block.
+    /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>xg</c>.
+    /// </summary>
+    internal readonly XGReverbBlock XGReverbBlock;
+    /// <summary>
+    /// The synthesizer's XG chorus block.
+    /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>xg</c>.
+    /// </summary>
+    internal readonly XGChorusBlock XGChorusBlock;
+    /// <summary>
+    /// XG insertion effect blocks.
+    /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>xg</c>.
+    /// </summary>
+    internal readonly List<XGInsertionBlock> XGInsertionBlocks = [];
 
     /// <summary>
     /// A sysEx may set a "Part" (channel) to receive on a different channel number.
@@ -417,12 +464,19 @@ public sealed class Synthesizer
 
         var bufSize = MaxBufferSize;
         // Initialize effects
-        ReverbProcessor =
-            options.ReverbProcessor ?? new GSReverb(sampleRate, bufSize);
-        ChorusProcessor =
-            options.ChorusProcessor ?? new GSChorus(sampleRate, bufSize);
-        DelayProcessor =
-            options.DelayProcessor ?? new GSDelay(sampleRate, bufSize);
+        GSReverbProcessor =
+            options.GSReverbProcessor ?? new GSReverb(sampleRate, bufSize);
+        GSChorusProcessor =
+            options.GSChorusProcessor ?? new GSChorus(sampleRate, bufSize);
+        GSDelayProcessor =
+            options.GSDelayProcessor ?? new GSDelay(sampleRate, bufSize);
+        
+        XGReverbBlock = new XGReverbBlock(sampleRate, bufSize);
+        XGChorusBlock = new XGChorusBlock(sampleRate, bufSize);
+        XGVariationBlock = new XGVariationBlock(sampleRate, bufSize);
+        
+        for (var i = 0; i < XG_INSERTION_COUNT; i++)
+            XGInsertionBlocks.Add(new XGInsertionBlock(sampleRate, bufSize));
 
         // Initialize buffers
         VoiceBuffer = new float[bufSize];
@@ -431,6 +485,13 @@ public sealed class Synthesizer
         ReverbInput = new float[bufSize];
         ChorusInput = new float[bufSize];
         DelayInput = new float[bufSize];
+        
+        XGReverbInputL = new float[bufSize];
+        XGReverbInputR = new float[bufSize];
+        XGChorusInputL = new float[bufSize];
+        XGChorusInputR = new float[bufSize];
+        XGVariationInputL = new float[bufSize];
+        XGVariationInputR = new float[bufSize];
 
         // Register insertion
         var insertions = new Dictionary<int, GSEffect.GSInsertionProcessor>();
@@ -738,6 +799,12 @@ public sealed class Synthesizer
         // Delay1 default
         SetDelayMacro(0);
         ResetInsertion();
+        
+        XGReverbBlock.Reset();
+        XGChorusBlock.Reset();
+        XGVariationBlock.Reset();
+        foreach (var insertion in XGInsertionBlocks)
+            insertion.Reset();
 
         // Avoid crashing
         if (DrumPreset == null || DefaultPreset == null) return;
@@ -873,11 +940,49 @@ public sealed class Synthesizer
             throw SpessaException.Invalid(
                 $"Requested {sampleCount
                 } samples, but maxBufferSize is {MaxBufferSize}");
+
+        var isXG = MidiParameters.System == Midi.System.XG;
+        var fx = SystemParameters.EffectsEnabled;
         
+        // For XG, renderVoice always checks if insertion is assigned to bypass effect sends
+        // Cache it here
+        if (isXG && fx)
+        {
+            foreach (var channel in MidiChannels)
+                channel.XGInsertionAssigned = false;
+            foreach (var insertion in XGInsertionBlocks)
+            {
+                if (Util.InRange(MidiChannels, insertion.PartNumber))
+                {
+                    var channel = MidiChannels[insertion.PartNumber];
+                    channel.XGInsertionAssigned = true;
+                }
+            }
+
+            if (XGVariationBlock.InsertionMode && 
+                Util.InRange(MidiChannels, XGVariationBlock.PartNumber))
+            {
+                var channel = MidiChannels[XGVariationBlock.PartNumber];
+                channel.XGInsertionAssigned = true;
+            }
+        }
+
         // Clear the buffers
-        ReverbInput.AsSpan().Clear();
-        ChorusInput.AsSpan().Clear();
-        if (DelayActive) DelayInput.AsSpan().Clear();
+        if (isXG)
+        {
+            XGReverbInputL.AsSpan().Clear();
+            XGReverbInputR.AsSpan().Clear();
+            XGChorusInputL.AsSpan().Clear();
+            XGChorusInputR.AsSpan().Clear();
+            XGVariationInputL.AsSpan().Clear();
+            XGVariationInputR.AsSpan().Clear();
+        }
+        else
+        {
+            ReverbInput.AsSpan().Clear();
+            ChorusInput.AsSpan().Clear();
+            if (DelayActive) DelayInput.AsSpan().Clear();
+        }
 
         if (InsertionActive) 
         {
@@ -905,6 +1010,64 @@ public sealed class Synthesizer
             var ch = v.Channel!;
             ch.RenderVoice(v, cTime, sampleCount);
         }
+
+        // Process insertion effects
+        if (isXG && fx)
+        {
+            foreach (var insertion in XGInsertionBlocks) 
+            {
+                if (!Util.InRange(MidiChannels, insertion.PartNumber))
+                    continue;
+                
+                var channel = MidiChannels[insertion.PartNumber];
+                insertion.ProcessInsertion(
+                    channel.OutputLeft,
+                    channel.OutputRight,
+                    sampleCount);
+            }
+            
+            // Variation is processed last
+            // See MU128 manual, page 154
+            if (XGVariationBlock.InsertionMode &&
+                Util.InRange(MidiChannels, XGVariationBlock.PartNumber)) 
+            {
+                var channel = MidiChannels[XGVariationBlock.PartNumber];
+                XGVariationBlock.ProcessInsertion(
+                    channel.OutputLeft,
+                    channel.OutputRight,
+                    sampleCount);
+            }
+            
+            // If a channel has insertion assigned (or variation in insertion mode) then its sends are routed globally (not in renderVoice)
+            // If effectsEnabled is false it does not matter, so the code here can also be skipped.
+            foreach (var ch in MidiChannels) 
+            {
+                if (!ch.XGInsertionAssigned) continue;
+
+                var revSend = ch[Midi.CC.ReverbDepth] / 127f;
+                var choSend = ch[Midi.CC.ChorusDepth] / 127f;
+                if (revSend <= 0 && choSend <= 0) continue;
+
+                var outputLeft = ch.OutputLeft.AsSpan(0, sampleCount); 
+                var outputRight = ch.OutputRight.AsSpan(0, sampleCount);
+                
+                var revLeft = XGReverbInputL.AsSpan(0, sampleCount);
+                var revRight = XGReverbInputR.AsSpan(0, sampleCount);
+
+                var choLeft = XGChorusInputL.AsSpan(0, sampleCount);
+                var choRight = XGChorusInputR.AsSpan(0, sampleCount);
+
+                TensorPrimitives.MultiplyAdd(
+                    outputLeft, revSend, revLeft, revLeft);
+                TensorPrimitives.MultiplyAdd(
+                    outputRight, revSend, revRight, revRight);
+                
+                TensorPrimitives.MultiplyAdd(
+                    outputLeft, choSend, choLeft, choLeft);
+                TensorPrimitives.MultiplyAdd(
+                    outputRight, choSend, choRight, choRight);
+            }
+        }
         
         // Mix channel data
         for (var channel = 0; channel < MidiChannels.Count; channel++)
@@ -926,9 +1089,7 @@ public sealed class Synthesizer
             }
             
             // Straight into the insertion EFX, but only if it is active
-            if (midiParams.EfxAssign &&
-                SystemParameters.EffectsEnabled &&
-                InsertionActive)
+            if (midiParams.EfxAssign && fx && InsertionActive)
             {
                 var insertionL = InsertionInputL.AsSpan(0, sampleCount);
                 var insertionR = InsertionInputR.AsSpan(0, sampleCount);
@@ -950,54 +1111,84 @@ public sealed class Synthesizer
         }
         
         // Process effects
-        if (SystemParameters.EffectsEnabled) 
+        if (fx) 
         {
-            // Insertion first
-            if (InsertionActive) 
+            if (isXG)
             {
-                InsertionProcessor.Process(
-                    InsertionInputL,
-                    InsertionInputR,
-                    left,
-                    right,
-                    ReverbInput,
+                // Variation system first, feeds the chorus and reverb
+                if (!XGVariationBlock.InsertionMode) 
+                {
+                    XGVariationBlock.Process(
+                        XGVariationInputL,
+                        XGVariationInputR,
+                        left,
+                        right,
+                        XGChorusInputL,
+                        XGChorusInputR,
+                        XGReverbInputL,
+                        XGReverbInputR,
+                        startIndex,
+                        sampleCount);
+                    
+                    // Chorus feeds reverb, reverb goes straight to the output
+                    XGChorusBlock.Process(
+                        XGChorusInputL,
+                        XGChorusInputR,
+                        left,
+                        right,
+                        XGReverbInputL,
+                        XGReverbInputR,
+                        startIndex,
+                        sampleCount);
+                }
+            }
+            else
+            {
+                // Insertion first
+                if (InsertionActive) 
+                {
+                    InsertionProcessor.Process(
+                        InsertionInputL,
+                        InsertionInputR,
+                        left,
+                        right,
+                        ReverbInput,
+                        ChorusInput,
+                        DelayInput,
+                        startIndex,
+                        sampleCount);
+                }
+
+                // Chorus first, it feeds to reverb and delay
+                GSChorusProcessor.Process(
                     ChorusInput,
-                    DelayInput,
-                    startIndex,
-                    sampleCount);
-            }
-
-            // Chorus first, it feeds to reverb and delay
-            ChorusProcessor.Process(
-                ChorusInput,
-                left,
-                right,
-                ReverbInput,
-                DelayInput,
-                startIndex,
-                sampleCount);
-
-            // CC#94 in XG is variation, not delay
-            if (DelayActive && 
-                MidiParameters.System != Midi.System.XG)
-            {
-                // Process delay
-                DelayProcessor.Process(
-                    DelayInput,
                     left,
                     right,
                     ReverbInput,
+                    DelayInput,
+                    startIndex,
+                    sampleCount);
+                
+                if (DelayActive)
+                {
+                    // Process delay
+                    GSDelayProcessor.Process(
+                        DelayInput,
+                        left,
+                        right,
+                        ReverbInput,
+                        startIndex,
+                        sampleCount);
+                }
+
+                // Finally process the reverb processor (it goes directly into the output buffer)
+                GSReverbProcessor.Process(
+                    ReverbInput,
+                    left,
+                    right,
                     startIndex,
                     sampleCount);
             }
-
-            // Finally process the reverb processor (it goes directly into the output buffer)
-            ReverbProcessor.Process(
-                ReverbInput,
-                left,
-                right,
-                startIndex,
-                sampleCount);
         }
 
         // Advance the time appropriately
@@ -1128,7 +1319,7 @@ public sealed class Synthesizer
         {
             DelayActive = 
                 MidiParameters.System != Midi.System.XG && 
-                (ChorusProcessor.SendLevelToDelay > 0 ||
+                (GSChorusProcessor.SendLevelToDelay > 0 ||
                  InsertionProcessor.SendLevelToDelay > 0 ||
                  MidiChannels.Any(c => c[Midi.CC.VariationDepth] > 0));
         }

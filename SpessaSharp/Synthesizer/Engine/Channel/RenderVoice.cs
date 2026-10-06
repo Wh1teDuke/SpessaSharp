@@ -417,26 +417,46 @@ internal static class RenderVoice
             buffer[..sampleCount], gainRight, outputR, outputR);
 
         /*
-         * Do not send to effects if:
-         * - Either effects are disabled
-         * - Or insertion is active on this channel (Insertion takes over the voice data)
-         */
-        if ((chan.MidiParameters.EfxAssign &&
-             systemParameters.EffectsEnabled &&
-             core.InsertionActive) ||
-            !systemParameters.EffectsEnabled) return;
-        
+        * Do not send to effects if:
+        * - Either effects are disabled
+        * - Or insertion is active on this channel (Insertion takes over the voice data)
+        * - Or the channel is assigned to an XG insertion effect.
+        * XG ignores per-drum sends when insertion is enabled, and only the post-insertion (global) audio is sent (so whole drum audio, even if send is 0 for a specific drum)
+        */
+        if (!systemParameters.EffectsEnabled ||
+            (chan.MidiParameters.EfxAssign && core.InsertionActive) ||
+            chan.XGInsertionAssigned) return;
+
+        var isXG = core.MidiParameters.System == Midi.System.XG;
+
         // Disable reverb and chorus if necessary
         var reverbSend =
             modulated[(int)Generator.Type.ReverbEffectsSend] * voice.ReverbGain;
         if (reverbSend > 0) 
         {
-            var reverbGain =
-                systemParameters.ReverbGain * 
-                outputGain * (reverbSend / 1_000f);
-            var reverbInput = core.ReverbInput.AsSpan()[..sampleCount];
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], reverbGain, reverbInput, reverbInput);
+            if (isXG)
+            {
+                // XG effects have stereo inputs
+                var send = systemParameters.ReverbGain * (reverbSend / 1_000);
+                var gainL = send * gainLeft;
+                var gainR = send * gainRight;
+                var outL = core.XGReverbInputL.AsSpan(0, sampleCount);
+                var outR = core.XGReverbInputR.AsSpan(0, sampleCount);
+
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainL, outL, outL);
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainR, outR, outR);
+            }
+            else
+            {
+                var reverbGain =
+                    systemParameters.ReverbGain *
+                    outputGain * (reverbSend / 1_000f);
+                var reverbInput = core.ReverbInput.AsSpan()[..sampleCount];
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], reverbGain, reverbInput, reverbInput);
+            }
         }
 
         var chorusSend = modulated[
@@ -444,14 +464,52 @@ internal static class RenderVoice
 
         if (chorusSend > 0) 
         {
-            var chorusGain = systemParameters.ChorusGain * 
-                             (chorusSend / 1_000f) * outputGain;
-            var chorusInput = core.ChorusInput.AsSpan()[..sampleCount];
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], chorusGain, chorusInput, chorusInput);
+            if (isXG)
+            {
+                var send = systemParameters.ChorusGain * (chorusSend / 1_000);
+                var gainL = send * gainLeft;
+                var gainR = send * gainRight;
+                var outL = core.XGChorusInputL.AsSpan(0, sampleCount);
+                var outR = core.XGChorusInputR.AsSpan(0, sampleCount);
+                
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainL, outL, outL);
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainR, outR, outR);
+            }
+            else
+            {
+                var chorusGain = systemParameters.ChorusGain * 
+                                 (chorusSend / 1_000f) * outputGain;
+                var chorusInput = core.ChorusInput.AsSpan()[..sampleCount];
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], chorusGain, chorusInput, chorusInput);   
+            }
+        }
+        
+        // XG variation send is system-only.
+        // In insertion mode CC94 does nothing
+        if (isXG && !core.XGVariationBlock.InsertionMode)
+        {
+            var variationSend =
+                chan[Midi.CC.VariationDepth] * voice.VariationGain;
+
+            if (variationSend > 0)
+            {
+                var send = variationSend / 127;
+                var gainL = send * gainLeft;
+                var gainR = send * gainRight;
+                var outL = core.XGVariationInputL.AsSpan(0, sampleCount);
+                var outR = core.XGVariationInputR.AsSpan(0, sampleCount);
+                
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainL, outL, outL);
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainR, outR, outR);
+            }
         }
 
-        var delaySend = chan[Midi.CC.VariationDepth] * voice.VariationSend;
+        var delaySend = chan[Midi.CC.VariationDepth] * voice.VariationGain;
         
         if (core.DelayActive && delaySend > 0) 
         {

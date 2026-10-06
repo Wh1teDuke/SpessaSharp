@@ -127,6 +127,12 @@ public sealed class MidiChannel: ISf2Channel
     internal readonly Synthesizer SynthCore;
 
     /// <summary>
+    /// If true, this skips sends as they all go through insertion.
+    /// Set by <see cref="Synthesizer"/>
+    /// </summary>
+    public bool XGInsertionAssigned = false;
+
+    /// <summary>
     ///  Current left PCM output of this channel. Will be routed to either EFX or EQ if needed, and extracted for visualization.
     /// Always 0-based index.
     /// </summary>

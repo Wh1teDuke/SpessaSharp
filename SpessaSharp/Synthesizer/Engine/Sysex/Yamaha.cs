@@ -27,6 +27,7 @@ internal static class Yamaha
             var a1 = syx[3]; // Address 1
             var a2 = syx[4]; // Address 2
             var a3 = syx[5]; // Address 3
+            // Data = syx[6]
             var data = syx[6];
             // XG system parameter
             if (a1 == 0x00 && a2 == 0x00) 
@@ -88,19 +89,296 @@ internal static class Yamaha
                 return;
             }
         
+            // XG EFFECT 1 (reverb, chorus, variation)
             if (a1 == 0x02 && a2 == 0x01) 
             {
-                var effect = a3;
-                var effectType = effect switch
+                switch (a3)
                 {
-                    <= 0x15 => "Reverb",
-                    <= 0x35 => "Chorus",
-                    _ => "Variation",
-                };
+                    default:
+                        SpessaLog.XGFail("EFFECT 1 Parameter", [a3]);
+                        break;
 
-                SpessaLog.XGFail(
-                    $"{effectType} Parameter", [effect]);
+                    case 0x00:
+                    {
+                        var type = (data << 8) | syx[7];
+                        synth.XGReverbBlock.SetType(type);
+                        SpessaLog.XGInfo("Reverb Type", type.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x02:
+                    case 0x03:
+                    case 0x04:
+                    case 0x05:
+                    case 0x06:
+                    case 0x07:
+                    case 0x08:
+                    case 0x09:
+                    case 0x0a:
+                    case 0x0b: 
+                    {
+                        synth.XGReverbBlock.SetParameter(a3 - 0x02, data);
+                        SpessaLog.XGInfo($"Reverb Parameter {a3 - 0x01}", data);
+                        return;
+                    }
+                    
+                    case 0x0c: 
+                    {
+                        synth.XGReverbBlock.ReturnLevel = data;
+                        SpessaLog.XGInfo($"Reverb Return", data);
+                        return;
+                    }
+
+                    case 0x0d: 
+                    {
+                        synth.XGReverbBlock.Pan = data;
+                        SpessaLog.XGInfo($"Reverb Pan", data);
+                        return;
+                    }
+                    
+                    case 0x10:
+                    case 0x11:
+                    case 0x12:
+                    case 0x13:
+                    case 0x14:
+                    case 0x15: 
+                    {
+                        synth.XGReverbBlock.SetParameter(a3 - 0x06, data);
+                        SpessaLog.XGInfo($"Reverb Parameter {a3 - 0x05}", data);
+                        return;
+                    }
+
+                    case 0x20: 
+                    {
+                        var type = (data << 8) | syx[7];
+                        synth.XGChorusBlock.SetType(type);
+                        SpessaLog.XGInfo("Chorus Type", type.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x22:
+                    case 0x23:
+                    case 0x24:
+                    case 0x25:
+                    case 0x26:
+                    case 0x27:
+                    case 0x28:
+                    case 0x29:
+                    case 0x2a:
+                    case 0x2b: 
+                    {
+                        synth.XGChorusBlock.SetParameter(a3 - 0x22, data);
+                        SpessaLog.XGInfo($"Chorus Parameter {a3 - 0x21}", data);
+                        return;
+                    }
+                    
+                    case 0x2c: 
+                    {
+                        synth.XGChorusBlock.ReturnLevel = data;
+                        SpessaLog.XGInfo("Chorus Return", data);
+                        return;
+                    }
+
+                    case 0x2d: 
+                    {
+                        synth.XGChorusBlock.Pan = data;
+                        SpessaLog.XGInfo("Chorus Pan", data);
+                        return;
+                    }
+
+                    case 0x2e: 
+                    {
+                        synth.XGChorusBlock.SendToReverb = data;
+                        SpessaLog.XGInfo("Chorus Send To Reverb", data);
+                        return;
+                    }
+                    
+                    case 0x30:
+                    case 0x31:
+                    case 0x32:
+                    case 0x33:
+                    case 0x34:
+                    case 0x35: 
+                    {
+                        synth.XGChorusBlock.SetParameter(a3 - 0x26, data);
+                        SpessaLog.XGInfo($"Chorus Parameter {a3 - 0x25}", data);
+                        return;
+                    }
+                    
+                    case 0x40: 
+                    {
+                        var type = (data << 8) | syx[7];
+                        synth.XGVariationBlock.SetType(type);
+                        SpessaLog.XGInfo("Variation Type", type.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x42:
+                    case 0x44:
+                    case 0x46:
+                    case 0x48:
+                    case 0x4a:
+                    case 0x4c:
+                    case 0x4e:
+                    case 0x50:
+                    case 0x52:
+                    case 0x54: 
+                    {
+                        // Params are 14-bit!
+                        var value = (data << 7) | syx[7];
+                        // Bit shift by 1 because address increases by two
+                        synth.XGVariationBlock.SetParameter((a3 - 0x42) >> 1, value);
+                        SpessaLog.XGInfo(
+                            $"Variation Parameter {a3 - 0x41} (14-bit)",
+                            value.ToString("X"));
+                        return;
+                    }
+                    
+                    case 0x56: 
+                    {
+                        synth.XGVariationBlock.ReturnLevel = data;
+                        SpessaLog.XGInfo("Variation Return", data);
+                        return;
+                    }
+
+                    case 0x57: 
+                    {
+                        synth.XGVariationBlock.Pan = data;
+                        SpessaLog.XGInfo("Variation Pan", data);
+                        return;
+                    }
+
+                    case 0x58: 
+                    {
+                        synth.XGVariationBlock.SendToReverb = data;
+                        SpessaLog.XGInfo("Variation Send To Reverb", data);
+                        return;
+                    }
+                    
+                    case 0x59: 
+                    {
+                        synth.XGVariationBlock.SendToChorus = data;
+                        SpessaLog.XGInfo("Variation Send To Chorus", data);
+                        return;
+                    }
+
+                    case 0x5a: 
+                    {
+                        synth.XGVariationBlock.InsertionMode = data == 0;
+                        SpessaLog.XGInfo(
+                            "Variation Connection",
+                            data == 0 ? "INSERTION" : "SYSTEM");
+                        return;
+                    }
+
+                    case 0x5b: 
+                    {
+                        synth.XGVariationBlock.PartNumber = data;
+                        SpessaLog.XGInfo("Variation Part Number", data);
+                        return;
+                    }
+                    
+                    case 0x70:
+                    case 0x71:
+                    case 0x72:
+                    case 0x73:
+                    case 0x74:
+                    case 0x75: 
+                    {
+                        // These are 7-bit only
+                        synth.XGVariationBlock.SetParameter(a3 - 0x66, data);
+                        SpessaLog.XGInfo($"Variation Parameter {a3 - 0x65}", data);
+                        return;
+                    }
+                }
                 return;
+            }
+            
+            // XG EFFECT 2 (insertion)
+            if (a1 == 0x03)
+            {
+                if (!Util.InRange(synth.XGInsertionBlocks, 2)) 
+                {
+                    SpessaLog.XGFail("Insertion Effect Number", [a2]);
+                    return;
+                }
+                
+                var insertion = synth.XGInsertionBlocks[a2];
+
+                switch (a3) {
+                    default: 
+                    {
+                        SpessaLog.XGFail("EFFECT 2 Parameter", [a3]);
+                        break;
+                    }
+
+                    case 0x00: 
+                    {
+                        var type = (data << 8) | syx[7];
+                        insertion.SetType(type);
+                        SpessaLog.XGInfo($"Insertion {a2} Type", type.ToString("X"));
+                        return;
+                    }
+
+                    case 0x02:
+                    case 0x03:
+                    case 0x04:
+                    case 0x05:
+                    case 0x06:
+                    case 0x07:
+                    case 0x08:
+                    case 0x09:
+                    case 0x0a:
+                    case 0x0b: 
+                    {
+                        insertion.SetParameter(a3 - 0x02, data);
+                        SpessaLog.XGInfo(
+                            $"Insertion {a2} Parameter {a3 - 0x01}",
+                            data);
+                        return;
+                    }
+
+                    case 0x0c: 
+                    {
+                        insertion.PartNumber = data;
+                        SpessaLog.XGInfo($"Insertion {a2} Part Number", data);
+                        return;
+                    }
+
+                    case 0x20:
+                    case 0x21:
+                    case 0x22:
+                    case 0x23:
+                    case 0x24:
+                    case 0x25: 
+                    {
+                        insertion.SetParameter(a3 - 0x16, data);
+                        SpessaLog.XGInfo(
+                            $"Insertion {a2} Parameter {a3 - 0x15}",
+                            data);
+                        return;
+                    }
+
+                    case 0x30:
+                    case 0x32:
+                    case 0x34:
+                    case 0x36:
+                    case 0x38:
+                    case 0x3a:
+                    case 0x3c:
+                    case 0x3e:
+                    case 0x40:
+                    case 0x42: 
+                    {
+                        var value = (data << 7) | syx[7];
+                        // Bit shift by 1 because address increases by two
+                        insertion.SetParameter((a3 - 0x30) >> 1, value);
+                        SpessaLog.XGInfo(
+                            $"Insertion {a2} Parameter {a3 - 0x2f} (14-bit)",
+                            value);
+                        return;
+                    }
+                }
             }
 
             if (a1 == 0x08/* A2 is the channel number*/) 

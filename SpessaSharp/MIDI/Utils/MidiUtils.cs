@@ -285,7 +285,7 @@ public static class MidiUtils
                 [(byte)((value >> 7) & 0x7f), (byte)(value & 0x7f)])
                 : XgMessage(ticks, 0x02, 0x01,
                     0x70 + (int)type - 10,
-                    [(byte)((value >> 7) & 0x7f)]) 
+                    [(byte)(value & 0x7f)]) 
         };
     
     public static MidiMessage SetXGVariationParameter(
@@ -298,9 +298,13 @@ public static class MidiUtils
     /// </summary>
     /// <param name="ticks">The MIDI tick time for the output event.</param>
     /// <param name="insertionNumber">The insertion effect number (second address byte).</param>
-    /// <param name="type">The parameter's <see cref="XGInsertionType">type</see> to set</param>
-    /// <param name="value">The value to set it to. If the 14-bit parameter has LSB of zero, the MSB-only version will be used.</param>
-    /// <returns></returns>
+    /// <param name="type">
+    /// The parameter's <see cref="XGInsertionType">type</see> to set: <see cref="XGInsertionType.Type"/> (16-bt),
+    /// <see cref="XGInsertionType.PartNumber"/> (insertion target) or a 0-based type-specific parameter number (0-15) (14-bit)
+    /// Note that for 7-bit parameters, only the lower 7 bits will be used. If the 14-bit parameter has MSB of zero, the LSB-only version will be used.
+    /// </param>
+    /// <param name="value">The value to set it to.</param>
+    /// <returns>The <see cref="MidiMessage"/> needed to set this XG Insertion Parameter.</returns>
     public static MidiMessage SetXGInsertionParameter(
         int ticks, int insertionNumber, XGInsertionType type, int value)
     {
@@ -316,16 +320,15 @@ public static class MidiUtils
             {
                 if ((int)type < 10) 
                 {
-                    if ((value & 0x7f) == 0) 
+                    if ((value >> 7) == 0) 
                     {
-                        // Fits in the MSB alone: MSB-only address
+                        // Fits in the LSB alone: LSB-only address
                         return XgMessage(
                             ticks,
                             0x03,
                             insertionNumber,
                             0x02 + (int)type,
-                            [(byte)((value >> 7) & 0x7f)]
-                        );
+                            [(byte)(value & 0x7f)]);
                     }
                     // Needs the LSB: two-byte [Ext.2] address
                     // Yamaha XG spec v1.32, page 41.
@@ -338,11 +341,11 @@ public static class MidiUtils
                     );
                 }
 
-                // Parameters 10-15 only have MSB versions, use that
-                if ((value & 0x7f) != 0) 
+                // Parameters 10-15 only have single-byte versions, use that
+                if (value >> 7 != 0) 
                 {
                     SpessaLog.Warn(
-                        "Attempting to set 14-bit value for XG insertion parameter 10-15 (11-16 in the spec). It will be truncated to MSB!");
+                        "Attempting to set value over 127 for XG insertion parameter 10-15 (11-16 in the spec). It will be truncated to 7-bit!");
                 }
 
                 return XgMessage(
@@ -350,8 +353,7 @@ public static class MidiUtils
                     0x03,
                     insertionNumber,
                     0x20 + (int)type - 10,
-                    [(byte)((value >> 7) & 0x7f)]
-                );
+                    [(byte)(value & 0x7f)]);
             }
         }
     }
@@ -1297,6 +1299,7 @@ public static class MidiUtils
                     syx.Length < 9
                         ? AnalyzedParameter.Type.Other
                         : AnalyzedMessage.Of(
+                            // Bit shift by 1 because address increases by two
                             (XGVariationType)((a3 - 0x42) >> 1), // 0x42 -> 0 ... 0x54 -> 9
                             (value << 7) | syx[7]),
                 
@@ -1320,10 +1323,10 @@ public static class MidiUtils
                 0x5b => AnalyzedMessage.Of(XGVariationType.PartNumber, value),
                 
                 0x70 or 0x71 or 0x72 or 0x73 or 0x74 or 
-                0x74 => 
+                0x75 =>
                     AnalyzedMessage.Of(
                         (XGVariationType)((a3 - 0x66) >> 1), // 0x70 -> 10 ... 0x75 -> 15
-                        (value << 7) | syx[7]),
+                        value),
                 
                 _ => AnalyzedParameter.Type.Other,
             };
@@ -1340,13 +1343,13 @@ public static class MidiUtils
                     : Of(XGInsertionType.Type, (value << 8) | syx[7]),
                 
                 0x02 or 0x03 or 0x04 or 0x05 or 0x06 or 0x07 or 0x08 or 0x09 or 0x0a or
-                0x0b => Of((XGInsertionType)(a3 - 0x02), value << 7),
+                0x0b => Of((XGInsertionType)(a3 - 0x02), value),
                 0x0c => Of(XGInsertionType.PartNumber, value),
                 
                 0x20 or 0x21 or 0x22 or 0x23 or 0x24 or 
                 0x25 => Of(
                     (XGInsertionType)(a3 - 0x16), // 0x20 -> 10 ... 0x25 -> 15 
-                    value << 7),
+                    value),
                 
                 0x30 or 0x32 or 0x34 or 0x36 or 0x38 or 0x3a or 0x3c or 0x3e or 0x40 or
                 0x42 => 
@@ -1354,11 +1357,10 @@ public static class MidiUtils
                     syx.Length < 9 
                         ? AnalyzedParameter.Type.Other
                         : Of(
+                            // Bit shift by 1 because address increases by two
                             (XGInsertionType)((a3 - 0x30) >> 1), // 0x30 -> 0 ... 0x42 -> 9
                             (value << 7) | syx[7]),
-                
-                // 0x0d-0x11 control depths (not modeled, like variation
-                // 0x5c-0x60) and gaps
+
                 _ => AnalyzedParameter.Type.Other,
             };
 
