@@ -4,6 +4,7 @@ using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -113,6 +114,10 @@ internal static class Yamaha
                         var type = (data << 8) | syx[7];
                         synth.XGReverbBlock.SetType(type);
                         SpessaLog.XGInfo("Reverb Type", type.ToString("X"));
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGReverb(
+                                XGEffect.Reverb.Type,
+                                type));
                         return;
                     }
                     
@@ -129,20 +134,32 @@ internal static class Yamaha
                     {
                         synth.XGReverbBlock.SetParameter(a3 - 0x02, data);
                         SpessaLog.XGInfo($"Reverb Parameter {a3 - 0x01}", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGReverb(
+                                (XGEffect.Reverb)(a3 - 0x02),
+                                data));
                         return;
                     }
                     
                     case 0x0c: 
                     {
                         synth.XGReverbBlock.Return = data;
-                        SpessaLog.XGInfo($"Reverb Return", data);
+                        SpessaLog.XGInfo("Reverb Return", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGReverb(
+                                XGEffect.Reverb.Return,
+                                data));
                         return;
                     }
 
                     case 0x0d: 
                     {
                         synth.XGReverbBlock.Pan = data;
-                        SpessaLog.XGInfo($"Reverb Pan", data);
+                        SpessaLog.XGInfo("Reverb Pan", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGReverb(
+                                XGEffect.Reverb.Pan,
+                                data));
                         return;
                     }
                     
@@ -155,6 +172,10 @@ internal static class Yamaha
                     {
                         synth.XGReverbBlock.SetParameter(a3 - 0x06, data);
                         SpessaLog.XGInfo($"Reverb Parameter {a3 - 0x05}", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGReverb(
+                                (XGEffect.Reverb)(a3 - 0x06),
+                                data));
                         return;
                     }
 
@@ -163,6 +184,10 @@ internal static class Yamaha
                         var type = (data << 8) | syx[7];
                         synth.XGChorusBlock.SetType(type);
                         SpessaLog.XGInfo("Chorus Type", type.ToString("X"));
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGChorus(
+                                XGEffect.Chorus.Type,
+                                data));
                         return;
                     }
                     
@@ -179,6 +204,10 @@ internal static class Yamaha
                     {
                         synth.XGChorusBlock.SetParameter(a3 - 0x22, data);
                         SpessaLog.XGInfo($"Chorus Parameter {a3 - 0x21}", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGChorus(
+                                (XGEffect.Chorus)(a3 - 0x22),
+                                data));
                         return;
                     }
                     
@@ -186,6 +215,10 @@ internal static class Yamaha
                     {
                         synth.XGChorusBlock.Return = data;
                         SpessaLog.XGInfo("Chorus Return", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGChorus(
+                                XGEffect.Chorus.Return,
+                                data));
                         return;
                     }
 
@@ -193,6 +226,10 @@ internal static class Yamaha
                     {
                         synth.XGChorusBlock.Pan = data;
                         SpessaLog.XGInfo("Chorus Pan", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGChorus(
+                                XGEffect.Chorus.Pan,
+                                data));
                         return;
                     }
 
@@ -200,6 +237,10 @@ internal static class Yamaha
                     {
                         synth.XGChorusBlock.SendToReverb = data;
                         SpessaLog.XGInfo("Chorus Send To Reverb", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGChorus(
+                                XGEffect.Chorus.SendToReverb,
+                                data));
                         return;
                     }
                     
@@ -212,6 +253,10 @@ internal static class Yamaha
                     {
                         synth.XGChorusBlock.SetParameter(a3 - 0x26, data);
                         SpessaLog.XGInfo($"Chorus Parameter {a3 - 0x25}", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGChorus(
+                                (XGEffect.Chorus)(a3 - 0x26),
+                                data));
                         return;
                     }
                     
@@ -220,6 +265,10 @@ internal static class Yamaha
                         var type = (data << 8) | syx[7];
                         synth.XGVariationBlock.SetType(type);
                         SpessaLog.XGInfo("Variation Type", type.ToString("X"));
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                XGEffect.Variation.Type,
+                                data));
                         return;
                     }
                     
@@ -241,6 +290,10 @@ internal static class Yamaha
                         SpessaLog.XGInfo(
                             $"Variation Parameter {a3 - 0x41} (14-bit)",
                             value.ToString("X"));
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                (XGEffect.Variation)((a3 - 0x42) >> 1),
+                                data));
                         return;
                     }
                     
@@ -248,6 +301,10 @@ internal static class Yamaha
                     {
                         synth.XGVariationBlock.Return = data;
                         SpessaLog.XGInfo("Variation Return", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                XGEffect.Variation.Return,
+                                data));
                         return;
                     }
 
@@ -255,6 +312,10 @@ internal static class Yamaha
                     {
                         synth.XGVariationBlock.Pan = data;
                         SpessaLog.XGInfo("Variation Pan", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                XGEffect.Variation.Pan,
+                                data));
                         return;
                     }
 
@@ -262,6 +323,10 @@ internal static class Yamaha
                     {
                         synth.XGVariationBlock.SendToReverb = data;
                         SpessaLog.XGInfo("Variation Send To Reverb", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                XGEffect.Variation.SendToReverb,
+                                data));
                         return;
                     }
                     
@@ -269,6 +334,10 @@ internal static class Yamaha
                     {
                         synth.XGVariationBlock.SendToChorus = data;
                         SpessaLog.XGInfo("Variation Send To Chorus", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                XGEffect.Variation.SendToChorus,
+                                data));
                         return;
                     }
 
@@ -278,6 +347,11 @@ internal static class Yamaha
                         SpessaLog.XGInfo(
                             "Variation Connection",
                             data == 0 ? "INSERTION" : "SYSTEM");
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                data == 0 
+                                    ? XGEffect.VariationConnection.Insertion 
+                                    : XGEffect.VariationConnection.System));
                         return;
                     }
 
@@ -285,6 +359,9 @@ internal static class Yamaha
                     {
                         synth.XGVariationBlock.PartNumber = data;
                         SpessaLog.XGInfo("Variation Part Number", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                XGEffect.Variation.PartNumber, data));
                         return;
                     }
                     
@@ -298,6 +375,9 @@ internal static class Yamaha
                         // These are 7-bit only
                         synth.XGVariationBlock.SetParameter(a3 - 0x66, data);
                         SpessaLog.XGInfo($"Variation Parameter {a3 - 0x65}", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGVariation(
+                                (XGEffect.Variation)(a3 - 0x66), data));
                         return;
                     }
                 }
@@ -329,6 +409,9 @@ internal static class Yamaha
                         var type = (data << 8) | syx[7];
                         insertion.SetType(type);
                         SpessaLog.XGInfo($"Insertion {a2} Type", type.ToString("X"));
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGInsertion(
+                                a2, XGEffect.Insertion.Type, type));
                         return;
                     }
 
@@ -347,6 +430,11 @@ internal static class Yamaha
                         SpessaLog.XGInfo(
                             $"Insertion {a2} Parameter {a3 - 0x01}",
                             data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGInsertion(
+                                a2,
+                                (XGEffect.Insertion)(a3 - 0x02),
+                                data));
                         return;
                     }
 
@@ -354,6 +442,11 @@ internal static class Yamaha
                     {
                         insertion.PartNumber = data;
                         SpessaLog.XGInfo($"Insertion {a2} Part Number", data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGInsertion(
+                                a2,
+                                XGEffect.Insertion.PartNumber,
+                                data));
                         return;
                     }
 
@@ -368,6 +461,11 @@ internal static class Yamaha
                         SpessaLog.XGInfo(
                             $"Insertion {a2} Parameter {a3 - 0x15}",
                             data);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGInsertion(
+                                a2,
+                                (XGEffect.Insertion)(a3 - 0x16),
+                                data));
                         return;
                     }
 
@@ -388,6 +486,11 @@ internal static class Yamaha
                         SpessaLog.XGInfo(
                             $"Insertion {a2} Parameter {a3 - 0x2f} (14-bit)",
                             value);
+                        synth.CallEvent(
+                            Event.CbEffectChange.OfXGInsertion(
+                                a2,
+                                (XGEffect.Insertion)((a3 - 0x30) >> 1),
+                                data));
                         return;
                     }
                 }

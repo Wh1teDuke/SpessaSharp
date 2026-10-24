@@ -1,6 +1,7 @@
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -288,7 +289,7 @@ public static class MidiUtils
         };
     
     public static MidiMessage SetXGVariationParameter(
-        int ticks, XGVariationConnection connection) =>
+        int ticks, XGEffect.VariationConnection connection) =>
         SetXGVariationParameter(ticks, XGVariationType.Connection, (int)connection);
 
     
@@ -1318,8 +1319,8 @@ public static class MidiUtils
                     // 0 = insertion, 1 = system
                     value switch
                     {
-                        0 => AnalyzedMessage.Of(XGVariationConnection.Insertion),
-                        1 => AnalyzedMessage.Of(XGVariationConnection.System),
+                        0 => AnalyzedMessage.Of(XGEffect.VariationConnection.Insertion),
+                        1 => AnalyzedMessage.Of(XGEffect.VariationConnection.System),
                         _ => AnalyzedParameter.Type.Other,
                     },
                 

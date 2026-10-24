@@ -122,7 +122,7 @@ public static class Macro
                 return;
         }
 
-        synth.CallEvent(Event.CbEffectChange.OfReverb(
+        synth.CallEvent(Event.CbEffectChange.OfGSReverb(
             GSEffect.GSReverbType.Macro, macro));
     }
 
@@ -232,7 +232,7 @@ public static class Macro
                 return;
         }
         
-        synth.CallEvent(Event.CbEffectChange.OfChorus(
+        synth.CallEvent(Event.CbEffectChange.OfGSChorus(
             GSEffect.GSChorusType.Macro, macro));
     }
 
@@ -379,7 +379,7 @@ public static class Macro
                 return;
         }
         
-        synth.CallEvent(Event.CbEffectChange.OfDelay(
+        synth.CallEvent(Event.CbEffectChange.OfGSDelay(
             GSEffect.GSDelayType.Macro, macro));
     }
 }

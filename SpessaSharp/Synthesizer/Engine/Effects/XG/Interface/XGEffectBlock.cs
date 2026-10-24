@@ -30,6 +30,12 @@ public interface XGEffectBlock
     /// </summary>
     /// <param name="type">The 16-bit type value to use.</param>
     void SetType(int type);
+
+    /// <summary>
+    /// Gets the current 16-bit type of the processor.
+    /// </summary>
+    /// <returns>The 16-bit (<c>(MSB &lt;&lt; 8) | LSB</c>) type of the processor used.</returns>
+    int GetType();
     
     /// <summary>
     /// Resets this block to default values, including the processor type.

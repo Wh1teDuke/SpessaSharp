@@ -83,6 +83,8 @@ public abstract class DefaultXGEffect: XGEffectBlock
         Processor.Reset();
     }
 
+    public int GetType() => _type;
+
     /// <summary> Resets this block to default values, including the processor type. </summary>
     public virtual void Reset() => SetType(_defaultType);
 

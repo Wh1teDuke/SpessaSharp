@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
 using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.MIDI.Utils;
@@ -20,14 +21,7 @@ public enum XGChorusType
     Type, Return, Pan, SendToReverb
 }
 
-/// <summary> Variation connection mode </summary>
-public enum XGVariationConnection
-{
-    /// <summary> Routes all channels via sends (like reverb and chorus). </summary>
-    System,
-    /// <summary> Routes a single <c>partNumber</c> channel straight through. </summary>
-    Insertion,
-}
+
 
 public enum XGVariationType
 {
@@ -373,7 +367,7 @@ public readonly struct AnalyzedMessage
             Data = new InternalData { _xgVariation = (type, value) },
         };
     
-    public static AnalyzedMessage Of(XGVariationConnection type) =>
+    public static AnalyzedMessage Of(XGEffect.VariationConnection type) =>
         new()
         {
             MType = Type.XGVariationParam, 

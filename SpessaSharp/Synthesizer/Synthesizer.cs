@@ -831,12 +831,45 @@ public sealed class Synthesizer
         // Delay1 default
         SetDelayMacro(0);
         ResetInsertion();
-        
-        XGReverbBlock.Reset();
-        XGChorusBlock.Reset();
-        XGVariationBlock.Reset();
-        foreach (var insertion in XGInsertionBlocks)
-            insertion.Reset();
+
+        // Reset XG params
+        if (!SystemParameters.XGReverbLock)
+        {
+            XGReverbBlock.Reset();
+            CallEvent(
+                Event.CbEffectChange.OfXGReverb(
+                    XGEffect.Reverb.Type, XGReverbBlock.GetType()));
+        }
+
+        if (!SystemParameters.XGChorusLock)
+        {
+            XGChorusBlock.Reset();
+            CallEvent(
+                Event.CbEffectChange.OfXGChorus(
+                    XGEffect.Chorus.Type, XGChorusBlock.GetType()));
+        }
+
+        if (!SystemParameters.XGVariationLock)
+        {
+            XGVariationBlock.Reset();            
+            CallEvent(
+                Event.CbEffectChange.OfXGVariation(
+                    XGEffect.Variation.Type, XGVariationBlock.GetType()));
+        }
+
+        if (!SystemParameters.XGInsertionLock)
+        {
+            var insNum = 0;
+            foreach (var insertion in XGInsertionBlocks)
+            {
+                insertion.Reset();
+                CallEvent(Event.CbEffectChange.OfXGInsertion(
+                    insNum, XGEffect.Insertion.Type, insertion.GetType()));
+
+                insNum++;
+            }
+        }
+
 
         // Avoid crashing
         if (DrumPreset == null || DefaultPreset == null) return;
@@ -1419,7 +1452,7 @@ public sealed class Synthesizer
         GSInsertionProcessor.SendLevelToChorus = 0;
         GSInsertionProcessor.SendLevelToDelay = 0;
         
-        CallEvent(Event.CbEffectChange.OfInsertion(
+        CallEvent(Event.CbEffectChange.OfGSInsertion(
             parameter: 0, 
             value: GSInsertionProcessor.Type));
     }
