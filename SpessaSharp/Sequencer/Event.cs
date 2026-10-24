@@ -29,8 +29,15 @@ public readonly struct Event
     /// <param name="Message">The binary MIDI message.</param>
     /// <param name="Time">The synthesizer's current time when this event was sent.
     /// Use this for scheduling MIDI messages to your external MIDI device.</param>
+    /// <param name="ChannelOffset">
+    /// The channel offset of this message, it is useful for multi-port MIDI files.
+    /// For example, offset of 0 means the first 16 channels (0-15). Offset of 16 means the second port (channels 16-31).
+    /// The second port could be routed to a second MIDI output or a second MIDI device.
+    /// </param>
     public readonly record struct CbMidiMessage(
-        ArraySegment<byte> Message, double Time);
+        ArraySegment<byte> Message, 
+        double Time,
+        int ChannelOffset);
     
     /// <summary>Called when the time is changed. It also gets called when a song gets changed.</summary>
     /// <param name="NewTime">The new time in seconds.</param>

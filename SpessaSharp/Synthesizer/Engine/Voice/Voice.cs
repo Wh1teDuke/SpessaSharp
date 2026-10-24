@@ -87,6 +87,12 @@ public sealed class Voice
         }
     }
 
+    /// <summary>
+    /// Parameters for rendering a single voice in the SoundFont2 format.
+    /// </summary>
+    /// <param name="Generators">The summed generators.</param>
+    /// <param name="Modulators">The summed modulators.</param>
+    /// <param name="Sample">The sample used for this voice.</param>
     internal readonly record struct Parameters(
         ArraySegment<short> Generators,
         ArraySegment<SoundBank.Modulator> Modulators,
@@ -166,10 +172,7 @@ public sealed class Voice
     /// <summary>The root key of the voice.</summary>
     public int RootKey;
     
-    /// <summary> The pressure of the voice </summary>
-    public int Pressure;
-    
-    /// <summary> Linear gain of the voice. Used with Key Modifiers. </summary>
+    /// <summary>Linear gain of the voice</summary>
     public float GainModifier = 1;
 
     public Synthesizer.SampleLoopingMode LoopingMode = 
@@ -202,14 +205,14 @@ public sealed class Voice
     /// <summary> In cents.</summary>
     public int PitchOffset;
     
-    /// <summary> Reverb send of the voice, used for drum parts, otherwise 1.</summary>
-    public float ReverbSend = 1;
+    /// <summary> Reverb gain of the voice, used for drum parts, otherwise 1.</summary>
+    public float ReverbGain = 1;
     
-    /// <summary> Chorus send of the voice, used for drum parts, otherwise 1.</summary>
-    public float ChorusSend = 1;
+    /// <summary> Chorus gain of the voice, used for drum parts, otherwise 1.</summary>
+    public float ChorusGain = 1;
     
-    /// <summary> Delay send of the voice, used for drum parts, otherwise 1.</summary>
-    public float DelaySend = 1;
+    /// <summary> Delay/variation gain of the voice, used for drum parts, otherwise 1.</summary>
+    public float VariationGain = 1;
     
     /// <summary> Exclusive class number for hi-hats etc.</summary>
     public int ExclusiveClass;
@@ -275,7 +278,6 @@ public sealed class Voice
         HasRendered = false;
         IsHeld = false;
         ReleaseStartTime = float.PositiveInfinity;
-        Pressure = 0;
         OverrideReleaseVolEnv = 0;
         PortamentoDuration = 0;
         PortamentoFromKey = -1;

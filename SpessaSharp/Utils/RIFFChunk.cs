@@ -48,8 +48,21 @@ internal readonly record struct RIFFChunk(
     {
         public enum Type
         {
-            GenericRIFF, WAV, SoundBankInfo, SF2Info, SF2Chunk,
-            DLSInfo, DLSChunk, RMIDInfo,
+            /// <summary> General RIFF (and RIFF64) Four Character Codes defined in the RIFF spec. </summary>
+            GenericRIFF, 
+            /// <summary> RIFF Four Character Codes found in a WAVE file. </summary>
+            WAV, 
+            /// <summary> RIFF Four Character Codes found in all sound bank formats. </summary>
+            SoundBankInfo, 
+            /// <summary> RIFF Four Character Codes found in SF2 INFO chunk. </summary>
+            SF2Info,
+            /// <summary> RIFF Four Character Codes found in the SF2 structure. </summary>
+            SF2Chunk,
+            /// <summary> RIFF Four Character Codes found in the DLS INFO chunk. </summary>
+            DLSInfo, 
+            /// <summary> RIFF Four Character Codes found in the DLS structure. </summary>
+            DLSChunk, 
+            RMIDInfo,
         }
         
         private static readonly Type[] Types = Enum.GetValues<Type>();
@@ -115,6 +128,10 @@ internal readonly record struct RIFFChunk(
         public static bool operator !=(FourCC x, ReadOnlySpan<byte> y) => !(x == y);
     }
 
+    /// <summary>
+    /// RIFF Four Character Codes found in the RMIDI INFO chunk.
+    /// </summary>
+    /// <param name="Str"></param>
     public readonly record struct DLSFourCC(string Str);
     
     internal readonly ArraySegment<byte> Base = Data;

@@ -11,6 +11,7 @@ namespace SpessaSharp.Synthesizer.Engine.Channel;
 
 internal static class RenderVoice
 {
+    private const float TWO_PI = MathF.PI * 2;
     private const float HALF_PI = MathF.PI / 2;
     private const int MIN_PAN = -500;
     private const int MAX_PAN = 500;
@@ -39,17 +40,11 @@ internal static class RenderVoice
     /// <param name="chan"></param>
     /// <param name="voice">The voice to render</param>
     /// <param name="timeNow">Current time in seconds</param>
-    /// <param name="outputL">The left output buffer</param>
-    /// <param name="outputR">The right output buffer</param>
-    /// <param name="startIndex"></param>
-    /// <param name="sampleCount"></param>
+    /// <param name="sampleCount">The only thing needed as it's 0-based</param>
     public static void Execute(
         MidiChannel chan,
         Voice.Voice voice,
         float timeNow,
-        Span<float> outputL,
-        Span<float> outputR,
-        int startIndex,
         int sampleCount)
     {
         var released = false;
@@ -97,7 +92,8 @@ internal static class RenderVoice
         
         // MIDI Tuning Standard
         // Use `midiNote` here since it was used for selecting the preset if tuning was active
-        var tuning = core.Tunings[chan.Preset!.Program * 128 + voice.MidiNote];
+        var tuning = core.Tunings[
+            chan.Preset!.Patch.Program * 128 + voice.MidiNote];
         if ((int)tuning != -1) 
         {
             // Tuning is encoded as float
@@ -135,11 +131,14 @@ internal static class RenderVoice
         {
             var vibPitchDepth = modulated[
                 (int)Generator.Type.VibLFOToPitch];
+            var vibVolDepth = modulated[
+                (int)Generator.Type.VibLFOToVolume];
             var vibFilterDepth = modulated[
                 (int)Generator.Type.VibLFOToFilterFc];
             var vibAmplitudeDepth = modulated[
                 (int)Generator.Type.VibLFOAmplitudeDepth];
             if (vibPitchDepth != 0 ||
+                vibVolDepth != 0 ||
                 vibFilterDepth != 0 ||
                 vibAmplitudeDepth != 0) 
             {
@@ -156,10 +155,14 @@ internal static class RenderVoice
                 // Low pass frequency
                 lowpassExcursion =
                     (int)(lowpassExcursion + vibLfoValue * vibFilterDepth);
+                
+                // Vol env volume offset
+                // Negate the lfo value because audigy starts with increase rather than decrease
+                volumeExcursionCentibels += -vibLfoValue * vibVolDepth;
 
                 // Amplitude depth
-                voiceGain *= 1 - ((vibLfoValue + 1) / 2) *
-                    (vibAmplitudeDepth / 1_000f);
+                // Like SCVA: double gain at peak, 0 at lowest (times depth)
+                voiceGain *= 1 + vibLfoValue * (vibAmplitudeDepth / 1000f);
             }
         }
         
@@ -200,12 +203,29 @@ internal static class RenderVoice
                     (int)(lowpassExcursion + modLfoValue * modFilterDepth);
 
                 // Amplitude depth
-                voiceGain *=
-                    1 - ((modLfoValue + 1) / 2) * (modAmplitudeDepth / 1_000f);
+                // Like SCVA: double gain at peak, 0 at lowest (times depth)
+                voiceGain *= 1 + modLfoValue * (modAmplitudeDepth / 1000f);
             }
         }
         
-        // Implement proper GS vibrato. Custom vibrato used to be here.
+        // Channel vibrato (custom vibrato)
+        if (
+            core.SystemParameters.CustomVibrato &&
+            chan[Midi.CC.ModulationWheel] == 0 &&
+            chan.CustomVibrato.Depth > 0) 
+        {
+            // Inlined LFO from 4.2.0
+            var vibStart = voice.StartTime + chan.CustomVibrato.Delay;
+            if (timeNow >= vibStart) 
+            {
+                var elapsed = timeNow - vibStart;
+
+                // 2pif t gives a full sine cycle at the specified frequency
+                cents +=
+                    float.Sin(TWO_PI * chan.CustomVibrato.Rate * elapsed) *
+                    chan.CustomVibrato.Depth;
+            }
+        }
 
         // Mod env
         var modEnvPitchDepth = modulated[
@@ -387,69 +407,116 @@ internal static class RenderVoice
         // Get voice's gain levels for each channel
         var gainLeft = PanTableLeft[index] * outputGain;
         var gainRight = PanTableRight[index] * outputGain;
-
-        // Straight into the insertion EFX, but only if it is active
-        if (chan.MidiParameters.EfxAssign &&
-            systemParameters.EffectsEnabled &&
-            core.InsertionActive)
-        {
-            var left = core.InsertionInputL.AsSpan();
-            var right = core.InsertionInputR.AsSpan();
-            
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], gainLeft, left, left);
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], gainRight, right, right);
-            return;
-        }
         
-        // Mix down the audio data
+        // Mix down the audio data, always 0-based
+        var outputL = chan.OutputLeft.AsSpan(0, sampleCount);
+        var outputR = chan.OutputRight.AsSpan(0, sampleCount);
         TensorPrimitives.MultiplyAdd(
-            buffer[..sampleCount], 
-            gainLeft, 
-            outputL.Slice(startIndex, sampleCount),
-            outputL.Slice(startIndex, sampleCount));
+            buffer[..sampleCount], gainLeft, outputL, outputL);
         TensorPrimitives.MultiplyAdd(
-            buffer[..sampleCount], 
-            gainRight, 
-            outputR.Slice(startIndex, sampleCount), 
-            outputR.Slice(startIndex, sampleCount));
+            buffer[..sampleCount], gainRight, outputR, outputR);
 
-        if (!systemParameters.EffectsEnabled) return;
-        
+        /*
+        * Do not send to effects if:
+        * - Either effects are disabled
+        * - Or insertion is active on this channel (Insertion takes over the voice data)
+        * - Or the channel is assigned to an XG insertion effect.
+        * XG ignores per-drum sends when insertion is enabled, and only the post-insertion (global) audio is sent (so whole drum audio, even if send is 0 for a specific drum)
+        */
+        if (!systemParameters.EffectsEnabled ||
+            (chan.MidiParameters.EfxAssign && core.GSInsertionActive) ||
+            chan.XGInsertionAssigned) return;
+
+        var isXG = core.MidiParameters.System == Midi.System.XG;
+
         // Disable reverb and chorus if necessary
         var reverbSend =
-            modulated[(int)Generator.Type.ReverbEffectsSend] * voice.ReverbSend;
+            modulated[(int)Generator.Type.ReverbEffectsSend] * voice.ReverbGain;
         if (reverbSend > 0) 
         {
-            var reverbGain =
-                systemParameters.ReverbGain * 
-                outputGain * (reverbSend / 1_000f);
-            var reverbInput = core.ReverbInput.AsSpan()[..sampleCount];
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], reverbGain, reverbInput, reverbInput);
+            if (isXG)
+            {
+                // XG effects have stereo inputs
+                var send = systemParameters.ReverbGain * (reverbSend / 1_000);
+                var gainL = send * gainLeft;
+                var gainR = send * gainRight;
+                var outL = core.XGReverbInputL.AsSpan(0, sampleCount);
+                var outR = core.XGReverbInputR.AsSpan(0, sampleCount);
+
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainL, outL, outL);
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainR, outR, outR);
+            }
+            else
+            {
+                var reverbGain =
+                    systemParameters.ReverbGain *
+                    outputGain * (reverbSend / 1_000f);
+                var reverbInput = core.GSReverbInput.AsSpan()[..sampleCount];
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], reverbGain, reverbInput, reverbInput);
+            }
         }
 
         var chorusSend = modulated[
-            (int)Generator.Type.ChorusEffectsSend] * voice.ChorusSend;
+            (int)Generator.Type.ChorusEffectsSend] * voice.ChorusGain;
 
         if (chorusSend > 0) 
         {
-            var chorusGain = systemParameters.ChorusGain * 
-                             (chorusSend / 1_000f) * outputGain;
-            var chorusInput = core.ChorusInput.AsSpan()[..sampleCount];
-            TensorPrimitives.MultiplyAdd(
-                buffer[..sampleCount], chorusGain, chorusInput, chorusInput);
+            if (isXG)
+            {
+                var send = systemParameters.ChorusGain * (chorusSend / 1_000);
+                var gainL = send * gainLeft;
+                var gainR = send * gainRight;
+                var outL = core.XGChorusInputL.AsSpan(0, sampleCount);
+                var outR = core.XGChorusInputR.AsSpan(0, sampleCount);
+                
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainL, outL, outL);
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainR, outR, outR);
+            }
+            else
+            {
+                var chorusGain = systemParameters.ChorusGain * 
+                                 (chorusSend / 1_000f) * outputGain;
+                var chorusInput = core.GSChorusInput.AsSpan()[..sampleCount];
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], chorusGain, chorusInput, chorusInput);   
+            }
+        }
+        
+        // XG variation send is system-only.
+        // In insertion mode CC94 does nothing
+        if (isXG && !core.XGVariationBlock.InsertionMode)
+        {
+            var variationSend =
+                chan[Midi.CC.VariationDepth] * voice.VariationGain;
+
+            if (variationSend > 0)
+            {
+                var send =
+                    (((int)variationSend >> 7) / 127) * systemParameters.XGVariationGain;
+                var gainL = send * gainLeft;
+                var gainR = send * gainRight;
+                var outL = core.XGVariationInputL.AsSpan(0, sampleCount);
+                var outR = core.XGVariationInputR.AsSpan(0, sampleCount);
+                
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainL, outL, outL);
+                TensorPrimitives.MultiplyAdd(
+                    buffer[..sampleCount], gainR, outR, outR);
+            }
         }
 
-        var delaySend = chan.MidiControllers[
-            (int)Midi.CC.VariationDepth] * voice.DelaySend;
+        var delaySend = chan[Midi.CC.VariationDepth] * voice.VariationGain;
         
-        if (core.DelayActive && delaySend > 0) 
+        if (core.GSDelayActive && delaySend > 0) 
         {
-            var delayGain = outputGain * systemParameters.DelayGain *
+            var delayGain = outputGain * systemParameters.GSDelayGain *
                             (((int)delaySend >> 7) / 127f);
-            var delayInput = core.DelayInput.AsSpan()[..sampleCount];
+            var delayInput = core.GSDelayInput.AsSpan()[..sampleCount];
             TensorPrimitives.MultiplyAdd(
                 buffer[..sampleCount], delayGain, delayInput, delayInput);
         }

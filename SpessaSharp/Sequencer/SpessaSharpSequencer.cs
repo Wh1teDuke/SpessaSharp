@@ -22,6 +22,7 @@ public sealed class SpessaSharpSequencer
     /// <summary>
     /// If the MIDI messages should be sent to an event instead of the synth.
     /// This is used by spessasynth_lib to pass them over to Web MIDI API.
+    /// If true, <see cref="Event.Type.MidiMessage"/> will be emitted.
     /// </summary>
     public bool ExternalPlayback = false;
     
@@ -158,8 +159,8 @@ public sealed class SpessaSharpSequencer
     public int Tick { get; internal set; }
 
     /// <summary>Channel offsets for each MIDI port. Stored as: midi port -> channel offset</summary>
-    internal readonly int[] MidiPortChannelOffsets = 
-        Enumerable.Repeat(-1, 256).ToArray();
+    internal readonly int[] MidiPortChannelOffsets =
+        [.. Enumerable.Repeat(-1, 256)];
 
     internal int _songIndex = -1;
     
@@ -402,18 +403,20 @@ public sealed class SpessaSharpSequencer
         PlayingNotes.Grow(channels);
         for (var i = 0; i < channels; i++) Synth.CreateMIDIChannel();
     }
-    
-    internal void SendMidiMessage(ArraySegment<byte> message) 
+
+    internal void SendMidiMessage(
+        ArraySegment<byte> message, int chanOffset = 0) 
     {
         if (!ExternalPlayback) 
         {
-            Debug.WriteLine(
+            SpessaLog.Warn(
                 $"Attempting to send {Util.ToHexString(message)
                 } to the synthesizer via sendMIDIMessage. This shouldn't happen!");
             return;
         }
 
-        CallEvent(new Event.CbMidiMessage(message, Synth.CurrentTime));
+        CallEvent(new Event.CbMidiMessage(
+            message, Synth.CurrentTime, chanOffset));
     }
 
     private void SendMidiAllOff() 
@@ -475,7 +478,7 @@ public sealed class SpessaSharpSequencer
         var msg = Util.Rent<byte>(syx.Length + 1);
         msg[0] = MidiMessage.Type.SystemExclusive.ID();
         syx.CopyTo(msg[1..]);
-        SendMidiMessage(msg);
+        SendMidiMessage(msg, 0);
         Util.Return(msg);
     }
 
@@ -555,12 +558,14 @@ public sealed class SpessaSharpSequencer
             return;
         }
 
-        channel %= 16;
+        var midiChannel = channel % 16;
 
         SendMidiMessage(new [] {
-            (byte)(MidiMessage.Type.NoteOn.ID() | channel),
+            (byte)(MidiMessage.Type.NoteOn.ID() | midiChannel),
             (byte)midiNote,
-            (byte)velocity});
+            (byte)velocity,
+            },
+            channel - midiChannel);
     }
 
     private void SendNoteOff(int channel, int midiNote) 
@@ -571,12 +576,14 @@ public sealed class SpessaSharpSequencer
             return;
         }
 
-        channel %= 16;
+        var midiChannel = channel % 16;
+
         SendMidiMessage(new []{
-            (byte)(MidiMessage.Type.NoteOff.ID() | channel),
+            (byte)(MidiMessage.Type.NoteOff.ID() | midiChannel),
             (byte)midiNote,
-            (byte)64 // Make sure to send velocity as well
-        });
+            (byte)64, // Make sure to send velocity as well
+            },
+            channel - midiChannel);
     }
 
     internal void SendCC(int channel, Midi.CC type, int value) 
@@ -587,12 +594,13 @@ public sealed class SpessaSharpSequencer
             return;
         }
         
-        channel %= 16;
+        var midiChannel = channel % 16;
         SendMidiMessage(new [] {
-            (byte)(MidiMessage.Type.ControllerChange.ID() | channel),
+            (byte)(MidiMessage.Type.ControllerChange.ID() | midiChannel),
             (byte)type,
-            (byte)value
-        });
+            (byte)value,
+            },
+            channel - midiChannel);
     }
 
     /// <summary>Sets the pitch of the given channel</summary>
@@ -606,12 +614,25 @@ public sealed class SpessaSharpSequencer
             return;
         }
 
-        channel %= 16;
+        var midiChannel = channel % 16;
+
         SendMidiMessage(new [] {
-            (byte)(MidiMessage.Type.PitchWheel.ID() | channel),
+            (byte)(MidiMessage.Type.PitchWheel.ID() | midiChannel),
             (byte)(pitch & 0x7f),
-            (byte)(pitch >> 7)
-        });
+            (byte)(pitch >> 7),
+            },
+            channel - midiChannel);
+    }
+
+    internal int TrackOffset(int index)
+    {
+        if (!Util.InRange(CurrentPorts, index))
+            return 0;
+        var port = CurrentPorts[index];
+        if (!Util.InRange(MidiPortChannelOffsets, port))
+            return 0;
+        var offset = MidiPortChannelOffsets[port];
+        return offset == -1 ? 0 : offset;
     }
 
     internal void AssignPort(int trackNum, int port) =>

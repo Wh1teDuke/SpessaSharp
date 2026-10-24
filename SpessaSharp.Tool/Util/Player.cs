@@ -16,7 +16,6 @@ using SpessaSharp.Sequencer;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer;
 using SpessaSharp.Synthesizer.Engine.Parameters;
-using SpessaSharp.Synthesizer.Engine.Sysex;
 using SpessaSharp.Utils;
 
 namespace SSTool.Util;
@@ -42,7 +41,6 @@ public sealed class Player: IDisposable
             SetMidi, RemMidi,
             // Config
             SetInterpolationType,
-            SetReverbMacro, SetChorusMacro, SetDelayMacro,
             // Midi
             NoteOn, NoteOff, Program,
         }
@@ -275,24 +273,6 @@ public sealed class Player: IDisposable
         set => Add(Cmd.CKind.SetInterpolationType, (long)value);
     }
 
-    public Macro.Reverb ReverbMacro
-    {
-        get => Sequencer.Synth.ReverbMacro;
-        set => Add(Cmd.CKind.SetReverbMacro, (long)value);
-    }
-    
-    public Macro.Chorus ChorusMacro
-    {
-        get => Sequencer.Synth.ChorusMacro;
-        set => Add(Cmd.CKind.SetChorusMacro, (long)value);
-    }
-    
-    public Macro.Delay Delay
-    {
-        get => Sequencer.Synth.DelayMacro;
-        set => Add(Cmd.CKind.SetDelayMacro, (long)value);
-    }
-
     public AudioPlugin? Plugin
     {
         get => _plugin;
@@ -427,15 +407,6 @@ public sealed class Player: IDisposable
                 case Cmd.CKind.SetInterpolationType:
                     var type = (Synthesizer.InterpolationType)cmd.Arg1;
                     Sequencer.Synth.Set(type);
-                    break;
-                case Cmd.CKind.SetReverbMacro:
-                    Sequencer.Synth.ReverbMacro = (Macro.Reverb)cmd.Arg1;
-                    break;
-                case Cmd.CKind.SetChorusMacro:
-                    Sequencer.Synth.ChorusMacro = (Macro.Chorus)cmd.Arg1;
-                    break;
-                case Cmd.CKind.SetDelayMacro:
-                    Sequencer.Synth.DelayMacro = (Macro.Delay)cmd.Arg1;
                     break;
                 // Midi
                 case Cmd.CKind.NoteOn:

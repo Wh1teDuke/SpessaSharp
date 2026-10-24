@@ -1,7 +1,9 @@
 using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
+using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
-using SpessaSharp.Synthesizer.Engine.Effects;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -21,6 +23,7 @@ public readonly struct Event
         EffectChange,
         ChannelMidiParameterChange,
         GlobalMidiParameterChange,
+        UserDrumSetParameter,
     }
     
     /// <summary>This event fires when a note is played.</summary>
@@ -86,62 +89,71 @@ public readonly struct Event
     public readonly record struct CbSystemParameterChange(
         GlobalSystemParameter Parameter);
 
-    /// <summary>The effect that was changed, "reverb", "chorus", "delay" or "insertion"</summary>
+    /// <summary>
+    /// This event is triggered when an effect processor has one of its parameters changed.
+    /// </summary>
     /// <param name="EffectType"></param>
     /// <param name="Parameter"></param>
     /// <param name="Value"></param>
     public readonly record struct CbEffectChange(
-        CbEffectChange.Type EffectType, int Parameter, int Value)
+        CbEffectChange.Type EffectType, 
+        int Parameter, int Value,
+        int Extra = 0)
     {
-        public enum Type { Reverb, Chorus, Delay, Insertion, }
+        public enum Type
+        {
+            GSReverb, GSChorus, GSDelay, GSInsertion,
+            
+            XGReverb, XGChorus, XGVariation, XGInsertion,
+        }
                 
         /// <summary> </summary>
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
-        public readonly record struct Reverb(
-            Effect.FxReverbType Type, int Value);
+        public readonly record struct GSReverb(
+            GSEffect.GSReverbType Type, int Value);
         
-        public static CbEffectChange OfReverb(
-            Effect.FxReverbType type, int value) =>
-            new (Type.Reverb, (int)type, value);
+        public static CbEffectChange OfGSReverb(
+            GSEffect.GSReverbType type, int value) =>
+            new (Type.GSReverb, (int)type, value);
 
-        public Reverb AsReverb =>
-            EffectType != Type.Chorus
+        public GSReverb AsGSReverb =>
+            EffectType != Type.GSChorus
                 ? throw SpessaException.Invalid(
-                    $"Expected type Reverb, got {EffectType}")
-                : new Reverb((Effect.FxReverbType)Parameter, Value);
+                    $"Expected type GSReverb, got {EffectType}")
+                : new GSReverb((GSEffect.GSReverbType)Parameter, Value);
 
         /// <summary> </summary>
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
-        public readonly record struct Chorus(
-            Effect.FxChorusType Type, int Value);
+        public readonly record struct GSChorus(
+            GSEffect.GSChorusType Type, int Value);
 
-        public static CbEffectChange OfChorus(
-            Effect.FxChorusType type, int value) =>
-            new (Type.Chorus, (int)type, value);
+        public static CbEffectChange OfGSChorus(
+            GSEffect.GSChorusType type, int value) =>
+            new (Type.GSChorus, (int)type, value);
 
-        public Chorus AsChorus =>
-            EffectType != Type.Chorus
+        public GSChorus AsGSChorus =>
+            EffectType != Type.GSChorus
                 ? throw SpessaException.Invalid(
-                    $"Expected type Chorus, got {EffectType}")
-                : new Chorus((Effect.FxChorusType)Parameter, Value);
+                    $"Expected type GSChorus, got {EffectType}")
+                : new GSChorus((GSEffect.GSChorusType)Parameter, Value);
         
         /// <summary> </summary>
         /// <param name="Type">The parameter type or "macro".</param>
         /// <param name="Value">The new 7-bit value.</param>
-        public readonly record struct Delay(
-            Effect.FxDelayType Type, int Value);
+        public readonly record struct GSDelay(
+            GSEffect.GSDelayType Type, int Value);
         
-        public static CbEffectChange OfDelay(
-            Effect.FxDelayType type, int value) =>
-            new (Type.Delay, (int)type, value);
+        public static CbEffectChange OfGSDelay(
+            GSEffect.GSDelayType type, int value) =>
+            new (Type.GSDelay, (int)type, value);
 
-        public Delay AsDelay =>
-            EffectType != Type.Delay
+        public GSDelay AsGSDelay =>
+            EffectType != Type.GSDelay
                 ? throw SpessaException.Invalid(
-                    $"Expected type Delay, got {EffectType}")
-                : new Delay((Effect.FxDelayType)Parameter, Value);
+                    $"Expected type GSDelay, got {EffectType}")
+                : new GSDelay((GSEffect.GSDelayType)Parameter, Value);
         
         /// <summary> </summary>
         /// <param name="Parameter">
@@ -159,18 +171,95 @@ public readonly struct Event
         /// For both of these cases, `value` is the channel number.<br/>
         /// </param>
         /// <param name="Value">The new value for the parameter.</param>
-        public readonly record struct Insertion(int Parameter, int Value);
+        public readonly record struct GSInsertion(int Parameter, int Value);
         
-        public static CbEffectChange OfInsertion(int parameter, int value) =>
-            new (Type.Insertion, parameter, value);
+        public static CbEffectChange OfGSInsertion(int parameter, int value) =>
+            new (Type.GSInsertion, parameter, value);
 
-        public Insertion AsInsertion =>
-            EffectType != Type.Insertion
+        public GSInsertion AsGSInsertion =>
+            EffectType != Type.GSInsertion
                 ? throw SpessaException.Invalid(
-                    $"Expected type Insertion, got {EffectType}")
-                : new Insertion(Parameter, Value);
+                    $"Expected type GSInsertion, got {EffectType}")
+                : new GSInsertion(Parameter, Value);
+        
+        /// <summary>
+        /// The effect that was changed: Yamaha XG reverb block.
+        /// </summary>
+        /// <param name="Type">The parameter that was changed.</param>
+        /// <param name="Value">The new value for this parameter.</param>
+        public readonly record struct XGReverb(
+            XGEffect.Reverb Type, int Value);
+        
+        public static CbEffectChange OfXGReverb(
+            XGEffect.Reverb type, int value) =>
+            new (Type.XGReverb, (int)type, value);
+
+        public XGReverb AsXGReverb =>
+            EffectType != Type.XGChorus
+                ? throw SpessaException.Invalid(
+                    $"Expected type XGReverb, got {EffectType}")
+                : new XGReverb((XGEffect.Reverb)Parameter, Value);
+        
+        /// <summary>
+        /// The effect that was changed: Yamaha XG chorus block.
+        /// </summary>
+        /// <param name="Type">The parameter that was changed</param>
+        /// <param name="Value">The new value for this parameter.</param>
+        public readonly record struct XGChorus(
+            XGEffect.Chorus Type, int Value);
+
+        public static CbEffectChange OfXGChorus(
+            XGEffect.Chorus type, int value) =>
+            new (Type.XGChorus, (int)type, value);
+
+        public XGChorus AsXGChorus =>
+            EffectType != Type.XGChorus
+                ? throw SpessaException.Invalid(
+                    $"Expected type XGChorus, got {EffectType}")
+                : new XGChorus((XGEffect.Chorus)Parameter, Value);
+        
+        /// <summary>
+        /// The effect that was changed: Yamaha XG variation block.
+        /// </summary>
+        /// <param name="Type">The parameter that was changed</param>
+        /// <param name="Value">The new value for this parameter.</param>
+        public readonly record struct XGVariation(
+            XGEffect.Variation Type, int Value);
+
+        public static CbEffectChange OfXGVariation(
+            XGEffect.Variation type, int value) =>
+            new (Type.XGVariation, (int)type, value);
+        
+        public static CbEffectChange OfXGVariation(
+            XGEffect.VariationConnection type) =>
+            new (Type.XGVariation, (int)XGEffect.Variation.Connection, (int)type);
+
+        public XGVariation AsXGVariation =>
+            EffectType != Type.XGVariation
+                ? throw SpessaException.Invalid(
+                    $"Expected type XGVariation, got {EffectType}")
+                : new XGVariation((XGEffect.Variation)Parameter, Value);
+        
+        /// <summary>
+        /// The effect that was changed: Yamaha XG insertion block (EFFECT 2).
+        /// </summary>
+        /// <param name="InsertionNumber">The 0-based insertion effect number.</param>
+        /// <param name="Type">The parameter that was changed</param>
+        /// <param name="Value">The new value for this parameter.</param>
+        public readonly record struct XGInsertion(
+            int InsertionNumber, XGEffect.Insertion Type, int Value);
+
+        public static CbEffectChange OfXGInsertion(
+            int insertionNumber, XGEffect.Insertion type, int value) =>
+            new (Type.XGInsertion, (int)type, value, insertionNumber);
+
+        public XGInsertion AsXGInsertion =>
+            EffectType != Type.XGInsertion
+                ? throw SpessaException.Invalid(
+                    $"Expected type XGInsertion, got {EffectType}")
+                : new XGInsertion(Extra, (XGEffect.Insertion)Parameter, Value);
     }
-    
+
     /// <summary>This event fires when a global MIDI parameter changes.</summary>
     /// <param name="Parameter">The type parameter and value that was changed.</param>
     public readonly record struct CbGlobalMidiParameterChange(
@@ -181,6 +270,13 @@ public readonly struct Event
     /// <param name="Parameter">The type parameter and value that was changed.</param>
     public readonly record struct CbChannelMidiParameterChange(
         int Channel, ChannelMidiParameter Parameter);
+
+    /// <summary>This event fires when a GS User Drum Set is modified.</summary>
+    /// <param name="DrumSet">The drum set that was changed. 0 means User Drum Set 1, and 1 means User Drum Set 2.</param>
+    /// <param name="MidiNote">The MIDI note number that has been changed in the drum set.</param>
+    /// <param name="Entry">The parameter that was changed and its new value.</param>
+    public readonly record struct CbUserDrumSetChange(
+        int DrumSet, int MidiNote, UserDrumSetParameter.Entry Entry);
 
     [StructLayout(LayoutKind.Explicit)]
     private struct EventsWithoutPointers
@@ -205,6 +301,8 @@ public readonly struct Event
         [FieldOffset(0)] public CbEffectChange EffectChange;
         // This event fires when the synthesizer is reset
         [FieldOffset(0)] public CbReset Reset;
+        // This event fires when a GS User Drum Set is modified.
+        [FieldOffset(0)] public CbUserDrumSetChange UserDrumSetChange;
 
         [FieldOffset(0)] public CbChannelMidiParameterChange ChannelParamChange;
         [FieldOffset(0)] public CbGlobalMidiParameterChange GlobalParamChange;
@@ -305,6 +403,12 @@ public readonly struct Event
         EventType = Type.ChannelMidiParameterChange,
         _e1 = new EventsWithoutPointers { ChannelParamChange = channelParamChange },
     };
+    
+    public static Event Of(CbUserDrumSetChange userDrumSetChange) => new()
+    {
+        EventType = Type.UserDrumSetParameter,
+        _e1 = new EventsWithoutPointers {UserDrumSetChange = userDrumSetChange},
+    };
 
     public static Event Of(CbPresetListChange presetListChange) => new()
     {
@@ -345,6 +449,8 @@ public readonly struct Event
         EventType == Type.GlobalMidiParameterChange ? _e1.GlobalParamChange : null;
     public CbChannelMidiParameterChange? AsChannelParameterChange => 
         EventType == Type.ChannelMidiParameterChange ? _e1.ChannelParamChange : null;
+    public CbUserDrumSetChange? AsUserDrumSetChange => 
+        EventType == Type.UserDrumSetParameter ? _e1.UserDrumSetChange : null;
     public CbPresetListChange? AsPresetListChange => 
         EventType == Type.PresetListChange ? _e2.PresetListChange : null;
     public CbDisplayMessage? AsDisplayMessage => 
@@ -363,6 +469,7 @@ public readonly struct Event
     public static implicit operator Event(CbEffectChange ev) => Of(ev);
     public static implicit operator Event(CbGlobalMidiParameterChange ev) => Of(ev);
     public static implicit operator Event(CbChannelMidiParameterChange ev) => Of(ev);
+    public static implicit operator Event(CbUserDrumSetChange ev) => Of(ev);
     public static implicit operator Event(CbPresetListChange ev) => Of(ev);
     public static implicit operator Event(CbDisplayMessage ev) => Of(ev);
 }

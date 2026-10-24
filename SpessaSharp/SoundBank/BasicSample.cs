@@ -71,9 +71,9 @@ public class BasicSample
     /// <param name="rate">The sample's rate in Hz.</param>
     /// <param name="originalKey">The sample's pitch as a MIDI note number.</param>
     /// <param name="pitchCorrection">The sample's pitch correction in cents.</param>
-    /// <param name="type">The sample's type, an enum that can indicate SF3.</param>
+    /// <param name="type">The sample's type, an enum that defines the sample type/compression.</param>
     /// <param name="loopStart">The sample's loop start relative to the sample start in sample points.</param>
-    /// <param name="loopEnd">The sample's loop end relative to the sample start in sample points.</param>
+    /// <param name="loopEnd">The sample's loop end relative to the sample start in sample points. Exclusive.</param>
     public BasicSample(
         string name,
         int rate,

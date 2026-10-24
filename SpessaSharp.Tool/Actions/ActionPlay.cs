@@ -173,42 +173,6 @@ public static class ActionPlay
                         edInterval.Values, d);
                     break;
                 }
-                
-                // Reverb Macro
-                case ConsoleKey.E:
-                case ConsoleKey.R:
-                {
-                    var d = k.Key == ConsoleKey.E ? -1 : 1;
-                    Set(
-                        () => processor.ReverbMacro, 
-                        i => processor.ReverbMacro = i,
-                        edReverb.Values, d);
-                    break;
-                }
-                
-                // Chorus Macro
-                case ConsoleKey.T:
-                case ConsoleKey.Y:
-                {
-                    var d = k.Key == ConsoleKey.T ? -1 : 1;
-                    Set(
-                        () => processor.ChorusMacro, 
-                        i => processor.ChorusMacro = i,
-                        edChorus.Values, d);
-                    break;
-                }
-                
-                // Delay Macro
-                case ConsoleKey.U:
-                case ConsoleKey.I:
-                {
-                    var d = k.Key == ConsoleKey.U ? -1 : 1;
-                    Set(
-                        () => processor.DelayMacro, 
-                        i => processor.DelayMacro = i,
-                        edDelay.Values, d);
-                    break;
-                }
 
                 default:
                     continue;
@@ -299,24 +263,6 @@ public static class ActionPlay
             // Interpolation Type
             str.Append("[7-8] ");
             Set(edInterval, player.InterpolationType);
-
-            NewLine();
-
-            // Reverb
-            str.Append("[E-R] ");
-            Set(edReverb, processor.ReverbMacro);
-            
-            NewLine();
-
-            // Chorus
-            str.Append("[T-Y] ");
-            Set(edChorus, processor.ChorusMacro);
-            
-            NewLine();
-
-            // Delay
-            str.Append("[U-I] ");
-            Set(edDelay, processor.DelayMacro);
 
             NewLine();
 

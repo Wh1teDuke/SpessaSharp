@@ -49,6 +49,7 @@ public static class Awe32NRPN
         Generator.Type.ReverbEffectsSend
     ];
 
+    /// <summary> Handlers for tuning SF2 generators with NRPN. </summary>
     public sealed class ChannelGenerators
     {
         /// <summary>
@@ -62,7 +63,7 @@ public static class Awe32NRPN
 
         /// <summary>
         /// An array of overrides generators for AWE32 NRPN support.
-        /// A value of GENERATOR_OVERRIDE_NO_CHANGE_VALUE (-32,767) means no change;
+        /// A value of GENERATOR_OVERRIDE_NO_CHANGE_VALUE (32,767) means no change;
         /// other values replace current generators.
         /// </summary>
         public readonly short[] Overrides = new short[Generator.Amount];

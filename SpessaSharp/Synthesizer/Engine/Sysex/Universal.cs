@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using SpessaSharp.MIDI;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -102,14 +103,14 @@ internal static class Universal
                             syx[7] != 0x01 // Slot Path MSB
                         )
                         {
-                            Unsupported("General MIDI Global Parameter Control", syx);
+                            SpessaLog.GMFail("Global Parameter Control", syx);
                             break;
                         }
                         // Slot Path LSB
                         switch (syx[8]) {
                             default: 
                             {
-                                Unsupported("General MIDI Global Parameter Control", syx);
+                                SpessaLog.GMFail("Global Parameter Control", syx);
                                 break;
                             }
 
@@ -122,8 +123,7 @@ internal static class Universal
                                 {
                                     default: 
                                     {
-                                        Unsupported(
-                                            "General MIDI Reverb Parameter Control", syx);
+                                        SpessaLog.GMFail("Reverb Parameter Control", syx);
                                         break;
                                     }
 
@@ -141,8 +141,12 @@ internal static class Universal
                                     case 0x01: 
                                     {
                                         // Reverb time
-                                        synth.ReverbProcessor.Time = value;
+                                        synth.GSReverbProcessor.Time = value;
                                         SpessaLog.GMInfo("Reverb Time", value);
+                                        synth.CallEvent(
+                                            Event.CbEffectChange.OfGSReverb(
+                                                GSEffect.GSReverbType.Time,
+                                                value));
                                         break;
                                     }
                                 }
@@ -158,8 +162,7 @@ internal static class Universal
                                 {
                                     default: 
                                     {
-                                        Unsupported(
-                                            "General MIDI Chorus Parameter Control", syx);
+                                        SpessaLog.GMFail("Chorus Parameter Control", syx);
                                         break;
                                     }
 
@@ -176,31 +179,47 @@ internal static class Universal
                                     case 0x01: 
                                     {
                                         // Mod rate
-                                        synth.ChorusProcessor.Rate = value;
-                                        SpessaLog.GMInfo("Chorus Mod Rate",value);
+                                        synth.GSChorusProcessor.Rate = value;
+                                        SpessaLog.GMInfo("Chorus Mod Rate", value);
+                                        synth.CallEvent(
+                                            Event.CbEffectChange.OfGSChorus(
+                                                GSEffect.GSChorusType.Rate,
+                                                value));
                                         break;
                                     }
 
                                     case 0x02: 
                                     {
                                         // Mod depth
-                                        synth.ChorusProcessor.Depth = value;
+                                        synth.GSChorusProcessor.Depth = value;
                                         SpessaLog.GMInfo("Chorus Mod Depth", value);
+                                        synth.CallEvent(
+                                            Event.CbEffectChange.OfGSChorus(
+                                                GSEffect.GSChorusType.Depth,
+                                                value));
                                         break;
                                     }
 
                                     case 0x03: {
                                         // Mod feedback
-                                        synth.ChorusProcessor.Feedback = value;
+                                        synth.GSChorusProcessor.Feedback = value;
                                         SpessaLog.GMInfo("Chorus Mod Feedback", value);
+                                        synth.CallEvent(
+                                            Event.CbEffectChange.OfGSChorus(
+                                                GSEffect.GSChorusType.Feedback,
+                                                value));
                                         break;
                                     }
 
                                     case 0x04: {
                                         // Mod send to reverb
-                                        synth.ChorusProcessor.SendLevelToReverb =
+                                        synth.GSChorusProcessor.SendLevelToReverb =
                                             value;
                                         SpessaLog.GMInfo("Chorus Send to Reverb", value);
+                                        synth.CallEvent(
+                                            Event.CbEffectChange.OfGSChorus(
+                                                GSEffect.GSChorusType.SendLevelToReverb,
+                                                value));
                                         break;
                                     }
                                 }
@@ -215,39 +234,28 @@ internal static class Universal
                 break;
         
             // General MIDI
-            case 0x09: 
-                // Gm system related
-                if (syx[3] == 0x01) 
+            case 0x09:
+                switch (syx[3])
                 {
-                    Debug.WriteLine("GM1 system on");
-                    synth.Reset(Midi.System.GM);
-                } 
-                else if (syx[3] == 0x03) 
-                {
-                    Debug.WriteLine("GM2 system on");
-                    synth.Reset(Midi.System.GM2);
-                } 
-                else 
-                {
-                    Debug.WriteLine(
-                        $"[WARN] Unrecognized General MIDI message: {
-                            Util.ToHexString(syx)}");
+                    default:
+                        SpessaLog.GMFail("System Exclusive", syx);
+                        break;
+                    
+                    case 0x01:
+                        SpessaLog.CoolInfo("MIDI System", "General Midi 1");
+                        synth.Reset(Midi.System.GM);
+                        break;
+                    
+                    case 0x02:
+                        SpessaLog.CoolInfo("MIDI System", "Roland GS");
+                        synth.Reset(Midi.System.GS);
+                        break;
+                    
+                    case 0x03:
+                        SpessaLog.CoolInfo("MIDI System", "General Midi 2");
+                        synth.Reset(Midi.System.GM2);
+                        break;
                 }
-                break;
-            
-            case 0x01: 
-                Debug.WriteLine("GM1 system on");
-                synth.Reset(Midi.System.GM);
-                break;
-
-            case 0x02: 
-                Debug.WriteLine("GM system off, switching to GS");
-                synth.Reset(Midi.System.GS);
-                break;
-
-            case 0x03: 
-                Debug.WriteLine("GM2 system on");
-                synth.Reset(Midi.System.GM2);
                 break;
         
             // MIDI Tuning standard
@@ -266,8 +274,8 @@ internal static class Universal
                         currentMessageIndex += 16;
                         if (syx.Length < 384) 
                         {
-                            Debug.WriteLine(
-                                $"[WARN] The Bulk Tuning Dump is too short! ({syx.Length
+                            SpessaLog.Warn(
+                                $"The Bulk Tuning Dump is too short! ({syx.Length
                                 } bytes, at least 384 are expected)");
                             return;
                         }
@@ -281,10 +289,11 @@ internal static class Universal
                                 syx[currentMessageIndex++]);
                         }
                         
-                        Debug.WriteLine(
-                            $"Bulk Tuning Dump {Util.ToString(
+                        SpessaLog.GMInfo(
+                            "Bulk Tuning Dump",
+                            $"{Util.ToString(
                                 Util.ReadBinaryString(tnSlice))
-                            } Program: {program}");
+                            }, program {program}");
                         break;
                     }
 
@@ -311,9 +320,10 @@ internal static class Universal
                                     syx[currentMessageIndex++],
                                     syx[currentMessageIndex++]);
                         }
-                        Debug.WriteLine(
-                            $"Single Note Tuning. Program: {tuningProgram
-                            } Keys affected: {numberOfChanges}");
+                        SpessaLog.GMInfo(
+                            "Single Note Tuning",
+                            $"program: {tuningProgram
+                            }. Keys affected: {numberOfChanges}");
                         break;
                     }
 
@@ -378,23 +388,15 @@ internal static class Universal
                         break;
                     }
 
-                    default: 
-                        Engine.SystemExclusive.NotRecognized(syx, "MIDI Tuning Standard");
+                    default:
+                        SpessaLog.GMFail("MIDI Tuning Standard", syx);
                         break;
                 }
                 break;
 
             default: 
-                Engine.SystemExclusive.NotRecognized(syx, "Universal System Exclusive");
+                SpessaLog.GMFail("Universal System Exclusive", syx);
                 break;
         }
-    }
-
-    [Conditional("DEBUG")]
-    private static void Unsupported(
-        string what, ReadOnlySpan<byte> syx, string reason = "")
-    {
-        Debug.WriteLine(
-            $"Unsupported {what} message: {Util.ToHexString(syx)}. {reason}");
     }
 }

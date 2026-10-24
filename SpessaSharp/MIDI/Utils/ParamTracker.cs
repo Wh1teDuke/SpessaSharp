@@ -34,6 +34,34 @@ public struct ParamTracker(int channel)
             else nrpnLSB = value;
         }
     }
+    
+    /// <summary>
+    /// Keeps the cached event indexes valid when an event is deleted from a track.
+    /// </summary>
+    /// <param name="track">The track number</param>
+    /// <param name="index">The index of the event</param>
+    public void DeleteEvent(int track, int index) 
+    {
+        ShiftEvent(ref rpnMSB, track, index);
+        ShiftEvent(ref rpnLSB, track, index);
+        ShiftEvent(ref nrpnMSB, track, index);
+        ShiftEvent(ref nrpnLSB, track, index);
+        ShiftEvent(ref dataMSB, track, index);
+        ShiftEvent(ref dataLSB, track, index);
+    }
+
+    /// <summary></summary>
+    /// <param name="param">The parameter affected</param>
+    /// <param name="track">The track number</param>
+    /// <param name="index">The index of the event</param>
+    private void ShiftEvent(ref ParamController param, int track, int index)
+    {
+        // If an event before the tracked one was deleted, the index goes down
+        if (param.Track == track && param.Event > index) 
+        {
+            param.Event--;
+        }
+    }
 
     public void Reset()
     {
@@ -46,7 +74,7 @@ public struct ParamTracker(int channel)
         dataMSB = dataMSB with { V = 0 };
     }
 
-    public MidiUtils.AnalyzedParameter? ControllerChange(
+    public AnalyzedParameter? ControllerChange(
         Midi.CC cc, int v, int track, int ev)
     {
         // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
@@ -112,7 +140,7 @@ public struct ParamTracker(int channel)
         dataMSB.V = 0;
     }
     
-    private MidiUtils.AnalyzedParameter Analyze() 
+    private AnalyzedParameter Analyze() 
     {
         var v = (dataMSB.V << 7) | dataLSB.V;
         return _isRegistered
