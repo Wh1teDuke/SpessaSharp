@@ -134,7 +134,7 @@ internal static class Yamaha
                     
                     case 0x0c: 
                     {
-                        synth.XGReverbBlock.ReturnLevel = data;
+                        synth.XGReverbBlock.Return = data;
                         SpessaLog.XGInfo($"Reverb Return", data);
                         return;
                     }
@@ -184,7 +184,7 @@ internal static class Yamaha
                     
                     case 0x2c: 
                     {
-                        synth.XGChorusBlock.ReturnLevel = data;
+                        synth.XGChorusBlock.Return = data;
                         SpessaLog.XGInfo("Chorus Return", data);
                         return;
                     }
@@ -246,7 +246,7 @@ internal static class Yamaha
                     
                     case 0x56: 
                     {
-                        synth.XGVariationBlock.ReturnLevel = data;
+                        synth.XGVariationBlock.Return = data;
                         SpessaLog.XGInfo("Variation Return", data);
                         return;
                     }

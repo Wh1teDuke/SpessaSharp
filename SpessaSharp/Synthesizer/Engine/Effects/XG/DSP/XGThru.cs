@@ -1,5 +1,3 @@
-using SpessaSharp.Synthesizer.Engine.Effects.XG.Framework;
-
 namespace SpessaSharp.Synthesizer.Engine.Effects.XG.DSP;
 
 /// <summary>

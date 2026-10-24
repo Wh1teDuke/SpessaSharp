@@ -1,10 +1,8 @@
 using System.Collections;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel;
-using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Effects.GS;
-using SpessaSharp.Synthesizer.Engine.Effects.XG;
-using SpessaSharp.Synthesizer.Engine.Effects.XG.Framework;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Interface;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine;
@@ -21,9 +19,9 @@ public sealed class SynthesizerSnapshot(
     GSEffect.GSDelayParameter gsDelayProcessor,
     GSEffect.GSInsertionProcessorSnapshot gsInsertionProcessorProcessor,
     
-    XGSystemEffectBlock.Snapshot xgReverbBlock,
-    XGSystemEffectBlock.Snapshot xgChorusBlock,
-    XGSystemEffectBlock.Snapshot xgVariationBlock,
+    XGReverbBlock.Snapshot xgReverbBlock,
+    XGChorusBlock.Snapshot xgChorusBlock,
+    XGVariationBlock.Snapshot xgVariationBlock,
     XGInsertionBlock.Snapshot[] xgInsertionBlocks,
     
     UserDrumSetParameter.Entry[][] userDrumSets)
@@ -41,11 +39,11 @@ public sealed class SynthesizerSnapshot(
     public GSEffect.GSInsertionProcessorSnapshot GSInsertionProcessor = gsInsertionProcessorProcessor;
 
     /// <summary> A snapshot of the XG reverb block. </summary>
-    public readonly XGSystemEffectBlock.Snapshot XGReverbBlock = xgReverbBlock;
+    public readonly XGReverbBlock.Snapshot XGReverbBlock = xgReverbBlock;
     /// <summary> A snapshot of the XG chorus block. </summary>
-    public readonly XGSystemEffectBlock.Snapshot XGChorusBlock = xgChorusBlock;
+    public readonly XGChorusBlock.Snapshot XGChorusBlock = xgChorusBlock;
     /// <summary> A snapshot of the XG variation block. </summary>
-    public readonly XGSystemEffectBlock.Snapshot XGVariationBlock = xgVariationBlock;
+    public readonly XGVariationBlock.Snapshot XGVariationBlock = xgVariationBlock;
     /// <summary> Snapshots of the XG insertion blocks. </summary>
     public readonly XGInsertionBlock.Snapshot[] XGInsertionBlocks = xgInsertionBlocks;
 

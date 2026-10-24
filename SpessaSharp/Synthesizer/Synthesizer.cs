@@ -8,10 +8,10 @@ using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
-using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
-using SpessaSharp.Synthesizer.Engine.Effects.XG;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Interface;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Synthesizer.Engine.Sysex;
 using SpessaSharp.Synthesizer.Engine.Voice;
@@ -79,14 +79,38 @@ public sealed class Synthesizer
     /// <param name="GSReverbProcessor">Optional custom GS reverb processor for the synthesizer. Leave undefined to use the default.</param>
     /// <param name="GSChorusProcessor">Optional custom GS chorus processor for the synthesizer. Leave undefined to use the default.</param>
     /// <param name="GSDelayProcessor">Optional Custom GS delay processor for the synthesizer. Leave undefined to use the default.</param>
+    /// <param name="XGReverbBlock">
+    /// Optional custom XG reverb block for the synthesizer. Leave undefined to use the default.
+    /// <remarks> Only active in XG mode. </remarks>
+    /// </param>
+    /// <param name="XGChorusBlock">
+    /// Optional custom XG chorus block for the synthesizer. Leave undefined to use the default.
+    /// <remarks> Only active in XG mode. </remarks>
+    /// </param>
+    /// <param name="XGVariationBlock">
+    /// Optional custom XG variation block for the synthesizer. Leave undefined to use the default.
+    /// <remarks> Only active in XG mode. </remarks>
+    /// </param>
+    /// <param name="XGInsertionBlocks">
+    /// Optional custom XG insertion blocks for the synthesizer. Leave undefined to use the default.
+    /// Default amount is 4 but theoretically any amount up to 127 (so 128 blocks) can be addressed.
+    /// <remarks> Only active in XG mode. </remarks>
+    /// </param>
     public readonly record struct Options(
         int MaxBufferSize,
         bool EventsEnabled,
         float InitialTime,
         bool EffectsEnabled,
+
         GSEffect.ReverbProcessor? GSReverbProcessor = null,
         GSEffect.ChorusProcessor? GSChorusProcessor = null,
-        GSEffect.DelayProcessor? GSDelayProcessor = null)
+        GSEffect.DelayProcessor? GSDelayProcessor = null,
+
+        XGReverbBlock? XGReverbBlock = null,
+        XGChorusBlock? XGChorusBlock = null,
+        XGVariationBlock? XGVariationBlock = null,
+        ArraySegment<XGInsertionBlock>? XGInsertionBlocks = null
+        )
     {
         public static readonly Options Default = new()
         {
@@ -471,12 +495,19 @@ public sealed class Synthesizer
         GSDelayProcessor =
             options.GSDelayProcessor ?? new GSDelay(sampleRate, bufSize);
         
-        XGReverbBlock = new XGReverbBlock(sampleRate, bufSize);
-        XGChorusBlock = new XGChorusBlock(sampleRate, bufSize);
-        XGVariationBlock = new XGVariationBlock(sampleRate, bufSize);
+        XGReverbBlock =
+            options.XGReverbBlock ?? new DefaultXGReverb(sampleRate, bufSize);
+        XGChorusBlock = 
+            options.XGChorusBlock ?? new DefaultXGChorus(sampleRate, bufSize);
+        XGVariationBlock = 
+            options.XGVariationBlock ?? new DefaultXGVariation(sampleRate, bufSize);
         
-        for (var i = 0; i < XG_INSERTION_COUNT; i++)
-            XGInsertionBlocks.Add(new XGInsertionBlock(sampleRate, bufSize));
+        if (options.XGInsertionBlocks is {} blocks)
+            foreach (var block in blocks)
+                XGInsertionBlocks.Add(block);
+        else
+            for (var i = 0; i < XG_INSERTION_COUNT; i++)
+                XGInsertionBlocks.Add(new DefaultXGInsertion(sampleRate, bufSize));
 
         // Initialize buffers
         VoiceBuffer = new float[bufSize];

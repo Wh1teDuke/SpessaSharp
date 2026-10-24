@@ -1,35 +1,24 @@
 using SpessaSharp.Synthesizer.Engine.Effects.XG.DSP;
-using SpessaSharp.Synthesizer.Engine.Effects.XG.Framework;
+using SpessaSharp.Synthesizer.Engine.Effects.XG.Interface;
 
-namespace SpessaSharp.Synthesizer.Engine.Effects.XG;
+namespace SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 
 /// <summary>
-/// Represents a Yamaha XG Insertion Effect block (EFFECT 2).
-/// Unlike variation, it has no return, pan or sends:
-/// it always runs in insertion mode on a single <c>partNumber</c> channel.
+/// The default implementation for <see cref="DefaultXGInsertion"/>
 /// </summary>
-public sealed class XGInsertionBlock(
-    int sampleRate, int maxBufferSize): XGEffectBlock(
-    Map, XGNoEffect.Builder, 0x49_00, sampleRate, maxBufferSize)
+public sealed class DefaultXGInsertion(
+    int sampleRate, int maxBufferSize): DefaultXGEffect(
+    Map, XGNoEffect.Builder, 0x49_00, sampleRate, maxBufferSize),
+    XGInsertionBlock
 {
     private static readonly Dictionary<int, XGEffectProcessor.Constructor> Map = new()
     { { 0x00_00, XGNoEffect.Builder }, };
-    
-    /// <summary> A snapshot of a <see cref="XGInsertionBlock"/>. </summary>
-    public sealed class Snapshot : XGEffectBlock.Snapshot
-    {
-        /// <summary>
-        /// The channel routed through the insertion effect
-        /// (0-63 parts, 127 OFF).
-        /// </summary>
-        public required int PartNumber;
-    }
 
     /// <summary>
     /// The channel routed through the insertion effect.
     /// 127 (OFF) by default, so the block is disabled until assigned.
     /// </summary>
-    public int PartNumber = 127;
+    public int PartNumber { get; set; } = 127;
 
     public override void Reset()
     {
@@ -64,10 +53,10 @@ public sealed class XGInsertionBlock(
         inputRight.CopyTo(OutputRight);
     }
 
-    public override Snapshot GetSnapshot()
+    public override XGInsertionBlock.Snapshot GetSnapshot()
     {
         var snapshot = base.GetSnapshot();
-        return new Snapshot
+        return new XGInsertionBlock.Snapshot
         {
             PartNumber = PartNumber,
             Type = snapshot.Type,
@@ -75,7 +64,7 @@ public sealed class XGInsertionBlock(
         };
     }
 
-    public void ApplySnapshot(Snapshot snapshot)
+    public void ApplySnapshot(XGInsertionBlock.Snapshot snapshot)
     {
         base.ApplySnapshot(snapshot);
         PartNumber = snapshot.PartNumber;

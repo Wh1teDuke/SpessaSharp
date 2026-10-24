@@ -5,7 +5,6 @@ using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine;
 using SpessaSharp.Synthesizer.Engine.Channel;
-using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Synthesizer.Engine.Sysex;
 using SpessaSharp.Utils;

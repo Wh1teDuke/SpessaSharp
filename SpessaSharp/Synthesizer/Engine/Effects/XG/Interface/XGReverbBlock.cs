@@ -1,18 +1,21 @@
-using SpessaSharp.Synthesizer.Engine.Effects.XG.DSP;
-using SpessaSharp.Synthesizer.Engine.Effects.XG.Framework;
+using SpessaSharp.MIDI;
 
-namespace SpessaSharp.Synthesizer.Engine.Effects.XG;
+namespace SpessaSharp.Synthesizer.Engine.Effects.XG.Interface;
 
-/// <summary> Represents the XG Reverb Effect block. </summary>
-/// <param name="sampleRate"></param>
-/// <param name="maxBufferSize"></param>
-public sealed class XGReverbBlock(
-    int sampleRate, int maxBufferSize): XGSystemEffectBlock(
-    Map, XGNoEffect.Builder, 0x01_00, sampleRate, maxBufferSize)
+/// <summary>
+/// Reverb is an effect that adds reverberation to a sound, as you would hear in a concert hall.
+/// This is a Yamaha XG-compatible reverb interface.
+/// It is used when <see cref="Midi.System"/> is <c>XG</c>.
+/// <see cref="Synthesizer"/> allows you to supply a custom reverb block.
+/// A custom reverb block must implement this interface.
+/// Editing the parameters can be done via XG system exclusive messages.
+/// <remarks>
+/// Refer to <see href="https://usa.yamaha.com/files/download/other_assets/1/318081/MU128E2.pdf">MU128 SOUND LIST &amp; MIDI DATA</see> (p.40) for more information.
+/// </remarks>
+/// </summary>
+public interface XGReverbBlock: 
+    XGSystemEffectBlock
 {
-    private static readonly Dictionary<int, XGEffectProcessor.Constructor> Map = new()
-    { { 0x00_00, XGNoEffect.Builder }, };
-
     /// <summary>
     /// Process the effect and <b>adds</b> it to the output.
     /// </summary>
@@ -32,15 +35,5 @@ public sealed class XGReverbBlock(
         Span<float> outputLeft,
         Span<float> outputRight,
         int startIndex,
-        int sampleCount)
-    {
-        Processor.Process(
-            inputLeft,
-            inputRight,
-            OutputLeft,
-            OutputRight,
-            sampleCount,
-            false);
-        MixSystemEffect(outputLeft, outputRight, startIndex, sampleCount);
-    }
+        int sampleCount);
 }

@@ -1,5 +1,4 @@
 using SpessaSharp.Synthesizer.Engine.Channel;
-using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Effects.GS;
 
 namespace SpessaSharp.MIDI.Utils;

@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using SpessaSharp.Synthesizer.Engine.Effects;
 using SpessaSharp.Synthesizer.Engine.Effects.GS;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 

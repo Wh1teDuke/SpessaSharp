@@ -6,7 +6,6 @@ using SpessaSharp.MIDI.Utils;
 using SpessaSharp.MIDI.Write;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer;
-using SpessaSharp.Synthesizer.Engine;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.MIDI;
