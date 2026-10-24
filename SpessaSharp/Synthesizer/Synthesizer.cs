@@ -1077,8 +1077,8 @@ public sealed class Synthesizer
             {
                 if (!ch.XGInsertionAssigned) continue;
 
-                var revSend = ch[Midi.CC.ReverbDepth] / 127f;
-                var choSend = ch[Midi.CC.ChorusDepth] / 127f;
+                var revSend = (ch[Midi.CC.ReverbDepth] >> 7) / 127f;
+                var choSend = (ch[Midi.CC.ChorusDepth] >> 7) / 127f;
                 if (revSend <= 0 && choSend <= 0) continue;
 
                 var outputLeft = ch.OutputLeft.AsSpan(0, sampleCount); 
