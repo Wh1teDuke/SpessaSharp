@@ -5,9 +5,9 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.XG.DSP;
 /// The raw DSP processor for Yamaha XG effects.
 /// Reverb, Chorus, Variation and Insertion all use it.
 /// </summary>
-public abstract class XGEffectProcessor
+public abstract class DefaultXGEffectProcessor
 {
-    public delegate XGEffectProcessor Constructor(
+    public delegate DefaultXGEffectProcessor Constructor(
         int sampleRate, int maxBufferSize);
     
     /// <summary>

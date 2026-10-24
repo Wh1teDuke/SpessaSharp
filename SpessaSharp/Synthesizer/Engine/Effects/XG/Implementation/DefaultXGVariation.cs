@@ -13,7 +13,7 @@ public sealed class DefaultXGVariation(int sampleRate, int maxBufferSize)
     : DefaultXGSystemEffect(Map, XGThru.Builder, 0x05_00, sampleRate, maxBufferSize),
         XGVariationBlock
 {
-    private static readonly Dictionary<int, XGEffectProcessor.Constructor> Map = new()
+    private static readonly Dictionary<int, DefaultXGEffectProcessor.Constructor> Map = new()
     {
         { 0x_00_00, XGNoEffect.Builder },
         { 0x_40_00, XGThru.Builder },

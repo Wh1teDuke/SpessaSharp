@@ -11,7 +11,7 @@ public sealed class DefaultXGReverb(
     Map, XGNoEffect.Builder, 0x01_00, sampleRate, maxBufferSize),
         XGReverbBlock
 {
-    private static readonly Dictionary<int, XGEffectProcessor.Constructor> Map = new()
+    private static readonly Dictionary<int, DefaultXGEffectProcessor.Constructor> Map = new()
     { { 0x00_00, XGNoEffect.Builder }, };
 
     public void Process(

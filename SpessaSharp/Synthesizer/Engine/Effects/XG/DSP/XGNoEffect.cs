@@ -1,6 +1,6 @@
 namespace SpessaSharp.Synthesizer.Engine.Effects.XG.DSP;
 
-public sealed class XGNoEffect: XGEffectProcessor
+public sealed class XGNoEffect: DefaultXGEffectProcessor
 {
     private static readonly XGNoEffect Instance = new();
     public static readonly Constructor Builder = (_, _) => Instance; 

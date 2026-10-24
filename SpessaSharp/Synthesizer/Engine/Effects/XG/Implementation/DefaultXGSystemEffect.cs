@@ -14,8 +14,8 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 /// <param name="sampleRate"></param>
 /// <param name="maxBufferSize"></param>
 public abstract class DefaultXGSystemEffect(
-    Dictionary<int, XGEffectProcessor.Constructor> effectMap,
-    XGEffectProcessor.Constructor fallbackProcessor,
+    Dictionary<int, DefaultXGEffectProcessor.Constructor> effectMap,
+    DefaultXGEffectProcessor.Constructor fallbackProcessor,
     int defaultType,
     int sampleRate,
     int maxBufferSize)

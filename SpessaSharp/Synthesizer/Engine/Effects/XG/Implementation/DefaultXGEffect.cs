@@ -13,7 +13,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 public abstract class DefaultXGEffect: XGEffectBlock
 {
     /// <summary> The currently used processor. </summary>
-    protected XGEffectProcessor Processor;
+    protected DefaultXGEffectProcessor Processor;
 
     /// <summary>
     /// Staging buffers for the raw DSP output, before block mixing.
@@ -25,8 +25,8 @@ public abstract class DefaultXGEffect: XGEffectBlock
     /// <summary>
     /// The list of effects available in this block. Effect type: processor.
     /// </summary>
-    private readonly Dictionary<int, XGEffectProcessor> _effectMap = [];
-    private readonly XGEffectProcessor _fallbackProcessor;
+    private readonly Dictionary<int, DefaultXGEffectProcessor> _effectMap = [];
+    private readonly DefaultXGEffectProcessor _fallbackProcessor;
 
     private readonly int _defaultType;
     private int _type;
@@ -41,8 +41,8 @@ public abstract class DefaultXGEffect: XGEffectBlock
     /// Attempting to <c>.Process()</c> more samples than this will result in an error.
     /// </param>
     protected DefaultXGEffect(
-        Dictionary<int, XGEffectProcessor.Constructor> effectMap,
-        XGEffectProcessor.Constructor fallbackProcessor,
+        Dictionary<int, DefaultXGEffectProcessor.Constructor> effectMap,
+        DefaultXGEffectProcessor.Constructor fallbackProcessor,
         int defaultType,
         int sampleRate,
         int maxBufferSize)

@@ -4,7 +4,7 @@ namespace SpessaSharp.Synthesizer.Engine.Effects.XG.DSP;
 /// MU128 manual description:
 /// Bypass without applying an effect.
 /// </summary>
-public sealed class XGThru : XGEffectProcessor
+public sealed class XGThru : DefaultXGEffectProcessor
 {
     private static readonly XGThru Instance = new();
     public static readonly Constructor Builder = (_, _) => Instance;

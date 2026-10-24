@@ -9,7 +9,7 @@ public sealed class DefaultXGChorus(int sampleRate, int maxBufferSize)
     : DefaultXGSystemEffect(Map, XGNoEffect.Builder, 0x41_00, sampleRate, maxBufferSize),
         XGChorusBlock
 {
-    private static readonly Dictionary<int, XGEffectProcessor.Constructor> Map = new()
+    private static readonly Dictionary<int, DefaultXGEffectProcessor.Constructor> Map = new()
     { {0x00, XGNoEffect.Builder}, };
 
     /// <summary>

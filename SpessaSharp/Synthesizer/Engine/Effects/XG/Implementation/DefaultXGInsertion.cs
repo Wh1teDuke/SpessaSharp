@@ -11,7 +11,7 @@ public sealed class DefaultXGInsertion(
     Map, XGNoEffect.Builder, 0x49_00, sampleRate, maxBufferSize),
     XGInsertionBlock
 {
-    private static readonly Dictionary<int, XGEffectProcessor.Constructor> Map = new()
+    private static readonly Dictionary<int, DefaultXGEffectProcessor.Constructor> Map = new()
     { { 0x00_00, XGNoEffect.Builder }, };
 
     /// <summary>
