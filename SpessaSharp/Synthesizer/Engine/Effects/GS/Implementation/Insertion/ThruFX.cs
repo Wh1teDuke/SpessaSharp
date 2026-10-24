@@ -1,22 +1,20 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
 
-public sealed class ThruFX: GSEffect.GSInsertionProcessor
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
+
+public sealed class ThruFX: GSInsertionProcessor
 {
-    public override int Type => 0x00_00;
+    public int Type => 0x00_00;
+    public float SendLevelToReverb { get; set; } = 40f / 127f;
+    public float SendLevelToChorus { get; set; } = 0;
+    public float SendLevelToDelay { get; set; } = 0;
 
-    public ThruFX()
-    {
-        SendLevelToReverb = 40f / 127f;
-        SendLevelToChorus = 0;
-        SendLevelToDelay = 0;
-    }
-
-    public override void Reset()
+    public void Reset()
     { 
         // Empty
     }
     
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> inputLeft, 
         ReadOnlySpan<float> inputRight, 
 
@@ -47,7 +45,7 @@ public sealed class ThruFX: GSEffect.GSInsertionProcessor
         }
     }
 
-    public override void SetParameter(int parameter, int value)
+    public void SetParameter(int parameter, int value)
     {
         // discard parameter
         // discard value

@@ -1,11 +1,12 @@
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
 using SpessaSharp.Synthesizer.Engine.Effects.Implementation;
 
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
 
 /// <summary>
 /// The default GS Reverb implementation for <see cref="SpessaSharpProcessor"/>
 /// </summary>
-public sealed class GSReverb: GSEffect.ReverbProcessor
+public sealed class DefaultGSReverb: GSReverbProcessor
 {
     /// <summary> Dattorro reverb processor. </summary>
     private readonly DattorroReverb _dattorro;
@@ -70,7 +71,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
     /// The maximum buffer size the synthesizer can render at once.
     /// Attempting to <see cref="Process"/> more samples than this will result in an error.
     /// </param>
-    public GSReverb(int sampleRate, int maxBufferSize)
+    public DefaultGSReverb(int sampleRate, int maxBufferSize)
     {
         _sampleRate = sampleRate;
         _delayLeftOutput = NewFloatArray();
@@ -88,7 +89,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
         float[] NewFloatArray() => new float[maxBufferSize];
     }
 
-    public override int DelayFeedback
+    public int DelayFeedback
     {
         get => _delayFeedback;
         set
@@ -98,7 +99,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
         }
     }
 
-    public override int Character
+    public int Character
     {
         get => _character;
         set
@@ -190,7 +191,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
         }
     }
     
-    public override int Time
+    public int Time
     {
         get => _time;
         set
@@ -200,7 +201,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
         }
     }
 
-    public override int PreDelayTime
+    public int PreDelayTime
     {
         get => _preDelayTime;
         set
@@ -211,7 +212,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
         }
     }
 
-    public override int Level
+    public int Level
     {
         get => _level;
         set
@@ -221,7 +222,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
         }
     }
 
-    public override int PreLowPass
+    public int PreLowPass
     {
         get => _preLowPass;
         set
@@ -241,7 +242,7 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
     /// <param name="outputRight">startIndex-based</param>
     /// <param name="startIndex"></param>
     /// <param name="sampleCount"></param>
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> input,
         Span<float> outputLeft,
         Span<float> outputRight,
@@ -353,8 +354,8 @@ public sealed class GSReverb: GSEffect.ReverbProcessor
         }
     }
 
-    public override GSEffect.GSReverbParameter GetSnapshot() =>
-        new()
+    public GSReverbParameter GetSnapshot() =>
+        new DefaultGSReverb(_sampleRate, _delayLeftOutput.Length)
         {
             Level           = _level,
             PreLowPass      = _preLowPass,

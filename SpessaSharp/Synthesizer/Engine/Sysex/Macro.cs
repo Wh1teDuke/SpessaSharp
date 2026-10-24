@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using SpessaSharp.Synthesizer.Engine.Effects.GS;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
 namespace SpessaSharp.Synthesizer.Engine.Sysex;
@@ -35,7 +35,7 @@ public static class Macro
         rev.Level = 64;
         rev.PreDelayTime = 0;
         rev.Character = macro;
-        rev.Macro = macro;
+
         switch (macro) 
         {
             /*
@@ -141,7 +141,6 @@ public static class Macro
         chr.Delay = 127;
         chr.SendLevelToDelay = 0;
         chr.SendLevelToReverb = 0;
-        chr.Macro = macro;
         
         switch (macro) 
         {
@@ -252,7 +251,6 @@ public static class Macro
         dly.SendLevelToReverb = 0;
         dly.LevelRight = dly.LevelLeft = 0;
         dly.LevelCenter = 127;
-        dly.Macro = macro;
 
         switch (macro) 
         {

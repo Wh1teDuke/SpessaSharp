@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 using SpessaSharp.MIDI;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
-using SpessaSharp.Synthesizer.Engine.Effects.GS;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 

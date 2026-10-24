@@ -1,5 +1,4 @@
 using SpessaSharp.Synthesizer.Engine.Channel;
-using SpessaSharp.Synthesizer.Engine.Effects.GS;
 
 namespace SpessaSharp.MIDI.Utils;
 
@@ -34,42 +33,6 @@ internal static class SysexData
         { DrumParameter.Type.VariationSend, 7 },
         { DrumParameter.Type.RxNoteOff, 9 },
         { DrumParameter.Type.RxNoteOn, 0xa },
-    };
-
-    public static readonly GSEffect.GSReverbParameter GSReverbAddresMap = new()
-    {
-        Character = 0x31,
-        PreLowPass = 0x32,
-        Level = 0x33,
-        Time = 0x34,
-        DelayFeedback = 0x35,
-        PreDelayTime = 0x37,
-    };
-
-    public static readonly GSEffect.GSChorusParameter GSChorusAddressMap = new()
-    {
-        PreLowPass = 0x39,
-        Level = 0x3a,
-        Feedback = 0x3b,
-        Delay = 0x3c,
-        Rate = 0x3d,
-        Depth = 0x3e,
-        SendLevelToReverb = 0x3f,
-        SendLevelToDelay = 0x40,
-    };
-
-    public static readonly GSEffect.GSDelayParameter GSDelayAddressMap = new()
-    {
-        PreLowPass = 0x51,
-        TimeCenter = 0x52,
-        TimeRatioLeft = 0x53,
-        TimeRatioRight = 0x54,
-        LevelCenter = 0x55,
-        LevelLeft = 0x56,
-        LevelRight = 0x57,
-        Level = 0x58,
-        Feedback = 0x59,
-        SendLevelToReverb = 0x5a,
     };
 
     public static int GsuSerDrumParamMap(

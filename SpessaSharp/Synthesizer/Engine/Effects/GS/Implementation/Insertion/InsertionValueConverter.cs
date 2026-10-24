@@ -1,4 +1,4 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
 
 internal static class InsertionValueConverter
 {

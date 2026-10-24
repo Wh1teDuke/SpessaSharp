@@ -8,8 +8,9 @@ using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
-using SpessaSharp.Synthesizer.Engine.Effects.GS;
-using SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
 using SpessaSharp.Synthesizer.Engine.Effects.XG.Implementation;
 using SpessaSharp.Synthesizer.Engine.Effects.XG.Interface;
 using SpessaSharp.Synthesizer.Engine.Parameters;
@@ -102,9 +103,9 @@ public sealed class Synthesizer
         float InitialTime,
         bool EffectsEnabled,
 
-        GSEffect.ReverbProcessor? GSReverbProcessor = null,
-        GSEffect.ChorusProcessor? GSChorusProcessor = null,
-        GSEffect.DelayProcessor? GSDelayProcessor = null,
+        GSReverbProcessor? GSReverbProcessor = null,
+        GSChorusProcessor? GSChorusProcessor = null,
+        GSDelayProcessor? GSDelayProcessor = null,
 
         XGReverbBlock? XGReverbBlock = null,
         XGChorusBlock? XGChorusBlock = null,
@@ -352,19 +353,19 @@ public sealed class Synthesizer
     /// The synthesizer's GS reverb processor.
     /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
     /// </summary>
-    internal readonly GSEffect.ReverbProcessor GSReverbProcessor;
+    internal readonly GSReverbProcessor GSReverbProcessor;
 
     /// <summary>
     /// The synthesizer's GS chorus processor.
     /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
     /// </summary>
-    internal readonly GSEffect.ChorusProcessor GSChorusProcessor;
+    internal readonly GSChorusProcessor GSChorusProcessor;
 
     /// <summary>
     /// The synthesizer's GS delay processor.
     /// Used when <see cref="GlobalMidiParameter.Type.System"/> is <c>gm</c> <c>gm2</c> or <c>gs</c>.
     /// </summary>
-    internal readonly GSEffect.DelayProcessor GSDelayProcessor;
+    internal readonly GSDelayProcessor GSDelayProcessor;
 
     /// <summary> Insertion is not used outside SC-88Pro+ MIDIs, this is an optimization. </summary>
     internal bool GSInsertionActive;
@@ -407,13 +408,13 @@ public sealed class Synthesizer
     internal readonly ThruFX GSInsertionFallback = new();
 
     /// <summary> The GS current insertion processor. </summary>
-    internal GSEffect.GSInsertionProcessor GSInsertionProcessor;
+    internal GSInsertionProcessor GSInsertionProcessor;
 
     /// <summary>
     /// All the insertion effects available to the processor.<br/>
     /// The key is the EFX type stored as MSB lshift 8 | LSB
     /// </summary>
-    internal readonly FrozenDictionary<int, GSEffect.GSInsertionProcessor>
+    internal readonly FrozenDictionary<int, GSInsertionProcessor>
         InsertionEffects;
 
     /// <summary> For F5 system exclusive </summary>
@@ -489,11 +490,11 @@ public sealed class Synthesizer
         var bufSize = MaxBufferSize;
         // Initialize effects
         GSReverbProcessor =
-            options.GSReverbProcessor ?? new GSReverb(sampleRate, bufSize);
+            options.GSReverbProcessor ?? new DefaultGSReverb(sampleRate, bufSize);
         GSChorusProcessor =
-            options.GSChorusProcessor ?? new GSChorus(sampleRate, bufSize);
+            options.GSChorusProcessor ?? new DefaultGSChorus(sampleRate, bufSize);
         GSDelayProcessor =
-            options.GSDelayProcessor ?? new GSDelay(sampleRate, bufSize);
+            options.GSDelayProcessor ?? new DefaultGSDelay(sampleRate, bufSize);
         
         XGReverbBlock =
             options.XGReverbBlock ?? new DefaultXGReverb(sampleRate, bufSize);
@@ -525,8 +526,8 @@ public sealed class Synthesizer
         XGVariationInputR = new float[bufSize];
 
         // Register insertion
-        var insertions = new Dictionary<int, GSEffect.GSInsertionProcessor>();
-        foreach (var proc in GSEffect.GSInsertionProcessor.List)
+        var insertions = new Dictionary<int, GSInsertionProcessor>();
+        foreach (var proc in GSInsertionProcessor.List)
         {
             var p = proc(SampleRate, MaxBufferSize);
             insertions[p.Type] = p;
@@ -1340,7 +1341,7 @@ public sealed class Synthesizer
         _cvbCache.Clear();
     }
 
-    internal GSEffect.GSInsertionProcessorSnapshot GetInsertionSnapshot() =>
+    internal GSInsertionProcessorSnapshot GetInsertionSnapshot() =>
         new()
         {
             Type = GSInsertionProcessor.Type,

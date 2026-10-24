@@ -1,9 +1,11 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
+
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
 
 /// <summary>
 /// The default GS Chorus implementation for <see cref="SpessaSharpProcessor"/>.
 /// </summary>
-public sealed class GSChorus: GSEffect.ChorusProcessor
+public sealed class DefaultGSChorus: GSChorusProcessor
 {
     /// <summary> Cutoff frequency </summary>
     private float _preLPFfc = 8_000;
@@ -44,7 +46,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
     /// The maximum buffer size the synthesizer can render at once.
     /// Attempting to <see cref="Process"/> more samples than this will result in an error.
     /// </param>
-    public GSChorus(int sampleRate, int maxBufferSize) 
+    public DefaultGSChorus(int sampleRate, int maxBufferSize) 
     {
         _sampleRate         = sampleRate;
         _leftDelayBuffer    = new float[sampleRate];
@@ -56,7 +58,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         // discard maxBufferSize
     }
 
-    public override int SendLevelToReverb
+    public int SendLevelToReverb
     {
         get => _sendLevelToReverb;
         set
@@ -66,7 +68,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
 
-    public override int SendLevelToDelay
+    public int SendLevelToDelay
     {
         get => _sendLevelToDelay;
         set
@@ -76,7 +78,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
 
-    public override int PreLowPass
+    public int PreLowPass
     {
         get => _preLowPass;
         set
@@ -90,7 +92,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
 
-    public override int Depth
+    public int Depth
     {
         get => _depth;
         set
@@ -100,7 +102,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
     
-    public override int Delay
+    public int Delay
     {
         get => _delay;
         set
@@ -110,7 +112,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
     
-    public override int Feedback
+    public int Feedback
     {
         get => _feedback;
         set
@@ -120,7 +122,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
 
-    public override int Rate
+    public int Rate
     {
         get => _rate;
         set
@@ -134,7 +136,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
 
-    public override int Level
+    public int Level
     {
         get => _level;
         set
@@ -145,7 +147,7 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         }
     }
     
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> input,
         Span<float> outputLeft,
         Span<float> outputRight,
@@ -232,8 +234,8 @@ public sealed class GSChorus: GSEffect.ChorusProcessor
         _preLPFz = z;
     }
 
-    public override GSEffect.GSChorusParameter GetSnapshot() =>
-        new()
+    public GSChorusParameter GetSnapshot() =>
+        new DefaultGSChorus(_sampleRate, 0)
         {
             PreLowPass          = _preLowPass,
             Depth               = _depth,

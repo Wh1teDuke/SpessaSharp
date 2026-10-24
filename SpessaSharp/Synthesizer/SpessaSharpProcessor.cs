@@ -6,7 +6,6 @@ using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Parameters;
-using SpessaSharp.Synthesizer.Engine.Sysex;
 using SpessaSharp.Utils;
 
 namespace SpessaSharp.Synthesizer;
@@ -24,24 +23,6 @@ public sealed class SpessaSharpProcessor
     public int SampleRate => _synthCore.SampleRate;
 
     public Action<Event>? OnEvent;
-
-    public Macro.Reverb ReverbMacro
-    {
-        get => (Macro.Reverb)_synthCore.GSReverbProcessor.Macro;
-        set => Macro.SetReverb(_synthCore, value);
-    }
-    
-    public Macro.Chorus ChorusMacro
-    {
-        get => (Macro.Chorus)_synthCore.GSChorusProcessor.Macro;
-        set => Macro.SetChorus(_synthCore, value);
-    }
-    
-    public Macro.Delay DelayMacro
-    {
-        get => (Macro.Delay)_synthCore.GSDelayProcessor.Macro;
-        set => Macro.SetDelay(_synthCore, value);
-    }
     
     public void Process(
         Span<short> output, 

@@ -1,13 +1,18 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
+
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
 
 /// <summary>
 /// Stereo-EQ<br/>
 /// This is a four-band stereo equalizer (low, mid x 2, high).
 /// Type: Stereo
 /// </summary>
-public sealed class StereoEQFX: GSEffect.GSInsertionProcessor
+public sealed class StereoEQFX: GSInsertionProcessor
 {
-    public override int Type => 0x01_00;
+    public int Type => 0x01_00;
+    public float SendLevelToReverb { get; set; }
+    public float SendLevelToChorus { get; set; }
+    public float SendLevelToDelay { get; set; }
 
     private readonly int _sampleRate;
     private float _level = 1;
@@ -99,7 +104,7 @@ public sealed class StereoEQFX: GSEffect.GSInsertionProcessor
         UpdateCoefficients();
     }
     
-    public override void Reset()
+    public void Reset()
     {
         _level = 1;
         _lowFreq = 400;
@@ -126,7 +131,7 @@ public sealed class StereoEQFX: GSEffect.GSInsertionProcessor
         UpdateCoefficients();
     }
 
-    public override void SetParameter(int parameter, int value)
+    public void SetParameter(int parameter, int value)
     {
         switch (parameter) 
         {
@@ -183,7 +188,7 @@ public sealed class StereoEQFX: GSEffect.GSInsertionProcessor
         UpdateCoefficients();
     }
 
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> inputLeft, 
         ReadOnlySpan<float> inputRight, 
         

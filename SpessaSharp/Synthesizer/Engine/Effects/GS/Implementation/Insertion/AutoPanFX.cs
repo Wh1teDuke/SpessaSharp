@@ -1,9 +1,14 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
 
-public sealed class AutoPanFX: GSEffect.GSInsertionProcessor
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
+
+public sealed class AutoPanFX: GSInsertionProcessor
 {
-    public override int Type => 0x01_26;
-    
+    public int Type => 0x01_26;
+    public float SendLevelToReverb { get; set; }
+    public float SendLevelToChorus { get; set; }
+    public float SendLevelToDelay { get; set; }
+
     private const float DEFAULT_LEVEL = 127f;
     
     /// <summary>
@@ -78,7 +83,7 @@ public sealed class AutoPanFX: GSEffect.GSInsertionProcessor
         Reset();
     }
     
-    public override void Reset()
+    public void Reset()
     {
         _modWave = InsUtil.ModulationType.Sqr;
         _modRate = 3.05f;
@@ -96,7 +101,7 @@ public sealed class AutoPanFX: GSEffect.GSInsertionProcessor
         UpdateShelves();
     }
 
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> inputLeft, 
         ReadOnlySpan<float> inputRight, 
         
@@ -190,7 +195,7 @@ public sealed class AutoPanFX: GSEffect.GSInsertionProcessor
         _phase = phase;
     }
     
-    public override void SetParameter(int parameter, int value)
+    public void SetParameter(int parameter, int value)
     {
         switch (parameter) 
         {

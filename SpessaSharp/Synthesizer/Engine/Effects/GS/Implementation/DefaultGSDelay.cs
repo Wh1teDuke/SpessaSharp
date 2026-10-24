@@ -1,11 +1,12 @@
 using System.Runtime.CompilerServices;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
 
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS;
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
 
 /// <summary>
 /// The default GS Delay implementation for <see cref="SpessaSharpProcessor"/>
 /// </summary>
-public sealed class GSDelay: GSEffect.DelayProcessor
+public sealed class DefaultGSDelay: GSDelayProcessor
 {
     /// <summary>
     /// SC-8850 manual p.236<br/>
@@ -77,7 +78,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
     /// The maximum buffer size the synthesizer can render at once.
     /// Attempting to <see cref="Process"/> more samples than this will result in an error.
     /// </param>
-    public GSDelay(int sampleRate, int maxBufferSize)
+    public DefaultGSDelay(int sampleRate, int maxBufferSize)
     {
         _sampleRate = sampleRate;
         _buffer = new float[sampleRate];
@@ -89,7 +90,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         _delayRight = (int)float.Floor(_delayCenter * .04f);
     }
 
-    public override int SendLevelToReverb
+    public int SendLevelToReverb
     {
         get => _sendLevelToReverb;
         set
@@ -99,7 +100,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
 
-    public override int PreLowPass
+    public int PreLowPass
     {
         get => _preLowPass;
         set
@@ -113,7 +114,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
     
-    public override int LevelRight
+    public int LevelRight
     {
         get => _levelRight; 
         set
@@ -123,7 +124,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
     
-    public override int Level
+    public int Level
     {
         get => _level;
         set
@@ -134,7 +135,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
     
-    public override int LevelCenter
+    public int LevelCenter
     {
         get => _levelCenter;
         set
@@ -144,7 +145,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
     
-    public override int LevelLeft
+    public int LevelLeft
     {
         get => _levelLeft; 
         set
@@ -154,7 +155,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
 
-    public override int Feedback
+    public int Feedback
     {
         get => _feedback;
         set
@@ -166,7 +167,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
 
-    public override int TimeRatioRight
+    public int TimeRatioRight
     {
         get => _timeRatioRight;
         set
@@ -179,7 +180,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
     
-    public override int TimeRatioLeft
+    public int TimeRatioLeft
     {
         get => _timeRatioLeft;
         set
@@ -192,7 +193,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         }
     }
     
-    public override int TimeCenter
+    public int TimeCenter
     {
         get => _timeCenter;
         set
@@ -226,7 +227,7 @@ public sealed class GSDelay: GSEffect.DelayProcessor
     /// <param name="outputReverb">The mono input for reverb. It always starts at index 0.</param>
     /// <param name="startIndex">The index to start mixing at into the output buffers.</param>
     /// <param name="sampleCount">The amount of samples to mix.</param>
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> input,
         Span<float> outputLeft,
         Span<float> outputRight,
@@ -320,8 +321,8 @@ public sealed class GSDelay: GSEffect.DelayProcessor
         _writeIndex = writeIndex;
     }
 
-    public override GSEffect.GSDelayParameter GetSnapshot() =>
-        new()
+    public GSDelayParameter GetSnapshot() =>
+        new DefaultGSDelay(_sampleRate, _buffer.Length)
         {
             Level =  _level,
             PreLowPass =  _preLowPass,

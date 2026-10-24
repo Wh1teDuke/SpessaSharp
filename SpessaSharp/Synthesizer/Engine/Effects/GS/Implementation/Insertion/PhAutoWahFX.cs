@@ -1,11 +1,16 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
 
-public sealed class PhAutoWahFX: GSEffect.GSInsertionProcessor
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
+
+public sealed class PhAutoWahFX: GSInsertionProcessor
 {
     private const int DEFAULT_LEVEL = 127;
     
-    public override int Type => 0x11_08; // CHANGE THIS
-    
+    public int Type => 0x11_08; // CHANGE THIS
+    public float SendLevelToReverb { get; set; }
+    public float SendLevelToChorus { get; set; }
+    public float SendLevelToDelay { get; set; }
+
     /// <summary>
     /// Sets the stereo location of the phaser sound. L63 is far left, 0
     /// is center, and R63 is far right.<br/>
@@ -52,7 +57,7 @@ public sealed class PhAutoWahFX: GSEffect.GSInsertionProcessor
         Reset();
     }
     
-    public override void Reset()
+    public void Reset()
     {
         _phPan = 0;
         _awPan = 127;
@@ -64,7 +69,7 @@ public sealed class PhAutoWahFX: GSEffect.GSInsertionProcessor
         _autoWah.SetParameter(AutoWahFX.Param.Level, 127);
     }
 
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> inputLeft, 
         ReadOnlySpan<float> inputRight,
 
@@ -142,7 +147,7 @@ public sealed class PhAutoWahFX: GSEffect.GSInsertionProcessor
         }
     }
 
-    public override void SetParameter(int parameter, int value)
+    public void SetParameter(int parameter, int value)
     {
         switch (parameter)
         {

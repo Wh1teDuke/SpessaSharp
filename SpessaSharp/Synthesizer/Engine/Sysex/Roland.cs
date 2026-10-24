@@ -3,7 +3,7 @@ using SpessaSharp.MIDI.Utils;
 using SpessaSharp.SoundBank;
 using SpessaSharp.Synthesizer.Engine.Channel;
 using SpessaSharp.Synthesizer.Engine.Channel.Parameters;
-using SpessaSharp.Synthesizer.Engine.Effects.GS;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 using SpessaSharp.Utils;
 
@@ -181,7 +181,6 @@ internal static class Roland
                                 // Reverb
                                 case 0x30: 
                                     // Reverb macro
-                                    synth.GSReverbProcessor.Macro = data;
                                     synth.SetReverbMacro(data);
                                     SpessaLog.GSInfo("Reverb Macro", data);
                                     // Event called in setMacro
@@ -249,7 +248,6 @@ internal static class Roland
                                 // Chorus
                                 case 0x38: 
                                     // Chorus macro
-                                    synth.GSChorusProcessor.Macro = data;
                                     synth.SetChorusMacro(data);
                                     SpessaLog.GSInfo("Chorus Macro", data);
                                     // Event called in setMacro
@@ -336,7 +334,6 @@ internal static class Roland
                                 // Delay
                                 case 0x50: 
                                     // Delay macro
-                                    synth.GSDelayProcessor.Macro = data;
                                     synth.SetDelayMacro(data);
                                     SpessaLog.GSInfo("Delay Macro", data);
                                     // Event called in setMacro

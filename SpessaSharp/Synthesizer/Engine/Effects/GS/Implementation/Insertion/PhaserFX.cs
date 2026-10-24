@@ -1,18 +1,23 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
+
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
 
 /// <summary>
 /// A phaser adds a phase-shifted sound to the original sound, producing a twisting modulation that creates spaciousness and depth. Type: Stereo
 /// </summary>
 /// <remarks>seems to use a triangle LFO for modulation</remarks>
-public sealed class PhaserFX: GSEffect.GSInsertionProcessor
+public sealed class PhaserFX: GSInsertionProcessor
 {
     public static class Param
     {
         public const int Level = 0x16;
     }
     
-    public override int Type => 0x01_20;
-    
+    public int Type => 0x01_20;
+    public float SendLevelToReverb { get; set; }
+    public float SendLevelToChorus { get; set; }
+    public float SendLevelToDelay { get; set; }
+
     /// <summary>
     /// After lots of testing, this was the closest I've been able to get. SC-Va shows a very strange logarithmic curve after 1000 Hz (55 manual), which I wasn't able to replicate, no matter how hard I tried. Values below that are pretty much spot on though.
     /// </summary>
@@ -116,7 +121,7 @@ public sealed class PhaserFX: GSEffect.GSInsertionProcessor
         float[] NewFloatArray() => new float[ALL_PASS_STAGES];
     }
     
-    public override void Reset()
+    public void Reset()
     {
         _phase = PHASE_START;
         SetManual(620);
@@ -137,7 +142,7 @@ public sealed class PhaserFX: GSEffect.GSInsertionProcessor
         ClearAllPass();
     }
 
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> inputLeft, 
         ReadOnlySpan<float> inputRight, 
 
@@ -237,7 +242,7 @@ public sealed class PhaserFX: GSEffect.GSInsertionProcessor
     }
     
     
-    public override void SetParameter(int parameter, int value)
+    public void SetParameter(int parameter, int value)
     {
         switch (parameter) 
         {

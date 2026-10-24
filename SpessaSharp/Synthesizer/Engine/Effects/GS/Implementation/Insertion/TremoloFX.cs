@@ -1,15 +1,20 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
+
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
 
 
 /// <summary>
 /// Tremolo cyclically modulates the volume to add tremolo effect to the sound. Type: Stereo
 /// </summary>
-public sealed class TremoloFX: GSEffect.GSInsertionProcessor
+public sealed class TremoloFX: GSInsertionProcessor
 {
     private const float DEFAULT_LEVEL = 127;
     
-    public override int Type => 0x01_25;
-    
+    public int Type => 0x01_25;
+    public float SendLevelToReverb { get; set; }
+    public float SendLevelToChorus { get; set; }
+    public float SendLevelToDelay { get; set; }
+
     /// <summary>
     /// Selects the type of modulation.<br/>
     /// Tri:<br/>
@@ -85,7 +90,7 @@ public sealed class TremoloFX: GSEffect.GSInsertionProcessor
         Reset();
     }
     
-    public override void Reset()
+    public void Reset()
     {
         _modWave = InsUtil.ModulationType.Sqr;
         _modRate = 3.05f;
@@ -103,7 +108,7 @@ public sealed class TremoloFX: GSEffect.GSInsertionProcessor
         UpdateShelves();
     }
 
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> inputLeft,
         ReadOnlySpan<float> inputRight,
 
@@ -191,7 +196,7 @@ public sealed class TremoloFX: GSEffect.GSInsertionProcessor
         _currentGain = currentGain;
     }
     
-    public override void SetParameter(int parameter, int value)
+    public void SetParameter(int parameter, int value)
     {
         switch (parameter) 
         {

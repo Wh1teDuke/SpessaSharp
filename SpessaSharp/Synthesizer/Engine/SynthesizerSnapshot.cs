@@ -1,7 +1,8 @@
 using System.Collections;
 using SpessaSharp.MIDI.Utils;
 using SpessaSharp.Synthesizer.Engine.Channel;
-using SpessaSharp.Synthesizer.Engine.Effects.GS;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
 using SpessaSharp.Synthesizer.Engine.Effects.XG.Interface;
 using SpessaSharp.Synthesizer.Engine.Parameters;
 
@@ -14,10 +15,10 @@ public sealed class SynthesizerSnapshot(
     BitArray lockedParameters,
     GlobalSystemParameter[] systemParameters,
     
-    GSEffect.GSReverbParameter gsReverbProcessor,
-    GSEffect.GSChorusParameter gsChorusProcessor,
-    GSEffect.GSDelayParameter gsDelayProcessor,
-    GSEffect.GSInsertionProcessorSnapshot gsInsertionProcessorProcessor,
+    GSReverbParameter gsReverbProcessor,
+    GSChorusParameter gsChorusProcessor,
+    GSDelayParameter gsDelayProcessor,
+    GSInsertionProcessorSnapshot gsInsertionProcessorProcessor,
     
     XGReverbBlock.Snapshot xgReverbBlock,
     XGChorusBlock.Snapshot xgChorusBlock,
@@ -33,10 +34,10 @@ public sealed class SynthesizerSnapshot(
     public readonly BitArray LockedParameters = lockedParameters;
     public readonly GlobalSystemParameter[] SystemParameters = systemParameters;
     
-    public readonly GSEffect.GSReverbParameter GSReverbProcessor = gsReverbProcessor;
-    public readonly GSEffect.GSChorusParameter GSChorusProcessor = gsChorusProcessor;
-    public readonly GSEffect.GSDelayParameter GSDelayProcessor = gsDelayProcessor;
-    public GSEffect.GSInsertionProcessorSnapshot GSInsertionProcessor = gsInsertionProcessorProcessor;
+    public readonly GSReverbParameter GSReverbProcessor = gsReverbProcessor;
+    public readonly GSChorusParameter GSChorusProcessor = gsChorusProcessor;
+    public readonly GSDelayParameter GSDelayProcessor = gsDelayProcessor;
+    public GSInsertionProcessorSnapshot GSInsertionProcessor = gsInsertionProcessorProcessor;
 
     /// <summary> A snapshot of the XG reverb block. </summary>
     public readonly XGReverbBlock.Snapshot XGReverbBlock = xgReverbBlock;

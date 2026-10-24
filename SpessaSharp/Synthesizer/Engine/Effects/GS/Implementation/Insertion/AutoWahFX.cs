@@ -1,10 +1,12 @@
-namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Insertion;
+using SpessaSharp.Synthesizer.Engine.Effects.GS.Interface;
+
+namespace SpessaSharp.Synthesizer.Engine.Effects.GS.Implementation.Insertion;
 
 /// <summary>
 /// The Auto Wah cyclically controls a filter to create cyclic change in timbre.<br/>
 /// Type: Mono
 /// </summary>
-public sealed class AutoWahFX: GSEffect.GSInsertionProcessor
+public sealed class AutoWahFX: GSInsertionProcessor
 {
     public static class Param
     {
@@ -24,7 +26,10 @@ public sealed class AutoWahFX: GSEffect.GSInsertionProcessor
 
     public enum Polarity { Down, Up }
 
-    public override int Type => 0x01_21;
+    public int Type => 0x01_21;
+    public float SendLevelToReverb { get; set; }
+    public float SendLevelToChorus { get; set; }
+    public float SendLevelToDelay { get; set; }
 
     /// <summary> Selects the type of filter. </summary>
     private FilterType _filType = FilterType.BPF;
@@ -137,7 +142,7 @@ public sealed class AutoWahFX: GSEffect.GSInsertionProcessor
         Reset();
     }
     
-    public override void Reset()
+    public void Reset()
     {
         _filType = FilterType.BPF;
         _sens = 0;
@@ -161,7 +166,7 @@ public sealed class AutoWahFX: GSEffect.GSInsertionProcessor
         UpdateShelves();
     }
 
-    public override void Process(
+    public void Process(
         ReadOnlySpan<float> inputLeft,
         ReadOnlySpan<float> inputRight,
 
@@ -270,7 +275,7 @@ public sealed class AutoWahFX: GSEffect.GSInsertionProcessor
         _envelope = envelope;
     }
     
-    public override void SetParameter(int parameter, int value)
+    public void SetParameter(int parameter, int value)
     {
         switch (parameter) 
         {
